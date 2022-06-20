@@ -6,7 +6,7 @@ import {
 const path = require('path')
 
 export default async function handler(req, res) {
-    const file = readFileSync('post.json');
+    const file = readFileSync('/api/post.json');
 
     // const data = JSON.parse(file);
     // console.log( req.body)
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     // console.log(dd)
 
     if (req.method === "POST") {
-        const save = writeFileSync('post.json', JSON.stringify(req.body));
+        const save = writeFileSync('/api/post.json', JSON.stringify(req.body));
     }
     // fs.writeFile("database/raki.json", JSON.stringify(data),
     //     {
