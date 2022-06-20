@@ -22,10 +22,18 @@ const NewPost = () => {
     }
     return (
         <div>
-            <div id="newPostClose" className={styles.NewPost}>
+            <div id="newPostClose" className={styles.NewPostNav}>
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
                 <div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
+                        
+                        <input
+                            type="text"
+                            name="title"
+                            id=""
+                            className='input input-success form-control w-56 sm:w-80'
+                            placeholder='Title'
+                        />
                         
                         <input
                             type="text"

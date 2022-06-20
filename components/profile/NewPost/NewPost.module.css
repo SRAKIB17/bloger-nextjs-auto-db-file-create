@@ -1,4 +1,4 @@
-.NewPost {
+.NewPostNav {
     height: 100%;
     width: 0;
     position: fixed;
@@ -13,7 +13,7 @@
     /* text-align:center; */
   }
   
-  .NewPost a {
+  .NewPostNav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -23,11 +23,11 @@
   
   }
   
-  .NewPost a:hover{
+  .NewPostNav a:hover{
     color: #ffffff;
   }
   
-  .NewPost .closebtn {
+  .NewPostNav .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
@@ -36,6 +36,6 @@
   }
   
   @media screen and (max-height: 450px) {
-    .NewPost {padding-top: 15px;}
-    .NewPost a {font-size: 18px;}
+    .NewPostNav {padding-top: 15px;}
+    .NewPostNav a {font-size: 18px;}
   }

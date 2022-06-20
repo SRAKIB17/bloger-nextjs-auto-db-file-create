@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import NewPost from './NewPost/NewPost';
 import Image from 'next/image'
+import Post from '../Post-NewsFeed/Post';
 
 const Profile = () => {
     const [newPost, setNewPost] = useState(null);
     function OpenNewPost() {
         document.getElementById("newPostClose").style.width = "100%";
-    } 
+    }
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <div className='m-2  rounded-lg relative bg-base-200'>
@@ -16,7 +17,7 @@ const Profile = () => {
                 <div className='absolute bottom-[-48px] sm:bottom-[-52px] left-[50%] ml-[-50px] md:left-[100px] md:bottom-[-120px]'>
                     <div className="avatar online ">
                         <div className="w-24 sm:w-32 md:w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                            <img src="https://api.lorem.space/image/face?hash=3174"  alt=''/>
+                            <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
                         </div>
                     </div>
                 </div>
@@ -30,7 +31,7 @@ const Profile = () => {
                     </div>
                     <div className='flex flex-row justify-between gap-3 md:flex-col'>
                         <button className='btn btn-primary rounded-3xl btn-outline lg:text-xl'
-                            onClick={() => {OpenNewPost()}}
+                            onClick={() => { OpenNewPost() }}
                         >
                             New Post
                         </button>
@@ -40,10 +41,12 @@ const Profile = () => {
                 </div>
             </div>
             <div>
-                
-                lorem*100
                 <NewPost />
             </div>
+            <div>
+                <Post/>
+            </div>
+
         </div>
     );
 };
