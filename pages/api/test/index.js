@@ -6,7 +6,17 @@ import {
 const path = require('path')
 
 export default async function handler(req, res) {
-    const file = readFileSync('/api/post.json');
+    let file;
+    try {
+        file = readFileSync('/api/post.json', {
+            encoding: "utf8",
+            flag: "w+",
+            mode: 0o666
+        });
+    }
+    catch {
+        file = readFileSync('/api/post.json')
+    }
 
     // const data = JSON.parse(file);
     // console.log( req.body)
