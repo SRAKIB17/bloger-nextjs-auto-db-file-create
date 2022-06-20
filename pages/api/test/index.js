@@ -1,31 +1,26 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { readFileSync, writeFileSync } from 'node:fs';
-import {
-    open,
-} from 'node:fs/promises';
+import { openSync, readFileSync, writeFileSync } from 'node:fs';
+
 const path = require('path')
+const fs = require('fs')
 
 export default async function handler(req, res) {
-    let file;
-    try {
-        file = readFileSync('/api/post.json', {
+    // const file = readFileSync('post.json');
+
+    // // const data = JSON.parse(file);
+    // // console.log( req.body)
+    // // data[data?.length] = { 'post': new Date() }
+    // // const dd = fs.mkdirSync('database/rakibulssc5@gamail.com')
+    // // console.log(dd)
+    // const fss = fs.openSync('postjslfjs.json','w+')
+
+    if (req.method === "POST") {
+        const save = writeFileSync('post.json', JSON.stringify(req.body), {
             encoding: "utf8",
             flag: "w+",
             mode: 0o666
         });
-    }
-    catch {
-        file = readFileSync('/api/post.json')
-    }
-
-    // const data = JSON.parse(file);
-    // console.log( req.body)
-    // data[data?.length] = { 'post': new Date() }
-    // const dd = fs.mkdirSync('database/rakibulssc5@gamail.com')
-    // console.log(dd)
-
-    if (req.method === "POST") {
-        const save = writeFileSync('/api/post.json', JSON.stringify(req.body));
+        res.send({ m: 'success' })
     }
     // fs.writeFile("database/raki.json", JSON.stringify(data),
     //     {
@@ -50,6 +45,6 @@ export default async function handler(req, res) {
     //         console.log(JSON.parse(data))
     //     })
     // })
-    res.json((JSON.parse(file)))
+    // res.json((JSON.parse(file)))
 
 }
