@@ -5,7 +5,7 @@ const path = require('path')
 const fs = require('fs')
 
 export default async function handler(req, res) {
-    // const file = readFileSync('post.json');
+    const file = readFileSync('test.html');
 
     // // const data = JSON.parse(file);
     // // console.log( req.body)
@@ -14,14 +14,14 @@ export default async function handler(req, res) {
     // // console.log(dd)
     // const fss = fs.openSync('postjslfjs.json','w+')
 
-    if (req.method === "POST") {
-        const save = writeFileSync('post.json', JSON.stringify(req.body), {
-            encoding: "utf8",
-            flag: "w+",
-            mode: 0o666
-        });
-        res.send({ m: 'success' })
-    }
+    // if (req.method === "POST") {
+    //     const save = writeFileSync('post.json', JSON.stringify(req.body), {
+    //         encoding: "utf8",
+    //         flag: "w+",
+    //         mode: 0o666
+    //     });
+    //     res.send({ m: 'success' })
+    // }
     // fs.writeFile("database/raki.json", JSON.stringify(data),
     //     {
     //         encoding: "utf8",
@@ -45,6 +45,12 @@ export default async function handler(req, res) {
     //         console.log(JSON.parse(data))
     //     })
     // })
-    // res.json((JSON.parse(file)))
+    // res.writeHead(200, { 'Content-type': 'text/html' })
+    fs.readFile('test.html', function (err, data) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        return res.end();
+    });
+    // res.json(file)
 
 }

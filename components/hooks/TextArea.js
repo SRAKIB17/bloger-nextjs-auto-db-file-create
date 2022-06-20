@@ -69,7 +69,7 @@ const TextArea = () => {
     }
 
     return (
-        <div className='m-3 sm:m-10'>
+        <div className='m-3'>
             <div>
                 <button onClick={liveOffHandle} className='btn btn-warning btn-xs text-white m-4'>
                     Live
@@ -94,7 +94,7 @@ const TextArea = () => {
 
                     <textarea ref={textareaRef}
                         id='textForm'
-                        className='input input-success w-full hiddenScrollBar'
+                        className='input input-success w-full'
                         name="postBody"
                         onBlur={onchangeInput}
                         onKeyUp={(e) => shortcutKeyboard(e)}
