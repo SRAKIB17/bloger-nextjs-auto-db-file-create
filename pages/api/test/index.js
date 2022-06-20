@@ -1,9 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-const fs = require('fs')
+import { readFileSync, writeFileSync } from 'node:fs';
+import {
+    open,
+} from 'node:fs/promises';
 
 export default async function handler(req, res) {
-    const file = fs.readFileSync('database/post.json');
-    console.log(file)
+    const file = readFileSync('database/post.json');
 
     // const data = JSON.parse(file);
     // console.log( req.body)
@@ -12,7 +14,7 @@ export default async function handler(req, res) {
     // console.log(dd)
 
     if (req.method === "POST") {
-        const save = fs.writeFileSync('database/post.json', JSON.stringify(req.body));
+        const save = writeFileSync('database/post.json', JSON.stringify(req.body));
     }
     // fs.writeFile("database/raki.json", JSON.stringify(data),
     //     {
