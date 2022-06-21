@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 import Link from 'next/link';
 
 const Services = () => {
