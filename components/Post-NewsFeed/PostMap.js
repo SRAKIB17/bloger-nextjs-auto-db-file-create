@@ -39,7 +39,7 @@ const PostMap = () => {
                     </div>
                 </div>
 
-                <div className='card-body pb-2 pt-3 p-2 sm:p-3 md:p-4'>
+                <div className='card-body pb-2 pt-3 p-3 md:p-4'>
                     <h2 className="card-title">Title!</h2>
 
                     <p className='text-justify'>
