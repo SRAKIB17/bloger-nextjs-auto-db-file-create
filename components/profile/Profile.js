@@ -10,24 +10,32 @@ const Profile = () => {
         document.getElementById("newPostClose").style.width = "100%";
     }
     useEffect(() => {
-        window.onscroll = (e) => {
+        const GeneratedScrollProfile = () => {
             const stickyTop = document.getElementById('stickyTop')
             const winScroll = document.documentElement.scrollTop;
 
             const headerH = document.getElementById('header').offsetHeight
             // if(winScroll>)
             const post = document.getElementById('post')
-            if (stickyTop.offsetHeight - 10 < winScroll) {
-                post.style.position = 'fixed'
-                post.style.overflow = 'auto'
-                post.style.height = '100%'
-                post.style.top = 66
+            const scrollProfile = document.getElementById('scrollProfile');
+            const windowWidth = window.innerWidth;
+            if (((stickyTop.offsetHeight + stickyTop.offsetTop) <= (winScroll + headerH)) && (windowWidth >= 640)) {
+                scrollProfile.style.visibility = 'visible'
+                // scrollProfile.style.width = '100%'
+                scrollProfile.style.top = '66px'
+                console.log(windowWidth)
             }
             else {
-                post.style.position = 'static'
-                post.style.overflow = 'auto'
+                scrollProfile.style.top = '-200px'
+                scrollProfile.style.visibility = 'hidden'
             }
             WindowOnscrollEvent()
+        }
+        window.onscroll = () => {
+            GeneratedScrollProfile()
+        }
+        window.onresize = () => {
+            GeneratedScrollProfile()
         }
     }, [])
     return (
@@ -64,15 +72,26 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+
+
+            <div className='scrollBarTopProfileFixed bg-indigo-300 hidden sm:block' id='scrollProfile'>
+
+                <div className="avatar p-1">
+                    <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 sm:ml-10 md:ml-[100px]">
+                        <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                    </div>
+                </div>
+            </div>
+
             <div>
                 <NewPost />
             </div>
-            <div className='grid grid-cols-12 gap-3 m-5 text-justify md:m-10' id='post'>
+            <div className='grid grid-cols-12 gap-3 m-5 text-justify md:m-10'>
                 <div className='col-span-12 md:col-span-4'>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis ea ullam expedita. Earum quam officia tenetur minima consequatur enim? Illo, dolorem! Deserunt repudiandae quos ad. Veritatis neque qui possimus excepturi!
                 </div>
 
-                <div className='col-span-12 md:col-span-8 sticky' >
+                <div className='col-span-12 md:col-span-8 sticky' id='post'>
                     <Post />
                 </div>
             </div>

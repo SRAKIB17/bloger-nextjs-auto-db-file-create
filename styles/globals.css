@@ -44,3 +44,13 @@ a {
   height: 70px;
   visibility: hidden;
 }
+
+.scrollBarTopProfileFixed {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  top: -10px;
+  left: 0;
+  transition: 0.5s;
+  padding-top: 10px;
+}
