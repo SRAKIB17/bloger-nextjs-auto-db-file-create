@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import WindowOnscrollEvent from '../Header/WindowOnscrollEvent';
 import classTagShortcutInput from './hooks/useFindClassAttr';
 import styles from './TextArea.module.css';
 const TextArea = () => {
@@ -24,6 +25,7 @@ const TextArea = () => {
 
     useEffect(() => {
         window.onresize = () => {
+            WindowOnscrollEvent()
             setWindowHeight(window.innerHeight)
             setLayoutForm(window.innerWidth / 2);
             setWindowWidth(window.innerWidth);
