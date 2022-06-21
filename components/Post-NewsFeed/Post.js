@@ -1,5 +1,5 @@
 import React from 'react';
-import PostMap from './PostBody.js/PostMap';
+import PostMap from './PostMap';
 
 const Post = () => {
 

@@ -1,19 +1,14 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import SideLeftBar from './SideLeftBar';
-import WindowOnscrollEvent from './WindowOnscrollEvent';
 const Header = () => {
     // const { pathname } = useRouter();
     // console.log(useRouter())
-    useEffect(() => {
-        window.onscroll = () => {
-            WindowOnscrollEvent()
-        }
-    }, [])
+  
     // const getBar = pathname.includes('services')
     //     console.log(getBar)
     return (
-        <div className=" m-0 border-b-2 sticky z-[100] top-0 w-full" id='header'>
+        <div className=" m-0 border-b-2 bg-white sticky z-[100] top-0 w-full" id='header'>
             <div className='navbar'>
                 <div className="navbar-start">
                     <div className="dropdown">

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import NewPost from './NewPost/NewPost';
 import Image from 'next/image'
 import Post from '../Post-NewsFeed/Post';
-import WindowOnscrollEvent from '../Header/WindowOnscrollEvent';
 
 const Profile = () => {
     const [newPost, setNewPost] = useState(null);
@@ -10,6 +9,7 @@ const Profile = () => {
         document.getElementById("newPostClose").style.width = "100%";
     }
     useEffect(() => {
+        // document.body.setAttribute('data-theme', 'retro')
         const GeneratedScrollProfile = () => {
             const stickyTop = document.getElementById('stickyTop')
             const winScroll = document.documentElement.scrollTop;
@@ -29,7 +29,6 @@ const Profile = () => {
                 scrollProfile.style.top = '-200px'
                 scrollProfile.style.visibility = 'hidden'
             }
-            WindowOnscrollEvent()
         }
         window.onscroll = () => {
             GeneratedScrollProfile()
@@ -40,8 +39,8 @@ const Profile = () => {
     }, [])
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
-            <div id='stickyTop'>
-                <div className='m-2  rounded-lg relative bg-base-200'>
+            <div id='stickyTop' className='bg-white m-2'>
+                <div className=' rounded-lg relative bg-base-200'>
                     <div className=''>
                         <img src="https://images.unsplash.com/photo-1655465184678-548fb85fa74a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80" alt="" className='h-[200px] w-full sm:h-[300px] rounded-t-lg' />
                     </div>
@@ -74,8 +73,7 @@ const Profile = () => {
             </div>
 
 
-            <div className='scrollBarTopProfileFixed bg-indigo-300 hidden sm:block' id='scrollProfile'>
-
+            <div className='scrollBarTopProfileFixed bg-white pb-1 hidden sm:block' id='scrollProfile'>
                 <div className="avatar p-1">
                     <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 sm:ml-10 md:ml-[100px]">
                         <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
@@ -86,9 +84,12 @@ const Profile = () => {
             <div>
                 <NewPost />
             </div>
+
             <div className='grid grid-cols-12 gap-5 m-5 text-justify md:m-10'>
-                <div className='col-span-12 md:col-span-5 sm:border-r-2 p-2'>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis ea ullam expedita. Earum quam officia tenetur minima consequatur enim? Illo, dolorem! Deserunt repudiandae quos ad. Veritatis neque qui possimus excepturi!
+                <div className='col-span-12 md:col-span-5 sm:border-r-2  '>
+                    <div className='bg-white p-2 rounded-t-lg'>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis ea ullam expedita. Earum quam officia tenetur minima consequatur enim? Illo, dolorem! Deserunt repudiandae quos ad. Veritatis neque qui possimus excepturi!
+                    </div>
                 </div>
 
                 <div className='col-span-12 md:col-span-7 sticky' id='post'>
