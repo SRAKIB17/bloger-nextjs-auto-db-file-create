@@ -16,14 +16,13 @@ const Profile = () => {
 
             const headerH = document.getElementById('header').offsetHeight
             // if(winScroll>)
-            const post = document.getElementById('post')
+           
             const scrollProfile = document.getElementById('scrollProfile');
             const windowWidth = window.innerWidth;
             if (((stickyTop.offsetHeight + stickyTop.offsetTop) <= (winScroll + headerH)) && (windowWidth >= 640)) {
                 scrollProfile.style.visibility = 'visible'
                 // scrollProfile.style.width = '100%'
                 scrollProfile.style.top = '66px'
-                console.log(windowWidth)
             }
             else {
                 scrollProfile.style.top = '-200px'
@@ -74,8 +73,8 @@ const Profile = () => {
 
 
             <div className='scrollBarTopProfileFixed bg-white pb-1 hidden sm:block' id='scrollProfile'>
-                <div className="avatar p-1">
-                    <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 sm:ml-10 md:ml-[100px]">
+                <div className="avatar ">
+                    <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1 sm:ml-10 md:ml-[100px]">
                         <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
                     </div>
                 </div>
