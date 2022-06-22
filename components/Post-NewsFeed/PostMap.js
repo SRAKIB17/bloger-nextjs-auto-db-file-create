@@ -26,10 +26,11 @@ const PostMap = () => {
     }
     return (
         <div>
-            <div className="card w-full bg-base-100 shadow-xl mt-2">
-                <div className='flex gap-2 justify-start items-center border-b-[1px] m-2'>
+            <div className="card w-full bg-base-100 shadow-xl mt-2 rounded-none">
+
+                <div className='flex gap-2 justify-start items-center border-b-[1px] m-3 '>
                     <div className='avatar p-2 mb-1'>
-                        <div className="w-10 h-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <div className="w-10 h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
                             <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
                         </div>
                     </div>

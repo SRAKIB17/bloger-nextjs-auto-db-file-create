@@ -45,7 +45,7 @@ const Profile = () => {
                     </div>
                     <div className='absolute bottom-[-48px] sm:bottom-[-52px] left-[50%] ml-[-50px] md:left-[100px] md:bottom-[-120px]'>
                         <div className="avatar online ">
-                            <div className="w-24 sm:w-32 md:w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <div className="w-24 sm:w-32 md:w-40 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
                                 <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
                             </div>
                         </div>
@@ -74,7 +74,7 @@ const Profile = () => {
 
             <div className='scrollBarTopProfileFixed bg-white pb-1 hidden sm:block' id='scrollProfile'>
                 <div className="avatar ">
-                    <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1 sm:ml-10 md:ml-[100px]">
+                    <div className="w-8 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1 sm:ml-10 md:ml-[100px]">
                         <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
                     </div>
                 </div>
@@ -84,8 +84,8 @@ const Profile = () => {
                 <NewPost />
             </div>
 
-            <div className='grid grid-cols-12 gap-5 m-5 text-justify md:m-10'>
-                <div className='col-span-12 md:col-span-5 sm:border-r-2 '>
+            <div className='grid grid-cols-12 gap-5 text-justify md:m-10'>
+                <div className='col-span-12 md:col-span-5 sm:border-r-2 p-5'>
                     <div className='bg-white p-2 rounded-t-lg'>
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis ea ullam expedita. Earum quam officia tenetur minima consequatur enim? Illo, dolorem! Deserunt repudiandae quos ad. Veritatis neque qui possimus excepturi!
                     </div>

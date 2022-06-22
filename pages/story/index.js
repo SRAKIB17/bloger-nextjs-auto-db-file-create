@@ -14,7 +14,7 @@ const index = () => {
                     </div>
                 </div>
 
-                <div className='col-span-12 m-3 sm:mr-3 sm:col-start-6 sm:col-end-[-1] md:col-span-5'>
+                <div className='col-span-12 sm:mr-3 sm:col-start-6 sm:col-end-[-1] md:col-span-5'>
                     <Post />
                 </div>
 
