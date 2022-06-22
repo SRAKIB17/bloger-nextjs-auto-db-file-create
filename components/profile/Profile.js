@@ -85,7 +85,7 @@ const Profile = () => {
             </div>
 
             <div className='grid grid-cols-12 gap-5 m-5 text-justify md:m-10'>
-                <div className='col-span-12 md:col-span-5 sm:border-r-2  '>
+                <div className='col-span-12 md:col-span-5 sm:border-r-2 '>
                     <div className='bg-white p-2 rounded-t-lg'>
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis ea ullam expedita. Earum quam officia tenetur minima consequatur enim? Illo, dolorem! Deserunt repudiandae quos ad. Veritatis neque qui possimus excepturi!
                     </div>
