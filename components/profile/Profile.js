@@ -3,6 +3,7 @@ import NewPost from './NewPost/NewPost';
 import Image from 'next/image'
 import Post from '../Post-NewsFeed/Post';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
+import About from './About';
 
 const Profile = () => {
     const [newPost, setNewPost] = useState(null);
@@ -38,7 +39,7 @@ const Profile = () => {
                 }
             }
             catch {
-                
+
             }
         }
         window.onscroll = () => {
@@ -102,11 +103,11 @@ const Profile = () => {
                 <NewPost />
                 <ProfileEdit />
             </div>
-
+            {/* about me section  */}
             <div className='grid grid-cols-12 gap-5 text-justify md:m-10'>
                 <div className='col-span-12 md:col-span-5 sm:border-r-2 p-5'>
                     <div className='bg-white p-2 rounded-t-lg'>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis ea ullam expedita. Earum quam officia tenetur minima consequatur enim? Illo, dolorem! Deserunt repudiandae quos ad. Veritatis neque qui possimus excepturi!
+                       <About/>
                     </div>
                 </div>
 

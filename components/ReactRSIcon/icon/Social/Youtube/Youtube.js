@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Youtube = ({ color = 'red', size = '1em', ...rest }) => {
+const Youtube = ({ color = 'currentColor', size = '1em', ...rest }) => {
     return (
         <svg
 

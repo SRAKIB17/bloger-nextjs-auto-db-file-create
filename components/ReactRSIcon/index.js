@@ -6,7 +6,7 @@ export { default as Comment } from './icon/comment'
 export { default as BubbleCommentChat } from './icon/bubbleCommentChat'
 
 //------------------ serial G-----------------
-export { default as GooglePlayBadge } from './icon/googlePlayBadge'
+// export { default as GooglePlayBadge } from './icon/googlePlayBadge'
 
 
 export { default as Home } from './icon/home'
@@ -36,16 +36,45 @@ export { default as GithubCircle } from './icon/Social/Github/github_circle'
 export { default as GithubSquare } from './icon/Social/Github/github_square'
 export { default as GithubText } from './icon/Social/Github/github_text'
 
+
+export { default as FemaleGender } from './icon/Gender/FemaleGender'
+export { default as MaleGender } from './icon/Gender/MaleGender'
+export { default as Gender } from './icon/Gender/Gender'
+
 // for google 
 export { default as Google } from './icon/Social/Google/Google'
 export { default as GoogleColorFull } from './icon/Social/Google/Google_Color_Full'
 export { default as GoogleText } from './icon/Social/Google/GoogleText'
+
+
+// for instagram 
+export { default as InstagramColor } from './icon/Social/Instagram/instagram-color'
+export { default as Instagram } from './icon/Social/Instagram/instagram'
+export { default as InstagramSquare } from './icon/Social/Instagram/instagramSquare'
+
+
+export { default as Location } from './icon/Address/Location'
 
 // for linkdin 
 export { default as LinkedinNew } from './icon/Social/Linkedin/linkedin'
 export { default as LinkedinCircle } from './icon/Social/Linkedin/linkedin_circle'
 export { default as LinkedinSquare } from './icon/Social/Linkedin/linkedin_square'
 export { default as LinkedinText } from './icon/Social/Linkedin/linkedin_text'
+
+
+export { default as Quote } from './icon/Quote'
+
+
+export { default as School } from './icon/School/School'
+
+
+// for twitter 
+export { default as TwitterColor } from './icon/Social/Twitter/TwitterColor'
+export { default as Twitter } from './icon/Social/Twitter/Twitter'
+export { default as TwitterSquare } from './icon/Social/Twitter/TwitterSquare'
+
+
+export { default as Worker } from './icon/Work/Worker'
 
 // for  youtube 
 export { default as Youtube } from './icon/Social/Youtube/Youtube'

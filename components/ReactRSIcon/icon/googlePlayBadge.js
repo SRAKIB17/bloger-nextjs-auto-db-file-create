@@ -1,5 +1,5 @@
 import React from 'react';
-import './Class/GooglePlayBadge.css'
+// import './Class/GooglePlayBadge.css'
 const GooglePlayBadge = ({ color = 'currentColor', size=200, ...rest }) => {
     return (
         <svg

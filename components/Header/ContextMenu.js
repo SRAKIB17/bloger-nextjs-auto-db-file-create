@@ -45,10 +45,9 @@ const ContextMenu = () => {
         <div>
 
             <div className='absolute hidden' id='contextMenu' >
-                <ul className="menu bg-base-100 p-2 rounded-box animate-bounce w-40">
+                <ul className="menu bg-base-300 p-2 rounded-box w-40">
                     <li><Link href='/story'>Story</Link></li>
                     <li><Link href='/profile'>Profile</Link></li>
-                   
                 </ul>
             </div>
 
