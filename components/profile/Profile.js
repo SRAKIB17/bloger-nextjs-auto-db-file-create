@@ -6,34 +6,39 @@ import ProfileEdit from './ProfileEdit/ProfileEdit';
 
 const Profile = () => {
     const [newPost, setNewPost] = useState(null);
-   
+
     function OpenNewPost() {
         document.getElementById("newPostClose").style.width = "100%";
     }
-    
+
     function OpenEditProfile() {
         document.getElementById("profileEdit").style.width = "100%";
     }
-    
+
     useEffect(() => {
         // document.body.setAttribute('data-theme', 'retro')
         const GeneratedScrollProfile = () => {
-            const stickyTop = document.getElementById('stickyTop')
-            const winScroll = document.documentElement.scrollTop;
+            try {
+                const stickyTop = document.getElementById('stickyTop')
+                const winScroll = document.documentElement.scrollTop;
 
-            const headerH = document.getElementById('header').offsetHeight
-            // if(winScroll>)
+                const headerH = document.getElementById('header').offsetHeight
+                // if(winScroll>)
 
-            const scrollProfile = document.getElementById('scrollProfile');
-            const windowWidth = window.innerWidth;
-            if (((stickyTop.offsetHeight + stickyTop.offsetTop) <= (winScroll + headerH)) && (windowWidth >= 640)) {
-                scrollProfile.style.visibility = 'visible'
-                // scrollProfile.style.width = '100%'
-                scrollProfile.style.top = '66px'
+                const scrollProfile = document.getElementById('scrollProfile');
+                const windowWidth = window.innerWidth;
+                if (((stickyTop.offsetHeight + stickyTop.offsetTop) <= (winScroll + headerH)) && (windowWidth >= 640)) {
+                    scrollProfile.style.visibility = 'visible'
+                    // scrollProfile.style.width = '100%'
+                    scrollProfile.style.top = '66px'
+                }
+                else {
+                    scrollProfile.style.top = '-200px'
+                    scrollProfile.style.visibility = 'hidden'
+                }
             }
-            else {
-                scrollProfile.style.top = '-200px'
-                scrollProfile.style.visibility = 'hidden'
+            catch {
+                
             }
         }
         window.onscroll = () => {
@@ -95,7 +100,7 @@ const Profile = () => {
 
             <div>
                 <NewPost />
-                <ProfileEdit/>
+                <ProfileEdit />
             </div>
 
             <div className='grid grid-cols-12 gap-5 text-justify md:m-10'>
