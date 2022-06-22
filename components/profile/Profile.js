@@ -62,6 +62,7 @@ const Profile = () => {
                             <button className='btn btn-primary rounded-3xl btn-outline lg:text-xl'
                                 onClick={() => { OpenNewPost() }}
                             >
+                                
                                 New Post
                             </button>
                             <button className='btn  btn-outline btn-secondary  rounded-3xl lg:text-xl'>Edit Profile</button>
