@@ -28,7 +28,7 @@ const Comment_textarea = () => {
             <div className='relative flex'>
                 <textarea ref={textareaRef}
                     id='textForm'
-                    className='input input-success w-[50%]'
+                    className='input input-success w-[50%] font-mono'
                     name="postBody"
                     onBlur={onchangeInput}
                     onKeyUp={(e) => shortcutKeyboard(e)}
@@ -41,7 +41,7 @@ const Comment_textarea = () => {
                 >
                 </textarea>
                 <div className='align-bottom absolute left-[50%] bottom-0'>
-                    <button className='btn btn-sm btn-primary ml-2 '>Comment</button>
+                    <button className='btn btn-sm btn-primary ml-2 text-xs'>Comment</button>
                 </div>
             </div>
         </div>

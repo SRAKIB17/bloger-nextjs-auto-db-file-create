@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react';
 import NewPost from './NewPost/NewPost';
 import Image from 'next/image'
 import Post from '../Post-NewsFeed/Post';
+import ProfileEdit from './ProfileEdit/ProfileEdit';
 
 const Profile = () => {
     const [newPost, setNewPost] = useState(null);
+   
     function OpenNewPost() {
         document.getElementById("newPostClose").style.width = "100%";
     }
+    
+    function OpenEditProfile() {
+        document.getElementById("profileEdit").style.width = "100%";
+    }
+    
     useEffect(() => {
         // document.body.setAttribute('data-theme', 'retro')
         const GeneratedScrollProfile = () => {
@@ -16,7 +23,7 @@ const Profile = () => {
 
             const headerH = document.getElementById('header').offsetHeight
             // if(winScroll>)
-           
+
             const scrollProfile = document.getElementById('scrollProfile');
             const windowWidth = window.innerWidth;
             if (((stickyTop.offsetHeight + stickyTop.offsetTop) <= (winScroll + headerH)) && (windowWidth >= 640)) {
@@ -38,14 +45,14 @@ const Profile = () => {
     }, [])
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
-            <div id='stickyTop' className='bg-white rounded-lg m-2'>
+            <div id='stickyTop' className='bg-white rounded-lg m-2 pb-4 md:pb-6'>
                 <div className=' rounded-lg relative bg-base-200'>
                     <div className=''>
                         <img src="https://images.unsplash.com/photo-1655465184678-548fb85fa74a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80" alt="" className='h-[200px] w-full sm:h-[300px] rounded-t-lg' />
                     </div>
                     <div className='absolute bottom-[-48px] sm:bottom-[-52px] left-[50%] ml-[-50px] md:left-[100px] md:bottom-[-120px]'>
                         <div className="avatar online ">
-                            <div className="w-24 sm:w-32 md:w-40 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
+                            <div className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
                                 <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
                             </div>
                         </div>
@@ -59,13 +66,18 @@ const Profile = () => {
                             <h1 className='text-orange-500'>Total Point: 300</h1>
                         </div>
                         <div className='flex flex-row justify-between gap-3 md:flex-col'>
-                            <button className='btn btn-primary rounded-3xl btn-outline lg:text-xl'
+                            <button className='btn btn-sm btn-primary rounded-3xl btn-outline '
                                 onClick={() => { OpenNewPost() }}
                             >
-                                
+
                                 New Post
                             </button>
-                            <button className='btn  btn-outline btn-secondary  rounded-3xl lg:text-xl'>Edit Profile</button>
+                            <button
+                                className='btn btn-sm  btn-outline btn-secondary  rounded-3xl'
+                                onClick={OpenEditProfile}
+                            >
+                                Edit Profile
+                            </button>
 
                         </div>
                     </div>
@@ -83,6 +95,7 @@ const Profile = () => {
 
             <div>
                 <NewPost />
+                <ProfileEdit/>
             </div>
 
             <div className='grid grid-cols-12 gap-5 text-justify md:m-10'>
