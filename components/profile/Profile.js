@@ -36,15 +36,15 @@ const Profile = () => {
                 scrollProfile.style.visibility = 'hidden'
             }
         }
-        window.onscroll = () => {
+        document.onscroll = () => {
             GeneratedScrollProfile()
         }
-        window.onresize = () => {
+        document.onresize = () => {
             GeneratedScrollProfile()
         }
     }, [])
     return (
-        <div className='lg:ml-[200px] lg:mr-[200px]'>
+        <div className='lg:ml-[200px] lg:mr-[200px]' id='Profile'>
             <div id='stickyTop' className='bg-white rounded-lg m-2 pb-4 md:pb-6'>
                 <div className=' rounded-lg relative bg-base-200'>
                     <div className=''>

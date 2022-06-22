@@ -23,6 +23,7 @@ const TextArea = () => {
     const [windowHeight, setWindowHeight] = useState('');
 
     useEffect(() => {
+       
         window.onresize = () => {
             setWindowHeight(window.innerHeight)
             setLayoutForm(window.innerWidth / 2);
@@ -43,7 +44,7 @@ const TextArea = () => {
             setRotate(!rotate)
         }
         else {
-            dragging[dragging.length - 2] = windowWidth  - 200
+            dragging[dragging.length - 2] = windowWidth - 200
             setWindowWidth(0)
             setRotate(!rotate)
         }
@@ -53,7 +54,7 @@ const TextArea = () => {
         // const Live = e.target.ownerDocument.querySelector('#livePreview');
         // setLiveSize([Live.clientWidth, Live.clientHeight])
         e.preventDefault();
-        setDragging([...dragging, e.pageX]);
+        setDragging([...dragging, e.clientX]);
     }
 
     const [dragSeparate, setDraggingSeparate] = useState();

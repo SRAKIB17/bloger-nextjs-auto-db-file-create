@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React from 'react';
+import ContextMenu from './ContextMenu';
 import SideLeftBar from './SideLeftBar';
 const Header = () => {
+    
     // const { pathname } = useRouter();
     // console.log(useRouter())
 
@@ -38,7 +40,7 @@ const Header = () => {
                     </label>
                 </div>
             </div>
-
+            <ContextMenu/>
             <SideLeftBar />
         </div>
 

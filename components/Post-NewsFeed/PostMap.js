@@ -27,7 +27,6 @@ const PostMap = () => {
     return (
         <div>
             <div className="card w-full bg-base-100 shadow-xl mt-2 rounded-none">
-
                 <div className='flex gap-2 justify-start items-center border-b-[1px] m-3 '>
                     <div className='avatar p-2 mb-1'>
                         <div className="w-10 h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
@@ -40,15 +39,15 @@ const PostMap = () => {
                     </div>
                 </div>
 
-                <div className='card-body pb-2 pt-3 p-[18px]'>
+                <div className='card-body pb-2 pt-3 p-5'>
                     <h2 className="card-title">Title!</h2>
 
                     <p className='text-justify'>
                         {
                             postBody
                         }
-                    </p>
 
+                    </p>
                     <div className="card-actions justify-end">
                         <button className="link-primary" onClick={handleSeeMorePost}>See More</button>
                     </div>
