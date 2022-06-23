@@ -18,25 +18,26 @@ const Header = () => {
     // const getBar = pathname.includes('services')
     //     console.log(getBar)
     return (
-        <div className=" " id='header'>
-            <Head>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <div className='relative h-[60px] z-[100] top-0 w-full'>
-                <div className='h-[60px] border-b-2 m-0 bg-base-100 fixed w-full flex items-center md:justify-center '>
-                    
-                    <div className="flex justify-between md:justify-center ml-2 mr-2">
-                        <ul className="menu menu-horizontal p-0">
-                            <li> <button onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
-                            <li> <button onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
-                            <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
-                        </ul>
-                    </div>
+        <div className='mb-[65px]'>
+            <div className="h-[60px] w-full border-b-2 bg-base-100  z-[150] fixed top-0" id='header'>
+                <Head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+
+                {/* <div className='h-[60px]  m-0 bg-base-100 w-full flex items-center md:justify-center '> */}
+
+                <div className="flex justify-between md:justify-center ml-2 mr-2">
+                    <ul className="menu menu-horizontal p-0">
+                        <li> <button onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
+                        <li> <button onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
+                        <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
+                    </ul>
                 </div>
+                {/* </div> */}
+                <SideLeftBar />
             </div>
             <ContextMenu />
-            <SideLeftBar />
         </div>
 
 

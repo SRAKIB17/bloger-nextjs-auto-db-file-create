@@ -3,8 +3,7 @@ import Link from 'next/link';
 import NewPost from '../profile/NewPost/NewPost';
 
 const ContextMenu = () => {
-    const [show, setShow] = useState(null);
-    const [position, setPosition] = useState([])
+
 
     const OpenNewPost = () => {
         document.getElementById("newPostClose").style.width = "100%";
@@ -15,12 +14,15 @@ const ContextMenu = () => {
             e.preventDefault()
             const pageX = e.clientX;
             const pageY = e.clientY;
+            const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            console.log(windowScroll)
             const getContextMenu = document.getElementById('contextMenu');
             getContextMenu.style.display = 'block'
-            getContextMenu.style.top = pageY + 'px';
+            getContextMenu.style.top = pageY + windowScroll + 'px';
             getContextMenu.style.left = pageX + 'px';
         })
         document.onclick = (e) => {
+            console.log(45345)
             const getContextMenu = document.getElementById('contextMenu');
             getContextMenu.style.display = 'none'
         }
@@ -58,7 +60,7 @@ const ContextMenu = () => {
     return (
         <div>
 
-            <div className='absolute hidden' id='contextMenu' >
+            <div className='absolute hidden z-[100]' id='contextMenu' >
                 <ul className="menu bg-base-300 p-2 rounded-box w-40">
                     <li><Link href='/story'>Story</Link></li>
                     <li><Link href='/profile'>Profile</Link></li>
