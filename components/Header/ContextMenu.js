@@ -25,7 +25,6 @@ const ContextMenu = () => {
         document.onclick = (e) => {
             const getContextMenu = document.getElementById('contextMenu');
             getContextMenu.style.display = 'none'
-            console.log(getContextMenu)
         }
         window.onkeyup = (e) => {
             if (e.key === 'F12') {

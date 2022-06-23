@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useRouter,withRouter } from 'next/router';
 import Link from 'next/dist/client/link';
 import React from 'react';
 import ContextMenu from './ContextMenu';
@@ -6,14 +6,18 @@ import SideLeftBar from './SideLeftBar';
 import { Google, Home, NewsFeed, Video } from '../ReactRSIcon/index'
 const Header = () => {
 
-    // const { pathname } = useRouter();
+    const router = useRouter();
+    // console.log(pathname.route = '/story')
     // console.log(useRouter())
-
+    const navigate = (path) =>{
+        router.push(path)
+        router.prefetch(path)
+    }
     // const getBar = pathname.includes('services')
     //     console.log(getBar)
     return (
         <div className=" m-0 border-b-2 bg-base-100 sticky z-[100] top-0 w-full" id='header'>
-            <div className='max-h-[60px] w-full flex items-center ml-2 mr-2'>
+            <div className='h-[60px] w-full flex justify-start items-center ml-2 mr-2 lg:justify-center '>
                 {/* <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex="0" className="btn btn-outline btn-ghost lg:hidden">
@@ -26,11 +30,11 @@ const Header = () => {
                     <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
                 </div> */}
 
-                <div className="navbar-center lg:flex justify-center lg:text-center">
+                <div className="flex justify-center">
                     <ul className="menu menu-horizontal p-0">
-                        <li> <a href='/'><Home color='grey' size='30' /></a></li>
-                        <li> <a href='/story'><NewsFeed color='grey' size='30' /></a></li>
-                        <li> <a href='/videos'><Video color='grey' size='30' /></a></li>
+                        <li> <button  onClick={()=>navigate('/')}><Home color='grey' size='30' /></button></li>
+                        <li> <button  onClick={()=>navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
+                        <li> <button  onClick={()=>navigate('/videos')}><Video color='grey' size='30' /></button></li>
                     </ul>
                 </div>
 

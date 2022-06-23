@@ -49,7 +49,7 @@ const Profile = () => {
     }, [])
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
-            <div id='stickyTop' className='bg-white rounded-lg m-2 pb-4 md:pb-6'>
+            <div id='stickyTop' className='bg-base-100 rounded-lg m-2 pb-4 md:pb-6'>
                 <div className=' rounded-lg relative bg-base-200'>
                     <div className=''>
                         <img src="https://images.unsplash.com/photo-1655465184678-548fb85fa74a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80" alt="" className='h-[200px] w-full sm:h-[300px] rounded-t-lg' />
