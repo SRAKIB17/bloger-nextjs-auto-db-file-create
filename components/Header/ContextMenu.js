@@ -37,6 +37,10 @@ const ContextMenu = () => {
                 e.preventDefault()
                 return false
             }
+            if (e.ctrlKey == true && (e.which == '61' || e.which == '107' || e.which == '173' || e.which == '109' || e.which == '187' || e.which == '189')) {
+                e.preventDefault()
+                return false
+            }
         }
         window.onkeypress = (e) => {
             if (e.key === 'F12') {
@@ -44,6 +48,13 @@ const ContextMenu = () => {
                 return false
             }
         }
+
+
+        document.addEventListener('wheel', (event) => {
+            if (event.ctrlKey == true) {
+                event.preventDefault();
+            }
+        }, { passive: false });
     }, [])
 
     return (
