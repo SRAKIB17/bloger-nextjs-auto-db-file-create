@@ -19,8 +19,6 @@ const ContextMenu = () => {
             getContextMenu.style.display = 'block'
             getContextMenu.style.top = pageY + 'px';
             getContextMenu.style.left = pageX + 'px';
-            console.log(pageX, pageY)
-            console.log(e.target.href)
         })
         document.onclick = (e) => {
             const getContextMenu = document.getElementById('contextMenu');
