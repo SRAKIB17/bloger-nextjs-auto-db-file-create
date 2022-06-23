@@ -15,14 +15,12 @@ const ContextMenu = () => {
             const pageX = e.clientX;
             const pageY = e.clientY;
             const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            console.log(windowScroll)
             const getContextMenu = document.getElementById('contextMenu');
             getContextMenu.style.display = 'block'
             getContextMenu.style.top = pageY + windowScroll + 'px';
             getContextMenu.style.left = pageX + 'px';
         })
         document.onclick = (e) => {
-            console.log(45345)
             const getContextMenu = document.getElementById('contextMenu');
             getContextMenu.style.display = 'none'
         }

@@ -22,7 +22,6 @@ const index = () => {
                 <div className=' col-span-3 hidden md:block relative'>
                     <div className='fixed h-full overflow-auto text-justify pr-3'>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium omnis ipsam repellat hic soluta explicabo consequuntur? Sed nobis dolore sit, minus illum ipsam laboriosam neque, voluptatem, deleniti voluptate amet praesentium?
-
                         <RightMenu />
 
                     </div>

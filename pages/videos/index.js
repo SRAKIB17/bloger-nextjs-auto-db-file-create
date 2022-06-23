@@ -20,10 +20,12 @@ const index = () => {
                 </div>
 
                 <div className=' col-span-3 hidden md:block relative'>
-                    <div className='fixed h-[100vh] overflow-auto'>
-                        <div className=' text-justify mr-3'>
-                            <RightMenu/>
+                    <div className='fixed h-full overflow-auto text-justify pr-3 grid grid-cols-12 '>
+                        <div className='col-span-12'>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam amet molestias sunt voluptatibus debitis quibusdam qui dicta cupiditate praesentium expedita, id repellendus laboriosam numquam magni iusto accusamus quam libero modi.
+                            <RightMenu />
                         </div>
+
                     </div>
                 </div>
             </div>

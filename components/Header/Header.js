@@ -6,6 +6,7 @@ import SideLeftBar from './SideLeftBar';
 import { Google, Home, NewsFeed, SearchIcon, Video } from '../ReactRSIcon/index'
 import Head from 'next/head';
 import SearchForm from './SearchForm';
+import ProfilePicture from './ProfilePicture';
 
 const Header = () => {
 
@@ -34,8 +35,9 @@ const Header = () => {
                             <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
                         </ul>
                     </div>
-                    <div className="flex justify-between md:justify-center ml-2 mr-2">
+                    <div className="flex absolute right-0 top-0 md:static items-center ml-2 mr-2">
                         <SearchForm />
+                        <ProfilePicture/>
                     </div>
                 </div>
                 <SideLeftBar />
