@@ -56,12 +56,20 @@ const PostMap = () => {
                         <img src="https://api.lorem.space/image/shoes?w=400&h=225" className='w-full' alt="Shoes" />
                     </figure>
 
-                    <div>
+                    <div className='flex items-center justify-between border-b-[1px] p-2 border-t-[1px]'>
                         {/* like unlike  */}
-                        <div className='border-b-[1px] p-2 border-t-[1px]'>
+                        <div >
                             <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-1</button>
                             <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
                             <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-3</button>
+                        </div>
+                        <div>
+                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
+                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
+                        </div>
+                        <div>
+                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
+                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
                         </div>
                     </div>
 

@@ -23,7 +23,6 @@ const TextArea = () => {
     const [windowHeight, setWindowHeight] = useState('');
 
     useEffect(() => {
-       
         window.onresize = () => {
             setWindowHeight(window.innerHeight)
             setLayoutForm(window.innerWidth / 2);

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import NewPost from '../profile/NewPost/NewPost';
 
 const ContextMenu = () => {
     const [show, setShow] = useState(null);
     const [position, setPosition] = useState([])
+
+    const OpenNewPost = () => {
+        document.getElementById("newPostClose").style.width = "100%";
+    }
+
     useEffect(() => {
         document.body.addEventListener('contextmenu', (e) => {
             e.preventDefault()
@@ -48,9 +54,17 @@ const ContextMenu = () => {
                 <ul className="menu bg-base-300 p-2 rounded-box w-40">
                     <li><Link href='/story'>Story</Link></li>
                     <li><Link href='/profile'>Profile</Link></li>
+                    <li>
+                        <button className='btn btn-sm btn-primary rounded-3xl btn-outline'
+                            onClick={() => { OpenNewPost() }}
+                        >
+                            New Post
+                        </button>
+                    </li>
                 </ul>
             </div>
 
+            <NewPost />
         </div>
     );
 };

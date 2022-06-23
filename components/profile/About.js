@@ -10,6 +10,7 @@ const About = () => {
     return (
         <div className='p-1'>
             <table className='table-auto'>
+                <tbody>
                 <tr>
                     <td className='flex items-center gap-1'> <Worker />Worked at Student </td>
                 </tr>
@@ -54,6 +55,7 @@ const About = () => {
                     <td className='flex items-center gap-1'><Quote /> Favorite Quote:</td>
 
                 </tr>
+                </tbody>
             </table>
             {/* <button >See More</button> */}
         </div>

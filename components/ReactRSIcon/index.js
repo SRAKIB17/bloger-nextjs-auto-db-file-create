@@ -62,6 +62,7 @@ export { default as LinkedinSquare } from './icon/Social/Linkedin/linkedin_squar
 export { default as LinkedinText } from './icon/Social/Linkedin/linkedin_text'
 
 
+export { default as NewsFeed } from './icon/NewsFeed/NewsFeed'
 export { default as Quote } from './icon/Quote'
 
 
@@ -72,6 +73,9 @@ export { default as School } from './icon/School/School'
 export { default as TwitterColor } from './icon/Social/Twitter/TwitterColor'
 export { default as Twitter } from './icon/Social/Twitter/Twitter'
 export { default as TwitterSquare } from './icon/Social/Twitter/TwitterSquare'
+
+
+export { default as Video } from './icon/Video/Video'
 
 
 export { default as Worker } from './icon/Work/Worker'

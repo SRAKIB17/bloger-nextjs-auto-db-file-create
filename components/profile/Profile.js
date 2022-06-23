@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import NewPost from './NewPost/NewPost';
-import Image from 'next/image'
+
 import Post from '../Post-NewsFeed/Post';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
 import About from './About';
 
 const Profile = () => {
-    const [newPost, setNewPost] = useState(null);
 
-    function OpenNewPost() {
+    const OpenNewPost = () => {
         document.getElementById("newPostClose").style.width = "100%";
     }
 
@@ -31,7 +29,7 @@ const Profile = () => {
                 if (((stickyTop.offsetHeight + stickyTop.offsetTop) <= (winScroll + headerH)) && (windowWidth >= 640)) {
                     scrollProfile.style.visibility = 'visible'
                     // scrollProfile.style.width = '100%'
-                    scrollProfile.style.top = '66px'
+                    scrollProfile.style.top = '60px'
                 }
                 else {
                     scrollProfile.style.top = '-200px'
@@ -100,14 +98,14 @@ const Profile = () => {
             </div>
 
             <div>
-                <NewPost />
+            
                 <ProfileEdit />
             </div>
             {/* about me section  */}
             <div className='grid grid-cols-12 gap-5 text-justify md:m-10'>
                 <div className='col-span-12 md:col-span-5 sm:border-r-2 p-5'>
                     <div className='bg-white p-2 rounded-t-lg'>
-                       <About/>
+                        <About />
                     </div>
                 </div>
 
