@@ -3,8 +3,9 @@ import Link from 'next/dist/client/link';
 import React from 'react';
 import ContextMenu from './ContextMenu';
 import SideLeftBar from './SideLeftBar';
-import { Google, Home, NewsFeed, Video } from '../ReactRSIcon/index'
+import { Google, Home, NewsFeed, SearchIcon, Video } from '../ReactRSIcon/index'
 import Head from 'next/head';
+import SearchForm from './SearchForm';
 
 const Header = () => {
 
@@ -25,16 +26,18 @@ const Header = () => {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
-                {/* <div className='h-[60px]  m-0 bg-base-100 w-full flex items-center md:justify-center '> */}
-
-                <div className="flex justify-between md:justify-center ml-2 mr-2">
-                    <ul className="menu menu-horizontal p-0">
-                        <li> <button onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
-                        <li> <button onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
-                        <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
-                    </ul>
+                <div className='flex items-center md:justify-center '>
+                    <div className="flex justify-between md:justify-center ml-2 mr-2">
+                        <ul className="menu menu-horizontal p-0">
+                            <li> <button onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
+                            <li> <button onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
+                            <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
+                        </ul>
+                    </div>
+                    <div className="flex justify-between md:justify-center ml-2 mr-2">
+                        <SearchForm />
+                    </div>
                 </div>
-                {/* </div> */}
                 <SideLeftBar />
             </div>
             <ContextMenu />

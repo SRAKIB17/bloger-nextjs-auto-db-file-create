@@ -67,6 +67,7 @@ export { default as Quote } from './icon/Quote'
 
 
 export { default as School } from './icon/School/School'
+export { default as SearchIcon } from './icon/Search/Search'
 
 
 // for twitter 
