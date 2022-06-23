@@ -24,11 +24,13 @@ const SearchForm = () => {
                     </div>
                     {/*---------------------- for recent search result-------------------------*/}
                     <div className='mt-[60px] md:ml-[70px] md:mt-0 m-4'>
-                        
+
                         {/* ----------------for close search  ---------------*/}
 
-                        <div className='absolute right-20 top-5'>
-                            <button className='btn btn-xs btn-outline btn-warning ' onClick={() => setShowFormMobile(false)}>X</button>
+                        <div className='absolute right-3 md:right-20 top-5'>
+                            <button className='btn btn-xs btn-outline btn-warning ' onClick={() => setShowFormMobile(false)}>
+                                X
+                            </button>
                         </div>
                         <div className='p-4'>
                             <h1 className='underline text-xl font-medium'>Your recent search</h1>

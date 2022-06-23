@@ -56,3 +56,11 @@ a {
   transition: 0.5s;
   padding-top: 10px;
 }
+
+.onClickProfileMenu {
+  position: fixed;
+  z-index: 10;
+  top: -10px;
+  transition: 0.4s;
+  padding-top: 10px;
+}
