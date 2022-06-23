@@ -54,7 +54,7 @@ const Profile = () => {
                     <div className=''>
                         <img src="https://images.unsplash.com/photo-1655465184678-548fb85fa74a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80" alt="" className='h-[200px] w-full sm:h-[300px] rounded-t-lg' />
                     </div>
-                    <div className='absolute bottom-[-48px] sm:bottom-[-52px] left-[50%] ml-[-50px] md:left-[100px] md:bottom-[-120px]'>
+                    <div className='absolute bottom-[-48px] sm:bottom-[-52px] left-[50%] ml-[-55px] md:left-[100px] md:bottom-[-120px]'>
                         <div className="avatar online ">
                             <div className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
                                 <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
@@ -102,9 +102,9 @@ const Profile = () => {
                 <ProfileEdit />
             </div>
             {/* about me section  */}
-            <div className='grid grid-cols-12 gap-5 text-justify md:m-10'>
-                <div className='col-span-12 md:col-span-5 sm:border-r-2 p-5'>
-                    <div className='bg-base-100 p-2 rounded-t-lg'>
+            <div className='grid grid-cols-12 gap-5 text-justify'>
+                <div className='col-span-12 md:col-span-5 sm:border-r-2 md:p-2'>
+                    <div className='bg-base-100 p-4 md:p-2 rounded-t-lg'>
                         <About />
                     </div>
                 </div>

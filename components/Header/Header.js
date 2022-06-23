@@ -20,7 +20,7 @@ const Header = () => {
     //     console.log(getBar)
     return (
         <div className='mb-[65px]'>
-            <div className="h-[60px] w-full border-b-2 bg-base-100  z-[150] fixed top-0" id='header'>
+            <div className="h-[60px] w-full border-b-2 bg-base-100 z-[150] fixed top-0" id='header'>
                 <Head>
                     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                     <link rel="icon" href="/favicon.ico" />
