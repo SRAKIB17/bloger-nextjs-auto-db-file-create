@@ -7,7 +7,7 @@ const SearchForm = () => {
         <div>
             <ul className="menu menu-horizontal p-0 flex md:hidden">
                 <li>
-                    <button onClick={() => setShowFormMobile(!showFormMobile)}><SearchIcon color='grey' size='28' /></button>
+                    <button onClick={() => setShowFormMobile(!showFormMobile)}><SearchIcon color='grey' size='25' /></button>
                 </li>
             </ul>
 
