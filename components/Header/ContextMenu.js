@@ -21,8 +21,10 @@ const ContextMenu = () => {
             getContextMenu.style.left = pageX + 'px';
         })
         document.onclick = (e) => {
-            const getProfileMenu = document.getElementById('profileLogOut');
-            getProfileMenu.style.marginTop = '-1000px'
+            if (!e.target.hasAttribute('data-profile')) {
+                const getProfileMenu = document.getElementById('profileLogOut');
+                getProfileMenu.style.marginTop = '-1000px'
+            }
             const getContextMenu = document.getElementById('contextMenu');
             getContextMenu.style.display = 'none'
         }

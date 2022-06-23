@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 const ProfilePicture = () => {
     const [showMenuProfile, setShowMenuProfile] = useState(false)
     const ProfilePictureHandle = (e) => {
-        console.log(e)
         const getProfileMenu = document.getElementById('profileLogOut');
         getProfileMenu.style.marginTop = '70px'
     }
@@ -12,11 +11,11 @@ const ProfilePicture = () => {
             <div>
                 <ul className="menu menu-horizontal p-0 flex items-center md:absolute md:right-0 md:top-0">
 
-                    <li>
-                        <button onMouseEnter={ProfilePictureHandle} onClick={ProfilePictureHandle}>
-                            <div className="avatar ">
-                                <div className="w-8 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
-                                    <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                    <li onMouseEnter={ProfilePictureHandle} onClick={ProfilePictureHandle} data-profile='profileLogOut'>
+                        <button data-profile='profileLogOut'>
+                            <div className="avatar " data-profile='profileLogOut'>
+                                <div className="w-8 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-profile='profileLogOut'>
+                                    <img src="https://api.lorem.space/image/face?hash=3174" alt='' data-profile='profileLogOut'/>
                                 </div>
                             </div>
                         </button>
