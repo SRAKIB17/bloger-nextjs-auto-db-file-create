@@ -29,9 +29,9 @@ const Header = () => {
                 <div className='flex items-center md:justify-center '>
                     <div className="flex justify-between md:justify-center ml-2 mr-2">
                         <ul className="menu menu-horizontal p-0">
-                            <li> <button onClick={() => navigate('/')}><Home color='grey' size='25' /></button></li>
-                            <li> <button onClick={() => navigate('/story')}><NewsFeed color='grey' size='25' /></button></li>
-                            <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='25' /></button></li>
+                            <li> <button onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
+                            <li> <button onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
+                            <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
                         </ul>
                     </div>
                     <div className="flex justify-between md:justify-center ml-2 mr-2">
