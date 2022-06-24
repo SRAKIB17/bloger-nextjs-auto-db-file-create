@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import NewPost from '../profile/NewPost/NewPost';
+import { useRouter, withRouter } from 'next/router';
+
 
 const ContextMenu = () => {
 
-
+    const [postShareId, setPostShareId] = useState(null);
+    const router = useRouter();
+    // console.log(pathname.route = '/story')
+    // console.log(useRouter())
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
+    }
     const OpenNewPost = () => {
         document.getElementById("newPostClose").style.width = "100%";
     }
@@ -22,18 +31,21 @@ const ContextMenu = () => {
 
             const dataPost = e.target.hasAttribute('data-post');
             if (dataPost) {
-                const dataPostValue = e.target.getAttribute('data-post')
-                console.log(dataPostValue)
+                const dataPostId = e.target.getAttribute('data-post')
+                setPostShareId(dataPostId)
             }
         })
+
         document.onclick = (e) => {
             if (!e.target.hasAttribute('data-profile')) {
                 const getProfileMenu = document.getElementById('profileLogOut');
                 getProfileMenu.style.right = '-500px'
             }
             const getContextMenu = document.getElementById('contextMenu');
+            setPostShareId(null)
             getContextMenu.style.display = 'none'
         }
+        
         window.onkeyup = (e) => {
             if (e.key === 'F12') {
                 e.preventDefault()
@@ -70,8 +82,28 @@ const ContextMenu = () => {
 
             <div className='absolute hidden z-[100]' id='contextMenu' >
                 <ul className="menu bg-base-300 p-2 rounded-box w-40">
-                    <li><Link href='/story'>Story</Link></li>
-                    <li><Link href='/profile'>Profile</Link></li>
+                    {
+                        postShareId &&
+                        <>
+                            <li className='hover-bordered'>
+                                <button>
+                                    Shortener Url
+                                </button>
+                            </li>
+
+                        </>
+                    }
+                    <li className='hover-bordered'>
+                        <button onClick={() => navigate('/story')}>
+                            Story
+                        </button>
+                    </li>
+                    <li>
+                        <button onClick={() => navigate('/profile')}>
+                            Profile
+                        </button>
+                    </li>
+
                     <li>
                         <button className='btn btn-sm btn-primary rounded-3xl btn-outline'
                             onClick={() => { OpenNewPost() }}

@@ -7,6 +7,21 @@ const PostMap = ({ post }) => {
     const [seeMorePostShow, setSeeMorePostShow] = useState('')
 
 
+    // for video 
+    const [shortDescriptionVideo, setShortDescriptionVideo] = useState('')
+    useEffect(() => {
+        setShortDescriptionVideo(short_description?.slice(0, 100))
+    }, [post, short_description])
+
+    const moreShortDescriptionVideo = () => {
+        setSeeMorePostShow(!seeMorePostShow)
+        if (shortDescriptionVideo.length <= 100) {
+            setShortDescriptionVideo(short_description)
+        }
+        else {
+            setShortDescriptionVideo(short_description?.slice(0, 100))
+        }
+    }
     const handleSeeMorePost = () => {
         setSeeMorePostShow(!seeMorePostShow)
     }
@@ -16,12 +31,20 @@ const PostMap = ({ post }) => {
                 <div className='flex gap-2 justify-start items-center border-b-[1px] m-3 ' data-post={post_id}>
                     <div className='avatar p-2 mb-1' data-post={post_id}>
                         <div className="w-10 h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-post={post_id}>
-                            <img src="https://api.lorem.space/image/face?hash=3174" alt='' data-post={post_id}/>
+                            <img src="https://api.lorem.space/image/face?hash=3174" alt='' data-post={post_id} />
                         </div>
                     </div>
                     <div data-post={post_id}>
                         <h2 className="card-title" data-post={post_id}>Shoes!</h2>
-                        <h1 className='text-xs' data-post={post_id}>dec 15, 2021 | tech</h1>
+                        <h1 className='text-xs' data-post={post_id}>
+                            {
+                                time
+                            }
+                            <b> | </b>
+                            {
+                                category
+                            }
+                        </h1>
                     </div>
                 </div>
 
@@ -30,14 +53,25 @@ const PostMap = ({ post }) => {
 
 
 
-                    {/* --------------------------------for video body------------------------- */}
+                    {/* ---------------------------------------for video body--------------------------------- */}
                     {
                         postRefMode === 'video' && <>
-                            <p className='text-justify mb-2' data-post={post_id}>
+                            <div className='text-justify mb-2' data-post={post_id}>
                                 {
-                                    short_description
+                                    shortDescriptionVideo
                                 }
-                            </p>
+                                {
+                                    shortDescriptionVideo?.length <= 100 && <>.....</>
+                                }
+                                {
+                                    short_description?.length >= 100 &&
+                                    <div className="card-actions justify-end" data-post={post_id}>
+                                        <button className="link-primary font-semibold link-hover" onClick={moreShortDescriptionVideo} data-post={post_id}>
+                                            See {seeMorePostShow ? 'Less' : 'More'}
+                                        </button>
+                                    </div>
+                                }
+                            </div>
                             <div className='mx-auto' id='videoPost' data-post={post_id} >
                                 <div className='w-full' dangerouslySetInnerHTML={{ __html: postBody }} data-post={post_id}>
 
@@ -46,7 +80,7 @@ const PostMap = ({ post }) => {
                         </>
                     }
 
-                    {/* --------------------------------for Text/Html body------------------------- */}
+                    {/* -------------------------------------for Text/Html body--------------------------------- */}
 
                     {
                         postRefMode === 'text' &&
@@ -75,7 +109,7 @@ const PostMap = ({ post }) => {
 
                                 <div className='mt-4 mb-4' data-post={post_id}>
                                     <figure data-post={post_id}>
-                                        <img src={thumbnail} alt="" className='w-full' data-post={post_id}/>
+                                        <img src={thumbnail} alt="" className='w-full' data-post={post_id} />
                                     </figure>
 
                                 </div>
