@@ -19,6 +19,12 @@ const ContextMenu = () => {
             getContextMenu.style.display = 'block'
             getContextMenu.style.top = pageY + windowScroll + 'px';
             getContextMenu.style.left = pageX + 'px';
+
+            const dataPost = e.target.hasAttribute('data-post');
+            if (dataPost) {
+                const dataPostValue = e.target.getAttribute('data-post')
+                console.log(dataPostValue)
+            }
         })
         document.onclick = (e) => {
             if (!e.target.hasAttribute('data-profile')) {

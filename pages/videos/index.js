@@ -7,6 +7,12 @@ import RightMenu from '../../components/Story/RightMenu';
 
 const Index = () => {
     const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
+    const post = data?.data?.filter((post, index, arr) => {
+        if (post?.postRefMode === 'video') {
+            return arr;
+        }
+
+    })
 
     return (
         <div>
@@ -20,7 +26,7 @@ const Index = () => {
                 </div>
 
                 <div className='col-span-12 sm:mr-3 sm:col-start-6 sm:col-end-[-1] md:col-span-5'>
-                    <Post posts={data?.data} />
+                    <Post posts={post} />
                 </div>
 
                 <div className=' col-span-3 hidden md:block relative'>
