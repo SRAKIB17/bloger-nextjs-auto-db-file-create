@@ -50,7 +50,7 @@ const Profile = () => {
         }
     }, [])
 
-    const {data} = useQuery('userPost_id',()=>axios.get('/api/test'))
+    const {data} = useQuery('userPost_id',()=>axios.get('post.json'))
     
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
