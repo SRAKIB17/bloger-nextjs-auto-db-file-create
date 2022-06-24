@@ -59,8 +59,9 @@ a {
 
 .onClickProfileMenu {
   position: fixed;
-  z-index: 10;
+  z-index: 1;
   top: -10px;
-  transition: 0.4s;
+  right: -500px;
+  transition: 0.2s;
   padding-top: 10px;
 }

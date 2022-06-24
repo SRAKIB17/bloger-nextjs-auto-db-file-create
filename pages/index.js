@@ -14,22 +14,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      export default function Home()
+      <div className='md:ml-16'>
+        <div className='bg-base-100 p-2'>
 
-      <div className="drawer drawer-mobile drawer-end ">
-        <input id="serviceDrawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
-          <div className='h-[100vh] p-10 overflow-y-auto overflow-x-hidden servicesBody'>
-          </div>
-        </div>
-        <div className="drawer-side border-l-2 z-0 overflow-auto">
-          <label htmlFor="serviceDrawer" className="drawer-overlay"></label>
-
-          <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-            <li><Link href='/services/scroll-bar'>Scroll Bar</Link></li>
-            <li><a>Sidebar Item 2</a></li>
-          </ul>
-
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto omnis repudiandae qui! Quibusdam, amet fugiat eaque veritatis adipisci nostrum dolor obcaecati earum asperiores et distinctio libero officia nulla dolorem quam!
+          Asperiores tempore nam animi ipsa vitae porro voluptatem tempora quidem obcaecati, laudantium veritatis harum! Fugit quaerat quo, sapiente veniam iste obcaecati dicta unde autem, ducimus atque officiis neque laborum qui.
+          Placeat id enim totam facere deserunt ex cupiditate doloremque, dolor mollitia sit vero ad, suscipit illo fugit quod eius tenetur hic nostrum delectus asperiores vitae necessitatibus. Laboriosam impedit est rerum!
+          Dolores dolore doloribus necessitatibus nostrum est consequatur sunt magnam? Molestiae aut non possimus totam nostrum quos sint, pariatur placeat, tenetur in fugiat. At molestias fuga, dolorem accusamus maiores exercitationem voluptatibus.
+          Hic similique voluptate natus laborum magnam minima eum, animi quo voluptatem molestias quibusdam nisi. Incidunt consectetur, alias rerum error fugiat quidem possimus tempore vero accusantium obcaecati odit modi dolores eligendi!
+          Asperiores dignissimos labore modi, quibusdam repellendus expedita, soluta fuga explicabo, ut vero doloremque! Sed, corrupti fugiat qui numquam dolores aspernatur aliquid? Voluptatem sit odio libero asperiores tempore blanditiis alias! Dolorum.
+          Omnis nam laudantium assumenda! Quod tempora nemo fugiat. Odio voluptatibus placeat hic dignissimos accusamus, facere doloribus corporis error harum, magni quos delectus reiciendis sint tempora laboriosam officiis excepturi nostrum molestiae.
+          Impedit dolore maxime iste eveniet ad illo molestias quia voluptates esse veniam. Dignissimos ex quod commodi culpa accusantium aliquam veniam quisquam non est perferendis. Vero temporibus ducimus similique repudiandae quidem?
+          Eveniet ipsum nobis deleniti nemo. Accusamus illo nulla impedit veniam minus, consequuntur dolor temporibus tempore necessitatibus quibusdam maiores error quos eligendi dolores dolore ut. Tempora repudiandae minus rem cupiditate inventore?
+          Sunt, corporis! Architecto nam nisi doloribus! Nemo alias ratione quasi ipsum quod, quis aut earum molestias voluptate saepe, perspiciatis, cum aspernatur nobis reiciendis odit doloremque culpa ut esse molestiae sit.
         </div>
       </div>
     </div>

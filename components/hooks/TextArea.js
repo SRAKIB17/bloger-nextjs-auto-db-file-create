@@ -43,8 +43,9 @@ const TextArea = () => {
             setRotate(!rotate)
         }
         else {
-            dragging[dragging.length - 2] = windowWidth - 200
+            setDragging([])
             setWindowWidth(0)
+            setLayoutForm(window.innerWidth - 200);
             setRotate(!rotate)
         }
     }
@@ -59,12 +60,21 @@ const TextArea = () => {
     const [dragSeparate, setDraggingSeparate] = useState();
     const heightAutoHandle = (e) => {
         setLiveView(e.target.value);
-        e.target.ownerDocument.querySelector('#livePreview').style.height = 'auto'
-        e.target.style.height = 'auto';
-        e.target.ownerDocument.querySelector('#livePreview').style.height = e.target.scrollHeight + 'px'
-        e.target.style.height = e.target.scrollHeight + 'px'
-        setDraggingSeparate(e.target.scrollHeight + 'px')
+        const livePreview = document.querySelector('#livePreview')
+        livePreview.style.height = 'auto';
 
+        e.target.style.height = 'auto';
+
+        if (e.target.scrollHeight <= windowHeight) {
+            livePreview.style.height = e.target.scrollHeight + 'px'
+            e.target.style.height = e.target.scrollHeight + 'px'
+            setDraggingSeparate(e.target.scrollHeight + 'px')
+        }
+        else {
+            livePreview.style.height = windowHeight + 'px'
+            e.target.style.height = windowHeight + 'px'
+            setDraggingSeparate(windowHeight + 'px')
+        }
 
     }
 
@@ -94,7 +104,7 @@ const TextArea = () => {
 
                     <textarea ref={textareaRef}
                         id='textForm'
-                        className='input input-success w-full'
+                        className='input input-success w-full font-mono'
                         name="postBody"
                         onBlur={onchangeInput}
                         onKeyUp={(e) => shortcutKeyboard(e)}
@@ -124,9 +134,9 @@ const TextArea = () => {
                 <div
                     id='livePreview'
                     className={
-                        styles.liveView +
+                        (styles.liveView) +
                         ' overflow-auto h-auto border p-1 '
-                        + (liveOff ? styles.liveOff : '')
+                        + (liveOff ? styles.liveOff : ' ')
                     }
 
                     style={{ width: (rotate ? (windowWidth - 200) : `${windowWidth - dragging[dragging.length - 2] || layoutForm}px`) }}

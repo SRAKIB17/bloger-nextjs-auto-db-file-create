@@ -23,7 +23,7 @@ const ContextMenu = () => {
         document.onclick = (e) => {
             if (!e.target.hasAttribute('data-profile')) {
                 const getProfileMenu = document.getElementById('profileLogOut');
-                getProfileMenu.style.marginTop = '-1000px'
+                getProfileMenu.style.right = '-500px'
             }
             const getContextMenu = document.getElementById('contextMenu');
             getContextMenu.style.display = 'none'

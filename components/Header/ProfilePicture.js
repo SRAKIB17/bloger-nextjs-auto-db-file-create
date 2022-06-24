@@ -4,7 +4,7 @@ const ProfilePicture = () => {
     const [showMenuProfile, setShowMenuProfile] = useState(false)
     const ProfilePictureHandle = (e) => {
         const getProfileMenu = document.getElementById('profileLogOut');
-        getProfileMenu.style.marginTop = '70px'
+        getProfileMenu.style.right = '5px'
     }
     return (
         <div>
@@ -23,7 +23,7 @@ const ProfilePicture = () => {
 
                 </ul>
             </div>
-            <div className='border border-double onClickProfileMenu right-0 bg-base-100 mt-[-1000px] rounded-b-lg shadow-2xl' id='profileLogOut'>
+            <div className='border-double onClickProfileMenu right-0 bg-base-100 mt-[70px] rounded-b-lg shadow-2xl' id='profileLogOut'>
                 <div className='p-3'>
                     <ul className="menu bg-base-100 w-56 rounded-box">
                         <li className="hover-bordered"><a>Item 1</a></li>
