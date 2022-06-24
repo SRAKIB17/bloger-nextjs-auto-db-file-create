@@ -6,7 +6,7 @@ import Post from '../../components/Post-NewsFeed/Post';
 import RightMenu from '../../components/Story/RightMenu';
 
 const Index = () => {
-    const { data } = useQuery('userPost_id', () => axios.get('post.json'))
+    const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
 
     return (
         <div>
