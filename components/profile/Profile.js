@@ -50,8 +50,9 @@ const Profile = () => {
         }
     }, [])
 
-    const {data} = useQuery('userPost_id',()=>axios.get('/api/test'))
-    
+    const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
+
+    console.log(data)
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <div id='stickyTop' className='bg-base-100 rounded-lg m-2 pb-4 md:pb-6'>
@@ -103,7 +104,7 @@ const Profile = () => {
             </div>
 
             <div>
-            
+
                 <ProfileEdit />
             </div>
             {/* about me section  */}
@@ -115,7 +116,7 @@ const Profile = () => {
                 </div>
 
                 <div className='col-span-12 md:col-span-7 sticky' id='post'>
-                    <Post posts={data?.data}/>
+                    <Post posts={data?.data} />
                 </div>
             </div>
 

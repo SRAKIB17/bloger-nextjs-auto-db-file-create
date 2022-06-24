@@ -56,10 +56,10 @@ const PostMap = ({ post }) => {
                                     short_description
                                 }
                             </p>
-                            <div className='mx-auto'>
+                            <div className='mx-auto' id='videoPost'>
                                 {
                                     seeMorePostShow &&
-                                    <div id='videoPost' className='w-full text-justify' dangerouslySetInnerHTML={{ __html: postBody }}>
+                                    <div className='w-full text-justify' dangerouslySetInnerHTML={{ __html: postBody }}>
 
                                     </div>
                                 }

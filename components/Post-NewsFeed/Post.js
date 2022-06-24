@@ -6,7 +6,7 @@ const Post = ({ posts }) => {
     return (
         <div className='flex flex-col gap-2 sm:gap-3'>
             {
-                posts?.map((post, index) => <PostMap key={index} post={post} />)
+                posts && posts?.map((post, index) => <PostMap key={index} post={post} />)
             }
         </div>
     );
