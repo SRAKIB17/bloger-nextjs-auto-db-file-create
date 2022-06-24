@@ -81,18 +81,18 @@ const TextArea = () => {
     return (
         <div className='m-3'>
             <div>
-                <button onClick={liveOffHandle} className='btn btn-warning btn-xs text-white m-4'>
+                <li onClick={liveOffHandle} className='btn btn-warning btn-xs text-white m-4'>
                     Live
                     {
                         liveOff ? ' On' : ' Off'
                     }
-                </button>
-                <button onClick={rotateHandle} className='btn btn-warning btn-xs text-white m-4'>
+                </li>
+                <li onClick={rotateHandle} className='btn btn-warning btn-xs text-white m-4'>
                     Rotate
                     {
                         rotate ? ' On' : ' Off'
                     }
-                </button>
+                </li>
             </div>
             <div className={'flex flex-col ' + (rotate ? 'sm:flex-col' : 'sm:flex-row ')}>
                 <div

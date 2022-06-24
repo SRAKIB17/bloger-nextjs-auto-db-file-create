@@ -1,9 +1,13 @@
+import axios from 'axios';
 import React from 'react';
+import { useQuery } from 'react-query';
 import Header from '../../components/Header/Header';
 import Post from '../../components/Post-NewsFeed/Post';
 import RightMenu from '../../components/Story/RightMenu';
 
-const index = () => {
+const Index = () => {
+    const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
+
     return (
         <div>
             <Header />
@@ -16,15 +20,13 @@ const index = () => {
                 </div>
 
                 <div className='col-span-12 sm:mr-3 sm:col-start-6 sm:col-end-[-1] md:col-span-5'>
-                    <Post />
+                    <Post posts={data?.data} />
                 </div>
 
                 <div className=' col-span-3 hidden md:block relative'>
-                    <div className='fixed h-full overflow-auto text-justify pr-3 grid grid-cols-12 '>
-                        <div className='col-span-12'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam amet molestias sunt voluptatibus debitis quibusdam qui dicta cupiditate praesentium expedita, id repellendus laboriosam numquam magni iusto accusamus quam libero modi.
-                            <RightMenu />
-                        </div>
+                    <div className='fixed h-full overflow-auto text-justify pr-3'>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium omnis ipsam repellat hic soluta explicabo consequuntur? Sed nobis dolore sit, minus illum ipsam laboriosam neque, voluptatem, deleniti voluptate amet praesentium?
+                        <RightMenu />
 
                     </div>
                 </div>
@@ -33,4 +35,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default Index;

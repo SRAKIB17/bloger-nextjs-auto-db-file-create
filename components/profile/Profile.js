@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Post from '../Post-NewsFeed/Post';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
 import About from './About';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const Profile = () => {
 
@@ -47,6 +49,9 @@ const Profile = () => {
             GeneratedScrollProfile()
         }
     }, [])
+
+    const {data} = useQuery('userPost_id',()=>axios.get('/api/test'))
+    
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <div id='stickyTop' className='bg-base-100 rounded-lg m-2 pb-4 md:pb-6'>
@@ -110,7 +115,7 @@ const Profile = () => {
                 </div>
 
                 <div className='col-span-12 md:col-span-7 sticky' id='post'>
-                    <Post />
+                    <Post posts={data?.data}/>
                 </div>
             </div>
 

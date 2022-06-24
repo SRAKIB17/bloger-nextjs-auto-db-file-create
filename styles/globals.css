@@ -65,3 +65,14 @@ a {
   transition: 0.2s;
   padding-top: 10px;
 }
+
+#videoPost {
+  width: 100% !important;
+}
+
+#videoPost iframe,
+#videoPost video,
+#videoPost embed,
+#videoPost object {
+  width: 100% !important;
+}

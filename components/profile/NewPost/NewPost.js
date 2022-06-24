@@ -18,12 +18,33 @@ const NewPost = () => {
     const postHandle = async (event) => {
         event.preventDefault();
         const body = event.target.postBody.value;
-        const post = {
-            body: body
+        let postRefMode;
+        if (quickTextPost) {
+            postRefMode = 'text'
         }
-        // console.log()
+        else if (quickImagePost) {
+            postRefMode = 'image'
+        }
+        else if (quickVideoPost) {
+            postRefMode = 'video'
+        }
+        const post = {
+            userID: '54fsdlj53',
+            post_id: '534fsdfjo345',
+            post_title: event.target.title.value,
+            thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
+            image: '',
+            time: 'dec 15, 2021',
+            short_description: event.target.short_description.value,
+            category: event.target.category.value,
+            postBody: body,
+            sort: '5345345345',
+            tags: event.target.tags.value.split(','),
+            postRefMode: postRefMode
+        }
+        console.log(post)
         const { data } = await axios.post('/api/test', post);
-        console.log(data)
+        // console.log(data)
     }
     return (
         <div>
@@ -31,7 +52,7 @@ const NewPost = () => {
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
 
                 <div>
-                <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, quickImagePost, setQuickImagePost }} />
+                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, quickImagePost, setQuickImagePost }} />
                 </div>
                 <div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
@@ -46,17 +67,25 @@ const NewPost = () => {
 
                         <input
                             type="text"
-                            name="title"
+                            name="short_description"
                             id=""
+                            maxLength='1000'
                             className='input input-success form-control w-56 sm:w-80'
                             placeholder='Short description'
                         />
                         <input
                             type="text"
-                            name="title"
+                            name="category"
                             id=""
                             className='input input-success form-control w-56 sm:w-80'
                             placeholder='Category'
+                        />
+                        <input
+                            type="text"
+                            name="tags"
+                            id=""
+                            className='input input-success form-control w-56 sm:w-80'
+                            placeholder='Tags (separate with comma)'
                         />
                         <TextArea />
                         <input type="submit" value="Post" className='btn rounded-3xl btn-primary text-white w-fit' />

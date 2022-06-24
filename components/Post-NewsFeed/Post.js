@@ -1,12 +1,12 @@
 import React from 'react';
 import PostMap from './PostMap';
 
-const Post = () => {
-
+const Post = ({ posts }) => {
+    console.log(posts)
     return (
         <div className='flex flex-col gap-2 sm:gap-3'>
             {
-                [...Array(10).keys()].map(a=><PostMap key={a}/>)
+                posts?.map((post, index) => <PostMap key={index} post={post} />)
             }
         </div>
     );

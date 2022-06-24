@@ -1,28 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
 
-const PostMap = () => {
-    const [postBody, setPostBody] = useState('')
-    useEffect(() => {
-        setPostBody(`Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus maiores magnam expedita beatae iste consectetur, reiciendis consequatur voluptate libero inventore obcaecati voluptas cepturi ratione, in voluptatum sequi architecto, error ab nesciunt voluptate corrupti et delectus. Similique obcaecati exe`)
-    }, [])
+const PostMap = ({ post }) => {
+    const { category, image, postBody, postRefMode, post_id, post_title, short_description, sort, tags, thumbnail, time, userID } = post
+
+    const [seeMorePostShow, setSeeMorePostShow] = useState('')
+
+
     const handleSeeMorePost = () => {
-        setPostBody(`
-        nt laborum labore obcaecati earum dolore necessitatibus suscipit quis eveniet facere ab veritatis? Fugit eaque minima aut natus tenetur nihil? Sit beatae ipsa aliquid nobis.
-        Fugit repudiandae necessitatibus sequi neque cum incidunt ut aperiam quibusdam reiciendis doloremque consequatur ipsam inventore, explicabo eius, eum ducimus rerum quisquam molestias qui debitis odio minima. Id atque dolorem aut!
-        Quaerat dolore numquam reiciendis consectetur officiis harum dolores quis, alias illum quo, unde sint incidunt sit suscipit amet culpa laudantium, atque fuga esse similique. Maxime iure dolore ducimus perspiciatis dignissimos!
-        Enim id maiores explicabo amet asperiores officiis exercitationem aut quos, omnis sit recusandae ullam iusto. Consequuntur culpa, ab, facere, corporis molestias consectetur dignissimos alias eos omnis nesciunt ipsum maiores magni?
-        Nihil quaerat velit dolorum reiciendis! Optio consequatur quia atque velit. Neque, ullam, necessitatibus alias minima ut dolorem veniam, recusandae repellat omnis quam a impedit magni. Sequi voluptate repudiandae quia esse?
-        Ducimus perferendis adipisci rerum. Mollitia esse iusto praesentium quisquam repudiandae pariatur! Cum quisquam ratione minima blanditiis laudantium maxime dicta aliquam voluptatum labore. Aliquam fugit libero pariatur, tempora unde architecto veritatis.
-        Unde error, iure possimus eveniet autem quas vel nesciunt dignissimos animi reprehenderit provident cum amet officia libero doloribus quidem recusandae blanditiis doloremque mollitia magni fugit. Quae vitae a adipisci ut.
-        Sunt odit nihil, iusto quis minus recusandae maxime asperiores aliquid accusantium quo eum repellendus assumenda laborum dolores, ipsa illum unde! Laborum provident voluptatibus deserunt, sequi temporibus labore nesciunt adipisci accusamus.
-        Nesciunt quisquam, molestiae nam quia mollitia incidunt sint dolores tenetur iste aperiam error quae quod eveniet ducimus doloribus earum id veritatis voluptate velit iure impedit est repellendus! Vero, consectetur id?
-        Dolores doloremque explicabo architecto laboriosam excepturi illo dignissimos delectus suscipit inventore corporis animi, expedita unde odio. Corrupti omnis porro neque hic sequi ullam, eius accusantium molestiae earum, et sunt praesentium.
-        Laboriosam consequatur doloremque cupiditate maiores nam a eaque eum nulla doloribus molestias deleniti ratione aliquid repellendus debitis quaerat rem, accusantium dolorum natus, similique reprehenderit, temporibus tempore! Libero voluptate architecto quisquam.
-        Nostrum, ullam explicabo. Reprehenderit voluptatum a incidunt provident harum quae, saepe vel illum dicta similique deserunt, eum atque dolores optio eaque ipsam quisquam nemo quis debitis, cupiditate explicabo. Quos, voluptatem!
-        Eos delectus quisquam provident quibusdam maiores. Deleniti a hic doloribus dolorem ea ad incidunt architecto atque. Provident repudiandae reprehenderit id eveniet tempore? Facilis praesentium ipsum delectus voluptatem placeat voluptates porro.
-        Quis excepturi qui nam obcaecati doloribus saepe, necessitatibus optio veritatis consequuntur nostrum explicabo eveniet magnam placeat perspiciatis quos et consectetur, minus sit! Alias repudiandae ipsam amet totam vitae perferendis cum.
-        `)
+        setSeeMorePostShow(!seeMorePostShow)
     }
     return (
         <div>
@@ -40,21 +26,63 @@ const PostMap = () => {
                 </div>
 
                 <div className='card-body pb-2 pt-3 p-5'>
-                    <h2 className="card-title">Title!</h2>
+                    <h2 className="card-title">{post_title}</h2>
 
-                    <p className='text-justify'>
-                        {
-                            postBody
-                        }
 
-                    </p>
-                    <div className="card-actions justify-end">
-                        <button className="link-primary" onClick={handleSeeMorePost}>See More</button>
-                    </div>
 
-                    <figure>
-                        <img src="https://api.lorem.space/image/shoes?w=400&h=225" className='w-full' alt="Shoes" />
-                    </figure>
+                    {/* --------------------------------for video body------------------------- */}
+                    {
+                        postRefMode === 'video' && <>
+                            <p className='text-justify mb-2'>
+                                {
+                                    short_description
+                                }
+                            </p>
+                            <div className='mx-auto' id='videoPost' >
+                                <div className='w-full' dangerouslySetInnerHTML={{ __html: postBody }}>
+
+                                </div>
+                            </div>
+                        </>
+                    }
+
+                    {/* --------------------------------for Text/Html body------------------------- */}
+
+                    {
+                        postRefMode === 'text' &&
+                        <>
+                            <p className='text-justify mb-2'>
+                                {
+                                    short_description
+                                }
+                            </p>
+                            <div className='mx-auto'>
+                                {
+                                    seeMorePostShow &&
+                                    <div id='videoPost' className='w-full text-justify' dangerouslySetInnerHTML={{ __html: postBody }}>
+
+                                    </div>
+                                }
+
+                                {
+                                    postBody &&
+                                    <div className="card-actions justify-end">
+                                        <button className="link-primary font-semibold link-hover" onClick={handleSeeMorePost}>
+                                            See {seeMorePostShow ? 'Less' : 'More'}
+                                        </button>
+                                    </div>
+                                }
+
+                                <div className='mt-4 mb-4'>
+                                    <figure>
+                                        <img src={thumbnail} alt="" className='w-full' />
+                                    </figure>
+
+                                </div>
+                            </div>
+                        </>
+
+                    }
 
                     <div className='flex items-center justify-between border-b-[1px] p-2 border-t-[1px]'>
                         {/* like unlike  */}

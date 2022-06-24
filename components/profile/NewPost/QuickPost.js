@@ -28,7 +28,7 @@ const QuickPost = ({ props: { quickVideoPost, setQuickVideoPost, quickTextPost, 
     }
     return (
         <div>
-            <div className='flex gap-4 md:ml-8 mt-4'>
+            <div className='flex gap-4 ml-6 md:ml-8 mt-4'>
                 <div>
                     <button onClick={() => quickPostButtonHandle('text')} className={(quickTextPost ? 'text-white btn-disabled bg-green-500 ' : 'btn-outline ') + ' btn  btn-sm btn-success'}>Text </button>
                 </div>
