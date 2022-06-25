@@ -12,14 +12,26 @@ const SideLeftBar = () => {
                 sideLeftBar.style.width = '200px'
                 setTimeout(() => {
                     sideLeftBarTitle.forEach(title => {
-                        title.style.display = 'flex'
+                        if (title.style.display === 'flex') {
+                            title.style.display = 'none'
+                        }
+                        else {
+                            title.style.display = 'flex'
+                        }
+
                     })
                 }, 50);
             }
             else if (e.type === 'mouseleave') {
                 sideLeftBar.style.width = '64px'
                 sideLeftBarTitle.forEach(title => {
-                    title.style.display = 'none'
+                    if (title.style.display === 'flex') {
+                        title.style.display = 'none'
+                    }
+                    else {
+                        title.style.display = 'flex'
+                    }
+
                 })
             }
         }
@@ -28,9 +40,7 @@ const SideLeftBar = () => {
         }
     }
 
-    const darkMode = () => {
-        document.body.setAttribute('data-theme', "night")
-    }
+
 
     const hiddenSideLeftBarHandle = () => {
         const sideLeftBar = document.getElementById('sideLeftBar')
@@ -42,7 +52,25 @@ const SideLeftBar = () => {
             })
         }, 50);
     }
+    const darkMode = () => {
+
+        const darkMode = window.localStorage.getItem('dark')
+        if (darkMode) {
+            document.body.removeAttribute('data-theme');
+            window.localStorage.removeItem('dark')
+        }
+        else {
+            document.body.setAttribute('data-theme', "night");
+            window.localStorage.setItem('dark', true)
+        }
+    }
+
     useEffect(() => {
+        const darkMode = window.localStorage.getItem('dark')
+        if (darkMode === 'true') {
+            document.body.setAttribute('data-theme', "night")
+        }
+        console.log(darkMode)
         window.onresize = () => {
             const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
             setTimeout(() => {

@@ -49,9 +49,9 @@ const SearchForm = () => {
                     </div>
                 </div>
             }
-            <div className='hidden md:block fixed left-[30px] top-[15px]'>
+            <div className='hidden md:block fixed left-[30px] top-[15px] border rounded-lg' >
                 <form>
-                    <input type="search" name="" placeholder='🔍' className='input h-[30px] pl-1 input-ghost bg-base-300' id="" onKeyUp={focusSearchBoxHandle} />
+                    <input type="search" name="" placeholder='🔍' className='input h-[30px] pl-1 input-ghost bg-base-300 ' id="" onKeyUp={focusSearchBoxHandle} />
                 </form>
             </div>
         </div>
