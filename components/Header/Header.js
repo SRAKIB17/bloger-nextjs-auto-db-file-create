@@ -3,7 +3,7 @@ import Link from 'next/dist/client/link';
 import React from 'react';
 import ContextMenu from './ContextMenu';
 import SideLeftBar from './SideLeftBar';
-import { Google, Home, NewsFeed, SearchIcon, Video } from '../ReactRSIcon/index'
+import { Home, MenuBarCircle, NewsFeed, Video } from '../ReactRSIcon/index'
 import Head from 'next/head';
 import SearchForm from './SearchForm';
 import ProfilePicture from './ProfilePicture';
@@ -16,6 +16,18 @@ const Header = () => {
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
+    }
+    const showSideLeftBarHandle = () => {
+        const sideLeftBar = document.getElementById('sideLeftBar')
+        sideLeftBar.style.display = 'block';
+        const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
+        setTimeout(() => {
+            sideLeftBarTitle.forEach(title => {
+                title.style.display = 'flex'
+            })
+        }, 50);
+
+        sideLeftBar.style.width = '300px'
     }
     // const getBar = pathname.includes('services')
     //     console.log(getBar)
@@ -30,6 +42,7 @@ const Header = () => {
                 <div className='flex items-center md:justify-center '>
                     <div className="flex justify-between md:justify-center ml-2 mr-2">
                         <ul className="menu menu-horizontal p-0">
+                            <li className='md:hidden'> <button onClick={() => showSideLeftBarHandle()}><MenuBarCircle color='grey' size='30' /></button></li>
                             <li> <button onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
                             <li> <button onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
                             <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
@@ -37,7 +50,7 @@ const Header = () => {
                     </div>
                     <div className="flex absolute right-0 top-0 md:static items-center ml-2 mr-2">
                         <SearchForm />
-                        <ProfilePicture/>
+                        <ProfilePicture />
                     </div>
                 </div>
                 <SideLeftBar />

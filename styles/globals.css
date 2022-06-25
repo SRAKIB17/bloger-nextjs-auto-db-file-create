@@ -66,6 +66,11 @@ a {
   padding-top: 10px;
 }
 
+.sideLeftBarHiddenText {
+  transition: 0.2s;
+  padding-top: 10px;
+}
+
 #videoPost {
   width: 100% !important;
 }

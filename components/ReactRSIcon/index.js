@@ -62,12 +62,17 @@ export { default as LinkedinSquare } from './icon/Social/Linkedin/linkedin_squar
 export { default as LinkedinText } from './icon/Social/Linkedin/linkedin_text'
 
 
+export { default as Moon } from './icon/Moon/Moon'
+
+
 export { default as NewsFeed } from './icon/NewsFeed/NewsFeed'
+
 export { default as Quote } from './icon/Quote'
 
 
 export { default as School } from './icon/School/School'
 export { default as SearchIcon } from './icon/Search/Search'
+export { default as SupportInbox } from './icon/Inbox/SupportInbox'
 
 
 // for twitter 

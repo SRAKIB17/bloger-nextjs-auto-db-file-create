@@ -52,7 +52,6 @@ const Profile = () => {
 
     const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
 
-    console.log(data)
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <div id='stickyTop' className='bg-base-100 rounded-lg m-2 pb-4 md:pb-6'>
@@ -95,7 +94,7 @@ const Profile = () => {
             </div>
 
 
-            <div className='scrollBarTopProfileFixed bg-white pb-1 hidden sm:block' id='scrollProfile'>
+            <div className='scrollBarTopProfileFixed bg-base-300 pb-1 hidden sm:block' id='scrollProfile'>
                 <div className="avatar ">
                     <div className="w-8 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1 sm:ml-10 md:ml-[100px]">
                         <img src="https://api.lorem.space/image/face?hash=3174" alt='' />

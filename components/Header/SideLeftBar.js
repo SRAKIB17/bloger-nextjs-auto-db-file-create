@@ -1,9 +1,62 @@
 import React, { useEffect } from 'react';
+import { Moon, SupportInbox } from '../ReactRSIcon/index'
 
 const SideLeftBar = () => {
+    const mouseShowOverHandle = (e) => {
+        const sideLeftBar = document.getElementById('sideLeftBar');
 
+        const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
+
+        if (e.type === 'mouseenter') {
+            sideLeftBar.style.width = '200px';
+            setTimeout(() => {
+                sideLeftBarTitle.forEach(title => {
+                    title.style.display = 'flex'
+                })
+            }, 50);
+        }
+        else if (e.type === 'mouseleave') {
+            sideLeftBar.style.width = '64px'
+            sideLeftBarTitle.forEach(title => {
+                title.style.display = 'none'
+            })
+        }
+    }
+
+    const darkMode = () => {
+        document.body.setAttribute('data-theme', "night")
+    }
     return (
-        <div id='sideLeftBar' className='fixed bg-base-100 w-16 hidden lg:block border-r-2 h-full left-0 top-[60px]' >
+        <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText fixed bg-base-100 sm:w-0 w-16 hidden lg:block border-r-2 h-full left-0 top-[60px]' >
+            <button className='absolute md:hidden right-[30px] text-xl hover:text-red-500'>X</button>
+            <div className='flex flex-col items-center mt-4'>
+
+                <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                    <SupportInbox size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Support Inbox
+                    </p>
+                </button>
+                <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                    <SupportInbox size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Support Inbox
+                    </p>
+                </button>
+                <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                    <SupportInbox size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Support Inbox
+                    </p>
+                </button>
+                <button onClick={darkMode} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                    <Moon size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Dark
+                    </p>
+                </button>
+
+            </div>
 
         </div>
     );
