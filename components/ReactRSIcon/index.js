@@ -65,6 +65,7 @@ export { default as LinkedinText } from './icon/Social/Linkedin/linkedin_text'
 
 
 export { default as Moon } from './icon/Moon/Moon'
+export { default as MoonEmpty } from './icon/Moon/MoonEmpty'
 
 
 export { default as NewsFeed } from './icon/NewsFeed/NewsFeed'
@@ -76,6 +77,7 @@ export { default as School } from './icon/School/School'
 export { default as Setting } from './icon/Setting/Setting'
 export { default as SearchIcon } from './icon/Search/Search'
 export { default as SupportInbox } from './icon/Inbox/SupportInbox'
+export { default as Sun } from './icon/Moon/Sun'
 
 
 // for twitter 

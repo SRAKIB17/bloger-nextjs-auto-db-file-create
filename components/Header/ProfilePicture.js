@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-
+import {useRouter} from 'next/router'
 const ProfilePicture = () => {
     const [showMenuProfile, setShowMenuProfile] = useState(false)
     const ProfilePictureHandle = (e) => {
         const getProfileMenu = document.getElementById('profileLogOut');
         getProfileMenu.style.right = '5px'
+    }
+
+    const router = useRouter();
+    // console.log(pathname.route = '/story')
+    // console.log(useRouter())
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
     }
     return (
         <div>
@@ -15,7 +23,7 @@ const ProfilePicture = () => {
                         <button data-profile='profileLogOut'>
                             <div className="avatar " data-profile='profileLogOut'>
                                 <div className="w-8 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-profile='profileLogOut'>
-                                    <img src="https://api.lorem.space/image/face?hash=3174" alt='' data-profile='profileLogOut'/>
+                                    <img src="https://api.lorem.space/image/face?hash=3174" alt='' data-profile='profileLogOut' />
                                 </div>
                             </div>
                         </button>
@@ -27,8 +35,8 @@ const ProfilePicture = () => {
                 <div className='p-3'>
                     <ul className="menu bg-base-100 w-56 rounded-box">
                         <li className="hover-bordered"><a>Item 1</a></li>
-                        <li className="hover-bordered"><a>Hover me</a></li>
-                        <li className="hover-bordered"><a>Item 3</a></li>
+                        <li className="hover-bordered"><button onClick={()=>navigate('/profile')}>Profile</button></li>
+                        <li className="hover-bordered"><button onClick={()=>navigate('/profile')}>Log out</button></li>
                     </ul>
                 </div>
             </div>

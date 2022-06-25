@@ -48,7 +48,7 @@ const NewPost = () => {
     }
     return (
         <div>
-            <div id="newPostClose" className={styles.NewPostNav}>
+            <div id="newPostClose" className={styles.NewPostNav + ' bg-base-100'}>
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
 
                 <div>

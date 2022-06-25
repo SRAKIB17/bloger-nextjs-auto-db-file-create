@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import { Info, Moon, Setting, SupportInbox } from '../ReactRSIcon/index'
+import React, { useEffect, useState } from 'react';
+import { Info, Moon, MoonEmpty, Setting, Sun, SupportInbox } from '../ReactRSIcon/index'
+import SupportInboxComponent from '../SupportInbox/SupportInbox';
 
 const SideLeftBar = () => {
+    const [dark, setDark] = useState(false);
     const mouseShowOverHandle = (e) => {
         const sideLeftBar = document.getElementById('sideLeftBar');
         if (window.innerWidth >= 1024) {
@@ -56,18 +58,22 @@ const SideLeftBar = () => {
 
         const darkMode = window.localStorage.getItem('dark')
         if (darkMode) {
+            setDark(false)
             document.body.removeAttribute('data-theme');
             window.localStorage.removeItem('dark')
         }
         else {
+            setDark(true)
             document.body.setAttribute('data-theme', "night");
             window.localStorage.setItem('dark', true)
         }
     }
 
+
     useEffect(() => {
         const darkMode = window.localStorage.getItem('dark')
         if (darkMode === 'true') {
+            setDark(true)
             document.body.setAttribute('data-theme', "night")
         }
         console.log(darkMode)
@@ -89,13 +95,17 @@ const SideLeftBar = () => {
             }
         }
     }, [])
+
+    const OpenSupportInbox = () => {
+        document.getElementById("SupportInbox").style.width = "100%";
+    }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
 
             <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute lg:hidden right-[10px] hover:text-red-500'>X</button>
             <div className='flex flex-col  mt-4'>
 
-                <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                <button onClick={OpenSupportInbox} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <SupportInbox size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         Support Inbox
@@ -109,9 +119,15 @@ const SideLeftBar = () => {
                     </p>
                 </button>
                 <button onClick={darkMode} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
-                    <Moon size='30' />
+                    {
+                        dark ?
+                            <Sun size='32' /> :
+                            <MoonEmpty size='32' className='swap' />
+                    }
                     <p className='hidden' id='sideLeftBarTitle'>
-                        Dark
+                        {
+                            !dark ? 'Dark' : 'Light'
+                        }
                     </p>
                 </button>
                 <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
@@ -123,6 +139,9 @@ const SideLeftBar = () => {
 
             </div>
 
+
+            {/* for external component  */}
+            <SupportInboxComponent />
         </div>
     );
 };
