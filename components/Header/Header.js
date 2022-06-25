@@ -19,7 +19,7 @@ const Header = () => {
     }
     const showSideLeftBarHandle = () => {
         const sideLeftBar = document.getElementById('sideLeftBar')
-        sideLeftBar.style.display = 'block';
+        sideLeftBar.style.left = '0px';
         const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
         setTimeout(() => {
             sideLeftBarTitle.forEach(title => {
@@ -27,7 +27,6 @@ const Header = () => {
             })
         }, 50);
 
-        sideLeftBar.style.width = "200px"
     }
     // const getBar = pathname.includes('services')
     //     console.log(getBar)

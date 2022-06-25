@@ -4,22 +4,27 @@ import { Info, Moon, Setting, SupportInbox } from '../ReactRSIcon/index'
 const SideLeftBar = () => {
     const mouseShowOverHandle = (e) => {
         const sideLeftBar = document.getElementById('sideLeftBar');
+        if (window.innerWidth >= 1024) {
 
-        const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
+            const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
 
-        if (e.type === 'mouseenter') {
-            sideLeftBar.style.width = '200px'
-            setTimeout(() => {
+            if (e.type === 'mouseenter') {
+                sideLeftBar.style.width = '200px'
+                setTimeout(() => {
+                    sideLeftBarTitle.forEach(title => {
+                        title.style.display = 'flex'
+                    })
+                }, 50);
+            }
+            else if (e.type === 'mouseleave') {
+                sideLeftBar.style.width = '64px'
                 sideLeftBarTitle.forEach(title => {
-                    title.style.display = 'flex'
+                    title.style.display = 'none'
                 })
-            }, 50);
+            }
         }
-        else if (e.type === 'mouseleave') {
-            sideLeftBar.style.width = '64px'
-            sideLeftBarTitle.forEach(title => {
-                title.style.display = 'none'
-            })
+        else {
+            sideLeftBar.style.width = '200px'
         }
     }
 
@@ -29,18 +34,35 @@ const SideLeftBar = () => {
 
     const hiddenSideLeftBarHandle = () => {
         const sideLeftBar = document.getElementById('sideLeftBar')
-        sideLeftBar.style.display = 'none';
+        sideLeftBar.style.left = '-200px';
         const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
         setTimeout(() => {
             sideLeftBarTitle.forEach(title => {
                 title.style.display = 'none'
             })
         }, 50);
-
-        sideLeftBar.style.width = '0px'
     }
+    useEffect(() => {
+        window.onresize = () => {
+            const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
+            setTimeout(() => {
+                sideLeftBarTitle.forEach(title => {
+                    title.style.display = 'none'
+                })
+            }, 50);
+            const sideLeftBar = document.getElementById('sideLeftBar')
+            if (window.innerWidth >= 1024) {
+                sideLeftBar.style.width = '64px'
+                sideLeftBar.style.left = '0px'
+            }
+            else {
+                sideLeftBar.style.width = '200px'
+                sideLeftBar.style.left = '-200px'
+            }
+        }
+    }, [])
     return (
-        <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText fixed bg-base-100 sm:w-0 w-16 hidden lg:block border-r-2 h-full left-0 top-[60px]' >
+        <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
 
             <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute lg:hidden right-[10px] hover:text-red-500'>X</button>
             <div className='flex flex-col  mt-4'>
