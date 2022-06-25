@@ -27,7 +27,7 @@ const PostMap = ({ post }) => {
     }
     return (
         <div data-post={post_id}>
-            <div className="card w-full bg-base-100 shadow-xl mt-2 rounded-none" data-post={post_id}>
+            <div className="card w-full bg-base-100 shadow-inner md:rounded-md mt-2 rounded-none" data-post={post_id}>
                 <div className='flex gap-2 justify-start items-center border-b-[1px] m-3 ' data-post={post_id}>
                     <div className='avatar p-2 mb-1' data-post={post_id}>
                         <div className="w-10 h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-post={post_id}>
