@@ -8,7 +8,7 @@ const SideLeftBar = () => {
         const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
 
         if (e.type === 'mouseenter') {
-            sideLeftBar.style.width = '200px';
+            sideLeftBar.style.width = 'fit-content'
             setTimeout(() => {
                 sideLeftBarTitle.forEach(title => {
                     title.style.display = 'flex'
@@ -26,9 +26,22 @@ const SideLeftBar = () => {
     const darkMode = () => {
         document.body.setAttribute('data-theme', "night")
     }
+
+    const hiddenSideLeftBarHandle = () => {
+        const sideLeftBar = document.getElementById('sideLeftBar')
+        sideLeftBar.style.display = 'none';
+        const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
+        setTimeout(() => {
+            sideLeftBarTitle.forEach(title => {
+                title.style.display = 'none'
+            })
+        }, 50);
+
+        sideLeftBar.style.width = '0px'
+    }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText fixed bg-base-100 sm:w-0 w-16 hidden lg:block border-r-2 h-full left-0 top-[60px]' >
-            <button className='absolute md:hidden right-[30px] text-xl hover:text-red-500'>X</button>
+            <button onClick={hiddenSideLeftBarHandle} className='absolute md:hidden right-[30px] text-xl hover:text-red-500'>X</button>
             <div className='flex flex-col items-center mt-4'>
 
                 <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>

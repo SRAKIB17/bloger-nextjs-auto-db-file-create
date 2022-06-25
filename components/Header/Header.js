@@ -27,7 +27,7 @@ const Header = () => {
             })
         }, 50);
 
-        sideLeftBar.style.width = '300px'
+        sideLeftBar.style.width = 'fit-content'
     }
     // const getBar = pathname.includes('services')
     //     console.log(getBar)
