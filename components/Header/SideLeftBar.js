@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Moon, SupportInbox } from '../ReactRSIcon/index'
+import { Info, Moon, Setting, SupportInbox } from '../ReactRSIcon/index'
 
 const SideLeftBar = () => {
     const mouseShowOverHandle = (e) => {
@@ -50,22 +50,23 @@ const SideLeftBar = () => {
                         Support Inbox
                     </p>
                 </button>
+
                 <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
-                    <SupportInbox size='30' />
+                    <Info size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
-                        Support Inbox
-                    </p>
-                </button>
-                <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
-                    <SupportInbox size='30' />
-                    <p className='hidden' id='sideLeftBarTitle'>
-                        Support Inbox
+                        Help
                     </p>
                 </button>
                 <button onClick={darkMode} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <Moon size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         Dark
+                    </p>
+                </button>
+                <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                    <Setting size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Setting
                     </p>
                 </button>
 

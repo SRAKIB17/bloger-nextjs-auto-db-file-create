@@ -48,6 +48,8 @@ export { default as GoogleText } from './icon/Social/Google/GoogleText'
 
 
 // for instagram 
+export { default as Info  } from './icon/Info/Info'
+
 export { default as InstagramColor } from './icon/Social/Instagram/instagram-color'
 export { default as Instagram } from './icon/Social/Instagram/instagram'
 export { default as InstagramSquare } from './icon/Social/Instagram/instagramSquare'
@@ -71,6 +73,7 @@ export { default as Quote } from './icon/Quote'
 
 
 export { default as School } from './icon/School/School'
+export { default as Setting } from './icon/Setting/Setting'
 export { default as SearchIcon } from './icon/Search/Search'
 export { default as SupportInbox } from './icon/Inbox/SupportInbox'
 
