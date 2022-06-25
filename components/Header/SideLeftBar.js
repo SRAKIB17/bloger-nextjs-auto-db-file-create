@@ -41,8 +41,8 @@ const SideLeftBar = () => {
     }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText fixed bg-base-100 sm:w-0 w-16 hidden lg:block border-r-2 h-full left-0 top-[60px]' >
-            <button onClick={hiddenSideLeftBarHandle} className='absolute md:hidden right-[30px] text-xl hover:text-red-500'>X</button>
-            <div className='flex flex-col items-center mt-4'>
+            <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute md:hidden right-[10px] hover:text-red-500'>X</button>
+            <div className='flex flex-col  mt-4'>
 
                 <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <SupportInbox size='30' />
