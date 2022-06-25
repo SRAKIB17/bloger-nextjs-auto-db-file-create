@@ -27,7 +27,7 @@ const Header = () => {
             })
         }, 50);
 
-        sideLeftBar.style.width = 'fit-content'
+        sideLeftBar.style.width = "200px"
     }
     // const getBar = pathname.includes('services')
     //     console.log(getBar)
@@ -42,7 +42,7 @@ const Header = () => {
                 <div className='flex items-center md:justify-center '>
                     <div className="flex justify-between md:justify-center ml-2 mr-2">
                         <ul className="menu menu-horizontal p-0">
-                            <li className='md:hidden'> <button onClick={() => showSideLeftBarHandle()}><MenuBarCircle color='grey' size='30' /></button></li>
+                            <li className='lg:hidden'> <button onClick={() => showSideLeftBarHandle()}><MenuBarCircle color='grey' size='30' /></button></li>
                             <li> <button onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
                             <li> <button onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
                             <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>

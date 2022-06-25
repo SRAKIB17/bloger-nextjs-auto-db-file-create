@@ -8,7 +8,7 @@ const SideLeftBar = () => {
         const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
 
         if (e.type === 'mouseenter') {
-            sideLeftBar.style.width = 'fit-content'
+            sideLeftBar.style.width = '200px'
             setTimeout(() => {
                 sideLeftBarTitle.forEach(title => {
                     title.style.display = 'flex'
@@ -41,7 +41,8 @@ const SideLeftBar = () => {
     }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText fixed bg-base-100 sm:w-0 w-16 hidden lg:block border-r-2 h-full left-0 top-[60px]' >
-            <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute md:hidden right-[10px] hover:text-red-500'>X</button>
+
+            <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute lg:hidden right-[10px] hover:text-red-500'>X</button>
             <div className='flex flex-col  mt-4'>
 
                 <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
