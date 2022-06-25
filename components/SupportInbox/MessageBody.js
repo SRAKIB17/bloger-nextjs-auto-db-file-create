@@ -5,22 +5,40 @@ const MessageBody = ({ messageBody }) => {
     console.log(message)
     return (
         <div>
-            <div>
+            <div className='w-full'>
                 {
                     adminReply &&
-                    <div className='shadow-2xl rounded-md relative left-0 h-fit'>
-                        <div className='text-left p-4'>
-                            <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                    <div>
+                        <div className='  flex justify-start items-start mt-1 mb-1'>
+                            <div className="avatar mr-1 mt-6">
+                                <div className="w-[20px] rounded-full ">
+                                    <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                                </div>
+                            </div>
+
+                            <div className='p-4 w-fit max-w-[80%] shadow-2xl rounded-3xl text-justify'>
+                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                            </div>
                         </div>
                     </div>
                 }
                 {
                     adminReply ||
-                    <div className='shadow-2xl rounded-md relative right-0 w-[90%]'>
-                        <div className=' text-right p-4'>
-                            <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                    <div>
+
+
+                        <div className=' relative flex justify-end mt-1 mb-1 items-start'>
+                            <div className='p-4  w-fit max-w-[80%] shadow-2xl rounded-3xl'>
+                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                            </div>
+                            <div className="avatar ml-1 mt-6">
+                                <div className="w-[20px] rounded-full ">
+                                    <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 }
             </div>
         </div>
