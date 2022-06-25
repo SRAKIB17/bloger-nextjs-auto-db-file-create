@@ -130,6 +130,7 @@ const SideLeftBar = () => {
                         }
                     </p>
                 </button>
+                
                 <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <Setting size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>

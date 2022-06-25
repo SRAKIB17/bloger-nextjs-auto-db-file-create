@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from '../profile/NewPost/NewPost.module.css'
 
@@ -51,13 +51,15 @@ const SupportInbox = () => {
         heightAutoHandle(e)
         classTagShortcutInput(e, textareaRef)
     }
+    useEffect(() => {
+        const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
+        sendMessageSupportInboxForm.style.marginTop = sendMessageSupportInboxForm.offsetHeight + 'px';
+    }, [])
     const heightAutoHandle = (e) => {
         const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
-        const supportMessageBody = document.getElementById('supportMessageBody')
-        // supportMessageBody.style.marginBottom = sendMessageSupportInboxForm.offsetHeight + 'px'
-        // supportMessageBody.style.height = supportMessageBody.style.height - sendMessageSupportInboxForm.offsetHeight
-        console.log(supportMessageBody.style.height)
-        console.log(sendMessageSupportInboxForm.clientHeight)
+        sendMessageSupportInboxForm.parentNode.style.marginTop = sendMessageSupportInboxForm.offsetHeight + 'px'
+
+
         e.target.style.height = 'auto';
         if (e.target.scrollHeight < 150) {
             e.target.style.height = e.target.scrollHeight + 'px'
@@ -87,9 +89,9 @@ const SupportInbox = () => {
                     </div>
 
 
-                    <div className='relative' >
-                        <div id='sendMessageSupportInboxForm' className='fixed bottom-0 bg-base-300 max-w-md w-full mb-0' >
-                            <form action="" onSubmit={postHandle} className='flex  flex-col gap-2 m-10'>
+                    <div className='relative mt-[80px]' id='sendMessageSupportInboxFormParent'>
+                        <div id='sendMessageSupportInboxForm' className='absolute bottom-0 bg-base-300 max-w-md w-full mb-0' >
+                            <form action="" onSubmit={postHandle} className='flex  flex-col m-4'>
 
                                 <div className='relative flex items-center'>
                                     <textarea ref={textareaRef}
