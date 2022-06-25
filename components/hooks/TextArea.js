@@ -23,12 +23,11 @@ const TextArea = () => {
     const [windowHeight, setWindowHeight] = useState('');
 
     useEffect(() => {
-        window.onresize = () => {
-            
-            setWindowHeight(window.innerHeight)
-            setLayoutForm(window.innerWidth / 2);
-            setWindowWidth(window.innerWidth);
-        }
+        // window.onresize = () => {
+        //     setWindowHeight(window.innerHeight)
+        //     setLayoutForm(window.innerWidth / 2);
+        //     setWindowWidth(window.innerWidth);
+        // }
         setWindowHeight(window.innerHeight)
         setLayoutForm(window.innerWidth / 2);
         setWindowWidth(window.innerWidth);
@@ -55,6 +54,9 @@ const TextArea = () => {
         // const Live = e.target.ownerDocument.querySelector('#livePreview');
         // setLiveSize([Live.clientWidth, Live.clientHeight])
         e.preventDefault();
+        setWindowHeight(window.innerHeight)
+        setLayoutForm(window.innerWidth / 2);
+        setWindowWidth(window.innerWidth);
         setDragging([...dragging, e.clientX]);
     }
 
