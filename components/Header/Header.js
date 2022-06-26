@@ -64,16 +64,16 @@ const Header = () => {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
-                <div className='flex items-center md:justify-center '>
+                <div className='flex items-center md:justify-center pt-1'>
                     <div className="flex justify-between md:justify-center ml-2 mr-2">
                         <ul className="menu menu-horizontal p-0">
-                            <li className='lg:hidden'> <button id='showSideBarMobileTab' onClick={() => showSideLeftBarHandle()}><MenuBarCircle color='grey' size='28' /></button></li>
-                            <li> <button id='home' onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
-                            <li> <button id='story' onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
-                            <li> <button id='videos' onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
+                            <li className='lg:hidden'> <button id='showSideBarMobileTab' onClick={() => showSideLeftBarHandle()}><MenuBarCircle color='grey' size='25' /></button></li>
+                            <li> <button id='home' onClick={() => navigate('/')}><Home color='grey' size='25' /></button></li>
+                            <li> <button id='story' onClick={() => navigate('/story')}><NewsFeed color='grey' size='25' /></button></li>
+                            <li> <button id='videos' onClick={() => navigate('/videos')}><Video color='grey' size='25' /></button></li>
                         </ul>
                     </div>
-                    <div className="flex absolute right-0 top-0 md:static items-center ml-2 mr-2">
+                    <div className="flex absolute right-0 top-2px md:static items-center ml-2 mr-2">
                         <SearchForm />
                         <ProfilePicture />
                     </div>

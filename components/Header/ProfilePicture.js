@@ -22,7 +22,7 @@ const ProfilePicture = () => {
                     <li onMouseEnter={ProfilePictureHandle} onClick={ProfilePictureHandle} data-profile='profileLogOut'>
                         <button data-profile='profileLogOut'>
                             <div className="avatar " data-profile='profileLogOut'>
-                                <div className="w-8 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-profile='profileLogOut'>
+                                <div className="w-[28px] rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-profile='profileLogOut'>
                                     <img src="https://api.lorem.space/image/face?hash=3174" alt='' data-profile='profileLogOut' />
                                 </div>
                             </div>

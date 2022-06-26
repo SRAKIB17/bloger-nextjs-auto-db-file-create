@@ -47,7 +47,7 @@ const PostMap = ({ post }) => {
                                 time
                             }
                             <b> | </b>
-                            <button onClick={() => navigate(`/story?cat=${category}`)}>
+                            <button className='link-primary' onClick={() => navigate(`/story?cat=${category}`)}>
                                 {
                                     category
                                 }
@@ -143,7 +143,7 @@ const PostMap = ({ post }) => {
                         </div>
                     </div>
 
-                    <div>
+                    <div className=''>
                         <Comment_textarea />
                     </div>
                 </div>
