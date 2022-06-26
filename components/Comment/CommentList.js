@@ -4,7 +4,6 @@ const CommentList = ({ comment: commentBody }) => {
     const { name, post_id, email, userID, comment, time } = commentBody
     const [moreComment, setMoreComment] = useState(false);
 
-    console.log(comment)
     return (
         <div>
             <div className='flex items-start' id={post_id}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
-import LikeLoveFevorite from '../LikeLoveFevorite/LikeLoveFevorite';
+import LikeLoveFavorite from '../LikeLoveFevorite/LikeLoveFevorite';
 
 const PostMap = ({ post }) => {
     const { category, image, postBody, postRefMode, post_id, post_title, short_description, sort, tags, thumbnail, time, userID } = post
@@ -69,7 +69,7 @@ const PostMap = ({ post }) => {
                     {/* ---------------------------------------for video body--------------------------------- */}
                     {
                         postRefMode === 'video' && <>
-                            <div className='text-justify mb-2' data-post={post_id}>
+                            <div onClick={() => { short_description?.length >= 100 && moreShortDescriptionVideo() }} className='text-justify mb-2' data-post={post_id}>
                                 {
                                     shortDescriptionVideo
                                 }
@@ -98,7 +98,7 @@ const PostMap = ({ post }) => {
                     {
                         postRefMode === 'text' &&
                         <>
-                            <p className='text-justify mb-2' data-post={post_id}>
+                            <p className='text-justify mb-2' onClick={() => { short_description?.length >= 100 && handleSeeMorePost() }} data-post={post_id}>
                                 {
                                     short_description
                                 }
@@ -133,7 +133,7 @@ const PostMap = ({ post }) => {
 
                     <div className=' border-b-[1px] p-2 border-t-[1px]'>
                         {/* like unlike  */}
-                        <LikeLoveFevorite/>
+                        <LikeLoveFavorite />
                     </div>
 
                     <div className=''>

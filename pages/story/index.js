@@ -13,7 +13,7 @@ const Index = () => {
     if (isLoading) {
         return <h>Loading</h>
     }
-    refetch()
+    // refetch()
     return (
         <div>
             <Header />
