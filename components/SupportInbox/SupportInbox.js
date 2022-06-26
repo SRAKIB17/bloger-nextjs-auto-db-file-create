@@ -29,18 +29,18 @@ const SupportInbox = () => {
     useEffect(() => {
         const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
 
-        document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 100) + 'px'
+        document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
 
         document.body.onresize = () => {
             const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
 
-            document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 100) + 'px'
+            document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
         }
     }, [])
     const heightAutoHandle = (e) => {
         const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
 
-        document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 100) + 'px'
+        document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
 
 
 
@@ -91,9 +91,11 @@ const SupportInbox = () => {
     // console.log(data)
     return (
         <div>
-            <div id="SupportInbox" className={styles.NewPostNav + ' bg-base-100 '}>
+      
+            <div id="SupportInbox" style={{overflow:'hidden',paddingTop:'0px'}} className={styles.NewPostNav + ' bg-base-100 '}>
                 <div className='max-w-xl mx-auto shadow-2xl p-4'>
-                    <div className='w-full bg-base-100 z-20 border-b-2' id='topSupportInboxDIV'>
+                    <div className='w-full bg-base-100 z-20 border-b-2 flex items-center' id='topSupportInboxDIV'>
+                        <h1 className=' relative text-2xl pb-1 left-[25px] ml-[25px]'>Support Inbox</h1>
                         <a href="#" className={styles.closebtn} onClick={closeSupportInbox}>&times;</a>
                     </div>
 
