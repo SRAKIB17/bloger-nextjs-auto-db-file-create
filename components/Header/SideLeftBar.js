@@ -78,6 +78,11 @@ const SideLeftBar = () => {
         }
         console.log(darkMode)
         window.onresize = () => {
+
+            const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
+
+            document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
+
             const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
             setTimeout(() => {
                 sideLeftBarTitle.forEach(title => {
@@ -130,7 +135,7 @@ const SideLeftBar = () => {
                         }
                     </p>
                 </button>
-                
+
                 <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <Setting size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>

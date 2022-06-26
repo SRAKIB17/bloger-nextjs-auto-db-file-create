@@ -18,30 +18,23 @@ const SupportInbox = () => {
     const textareaRef = useRef();
 
 
-
-    const shortcutKeyboard = (e) => {
-        // classTagShortcutInput(e, textareaRef)
-    }
     const onchangeInput = (e) => {
         heightAutoHandle(e)
         classTagShortcutInput(e, textareaRef)
     }
-    useEffect(() => {
+    const handleChatBoxHeight = () => {
         const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
 
         document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
-
+    }
+    useEffect(() => {
+        handleChatBoxHeight()
         document.body.onresize = () => {
-            const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
-
-            document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
+            handleChatBoxHeight()
         }
     }, [])
     const heightAutoHandle = (e) => {
-        const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
-
-        document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
-
+        handleChatBoxHeight()
 
 
         e.target.style.height = 'auto';
@@ -53,20 +46,71 @@ const SupportInbox = () => {
         }
     }
 
-    const { data, refetch } = useQuery(['supportMessage', 54354], () => axios.get('/api/comment'))
-    const message = data?.data
+    // const { data, refetch } = useQuery(['supportMessage', 54354], () => axios.get('/api/comment'))
+    // const message = data?.data
+    const message = [
+        {
+            userID: '3534553',
+            adminReply: false,
+            adminId: '534545534',
+            message: '5435645'
+        },
+        {
+            userID: '3534553',
+            adminReply: true,
+            adminId: '534545534',
+            message: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quam quis amet enim qui illo facilis corrupti libero molestias commodi itaque voluptate molestiae, ab ducimus? Quis perspiciatis quam quod voluptas?'
+        },
+        {
+            userID: '3534553',
+            adminReply: false,
+            adminId: '534545534',
+            message: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম। আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।'
+        },
+        {
+            userID: '3534553',
+            adminReply: false,
+            adminId: '534545534',
+            message: `
+            <video width="320" height="240"  preload="auto" controls muted poster="http://rakib17.hexat.com/icon/busy.gif" loop autoplay>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+    
+            `
+        },
 
+        {
+            userID: '3534553',
+            adminReply: true,
+            adminId: '534545534',
+            message: `
+            <video width="320" height="240"  preload="auto" controls muted poster="http://rakib17.hexat.com/icon/busy.gif" loop autoplay>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+    
+            `
+        }
+    ]
+    const [messageSet, setMessst] = useState([])
+    useEffect(() => {
+        setMessst(message)
+    }, [])
     const postHandle = async (event) => {
         event.preventDefault();
+        handleChatBoxHeight()
         const body = event.target.supportMessage.value;
-        const message = {
+        const messageBody = {
             userID: '3534553',
             adminReply: false,
             adminId: '534545534',
             message: body
         }
 
-
+        event.target.reset()
 
 
         // const post = {
@@ -84,15 +128,19 @@ const SupportInbox = () => {
         //     postRefMode: postRefMode
         // }
         // console.log(post)
-        const { data } = await axios.post('/api/comment', message);
-        console.log(data)
-        refetch()
+        // const { data } = await axios.post('/api/comment', message);
+        // console.log(data)
+        setMessst([...messageSet, messageBody])
+
+        const myDiv = document.getElementById("supportMessageBody");
+        myDiv.scrollTop = myDiv.scrollHeight;
+        // refetch()
     }
     // console.log(data)
     return (
         <div>
-      
-            <div id="SupportInbox" style={{overflow:'hidden',paddingTop:'0px'}} className={styles.NewPostNav + ' bg-base-100 '}>
+
+            <div id="SupportInbox" style={{ overflow: 'hidden', paddingTop: '0px' }} className={styles.NewPostNav + ' bg-base-100 '}>
                 <div className='max-w-xl mx-auto shadow-2xl p-4'>
                     <div className='w-full bg-base-100 z-20 border-b-2 flex items-center' id='topSupportInboxDIV'>
                         <h1 className=' relative text-2xl pb-1 left-[25px] ml-[25px]'>Support Inbox</h1>
@@ -100,11 +148,11 @@ const SupportInbox = () => {
                     </div>
 
 
-                    <div className='p-4 overflow-auto overflow-x-hidden  h-40' id='supportMessageBody'>
+                    <div className='p-4 overflow-auto overflow-x-hidden  h-full' id='supportMessageBody'>
                         <div  >
 
                             {
-                                message?.map((messageBody, index) => <MessageBody key={index} messageBody={messageBody} />)
+                                messageSet?.map((messageBody, index) => <MessageBody key={index} messageBody={messageBody} />)
                             }
                         </div>
 
@@ -121,7 +169,7 @@ const SupportInbox = () => {
                                     className='input input-success font-mono  w-full'
                                     name="supportMessage"
                                     onBlur={onchangeInput}
-                                    onKeyUp={(e) => shortcutKeyboard(e)}
+                                    onKeyUp={handleChatBoxHeight}
                                     onChange={onchangeInput}
                                     onInput={onchangeInput}
                                     onCut={heightAutoHandle}
