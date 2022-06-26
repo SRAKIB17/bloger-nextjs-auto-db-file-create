@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from '../profile/NewPost/NewPost.module.css'
+import { SendShare } from '../ReactRSIcon';
 import MessageBody from './MessageBody';
 
 
@@ -179,7 +180,7 @@ const SupportInbox = () => {
                                 >
                                 </textarea>
                                 <div>
-                                    <button className='btn btn-sm btn-primary ml-2 text-xs'>send</button>
+                                    <button className='btn btn-sm btn-primary ml-2 text-xs'><SendShare size='25'/></button>
                                 </div>
                             </div>
                             {/* <TextArea /> */}

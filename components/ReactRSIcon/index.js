@@ -79,6 +79,8 @@ export { default as Setting } from './icon/Setting/Setting'
 export { default as SearchIcon } from './icon/Search/Search'
 export { default as SupportInbox } from './icon/Inbox/SupportInbox'
 export { default as Sun } from './icon/Moon/Sun'
+export { default as Share } from './icon/Share/Share'
+export { default as SendShare } from './icon/Share/SendShare'
 
 
 // for twitter 
