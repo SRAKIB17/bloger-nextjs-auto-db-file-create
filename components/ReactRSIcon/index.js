@@ -56,6 +56,7 @@ export { default as InstagramSquare } from './icon/Social/Instagram/instagramSqu
 
 
 export { default as Location } from './icon/Address/Location'
+export { default as Like } from './icon/Like/Like'
 
 // for linkdin 
 export { default as LinkedinNew } from './icon/Social/Linkedin/linkedin'
@@ -86,6 +87,7 @@ export { default as Twitter } from './icon/Social/Twitter/Twitter'
 export { default as TwitterSquare } from './icon/Social/Twitter/TwitterSquare'
 
 
+export { default as Unlike } from './icon/Like/Unlike'
 export { default as Video } from './icon/Video/Video'
 
 

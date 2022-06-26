@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
+import LikeLoveFevorite from '../LikeLoveFevorite/LikeLoveFevorite';
 
 const PostMap = ({ post }) => {
     const { category, image, postBody, postRefMode, post_id, post_title, short_description, sort, tags, thumbnail, time, userID } = post
@@ -30,6 +31,10 @@ const PostMap = ({ post }) => {
 
     const handleSeeMorePost = () => {
         setSeeMorePostShow(!seeMorePostShow)
+    }
+
+    const handleLikePost = () => {
+
     }
     return (
         <div data-post={post_id}>
@@ -126,21 +131,9 @@ const PostMap = ({ post }) => {
 
                     }
 
-                    <div className='flex items-center justify-between border-b-[1px] p-2 border-t-[1px]'>
+                    <div className=' border-b-[1px] p-2 border-t-[1px]'>
                         {/* like unlike  */}
-                        <div >
-                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-1</button>
-                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
-                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-3</button>
-                        </div>
-                        <div>
-                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
-                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
-                        </div>
-                        <div>
-                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
-                            <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
-                        </div>
+                        <LikeLoveFevorite/>
                     </div>
 
                     <div className=''>
