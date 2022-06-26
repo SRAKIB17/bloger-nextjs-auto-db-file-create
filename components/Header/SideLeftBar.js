@@ -53,8 +53,6 @@ const SideLeftBar = () => {
 
     //**-----------------------------for mobile and tablet hidden manually hidden side bare  */
     const hiddenSideLeftBarHandle = () => {
-        document.getElementById('showSideBarMobileTab').className = ''
-
         const sideLeftBar = document.getElementById('sideLeftBar')
         sideLeftBar.style.left = '-200px';
         const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')

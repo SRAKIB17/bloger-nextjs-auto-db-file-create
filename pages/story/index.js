@@ -1,13 +1,19 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Header from '../../components/Header/Header';
 import Post from '../../components/Post-NewsFeed/Post';
 import RightMenu from '../../components/Story/RightMenu';
+import { useRouter } from 'next/router'
 
 const Index = () => {
-    const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
-
+    const router = useRouter()
+    const { cat } = router.query;
+    const { data, refetch, isLoading } = useQuery('userPost_id', () => axios.get(`/api/test/?cat=${cat}`))
+    if (isLoading) {
+        return <h>Loading</h>
+    }
+    refetch()
     return (
         <div>
             <Header />

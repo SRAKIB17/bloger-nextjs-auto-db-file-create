@@ -20,15 +20,21 @@ const Header = () => {
         if (router.pathname === '/') {
             document.getElementById('home').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
         }
-        else if (pathname === 'story') {
+        else if (pathname === 'story' && !Object.keys(router.query).includes('cat')) {
+            console.log(345345345)
             document.getElementById('story').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
 
         }
         else if (pathname === 'videos') {
             document.getElementById('videos').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
         }
+        else {
+            document.getElementById('videos').className = ''
+            document.getElementById('story').className = ''
+            document.getElementById('home').className = ''
+        }
 
-    }, [router])
+    }, [router, router.query])
 
     /* --------------------------path router navigate--------------------*/
     const navigate = (path) => {
@@ -38,8 +44,6 @@ const Header = () => {
 
     /**----------------------------------------side bar handle for mobile device and tablet mood only------------------------- */
     const showSideLeftBarHandle = () => {
-        document.getElementById('showSideBarMobileTab').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
-
         const sideLeftBar = document.getElementById('sideLeftBar')
         sideLeftBar.style.left = '0px';
         const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')

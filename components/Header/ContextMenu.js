@@ -45,7 +45,8 @@ const ContextMenu = () => {
             setPostShareId(null)
             getContextMenu.style.display = 'none'
         }
-        
+
+        //**--------------------------------disabled zoom and ctrl key with F12 ------------------------------ */
         window.onkeyup = (e) => {
             if (e.key === 'F12') {
                 e.preventDefault()
@@ -69,7 +70,7 @@ const ContextMenu = () => {
             }
         }
 
-
+        // for disabled mouse wheel
         document.addEventListener('wheel', (event) => {
             if (event.ctrlKey == true) {
                 event.preventDefault();

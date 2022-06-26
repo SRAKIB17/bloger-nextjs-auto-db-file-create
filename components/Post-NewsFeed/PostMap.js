@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
+import { useRouter, withRouter } from 'next/router';
 
 const PostMap = ({ post }) => {
     const { category, image, postBody, postRefMode, post_id, post_title, short_description, sort, tags, thumbnail, time, userID } = post
+    const router = useRouter();
 
     const [seeMorePostShow, setSeeMorePostShow] = useState('')
 
-
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
+    }
     // for video 
     const [shortDescriptionVideo, setShortDescriptionVideo] = useState('')
     useEffect(() => {
@@ -22,6 +27,7 @@ const PostMap = ({ post }) => {
             setShortDescriptionVideo(short_description?.slice(0, 100))
         }
     }
+
     const handleSeeMorePost = () => {
         setSeeMorePostShow(!seeMorePostShow)
     }
@@ -41,9 +47,11 @@ const PostMap = ({ post }) => {
                                 time
                             }
                             <b> | </b>
-                            {
-                                category
-                            }
+                            <button onClick={() => navigate(`/story?cat=${category}`)}>
+                                {
+                                    category
+                                }
+                            </button>
                         </h1>
                     </div>
                 </div>

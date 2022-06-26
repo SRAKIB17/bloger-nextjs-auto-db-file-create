@@ -78,7 +78,7 @@ export default async function handler(req, res) {
             image: '',
             time: 'dec 15, 2021',
             short_description: "Bangladesh (/ˌbæŋɡləˈdɛʃ, ˌbɑːŋ-/;[14] Bengali: বাংলাদেশ, pronounced [ˈbaŋlaˌdeʃ] (listen)), officially the People's Republic of Bangladesh, is a country in South Asia. It is the eighth-most populous country in the world, with a population exceeding 163 million people in an area of either 148,460 square kilometres (57,320 sq mi) or 147,570 square kilometres (56,980 sq mi),[7][15] making it one of the most densely populated countries in the world. Bangladesh shares land borders with India to the west, north, and east, and Myanmar to the southeast; to the south it has a coastline along the Bay of Bengal. It is narrowly separated from Bhutan and Nepal by the Siliguri Corridor; and from China by 100 km of the Indian state of Sikkim in the north.[16] Dhaka, the capital and largest city, is the nation's economic, political, and cultural hub. Chittagong, the largest seaport, is the second-largest city. The official language is Bengali, one of the easternmost branches of the Indo-European lang",
-            category: '',
+            category: 'song',
             postBody: '',
             sort: '5345345345',
             tags: [''],
@@ -92,7 +92,7 @@ export default async function handler(req, res) {
             image: '',
             time: 'dec 15, 2021',
             short_description: ` Page semi-protected Bangladesh From Wikipedia, the free encyclopedia Jump to navigationJump to search For other uses, see Bangladesh (disambiguation). Coordinates: 24°N 90°E  People's Republic of Bangladesh গণপ্রজাতন্ত্রী বাংলাদে  েশ  (Bengali) Gônoprojatontrī Bangladesh Flag of Bangladesh Flag Emblem of Bangladesh Emblem Anthem: "Amar Sonar Bangla" (Bengali) "My Golden Bengal" 2:15 March: "Notuner Gaan" "The Song of Youth"[1] National Slogan: "Joy Bangla" "Victory to Bengal"[2][3] Official Seal of the Government of Bangladesh Seal of the Government of Bangladesh Bangladesh (orthographic projection).svg Capital and largest city Dhaka 23°45′50″N 90°23′20″E Official language and national language\tBengali[4] Ethnic groups (2011[5])\t 98% Bengalis 2% minorities Religion (2020 by Pew Research Center[6])\t 90.9% Islam (official) 8% Hinduism 0.6% Buddhism 0.4% Christianity 0.1% Others Demonym(s)\tBangladeshi Government\tUnitary dominant-party parliamentary republic • President Abdul Hamid • Prime M`,
-            category: '',
+            category: 'test',
             postBody: '',
             sort: '5345345345',
             tags: [''],
@@ -104,6 +104,8 @@ export default async function handler(req, res) {
 
     // const data = JSON.parse(file);
     const method = req.method;
+    const { cat } = req.query
+    // console.log(cat)
     // if (method === "POST") {
     //     if (data.length === 0) {
     //         data[0] = req.body;
@@ -114,7 +116,7 @@ export default async function handler(req, res) {
     //     fs.writeFile("post.json", JSON.stringify(data),
     //         {
     //             encoding: "utf8",
-    //             flag: "w+",
+    //             flag: "w+",`
     //             mode: 0o666
     //         },
     //         (err, data) => {
@@ -130,9 +132,17 @@ export default async function handler(req, res) {
     //     res.send({ m: 'success' })
     // }
     // else 
+    console.log(Boolean(cat))
+
     if (method === 'GET') {
-        res.send(database)
-   
+        if (cat === 'undefined' || !cat) {
+            res.send(database)
+        }
+        else {
+            const getPost = database.filter(data => data.category === cat)
+            res.send(getPost)
+        }
+
         // console.log(database)
     }
     // // console.log( req.body)
