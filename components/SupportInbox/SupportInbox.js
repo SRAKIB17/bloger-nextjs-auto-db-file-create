@@ -9,7 +9,6 @@ import MessageBody from './MessageBody';
 const SupportInbox = () => {
 
 
-
     function closeSupportInbox() {
         document.getElementById("SupportInbox").style.width = "0";
     }
@@ -29,11 +28,20 @@ const SupportInbox = () => {
     }
     useEffect(() => {
         const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
-        sendMessageSupportInboxForm.style.marginTop = sendMessageSupportInboxForm.offsetHeight + 'px';
+
+        document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 100) + 'px'
+
+        document.body.onresize = () => {
+            const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
+
+            document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 100) + 'px'
+        }
     }, [])
     const heightAutoHandle = (e) => {
         const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
-        sendMessageSupportInboxForm.parentNode.style.marginTop = sendMessageSupportInboxForm.offsetHeight + 'px'
+
+        document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 100) + 'px'
+
 
 
         e.target.style.height = 'auto';
@@ -84,44 +92,48 @@ const SupportInbox = () => {
     return (
         <div>
             <div id="SupportInbox" className={styles.NewPostNav + ' bg-base-100 '}>
-                <a href="#" className={styles.closebtn} onClick={closeSupportInbox}>&times;</a>
-
-
-                <div className=' max-w-xl mx-auto shadow-2xl h-full pt-4 relative ' id='supportMessageBody'>
-                    <div className='p-4 overflow-auto overflow-x-hidden h-full' >
-
-                        {
-                            message?.map((messageBody, index) => <MessageBody key={index} messageBody={messageBody} />)
-                        }
+                <div className='max-w-xl mx-auto shadow-2xl p-4'>
+                    <div className='w-full bg-base-100 z-20 border-b-2' id='topSupportInboxDIV'>
+                        <a href="#" className={styles.closebtn} onClick={closeSupportInbox}>&times;</a>
                     </div>
 
 
-                    <div className='relative mt-[80px]' id='sendMessageSupportInboxFormParent'>
-                        <div id='sendMessageSupportInboxForm' className='absolute bottom-0 bg-base-300 max-w-xl w-full mb-0' >
-                            <form action="" onSubmit={postHandle} className='flex  flex-col m-4'>
+                    <div className='p-4 overflow-auto overflow-x-hidden  h-40' id='supportMessageBody'>
+                        <div  >
 
-                                <div className='relative flex items-end w-full'>
-                                    <textarea ref={textareaRef}
-                                        id='textForm'
-                                        className='input input-success font-mono  w-full'
-                                        name="supportMessage"
-                                        onBlur={onchangeInput}
-                                        onKeyUp={(e) => shortcutKeyboard(e)}
-                                        onChange={onchangeInput}
-                                        onInput={onchangeInput}
-                                        onCut={heightAutoHandle}
-                                        onPaste={heightAutoHandle}
-                                        onDrop={heightAutoHandle}
-                                        onKeyDown={heightAutoHandle}
-                                    >
-                                    </textarea>
-                                    <div>
-                                        <button className='btn btn-sm btn-primary ml-2 text-xs'>send</button>
-                                    </div>
-                                </div>
-                                {/* <TextArea /> */}
-                            </form>
+                            {
+                                message?.map((messageBody, index) => <MessageBody key={index} messageBody={messageBody} />)
+                            }
                         </div>
+
+
+
+                    </div>
+                    <div className='border-t-2 pt-3' id='sendMessageSupportInboxForm'>
+
+                        <form action="" onSubmit={postHandle} className='flex flex-col ml-4 mr-4'>
+
+                            <div className='flex items-end w-full'>
+                                <textarea ref={textareaRef}
+                                    id='textForm'
+                                    className='input input-success font-mono  w-full'
+                                    name="supportMessage"
+                                    onBlur={onchangeInput}
+                                    onKeyUp={(e) => shortcutKeyboard(e)}
+                                    onChange={onchangeInput}
+                                    onInput={onchangeInput}
+                                    onCut={heightAutoHandle}
+                                    onPaste={heightAutoHandle}
+                                    onDrop={heightAutoHandle}
+                                    onKeyDown={heightAutoHandle}
+                                >
+                                </textarea>
+                                <div>
+                                    <button className='btn btn-sm btn-primary ml-2 text-xs'>send</button>
+                                </div>
+                            </div>
+                            {/* <TextArea /> */}
+                        </form>
                     </div>
                 </div>
             </div>
