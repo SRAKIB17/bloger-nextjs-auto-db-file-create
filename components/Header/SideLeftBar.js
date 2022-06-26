@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import Help from '../Help/Help';
 import { Info, Moon, MoonEmpty, Setting, Sun, SupportInbox } from '../ReactRSIcon/index'
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 
 const SideLeftBar = () => {
+    /** ------------------------------for dark mode state----------------------------- */
     const [dark, setDark] = useState(false);
+
+    /** -------------------------------- show side left bar mouseenter or mouseleave and  
+     * when mouse enter check side bar has title contain flex or none class 
+     * see code 
+     * -----------------------------------------------------------------------------------
+    */
     const mouseShowOverHandle = (e) => {
         const sideLeftBar = document.getElementById('sideLeftBar');
         if (window.innerWidth >= 1024) {
@@ -43,8 +51,10 @@ const SideLeftBar = () => {
     }
 
 
-
+    //**-----------------------------for mobile and tablet hidden manually hidden side bare  */
     const hiddenSideLeftBarHandle = () => {
+        document.getElementById('showSideBarMobileTab').className = ''
+
         const sideLeftBar = document.getElementById('sideLeftBar')
         sideLeftBar.style.left = '-200px';
         const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
@@ -54,6 +64,8 @@ const SideLeftBar = () => {
             })
         }, 50);
     }
+
+    //**-------------------for dark mode state declare and state change ------------------------------ */
     const darkMode = () => {
 
         const darkMode = window.localStorage.getItem('dark')
@@ -71,18 +83,23 @@ const SideLeftBar = () => {
 
 
     useEffect(() => {
+        //**-----------for dark mode  -----------------*/
         const darkMode = window.localStorage.getItem('dark')
         if (darkMode === 'true') {
             setDark(true)
             document.body.setAttribute('data-theme', "night")
         }
-        console.log(darkMode)
+        //**-----------------------------------------------------
+        /**----------window resize and change these style , class and other
+         * 
+        */
         window.onresize = () => {
 
+            // ------------------------support inbox ------------------------
             const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
-
             document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
-
+            //--------------------------------------------------------------------
+            //----------when resize change automatic left side bar change layout-------------
             const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
             setTimeout(() => {
                 sideLeftBarTitle.forEach(title => {
@@ -90,10 +107,12 @@ const SideLeftBar = () => {
                 })
             }, 50);
             const sideLeftBar = document.getElementById('sideLeftBar')
+            //for desktop
             if (window.innerWidth >= 1024) {
                 sideLeftBar.style.width = '64px'
                 sideLeftBar.style.left = '0px'
             }
+            //for mobile
             else {
                 sideLeftBar.style.width = '200px'
                 sideLeftBar.style.left = '-200px'
@@ -101,15 +120,22 @@ const SideLeftBar = () => {
         }
     }, [])
 
+    //--------------------open support inbox modal-------------------
     const OpenSupportInbox = () => {
         document.getElementById("SupportInbox").style.width = "100%";
     }
+    //--------------------open help menu  modal-------------------
+    const helpHandler = () => {
+        document.getElementById("HelpMenu").style.width = "100%";
+    }
+
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
 
             <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute lg:hidden right-[10px] hover:text-red-500'>X</button>
             <div className='flex flex-col  mt-4'>
 
+                {/* for support inbox */}
                 <button onClick={OpenSupportInbox} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <SupportInbox size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
@@ -117,12 +143,14 @@ const SideLeftBar = () => {
                     </p>
                 </button>
 
-                <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                {/* for help menu*/}
+                <button onClick={helpHandler} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <Info size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         Help
                     </p>
                 </button>
+                {/* for dark mode  */}
                 <button onClick={darkMode} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     {
                         dark ?
@@ -135,7 +163,8 @@ const SideLeftBar = () => {
                         }
                     </p>
                 </button>
-
+                
+                {/* for setting */}
                 <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <Setting size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
@@ -148,6 +177,7 @@ const SideLeftBar = () => {
 
             {/* for external component  */}
             <SupportInboxComponent />
+            <Help />
         </div>
     );
 };

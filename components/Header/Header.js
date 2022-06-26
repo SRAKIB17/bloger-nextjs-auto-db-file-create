@@ -1,6 +1,6 @@
 import { useRouter, withRouter } from 'next/router';
 import Link from 'next/dist/client/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import ContextMenu from './ContextMenu';
 import SideLeftBar from './SideLeftBar';
 import { Home, MenuBarCircle, NewsFeed, Video } from '../ReactRSIcon/index'
@@ -12,12 +12,34 @@ const Header = () => {
 
     const router = useRouter();
     // console.log(pathname.route = '/story')
-    // console.log(useRouter())
+
+    /*------------------------------------------for header indicator----------------------------------*/
+    useEffect(() => {
+        const pathname = router.pathname.split('/')[1];
+
+        if (router.pathname === '/') {
+            document.getElementById('home').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
+        }
+        else if (pathname === 'story') {
+            document.getElementById('story').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
+
+        }
+        else if (pathname === 'videos') {
+            document.getElementById('videos').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
+        }
+
+    }, [router])
+
+    /* --------------------------path router navigate--------------------*/
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
     }
+
+    /**----------------------------------------side bar handle for mobile device and tablet mood only------------------------- */
     const showSideLeftBarHandle = () => {
+        document.getElementById('showSideBarMobileTab').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
+
         const sideLeftBar = document.getElementById('sideLeftBar')
         sideLeftBar.style.left = '0px';
         const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
@@ -41,10 +63,10 @@ const Header = () => {
                 <div className='flex items-center md:justify-center '>
                     <div className="flex justify-between md:justify-center ml-2 mr-2">
                         <ul className="menu menu-horizontal p-0">
-                            <li className='lg:hidden'> <button onClick={() => showSideLeftBarHandle()}><MenuBarCircle color='grey' size='30' /></button></li>
-                            <li> <button onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
-                            <li> <button onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
-                            <li> <button onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
+                            <li className='lg:hidden'> <button id='showSideBarMobileTab' onClick={() => showSideLeftBarHandle()}><MenuBarCircle color='grey' size='28' /></button></li>
+                            <li> <button id='home' onClick={() => navigate('/')}><Home color='grey' size='30' /></button></li>
+                            <li> <button id='story' onClick={() => navigate('/story')}><NewsFeed color='grey' size='30' /></button></li>
+                            <li> <button id='videos' onClick={() => navigate('/videos')}><Video color='grey' size='30' /></button></li>
                         </ul>
                     </div>
                     <div className="flex absolute right-0 top-0 md:static items-center ml-2 mr-2">
@@ -52,6 +74,8 @@ const Header = () => {
                         <ProfilePicture />
                     </div>
                 </div>
+
+                {/**-----------------side bar component------------------ */}
                 <SideLeftBar />
             </div>
             <ContextMenu />
