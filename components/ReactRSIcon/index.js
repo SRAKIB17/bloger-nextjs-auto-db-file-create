@@ -2,8 +2,8 @@
 export { default as AlarmFill } from './icon/alarm-fill'
 export { default as AppStore } from './icon/app-store'
 
-export { default as Comment } from './icon/comment'
-export { default as BubbleCommentChat } from './icon/bubbleCommentChat'
+export { default as Comment } from './icon/Comment/comment'
+export { default as BubbleCommentChat } from './icon/Comment/bubbleCommentChat'
 
 //------------------ serial G-----------------
 // export { default as GooglePlayBadge } from './icon/googlePlayBadge'

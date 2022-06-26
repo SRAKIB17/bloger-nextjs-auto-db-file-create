@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
-import LikeLoveFavorite from '../LikeLoveFevorite/LikeLoveFevorite';
+import LikeLoveFavorite from '../Comment/LikeLoveFevorite/LikeLoveFevorite';
 
 const PostMap = ({ post }) => {
     const { category, image, postBody, postRefMode, post_id, post_title, short_description, sort, tags, thumbnail, time, userID } = post
@@ -38,7 +38,7 @@ const PostMap = ({ post }) => {
     }
     return (
         <div data-post={post_id}>
-            <div className="card w-full bg-base-100 shadow-inner md:rounded-md mt-2 rounded-none" data-post={post_id}>
+            <div className="card w-full bg-base-100 shadow-white md:rounded-md mt-2 rounded-none" data-post={post_id}>
                 <div className='flex gap-2 justify-start items-center border-b-[1px] m-3 ' data-post={post_id}>
                     <div className='avatar p-2 mb-1' data-post={post_id}>
                         <div className="w-10 h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-post={post_id}>
@@ -52,7 +52,7 @@ const PostMap = ({ post }) => {
                                 time
                             }
                             <b> | </b>
-                            <button className='link-primary' onClick={() => navigate(`/story?cat=${category}`)}>
+                            <button className='link-primary link-hover' onClick={() => navigate(`/story?cat=${category}`)}>
                                 {
                                     category
                                 }
@@ -130,12 +130,7 @@ const PostMap = ({ post }) => {
                         </>
 
                     }
-
-                    <div className=' border-b-[1px] p-2 border-t-[1px]'>
-                        {/* like unlike  */}
-                        <LikeLoveFavorite />
-                    </div>
-
+                    
                     <div className=''>
                         <Comment_textarea />
                     </div>

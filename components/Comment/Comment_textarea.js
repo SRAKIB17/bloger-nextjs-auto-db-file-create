@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from '../hooks/TextArea.module.css';
+import LikeLoveFavorite from './LikeLoveFevorite/LikeLoveFevorite';
 import CommentList from './CommentList';
 const Comment_textarea = ({ id }) => {
     const textareaRef = useRef();
@@ -54,32 +55,44 @@ const Comment_textarea = ({ id }) => {
             e.target.style.height = 200 + 'px'
         }
     }
+    const [showComment, setShowCommentSection] = useState(false)
+    const showCommentHandle = () => {
 
+    }
     return (
-        <div className='m-3'>
-            <div>
+        <div>
+            <div className=' border-b-[1px] p-2 border-t-[1px]' >
+                {/* like unlike  */}
+                <LikeLoveFavorite props={{showComment,setShowCommentSection}}/>
+            </div>
+            <div className='m-3'>
                 <div>
-                   {
-                    commentBody?.map(comment=> <CommentList key={comment._id} comment={comment}/>)
-                   }
-                </div>
-                <div className='relative flex mt-1'>
-                    <textarea ref={textareaRef}
-                        id='textForm'
-                        className='input input-success w-[50%] font-mono'
-                        name="postBody"
-                        onBlur={onchangeInput}
-                        onKeyUp={(e) => shortcutKeyboard(e)}
-                        onChange={onchangeInput}
-                        onInput={onchangeInput}
-                        onCut={heightAutoHandle}
-                        onPaste={heightAutoHandle}
-                        onDrop={heightAutoHandle}
-                        onKeyDown={heightAutoHandle}
-                    >
-                    </textarea>
-                    <div className='align-bottom absolute left-[50%] bottom-0'>
-                        <button className='btn btn-sm btn-primary ml-2 text-xs'>Comment</button>
+                    {
+                        showComment &&
+                        <div>
+                            {
+                                commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
+                            }
+                        </div>
+                    }
+                    <div className='relative flex mt-1'>
+                        <textarea ref={textareaRef}
+                            id='textForm'
+                            className='input input-success w-[50%] font-mono'
+                            name="postBody"
+                            onBlur={onchangeInput}
+                            onKeyUp={(e) => shortcutKeyboard(e)}
+                            onChange={onchangeInput}
+                            onInput={onchangeInput}
+                            onCut={heightAutoHandle}
+                            onPaste={heightAutoHandle}
+                            onDrop={heightAutoHandle}
+                            onKeyDown={heightAutoHandle}
+                        >
+                        </textarea>
+                        <div className='align-bottom absolute left-[50%] bottom-0'>
+                            <button className='btn btn-sm btn-primary ml-2 text-xs'>Comment</button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@ const Index = () => {
     return (
         <div>
             <Header />
-            <div className='grid grid-cols-12 gap-3'>
+            <div className='grid grid-cols-12 gap-2'>
                 <div className='hidden sm:block sm:col-span-4 md:col-span-4 text-justify lg:ml-16 p-1 relative bg-base-100'>
                     <div className='fixed h-[100vh] overflow-auto sm:w-[200px] md:max-w-[300px] lg:max-w-[350px] md:w-full'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, cumque adipisci nisi possimus nostrum porro atque temporibus rerum repellat. Maxime, cupiditate! Fuga nobis velit animi voluptatem quam quo ea rerum!
@@ -28,8 +28,8 @@ const Index = () => {
                     <Post posts={data?.data} />
                 </div>
 
-                <div className=' col-span-2 hidden lg:block relative'>
-                    <div className='fixed h-full overflow-auto text-justify pr-3'>
+                <div className=' col-span-2 hidden lg:block relative bg-base-100 p-3'>
+                    <div className='fixed h-full overflow-auto text-justify p-2'>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium omnis ipsam repellat hic soluta explicabo consequuntur? Sed nobis dolore sit, minus illum ipsam laboriosam neque, voluptatem, deleniti voluptate amet praesentium?
                         <RightMenu />
 

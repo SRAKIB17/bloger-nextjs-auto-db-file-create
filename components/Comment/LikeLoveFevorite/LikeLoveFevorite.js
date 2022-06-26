@@ -1,7 +1,7 @@
 import React from 'react';
-import { Like, Unlike } from '../ReactRSIcon/index'
+import { BubbleCommentChat, Comment, Like, } from '../../ReactRSIcon/index'
 
-const LikeLoveFevorite = () => {
+const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection } }) => {
     const handleLikeComponent = (e) => {
 
         if (e.type === 'mouseenter') {
@@ -19,7 +19,7 @@ const LikeLoveFevorite = () => {
         <div className='relative'>
             <div className='absolute top-0 bg-base-100 w-full hidden z-[1000]' id='likeLoveFavorite'>
                 <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
-                    <Like />
+                    <Like color='' />
                 </button>
                 <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
                     <Like style={{ transform: 'rotate(180deg)' }} />
@@ -31,12 +31,14 @@ const LikeLoveFevorite = () => {
                         <Like />
                     </button>
                     <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
-                        <Like style={{ transform: 'rotate(180deg)' }} />
+                        <Like size='18' style={{ transform: 'rotate(180deg)' }} />
                     </button>
                     <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-3</button>
                 </div>
                 <div>
-                    <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
+                    <button onClick={() => setShowCommentSection(!showComment)} className='btn btn-xs btn-secondary ml-2 btn-outline'>
+                        <Comment size='18' />
+                    </button>
                     <button className='btn btn-xs btn-secondary ml-2 btn-outline'>b-2</button>
                 </div>
                 <div>
@@ -48,4 +50,4 @@ const LikeLoveFevorite = () => {
     );
 };
 
-export default LikeLoveFevorite;
+export default LikeLoveFavorite;

@@ -19,7 +19,7 @@ const CommentList = ({ comment: commentBody }) => {
                     <div className='text-xl font-bold'>
                         <h6 className='m-0'>{name}</h6>
                     </div>
-                    <div className=' overflow-auto w-full max-w-md '>
+                    <div className=' overflow-auto w-full md:max-w-md sm:max-w-sm max-w-xs'>
 
                         <div className='w-fit'>
                             <div dangerouslySetInnerHTML={{ __html: comment }}></div>
