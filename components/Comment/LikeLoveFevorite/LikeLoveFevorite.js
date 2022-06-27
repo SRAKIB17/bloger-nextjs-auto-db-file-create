@@ -17,26 +17,30 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection } }) => 
 
     }
     useEffect(() => {
-        document.documentElement.onclick = () => {
-            document.getElementById('likeLoveFavorite').style.top = '0px'
-            setTimeout(() => {
-                document.getElementById('likeLoveFavorite').style.top = '-40px'
+        document.documentElement.onclick = (e) => {
+            const getDIV = e.composedPath().slice(0, e.composedPath().length - 4).find(element => (element?.hasAttribute('data-likelovefavorite')))
+            if (!getDIV) {
+                document.getElementById('likeLoveFavorite').style.top = '0px'
+                setTimeout(() => {
+                    document.getElementById('likeLoveFavorite').style.top = '-40px'
 
-                document.getElementById('likeLoveFavorite').style.display = 'none'
-            }, 100);
+                    document.getElementById('likeLoveFavorite').style.display = 'none'
+                }, 100);
+            }
+
         }
     }, [])
     return (
         <div>
 
-            <div className={styles.shareOption + ' z-10 hidden absolute bg-base-100 left-0 border top-[-40px] w-36 rounded-md hover:shadow-md shadow-lg p-2'} id='likeLoveFavorite'>
-                <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
+            <div data-likelovefavorite='true' className={styles.shareOption + ' z-10 hidden absolute bg-base-100 left-0 border top-[-40px] w-36 rounded-md hover:shadow-md shadow-lg p-2'} id='likeLoveFavorite'>
+                <button className='btn btn-xs btn-secondary ml-2 btn-outline' data-likelovefavorite='true'>
                     <Like />
                 </button>
-                <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
+                <button className='btn btn-xs btn-secondary ml-2 btn-outline' data-likelovefavorite='true'>
                     <Like style={{ transform: 'rotate(180deg)' }} />
                 </button>
-                <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
+                <button className='btn btn-xs btn-secondary ml-2 btn-outline' data-likelovefavorite='true'>
                     <Like style={{ transform: 'rotate(180deg)' }} />
                 </button>
             </div>
