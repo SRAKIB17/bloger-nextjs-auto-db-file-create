@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const CommentList = ({ comment: commentBody }) => {
     const { name, post_id, userID, comment, time } = commentBody
-    const [moreComment, setMoreComment] = useState(false);
+    const [moreComment, setMoreComment] = useState(true);
 
     return (
         <div>
@@ -25,12 +25,15 @@ const CommentList = ({ comment: commentBody }) => {
                         <div className='w-fit'>
                             <div dangerouslySetInnerHTML={{ __html: comment }}></div>
                         </div>
-                        {
+
+                    </div>
+                    <div>
+                        {/* {
                             moreComment &&
-                            <button className={'commentShowMoreBtn ' + (darkMode ? 'text-light' : 'text-dark')}
-                                onClick={loadFullCommentHandle}
-                            >See {seeMore ? ' More' : ' Less'} ..</button>
-                        }
+                            <button className='link-primary underline'>
+                                Reply
+                            </button>
+                        } */}
                     </div>
                 </div>
 

@@ -33,16 +33,16 @@ const PostMap = ({ post }) => {
     // -----------------------------for text or html -----------------------------------------------//
     const [textHtml, setTextHtml] = useState('')
     useEffect(() => {
-        setTextHtml(postBody?.slice(0, 1000));
+        setTextHtml(postBody?.slice(0, 500));
     }, [postBody])
 
     const handleSeeMorePost = () => {
         setSeeMorePostShow(!seeMorePostShow)
-        if (textHtml.length <= 1000) {
+        if (textHtml.length <= 500) {
             setTextHtml(postBody)
         }
         else {
-            setTextHtml(postBody?.slice(0, 1000))
+            setTextHtml(postBody?.slice(0, 500))
         }
     }
 
@@ -128,16 +128,16 @@ const PostMap = ({ post }) => {
                                     <div className='mt-4 mb-4' data-post={post_id}>
                                         <figure data-post={post_id}>
                                             <img src={thumbnail} alt="" className='w-full rounded-md' data-post={post_id} />
-                                        </figure>
+                                        </figure>z
                                     </div>
                                 }
                                 {/* ---------post body ----------------- */}
-                                <div className='w-full text-justify' onClick={() => { postBody?.length >= 1000 && handleSeeMorePost() }} dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
+                                <div className='w-full text-justify' onClick={() => { postBody?.length >= 500 && handleSeeMorePost() }} dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
                                 </div>
 
                                 {/* ------------see more -------------------- */}
                                 {
-                                    postBody?.length >= 1000 &&
+                                    postBody?.length >= 500 &&
                                     <div className="card-actions justify-end" data-post={post_id}>
                                         <button className="link-primary font-semibold link-hover" onClick={handleSeeMorePost} data-post={post_id}>
                                             See {seeMorePostShow ? 'Less' : 'More'}
@@ -150,7 +150,7 @@ const PostMap = ({ post }) => {
                     }
 
                     <div className='relative'>
-                        <Comment_textarea />
+                        <Comment_textarea post_id={post_id} />
                     </div>
                 </div>
             </div>

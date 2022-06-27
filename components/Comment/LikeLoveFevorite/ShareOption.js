@@ -4,7 +4,7 @@ import { Facebook, FacebookSquare } from '../../ReactRSIcon';
 const ShareOption = () => {
     return (
         <div>
-            <div className='absolute top-[-40px] z-30 bg-base-100 shadow-2xl hover:shadow-md right-0 p-3 pb-2 rounded-md'>
+            <div className='absolute top-[-1px] z-30 bg-base-100 shadow-2xl hover:shadow-md right-0 p-3 pb-2 rounded-md'>
                 <div className='flex gap-1 '>
                     <div>
                         <button>

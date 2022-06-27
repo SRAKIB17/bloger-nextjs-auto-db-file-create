@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     const database = [
         {
             userID: '54fsdlj53',
-            post_id: '534fsdfjo345',
+            post_id: '1',
             post_title: 'Song Meshup',
             thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
             image: '',
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         },
         {
             userID: '54fsdlj53',
-            post_id: '534fsdfjo345',
+            post_id: '2',
             post_title: 'StackOverFlow',
             thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
             image: '',
@@ -51,7 +51,7 @@ export default async function handler(req, res) {
         },
         {
             userID: '54fsdlj53',
-            post_id: '534fsdfjo345',
+            post_id: '3',
             post_title: 'Bangladesh',
             thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
             image: '',
@@ -72,7 +72,7 @@ export default async function handler(req, res) {
         },
         {
             userID: '54fsdlj53',
-            post_id: '534fsdfjo345',
+            post_id: '5',
             post_title: '',
             thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
             image: '',
@@ -85,7 +85,7 @@ export default async function handler(req, res) {
         },
         {
             userID: '54fsdlj53',
-            post_id: '534fsdfjo345',
+            post_id: '4',
             post_title: '',
             thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
             image: '',

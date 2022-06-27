@@ -3,7 +3,7 @@ import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from '../hooks/TextArea.module.css';
 import LikeLoveFavorite from './LikeLoveFevorite/LikeLoveFevorite';
 import CommentList from './CommentList';
-const Comment_textarea = ({ id }) => {
+const Comment_textarea = ({post_id }) => {
     const textareaRef = useRef();
 
     const commentBody = [
@@ -61,9 +61,9 @@ const Comment_textarea = ({ id }) => {
     }
     return (
         <div>
-            <div className=' border-b-[1px] p-2 border-t-[1px]' >
+            <div>
                 {/* like unlike  */}
-                <LikeLoveFavorite props={{ showComment, setShowCommentSection }} />
+                <LikeLoveFavorite props={{ showComment, setShowCommentSection ,post_id}} />
             </div>
             <div className='m-3'>
                 <div>
