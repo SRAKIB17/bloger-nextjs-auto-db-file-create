@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const CommentList = ({ comment: commentBody }) => {
-    const { name, post_id, email, userID, comment, time } = commentBody
+    const { name, post_id, userID, comment, time } = commentBody
     const [moreComment, setMoreComment] = useState(false);
 
     return (

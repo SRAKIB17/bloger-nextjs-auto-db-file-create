@@ -11,31 +11,31 @@ const Comment_textarea = ({ id }) => {
             _id: 3,
             name: 'rakib',
             post_id: 13,
-            email: "Russel.Parker@kameron.io",
             userID: 42342343,
             comment: 'wow so godhdfgfdgfdgfgfdgdfgdfgdfgdfgdfgdfgfsdsdfsdfsdfsdfdsfsdfdsfsdfsdfsdfsdfsdfsdfsdfdfdfsdfdfddfdfsdfopskfsd sfsflo slfsdflsdfsdfljsdl;f sdfdf dsfood',
             time: Date(),
-            sort: ''
+            sort: '',
+            comment_id:45345455435435
         },
         {
             _id: 4,
             name: 'rakib',
             post_id: 13,
-            email: "Russel.Parker@kameron.io",
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
-            sort: ''
+            sort: '',
+            comment_id:45345455435435
         },
         {
             _id: 5,
             name: 'rakib',
             post_id: 13,
-            email: "Russel.Parker@kameron.io",
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
-            sort: ''
+            sort: '',
+            comment_id:45345455435435
         },
     ]
 
