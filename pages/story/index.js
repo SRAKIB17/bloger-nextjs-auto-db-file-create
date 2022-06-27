@@ -5,13 +5,14 @@ import Header from '../../components/Header/Header';
 import Post from '../../components/Post-NewsFeed/Post';
 import RightMenu from '../../components/Story/RightMenu';
 import { useRouter } from 'next/router'
+import LoadingSpin from '../../components/LoadingSpin';
 
 const Index = () => {
     const router = useRouter()
     const { cat } = router.query;
     const { data, refetch, isLoading } = useQuery('userPost_id', () => axios.get(`/api/test/?cat=${cat}`))
     if (isLoading) {
-        return <h>Loading</h>
+        return <LoadingSpin/>
     }
     // refetch()
     return (
