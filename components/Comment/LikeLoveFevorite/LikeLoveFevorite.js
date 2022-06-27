@@ -4,9 +4,9 @@ import ShareOption from './ShareOption';
 import styles from './LikeTransition.module.css'
 
 const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection } }) => {
-    const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
+    // const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
     const handleLikeComponent = (e) => {
-        setShoLikeUnlikeLove(true);
+        // setShoLikeUnlikeLove(true);
         document.getElementById('likeLoveFavorite').style.top = '-40px'
         document.getElementById('likeLoveFavorite').style.display = 'flex'
     }
@@ -48,7 +48,7 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection } }) => 
 
             <div className='flex items-center justify-between'>
                 <div >
-                    <button onClick={shareOptionShowHandle} onMouseEnter={handleLikeComponent} className='btn btn-xs btn-secondary ml-2 btn-outline'>
+                    <button  onMouseEnter={handleLikeComponent} className='btn btn-xs btn-secondary ml-2 btn-outline'>
                         <Like size='18' />
                     </button>
                     <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
