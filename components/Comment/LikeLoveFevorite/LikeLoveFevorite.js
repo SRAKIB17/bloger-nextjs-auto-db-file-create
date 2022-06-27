@@ -41,24 +41,24 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection } }) => 
                     </button>
                 </div>
                 <div>
-                    <button onClick={() => setShowCommentSection(!showComment)} className='btn btn-xs btn-secondary ml-2 btn-outline'>
-                        <Comment size='18' />
-                    </button>
-                </div>
-                <div>
-                    <button onClick={() => setShowShareOption(!showShareOption)} className='btn btn-xs btn-secondary ml-2 btn-outline'>
-                        <Share size='18' />
-                    </button>
-                </div>
-
+                    <button onClick={() => setShowCommentSection(!showComment)} className={(showComment ? 'btn-primary' : 'btn-outline') + ' btn btn-xs btn-secondary ml-2 '}>
+                    <Comment size='18' />
+                </button>
             </div>
-            {
-                showShareOption &&
-                <div className={styles.shareOption}>
-                    <ShareOption />
-                </div>
-            }
+            <div>
+                <button onClick={() => setShowShareOption(!showShareOption)} className='btn btn-xs btn-secondary ml-2 btn-outline'>
+                    <Share size='18' />
+                </button>
+            </div>
+
         </div>
+            {
+        showShareOption &&
+            <div className={styles.shareOption}>
+                <ShareOption />
+            </div>
+    }
+        </div >
     );
 };
 

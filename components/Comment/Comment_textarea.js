@@ -63,13 +63,13 @@ const Comment_textarea = ({ id }) => {
         <div>
             <div className=' border-b-[1px] p-2 border-t-[1px]' >
                 {/* like unlike  */}
-                <LikeLoveFavorite props={{showComment,setShowCommentSection}}/>
+                <LikeLoveFavorite props={{ showComment, setShowCommentSection }} />
             </div>
             <div className='m-3'>
                 <div>
                     {
                         showComment &&
-                        <div>
+                        <div className='mb-4'>
                             {
                                 commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
                             }

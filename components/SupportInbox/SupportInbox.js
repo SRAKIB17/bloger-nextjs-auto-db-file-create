@@ -5,7 +5,7 @@ import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from '../profile/NewPost/NewPost.module.css'
 import { SendShare } from '../ReactRSIcon';
 import MessageBody from './MessageBody';
-
+import inbox from './SupportInbox.module.css'
 
 const SupportInbox = () => {
 
@@ -149,7 +149,7 @@ const SupportInbox = () => {
                     </div>
 
 
-                    <div className='p-4 overflow-auto overflow-x-hidden  h-full' id='supportMessageBody'>
+                    <div className={(inbox.inboxHideScrollBar) + ' p-4 overflow-auto overflow-x-hidden  h-full'} id='supportMessageBody'>
                         <div  >
 
                             {
@@ -180,7 +180,7 @@ const SupportInbox = () => {
                                 >
                                 </textarea>
                                 <div>
-                                    <button className='btn btn-sm btn-primary ml-2 text-xs'><SendShare size='25'/></button>
+                                    <button className='btn btn-sm btn-primary ml-2 text-xs'><SendShare size='25' /></button>
                                 </div>
                             </div>
                             {/* <TextArea /> */}

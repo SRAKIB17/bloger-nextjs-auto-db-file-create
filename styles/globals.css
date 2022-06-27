@@ -35,6 +35,7 @@ a {
 
 *::-webkit-scrollbar {
   width: 5px;
+  height: 3px;
 }
 
 *::-webkit-scrollbar-thumb {

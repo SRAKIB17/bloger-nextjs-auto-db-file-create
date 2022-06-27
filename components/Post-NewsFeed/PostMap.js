@@ -91,6 +91,7 @@ const PostMap = ({ post }) => {
                                 {
                                     shortDescriptionVideo?.length <= 100 && <>.....</>
                                 }
+                                {/* -------------see more short description----------- */}
                                 {
                                     short_description?.length >= 100 &&
                                     <div className="card-actions justify-end" data-post={post_id}>
@@ -122,19 +123,20 @@ const PostMap = ({ post }) => {
                             </p> */}
                             <div className='mx-auto' id='videoPost' data-post={post_id}>
 
+                                {/* ----thumbnail------------ */}
                                 {
                                     thumbnail &&
                                     <div className='mt-4 mb-4' data-post={post_id}>
                                         <figure data-post={post_id}>
-                                            <img src={thumbnail} alt="" className='w-full' data-post={post_id} />
+                                            <img src={thumbnail} alt="" className='w-full rounded-md' data-post={post_id} />
                                         </figure>
                                     </div>
                                 }
-                         
-                                <div className='w-full text-justify' onClick={() => { postBody?.length >= 1000 && handleSeeMorePost() }}  dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
-
+                                {/* ---------post body ----------------- */}
+                                <div className='w-full text-justify' onClick={() => { postBody?.length >= 1000 && handleSeeMorePost() }} dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
                                 </div>
 
+                                {/* ------------see more -------------------- */}
                                 {
                                     postBody?.length >= 1000 &&
                                     <div className="card-actions justify-end" data-post={post_id}>
