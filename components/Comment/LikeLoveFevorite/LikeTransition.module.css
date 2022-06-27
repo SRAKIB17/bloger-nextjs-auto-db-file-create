@@ -14,3 +14,7 @@
         opacity: 1;
     }
 }
+
+#likeLoveFavorite{
+    transition: 0.2s;
+}

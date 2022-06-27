@@ -1,39 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Comment, Like, Share, } from '../../ReactRSIcon/index'
 import ShareOption from './ShareOption';
 import styles from './LikeTransition.module.css'
 
 const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection } }) => {
+    const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
     const handleLikeComponent = (e) => {
-
-        if (e.type === 'mouseenter') {
-            const likeLoveFavorite = document.getElementById('likeLoveFavorite');
-            likeLoveFavorite.style.display = 'block'
-        }
-        // else if (e.type === 'mouseleave') {
-        //     const likeLoveFavorite = document.getElementById('likeLoveFavorite');
-        //     likeLoveFavorite.style.display = 'none'
-        // }
-
-
+        setShoLikeUnlikeLove(true);
+        document.getElementById('likeLoveFavorite').style.top = '-40px'
+        document.getElementById('likeLoveFavorite').style.display = 'flex'
     }
     const onlyLikePostHandle = () => {
     }
     const [showShareOption, setShowShareOption] = useState(false)
     const shareOptionShowHandle = () => {
-        alert('5r34534')
-    }
 
+    }
+    useEffect(() => {
+        document.documentElement.onclick = () => {
+            document.getElementById('likeLoveFavorite').style.top = '0px'
+            setTimeout(() => {
+                document.getElementById('likeLoveFavorite').style.top = '-40px'
+
+                document.getElementById('likeLoveFavorite').style.display = 'none'
+            }, 100);
+        }
+    }, [])
     return (
         <div>
-            <div className='absolute top-0 bg-base-100 w-full hidden z-[1000]' id='likeLoveFavorite'>
+
+            <div className={styles.shareOption + ' z-10 hidden absolute bg-base-100 left-0 border top-[-40px] w-36 rounded-md hover:shadow-md shadow-lg p-2'} id='likeLoveFavorite'>
                 <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
                     <Like />
                 </button>
                 <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
                     <Like style={{ transform: 'rotate(180deg)' }} />
                 </button>
+                <button className='btn btn-xs btn-secondary ml-2 btn-outline'>
+                    <Like style={{ transform: 'rotate(180deg)' }} />
+                </button>
             </div>
+
 
             <div className='flex items-center justify-between'>
                 <div >
