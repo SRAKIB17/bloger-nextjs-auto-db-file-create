@@ -9,19 +9,19 @@ const QuickPost = ({ props: { quickVideoPost, setQuickVideoPost, quickTextPost, 
                 setQuickVideoPost(false);
                 setQuickImagePost(true)
                 break;
-        
+
             case 'text':
                 setQuickTextPost(true);
                 setQuickVideoPost(false);
                 setQuickImagePost(false)
                 break;
-        
+
             case 'video':
                 setQuickTextPost(false);
                 setQuickVideoPost(true);
                 setQuickImagePost(false)
                 break;
-        
+
             default:
                 break;
         }

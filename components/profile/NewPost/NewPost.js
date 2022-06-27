@@ -58,6 +58,20 @@ const NewPost = () => {
                     <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, quickImagePost, setQuickImagePost }} />
                 </div>
                 <div>
+                    <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm'>
+                        
+                        <p className='font-mono texhi'>
+
+                            {
+                                quickVideoPost && <code>{` tips: .<vid or .<ifr or .<emb use for shortcut html tag.`}</code>
+
+                            }
+                            
+                        </p>
+                        <p>
+                            Support html and css
+                        </p>
+                    </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
 
                         <input
@@ -93,7 +107,7 @@ const NewPost = () => {
                             className='input input-success form-control w-56 sm:w-80'
                             placeholder='Tags (separate with comma)'
                         />
-                        <TextArea />
+                        <TextArea quickPost={quickVideoPost} />
                         <input type="submit" value="Post" className='btn rounded-3xl btn-primary text-white w-fit' />
                     </form>
 

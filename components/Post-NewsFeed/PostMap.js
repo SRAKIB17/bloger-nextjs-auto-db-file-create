@@ -49,7 +49,6 @@ const PostMap = ({ post }) => {
     const handleLikePost = () => {
 
     }
-    console.log(textHtml, textHtml.length)
     return (
         <div data-post={post_id}>
             <div className="card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" data-post={post_id}>

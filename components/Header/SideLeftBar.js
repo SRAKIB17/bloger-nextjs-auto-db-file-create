@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Help from '../Help/Help';
-import { Info, Moon, MoonEmpty, Setting, Sun, SupportInbox } from '../ReactRSIcon/index'
+import { Info, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 
 const SideLeftBar = () => {
@@ -127,12 +127,23 @@ const SideLeftBar = () => {
         document.getElementById("HelpMenu").style.width = "100%";
     }
 
+    //---------------------------for open new post ------------------------
+    const OpenNewPost = () => {
+        document.getElementById("newPostClose").style.width = "100%";
+    }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
 
             <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute lg:hidden right-[10px] hover:text-red-500'>X</button>
             <div className='flex flex-col  mt-4'>
 
+                {/* for support inbox */}
+                <button onClick={OpenNewPost} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                    <Writing size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        New Post
+                    </p>
+                </button>
                 {/* for support inbox */}
                 <button onClick={OpenSupportInbox} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <SupportInbox size='30' />
@@ -161,7 +172,7 @@ const SideLeftBar = () => {
                         }
                     </p>
                 </button>
-                
+
                 {/* for setting */}
                 <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <Setting size='30' />

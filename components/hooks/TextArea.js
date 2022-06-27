@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from './hooks/useFindClassAttr';
 import styles from './TextArea.module.css';
-const TextArea = () => {
+const TextArea = ({ quickPost }) => {
     const textareaRef = useRef();
-
+    
 
 
     const shortcutKeyboard = (e) => {
@@ -83,14 +83,14 @@ const TextArea = () => {
 
     return (
         <div className='m-3'>
-            <div>
+            <div className='flex'>
                 <li onClick={liveOffHandle} className='btn btn-warning btn-xs text-white m-4'>
                     Live
                     {
                         liveOff ? ' On' : ' Off'
                     }
                 </li>
-                <li onClick={rotateHandle} className='btn btn-warning btn-xs text-white m-4'>
+                <li onClick={rotateHandle} className='btn btn-warning btn-xs text-white m-4 hidden sm:flex w-fit'>
                     Rotate
                     {
                         rotate ? ' On' : ' Off'
@@ -118,6 +118,7 @@ const TextArea = () => {
                         onDrop={heightAutoHandle}
                         onKeyDown={heightAutoHandle}
                     >
+                        
                     </textarea>
                 </div>
                 <div

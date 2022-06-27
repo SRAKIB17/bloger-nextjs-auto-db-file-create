@@ -94,6 +94,7 @@ export { default as Video } from './icon/Video/Video'
 
 
 export { default as Worker } from './icon/Work/Worker'
+export { default as Writing } from './icon/Write/Writing'
 
 // for  youtube 
 export { default as Youtube } from './icon/Social/Youtube/Youtube'
