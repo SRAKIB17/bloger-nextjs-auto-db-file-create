@@ -47,7 +47,7 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection } }) => 
 
 
             <div className='flex items-center justify-between'>
-                <div >
+                <div data-likelovefavorite='true'>
                     <button  onMouseEnter={handleLikeComponent} className='btn btn-xs btn-secondary ml-2 btn-outline'>
                         <Like size='18' />
                     </button>
