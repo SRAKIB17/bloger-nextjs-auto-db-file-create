@@ -7,19 +7,21 @@ const PostMap = ({ post }) => {
     const { category, image, postBody, postRefMode, post_id, post_title, short_description, sort, tags, thumbnail, time, userID } = post
     const router = useRouter();
 
-    const [seeMorePostShow, setSeeMorePostShow] = useState('')
 
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
     }
-    // for video 
+
+
+    const [seeMorePostShow, setSeeMorePostShow] = useState(false)
+    // -------------------------------------for video -------------------------------------------------//
     const [shortDescriptionVideo, setShortDescriptionVideo] = useState('')
     useEffect(() => {
         setShortDescriptionVideo(short_description?.slice(0, 100))
     }, [post, short_description])
 
-    const moreShortDescriptionVideo = () => {
+    const moreShortDescriptionVideoHandle = () => {
         setSeeMorePostShow(!seeMorePostShow)
         if (shortDescriptionVideo.length <= 100) {
             setShortDescriptionVideo(short_description)
@@ -28,14 +30,26 @@ const PostMap = ({ post }) => {
             setShortDescriptionVideo(short_description?.slice(0, 100))
         }
     }
+    // -----------------------------for text or html -----------------------------------------------//
+    const [textHtml, setTextHtml] = useState('')
+    useEffect(() => {
+        setTextHtml(postBody?.slice(0, 1000));
+    }, [postBody])
 
     const handleSeeMorePost = () => {
         setSeeMorePostShow(!seeMorePostShow)
+        if (textHtml.length <= 1000) {
+            setTextHtml(postBody)
+        }
+        else {
+            setTextHtml(postBody?.slice(0, 1000))
+        }
     }
 
     const handleLikePost = () => {
 
     }
+    console.log(textHtml, textHtml.length)
     return (
         <div data-post={post_id}>
             <div className="card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" data-post={post_id}>
@@ -66,10 +80,11 @@ const PostMap = ({ post }) => {
 
 
 
+
                     {/* ---------------------------------------for video body--------------------------------- */}
                     {
                         postRefMode === 'video' && <>
-                            <div onClick={() => { short_description?.length >= 100 && moreShortDescriptionVideo() }} className='text-justify mb-2' data-post={post_id}>
+                            <div onClick={() => { short_description?.length >= 100 && moreShortDescriptionVideoHandle() }} className='text-justify mb-2' data-post={post_id}>
                                 {
                                     shortDescriptionVideo
                                 }
@@ -79,12 +94,14 @@ const PostMap = ({ post }) => {
                                 {
                                     short_description?.length >= 100 &&
                                     <div className="card-actions justify-end" data-post={post_id}>
-                                        <button className="link-primary font-semibold link-hover" onClick={moreShortDescriptionVideo} data-post={post_id}>
+                                        <button className="link-primary font-semibold link-hover" onClick={moreShortDescriptionVideoHandle} data-post={post_id}>
                                             See {seeMorePostShow ? 'Less' : 'More'}
                                         </button>
                                     </div>
                                 }
                             </div>
+
+                            {/*----------------------------- for video code --------------------- */}
                             <div className='mx-auto' id='videoPost' data-post={post_id} >
                                 <div className='w-full' dangerouslySetInnerHTML={{ __html: postBody }} data-post={post_id}>
 
@@ -92,45 +109,45 @@ const PostMap = ({ post }) => {
                             </div>
                         </>
                     }
-
-                    {/* -------------------------------------for Text/Html body--------------------------------- */}
+                    {/* ------------------------------------------------------------------------------------------------------------- */}
+                    {/* -----------------------------------------------for Text/Html body----------------------------------------- */}
 
                     {
                         postRefMode === 'text' &&
                         <>
-                            <p className='text-justify mb-2' onClick={() => { short_description?.length >= 100 && handleSeeMorePost() }} data-post={post_id}>
+                            {/* <p className='text-justify mb-2' data-post={post_id}>
                                 {
-                                    short_description
+                                    postBody
                                 }
-                            </p>
+                            </p> */}
                             <div className='mx-auto' id='videoPost' data-post={post_id}>
-                                {
-                                    seeMorePostShow &&
-                                    <div className='w-full text-justify' dangerouslySetInnerHTML={{ __html: postBody }} data-post={post_id}>
 
+                                {
+                                    thumbnail &&
+                                    <div className='mt-4 mb-4' data-post={post_id}>
+                                        <figure data-post={post_id}>
+                                            <img src={thumbnail} alt="" className='w-full' data-post={post_id} />
+                                        </figure>
                                     </div>
                                 }
+                         
+                                <div className='w-full text-justify' onClick={() => { postBody?.length >= 1000 && handleSeeMorePost() }}  dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
+
+                                </div>
 
                                 {
-                                    postBody &&
+                                    postBody?.length >= 1000 &&
                                     <div className="card-actions justify-end" data-post={post_id}>
                                         <button className="link-primary font-semibold link-hover" onClick={handleSeeMorePost} data-post={post_id}>
                                             See {seeMorePostShow ? 'Less' : 'More'}
                                         </button>
                                     </div>
                                 }
-
-                                <div className='mt-4 mb-4' data-post={post_id}>
-                                    <figure data-post={post_id}>
-                                        <img src={thumbnail} alt="" className='w-full' data-post={post_id} />
-                                    </figure>
-
-                                </div>
                             </div>
                         </>
 
                     }
-                    
+
                     <div className='relative'>
                         <Comment_textarea />
                     </div>

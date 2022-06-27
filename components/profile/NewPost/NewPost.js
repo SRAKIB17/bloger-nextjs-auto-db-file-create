@@ -18,7 +18,8 @@ const NewPost = () => {
     const postHandle = async (event) => {
         event.preventDefault();
         const body = event.target.postBody.value;
-        let postRefMode;
+        let postRefMode = '';
+        let short_description = '';
         if (quickTextPost) {
             postRefMode = 'text'
         }
@@ -27,6 +28,7 @@ const NewPost = () => {
         }
         else if (quickVideoPost) {
             postRefMode = 'video'
+            short_description = event.target.short_description.value;
         }
         const post = {
             userID: '54fsdlj53',
@@ -35,7 +37,7 @@ const NewPost = () => {
             thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
             image: '',
             time: 'dec 15, 2021',
-            short_description: event.target.short_description.value,
+            short_description: short_description,
             category: event.target.category.value,
             postBody: body,
             sort: '5345345345',
@@ -43,7 +45,8 @@ const NewPost = () => {
             postRefMode: postRefMode
         }
         console.log(post)
-        const { data } = await axios.post('/api/test', post);
+        // const { data } = await axios.post('/api/test', post);
+
         // console.log(data)
     }
     return (
@@ -65,14 +68,17 @@ const NewPost = () => {
                             placeholder='Title'
                         />
 
-                        <input
-                            type="text"
-                            name="short_description"
-                            id=""
-                            maxLength='1000'
-                            className='input input-success form-control w-56 sm:w-80'
-                            placeholder='Short description'
-                        />
+                        {
+                            quickVideoPost &&
+                            <input
+                                type="text"
+                                name="short_description"
+                                id=""
+                                maxLength='1000'
+                                className='input input-success form-control w-56 sm:w-80'
+                                placeholder='Short description'
+                            />
+                        }
                         <input
                             type="text"
                             name="category"
