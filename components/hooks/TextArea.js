@@ -107,7 +107,7 @@ const TextArea = ({ quickPost }) => {
 
                     <textarea ref={textareaRef}
                         id='textForm'
-                        className='input input-success w-full font-mono'
+                        className='input input-primary w-full font-mono'
                         name="postBody"
                         onBlur={onchangeInput}
                         onKeyUp={(e) => shortcutKeyboard(e)}

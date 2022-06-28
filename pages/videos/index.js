@@ -7,13 +7,18 @@ import RightMenu from '../../components/Story/RightMenu';
 
 const Index = () => {
     const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
-    console.log(data)
-    const post = data?.data?.filter((post, index, arr) => {
-        if (post?.postRefMode === 'video') {
-            return arr;
-        }
+    let post = []
+    try {
+        post = data?.data?.filter((post, index, arr) => {
+            if (post?.postRefMode === 'video') {
+                return arr;
+            }
 
-    })
+        })
+    }
+    catch {
+
+    }
     return (
         <div>
             <Header />

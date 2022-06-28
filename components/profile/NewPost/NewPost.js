@@ -49,16 +49,17 @@ const NewPost = () => {
             },
             postBody: body,
             sort: '5345345345',
+            postBy: event.target.postBy.value,
             // tags: event.target.tags.value.split(','),
             postRefMode: postRefMode
         }
-        console.log(post)
+        // console.log(post)
         try {
             const { data } = await axios.post('/api/post/newpost', post);
             if (data?.result?.acknowledged) {
                 event.target.reset()
             }
-            console.log(data)
+            // console.log(data)
 
         }
         finally {
@@ -101,12 +102,16 @@ const NewPost = () => {
                         </p>
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
-
+                        <select name="postBy" id="" className="select select-primary w-full max-w-xs">
+                            <option disabled selected>Post Roll</option>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
                         <input
                             type="text"
                             name="title"
                             id=""
-                            className='input input-success form-control w-56 sm:w-80'
+                            className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Title'
                             required
                         />
@@ -118,7 +123,7 @@ const NewPost = () => {
                             name="short_description"
                             id=""
                             maxLength='1000'
-                            className='input input-success form-control w-56 sm:w-80'
+                            className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Short description'
                             required
                         />
@@ -127,7 +132,7 @@ const NewPost = () => {
                             type="text"
                             name="category"
                             id=""
-                            className='input input-success form-control w-56 sm:w-80'
+                            className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Category'
                             required
                         />
@@ -135,7 +140,7 @@ const NewPost = () => {
                             type="text"
                             name="tags"
                             id=""
-                            className='input input-success form-control w-56 sm:w-80'
+                            className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Tags (separate with comma)'
                             required
                         />
