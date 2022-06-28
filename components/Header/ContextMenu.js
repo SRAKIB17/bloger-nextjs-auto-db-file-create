@@ -52,44 +52,40 @@ const ContextMenu = () => {
         document.documentElement.ontouchmove = (e) => {
             const x = e.touches[0].clientX;
             const y = e.touches[0].clientY;
-            const pathname = router.pathname.split('/')[1];
             getValue.push(x)
             const getX = getValue[0] - getValue[getValue.length - 2]
             if (getX > 50 && !isNaN(getX)) {
+                const pathname = router.pathname.split('/')[1];
 
-                switch (pathname) {
-                    case '/':
-                        navigate('/story')
-                        break;
-                    case '/story':
-                        navigate('/videos')
-                        break;
-                    case '/videos':
-                        navigate('/profile')
-                        break;
+                if (router.pathname === '/') {
+                    navigate('/story')
+                }
+                else if (pathname === 'story') {
+                    navigate('/videos')
+                }
+                else if (pathname === 'videos') {
+                    navigate('/profile')
+                }
+                else {
 
-                    default:
-                        break;
                 }
                 getValue = []
             }
             else if (getX < -50) {
-                switch (pathname) {
-                    case 'story':
-                        navigate('/')
+                const pathname = router.pathname.split('/')[1];
 
-                        break;
-                    case 'videos':
-                        navigate('/story')
-
-                        break;
-                    case 'profile':
-                        navigate('/videos')
-
-                        break;
-
-                    default:
-                        break;
+                // if (router.pathname === '/') {
+                //     navigate('/')
+                // }
+                // else 
+                if (pathname === 'story') {
+                    navigate('/')
+                }
+                else if (pathname === 'videos') {
+                    navigate('/story')
+                }
+                else if (pathname === 'profile') {
+                    navigate('/videos')
                 }
                 getValue = []
             }
