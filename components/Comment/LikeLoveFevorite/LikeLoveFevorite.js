@@ -36,11 +36,11 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection, post_id
             const showLikeUnlikeUser = document.getElementById('showLikeUnlikeUser' + id)
             if (showLikeUnlikeUser.offsetHeight <= 2) {
                 showLikeUnlikeUser.style.height = '400px'
-                showLikeUnlikeUser.style.borderTop = '1px solid grey'
+                showLikeUnlikeUser.style.borderTopWidth = '1px'
             }
             else {
                 showLikeUnlikeUser.style.height = '0px'
-                showLikeUnlikeUser.style.borderTop = '0px'
+                showLikeUnlikeUser.style.borderTopWidth = '0px'
             }
             console.log(showLikeUnlikeUser.offsetHeight)
         }
@@ -48,6 +48,7 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection, post_id
 
         }
     }
+
     return (
         <div>
 
@@ -64,24 +65,21 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection, post_id
             </div> */}
 
 
-            <div onClick={() => showLikeUnlikeUser(post_id)} data-showlikeunlikeuser='true'>
-                <div className='p-2 border-t flex items-center justify-between font-mono'>
-                    <div className='flex relative'>
-                        <button className='bg-[#00ff00] p-1 rounded-[50%] btn-disabled relative'>
-                            <Like color='white' size='15' />
-                        </button>
-                        <button className='bg-[#ff2020] p-1 rounded-[50%] btn-disabled relative left-[-4px]'>
-                            <Like color='white' size='15' style={{ transform: 'rotate(180deg)' }} />
-                        </button>
-                        <h1 className='text-gray-500'>5345</h1>
-                    </div>
-                    <div className='mr-3 text-gray-500'>
-                        20 comment
-                    </div>
+            <div className='p-2 border-t flex items-center justify-between font-mono' onClick={() => showLikeUnlikeUser(post_id)} >
+                <div className='flex relative'>
+                    <button className='bg-[#00ff00] p-1 rounded-[50%] btn-disabled relative'>
+                        <Like color='white' size='15' />
+                    </button>
+                    <button className='bg-[#ff2020] p-1 rounded-[50%] btn-disabled relative left-[-4px]'>
+                        <Like color='white' size='15' style={{ transform: 'rotate(180deg)' }} />
+                    </button>
+                    <h1 className='text-gray-500'>5345</h1>
                 </div>
-                <div className={styles.showLikeUnlikeUser} id={'showLikeUnlikeUser' + post_id}>
-
+                <div className='mr-3 text-gray-500'>
+                    20 comment
                 </div>
+            </div>
+            <div className={styles.showLikeUnlikeUser} id={'showLikeUnlikeUser' + post_id}>
 
             </div>
             <div className=' border-b p-2 border-t'>

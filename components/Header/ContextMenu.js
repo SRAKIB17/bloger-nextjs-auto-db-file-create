@@ -46,7 +46,59 @@ const ContextMenu = () => {
             getContextMenu.style.display = 'none'
         }
 
-        //**--------------------------------disabled zoom and ctrl key with F12 ------------------------------ */
+
+        // change 
+        const getValue = []
+        document.documentElement.ontouchmove = (e) => {
+            const x = e.touches[0].clientX;
+            const y = e.touches[0].clientY;
+            const pathname = router.pathname.split('/')[1];
+            getValue.push(x)
+            const getX = getValue[0] - getValue[getValue.length - 2]
+            if (getX > 50 && !isNaN(getX)) {
+
+                switch (pathname) {
+                    case '/':
+                        navigate('/story')
+                        break;
+                    case '/story':
+                        navigate('/videos')
+                        break;
+                    case '/videos':
+                        navigate('/profile')
+                        break;
+
+                    default:
+                        break;
+                }
+                getValue = []
+            }
+            else if (getX < -50) {
+                switch (pathname) {
+                    case 'story':
+                        navigate('/')
+
+                        break;
+                    case 'videos':
+                        navigate('/story')
+
+                        break;
+                    case 'profile':
+                        navigate('/videos')
+
+                        break;
+
+                    default:
+                        break;
+                }
+                getValue = []
+            }
+
+        }
+        document.documentElement.ontouchend = (e) => {
+            getValue = []
+        }
+        //**--------------------------------disabled zoom and ctrl key with F12 ------------------------------------------- */
         window.onkeyup = (e) => {
             if (e.key === 'F12') {
                 e.preventDefault()
@@ -77,7 +129,7 @@ const ContextMenu = () => {
             }
         }, { passive: false });
     }, [])
-
+    //--------------------------------------------------------------------------------------------------------------
     return (
         <div>
 
