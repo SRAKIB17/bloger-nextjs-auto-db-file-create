@@ -54,7 +54,7 @@ const ContextMenu = () => {
             const y = e.touches[0].clientY;
             getValue.push(x)
             const getX = getValue[0] - getValue[getValue.length - 2]
-            if (getX > 50 && !isNaN(getX)) {
+            if (getX > 100 && !isNaN(getX)) {
                 const pathname = router.pathname.split('/')[1];
 
                 if (router.pathname === '/') {
@@ -71,7 +71,7 @@ const ContextMenu = () => {
                 }
                 getValue = []
             }
-            else if (getX < -50) {
+            else if (getX < -100) {
                 const pathname = router.pathname.split('/')[1];
                 if (pathname === 'story') {
                     navigate('/')
