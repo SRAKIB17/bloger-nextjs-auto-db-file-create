@@ -3,7 +3,7 @@ import { Comment, Like, Share, } from '../../ReactRSIcon/index'
 import ShareOption from './ShareOption';
 import styles from './LikeTransition.module.css'
 
-const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection, post_id } }) => {
+const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
     // const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
     // const handleLikeComponent = (id) => {
     //     // setShoLikeUnlikeLove(true);
@@ -93,7 +93,7 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection, post_id
                         </button>
                     </div>
                     <div>
-                        <button onClick={() => setShowCommentSection(!showComment)} className={(showComment ? 'btn-primary' : 'btn-outline') + ' btn btn-xs btn-secondary ml-2 '}>
+                        <button onClick={() => showCommentHandle(post_id)} className={(true ? 'btn-primary' : 'btn-outline') + ' btn btn-xs btn-secondary ml-2 '}>
                             <Comment size='18' color='currentColor' />
                         </button>
                     </div>

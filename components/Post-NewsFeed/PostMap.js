@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
+import styles from './PostMap.module.css'
 import LikeLoveFavorite from '../Comment/LikeLoveFevorite/LikeLoveFevorite';
 
 const PostMap = ({ post }) => {
@@ -15,7 +16,7 @@ const PostMap = ({ post }) => {
 
 
     const [seeMorePostShow, setSeeMorePostShow] = useState(false)
-    // -------------------------------------for video -------------------------------------------------//
+    // --------------------------------------------- for video -------------------------------------------------//
     const [shortDescriptionVideo, setShortDescriptionVideo] = useState('')
     useEffect(() => {
         setShortDescriptionVideo(short_description?.slice(0, 100))
@@ -30,13 +31,14 @@ const PostMap = ({ post }) => {
             setShortDescriptionVideo(short_description?.slice(0, 100))
         }
     }
-    // -----------------------------for text or html -----------------------------------------------//
+    // ----------------------------------------for text or html ---------------------------------------------------//
     const [textHtml, setTextHtml] = useState('')
     useEffect(() => {
         setTextHtml(postBody?.slice(0, 500));
     }, [postBody])
 
-    const handleSeeMorePost = () => {
+    const handleSeeMorePost = (e) => {
+
         setSeeMorePostShow(!seeMorePostShow)
         if (textHtml.length <= 500) {
             setTextHtml(postBody)
@@ -128,12 +130,15 @@ const PostMap = ({ post }) => {
                                     <div className='mt-4 mb-4' data-post={post_id}>
                                         <figure data-post={post_id}>
                                             <img src={thumbnail} alt="" className='w-full rounded-md' data-post={post_id} />
-                                        </figure>z
+                                        </figure>
                                     </div>
                                 }
                                 {/* ---------post body ----------------- */}
-                                <div className='w-full text-justify' onClick={() => { postBody?.length >= 500 && handleSeeMorePost() }} dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
+                                <div className={styles.postMap + ' w-full h-fit transition-all text-justify'} onClick={(e) => { postBody?.length >= 500 && handleSeeMorePost(e) }}>
+                                    <div dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
+                                    </div>
                                 </div>
+
 
                                 {/* ------------see more -------------------- */}
                                 {

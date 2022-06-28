@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
-import styles from '../hooks/TextArea.module.css';
+import styles from './Comment.module.css'
 import LikeLoveFavorite from './LikeLoveFevorite/LikeLoveFevorite';
 import CommentList from './CommentList';
-const Comment_textarea = ({post_id }) => {
+const Comment_textarea = ({ post_id }) => {
     const textareaRef = useRef();
 
     const commentBody = [
@@ -15,7 +15,7 @@ const Comment_textarea = ({post_id }) => {
             comment: 'wow so godhdfgfdgfdgfgfdgdfgdfgdfgdfgdfgdfgfsdsdfsdfsdfsdfdsfsdfdsfsdfsdfsdfsdfsdfsdfsdfdfdfsdfdfddfdfsdfopskfsd sfsflo slfsdflsdfsdfljsdl;f sdfdf dsfood',
             time: Date(),
             sort: '',
-            comment_id:45345455435435
+            comment_id: 45345455435435
         },
         {
             _id: 4,
@@ -25,7 +25,7 @@ const Comment_textarea = ({post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id:45345455435435
+            comment_id: 45345455435435
         },
         {
             _id: 5,
@@ -35,7 +35,7 @@ const Comment_textarea = ({post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id:45345455435435
+            comment_id: 45345455435435
         },
     ]
 
@@ -55,26 +55,37 @@ const Comment_textarea = ({post_id }) => {
             e.target.style.height = 200 + 'px'
         }
     }
-    const [showComment, setShowCommentSection] = useState(false)
-    const showCommentHandle = () => {
+    const [showComment, setShowCommentSection] = useState(false);
+    const showCommentHandle = (id) => {
+        try {
 
+            const showComment = document.getElementById('commentShow' + id)
+            if (showComment.offsetHeight <= 2) {
+                showComment.style.height = '400px'
+            }
+            else {
+                showComment.style.height = '0px'
+            }
+        }
+        catch {
+
+        }
     }
+
     return (
         <div>
             <div>
                 {/* like unlike  */}
-                <LikeLoveFavorite props={{ showComment, setShowCommentSection ,post_id}} />
+                <LikeLoveFavorite props={{ showCommentHandle, post_id }} />
             </div>
-            <div className='m-3'>
-                <div>
-                    {
-                        showComment &&
-                        <div className='mb-4'>
-                            {
-                                commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
-                            }
-                        </div>
-                    }
+            <div  id={'commentShow' + post_id} className={styles.showComment+ ''}>
+                <div className='p-3'>
+                    <div className='mb-4'>
+                        {
+                            commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
+                        }
+                    </div>
+
                     <div className='relative flex mt-1'>
                         <textarea ref={textareaRef}
                             id='textForm'

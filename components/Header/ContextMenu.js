@@ -47,7 +47,7 @@ const ContextMenu = () => {
         }
 
 
-        // change 
+        //------------------------------------------------------ change router by touch event --------------------------------
         const getValue = []
         document.documentElement.ontouchmove = (e) => {
             const x = e.touches[0].clientX;
@@ -73,11 +73,6 @@ const ContextMenu = () => {
             }
             else if (getX < -50) {
                 const pathname = router.pathname.split('/')[1];
-
-                // if (router.pathname === '/') {
-                //     navigate('/')
-                // }
-                // else 
                 if (pathname === 'story') {
                     navigate('/')
                 }
@@ -94,6 +89,7 @@ const ContextMenu = () => {
         document.documentElement.ontouchend = (e) => {
             getValue = []
         }
+
         //**--------------------------------disabled zoom and ctrl key with F12 ------------------------------------------- */
         window.onkeyup = (e) => {
             if (e.key === 'F12') {
