@@ -25,11 +25,11 @@ const Index = () => {
                     </div>
                 </div>
 
-                <div className='col-span-12 sm:mr-3 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-6'>
+                <div className='col-span-12 sm:mr-3 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-5'>
                     <Post posts={data?.data} />
                 </div>
 
-                <div className=' col-span-2 hidden lg:block relative bg-base-100 p-3'>
+                <div className=' col-span-3 hidden lg:block relative bg-base-100 p-3'>
                     <div className='fixed h-full overflow-auto text-justify p-2'>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium omnis ipsam repellat hic soluta explicabo consequuntur? Sed nobis dolore sit, minus illum ipsam laboriosam neque, voluptatem, deleniti voluptate amet praesentium?
                         <RightMenu />

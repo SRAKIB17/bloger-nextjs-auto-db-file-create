@@ -31,7 +31,23 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection, post_id
     // useEffect(() => {
     //     setLikePost(true)
     // }, [])
+    const showLikeUnlikeUser = (id) => {
+        try {
+            const showLikeUnlikeUser = document.getElementById('showLikeUnlikeUser' + id)
+            if (showLikeUnlikeUser.offsetHeight <= 2) {
+                showLikeUnlikeUser.style.height = '400px'
+                showLikeUnlikeUser.style.borderTop = '1px solid grey'
+            }
+            else {
+                showLikeUnlikeUser.style.height = '0px'
+                showLikeUnlikeUser.style.borderTop = '0px'
+            }
+            console.log(showLikeUnlikeUser.offsetHeight)
+        }
+        catch {
 
+        }
+    }
     return (
         <div>
 
@@ -48,30 +64,34 @@ const LikeLoveFavorite = ({ props: { showComment, setShowCommentSection, post_id
             </div> */}
 
 
-            <div className='p-2 border-t-[1px] flex items-center justify-between font-mono'>
-                <div className='flex relative'>
-                    <button className='bg-[#00ff00] p-1 rounded-[50%] btn-disabled relative'>
-                        <Like color='white' size='15' />
-                    </button>
-                    <button className='bg-[#ff2020] p-1 rounded-[50%] btn-disabled relative left-[-4px]'>
-                        <Like color='white' size='15' style={{ transform: 'rotate(180deg)' }} />
-                    </button>
-                    <h1 className='text-gray-500'>5345</h1>
+            <div onClick={() => showLikeUnlikeUser(post_id)} data-showlikeunlikeuser='true'>
+                <div className='p-2 border-t flex items-center justify-between font-mono'>
+                    <div className='flex relative'>
+                        <button className='bg-[#00ff00] p-1 rounded-[50%] btn-disabled relative'>
+                            <Like color='white' size='15' />
+                        </button>
+                        <button className='bg-[#ff2020] p-1 rounded-[50%] btn-disabled relative left-[-4px]'>
+                            <Like color='white' size='15' style={{ transform: 'rotate(180deg)' }} />
+                        </button>
+                        <h1 className='text-gray-500'>5345</h1>
+                    </div>
+                    <div className='mr-3 text-gray-500'>
+                        20 comment
+                    </div>
                 </div>
-                <div className='mr-3 text-gray-500'>
-                    20 comment
+                <div className={styles.showLikeUnlikeUser} id={'showLikeUnlikeUser' + post_id}>
+
                 </div>
+
             </div>
-
-
-            <div className=' border-b-[1px] p-2 border-t-[1px]'>
+            <div className=' border-b p-2 border-t'>
                 <div className='flex items-center justify-between'>
                     <div>
                         <button onClick={() => onlyLikePostHandle('like')} className='btn btn-xs btn-secondary ml-2 btn-outline'>
-                            <Like size='18' color={likePost ? 'green' : 'currentColor'} />
+                            <Like size='18' color={likePost ? '#00ff00' : 'currentColor'} />
                         </button>
-                        <button onClick={() => onlyLikePostHandle('unlike')}  className='btn btn-xs btn-secondary ml-2 btn-outline'>
-                            <Like size='18' color={unLikePost ? 'red' : 'currentColor'} style={{ transform: 'rotate(180deg)' }} />
+                        <button onClick={() => onlyLikePostHandle('unlike')} className='btn btn-xs btn-secondary ml-2 btn-outline'>
+                            <Like size='18' color={unLikePost ? '#ff2020' : 'currentColor'} style={{ transform: 'rotate(180deg)' }} />
                         </button>
                     </div>
                     <div>
