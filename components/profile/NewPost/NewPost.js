@@ -38,10 +38,13 @@ const NewPost = () => {
             image: '',
             time: 'dec 15, 2021',
             short_description: short_description,
-            category: event.target.category.value,
+            category: {
+                name: event.target.category.value,
+                tags: ['html'],
+            },
             postBody: body,
             sort: '5345345345',
-            tags: event.target.tags.value.split(','),
+            // tags: event.target.tags.value.split(','),
             postRefMode: postRefMode
         }
         console.log(post)
@@ -59,14 +62,14 @@ const NewPost = () => {
                 </div>
                 <div>
                     <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm'>
-                        
+
                         <p className='font-mono texhi'>
 
                             {
                                 quickVideoPost && <code>{` tips: .<vid or .<ifr or .<emb use for shortcut html tag.`}</code>
 
                             }
-                            
+
                         </p>
                         <p>
                             Support html and css

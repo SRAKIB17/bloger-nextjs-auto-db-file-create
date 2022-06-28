@@ -11,18 +11,6 @@ export { default as BubbleCommentChat } from './icon/Comment/bubbleCommentChat'
 
 export { default as Home } from './icon/home'
 
-// for menu bar 
-export { default as MenuBar } from './icon/Menu/menu_bar'
-export { default as MenuBarLeft } from './icon/Menu/menu_bar_left'
-export { default as MenuBarRight } from './icon/Menu/menu_bar_right'
-export { default as MenuBarCircle } from './icon/Menu/menu_bar_circle'
-export { default as MenuBarSquare } from './icon/Menu/menu_bar_square'
-
-// for music 
-export { default as MusicBell } from './icon/Music/musicBell'
-export { default as MusicBeginningButton } from './icon/Music/music_beginning_button'
-export { default as MusicHeadphones } from './icon/Music/music_headphones'
-export { default as MusicMute } from './icon/Music/music_mute'
 
 // Social 
 // facebook 
@@ -48,7 +36,7 @@ export { default as GoogleText } from './icon/Social/Google/GoogleText'
 
 
 // for instagram 
-export { default as Info  } from './icon/Info/Info'
+export { default as Info } from './icon/Info/Info'
 
 export { default as InstagramColor } from './icon/Social/Instagram/instagram-color'
 export { default as Instagram } from './icon/Social/Instagram/instagram'
@@ -57,6 +45,7 @@ export { default as InstagramSquare } from './icon/Social/Instagram/instagramSqu
 
 export { default as Location } from './icon/Address/Location'
 export { default as Like } from './icon/Like/Like'
+export { default as EmoticonLove } from './icon/Like/EmoticonLove'
 
 // for linkdin 
 export { default as LinkedinNew } from './icon/Social/Linkedin/linkedin'
@@ -67,6 +56,19 @@ export { default as LinkedinText } from './icon/Social/Linkedin/linkedin_text'
 
 export { default as Moon } from './icon/Moon/Moon'
 export { default as MoonEmpty } from './icon/Moon/MoonEmpty'
+
+// for menu bar 
+export { default as MenuBar } from './icon/Menu/menu_bar'
+export { default as MenuBarLeft } from './icon/Menu/menu_bar_left'
+export { default as MenuBarRight } from './icon/Menu/menu_bar_right'
+export { default as MenuBarCircle } from './icon/Menu/menu_bar_circle'
+export { default as MenuBarSquare } from './icon/Menu/menu_bar_square'
+
+// for music 
+export { default as MusicBell } from './icon/Music/musicBell'
+export { default as MusicBeginningButton } from './icon/Music/music_beginning_button'
+export { default as MusicHeadphones } from './icon/Music/music_headphones'
+export { default as MusicMute } from './icon/Music/music_mute'
 
 
 export { default as NewsFeed } from './icon/NewsFeed/NewsFeed'

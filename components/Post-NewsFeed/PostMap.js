@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
 import styles from './PostMap.module.css'
-import LikeLoveFavorite from '../Comment/LikeLoveFevorite/LikeLoveFevorite';
 
 const PostMap = ({ post }) => {
-    const { category, image, postBody, postRefMode, post_id, post_title, short_description, sort, tags, thumbnail, time, userID } = post
+    const { _id, category, image, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
 
 
@@ -37,8 +36,14 @@ const PostMap = ({ post }) => {
         setTextHtml(postBody?.slice(0, 500));
     }, [postBody])
 
-    const handleSeeMorePost = (e) => {
+    const handleSeeMorePost = (id) => {
+        // try {
+        //     const getPost = document.getElementById('postBody' + id)
+        //     getPost.style.height = '100vh'
+        // }
+        // catch {
 
+        // }
         setSeeMorePostShow(!seeMorePostShow)
         if (textHtml.length <= 500) {
             setTextHtml(postBody)
@@ -67,9 +72,9 @@ const PostMap = ({ post }) => {
                                 time
                             }
                             <b> | </b>
-                            <button className='link-primary link-hover' onClick={() => navigate(`/story?cat=${category}`)}>
+                            <button className='link-primary link-hover' onClick={() => navigate(`/story?cat=${category?.name}`)}>
                                 {
-                                    category
+                                    category?.name
                                 }
                             </button>
                         </h1>
@@ -134,7 +139,7 @@ const PostMap = ({ post }) => {
                                     </div>
                                 }
                                 {/* ---------post body ----------------- */}
-                                <div className={styles.postMap + ' w-full h-fit transition-all text-justify'} onClick={(e) => { postBody?.length >= 500 && handleSeeMorePost(e) }}>
+                                <div className={styles.postMap + ' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} onClick={() => { postBody?.length >= 500 && handleSeeMorePost(post_id) }}>
                                     <div dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
                                     </div>
                                 </div>

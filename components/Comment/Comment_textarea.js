@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from './Comment.module.css'
-import LikeLoveFavorite from './LikeLoveFevorite/LikeLoveFevorite';
+import LikeLoveFavorite from './LikeLoveFevorite/LikeLoveFavorite';
 import CommentList from './CommentList';
 const Comment_textarea = ({ post_id }) => {
     const textareaRef = useRef();
@@ -37,6 +37,76 @@ const Comment_textarea = ({ post_id }) => {
             sort: '',
             comment_id: 45345455435435
         },
+        {
+            _id: 6,
+            name: 'rakib',
+            post_id: 13,
+            userID: 42342343,
+            comment: 'wow so gooooood',
+            time: Date(),
+            sort: '',
+            comment_id: 45345455435435
+        },
+        {
+            _id: 7,
+            name: 'rakib',
+            post_id: 13,
+            userID: 42342343,
+            comment: 'wow so gooooood',
+            time: Date(),
+            sort: '',
+            comment_id: 45345455435435
+        },
+        {
+            _id: 74,
+            name: 'rakib',
+            post_id: 13,
+            userID: 42342343,
+            comment: 'wow so gooooood',
+            time: Date(),
+            sort: '',
+            comment_id: 45345455435435
+        },
+        {
+            _id: 67,
+            name: 'rakib',
+            post_id: 13,
+            userID: 42342343,
+            comment: 'wow so gooooood',
+            time: Date(),
+            sort: '',
+            comment_id: 45345455435435
+        },
+        {
+            _id: 77,
+            name: 'rakib',
+            post_id: 13,
+            userID: 42342343,
+            comment: 'wow so gooooood',
+            time: Date(),
+            sort: '',
+            comment_id: 45345455435435
+        },
+        {
+            _id: 9,
+            name: 'rakib',
+            post_id: 13,
+            userID: 42342343,
+            comment: 'wow so gooooood',
+            time: Date(),
+            sort: '',
+            comment_id: 45345455435435
+        },
+        {
+            _id: 8,
+            name: 'rakib',
+            post_id: 13,
+            userID: 42342343,
+            comment: 'wow so gooooood',
+            time: Date(),
+            sort: '',
+            comment_id: 45345455435435
+        },
     ]
 
     const shortcutKeyboard = (e) => {
@@ -60,11 +130,20 @@ const Comment_textarea = ({ post_id }) => {
         try {
 
             const showComment = document.getElementById('commentShow' + id)
+            const commentForm = document.getElementById('commentForm' + id)
+            const showCommentButton = document.getElementById('showCommentButton' + id)
+
             if (showComment.offsetHeight <= 2) {
+                commentForm.style.height = '100%'
+                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
                 showComment.style.height = '400px'
+                showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
             }
             else {
                 showComment.style.height = '0px'
+                commentForm.style.height = '0px'
+                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
+                showCommentButton.className = ' btn-outline btn btn-xs btn-primary ml-2 '
             }
         }
         catch {
@@ -74,22 +153,28 @@ const Comment_textarea = ({ post_id }) => {
 
     return (
         <div>
-            <div>
-                {/* like unlike  */}
+            <div className='mb-1'>
+                {/* -------------------------------------like unlike and show user who like this post---------------------------- */}
                 <LikeLoveFavorite props={{ showCommentHandle, post_id }} />
             </div>
-            <div  id={'commentShow' + post_id} className={styles.showComment+ ''}>
-                <div className='p-3'>
-                    <div className='mb-4'>
-                        {
-                            commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
-                        }
-                    </div>
 
-                    <div className='relative flex mt-1'>
+            {/* =--------------------------------------------for comment list and reply component---------------------------- */}
+            <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto'}>
+                <div className=' p-3 overflow-auto'>
+                    {
+                        commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
+                    }
+                </div>
+            </div>
+
+            {/* -----------------------------for comment form and comment auto hight----------------------------- */}
+            <div id={'commentForm' + post_id} className={styles.showComment}>
+
+                <form >
+                    <div className='relative flex items-end  pt-4 mb-4 pl-3 mt-1'>
                         <textarea ref={textareaRef}
                             id='textForm'
-                            className='input input-success w-[50%] font-mono'
+                            className='input input-success w-full font-mono'
                             name="postBody"
                             onBlur={onchangeInput}
                             onKeyUp={(e) => shortcutKeyboard(e)}
@@ -101,11 +186,12 @@ const Comment_textarea = ({ post_id }) => {
                             onKeyDown={heightAutoHandle}
                         >
                         </textarea>
-                        <div className='align-bottom absolute left-[50%] bottom-0'>
+                        <div className='align-bottom left-[50%] bottom-0'>
                             <button className='btn btn-sm btn-primary ml-2 text-xs'>Comment</button>
                         </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     );
