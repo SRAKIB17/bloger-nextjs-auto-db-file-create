@@ -91,6 +91,14 @@ const LikeUsersList = ({ post_id }) => {
                 <div className=' flex items-center gap-1 justify-end border-b p-1'>
                     <button
                         className='btn-primary btn-xs btn-outline btn flax gap-1 items-center '
+                        onClick={() => setUserList(user?.likeUnlike?.filter((like, index, arr) => like.rating))}
+                    >
+                        <p className='font-mono text-xs'>
+                            All {user?.likeUnlike?.length}
+                        </p>
+                    </button>
+                    <button
+                        className='btn-primary btn-xs btn-outline btn flax gap-1 items-center '
                         onClick={() => setUserList(like)}
                     >
                         <Like color='#00ff00' />

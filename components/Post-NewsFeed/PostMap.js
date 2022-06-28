@@ -3,7 +3,7 @@ import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
 import styles from './PostMap.module.css'
 
-const PostMap = ({ post }) => {
+const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
 
@@ -11,6 +11,7 @@ const PostMap = ({ post }) => {
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
+        refetch()
     }
 
 

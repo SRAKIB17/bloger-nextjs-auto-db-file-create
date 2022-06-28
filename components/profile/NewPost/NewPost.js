@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import TextArea from '../../hooks/TextArea';
 
+
 import styles from './NewPost.module.css'
 import QuickPost from './QuickPost';
 
@@ -15,7 +16,11 @@ const NewPost = () => {
         document.getElementById("newPostClose").style.width = "0";
     }
 
+
+    // ---------------------------------------------JSON object sent backend-----------------------------------------
+    const [NewPostLoading, setNewPostLoading] = useState(false)
     const postHandle = async (event) => {
+        setNewPostLoading(true)
         event.preventDefault();
         const body = event.target.postBody.value;
         let postRefMode = '';
@@ -48,13 +53,33 @@ const NewPost = () => {
             postRefMode: postRefMode
         }
         console.log(post)
-        // const { data } = await axios.post('/api/test', post);
+        try {
+            const { data } = await axios.post('/api/post/newpost', post);
+            if (data?.result?.acknowledged) {
+                event.target.reset()
+            }
+            console.log(data)
 
-        // console.log(data)
+        }
+        finally {
+            setNewPostLoading(false)
+
+        }
     }
     return (
         <div>
+
             <div id="newPostClose" className={styles.NewPostNav + ' bg-base-100'}>
+                {
+                    NewPostLoading &&
+                    <div className=' w-60 mx-auto '>
+
+                        <div className='absolute flex justify-center p-5 h-[100vh] z-50'>
+                            <div className='animate-spin text-center border-r-4 w-40 h-40 rounded-[50%] border-red-600'>
+                            </div>
+                        </div>
+                    </div>
+                }
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
 
                 <div>
@@ -83,25 +108,28 @@ const NewPost = () => {
                             id=""
                             className='input input-success form-control w-56 sm:w-80'
                             placeholder='Title'
+                            required
                         />
 
-                        {
-                            quickVideoPost &&
-                            <input
-                                type="text"
-                                name="short_description"
-                                id=""
-                                maxLength='1000'
-                                className='input input-success form-control w-56 sm:w-80'
-                                placeholder='Short description'
-                            />
-                        }
+
+                        <p className='bg-info text-white w-fit p-[2px] rounded-md'>Note: this is for seo</p>
+                        <input
+                            type="text"
+                            name="short_description"
+                            id=""
+                            maxLength='1000'
+                            className='input input-success form-control w-56 sm:w-80'
+                            placeholder='Short description'
+                            required
+                        />
+
                         <input
                             type="text"
                             name="category"
                             id=""
                             className='input input-success form-control w-56 sm:w-80'
                             placeholder='Category'
+                            required
                         />
                         <input
                             type="text"
@@ -109,6 +137,7 @@ const NewPost = () => {
                             id=""
                             className='input input-success form-control w-56 sm:w-80'
                             placeholder='Tags (separate with comma)'
+                            required
                         />
                         <TextArea quickPost={quickVideoPost} />
                         <input type="submit" value="Post" className='btn rounded-3xl btn-primary text-white w-fit' />
