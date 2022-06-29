@@ -15,7 +15,7 @@ const DownloadApk = () => {
 
     }
     return (
-        <div className={styles.onlyTransitionDownloadAPk + ' relative left-1 lg:ml-[67px] mt-2 bg-base-300 w-[400px] rounded-md shadow-md'} id='downloadApkSocial'>
+        <div className={styles.onlyTransitionDownloadAPk + ' relative left-1 lg:ml-[67px] mt-2 bg-base-300 w-full max-w-[400px] rounded-md shadow-md'} id='downloadApkSocial'>
             <div className='p-1 flex items-center gap-2'>
                 <ApkColor size='70' />
                 <div>

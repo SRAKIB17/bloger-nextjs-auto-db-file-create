@@ -98,7 +98,7 @@ const PostMap = ({ post, refetch }) => {
                     {/* ---------------------------------------for video body--------------------------------- */}
                     {
                         postRefMode === 'video' && <>
-                            <div onClick={() => { short_description?.length >= 100 && moreShortDescriptionVideoHandle() }} className='text-justify mb-2' data-post={post_id}>
+                            <div className='text-justify mb-2' data-post={post_id}>
                                 {
                                     shortDescriptionVideo
                                 }
@@ -147,7 +147,7 @@ const PostMap = ({ post, refetch }) => {
                                     </div>
                                 }
                                 {/* ---------post body ----------------- */}
-                                <div className={styles.postMap + ' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} onClick={() => { postBody?.length >= 500 && handleSeeMorePost(post_id) }}>
+                                <div className={styles.postMap + ' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} >
                                     <div dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
                                     </div>
                                 </div>

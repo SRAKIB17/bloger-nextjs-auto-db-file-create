@@ -10,7 +10,7 @@ const Category = () => {
     function closeCategoryModal() {
         document.getElementById("OpenCategoryModal").style.width = "0";
     }
-    const badge = [' btn-primary', 'btn-secondary', 'btn-accent', 'btn-info', 'btn-warning', 'btn-accent', 'btn-success'];
+    const badge = [' btn-primary', ' btn-secondary', ' btn-accent', ' btn-info', ' btn-warning', ' btn-accent', ' btn-success'];
 
     const showTagsHandleMouseEnter = (id, event) => {
         try {
@@ -47,7 +47,7 @@ const Category = () => {
                                     </li>
 
                                     <div className={category.showTags} id={'html-' + i} >
-                                        <div onClick={() => navigate('/story?cat=html')} className={"m-2 btn btn-xs btn-outline cursor-pointer" + badge[Math.floor(Math.random() * badge.length)]}>
+                                        <div onClick={() => navigate('/story?cat=html')} className={"m-2 btn btn-xs btn-outline cursor-pointer " + badge[Math.floor(Math.random() * badge.length)]}>
                                             Html
                                         </div>
                                         <div className='flex flex-wrap gap-2 ml-6 p-2'>

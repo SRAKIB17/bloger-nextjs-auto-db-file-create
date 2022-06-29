@@ -118,7 +118,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                             onClick={() => onlyLikePostHandle('love')}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
-                            <EmoticonLove color={unLikePost ? '#ff00f2' : 'currentColor'}  size='19' />
+                            <EmoticonLove color={lovePost ? '#ff00f2' : 'currentColor'}  size='19' />
                         </button>
                     </div>
                     <div>
