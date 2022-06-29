@@ -75,7 +75,7 @@ const NewPost = () => {
                     NewPostLoading &&
                     <div className=' w-60 mx-auto '>
 
-                        <div className='absolute flex justify-center p-5 h-[100vh] z-50'>
+                        <div className='fixed top-[50%] flex justify-center p-5 h-[100vh] z-50'>
                             <div className='animate-spin text-center border-r-4 w-40 h-40 rounded-[50%] border-red-600'>
                             </div>
                         </div>

@@ -7,6 +7,7 @@ import { Home, MenuBarCircle, NewsFeed, Video } from '../ReactRSIcon/index'
 import Head from 'next/head';
 import SearchForm from './SearchForm';
 import ProfilePicture from './ProfilePicture';
+import DownloadApk from './DownloadApk';
 
 const Header = () => {
 
@@ -80,6 +81,7 @@ const Header = () => {
 
                 {/**-----------------side bar component------------------ */}
                 <SideLeftBar />
+                <DownloadApk/>
             </div>
             <ContextMenu />
         </div>

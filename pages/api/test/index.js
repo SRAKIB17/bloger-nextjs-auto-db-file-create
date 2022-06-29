@@ -56,7 +56,7 @@ export default async function handler(req, res) {
                 name: 'Vegetables',
                 tags: ['html'],
             },
-            postRefMode: 'text'
+            postRefMode: 'video'
         },
 
 
