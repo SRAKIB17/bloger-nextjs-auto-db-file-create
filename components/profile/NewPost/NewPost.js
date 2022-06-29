@@ -87,7 +87,7 @@ const NewPost = () => {
                     <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, quickImagePost, setQuickImagePost }} />
                 </div>
                 <div>
-                    <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm'>
+                    <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm font-serif'>
 
                         <p className='font-mono texhi'>
 
@@ -99,6 +99,10 @@ const NewPost = () => {
                         </p>
                         <p>
                             Support html and css
+
+                        </p>
+                        <p>
+                            Note: See Documentation. Help > Documentation
                         </p>
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>

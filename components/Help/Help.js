@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '../profile/NewPost/NewPost.module.css'
 import Docs from './Docs';
-
+import helpsStyle from './Help.module.css'
 
 const Help = () => {
 
@@ -11,25 +11,38 @@ const Help = () => {
     }
 
 
-
+    // const [ShortcutDocs]
     // console.log(data)
+    const showShortcutDocsTags = () => {
+
+        try {
+            const shortcutDocsTags = document.getElementById('shortcutDocsTags')
+            if (shortcutDocsTags.offsetHeight <= 10) {
+                shortcutDocsTags.style.height = '100%'
+
+            }
+            else {
+                shortcutDocsTags.style.height = '0px'
+            }
+        }
+        catch {
+
+        }
+    }
     return (
         <div>
             <div id="HelpMenu" style={{ overflow: 'hidden', paddingTop: '0px' }} className={styles.NewPostNav + ' bg-base-100 '}>
-                <a href="#" className={styles.closebtn} onClick={CloseHelpMenu}>&times;</a>
-                <div className='mt-[50px] pb-[70px] h-full overflow-auto p-4 hideScrollBar'>
+                <div>
+                    <button onClick={showShortcutDocsTags} className='btn btn-primary btn-outline btn-xs mt-4 ml-16 absolute'>Shortcut Tag Documentation</button>
+                    <a href="#" className={styles.closebtn} onClick={CloseHelpMenu}>&times;</a>
+                </div>
+
+                <div className='mt-[60px] pb-[70px] border-t-2 h-full overflow-auto p-4 hideScrollBar'>
                     <div>
-                        <button className='btn btn-primary'>Documentation</button>
-                        <div>
+
+                        <div id='shortcutDocsTags' className={helpsStyle.shortcutDocsTags + ' h-0 overflow-hidden font-serif'}>
                             <Docs />
                         </div>
-
-
-
-                        <button className='btn btn-primary'>Documentation</button>
-
-
-
                     </div>
                 </div>
             </div>

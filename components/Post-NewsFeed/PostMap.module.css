@@ -1,5 +1,9 @@
-.postMap{
-    transition: 0.2s;
-    height: fit-content;
-  }
-  
+.postMap {
+  transition: 0.2s;
+  height: fit-content;
+}
+
+.EditPost {
+  transition: 0.2s;
+  left: 200px;
+}
