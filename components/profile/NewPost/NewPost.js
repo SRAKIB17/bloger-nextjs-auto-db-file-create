@@ -58,7 +58,7 @@ const NewPost = () => {
             const { data } = await axios.post('/api/post/newpost', post);
             console.log(data)
             if (data?.result?.acknowledged) {
-                // event.target.reset()
+                event.target.reset()
             }
             // console.log(data)
 
