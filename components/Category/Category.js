@@ -10,7 +10,7 @@ const Category = () => {
     function closeCategoryModal() {
         document.getElementById("OpenCategoryModal").style.width = "0";
     }
-    const badge = [' badge-primary', 'badge-secondary', 'badge-accent'];
+    const badge = [' btn-primary', 'btn-secondary', 'btn-accent', 'btn-info', 'btn-warning', 'btn-accent', 'btn-success'];
 
     const showTagsHandleMouseEnter = (id, event) => {
         try {
@@ -33,7 +33,7 @@ const Category = () => {
     return (
         <div>
 
-            <div id="OpenCategoryModal" className={styles.NewPostNav + ' bg-base-100'}>
+            <div id="OpenCategoryModal" className={styles.NewPostNav + ' bg-base-100 '}>
 
                 <a href="#" className={styles.closebtn} onClick={closeCategoryModal}>&times;</a>
                 <div className='w-full h-full overflow-auto p-4 border-t-2'>
@@ -47,13 +47,13 @@ const Category = () => {
                                     </li>
 
                                     <div className={category.showTags} id={'html-' + i} >
-                                        <div onClick={() => navigate('/story?cat=html')} className={"m-2 badge badge-lg cursor-pointer " + badge[Math.floor(Math.random() * badge.length)]}>
+                                        <div onClick={() => navigate('/story?cat=html')} className={"m-2 btn btn-xs btn-outline cursor-pointer" + badge[Math.floor(Math.random() * badge.length)]}>
                                             Html
                                         </div>
                                         <div className='flex flex-wrap gap-2 ml-6 p-2'>
                                             {
                                                 [...Array(9).keys()].map(a =>
-                                                    <div onClick={() => navigate('/story?cat=html')} key={a} className={"badge badge-lg cursor-pointer " + badge[Math.floor(Math.random() * badge.length)]}>Html css</div>
+                                                    <div onClick={() => navigate('/story?cat=html')} key={a} className={"btn btn-xs btn-outline cursor-pointer " + badge[Math.floor(Math.random() * badge.length)]}>Html css</div>
                                                 )
                                             }
                                         </div>
