@@ -102,7 +102,7 @@ const NewPost = () => {
 
                         </p>
                         <p>
-                            Note: See Documentation. Help > Documentation
+                            Note: See Documentation. Help {'>'} Documentation
                         </p>
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
