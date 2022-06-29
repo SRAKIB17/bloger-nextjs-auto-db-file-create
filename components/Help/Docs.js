@@ -5,9 +5,9 @@ const Docs = () => {
 
     return (
         <div>
-        {
+        {/* {
             htmlTags.map(tag=><div>{tag.des}</div>)
-        }
+        } */}
         </div>
     );
 };
