@@ -50,8 +50,10 @@ export default function handler(req, res) {
 
                 case 'GET':
                     const { cat } = req.query;
+                    const { show } = req.query;
+                    console.log(show)
                     if (cat === 'undefined' || !Boolean(cat)) {
-                        const postGet = await postDb.find({}).toArray();
+                        const postGet = await postDb.find({}).skip(0).limit(parseInt(show)).toArray();
                         res.send({ success: 'true', result: postGet })
                     }
                     else {

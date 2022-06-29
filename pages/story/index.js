@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import Header from '../../components/Header/Header';
 import Post from '../../components/Post-NewsFeed/Post';
@@ -10,9 +10,46 @@ import LoadingSpin from '../../components/LoadingSpin';
 const Index = () => {
     const router = useRouter()
     const { cat } = router.query;
-
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat], () => axios.get(`/api/post/newpost?cat=${cat}`))
+    const [shows, setShowPosts] = useState(1)
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&show=${shows}`))
     const posts = data?.data?.result
+    const [getPost, setPost] = useState([])
+    useEffect(() => {
+        if (posts) {
+            setPost(posts)
+        }
+    }, [posts])
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        const loadMorePost = (e) => {
+            try {
+                const storyScroll = document.getElementById('storyScroll')
+                const scrollWindow = document.body.parentNode.scrollTop;
+                const aa = scrollWindow - storyScroll.clientHeight + window.innerHeight + 300
+                const getBodyOffsetHeight = document.documentElement.offsetHeight -window.innerHeight
+                console.log(storyScroll.offsetHeight, getBodyOffsetHeight)
+                if (aa >= 0) {
+                    console.log(34534)
+                    // window.scrollTo(0, scrollWindow - 300)
+                    setShowPosts(shows + 10)
+                }
+                // else if (getBodyOffsetHeight > storyScroll.offsetHeight) {
+                //     console.log(535)
+                //     setShowPosts(shows + 5)
+                // }
+            }
+            catch {
+
+            }
+        }
+
+        window.onscroll = (e) => {
+            loadMorePost(e)
+        }
+        window.onwheel = (e) => {
+            loadMorePost(e)
+        }
+    }, [cat])
     return (
         <div>
             <Header />
@@ -23,11 +60,11 @@ const Index = () => {
                     </div>
                 </div>
 
-                <div className='col-span-12 sm:mr-3 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-5'>
+                <div className='col-span-12 sm:mr-3 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-5' id='storyScroll'>
 
                     {
-                        isLoading ||
-                        <Post posts={posts} refetch={refetch} />
+
+                        <Post posts={getPost} refetch={refetch} />
                     }
                     {
                         isLoading &&
