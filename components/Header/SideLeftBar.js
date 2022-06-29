@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Category from '../Category/Category';
 import Help from '../Help/Help';
-import { Info, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import { Category1, Info, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 
 const SideLeftBar = () => {
@@ -131,6 +132,13 @@ const SideLeftBar = () => {
     const OpenNewPost = () => {
         document.getElementById("newPostClose").style.width = "100%";
     }
+    //---------------------------for open new post ------------------------
+    const openCategoryModal = () => {
+        // document.getElementById("OpenCategoryModal").style.width = "100%";
+        document.getElementById("OpenCategoryModal").style.width = "300px";
+        document.getElementById("OpenCategoryModal").style.borderRightWidth = "1px";
+
+    }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
 
@@ -142,6 +150,14 @@ const SideLeftBar = () => {
                     <Writing size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         New Post
+                    </p>
+                </button>
+
+                {/* for category */}
+                <button onClick={openCategoryModal} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                    <Category1 size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Category
                     </p>
                 </button>
                 {/* for support inbox */}
@@ -187,6 +203,7 @@ const SideLeftBar = () => {
             {/* for external component  */}
             <SupportInboxComponent />
             <Help />
+            <Category />
         </div>
     );
 };

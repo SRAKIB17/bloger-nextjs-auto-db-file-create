@@ -51,6 +51,7 @@ const ContextMenu = () => {
         const getValue = []
         document.documentElement.ontouchmove = (e) => {
             const x = e.touches[0].clientX;
+            console.log(x)
             const y = e.touches[0].clientY;
             getValue.push(x)
             const getX = getValue[0] - getValue[getValue.length - 2]

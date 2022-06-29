@@ -16,6 +16,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
 
     const [likePost, setLikePost] = useState(false);
     const [unLikePost, setUnLikePost] = useState(false);
+    const [lovePost, setLovePost] = useState(false);
     const onlyLikePostHandle = (mode) => {
         switch (mode) {
             case 'like':
@@ -23,6 +24,9 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                 break;
             case 'unlike':
                 setUnLikePost(true)
+                break;
+            case 'love':
+                setLovePost(true)
                 break;
 
             default:
@@ -111,10 +115,10 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                             <Like size='18' color={unLikePost ? '#ff2020' : 'currentColor'} style={{ transform: 'rotate(180deg)' }} />
                         </button>
                         <button
-                            onClick={() => onlyLikePostHandle('unlike')}
+                            onClick={() => onlyLikePostHandle('love')}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
-                            <EmoticonLove size='19' />
+                            <EmoticonLove color={unLikePost ? '#ff00f2' : 'currentColor'}  size='19' />
                         </button>
                     </div>
                     <div>

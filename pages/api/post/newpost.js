@@ -21,7 +21,6 @@ export default function handler(req, res) {
             const charactersLength = characters.length;
             for (let i = 0; i < length; i++) {
                 result += characters.charAt(Math.floor(Math.random() * charactersLength));
-
             }
             const postIdGet = postCollections.map(postId => postId?.post_id?.split('-')?.[1]);
 
@@ -51,10 +50,8 @@ export default function handler(req, res) {
 
                 case 'GET':
                     const { cat } = req.query;
-                    console.log(Boolean(cat))
                     if (cat === 'undefined' || !Boolean(cat)) {
                         const postGet = await postDb.find({}).toArray();
-                        console.log(postGet)
                         res.send({ success: 'true', result: postGet })
                     }
                     else {

@@ -11,12 +11,8 @@ const Index = () => {
     const router = useRouter()
     const { cat } = router.query;
 
-    const { data, refetch, isLoading } = useQuery('userPost_id', () => axios.get(`/api/post/newpost?cat=${cat}`))
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat], () => axios.get(`/api/post/newpost?cat=${cat}`))
     const posts = data?.data?.result
-    if (isLoading) {
-        return <LoadingSpin />
-    }
-    refetch()
     return (
         <div>
             <Header />
@@ -28,7 +24,17 @@ const Index = () => {
                 </div>
 
                 <div className='col-span-12 sm:mr-3 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-5'>
-                    <Post posts={posts} refetch={refetch} />
+                    {
+                        isLoading ||
+                        <Post posts={posts} refetch={refetch} />
+                    }
+                    {
+                        isLoading &&
+                        <div className='flex justify-center mt-40 p-5 h-[100vh]'>
+                            <div className='animate-spin text-center border-r-4 w-40 h-40 rounded-[50%] border-red-600'>
+                            </div>
+                        </div>
+                    }
                 </div>
 
                 <div className=' col-span-3 hidden lg:block relative bg-base-100 p-3'>
