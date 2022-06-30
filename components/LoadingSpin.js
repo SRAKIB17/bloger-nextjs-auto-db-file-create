@@ -4,9 +4,8 @@ import Header from './Header/Header';
 const LoadingSpin = () => {
     return (
         <div>
-            <Header />
-            <div className='flex justify-center p-5 h-[100vh]'>
-                <div className='animate-spin text-center border-r-4 w-40 h-40 rounded-[50%] border-red-600'>
+            <div className='flex justify-center mt-8 mb-8 overflow-hidden'>
+                <div className='animate-spin text-center border-r-4 w-28 h-28 rounded-[50%] border-red-600'>
                 </div>
             </div>
         </div>

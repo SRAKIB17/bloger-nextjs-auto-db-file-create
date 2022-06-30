@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Category from '../Category/Category';
 import Help from '../Help/Help';
 import { Category1, Info, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 
 const SideLeftBar = () => {
@@ -139,6 +140,9 @@ const SideLeftBar = () => {
         document.getElementById("OpenCategoryModal").style.borderRightWidth = "1px";
 
     }
+    const openSettingsModal = () => {
+        document.getElementById("SettingsMenu").style.width = "100%";
+    }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
 
@@ -190,7 +194,7 @@ const SideLeftBar = () => {
                 </button>
 
                 {/* for setting */}
-                <button className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                <button onClick={openSettingsModal} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <Setting size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         Setting
@@ -204,6 +208,7 @@ const SideLeftBar = () => {
             <SupportInboxComponent />
             <Help />
             <Category />
+            <Settings/>
         </div>
     );
 };

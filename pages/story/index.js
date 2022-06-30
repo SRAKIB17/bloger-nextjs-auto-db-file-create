@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import Post from '../../components/Post-NewsFeed/Post';
 import RightMenu from '../../components/Story/RightMenu';
 import { useRouter } from 'next/router'
-import LoadingSpin from '../../components/LoadingSpin';
+import LoadingSpin from '../../components/LoadingSpin'
 
 const Index = () => {
     const router = useRouter()
@@ -23,36 +23,7 @@ const Index = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [cat])
-    // useEffect(() => {
-    //     const loadMorePost = (e) => {
-    //         try {
-    //             const storyScroll = document.getElementById('storyScroll')
-    //             const scrollWindow = document.body.parentNode.scrollTop;
-    //             const aa = scrollWindow - storyScroll.clientHeight + window.innerHeight + 300
-    //             const getBodyOffsetHeight = document.documentElement.offsetHeight - window.innerHeight
-    //             console.log(storyScroll.offsetHeight, getBodyOffsetHeight)
-    //             if (aa >= 0) {
-    //                 console.log(34534)
-    //                 // window.scrollTo(0, scrollWindow - 300)
-    //                 setShowPosts(shows + 2)
-    //             }
-    //             // else if (getBodyOffsetHeight > storyScroll.offsetHeight) {
-    //             //     console.log(535)
-    //             //     setShowPosts(shows + 5)
-    //             // }
-    //         }
-    //         catch {
-
-    //         }
-    //     }
-
-    //     window.onscroll = (e) => {
-    //         loadMorePost(e)
-    //     }
-    //     window.onwheel = (e) => {
-    //         loadMorePost(e)
-    //     }
-    // }, [cat,shows])
+   
     return (
         <div>
             <Header />
@@ -79,12 +50,9 @@ const Index = () => {
                         </div>
                     }
                     {
-                        isLoading &&
-                        <div className='flex justify-center mt-40 p-5 h-[100vh]'>
-                            <div className='animate-spin text-center border-r-4 w-40 h-40 rounded-[50%] border-red-600'>
-                            </div>
-                        </div>
+                        isLoading &&<LoadingSpin/>
                     }
+
                 </div>
 
                 <div className=' col-span-3 hidden lg:block relative bg-base-100 p-3'>
