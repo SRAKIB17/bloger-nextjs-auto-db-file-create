@@ -9,17 +9,15 @@ const Comment_textarea = ({ post_id }) => {
     const commentBody = [
         {
             _id: 3,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
-            comment: 'wow so godhdfgfdgfdgfgfdgdfgdfgdfgdfgdfgdfgfsdsdfsdfsdfsdfdsfsdfdsfsdfsdfsdfsdfsdfsdfsdfdfdfsdfdfddfdfsdfopskfsd sfsflo slfsdflsdfsdfljsdl;f sdfdf dsfood',
+            comment: 'wing elit. Ipsa tenetur, vel, architecto unde ex quos, distinctio vero et commodi quia expedita pariatur? Eveniet, quod nostrum impedit illo earum exercitationem consequuntur?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt laborum aliquid nihil, architecto quod fugit, hic cumque ex',
             time: Date(),
             sort: '',
             comment_id: 45345455435435
         },
         {
             _id: 4,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
             comment: 'wow so gooooood',
@@ -29,7 +27,6 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 5,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
             comment: 'wow so gooooood',
@@ -39,7 +36,6 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 6,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
             comment: 'wow so gooooood',
@@ -49,7 +45,6 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 7,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
             comment: 'wow so gooooood',
@@ -59,7 +54,6 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 74,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
             comment: 'wow so gooooood',
@@ -69,7 +63,6 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 67,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
             comment: 'wow so gooooood',
@@ -79,7 +72,6 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 77,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
             comment: 'wow so gooooood',
@@ -89,7 +81,6 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 9,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
             comment: 'wow so gooooood',
@@ -99,7 +90,6 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 8,
-            name: 'rakib',
             post_id: 13,
             userID: 42342343,
             comment: 'wow so gooooood',
@@ -165,7 +155,7 @@ const Comment_textarea = ({ post_id }) => {
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
             <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto'}>
-                <div className=' p-3 overflow-auto border-l-4'>
+                <div className=' p-3 overflow-auto'>
                     {
                         commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
                     }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Category from '../Category/Category';
 import Help from '../Help/Help';
-import { Category1, Info, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import LoginAutoShow from '../Login/LoginAutoShow';
+import { Category1, Info, Login, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 
@@ -150,25 +151,42 @@ const SideLeftBar = () => {
             <div className='flex flex-col  mt-4'>
 
                 {/* for support inbox */}
-                <button onClick={OpenNewPost} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
-                    <Writing size='30' />
-                    <p className='hidden' id='sideLeftBarTitle'>
-                        New Post
-                    </p>
-                </button>
+                {
+                    true &&
+                    <>
+                        <button onClick={OpenNewPost} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                            <Writing size='30' />
+                            <p className='hidden' id='sideLeftBarTitle'>
+                                New Post
+                            </p>
+                        </button>
+                        {/* for support inbox */}
+                        <button onClick={OpenSupportInbox} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                            <SupportInbox size='30' />
+                            <p className='hidden' id='sideLeftBarTitle'>
+                                Support Inbox
+                            </p>
+                        </button>
+
+                    </>
+                }
+                {
+                    false ||
+                    <>
+                        <button onClick={OpenSupportInbox} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                            <Login size='30' />
+                            <p className='hidden' id='sideLeftBarTitle'>
+                                Login
+                            </p>
+                        </button>
+                    </>
+                }
 
                 {/* for category */}
                 <button onClick={openCategoryModal} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
                     <Category1 size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         Category
-                    </p>
-                </button>
-                {/* for support inbox */}
-                <button onClick={OpenSupportInbox} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
-                    <SupportInbox size='30' />
-                    <p className='hidden' id='sideLeftBarTitle'>
-                        Support Inbox
                     </p>
                 </button>
 
@@ -208,7 +226,8 @@ const SideLeftBar = () => {
             <SupportInboxComponent />
             <Help />
             <Category />
-            <Settings/>
+            <Settings />
+            <LoginAutoShow/>
         </div>
     );
 };

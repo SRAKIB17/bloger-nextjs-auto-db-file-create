@@ -6,6 +6,8 @@ import Post from '../../components/Post-NewsFeed/Post';
 import RightMenu from '../../components/Story/RightMenu';
 import { useRouter } from 'next/router'
 import LoadingSpin from '../../components/LoadingSpin'
+import Login from '../../components/Login/Login';
+import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 
 const Index = () => {
     const router = useRouter()
@@ -27,6 +29,7 @@ const Index = () => {
     return (
         <div>
             <Header />
+
             <div className='grid grid-cols-12 gap-2'>
                 <div className='hidden sm:block sm:col-span-4 md:col-span-4 text-justify lg:ml-16 p-1 relative bg-base-100'>
                     <div className='fixed h-[100vh] overflow-auto sm:w-[200px] md:max-w-[300px] lg:max-w-[350px] md:w-full'>
@@ -50,10 +53,15 @@ const Index = () => {
                         </div>
                     }
                     {
-                        isLoading &&
-                        <div className={getPost.length === 0 ? 'h-[100vh] mt-4' : ''}>
-                            <LoadingSpin />
+                        (isLoading && getPost.length === 0) &&
+                        <div className='flex flex-col justify-between pt-40 bg-base-100 h-full items-center'>
+                            <div>
+                                <LoadingFlowCircle />
+                            </div>
                         </div>
+                    }
+                    {
+                        (isLoading && getPost.length !== 0) && <LoadingSpin />
                     }
 
                 </div>

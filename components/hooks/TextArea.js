@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from './hooks/useFindClassAttr';
 import styles from './TextArea.module.css';
-const TextArea = ({ quickPost }) => {
+const TextArea = ({ quickPost,editBody }) => {
     const textareaRef = useRef();
     
-
-
     const shortcutKeyboard = (e) => {
         setLiveView(e.target.value)
         // classTagShortcutInput(e, textareaRef)
@@ -28,7 +26,7 @@ const TextArea = ({ quickPost }) => {
         //     setLayoutForm(window.innerWidth / 2);
         //     setWindowWidth(window.innerWidth);
         // }
-        setWindowHeight(window.innerHeight)
+        setWindowHeight(window.innerHeight);
         setLayoutForm(window.innerWidth / 2);
         setWindowWidth(window.innerWidth);
     }, [])
@@ -67,7 +65,6 @@ const TextArea = ({ quickPost }) => {
         livePreview.style.height = 'auto';
 
         e.target.style.height = 'auto';
-
         if (e.target.scrollHeight <= windowHeight) {
             livePreview.style.height = e.target.scrollHeight + 'px'
             e.target.style.height = e.target.scrollHeight + 'px'
@@ -117,6 +114,7 @@ const TextArea = ({ quickPost }) => {
                         onPaste={heightAutoHandle}
                         onDrop={heightAutoHandle}
                         onKeyDown={heightAutoHandle}
+                        defaultValue={editBody}
                     >
                         
                     </textarea>
@@ -128,7 +126,7 @@ const TextArea = ({ quickPost }) => {
                     className={
                         (liveOff ? styles.liveOff : ' ') +
 
-                        ' sm:w-2 hidden ml-1 mr-1 sm:h-auto bg-[#ffffff] rounded-lg cursor-pointer ' +
+                        ' sm:w-2 hidden ml-1 mr-1 sm:h-auto bg-base-300 rounded-lg cursor-col-resize ' +
                         (rotate ? 'sm:hidden' : 'sm:block')
                     }
                     onDrag={dragStart}>
@@ -139,13 +137,13 @@ const TextArea = ({ quickPost }) => {
                     id='livePreview'
                     className={
                         (styles.liveView) +
-                        ' overflow-auto h-auto border p-1 '
+                        ' overflow-auto h-auto border  p-1 '
                         + (liveOff ? styles.liveOff : ' ')
                     }
 
                     style={{ width: (rotate ? (windowWidth - 200) : `${windowWidth - dragging[dragging.length - 2] || layoutForm}px`) }}
                 >
-                    <div className='w-full' dangerouslySetInnerHTML={{ __html: liveView }}></div>
+                    <div  className='w-full overflow-auto break-words' dangerouslySetInnerHTML={{ __html: liveView }}></div>
                 </div>
             </div>
         </div>
