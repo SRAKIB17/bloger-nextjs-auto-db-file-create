@@ -74,7 +74,7 @@ const PostMap = ({ post, refetch }) => {
                                     time
                                 }
                                 <b> | </b>
-                                <button className='link-primary link-hover' onClick={() => navigate(`/story?cat=${category?.name}`)}>
+                                <button className='link-primary link-hover' onClick={() => navigate(`?cat=${category?.name}`)}>
                                     {
                                         category?.name
                                     }

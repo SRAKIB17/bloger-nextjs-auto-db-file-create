@@ -13,11 +13,11 @@ const Index = () => {
     const router = useRouter()
     const { cat } = router.query;
     const [shows, setShowPosts] = useState(3)
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&show=${shows}`))
-    const posts = data?.data?.result
+    // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&show=${shows}`))
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
+    const posts = data?.data
     const [getPost, setPost] = useState([])
     useEffect(() => {
-
         if (posts) {
             setPost(posts)
         }

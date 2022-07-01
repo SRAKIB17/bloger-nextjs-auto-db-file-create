@@ -74,7 +74,7 @@ const CommentList = ({ comment: commentBody }) => {
                     <div className=' overflow-auto w-full'>
 
                         <div className='w-fit'>
-                            <div dangerouslySetInnerHTML={{ __html: showFullComment }}></div>
+                            <div className='break-words' dangerouslySetInnerHTML={{ __html: showFullComment }}></div>
                             {
                                 comment?.length >= 100 && <button
                                     onClick={handleShowFullComment}
@@ -101,7 +101,7 @@ const CommentList = ({ comment: commentBody }) => {
                     </button>
                 }
                 {/* for show more reply  */}
-                <div className='ml-4 border-l-4 mb-3 pl-1'>
+                <div className='ml-4 border-l-4 rounded-3xl mb-3 pl-1 pt-1'>
                     {showReply &&
                         getMoreComment?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} />)
                     }
