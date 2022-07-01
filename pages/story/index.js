@@ -27,7 +27,7 @@ const Index = () => {
     }, [cat])
 
     return (
-        <div>
+        <div className='h-[100vh]'>
             <Header />
 
             <div className='grid grid-cols-12 gap-2'>

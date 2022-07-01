@@ -13,7 +13,8 @@ export default function handler(req, res) {
 
         await client.connect()
         const postDb = client.db('SocialBlog').collection('Posts');
-        const postCollections = await postDb.find({}).toArray()
+        const postCollections = await postDb.find({}).toArray();
+        console.log(postCollections)
         const PostIdGenerate = async (length) => {
             let result = '';
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
