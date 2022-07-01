@@ -20,19 +20,21 @@ const ContextMenu = () => {
 
     useEffect(() => {
         document.body.addEventListener('contextmenu', (e) => {
-            e.preventDefault()
-            const pageX = e.clientX;
-            const pageY = e.clientY;
-            const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const getContextMenu = document.getElementById('contextMenu');
-            getContextMenu.style.display = 'block'
-            getContextMenu.style.top = pageY + windowScroll + 'px';
-            getContextMenu.style.left = pageX + 'px';
+            if (window.innerWidth >= 640) {
+                e.preventDefault()
+                const pageX = e.clientX;
+                const pageY = e.clientY;
+                const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const getContextMenu = document.getElementById('contextMenu');
+                getContextMenu.style.display = 'block'
+                getContextMenu.style.top = pageY + windowScroll + 'px';
+                getContextMenu.style.left = pageX + 'px';
 
-            const dataPost = e.target.hasAttribute('data-post');
-            if (dataPost) {
-                const dataPostId = e.target.getAttribute('data-post')
-                setPostShareId(dataPostId)
+                const dataPost = e.target.hasAttribute('data-post');
+                if (dataPost) {
+                    const dataPostId = e.target.getAttribute('data-post')
+                    setPostShareId(dataPostId)
+                }
             }
         })
 
@@ -126,7 +128,7 @@ const ContextMenu = () => {
     return (
         <div>
 
-            <div className='absolute hidden z-[100]' id='contextMenu' >
+            <div className='absolute hidden z-[100] ' id='contextMenu' >
                 <ul className="menu bg-base-300 p-2 rounded-box w-40">
                     {
                         postShareId &&
