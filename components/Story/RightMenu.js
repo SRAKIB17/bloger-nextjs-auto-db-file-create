@@ -2,7 +2,7 @@ import React from 'react';
 
 const RightMenu = () => {
     return (
-        <div className='absolute h-full overflow-auto'>
+        <div className='absolute h-full overflow-auto hideScrollBar'>
             <a href="https://wap4dollar.com/ad/serve.php?id=aqrfshf5g1" className='font-extrabold text-2xl'> Download best Movie</a>
             <div>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa tenetur, vel, architecto unde ex quos, distinctio vero et commodi quia expedita pariatur? Eveniet, quod nostrum impedit illo earum exercitationem consequuntur?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt laborum aliquid nihil, architecto quod fugit, hic cumque explicabo facilis iste perspiciatis tempore. Quisquam ipsam, minus cum eius nihil autem consectetur!

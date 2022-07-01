@@ -38,7 +38,16 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
     // }, [])
     const showLikeUnlikeUser = (id) => {
         try {
-            const showLikeUnlikeUser = document.getElementById('showLikeUnlikeUser' + id)
+            const showLikeUnlikeUser = document.getElementById('showLikeUnlikeUser' + id);
+            // -------------------------for comment section 0----------------------------------------
+            const showComment = document.getElementById('commentShow' + id)
+            const commentForm = document.getElementById('commentForm' + id)
+            const showCommentButton = document.getElementById('showCommentButton' + id)
+            showComment.style.height = '0px'
+            commentForm.style.height = '0px'
+            commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
+            showCommentButton.className = ' btn-outline btn btn-xs btn-primary ml-2 '
+            //-------------------------------------------------------------------------------------
             if (showLikeUnlikeUser.offsetHeight <= 2) {
                 showLikeUnlikeUser.style.height = '400px'
                 showLikeUnlikeUser.style.overflow = 'auto'
@@ -88,7 +97,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                         onClick={() => onlyLikePostHandle('unlike')}
                         className='bg-[#ff00f2] p-1 rounded-[50%] btn-disabled relative left-[-6px]'
                     >
-                        <EmoticonLove size='15' color='white'/>
+                        <EmoticonLove size='15' color='white' />
                     </button>
                     <h1 className='text-gray-500'>5345</h1>
                 </div>
@@ -118,7 +127,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                             onClick={() => onlyLikePostHandle('love')}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
-                            <EmoticonLove color={lovePost ? '#ff00f2' : 'currentColor'}  size='19' />
+                            <EmoticonLove color={lovePost ? '#ff00f2' : 'currentColor'} size='19' />
                         </button>
                     </div>
                     <div>

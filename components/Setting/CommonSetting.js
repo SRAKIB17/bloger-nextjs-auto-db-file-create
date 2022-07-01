@@ -46,7 +46,7 @@ const CommonSetting = () => {
                                 type="checkbox"
                                 onClick={hideAndroidAppsHandle}
                                 className="toggle toggle-primary"
-                                checked={hideApk} />
+                                 />
                         </label>
                     </div>
                     <div className="form-control shadow-md p-2 rounded-md">
@@ -58,21 +58,10 @@ const CommonSetting = () => {
                                 type="checkbox"
                                 onClick={hideAndroidAppsHandle}
                                 className="toggle toggle-primary"
-                                checked={hideApk} />
+                                />
                         </label>
                     </div>
-                    <div className="form-control shadow-md p-2 rounded-md">
-                        <label className="label cursor-pointer">
-                            <span className="label-text">
-                                Hide the Android apps link until I want to
-                            </span>
-                            <input
-                                type="checkbox"
-                                onClick={hideAndroidAppsHandle}
-                                className="toggle toggle-primary"
-                                checked={hideApk} />
-                        </label>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -9,17 +9,12 @@ import LoadingSpin from '../../components/LoadingSpin'
 
 const Index = () => {
     const router = useRouter()
-    const { cat } = router.query;
-    const [shows, setShowPosts] = useState(3)
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&show=${shows}`))
+    const { cat, post_id } = router.query;
+    console.log(post_id)
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat], () => axios.get(`/api/post/newpost?cat=${cat}`))
     const posts = data?.data?.result
-    const [getPost, setPost] = useState([])
-    useEffect(() => {
 
-        if (posts) {
-            setPost(posts)
-        }
-    }, [posts])
+ 
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [cat])
@@ -36,25 +31,14 @@ const Index = () => {
 
                 <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-5' id='storyScroll'>
 
-                    <Post posts={getPost} refetch={refetch} />
+                    <Post posts={posts} refetch={refetch} />
 
-                    {
-                        isLoading ||
-                        <div className=" p-4 text-center">
-                            <button
-                                className='btn btn-primary btn-xs w-32 btn-outline mb-4'
-                                onClick={() => setShowPosts(shows + 10)}
-                            >
-                                Next
-                            </button>
-                        </div>
-                    }
-                    {
+                    {/* {
                         isLoading &&
                         <div className={getPost.length === 0 ? 'h-[100vh] mt-4' : ''}>
                             <LoadingSpin />
                         </div>
-                    }
+                    } */}
 
                 </div>
 

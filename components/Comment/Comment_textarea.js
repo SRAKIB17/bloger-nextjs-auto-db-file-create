@@ -132,7 +132,12 @@ const Comment_textarea = ({ post_id }) => {
             const showComment = document.getElementById('commentShow' + id)
             const commentForm = document.getElementById('commentForm' + id)
             const showCommentButton = document.getElementById('showCommentButton' + id)
-
+            //---------------------------------for like comment hide =============-----------------------
+            const showLikeUnlikeUser = document.getElementById('showLikeUnlikeUser' + id);
+            showLikeUnlikeUser.style.height = '0px'
+            showLikeUnlikeUser.style.overflow = 'hidden'
+            showLikeUnlikeUser.style.borderTopWidth = '0px'
+            //----------------------------------------------------------------------------------
             if (showComment.offsetHeight <= 2) {
                 commentForm.style.height = '100%'
                 commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
@@ -160,7 +165,7 @@ const Comment_textarea = ({ post_id }) => {
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
             <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto'}>
-                <div className=' p-3 overflow-auto'>
+                <div className=' p-3 overflow-auto border-l-4'>
                     {
                         commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
                     }

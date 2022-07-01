@@ -17,6 +17,7 @@ const CommentList = ({ comment: commentBody }) => {
                     <div className='text-xl font-bold'>
                         <h6 className='m-0'>{name}</h6>
                     </div>
+            
                 </div>
                 <div className='rounded-3xl shadow-inner bg-base-200 pt-2 px-3 pb-2 m-1 mr-2'>
                     {/* -----------------------=======================-for comment  -------------------------------*/}

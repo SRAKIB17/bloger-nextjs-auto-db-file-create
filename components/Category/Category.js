@@ -9,6 +9,7 @@ const Category = () => {
 
     function closeCategoryModal() {
         document.getElementById("OpenCategoryModal").style.width = "0";
+        document.getElementById("OpenCategoryModal").style.borderRightWidth = "0px";
     }
     const badge = [' btn-primary', ' btn-secondary', ' btn-accent', ' btn-info', ' btn-warning', ' btn-accent', ' btn-success'];
 
