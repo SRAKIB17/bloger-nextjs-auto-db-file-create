@@ -86,6 +86,11 @@ export { default as NewsFeed } from './icon/NewsFeed/NewsFeed'
 export { default as Quote } from './icon/Quote'
 
 
+export { default as SkypeCircle } from './icon/Social/Skype/Skype_circle'
+export { default as SkypeSquare } from './icon/Social/Skype/Skype_square'
+
+
+
 export { default as School } from './icon/School/School'
 export { default as Setting } from './icon/Setting/Setting'
 export { default as SearchIcon } from './icon/Search/Search'
