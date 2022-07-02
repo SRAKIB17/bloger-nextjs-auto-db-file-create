@@ -94,31 +94,7 @@ const SideLeftBar = () => {
         /**----------window resize and change these style , class and other
          * 
         */
-        window.onresize = () => {
 
-            // ------------------------support inbox ------------------------
-            const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
-            document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
-            //--------------------------------------------------------------------
-            //----------when resize change automatic left side bar change layout-------------
-            const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
-            setTimeout(() => {
-                sideLeftBarTitle.forEach(title => {
-                    title.style.display = 'none'
-                })
-            }, 50);
-            const sideLeftBar = document.getElementById('sideLeftBar')
-            //for desktop
-            if (window.innerWidth >= 1024) {
-                sideLeftBar.style.width = '64px'
-                sideLeftBar.style.left = '0px'
-            }
-            //for mobile
-            else {
-                sideLeftBar.style.width = '200px'
-                sideLeftBar.style.left = '-200px'
-            }
-        }
     }, [])
 
     //--------------------open support inbox modal-------------------

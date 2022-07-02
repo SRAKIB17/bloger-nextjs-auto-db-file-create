@@ -4,7 +4,6 @@ const LoginAutoShow = () => {
     setTimeout(() => {
         try {
             const getAutoShowLoginPage = sessionStorage.getItem('autoLoginShowFrom')
-            console.log(getAutoShowLoginPage)
             if (!getAutoShowLoginPage) {
                 document.getElementById('autoLoginShow').style.right = '0px'
                 document.getElementById('autoLoginShow').style.top = '60px'

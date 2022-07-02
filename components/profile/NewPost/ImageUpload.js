@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useFileUploader from '../../hooks/Uploader/useUploadImage';
 
 const ImageUpload = ({ props }) => {
-    console.log(props)
+    // console.log(props)
     const { setThumbnail, setThumbnailData } = props || {};
     const { fileData, uploadFileHandler, message, result } = useFileUploader();
 

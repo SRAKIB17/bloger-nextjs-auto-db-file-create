@@ -8,6 +8,7 @@ import Head from 'next/head';
 import SearchForm from './SearchForm';
 import ProfilePicture from './ProfilePicture';
 import DownloadApk from './DownloadApk';
+import useCommonWindowResizeHeaderComponent from './CommonWindowReisizeHeaderComponent';
 
 const Header = () => {
 
@@ -56,8 +57,9 @@ const Header = () => {
     }
     // const getBar = pathname.includes('services')
     //     console.log(getBar)
+    useCommonWindowResizeHeaderComponent();
     return (
-        <div className='mb-[60px]'>
+        <div className='mb-[60px]' id='topHeaderMargin'>
             <div className="h-[60px] w-full border-b-2 bg-base-100 z-[150] fixed top-0" id='header'>
                 <Head>
                     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -81,7 +83,7 @@ const Header = () => {
 
                 {/**-----------------side bar component------------------ */}
                 <SideLeftBar />
-                <DownloadApk/>
+                <DownloadApk />
             </div>
             <ContextMenu />
         </div>

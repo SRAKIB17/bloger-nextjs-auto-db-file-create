@@ -12,7 +12,7 @@ import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 const Index = () => {
     const router = useRouter()
     const { cat, tag } = router.query;
-    const [shows, setShowPosts] = useState(3)
+    const [shows, setShowPosts] = useState(10)
     const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&tag=${tag}&show=${shows}`))
     // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
 
@@ -62,7 +62,8 @@ const Index = () => {
                         </div>
                     }
                     {
-                        (isLoading && getPost.length !== 0) && <div className='flex flex-col justify-between pt-40 bg-base-100 pb-4 items-center'>
+                        (isLoading && getPost.length !== 0) && <div className='flex flex-col justify-between pt-4 bg-base-100 pb-4 items-center'>
+                            
                             <div>
                                 <LoadingFlowCircle />
                             </div>
