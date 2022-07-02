@@ -11,10 +11,9 @@ import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 
 const Index = () => {
     const router = useRouter()
-    const { cat } = router.query;
+    const { cat, tag } = router.query;
     const [shows, setShowPosts] = useState(3)
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&show=${shows}`))
-
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&tag=${tag}&show=${shows}`))
     // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
 
     const posts = data?.data?.result
@@ -26,7 +25,7 @@ const Index = () => {
     }, [posts])
     useEffect(() => {
         window.scrollTo(0, 0)
-    }, [cat])
+    }, [cat, tag])
 
     return (
         <div className='h-[100vh]'>
@@ -56,22 +55,24 @@ const Index = () => {
                     }
                     {
                         (isLoading && getPost.length === 0) &&
-                        <div className='flex flex-col justify-between pt-40 bg-base-100 h-full items-center'>
+                        <div className='flex flex-col justify-between pt-40 bg-base-100 h-[100vh] items-center'>
                             <div>
                                 <LoadingFlowCircle />
                             </div>
                         </div>
                     }
                     {
-                        (isLoading && getPost.length !== 0) && <LoadingSpin />
+                        (isLoading && getPost.length !== 0) && <div className='flex flex-col justify-between pt-40 bg-base-100 pb-4 items-center'>
+                            <div>
+                                <LoadingFlowCircle />
+                            </div>
+                        </div>
                     }
 
                 </div>
 
                 <div className=' col-span-3 hidden lg:block relative bg-base-100 p-3'>
                     <div className='fixed h-full overflow-auto text-justify p-2'>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium omnis ipsam repellat hic soluta explicabo consequuntur? Sed nobis dolore sit, minus illum ipsam laboriosam neque, voluptatem, deleniti voluptate amet praesentium?
-                        <RightMenu />
 
                     </div>
                 </div>

@@ -161,7 +161,7 @@ const PostMap = ({ post, refetch }) => {
                                     thumbnail &&
                                     <div className='mt-4 mb-4' data-post={post_id}>
                                         <figure data-post={post_id}>
-                                            <img src={thumbnail} alt="" className='w-full rounded-md' data-post={post_id} />
+                                            <img src={thumbnail} alt="" className='w-full h-[255px] lg:h-[270px] rounded-md' data-post={post_id} />
                                         </figure>
                                     </div>
                                 }
@@ -170,7 +170,7 @@ const PostMap = ({ post, refetch }) => {
 
                     }
 
-                    <div className='relative'>
+                    <div className='relative bg-base-100'>
                         <Comment_textarea post_id={post_id} />
                     </div>
                 </div>

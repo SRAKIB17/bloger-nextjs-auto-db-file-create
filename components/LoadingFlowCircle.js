@@ -1,9 +1,9 @@
 import React from 'react';
 
 import styles from './LoadingFlowCircle.module.css'
-const LoadingUpDown = () => {
+const LoadingFlowCircle = () => {
     return (
-        <div className='h-full p-4'>
+        <div className='p-4'>
             <div className={styles.loading}>
                 <div className={styles.dot}></div>
                 <div className={styles.dot}></div>
@@ -15,4 +15,4 @@ const LoadingUpDown = () => {
     );
 };
 
-export default LoadingUpDown;
+export default LoadingFlowCircle;

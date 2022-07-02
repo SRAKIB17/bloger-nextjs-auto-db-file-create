@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header';
 import Post from '../../components/Post-NewsFeed/Post';
 import { useRouter } from 'next/router'
 import RightMenu from '../../components/Story/RightMenu';
+import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 
 const Index = () => {
     const router = useRouter()
@@ -38,10 +39,7 @@ const Index = () => {
                     }
                     {
                         isLoading &&
-                        <div className='flex justify-center mt-40 p-5 h-[100vh]'>
-                            <div className='animate-spin text-center border-r-4 w-40 h-40 rounded-[50%] border-red-600'>
-                            </div>
-                        </div>
+                       <LoadingFlowCircle/>
                     }
                 </div>
 

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import TextArea from '../../hooks/TextArea';
+import Image from 'next/image'
+import ImageUpload from './ImageUpload';
 
 
 import styles from './NewPost.module.css'
@@ -18,7 +20,9 @@ const NewPost = () => {
 
 
     // ---------------------------------------------JSON object sent backend-----------------------------------------
-    const [NewPostLoading, setNewPostLoading] = useState(false)
+    const [NewPostLoading, setNewPostLoading] = useState(false);
+    const [thumbnail, setThumbnail] = useState('')
+    const [thumbnailData, setThumbnailData] = useState('')
     const postHandle = async (event) => {
         setNewPostLoading(true)
         event.preventDefault();
@@ -39,7 +43,7 @@ const NewPost = () => {
             userID: '54fsdlj53',
             post_id: '534fsdfjo345',
             post_title: event.target.title.value,
-            thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
+            thumbnail: thumbnail,
             image: '',
             time: 'dec 15, 2021',
             short_description: short_description,
@@ -132,7 +136,14 @@ const NewPost = () => {
                             placeholder='Short description'
                             required
                         />
+                        <div>
+                            <ImageUpload props={{ setThumbnail, setThumbnailData }} />
 
+                            <div className='shadow-md w-fit p-2'>
+                                <img src={thumbnail} className='max-w-xs max-h-[100px] rounded-md' alt="" />
+                            </div>
+
+                        </div>
                         <input
                             type="text"
                             name="category"
