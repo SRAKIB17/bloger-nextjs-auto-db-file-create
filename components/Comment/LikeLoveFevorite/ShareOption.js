@@ -33,7 +33,7 @@ const ShareOption = ({ post_id }) => {
     }
     return (
         <div>
-            <div className='absolute top-[-1px] z-30 bg-base-100 shadow-2xl hover:shadow-md right-0 p-3 pb-2 rounded-md'>
+            <div className='absolute top-[-1px] z-30 bg-base-300 shadow-md  right-0 p-3 pb-2 rounded-md'>
                 <div className='flex gap-1 '>
                     <div>
                         <button onClick={() => pushShareUrlHandle('linkedin', post_id)}>
@@ -53,7 +53,7 @@ const ShareOption = ({ post_id }) => {
                     </div>
                     <div>
                         <button onClick={() => pushShareUrlHandle('email', post_id)}>
-                            <Email size='20' className="rounded-sm text-[#ff0000] hover:text-[#ff5555]" />
+                            <Email size='22' className="rounded-sm text-[#ff0000] hover:text-[#ff5555]" />
                         </button>
                     </div>
                 </div>

@@ -137,15 +137,7 @@ const PostMap = ({ post, refetch }) => {
                             </p> */}
                             <div className='mx-auto' id='videoPost' data-post={post_id}>
 
-                                {/* ----thumbnail------------ */}
-                                {
-                                    thumbnail &&
-                                    <div className='mt-4 mb-4' data-post={post_id}>
-                                        <figure data-post={post_id}>
-                                            <img src={thumbnail} alt="" className='w-full rounded-md' data-post={post_id} />
-                                        </figure>
-                                    </div>
-                                }
+
                                 {/* ---------post body ----------------- */}
                                 <div className={styles.postMap + ' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} >
                                     <div dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
@@ -160,6 +152,17 @@ const PostMap = ({ post, refetch }) => {
                                         <button className="link-primary font-semibold link-hover" onClick={handleSeeMorePost} data-post={post_id}>
                                             See {seeMorePostShow ? 'Less' : 'More'}
                                         </button>
+                                    </div>
+
+                                }
+
+                                {/* ----thumbnail------------ */}
+                                {
+                                    thumbnail &&
+                                    <div className='mt-4 mb-4' data-post={post_id}>
+                                        <figure data-post={post_id}>
+                                            <img src={thumbnail} alt="" className='w-full rounded-md' data-post={post_id} />
+                                        </figure>
                                     </div>
                                 }
                             </div>

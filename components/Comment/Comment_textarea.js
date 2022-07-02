@@ -3,6 +3,7 @@ import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from './Comment.module.css'
 import LikeLoveFavorite from './LikeLoveFevorite/LikeLoveFavorite';
 import CommentList from './CommentList';
+import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
 const Comment_textarea = ({ post_id }) => {
     const textareaRef = useRef();
 
@@ -63,9 +64,9 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 67,
-            post_id: 13,
+            post_id: '54fsdlj53-ToSQ6BpPgMjh6lA',
             userID: 42342343,
-            comment: 'wow so gooooood',
+            comment: 'wow so gosssssssssssssssssssssssssoooood',
             time: Date(),
             sort: '',
             comment_id: 45345455435435
@@ -115,7 +116,7 @@ const Comment_textarea = ({ post_id }) => {
             e.target.style.height = 200 + 'px'
         }
     }
-    const [showComment, setShowCommentSection] = useState(false);
+    // ----------------------------------for show commnet toggle and auto height increase-------------------------------
     const showCommentHandle = (id) => {
         try {
 
@@ -132,6 +133,7 @@ const Comment_textarea = ({ post_id }) => {
                 commentForm.style.height = '100%'
                 commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
                 showComment.style.height = '500px'
+                document.getElementById('textForm' + id).focus()
                 showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
             }
             else {
@@ -146,6 +148,18 @@ const Comment_textarea = ({ post_id }) => {
         }
     }
 
+    //------------------------------------------------------------------------------------------
+    //......--------------------------------------------- for reply a comment a auto show name -----------------------------------
+    const [replyNow, setReplyNow] = useState(null)
+    const replySetHandle = (targetComment, id) => {
+        try {
+            document.getElementById('textForm' + id).focus()
+        }
+        catch {
+
+        }
+        setReplyNow(targetComment)
+    }
     return (
         <div>
             <div className='mb-1'>
@@ -157,7 +171,11 @@ const Comment_textarea = ({ post_id }) => {
             <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto'}>
                 <div className='ml-2 p-1 overflow-auto border-l-4 rounded-bl-3xl'>
                     {
-                        commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
+                        commentBody?.map(comment => <CommentList key={comment._id} replySetHandle={replySetHandle} comment={comment} />)
+                    }
+                    {
+                        false ||
+                        <GuestCommentLikeLogin />
                     }
                 </div>
             </div>
@@ -165,10 +183,19 @@ const Comment_textarea = ({ post_id }) => {
             {/* -----------------------------for comment form and comment auto hight----------------------------- */}
             <div id={'commentForm' + post_id} className={styles.showComment}>
 
-                <form >
-                    <div className='relative flex items-end  pt-4 mb-4 pl-3 mt-1'>
+                <form className=' pt-4 mb-4'>
+                    {
+                        replyNow &&
+                        <div className='mt-3 flex items-center mb-2 pl-3 pr-3 text-secondary bg-gray-100 w-fit rounded-3xl'>
+                            <h1 className='text-xs'>@{replyNow?.name}</h1>
+                            <div>
+                                <a href="#" onClick={() => setReplyNow(null)} className=' text-xl ml-2 hover:text-[grey]'>&times;</a>
+                            </div>
+                        </div>
+                    }
+                    <div className='relative flex items-end  pl-3 mt-1'>
                         <textarea ref={textareaRef}
-                            id='textForm'
+                            id={'textForm' + post_id}
                             className='input input-success w-full font-mono'
                             name="postBody"
                             onBlur={onchangeInput}

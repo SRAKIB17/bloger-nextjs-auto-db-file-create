@@ -3,6 +3,7 @@ import { Comment, EmoticonLove, Like, Share, } from '../../ReactRSIcon/index'
 import ShareOption from './ShareOption';
 import styles from './LikeTransition.module.css'
 import LikeUserList from './LikeUsersList';
+import GuestCommentLikeLogin from '../../Login/GuestCommentLikeLogin';
 
 const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
     // const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
@@ -105,9 +106,16 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                     20 comment
                 </div>
             </div>
+
+            {/* show like love unlike  user list  */}
             <div className={(styles.showLikeUnlikeUser) + ' overflow-hidden ' + (styles.likeUnlikeUserList)} id={'showLikeUnlikeUser' + post_id}>
                 <LikeUserList post_id={post_id} />
+                {
+                    false ||
+                    <GuestCommentLikeLogin/>
+                }
             </div>
+
             <div className='relative border-b p-2 border-t z-50 bg-base-100'>
                 <div className='flex items-center justify-between'>
                     <div>
@@ -115,19 +123,19 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                             onClick={() => onlyLikePostHandle('like')}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
-                            <Like size='18' color={likePost ? '#00ff00' : 'currentColor'} />
+                            <Like size='18' color={likePost ? '#00ff00' : 'grey'} />
                         </button>
                         <button
                             onClick={() => onlyLikePostHandle('unlike')}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
-                            <Like size='18' color={unLikePost ? '#ff2020' : 'currentColor'} style={{ transform: 'rotate(180deg)' }} />
+                            <Like size='18' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
                         </button>
                         <button
                             onClick={() => onlyLikePostHandle('love')}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
-                            <EmoticonLove color={lovePost ? '#ff00f2' : 'currentColor'} size='19' />
+                            <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='19' />
                         </button>
                     </div>
                     <div>

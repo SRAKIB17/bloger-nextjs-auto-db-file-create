@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import MoreCommentReply from './MoreCommentReply';
 
-const CommentList = ({ comment: commentBody }) => {
-    const { post_id, userID, comment, time } = commentBody
+const CommentList = ({ comment: commentBody, replySetHandle }) => {
+    const { post_id, userID, comment, time,comment_id } = commentBody
     const [moreComment, setMoreComment] = useState(true);
     const getMoreComment = [
 
@@ -90,26 +90,33 @@ const CommentList = ({ comment: commentBody }) => {
                     </div>
 
                 </div>
-                {/* for reply count and handle show more  reply  */}
-                {
-                    getMoreComment?.length > 0 &&
-                    <div>
+                {/*--------------- for reply count and handle show more  reply  -------------------*/}
+                <div className='flex items-center'>
+                    {
+                        getMoreComment?.length > 0 &&
+                        <div>
 
+                            < button
+                                className='link ml-4 link-hover link-primary text-xs'
+                                onClick={() => setShowReply(!showReply)}
+                            >
+                                {getMoreComment?.length + ' '}  Reply
+                            </button>
+
+                            <b className='text-xs p-1'>|</b>
+                        </div>
+                    }
+                    <div>
                         < button
-                            className='link ml-4 link-hover link-primary text-xs'
-                            onClick={() => setShowReply(!showReply)}
+                            className='link link-hover link-primary text-xs'
+                            onClick={() => replySetHandle({name:name, comment_id:comment_id},post_id)}
                         >
-                            {getMoreComment?.length + ' '}  Reply
-                        </button>
-                        < button
-                            className='link ml-4 link-hover link-primary text-xs'
-                            onClick={() => setShowReply(!showReply)}
-                        >
-                            {getMoreComment?.length + ' '}  Reply
+                            Reply
                         </button>
                     </div>
-                }
-                {/* for show more reply  */}
+
+                </div>
+                {/* -----------------------------------------for show more reply  ----------------*/}
                 {
 
                     showReply &&
