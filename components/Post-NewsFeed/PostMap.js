@@ -32,29 +32,29 @@ const PostMap = ({ post, refetch }) => {
             setShortDescriptionVideo(short_description?.slice(0, 100))
         }
     }
-    // ----------------------------------------for text or html ---------------------------------------------------//
-    const [textHtml, setTextHtml] = useState('')
-    useEffect(() => {
-        setTextHtml(postBody?.slice(0, 500));
-    }, [postBody])
 
-    const handleSeeMorePost = (id) => {
-        // try {
-        //     const getPost = document.getElementById('postBody' + id)
-        //     getPost.style.height = '100vh'
-        // }
-        // catch {
 
-        // }
-        setSeeMorePostShow(!seeMorePostShow)
-        if (textHtml.length <= 500) {
-            setTextHtml(postBody)
+    // -----------------------------------------------for iframe -----------------------------------------
+
+    const [fullIframeShow, setFullIframeShow] = useState(false)
+    const heightHandle = (id) => {
+        try {
+            const iframe = document.getElementById('previewIframeHeight' + id);
+            console.log(iframe.contentWindow.document)
+            if (fullIframeShow) {
+                iframe.style.height = 0 + 'px';
+                setFullIframeShow(false)
+            }
+            else {
+                iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                setFullIframeShow(true)
+            }
         }
-        else {
-            setTextHtml(postBody?.slice(0, 500))
+        catch {
+
         }
+
     }
-
     return (
         <div data-post={post_id}>
             <div className="card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" data-post={post_id}>
@@ -92,9 +92,6 @@ const PostMap = ({ post, refetch }) => {
                 <div className='card-body pb-2 pt-3 p-5' data-post={post_id}>
                     <h2 className="card-title" data-post={post_id}>{post_title}</h2>
 
-
-
-
                     {/* ---------------------------------------for video body--------------------------------- */}
                     {
                         postRefMode === 'video' && <>
@@ -130,31 +127,37 @@ const PostMap = ({ post, refetch }) => {
                     {
                         postRefMode === 'text' &&
                         <>
-                            {/* <p className='text-justify mb-2' data-post={post_id}>
-                                {
-                                    postBody
-                                }
-                            </p> */}
+
                             <div className='mx-auto' id='videoPost' data-post={post_id}>
 
 
                                 {/* ---------post body ----------------- */}
                                 <div className={styles.postMap + ' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} >
-                                    <div dangerouslySetInnerHTML={{ __html: textHtml }} data-post={post_id}>
+
+                                    <div
+                                        dangerouslySetInnerHTML={{ __html: short_description }}
+                                        data-post={post_id}
+                                    >
                                     </div>
+
+                                    <iframe
+                                        id={'previewIframeHeight' + post_id}
+                                        height='0'
+                                        scrolling="no"
+                                        src="/api/preview"
+                                        frameBorder="0"
+                                        className={styles.iframeAutoHightTransition + ' w-full'} >
+                                    </iframe>
                                 </div>
 
-
                                 {/* ------------see more -------------------- */}
-                                {
-                                    postBody?.length >= 500 &&
-                                    <div className="card-actions justify-end" data-post={post_id}>
-                                        <button className="link-primary font-semibold link-hover" onClick={handleSeeMorePost} data-post={post_id}>
-                                            See {seeMorePostShow ? 'Less' : 'More'}
-                                        </button>
-                                    </div>
 
-                                }
+                                <div className="card-actions justify-end" data-post={post_id}>
+                                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => heightHandle(post_id)} data-post={post_id}>
+                                        See {fullIframeShow ? 'Less' : 'More'}
+                                    </button>
+                                </div>
+
 
                                 {/* ----thumbnail------------ */}
                                 {

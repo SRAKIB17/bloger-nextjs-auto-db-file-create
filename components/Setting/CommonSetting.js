@@ -35,10 +35,12 @@ const CommonSetting = () => {
             const getHeaderBottomMargin = document.getElementById('topHeaderMargin');
             if (window.innerWidth<=640) {
                 if (hideMobileNab === 'true') {
+                    setNabBarMobile(true)
                     getHeaderBottomMargin.className = ''
                     getHeader.className = 'h-[60px] w-full border-b-2 bg-base-100 z-[150] sticky top-0'
                 }
                 else {
+                    setNabBarMobile(false)
                     getHeader.className = 'h-[60px] w-full border-b-2 bg-base-100 z-[150] fixed top-0'
                     getHeaderBottomMargin.className = 'mb-[60px]'
                 }

@@ -6,14 +6,21 @@ const useCommonWindowResizeHeaderComponent = () => {
             try {
                 // ------------------------------for hide navBar for  mobile Device only ------------------
                 const hideMobileNab = window.localStorage.getItem('hideMobileNabBar');
+                const getHeader = document.getElementById('header');
+                const getHeaderBottomMargin = document.getElementById('topHeaderMargin');
                 if (window.innerWidth > 640 || !hideMobileNab) {
-                    const getHeader = document.getElementById('header');
-                    const getHeaderBottomMargin = document.getElementById('topHeaderMargin');
                     getHeader.className = 'h-[60px] w-full border-b-2 bg-base-100 z-[150] fixed top-0'
                     getHeaderBottomMargin.className = 'mb-[60px]'
 
                 }
-
+                else if (window.innerWidth <= 640 && hideMobileNab) {
+                    getHeader.className = 'h-[60px] w-full border-b-2 bg-base-100 z-[150] sticky top-0'
+                    getHeaderBottomMargin.className = ''
+                }
+                else if (window.innerWidth <= 640 && !hideMobileNab) {
+                    getHeader.className = 'h-[60px] w-full border-b-2 bg-base-100 z-[150] fixed top-0'
+                    getHeaderBottomMargin.className = 'mb-[60px]'
+                }
                 // -----------------------------------support inbox -----------------------------------------
                 const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
                 document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'

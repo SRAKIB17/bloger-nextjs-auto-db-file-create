@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import TextArea from '../../hooks/TextArea';
 import Image from 'next/image'
 import ImageUpload from './ImageUpload';
@@ -28,7 +28,6 @@ const NewPost = () => {
         event.preventDefault();
         const body = event.target.postBody.value;
         let postRefMode = '';
-        let short_description = '';
         if (quickTextPost) {
             postRefMode = 'text'
         }
@@ -37,7 +36,7 @@ const NewPost = () => {
         }
         else if (quickVideoPost) {
             postRefMode = 'video'
-            short_description = event.target.short_description.value;
+
         }
         const post = {
             userID: '54fsdlj53',
@@ -46,7 +45,7 @@ const NewPost = () => {
             thumbnail: thumbnail,
             image: '',
             time: 'dec 15, 2021',
-            short_description: short_description,
+            short_description: event.target.short_description.value,
             category: {
                 name: event.target.category.value,
                 tags: ['html'],
@@ -57,7 +56,8 @@ const NewPost = () => {
             // tags: event.target.tags.value.split(','),
             postRefMode: postRefMode
         }
-        // console.log(post)
+
+        console.log(post)
         try {
             const { data } = await axios.post('/api/post/newpost', post);
             console.log(data)
@@ -70,6 +70,26 @@ const NewPost = () => {
         finally {
             setNewPostLoading(false)
 
+        }
+    }
+
+
+    // ----------------------------------------------for short_description --------------------------------
+    const shortcutKeyboard = (e) => {
+        // classTagShortcutInput(e, textareaRef)
+    }
+    const ShortDescriptionRef = useRef();
+    const onchangeInput = (e) => {
+        autoHightIncreaseShortDescription(e)
+    }
+
+    const autoHightIncreaseShortDescription = (e) => {
+        e.target.style.height = 'auto';
+        if (e.target.scrollHeight < 200) {
+            e.target.style.height = e.target.scrollHeight + 'px'
+        }
+        else {
+            e.target.style.height = 200 + 'px'
         }
     }
     return (
@@ -126,16 +146,26 @@ const NewPost = () => {
                         />
 
 
-                        <p className='bg-info text-white w-fit p-[2px] rounded-md'>Note: this is for seo</p>
-                        <input
-                            type="text"
-                            name="short_description"
-                            id=""
-                            maxLength='1000'
-                            className='input input-primary form-control w-56 sm:w-80'
-                            placeholder='Short description'
-                            required
-                        />
+                        <div>
+                            <p className='text-[10px] pt-2 p-1 text-primary'>Max Length 500:</p>
+                            <textarea ref={ShortDescriptionRef}
+                                name="short_description"
+                                maxLength='500'
+                                size='500'
+                                placeholder='Short description'
+                                className='input input-success w-full'
+                                onBlur={onchangeInput}
+                                onKeyUp={(e) => shortcutKeyboard(e)}
+                                onChange={onchangeInput}
+                                onInput={onchangeInput}
+                                onCut={autoHightIncreaseShortDescription}
+                                onPaste={autoHightIncreaseShortDescription}
+                                onDrop={autoHightIncreaseShortDescription}
+                                onKeyDown={autoHightIncreaseShortDescription}
+                                required
+                            >
+                            </textarea>
+                        </div>
                         <div>
                             <ImageUpload props={{ setThumbnail, setThumbnailData }} />
 
