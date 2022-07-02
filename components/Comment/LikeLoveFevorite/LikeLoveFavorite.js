@@ -49,7 +49,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
             showCommentButton.className = ' btn-outline btn btn-xs btn-primary ml-2 '
             //-------------------------------------------------------------------------------------
             if (showLikeUnlikeUser.offsetHeight <= 2) {
-                showLikeUnlikeUser.style.height = '400px'
+                showLikeUnlikeUser.style.height = '500px'
                 showLikeUnlikeUser.style.overflow = 'auto'
                 showLikeUnlikeUser.style.borderTopWidth = '1px'
             }
@@ -156,7 +156,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
             {
                 showShareOption &&
                 <div className={styles.shareOption}>
-                    <ShareOption />
+                    <ShareOption post_id={post_id}/>
                 </div>
             }
         </div >

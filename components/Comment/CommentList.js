@@ -56,7 +56,7 @@ const CommentList = ({ comment: commentBody }) => {
     }
     return (
         <div>
-            <div className='border-t-2 border-b-1' id={post_id}>
+            <div className='border-t' id={post_id}>
                 {/* ------------------------------------------for profile picture  ----------------------------*/}
                 <div className='mt-2 flex items-center gap-1'>
                     <div className="avatar ">
@@ -74,7 +74,7 @@ const CommentList = ({ comment: commentBody }) => {
                     <div className=' overflow-auto w-full'>
 
                         <div className='w-fit'>
-                            <div className='break-words' dangerouslySetInnerHTML={{ __html: showFullComment }}></div>
+                            <div className='break-words text-[15px]' dangerouslySetInnerHTML={{ __html: showFullComment }}></div>
                             {
                                 comment?.length >= 100 && <button
                                     onClick={handleShowFullComment}
@@ -93,19 +93,32 @@ const CommentList = ({ comment: commentBody }) => {
                 {/* for reply count and handle show more  reply  */}
                 {
                     getMoreComment?.length > 0 &&
-                    < button
-                        className='link ml-4 link-hover link-primary text-xs'
-                        onClick={() => setShowReply(!showReply)}
-                    >
-                        {getMoreComment?.length + ' '}  Reply
-                    </button>
+                    <div>
+
+                        < button
+                            className='link ml-4 link-hover link-primary text-xs'
+                            onClick={() => setShowReply(!showReply)}
+                        >
+                            {getMoreComment?.length + ' '}  Reply
+                        </button>
+                        < button
+                            className='link ml-4 link-hover link-primary text-xs'
+                            onClick={() => setShowReply(!showReply)}
+                        >
+                            {getMoreComment?.length + ' '}  Reply
+                        </button>
+                    </div>
                 }
                 {/* for show more reply  */}
-                <div className='ml-4 border-l-4 rounded-3xl mb-3 pl-1 pt-1'>
-                    {showReply &&
-                        getMoreComment?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} />)
-                    }
-                </div>
+                {
+
+                    showReply &&
+                    <div className='ml-4 border-l-4 rounded-bl-3xl mb-3 pl-1 pt-1'>
+                        {
+                            getMoreComment?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} />)
+                        }
+                    </div>
+                }
             </div>
         </div >
 

@@ -15,7 +15,7 @@ const MoreCommentReply = ({ replyComment }) => {
     return (
         <div>
             <div>
-                <div className='mt-2 flex items-center gap-1'>
+                <div className='pt-2 flex items-center border-t gap-1'>
                     <div className="avatar ">
                         <div className="w-8 rounded-full">
                             <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
@@ -31,7 +31,7 @@ const MoreCommentReply = ({ replyComment }) => {
                     <div className=' overflow-auto w-full'>
 
                         <div className='w-fit p-1'>
-                            <div dangerouslySetInnerHTML={{ __html: showFullReply }}></div>
+                            <div className=' text-[15px]' dangerouslySetInnerHTML={{ __html: showFullReply }}></div>
                             {
                                 reply?.length >= 100 &&
                                 <button

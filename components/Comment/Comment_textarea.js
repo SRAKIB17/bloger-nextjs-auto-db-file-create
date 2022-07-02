@@ -131,7 +131,7 @@ const Comment_textarea = ({ post_id }) => {
             if (showComment.offsetHeight <= 2) {
                 commentForm.style.height = '100%'
                 commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
-                showComment.style.height = '400px'
+                showComment.style.height = '500px'
                 showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
             }
             else {
@@ -155,7 +155,7 @@ const Comment_textarea = ({ post_id }) => {
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
             <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto'}>
-                <div className=' p-3 overflow-auto'>
+                <div className='ml-2 p-1 overflow-auto border-l-4 rounded-bl-3xl'>
                     {
                         commentBody?.map(comment => <CommentList key={comment._id} comment={comment} />)
                     }
