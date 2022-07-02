@@ -23,7 +23,7 @@ const ShareOption = ({ post_id }) => {
             )
         }
         else if (url === 'email') {
-            const url = `mailto:?subject=I wanted you to see this site&amp;body=Check out this site ${window.location.origin}/story/${post_id} `
+            const url = `mailto:?subject=I wanted you to see this site&body=Check out this site ${window.location.origin}/story/${post_id} `
             router.push(url)
 
         }
