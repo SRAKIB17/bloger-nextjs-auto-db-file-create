@@ -12,3 +12,6 @@
   transition: 0.4s;
   height: 0px;
 }
+.iframeAutoHightTransition *{
+  color: white !important;
+}

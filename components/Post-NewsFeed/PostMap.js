@@ -36,11 +36,37 @@ const PostMap = ({ post, refetch }) => {
 
     // -----------------------------------------------for iframe -----------------------------------------
 
-    const [fullIframeShow, setFullIframeShow] = useState(false)
+    const [fullIframeShow, setFullIframeShow] = useState(false);
+    useEffect(() => {
+        const darkMode = window.localStorage.getItem('dark')
+
+    }, [])
     const heightHandle = (id) => {
         try {
             const iframe = document.getElementById('previewIframeHeight' + id);
-            console.log(iframe.contentWindow.document)
+            // console.log(iframe.contentDocument.documentElement.scrollHeight)
+            const darkMode = window.localStorage.getItem('dark')
+
+            let doc = iframe.contentDocument;
+            if (darkMode) {
+                doc.body.style.color = 'white'
+
+            }
+            else {
+                doc.body.style.color = ''
+            }
+            // window.onload = function() {
+            //     let frameElement = document.getElementById("myiFrame");
+            //     let doc = frameElement.contentDocument;
+            //     doc.body.innerHTML = doc.body.innerHTML + '<style>.bar {width:45%;}</style>';
+            //   }
+            // window.onload = function() {
+            //     let link = document.createElement("link");
+            //     link.href = "style.css";      /**** your CSS file ****/ 
+            //     link.rel = "stylesheet"; 
+            //     link.type = "text/css"; 
+            //     frames[0].document.head.appendChild(link); /**** 0 is an index of your iframe ****/ 
+            //   }
             if (fullIframeShow) {
                 iframe.style.height = 0 + 'px';
                 setFullIframeShow(false)
@@ -146,7 +172,7 @@ const PostMap = ({ post, refetch }) => {
                                         scrolling="no"
                                         src="/api/preview"
                                         frameBorder="0"
-                                        className={styles.iframeAutoHightTransition + ' w-full'} >
+                                        className={styles.iframeAutoHightTransition + 'text-white w-full'} >
                                     </iframe>
                                 </div>
 
