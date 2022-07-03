@@ -1,13 +1,19 @@
 import React from 'react';
 
 const MessageBody = ({ messageBody }) => {
-    const { adminId, userID, adminReply, message } = messageBody
+    const { adminId, support_id, userID, adminReply, message } = messageBody
+    const onloadMessageSupport = (id) => {
+
+        const iframe = document.getElementById('supportInboxMsgBody' + id);
+        iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+        console.log(iframe)
+    }
     return (
         <div>
             <div className='w-full'>
                 {
                     adminReply &&
-                    <div>
+                    <div onClick={() => onloadMessageSupport(this)}>
                         <div className=' flex justify-start items-start mt-2 mb-2'>
                             <div className="avatar mr-1 mt-6">
                                 <div className="w-[16px] rounded-full ">
@@ -16,7 +22,16 @@ const MessageBody = ({ messageBody }) => {
                             </div>
 
                             <div className='bg-base-200  p-4 w-fit max-w-[80%] shadow-inner rounded-3xl text-justify'>
-                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                                {/* <div dangerouslySetInnerHTML={{ __html: message }}></div> */}
+                                <iframe
+
+                                    onLoad={() => onloadMessageSupport(userID + support_id)}
+                                    scrolling='no'
+                                    id={'supportInboxMsgBody' + (userID + support_id)}
+                                    srcDoc={message}
+                                    src="/api/preview"
+                                    frameBorder="0"
+                                ></iframe>
                             </div>
                         </div>
                     </div>
@@ -28,7 +43,15 @@ const MessageBody = ({ messageBody }) => {
 
                         <div className=' relative flex justify-end mt-1 mb-1 items-start'>
                             <div className='bg-base-200 p-4 shadow-inner w-fit max-w-[80%]  rounded-3xl'>
-                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                                <iframe
+                                    onLoad={() => onloadMessageSupport(userID + support_id)}
+                                    scrolling='no'
+                                    id={'supportInboxMsgBody' + (userID + support_id)}
+                                    srcDoc={message}
+                                    src="/api/preview"
+                                    frameBorder="0"
+                                ></iframe>
+                                {/* <div dangerouslySetInnerHTML={{ __html: message }}></div> */}
                             </div>
                             <div className="avatar ml-1 mt-6">
                                 <div className="w-[16px] rounded-full ">

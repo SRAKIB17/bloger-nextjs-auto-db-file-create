@@ -51,25 +51,30 @@ const SupportInbox = () => {
     // const message = data?.data
     const message = [
         {
-            userID: '3534553',
+            userID: '3534fsdf553',
             adminReply: false,
-            adminId: '534545534',
-            message: '5435645'
+            adminId: '534fsdf545534',
+            message: '543fsf5645',
+            support_id: 54435345
         },
         {
-            userID: '3534553',
+            userID: '35345fsdff53',
+            support_id: 54465435345
+            ,
             adminReply: true,
-            adminId: '534545534',
+            adminId: '5345fsdfds45534',
             message: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quam quis amet enim qui illo facilis corrupti libero molestias commodi itaque voluptate molestiae, ab ducimus? Quis perspiciatis quam quod voluptas?'
         },
         {
-            userID: '3534553',
+            userID: '35fsdfsdf34553',
             adminReply: false,
             adminId: '534545534',
-            message: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম। আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।'
+            message: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম। আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।',
+            support_id: 54435345
+
         },
         {
-            userID: '3534553',
+            userID: '353fsdsdfsdsf4553',
             adminReply: false,
             adminId: '534545534',
             message: `
@@ -79,11 +84,12 @@ const SupportInbox = () => {
                 Your browser does not support the video tag.
             </video>
     
-            `
+            `,
+            support_id: 54435566345
         },
 
         {
-            userID: '3534553',
+            userID: '35345sdfdsfsdsfs53',
             adminReply: true,
             adminId: '534545534',
             message: `
@@ -93,7 +99,9 @@ const SupportInbox = () => {
                 Your browser does not support the video tag.
             </video>
     
-            `
+            `,
+            support_id: 66546
+
         }
     ]
     const [messageSet, setMessst] = useState([])

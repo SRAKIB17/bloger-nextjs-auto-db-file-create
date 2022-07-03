@@ -168,7 +168,7 @@ const Comment_textarea = ({ post_id }) => {
             </div>
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
-            <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto'}>
+            <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto hideScrollBar'}>
                 <div className='ml-2 p-1 overflow-auto border-l-4 rounded-bl-3xl'>
                     {
                         commentBody?.map(comment => <CommentList key={comment._id} replySetHandle={replySetHandle} comment={comment} />)
@@ -193,7 +193,7 @@ const Comment_textarea = ({ post_id }) => {
                             </div>
                         </div>
                     }
-                    <div className='relative flex items-end  pl-3 mt-1'>
+                    <div className='relative flex items-end pt-1 pl-3 mt-1'>
                         <textarea ref={textareaRef}
                             id={'textForm' + post_id}
                             className='input input-success w-full font-mono'
