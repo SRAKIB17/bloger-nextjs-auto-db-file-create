@@ -15,9 +15,10 @@ export default function handler(req, res) {
     try {
       const postDb = client.db('SocialBlog').collection('Posts');
       const postCollections = await postDb.find({}).toArray();
-      const postBody = await postCollections.find(post => post?.post_id === post_id)
+      const postBody = await postCollections.find(post => post?.post_id === post_id);
+      
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write(postBody?.postBody);
+      res.write(postBody?.postBody || '<h1>Sorry Can\'t load document</h1>');
       res.end();
     }
     finally {

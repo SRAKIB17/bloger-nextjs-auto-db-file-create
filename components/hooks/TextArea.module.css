@@ -11,17 +11,21 @@
 .liveView {
     /* background-color: red; */
 }
-.liveOffTextForm{
+
+.liveOffTextForm {
     width: 100%;
 }
+
 .liveOff {
     display: none;
 }
+
 @media (max-width: 640px) {
-    .textareaForm{
+    .textareaForm {
         width: 100% !important;
     }
-    .liveView{
+
+    .liveView {
         width: 100% !important;
         height: auto !important;
     }
@@ -48,4 +52,14 @@
     .rotateSvg {
         display: none !important;
     }
+}
+
+.livePreviewScrollBarHide {
+    overflow-wrap: break-word;
+    width: calc(100% + 20px) !important;
+    margin-right: 20px;
+    display: block;
+}
+.livePreviewScrollBarHide::-webkit-scrollbar{
+    display: none;
 }

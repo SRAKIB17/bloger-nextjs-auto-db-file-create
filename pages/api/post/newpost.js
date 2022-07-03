@@ -13,29 +13,30 @@ export default function handler(req, res) {
 
         await client.connect()
         const postDb = client.db('SocialBlog').collection('Posts');
-        const postCollections = await postDb.find({}).toArray();
-        // console.log(postCollections)
-        const PostIdGenerate = async (length) => {
-            let result = '';
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-            const charactersLength = characters.length;
-            for (let i = 0; i < length; i++) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            const postIdGet = postCollections.map(postId => postId?.post_id?.split('-')?.[1]);
-
-            if (!postIdGet.includes(result)) {
-                return result;
-            }
-            else {
-                return PostIdGenerate();
-            }
-        }
-
-        const getPostId = await PostIdGenerate(15);
 
         try {
+            const postCollections = await postDb.find({}).toArray();
+            // console.log(postCollections)
+            const PostIdGenerate = async (length) => {
+                let result = '';
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+                const charactersLength = characters.length;
+                for (let i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                const postIdGet = postCollections.map(postId => postId?.post_id?.split('-')?.[1]);
+
+                if (!postIdGet.includes(result)) {
+                    return result;
+                }
+                else {
+                    return PostIdGenerate();
+                }
+            }
+
+            const getPostId = await PostIdGenerate(15);
+
             const method = req.method;
             const body = req.body;
             switch (method) {

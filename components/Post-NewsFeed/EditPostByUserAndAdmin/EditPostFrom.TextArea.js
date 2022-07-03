@@ -1,14 +1,18 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import TextArea from '../../hooks/TextArea';
+import React, { useEffect, useRef, useState } from 'react';
+import ImageUpload from '../../profile/NewPost/ImageUpload';
 // import TextArea from '../../hooks/TextArea';
 
 
 import styles from '../../profile/NewPost/NewPost.module.css'
 import QuickPost from '../../profile/NewPost/QuickPost';
+import TextAreaEdit from './TextAreaEdit';
 // import QuickPost from './QuickPost';
 
-const EditPostFromTextArea = () => {
+const EditPostFromTextArea = ({ post_id }) => {
+    const textareaRef = useRef();
+    const [thumbnail, setThumbnail] = useState('')
+    const [thumbnailData, setThumbnailData] = useState('')
 
     const getPost = {
         _id: 55635435,
@@ -40,13 +44,14 @@ const EditPostFromTextArea = () => {
 
         category: {
             name: 'Vegetables',
-            tags: ['html','React', "Java"],
+            tags: ['html', 'React', "Java"],
         },
         postRefMode: 'video',
         postBy: 'admin'
     }
     const [editPost, setEditPost] = useState({})
     useEffect(() => {
+        setThumbnail(getPost?.thumbnail)
         setEditPost(getPost);
     }, [])
 
@@ -54,9 +59,9 @@ const EditPostFromTextArea = () => {
     const [quickTextPost, setQuickTextPost] = useState(true);
     const [quickImagePost, setQuickImagePost] = useState(false);
 
-    function closeEditPostFromTextArea() {
+    function closeEditPostFromTextArea(id) {
         try {
-            document.getElementById("EditPostFromTextArea").style.width = "0";
+            document.getElementById("EditPostFromTextArea" + id).style.width = "0";
         }
         catch {
 
@@ -71,7 +76,6 @@ const EditPostFromTextArea = () => {
         event.preventDefault();
         const body = event.target.postBody.value;
         let postRefMode = '';
-        let short_description = '';
         if (quickTextPost) {
             postRefMode = 'text'
         }
@@ -80,16 +84,16 @@ const EditPostFromTextArea = () => {
         }
         else if (quickVideoPost) {
             postRefMode = 'video'
-            short_description = event.target.short_description.value;
+
         }
         const post = {
             userID: '54fsdlj53',
             post_id: '534fsdfjo345',
             post_title: event.target.title.value,
-            thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
+            thumbnail: thumbnail,
             image: '',
             time: 'dec 15, 2021',
-            short_description: short_description,
+            short_description: event.target.short_description.value,
             category: {
                 name: event.target.category.value,
                 tags: ['html'],
@@ -112,13 +116,32 @@ const EditPostFromTextArea = () => {
         }
         finally {
             setNewPostLoading(false)
-
         }
     }
+
+    // ----------------------------------------------for short_description --------------------------------
+    const shortcutKeyboard = (e) => {
+        // classTagShortcutInput(e, textareaRef)
+    }
+    const ShortDescriptionRef = useRef();
+    const onchangeInput = (e) => {
+        autoHightIncreaseShortDescription(e)
+    }
+
+    const autoHightIncreaseShortDescription = (e) => {
+        e.target.style.height = 'auto';
+        if (e.target.scrollHeight < 200) {
+            e.target.style.height = e.target.scrollHeight + 'px'
+        }
+        else {
+            e.target.style.height = 200 + 'px'
+        }
+    }
+
     return (
         <div>
 
-            <div id="EditPostFromTextArea" className={styles.NewPostNav + ' bg-base-100'}>
+            <div id={"EditPostFromTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100'}>
                 {
                     NewPostLoading &&
                     <div className=' w-60 mx-auto '>
@@ -129,7 +152,7 @@ const EditPostFromTextArea = () => {
                         </div>
                     </div>
                 }
-                <a href="#" className={styles.closebtn} onClick={closeEditPostFromTextArea}>&times;</a>
+                <a href="#" className={styles.closebtn} onClick={() => closeEditPostFromTextArea(post_id)}>&times;</a>
 
                 <div>
                     <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, quickImagePost, setQuickImagePost }} />
@@ -155,7 +178,7 @@ const EditPostFromTextArea = () => {
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
                         <select name="postBy" id="" className="select select-primary w-full max-w-xs"
-                        defaultValue={getPost?.postBy}>
+                            defaultValue={editPost?.postBy}>
                             <option disabled selected>Post Roll</option>
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
@@ -172,16 +195,33 @@ const EditPostFromTextArea = () => {
 
 
                         <p className='bg-info text-white w-fit p-[2px] rounded-md'>Note: this is for seo</p>
-                        <input
-                            type="text"
-                            name="short_description"
-                            id=""
-                            maxLength='1000'
-                            className='input input-primary form-control w-56 sm:w-80'
-                            defaultValue={editPost?.short_description}
-                            placeholder='Short description'
-                            required
-                        />
+                        <div>
+                            <p className='text-[10px] pt-2 p-1 text-primary'>Max Length 500:</p>
+                            <textarea ref={ShortDescriptionRef}
+                                name="short_description"
+                                maxLength='500'
+                                size='500'
+                                placeholder='Short description'
+                                className='input input-success form-control w-56 sm:w-80'
+                                onBlur={onchangeInput}
+                                onKeyUp={(e) => shortcutKeyboard(e)}
+                                onChange={onchangeInput}
+                                onInput={onchangeInput}
+                                onCut={autoHightIncreaseShortDescription}
+                                onPaste={autoHightIncreaseShortDescription}
+                                onDrop={autoHightIncreaseShortDescription}
+                                onKeyDown={autoHightIncreaseShortDescription}
+                                defaultValue={editPost?.short_description}
+                                required
+                            >
+                            </textarea>
+                        </div>
+                        <div>
+                            <ImageUpload props={{ setThumbnail, setThumbnailData }} />
+                            <div className='shadow-md w-fit p-2'>
+                                <img src={thumbnail} className='max-w-xs max-h-[100px] rounded-md' alt="" />
+                            </div>
+                        </div>
 
                         <input
                             type="text"
@@ -201,7 +241,7 @@ const EditPostFromTextArea = () => {
                             defaultValue={editPost?.category?.tags}
                             required
                         />
-                        <TextArea quickPost={quickVideoPost} editBody={getPost?.postBody}/>
+                        <TextAreaEdit post_id={post_id} textareaRef={textareaRef} editBody={getPost?.postBody} />
                         <input type="submit" value="Post" className='btn rounded-3xl btn-primary text-white w-fit' />
                     </form>
 

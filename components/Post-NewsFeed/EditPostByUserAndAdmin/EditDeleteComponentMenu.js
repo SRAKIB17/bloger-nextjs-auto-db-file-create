@@ -3,9 +3,9 @@ import { Delete, Writing } from '../../ReactRSIcon/index'
 import styles from '../PostMap.module.css'
 import EditPostFromTextArea from './EditPostFrom.TextArea';
 const EditDeleteComponentMenu = ({ post_id }) => {
-    const openEditPostFromTextArea = () => {
+    const openEditPostFromTextArea = (id) => {
         try {
-            document.getElementById("EditPostFromTextArea").style.width = "100%";
+            document.getElementById("EditPostFromTextArea"+id).style.width = "100%";
         }
         catch {
 
@@ -44,14 +44,14 @@ const EditDeleteComponentMenu = ({ post_id }) => {
                     id={'editPostBYuser' + post_id}
                 >
                     <ul className='flex w-40 bg-base-300 p-4 rounded-md shadow-md flex-col gap-1'>
-                        <li onClick={openEditPostFromTextArea} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
+                        <li onClick={()=>openEditPostFromTextArea(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
                             <Writing size='17' /> Edit Post
                         </li>
                         <li className=' btn btn-outline btn-primary text-left rounded-md btn-xs'><Delete size='17' />Delete Post</li>
                     </ul>
                 </div>
             </div>
-            <EditPostFromTextArea />
+            <EditPostFromTextArea post_id={post_id}/>
         </div>
     );
 };

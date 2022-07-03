@@ -14,7 +14,6 @@ const PostMap = ({ post, refetch }) => {
         router.prefetch(path)
         refetch()
     }
-    console.log(post_id)
 
 
     const [seeMorePostShow, setSeeMorePostShow] = useState(false)
@@ -50,7 +49,7 @@ const PostMap = ({ post, refetch }) => {
 
             let doc = iframe.contentDocument;
             if (darkMode) {
-                doc.body.style.color = 'white'
+                doc.body.style.color = '#A9C5EF'
 
             }
             else {
@@ -111,7 +110,7 @@ const PostMap = ({ post, refetch }) => {
                     </div>
 
                     {
-                        post_id?.split('-')[0] === userID &&
+                        // post_id?.split('-')[0] === userID &&
                         <EditDeleteComponentMenu post_id={post_id} />
                     }
                 </div>
@@ -166,15 +165,23 @@ const PostMap = ({ post, refetch }) => {
                                         data-post={post_id}
                                     >
                                     </div>
-
                                     <iframe
+                                        src='/api/preview'
+                                        srcDoc={postBody}
+                                        id={'previewIframeHeight' + post_id}
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        className={styles.iframeAutoHightTransition + 'text-white w-full h-0'}
+                                    >
+                                    </iframe>
+                                    {/* <iframe
                                         id={'previewIframeHeight' + post_id}
                                         height='0'
                                         scrolling="no"
-                                        src={"/api/preview/"+post_id}
+                                        src={"/api/preview/" + post_id}
                                         frameBorder="0"
                                         className={styles.iframeAutoHightTransition + 'text-white w-full'} >
-                                    </iframe>
+                                    </iframe> */}
                                 </div>
 
                                 {/* ------------see more -------------------- */}

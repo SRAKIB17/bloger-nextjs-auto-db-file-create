@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import classTagShortcutInput from './hooks/useFindClassAttr';
-import styles from './TextArea.module.css';
-const TextArea = ({ textareaRef }) => {
+import classTagShortcutInput from '../../hooks/hooks/useFindClassAttr';
+import styles from '../../hooks/TextArea.module.css';
+const TextAreaEdit = ({ post_id, editBody, textareaRef }) => {
 
     const shortcutKeyboard = (e) => {
         setLiveView(e.target.value)
+        // classTagShortcutInput(e, textareaRef)
     }
-    const onchangeInput = (e) => {
+    const onchangeInput = (e, id) => {
         setLiveView(e.target.value);
-        heightAutoHandle(e)
+        heightAutoHandle(e, id)
         classTagShortcutInput(e, textareaRef)
     }
 
@@ -17,16 +18,12 @@ const TextArea = ({ textareaRef }) => {
     const [layoutForm, setLayoutForm] = useState(0);
     const [dragging, setDragging] = useState([]);
     const [windowHeight, setWindowHeight] = useState('');
-    let saveData = ''
     useEffect(() => {
-        saveData = JSON.parse(window.localStorage.getItem('saveBody'));
-        console.log(JSON.parse(window.localStorage.getItem('saveBody')))
-        console.log(saveData)
 
         setWindowHeight(window.innerHeight);
         setLayoutForm(window.innerWidth / 2);
         setWindowWidth(window.innerWidth);
-    }, [saveData])
+    }, [])
     const [rotate, setRotate] = useState(false);
     const [liveView, setLiveView] = useState('');
     const liveOffHandle = () => {
@@ -44,9 +41,10 @@ const TextArea = ({ textareaRef }) => {
             setRotate(!rotate)
         }
     }
-
+    // const [liveSize, setLiveSize] = useState([window.innerWidth / 2, window.innerHeight]);
     const dragStart = (e) => {
-
+        // const Live = e.target.ownerDocument.querySelector('#livePreview');
+        // setLiveSize([Live.clientWidth, Live.clientHeight])
         e.preventDefault();
         setWindowHeight(window.innerHeight)
         setLayoutForm(window.innerWidth / 2);
@@ -55,25 +53,25 @@ const TextArea = ({ textareaRef }) => {
     }
 
     const [dragSeparate, setDraggingSeparate] = useState();
-    const heightAutoHandle = (e) => {
+    const heightAutoHandle = (e, id) => {
         setLiveView(e.target.value);
-        const livePreview = document.querySelector('#livePreview')
+        const livePreview = document.getElementById('livePreviewEdit' + id)
         livePreview.style.height = 'auto';
+        console.log(livePreview)
+        console.log(e.target.scrollHeight)
         setWindowHeight(window.innerHeight - 50)
-        const iframe = document.getElementById('liveViewIframe');
+        const iframe = document.getElementById('liveViewIframe' + id);
         //---------------------- for iframe ---------/
         try {
-            // const iframeContentHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-            // e.target.style.height = 'auto';
-            // console.log(iframeContentHeight, windowHeight)
+            e.target.style.height = 'auto';
             if (e.target.scrollHeight <= windowHeight) {
-
                 iframe.style.height = e.target.scrollHeight + 'px';
                 livePreview.style.height = e.target.scrollHeight + 'px'
                 e.target.style.height = e.target.scrollHeight + 'px'
                 setDraggingSeparate(e.target.scrollHeight + 'px')
             }
             else {
+
                 iframe.style.height = windowHeight + 'px';
                 livePreview.style.height = windowHeight + 'px'
                 e.target.style.height = windowHeight + 'px'
@@ -82,12 +80,11 @@ const TextArea = ({ textareaRef }) => {
 
         }
         catch {
-            iframe.style.height = windowHeight + 'px';
+            // iframe.style.height = windowHeight + 'px';
             livePreview.style.height = windowHeight + 'px'
             e.target.style.height = windowHeight + 'px'
             setDraggingSeparate(windowHeight + 'px')
         }
-
     }
 
     return (
@@ -118,15 +115,15 @@ const TextArea = ({ textareaRef }) => {
                         id='textForm'
                         className='input input-primary w-full font-mono'
                         name="postBody"
-                        onBlur={onchangeInput}
+                        onBlur={(e) => onchangeInput(e, post_id)}
                         onKeyUp={(e) => shortcutKeyboard(e)}
-                        onChange={onchangeInput}
-                        onInput={onchangeInput}
-                        onCut={heightAutoHandle}
-                        onPaste={heightAutoHandle}
-                        onDrop={heightAutoHandle}
-                        onKeyDown={heightAutoHandle}
-                        defaultValue={saveData}
+                        onChange={(e) => onchangeInput(e, post_id)}
+                        onInput={(e) => onchangeInput(e, post_id)}
+                        onCut={(e) => heightAutoHandle(e, post_id)}
+                        onPaste={(e) => heightAutoHandle(e, post_id)}
+                        onDrop={(e) => heightAutoHandle(e, post_id)}
+                        onKeyDown={(e) => heightAutoHandle(e, post_id)}
+                        defaultValue={editBody}
                     >
 
                     </textarea>
@@ -146,7 +143,7 @@ const TextArea = ({ textareaRef }) => {
                 <div className='divider sm:hidden p-0 m-0'>
                 </div>
                 <div
-                    id='livePreview'
+                    id={'livePreviewEdit' + post_id}
                     className={
                         (styles.liveView) +
                         ' overflow-x-hidden h-auto border  p-1 '
@@ -159,7 +156,7 @@ const TextArea = ({ textareaRef }) => {
                         src='/api/preview'
                         srcDoc={liveView}
                         className={styles.livePreviewScrollBarHide + ' w-full'}
-                        id='liveViewIframe' frameBorder="0"
+                        id={'liveViewIframe' + post_id} frameBorder="0"
                     ></iframe>
                 </div>
             </div>
@@ -167,4 +164,4 @@ const TextArea = ({ textareaRef }) => {
     );
 };
 
-export default TextArea;
+export default TextAreaEdit;

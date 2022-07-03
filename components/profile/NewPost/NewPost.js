@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import TextArea from '../../hooks/TextArea';
 import Image from 'next/image'
 import ImageUpload from './ImageUpload';
@@ -13,6 +13,7 @@ const NewPost = () => {
     const [quickVideoPost, setQuickVideoPost] = useState(false);
     const [quickTextPost, setQuickTextPost] = useState(true);
     const [quickImagePost, setQuickImagePost] = useState(false);
+    const textareaRef = useRef();
 
     function closeNewPost() {
         document.getElementById("newPostClose").style.width = "0";
@@ -92,6 +93,26 @@ const NewPost = () => {
             e.target.style.height = 200 + 'px'
         }
     }
+
+    let isCtrl = false;
+    useEffect(() => {
+        document.onkeyup = function (e) {
+            if (e.key == 'Control') {
+                e.preventDefault()
+                isCtrl = false;
+            }
+        }
+
+        document.onkeydown = async function (e) {
+            if (e.key == 'Control') isCtrl = true;
+            if (e.key == 's' && isCtrl == true) {
+                e.preventDefault()
+                const getPostBody = textareaRef.current.value;
+                window.localStorage.setItem('saveBody', JSON.stringify(getPostBody))
+                return false;
+            }
+        }
+    }, [])
     return (
         <div>
 
@@ -153,7 +174,7 @@ const NewPost = () => {
                                 maxLength='500'
                                 size='500'
                                 placeholder='Short description'
-                                className='input input-success w-full'
+                                className='input input-success form-control w-56 sm:w-80'
                                 onBlur={onchangeInput}
                                 onKeyUp={(e) => shortcutKeyboard(e)}
                                 onChange={onchangeInput}
@@ -182,15 +203,23 @@ const NewPost = () => {
                             placeholder='Category'
                             required
                         />
-                        <input
-                            type="text"
-                            name="tags"
-                            id=""
-                            className='input input-primary form-control w-56 sm:w-80'
-                            placeholder='Tags (separate with comma)'
-                            required
-                        />
-                        <TextArea quickPost={quickVideoPost} />
+                        <div>
+                            <input
+                                type="text"
+                                name="tags"
+                                id=""
+                                className='input input-primary form-control w-56 sm:w-80'
+                                placeholder='Tags (separate with comma)'
+                                required
+                            />
+                            {/* <p className='m-2 text-warning'>
+                                Note: If you offline or next time edit this post please
+                                <kbd className="kbd ml-1">ctrl</kbd>
+                                +
+                                <kbd className="kbd">s</kbd>
+                            </p> */}
+                        </div>
+                        <TextArea textareaRef={textareaRef} />
                         <input type="submit" value="Post" className='btn rounded-3xl btn-primary text-white w-fit' />
                     </form>
 
