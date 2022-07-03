@@ -14,6 +14,7 @@ const PostMap = ({ post, refetch }) => {
         router.prefetch(path)
         refetch()
     }
+    console.log(post_id)
 
 
     const [seeMorePostShow, setSeeMorePostShow] = useState(false)
@@ -170,7 +171,7 @@ const PostMap = ({ post, refetch }) => {
                                         id={'previewIframeHeight' + post_id}
                                         height='0'
                                         scrolling="no"
-                                        src="/api/preview"
+                                        src={"/api/preview/"+post_id}
                                         frameBorder="0"
                                         className={styles.iframeAutoHightTransition + 'text-white w-full'} >
                                     </iframe>

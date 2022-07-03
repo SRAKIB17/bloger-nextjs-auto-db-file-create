@@ -26,10 +26,9 @@ const ContextMenu = () => {
                 const pageY = e.clientY;
                 const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
                 const getContextMenu = document.getElementById('contextMenu');
-                getContextMenu.style.display = 'block'
-                getContextMenu.style.top = pageY + windowScroll + 'px';
+                getContextMenu.style.display = 'block';
+                getContextMenu.style.top = pageY + 'px';
                 getContextMenu.style.left = pageX + 'px';
-                console.log(e.target)
 
                 // const dataPost = e.target.hasAttribute('data-post');
                 // if (dataPost) {
@@ -54,6 +53,7 @@ const ContextMenu = () => {
         const getValue = []
         document.documentElement.ontouchmove = (e) => {
             const x = e.touches[0].clientX;
+            console.log(x)
             const y = e.touches[0].clientY;
             getValue.push(x)
             const getX = getValue[0] - getValue[getValue.length - 2]
@@ -130,17 +130,17 @@ const ContextMenu = () => {
 
             <div className='absolute hidden z-[100] ' id='contextMenu' >
                 <ul className="menu bg-base-300 p-2 rounded-box w-40">
-                    {
-                        // postShareId &&
-                        // <>
-                        //     <li className='hover-bordered'>
-                        //         <button>
-                        //             Shortener Url
-                        //         </button>
-                        //     </li>
+                    {/* {
+                        postShareId &&
+                        <>
+                            <li className='hover-bordered'>
+                                <button>
+                                    Shortener Url
+                                </button>
+                            </li>
 
-                        // </>
-                    }
+                        </>
+                    } */}
                     <li className='hover-bordered'>
                         <button onClick={() => navigate('/story')}>
                             Story
