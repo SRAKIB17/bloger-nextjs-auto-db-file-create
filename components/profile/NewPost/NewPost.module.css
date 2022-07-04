@@ -12,7 +12,7 @@
     /* text-align:center; */
   }
   
-  .NewPostNav a {
+  .NewPostNav .closebtn {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -22,7 +22,7 @@
   
   }
   
-  .NewPostNav a:hover{
+  .closebtn:hover{
     color: #a5a5a5;
   }
   

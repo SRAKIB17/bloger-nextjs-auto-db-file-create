@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MoreCommentReply from './MoreCommentReply';
 
 const CommentList = ({ comment: commentBody, replySetHandle }) => {
-    const { post_id, userID, comment, time,comment_id } = commentBody
+    const { post_id, userID, comment, time, comment_id } = commentBody
     const [moreComment, setMoreComment] = useState(true);
     const getMoreComment = [
 
@@ -69,12 +69,15 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     </div>
 
                 </div>
-                <div className='rounded-3xl shadow-inner bg-base-200 pt-2 px-3 pb-2 m-1 mr-2'>
+                <div className='rounded-lg rounded-bl-3xl shadow-inner bg-base-200 pt-2 px-3 pb-2 m-1 mr-2'>
                     {/* -----------------------=======================-for comment  -------------------------------*/}
                     <div className=' overflow-auto w-full'>
 
-                        <div className='w-fit'>
-                            <div className='break-words text-[15px]' dangerouslySetInnerHTML={{ __html: showFullComment }}></div>
+                        <div className='w-full'>
+                            {/* <div className='break-words text-[15px]' dangerouslySetInnerHTML={{ __html: showFullComment }}></div> */}
+                            <div className='break-words overflow-hidden text-sm'>
+                                {showFullComment}
+                            </div>
                             {
                                 comment?.length >= 100 && <button
                                     onClick={handleShowFullComment}
@@ -109,7 +112,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     <div>
                         < button
                             className='link link-hover link-primary text-xs'
-                            onClick={() => replySetHandle({name:name, comment_id:comment_id},post_id)}
+                            onClick={() => replySetHandle({ name: name, comment_id: comment_id }, post_id)}
                         >
                             Reply
                         </button>

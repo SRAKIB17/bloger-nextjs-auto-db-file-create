@@ -26,26 +26,29 @@ const MoreCommentReply = ({ replyComment }) => {
                     </div>
 
                 </div>
-                <div className='rounded-3xl shadow-inner bg-base-200 pt-2 px-3 pb-2 m-1 mr-2'>
+                <div className='rounded-lg rounded-bl-3xl shadow-inner bg-base-200 pt-2 px-3 pb-2 m-1 mr-2'>
                     {/* -----------------------=======================-for comment  -------------------------------*/}
                     <div className=' overflow-auto w-full'>
 
-                        <div className='w-fit p-1'>
-                            <div className=' text-[15px]' dangerouslySetInnerHTML={{ __html: showFullReply }}></div>
-                            {
-                                reply?.length >= 100 &&
-                                <button
-                                    onClick={handleShowFullReply}
-                                    className='text-xs link-hover link-primary'
-                                >
-                                    show
-                                    {
-                                        showFullReply?.length === 100 ? ' more' : ' less'
-                                    }
-                                </button>
-                            }
-                        </div>
+                        <div className='w-full p-1'>
+                            <div className='break-words overflow-hidden text-sm'>
+                                {showFullReply}
+                            </div>
+                            {/* <div className=' text-[15px]' dangerouslySetInnerHTML={{ __html: showFullReply }}></div> */}
 
+                        </div>
+                        {
+                            reply?.length >= 100 &&
+                            <button
+                                onClick={handleShowFullReply}
+                                className='text-xs link-hover link-primary'
+                            >
+                                show
+                                {
+                                    showFullReply?.length === 100 ? ' more' : ' less'
+                                }
+                            </button>
+                        }
                     </div>
                 </div>
             </div>

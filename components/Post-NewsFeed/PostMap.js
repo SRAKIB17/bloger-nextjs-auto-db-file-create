@@ -55,6 +55,8 @@ const PostMap = ({ post, refetch }) => {
             else {
                 doc.body.style.color = ''
             }
+            doc.body.style.textAlign = 'justify'
+
             // window.onload = function() {
             //     let frameElement = document.getElementById("myiFrame");
             //     let doc = frameElement.contentDocument;

@@ -108,6 +108,8 @@ const SupportInbox = () => {
     useEffect(() => {
         setMessst(message)
     }, [])
+
+
     const postHandle = async (event) => {
         event.preventDefault();
         handleChatBoxHeight()
@@ -146,22 +148,54 @@ const SupportInbox = () => {
         // refetch()
     }
     // console.log(data)
+
+    useEffect(() => {
+        // document.onclick = (e) => {
+        //     const getSupportInboxIframe = (document.getElementById("supportMessageBody").getElementsByTagName('iframe'))
+        //     for (const iframe of getSupportInboxIframe) {
+        //         const iframeG = document.getElementById(iframe.id);
+        //         iframeG.style.height = iframeG.contentWindow.document.documentElement.scrollHeight + 'px';
+        //         console.log( iframeG.contentWindow.document.documentElement.scrollHeight + 'px')
+        //     }
+        // }
+    }, [])
     return (
         <div>
 
-            <div id="SupportInbox" style={{ overflow: 'hidden', paddingTop: '0px' }} className={styles.NewPostNav + ' bg-base-100 '}>
-                <div className='max-w-xl mx-auto shadow-2xl p-4'>
-                    <div className='w-full bg-base-100 z-20 border-b-2 flex items-center' id='topSupportInboxDIV'>
-                        <h1 className=' relative text-2xl pb-1 left-[25px] ml-[25px]'>Support Inbox</h1>
-                        <a href="#" className={styles.closebtn} onClick={closeSupportInbox}>&times;</a>
+            <div
+                id="SupportInbox"
+                style={{ overflow: 'hidden', paddingTop: '0px' }}
+                className={styles.NewPostNav + ' bg-base-100 '}
+            >
+                <div
+                    className='max-w-xl mx-auto shadow-2xl p-4'
+                >
+                    <div
+                        className='w-full bg-base-100 z-20 border-b-2 flex items-center' id='topSupportInboxDIV'
+                    >
+                        <h1
+                            className=' relative text-2xl pb-1 left-[25px] ml-[25px]'
+                        >
+                            Support Inbox
+                        </h1>
+                        <a
+                            href="#"
+                            className={styles.closebtn}
+                            onClick={closeSupportInbox}
+                        >
+                            &times;
+                        </a>
                     </div>
 
 
-                    <div className={(inbox.inboxHideScrollBar) + ' p-4 overflow-auto overflow-x-hidden  h-full'} id='supportMessageBody'>
-                        <div  >
+                    <div
+                        className={(inbox.inboxHideScrollBar) + ' p-4 overflow-auto overflow-x-hidden  h-full'}
+                        id='supportMessageBody'
+                    >
+                        <div>
 
                             {
-                                messageSet?.map((messageBody, index) => <MessageBody key={index} messageBody={messageBody} />)
+                                messageSet?.map((messageBody, index) => <MessageBody key={messageBody?.support_id} messageBody={messageBody} />)
                             }
                         </div>
 

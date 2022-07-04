@@ -5,6 +5,8 @@ import LoginAutoShow from '../Login/LoginAutoShow';
 import { Category1, ChatForum, Info, Login, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
+import { useRouter } from 'next/router'
+import RegisterFormFixed from '../Login/LoginFormSIde';
 
 const SideLeftBar = () => {
     /** ------------------------------for dark mode state----------------------------- */
@@ -15,6 +17,11 @@ const SideLeftBar = () => {
      * see code 
      * -----------------------------------------------------------------------------------
     */
+    const router = useRouter()
+    const navigate = (url) => {
+        router.push(url);
+        router.prefetch(url);
+    }
     const mouseShowOverHandle = (e) => {
         const sideLeftBar = document.getElementById('sideLeftBar');
         if (window.innerWidth >= 1024) {
@@ -121,7 +128,12 @@ const SideLeftBar = () => {
 
     //--------------------open support inbox modal-------------------
     const OpenSupportInbox = () => {
-        document.getElementById("SupportInbox").style.width = "100%";
+        try {
+            document.getElementById("SupportInbox").style.width = "100%";
+        }
+        catch {
+
+        }
     }
     //--------------------open help menu  modal-------------------
     const helpHandler = () => {
@@ -130,7 +142,12 @@ const SideLeftBar = () => {
 
     //---------------------------for open new post ------------------------
     const OpenNewPost = () => {
-        document.getElementById("newPostClose").style.width = "100%";
+        try {
+            document.getElementById("newPostClose").style.width = "100%";
+        }
+        catch {
+
+        }
     }
     //---------------------------for open new post ------------------------
     const openCategoryModal = () => {
@@ -139,8 +156,20 @@ const SideLeftBar = () => {
         document.getElementById("OpenCategoryModal").style.borderRightWidth = "1px";
 
     }
+
+    //-------------------------------------------for open setting------------------------------
     const openSettingsModal = () => {
         document.getElementById("SettingsMenu").style.width = "100%";
+    }
+
+    //----------------------------------- for open Login form -------------------------------
+    const openLoginForm = () => {
+        try {
+            document.getElementById("loginFixedForm").style.width = "100%";
+        }
+        catch {
+
+        }
     }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
@@ -152,21 +181,32 @@ const SideLeftBar = () => {
                 {
                     true &&
                     <>
-                        <button onClick={OpenNewPost} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                        <button
+                            onClick={OpenNewPost}
+                            className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                        >
                             <Writing size='30' />
                             <p className='hidden' id='sideLeftBarTitle'>
                                 New Post
                             </p>
                         </button>
+
                         {/* for support inbox */}
-                        <button onClick={OpenSupportInbox} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                        <button
+                            onClick={OpenSupportInbox}
+                            className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                        >
                             <SupportInbox size='30' />
                             <p className='hidden' id='sideLeftBarTitle'>
                                 Support Inbox
                             </p>
                         </button>
+
                         {/* for forum */}
-                        <button onClick={OpenSupportInbox} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                        <button
+                            onClick={() => navigate('/forum')}
+                            className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                        >
                             <ChatForum size='30' />
                             <p className='hidden' id='sideLeftBarTitle'>
                                 Forum
@@ -178,7 +218,10 @@ const SideLeftBar = () => {
                 {
                     false ||
                     <>
-                        <button onClick={OpenSupportInbox} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                        <button
+                            onClick={openLoginForm}
+                            className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                        >
                             <Login size='30' />
                             <p className='hidden' id='sideLeftBarTitle'>
                                 Login
@@ -188,7 +231,10 @@ const SideLeftBar = () => {
                 }
 
                 {/* for category */}
-                <button onClick={openCategoryModal} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                <button
+                    onClick={openCategoryModal}
+                    className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                >
                     <Category1 size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         Category
@@ -196,14 +242,21 @@ const SideLeftBar = () => {
                 </button>
 
                 {/* for help menu*/}
-                <button onClick={helpHandler} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                <button
+                    onClick={helpHandler}
+                    className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                >
                     <Info size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         Help
                     </p>
                 </button>
+
                 {/* for dark mode  */}
-                <button onClick={darkMode} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                <button
+                    onClick={darkMode}
+                    className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                >
                     {
                         dark ?
                             <Sun size='32' /> :
@@ -217,7 +270,10 @@ const SideLeftBar = () => {
                 </button>
 
                 {/* for setting */}
-                <button onClick={openSettingsModal} className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'>
+                <button
+                    onClick={openSettingsModal}
+                    className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                >
                     <Setting size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         Setting
@@ -233,6 +289,9 @@ const SideLeftBar = () => {
             <Category />
             <Settings />
             <LoginAutoShow />
+            <RegisterFormFixed />
+
+
         </div>
     );
 };

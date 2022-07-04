@@ -45,9 +45,9 @@ const Index = () => {
 
                     {
                         isLoading ||
-                        <div className=" p-4 text-center">
+                        <div className=" p-4 mt-2 text-center w-full bg-base-100">
                             <button
-                                className='btn btn-primary btn-xs w-32 btn-outline mb-4'
+                                className='btn btn-primary lg:btn-sm btn-xs w-32 btn-outline mb-4'
                                 onClick={() => setShowPosts(shows + 10)}
                             >
                                 Next
