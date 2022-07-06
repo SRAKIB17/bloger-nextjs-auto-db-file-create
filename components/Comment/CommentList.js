@@ -60,7 +60,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 {/* ------------------------------------------for profile picture  ----------------------------*/}
                 <div className='mt-2 flex items-center gap-1'>
                     <div className="avatar ">
-                        <div className="w-8 rounded-full">
+                        <div className="w-6 rounded-full">
                             <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
                         </div>
                     </div>
@@ -123,7 +123,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 {
 
                     showReply &&
-                    <div className='ml-4 border-l-4 rounded-bl-3xl mb-3 pl-1 pt-1'>
+                    <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
                         {
                             getMoreComment?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} />)
                         }

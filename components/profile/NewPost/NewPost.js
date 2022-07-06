@@ -152,7 +152,7 @@ const NewPost = () => {
                         </p>
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
-                        <select name="postBy" id="" className="select select-primary w-full max-w-xs">
+                        <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs">
                             <option disabled selected>Post Roll</option>
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
@@ -160,7 +160,7 @@ const NewPost = () => {
                         <input
                             type="text"
                             name="title"
-                            id=""
+                            id="PostTitle"
                             className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Title'
                             required
@@ -171,6 +171,7 @@ const NewPost = () => {
                             <p className='text-[10px] pt-2 p-1 text-primary'>Max Length 500:</p>
                             <textarea ref={ShortDescriptionRef}
                                 name="short_description"
+                                id="short_description"
                                 maxLength='500'
                                 size='500'
                                 placeholder='Short description'
@@ -198,7 +199,7 @@ const NewPost = () => {
                         <input
                             type="text"
                             name="category"
-                            id=""
+                            id="category"
                             className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Category'
                             required
@@ -207,7 +208,7 @@ const NewPost = () => {
                             <input
                                 type="text"
                                 name="tags"
-                                id=""
+                                id="tags"
                                 className='input input-primary form-control w-56 sm:w-80'
                                 placeholder='Tags (separate with comma)'
                                 required

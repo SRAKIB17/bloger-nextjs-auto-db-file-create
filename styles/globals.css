@@ -102,20 +102,14 @@ a {
   display: none;
 
 }
-body::-webkit-scrollbar{
+
+body::-webkit-scrollbar {
   display: none;
 }
 
 
-#uploaderFile {
-  border: 2px dashed #ccc;
-  border-radius: 20px;
-  max-width: 320px;
-  font-family: sans-serif;
-  padding: 20px;
-  margin: 10px 0;
-}
-#uploaderManually {
+#uploaderFile,
+#uploaderCoverProfileFile {
   border: 2px dashed #ccc;
   border-radius: 20px;
   max-width: 320px;
@@ -124,6 +118,17 @@ body::-webkit-scrollbar{
   margin: 10px 0;
 }
 
-#uploaderFile.highlight {
+#uploaderManually,
+#uploaderManuallyProfileCover {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  max-width: 320px;
+  font-family: sans-serif;
+  padding: 20px;
+  margin: 10px 0;
+}
+
+#uploaderFile.highlight,
+#uploaderCoverProfileFile.highlight {
   border-color: purple;
 }

@@ -17,7 +17,7 @@ const MoreCommentReply = ({ replyComment }) => {
             <div>
                 <div className='pt-2 flex items-center border-t gap-1'>
                     <div className="avatar ">
-                        <div className="w-8 rounded-full">
+                        <div className="w-6 rounded-full">
                             <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
                         </div>
                     </div>

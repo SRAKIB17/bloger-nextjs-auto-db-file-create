@@ -169,7 +169,7 @@ const Comment_textarea = ({ post_id }) => {
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
             <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto hideScrollBar'}>
-                <div className='ml-2 p-1 overflow-auto border-l-4 rounded-bl-3xl'>
+                <div className='ml-2 p-1 overflow-auto border-l-[3px] rounded-bl-3xl'>
                     {
                         commentBody?.map(comment => <CommentList key={comment._id} replySetHandle={replySetHandle} comment={comment} />)
                     }

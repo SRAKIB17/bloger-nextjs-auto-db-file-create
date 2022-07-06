@@ -7,6 +7,7 @@ export { default as BubbleCommentChat } from './icon/Comment/bubbleCommentChat'
 export { default as Comment } from './icon/Comment/comment'
 
 export { default as ChatForum } from './icon/ChatForum/ChatForum'
+export { default as Camera } from './icon/Camera/Camera'
 
 export { default as Category1 } from './icon/Category/Category1'
 export { default as Delete } from './icon/Delete/Delete'
@@ -76,6 +77,9 @@ export { default as MenuBarLeft } from './icon/Menu/menu_bar_left'
 export { default as MenuBarRight } from './icon/Menu/menu_bar_right'
 export { default as MenuBarCircle } from './icon/Menu/menu_bar_circle'
 export { default as MenuBarSquare } from './icon/Menu/menu_bar_square'
+
+export { default as MessageDotDotDot } from './icon/Message/MessageDotDotDot'
+export { default as Message} from './icon/Message/Message'
 
 // for music 
 export { default as MusicBell } from './icon/Music/musicBell'

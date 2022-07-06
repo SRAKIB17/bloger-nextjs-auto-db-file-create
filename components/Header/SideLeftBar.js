@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Category from '../Category/Category';
 import Help from '../Help/Help';
 import LoginAutoShow from '../Login/LoginAutoShow';
-import { Category1, ChatForum, Info, Login, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import { Category1, ChatForum, Info, Login, MessageDotDotDot, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 import { useRouter } from 'next/router'
@@ -190,7 +190,16 @@ const SideLeftBar = () => {
                                 New Post
                             </p>
                         </button>
-
+                        {/* for  inbox */}
+                        {/* <button
+                            onClick={OpenSupportInbox}
+                            className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                        >
+                            <MessageDotDotDot size='30' />
+                            <p className='hidden' id='sideLeftBarTitle'>
+                                Inbox
+                            </p>
+                        </button> */}
                         {/* for support inbox */}
                         <button
                             onClick={OpenSupportInbox}
@@ -201,6 +210,8 @@ const SideLeftBar = () => {
                                 Support Inbox
                             </p>
                         </button>
+
+
 
                         {/* for forum */}
                         <button

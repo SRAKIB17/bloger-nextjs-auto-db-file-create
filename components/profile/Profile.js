@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 
 import Post from '../Post-NewsFeed/Post';
@@ -5,6 +6,8 @@ import ProfileEdit from './ProfileEdit/ProfileEdit';
 import About from './About';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import UpdateProfilePicture from './UpdateProfilePicture';
+import { Camera } from '../ReactRSIcon';
 
 const Profile = () => {
 
@@ -52,20 +55,61 @@ const Profile = () => {
 
     const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
 
+    const [uploadMethod, setUploadMethod] = useState(null)
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <div id='stickyTop' className='bg-base-100 rounded-lg m-2 pb-4 md:pb-6'>
                 <div className=' rounded-lg relative bg-base-100'>
-                    <div className=''>
-                        <img src="https://images.unsplash.com/photo-1655465184678-548fb85fa74a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80" alt="" className='h-[200px] w-full sm:h-[300px] rounded-t-lg' />
-                    </div>
-                    <div className='absolute bottom-[-48px] sm:bottom-[-52px] left-[50%] ml-[-55px] md:left-[100px] md:bottom-[-120px]'>
-                        <div className="avatar online ">
-                            <div className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
-                                <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                    {/* ------------------------------for cover photo ------------------------------------ */}
+                    <label
+                        htmlFor="openModalUploadProfilePicture"
+                        title='Upload cover photo'
+                        onClick={() => setUploadMethod('cover')}
+                    >
+                        <div
+                            className='cursor-pointer relative'>
+                            <div
+                                className='bg-base-300 p-1 absolute top-2 left-4 rounded-full'
+                            >
+                                <Camera />
                             </div>
+                            <img
+                                src="https://images.unsplash.com/photo-1655465184678-548fb85fa74a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"
+                                alt=""
+                                className='h-[200px] w-full sm:h-[300px] rounded-t-lg'
+                            />
                         </div>
+                    </label>
+
+                    {/* ------------------------------for profile photo ------------------------------------ */}
+
+                    <div
+                        className='cursor-pointer absolute bottom-[-48px] sm:bottom-[-52px] left-[50%] ml-[-55px] md:left-[100px] md:bottom-[-120px]'
+                    >   <label
+                        htmlFor="openModalUploadProfilePicture"
+                        title='Upload cover photo'
+                        onClick={() => setUploadMethod('profile')}
+                    >
+                            <div
+                                className="avatar cursor-pointer"
+                            >
+                                <div
+                                    className='bg-base-300 p-1 absolute top-2 right-4 rounded-full'
+                                >
+                                    <Camera />
+                                </div>
+                                <div
+                                    className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
+                                >
+                                    <img
+                                        src="https://api.lorem.space/image/face?hash=3174"
+                                        alt=''
+                                    />
+                                </div>
+                            </div>
+                        </label>
                     </div>
+                    {/* ---------------------------------------------------------------------------------------- */}
                 </div>
                 {/* for profile info */}
                 <div className='relative md:mt-[10px] md:left-[250px] md:border-b-2 md:mr-[260px] md:pb-[10px]'>
@@ -119,6 +163,10 @@ const Profile = () => {
                 </div>
             </div>
 
+            {
+                uploadMethod && <UpdateProfilePicture props={{ setUploadMethod, uploadMethod }} />
+
+            }
         </div>
     );
 };
