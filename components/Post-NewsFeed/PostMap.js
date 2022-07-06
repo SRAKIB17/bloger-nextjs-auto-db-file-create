@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
@@ -41,70 +42,86 @@ const PostMap = ({ post, refetch }) => {
         const darkMode = window.localStorage.getItem('dark')
 
     }, [])
-    const heightHandle = (id) => {
+    const heightHandle = async (id) => {
         try {
             const iframe = document.getElementById('previewIframeHeight' + id);
             // console.log(iframe.contentDocument.documentElement.scrollHeight)
             const darkMode = window.localStorage.getItem('dark')
 
             let link = document.createElement("link");
-            link.href = "/_next/static/css/73d1bb86bcd5bddc.css";      /**** your CSS file ****/
+            link.href = "/api/styleIframe.css";      /**** your CSS file ****/
+            // link.href = "/_next/static/css/73d1bb86bcd5bddc.css";      /**** your CSS file ****/
             link.rel = "stylesheet";
             link.type = "text/css";
-            
+
             /**** 0 is an index of your iframe ****/
-            let doc = iframe.contentDocument;
+            let doc = await iframe.contentDocument;
             if (darkMode) {
                 doc.body.style.color = '#A9C5EF'
-
             }
             else {
                 doc.body.style.color = ''
             }
-            
-            iframe.contentDocument.head.append(link);
 
-            // window.onload = function() {
-            //     let frameElement = document.getElementById("myiFrame");
-            //     let doc = frameElement.contentDocument;
-            //     doc.body.innerHTML = doc.body.innerHTML + '<style>.bar {width:45%;}</style>';
-            //   }
-            // window.onload = function() {
-            //     let link = document.createElement("link");
-            //     link.href = "style.css";      /**** your CSS file ****/ 
-            //     link.rel = "stylesheet"; 
-            //     link.type = "text/css"; 
-            //     frames[0].document.head.appendChild(link); /**** 0 is an index of your iframe ****/ 
-            //   }
             if (fullIframeShow) {
                 iframe.style.height = 0 + 'px';
                 setFullIframeShow(false)
             }
             else {
-                iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                let count = 0
+                const showIframe = setInterval(() => {
+                    iframe.contentDocument.head.append(link);
+                    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                    if (count === 3) {
+                        clearInterval(showIframe)
+                    }
+                    console.log(count)
+
+                    count++
+                }, 100);
                 setFullIframeShow(true)
             }
+
         }
         catch {
 
         }
 
     }
+    const onloadIframeHeightStylesHandle = (e) => {
+        let link = document.createElement("link");
+        link.href = "/api/styleIframe.css";
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        e.target.contentDocument.head.append(link);
+
+        let darkStyle = document.createElement("link");
+        const darkMode = window.localStorage.getItem('dark')
+        if (darkMode) {
+            darkStyle.href = "/api/styleIframe.css?dark=true";
+        }
+        else {
+            darkStyle.href = "/api/styleIframe.css?dark=false";
+        }
+        darkStyle.rel = "stylesheet";
+        darkStyle.type = "text/css";
+        e.target.contentDocument.head.append(darkStyle);
+    }
     return (
-        <div data-post={post_id}>
-            <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" data-post={post_id}>
+        <div>
+            <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none">
                 {/* -------------------------------------- for user configure --------------------------------------------- */}
                 <div className='flex justify-between  border-b-[1px] m-3 items-center'>
-                    <div className='flex gap-2 justify-start items-center ' data-post={post_id}>
-                        <div className='avatar p-2 mb-1' data-post={post_id}>
+                    <div className='flex gap-2 justify-start items-center '>
+                        <div className='avatar p-2 mb-1'>
                             {/* --------------------------------------for profile avatar--------------------------------------- */}
-                            <div className="w-10 h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-post={post_id}>
-                                <img src="https://api.lorem.space/image/face?hash=3174" alt='' data-post={post_id} />
+                            <div className="w-10 h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
+                                <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
                             </div>
                         </div>
-                        <div data-post={post_id}>
-                            <h2 className="card-title" data-post={post_id}>Shoes!</h2>
-                            <h1 className='text-xs' data-post={post_id}>
+                        <div>
+                            <h2 className="card-title">Shoes!</h2>
+                            <h1 className='text-xs'>
                                 {
                                     time
                                 }
@@ -124,13 +141,13 @@ const PostMap = ({ post, refetch }) => {
                     }
                 </div>
                 {/* --------------------------------------------------------------------------------------------------- */}
-                <div className='card-body pb-2 pt-3 p-5' data-post={post_id}>
-                    <h2 className="card-title" data-post={post_id}>{post_title}</h2>
+                <div className='card-body pb-2 pt-3 p-5'>
+                    <h2 className="card-title">{post_title}</h2>
 
                     {/* ---------------------------------------for video body--------------------------------- */}
                     {
                         postRefMode === 'video' && <>
-                            <div className='text-justify mb-2' data-post={post_id}>
+                            <div className='text-justify mb-2'>
                                 {
                                     shortDescriptionVideo
                                 }
@@ -140,8 +157,8 @@ const PostMap = ({ post, refetch }) => {
                                 {/* -------------see more short description----------- */}
                                 {
                                     short_description?.length >= 100 &&
-                                    <div className="card-actions justify-end" data-post={post_id}>
-                                        <button className="link-primary font-semibold link-hover" onClick={moreShortDescriptionVideoHandle} data-post={post_id}>
+                                    <div className="card-actions justify-end">
+                                        <button className="link-primary font-semibold link-hover" onClick={moreShortDescriptionVideoHandle}>
                                             See {seeMorePostShow ? 'Less' : 'More'}
                                         </button>
                                     </div>
@@ -149,8 +166,8 @@ const PostMap = ({ post, refetch }) => {
                             </div>
 
                             {/*----------------------------- for video code --------------------- */}
-                            <div className='mx-auto' id='videoPost' data-post={post_id} >
-                                <div className='w-full' dangerouslySetInnerHTML={{ __html: postBody }} data-post={post_id}>
+                            <div className='mx-auto' id='videoPost' >
+                                <div className='w-full' dangerouslySetInnerHTML={{ __html: postBody }}>
 
                                 </div>
                             </div>
@@ -163,7 +180,7 @@ const PostMap = ({ post, refetch }) => {
                         postRefMode === 'text' &&
                         <>
 
-                            <div className='mx-auto' id='videoPost' data-post={post_id}>
+                            <div className='mx-auto' id='videoPost'>
 
 
                                 {/* ---------post body ----------------- */}
@@ -171,10 +188,11 @@ const PostMap = ({ post, refetch }) => {
 
                                     <div
                                         dangerouslySetInnerHTML={{ __html: short_description }}
-                                        data-post={post_id}
+                                    
                                     >
                                     </div>
                                     <iframe
+                                        onLoad={onloadIframeHeightStylesHandle}
                                         src='/api/preview'
                                         srcDoc={postBody}
                                         id={'previewIframeHeight' + post_id}
@@ -195,8 +213,8 @@ const PostMap = ({ post, refetch }) => {
 
                                 {/* ------------see more -------------------- */}
 
-                                <div className="card-actions justify-end" data-post={post_id}>
-                                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => heightHandle(post_id)} data-post={post_id}>
+                                <div className="card-actions justify-end">
+                                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => heightHandle(post_id)}>
                                         See {fullIframeShow ? 'Less' : 'More'}
                                     </button>
                                 </div>
@@ -205,9 +223,9 @@ const PostMap = ({ post, refetch }) => {
                                 {/* ----thumbnail------------ */}
                                 {
                                     thumbnail &&
-                                    <div className='mt-4 mb-4' data-post={post_id}>
-                                        <figure data-post={post_id}>
-                                            <img src={thumbnail} alt="" className='w-full h-[255px] lg:h-[270px] rounded-md' data-post={post_id} />
+                                    <div className='mt-4 mb-4'>
+                                        <figure>
+                                            <img src={thumbnail} alt="" className='w-full h-[255px] lg:h-[270px] rounded-md' />
                                         </figure>
                                     </div>
                                 }

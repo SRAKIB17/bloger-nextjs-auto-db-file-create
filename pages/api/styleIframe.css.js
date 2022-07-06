@@ -4,45 +4,49 @@ export default async function handler(req, res) {
   const { postBody } = req.body
 
   try {
-    const aa = `
-    
-    
-    @tailwind base;
+    const defaultStyle = `
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Open+Sans:wght@300;500&family=Orbitron&family=Poppins:wght@500&display=swap');
-/* font-family: 'Coming Soon', cursive;
-font-family: 'Fira Code', monospace;
-font-family: 'Hind Siliguri', sans-serif;
-font-family: 'Lateef', cursive;
-font-family: 'Open Sans', sans-serif;
-font-family: 'Orbitron', sans-serif;
-font-family: 'Poppins', sans-serif; */
-
 html,
 body {
-
-  background-color: red;
+  font-family: 'Poppins', sans-serif;
+  text-align: justify;
+  background-color: transparent;
 }
-
-
-  
+body::-webkit-scrollbar {
+  display: none;
+}
+ `
+    const darkStyle = `
+html,
+body {
+  color: #A9C5EF !important;
+}
     `
-    // const postDb = client.db('SocialBlog').collection('Posts');
-    // const postCollections = await postDb.find({}).toArray();
-    // const postBody = await postCollections.find(post => post?.post_id === post_id);
-    // console.log(postBody)
+    const whiteStyle = `
+html,
+body {
+  color: black !important;
+}
+    `
+    const { dark } = req.query;
 
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
 
-    res.write(aa);
-    // const aa = `
-    // <iframe srcDoc="slfslfsdflsdfldsfldfldsfsd" frameborder="0"></iframe>
 
-    // `
-    // res.write(aa);
+    res.writeHead(200, { 'Content-Type': 'text/css' });
+
+    if (dark === 'true') {
+      res.write(darkStyle);
+    }
+    else if (dark === 'false') {
+      res.write(whiteStyle);
+    }
+    else {
+      res.write(defaultStyle);
+    }
+
     res.end();
   }
   finally {

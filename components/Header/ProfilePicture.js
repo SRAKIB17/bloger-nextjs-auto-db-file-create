@@ -34,7 +34,6 @@ const ProfilePicture = () => {
             <div className='border-double onClickProfileMenu right-0 bg-base-100 mt-[70px] rounded-b-lg shadow-2xl' id='profileLogOut'>
                 <div className='p-3'>
                     <ul className="menu bg-base-100 w-56 rounded-box">
-                        <li className="hover-bordered"><a>Item 1</a></li>
                         <li className="hover-bordered"><button onClick={()=>navigate('/profile')}>Profile</button></li>
                         <li className="hover-bordered"><button onClick={()=>navigate('/profile')}>Log out</button></li>
                     </ul>

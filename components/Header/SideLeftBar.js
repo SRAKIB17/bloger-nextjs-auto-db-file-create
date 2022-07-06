@@ -76,29 +76,6 @@ const SideLeftBar = () => {
     //**-------------------for dark mode state declare and state change ------------------------------ */
     const darkMode = () => {
         const darkMode = window.localStorage.getItem('dark')
-        // const iframe = document.getElementsByTagName('iframe');
-
-        // if (iframe.length > 0) {
-        //     for (const i of iframe) {
-        //         let doc = i.contentDocument;
-        //         if (darkMode) {
-        //            const body = doc?.body?.style.color;
-        //            body = 'white'
-        //         }
-        //         else {
-        //             const body = doc?.body?.style.color;
-        //             body = ''
-        //         }
-        //     }
-        // }
-
-
-
-        // console.log(iframe.contentDocument.documentElement.scrollHeight)
-
-
-
-
         if (darkMode) {
             setDark(false)
             document.body.removeAttribute('data-theme');
@@ -107,8 +84,9 @@ const SideLeftBar = () => {
         else {
             setDark(true)
             document.body.setAttribute('data-theme', "night");
-            window.localStorage.setItem('dark', true)
+            window.localStorage.setItem('dark', true);
         }
+        location.reload()
     }
 
 
