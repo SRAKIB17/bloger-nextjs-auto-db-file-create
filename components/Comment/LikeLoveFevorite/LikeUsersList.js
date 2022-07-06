@@ -10,7 +10,6 @@ const LikeUsersList = ({ post_id }) => {
         likeUnlike: [
             {
                 userID: 53453555,
-                rating: 'like'
             },
             {
                 userID: 53453555,
@@ -22,11 +21,7 @@ const LikeUsersList = ({ post_id }) => {
             },
             {
                 userID: 53453555,
-                rating: 'like'
-            },
-            {
-                userID: 53453555,
-                rating: 'like'
+                rating: 'unlike'
             },
             {
                 userID: 53453555,
@@ -42,31 +37,11 @@ const LikeUsersList = ({ post_id }) => {
             },
             {
                 userID: 53453555,
-                rating: 'unlike'
+                rating: 'like'
             },
             {
                 userID: 53453555,
-                rating: 'unlike'
-            },
-            {
-                userID: 53453555,
-                rating: 'unlike'
-            },
-            {
-                userID: 53453555,
-                rating: 'unlike'
-            },
-            {
-                userID: 53453555,
-                rating: 'unlike'
-            },
-            {
-                userID: 53453555,
-                rating: 'unlike'
-            },
-            {
-                userID: 53453555,
-                rating: 'unlike'
+                rating: 'like'
             },
             {
                 userID: 53453555,

@@ -18,21 +18,46 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
     const [likePost, setLikePost] = useState(false);
     const [unLikePost, setUnLikePost] = useState(false);
     const [lovePost, setLovePost] = useState(false);
+
+    const likeLovePostObject = {
+        post_id: post_id,
+        likeUnlike:
+        {
+            userID: 53453555,
+            rating: 'like'
+        }
+    }
     const onlyLikePostHandle = (mode) => {
+        let rating;
         switch (mode) {
             case 'like':
-                setLikePost(true)
+                setLovePost(false)
+                setUnLikePost(false)
+                rating = likePost ? '' : 'like'
+                setLikePost(!likePost)
                 break;
             case 'unlike':
-                setUnLikePost(true)
+                setLovePost(false)
+                setLikePost(false)
+                rating = unLikePost ? '' : 'unlike'
+                setUnLikePost(!unLikePost)
                 break;
             case 'love':
-                setLovePost(true)
+                setUnLikePost(false)
+                setLikePost(false)
+                rating = lovePost ? '' : 'love'
+                setLovePost(!lovePost)
                 break;
 
             default:
                 break;
         }
+        const ratingPostId = {
+            rating: rating,
+            post_id: post_id,
+            userID: '53454'
+        }
+        console.log(ratingPostId)
     }
     // useEffect(() => {
     //     setLikePost(true)
@@ -112,7 +137,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                 <LikeUserList post_id={post_id} />
                 {
                     false ||
-                    <GuestCommentLikeLogin/>
+                    <GuestCommentLikeLogin />
                 }
             </div>
 
@@ -164,7 +189,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
             {
                 showShareOption &&
                 <div className={styles.shareOption}>
-                    <ShareOption post_id={post_id}/>
+                    <ShareOption post_id={post_id} />
                 </div>
             }
         </div >
