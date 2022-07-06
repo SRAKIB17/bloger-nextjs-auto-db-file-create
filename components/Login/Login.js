@@ -17,10 +17,10 @@ const Login = () => {
                 <div className="w-full max-w-[400px] mx-auto lg:max-w-xl">
                     <div className="p-8 flex gap-2">
                         <div>
-                            <input type="text" placeholder="email" className="input input-bordered input-primary " />
+                            <input type="text" placeholder="email" id='email' className="input input-bordered input-primary " />
                         </div>
                         <div>
-                            <input type="text" placeholder="password" className="input input-bordered input-primary " />
+                            <input type="text" placeholder="password" id='password' className="input input-bordered input-primary " />
 
                         </div>
                         <div className="flex flex-col">

@@ -92,9 +92,10 @@ const Profile = () => {
                     >
                             <div
                                 className="avatar cursor-pointer"
+                                title='Upload Profile picture'
                             >
                                 <div
-                                    className='bg-base-300 p-1 absolute top-2 right-4 rounded-full'
+                                    className='bg-base-300 p-1 absolute right-0 top-2 md:right-4 rounded-full'
                                 >
                                     <Camera />
                                 </div>

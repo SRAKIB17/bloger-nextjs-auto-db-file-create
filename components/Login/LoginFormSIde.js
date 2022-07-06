@@ -26,6 +26,7 @@ const RegisterFormFixed = () => {
                                     <input
                                         type="text"
                                         placeholder="Name"
+                                        id='name'
                                         className="input rounded-3xl input-bordered input-primary w-full"
                                     />
                                 </div>
@@ -33,12 +34,14 @@ const RegisterFormFixed = () => {
                                     <input
                                         type="text"
                                         placeholder="email"
+                                        id='email'
                                         className="input rounded-3xl input-bordered input-primary w-full"
                                     />
                                 </div>
                                 <div>
                                     <input
                                         type="password"
+                                        id='password'
                                         placeholder="password"
                                         className="input rounded-3xl input-bordered input-primary w-full"
                                     />

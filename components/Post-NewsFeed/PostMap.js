@@ -56,6 +56,7 @@ const PostMap = ({ post, refetch }) => {
                 doc.body.style.color = ''
             }
             doc.body.style.textAlign = 'justify'
+            doc.body.style.fontSize = '19px'
 
             // window.onload = function() {
             //     let frameElement = document.getElementById("myiFrame");
@@ -85,7 +86,7 @@ const PostMap = ({ post, refetch }) => {
     }
     return (
         <div data-post={post_id}>
-            <div className="card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" data-post={post_id}>
+            <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" data-post={post_id}>
                 {/* -------------------------------------- for user configure --------------------------------------------- */}
                 <div className='flex justify-between  border-b-[1px] m-3 items-center'>
                     <div className='flex gap-2 justify-start items-center ' data-post={post_id}>

@@ -6,8 +6,6 @@ import styles from '../profile/NewPost/NewPost.module.css'
 import { SendShare } from '../ReactRSIcon';
 import MessageBody from './MessageBody';
 import inbox from './SupportInbox.module.css'
-import bgLogin from '../../public/loginBg.jpg'
-
 
 const SupportInbox = () => {
 
@@ -163,17 +161,17 @@ const SupportInbox = () => {
     }, [])
     return (
         <div>
-            <div
-                style={{ backgroundImage: `url(${bgLogin?.src})`, backgroundSize: 'cover', overflow: 'hidden', paddingTop: '0px' }}
-                id="SupportInbox"
 
+            <div
+                id="SupportInbox"
+                style={{ overflow: 'hidden', paddingTop: '0px' }}
                 className={styles.NewPostNav + ' bg-base-100 '}
             >
                 <div
                     className='max-w-xl mx-auto shadow-2xl p-4'
                 >
                     <div
-                        className='w-full text-white z-20 border-b-2 flex items-center' id='topSupportInboxDIV'
+                        className='w-full bg-base-100 z-20 border-b-2 flex items-center' id='topSupportInboxDIV'
                     >
                         <h1
                             className=' relative text-2xl pb-1 left-[25px] ml-[25px]'

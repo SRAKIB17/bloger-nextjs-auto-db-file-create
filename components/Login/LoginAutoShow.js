@@ -30,16 +30,20 @@ const LoginAutoShow = () => {
                     </div>
                     <div className="p-4 border-dashed border-4 rounded-md flex flex-col gap-2">
                         <div>
-                            <input type="text" placeholder="email" className="input input-xs input-bordered input-primary " />
+                            <input type="text" id='autoShowLoginEmail' placeholder="email" className="input input-xs input-bordered input-primary " />
                         </div>
                         <div>
-                            <input type="text" placeholder="password" className="input-xs input input-bordered input-primary " />
+                            <input type="text" id='autoShowLoginPassword' placeholder="password" className="input-xs input input-bordered input-primary " />
 
                         </div>
                         <div className="flex flex-col">
                             <button className="btn btn-primary btn-xs">Login</button>
-
                         </div>
+                        <label className="label">
+                            <button className=" label-text-alt link-hover text-xs">
+                                Create Account
+                            </button>
+                        </label>
                     </div>
 
                 </div>
