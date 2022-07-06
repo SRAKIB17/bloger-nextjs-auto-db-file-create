@@ -47,6 +47,12 @@ const PostMap = ({ post, refetch }) => {
             // console.log(iframe.contentDocument.documentElement.scrollHeight)
             const darkMode = window.localStorage.getItem('dark')
 
+            let link = document.createElement("link");
+            link.href = "/_next/static/css/73d1bb86bcd5bddc.css";      /**** your CSS file ****/
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            
+            /**** 0 is an index of your iframe ****/
             let doc = iframe.contentDocument;
             if (darkMode) {
                 doc.body.style.color = '#A9C5EF'
@@ -55,8 +61,8 @@ const PostMap = ({ post, refetch }) => {
             else {
                 doc.body.style.color = ''
             }
-            doc.body.style.textAlign = 'justify'
-            doc.body.style.fontSize = '19px'
+            
+            iframe.contentDocument.head.append(link);
 
             // window.onload = function() {
             //     let frameElement = document.getElementById("myiFrame");
