@@ -5,34 +5,46 @@ export default async function handler(req, res) {
 
   try {
     const defaultStyle = `
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Open+Sans:wght@300;500&family=Orbitron&family=Poppins:wght@500&display=swap');
-html,
-body {
-  font-family: 'Poppins', sans-serif;
-  text-align: justify;
-  background-color: transparent;
-}
-body::-webkit-scrollbar {
-  display: none;
-}
- `
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+      @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Open+Sans:wght@300;500&family=Orbitron&family=Poppins:wght@500&display=swap');
+      html,
+      body {
+        font-family: 'Poppins', sans-serif;
+        text-align: justify;
+        background-color: transparent;
+      }
+      body::-webkit-scrollbar {
+        display: none;
+      }
+    `
     const darkStyle = `
-html,
-body {
-  color: #A9C5EF !important;
-}
+    html,
+    body {
+      color: #A9C5EF !important;
+    }
     `
     const whiteStyle = `
-html,
-body {
-  color: black !important;
-}
+    html,
+    body {
+      color: black !important;
+    }
     `
-    const { dark } = req.query;
 
+
+    const videoPostStyle = `
+    iframe,
+    video,
+    embed,
+    object {
+       width: 100% !important;
+    }
+    `
+
+
+    const { dark, video } = req.query;
+    console.log(video)
 
 
     res.writeHead(200, { 'Content-Type': 'text/css' });
@@ -42,6 +54,9 @@ body {
     }
     else if (dark === 'false') {
       res.write(whiteStyle);
+    }
+    else if (video === 'video') {
+      res.write(videoPostStyle);
     }
     else {
       res.write(defaultStyle);

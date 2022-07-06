@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
 import styles from './PostMap.module.css'
@@ -14,6 +14,10 @@ const PostMap = ({ post, refetch }) => {
         router.push(path)
         router.prefetch(path)
         refetch()
+    }
+    const profileNavigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
     }
 
 
@@ -33,7 +37,14 @@ const PostMap = ({ post, refetch }) => {
             setShortDescriptionVideo(short_description?.slice(0, 100))
         }
     }
-
+    const videoPostIframeAutoOnloadHandle = (e) => {
+        e.target.height = e.target.contentWindow.document.documentElement.scrollHeight + 'px'
+        let link = document.createElement("link");
+        link.href = "/api/styleIframe.css?video=video";
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        e.target.contentDocument.head.append(link);
+    }
 
     // -----------------------------------------------for iframe -----------------------------------------
 
@@ -75,8 +86,6 @@ const PostMap = ({ post, refetch }) => {
                     if (count === 3) {
                         clearInterval(showIframe)
                     }
-                    console.log(count)
-
                     count++
                 }, 100);
                 setFullIframeShow(true)
@@ -115,12 +124,23 @@ const PostMap = ({ post, refetch }) => {
                     <div className='flex gap-2 justify-start items-center '>
                         <div className='avatar p-2 mb-1'>
                             {/* --------------------------------------for profile avatar--------------------------------------- */}
-                            <div className="w-10 h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1">
-                                <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                            <div
+                                onClick={() => profileNavigate(`/profile/${userID}`)}
+                                className="w-10 cursor-pointer h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
+                            >
+                                <img
+                                    src="https://api.lorem.space/image/face?hash=3174"
+                                    alt=''
+                                />
                             </div>
                         </div>
                         <div>
-                            <h2 className="card-title">Shoes!</h2>
+                            <h2
+                                onClick={() => profileNavigate(`/profile/${userID}`)}
+                                className="card-title cursor-pointer"
+                            >
+                                Shoes
+                            </h2>
                             <h1 className='text-xs'>
                                 {
                                     time
@@ -167,9 +187,18 @@ const PostMap = ({ post, refetch }) => {
 
                             {/*----------------------------- for video code --------------------- */}
                             <div className='mx-auto' id='videoPost' >
-                                <div className='w-full' dangerouslySetInnerHTML={{ __html: postBody }}>
 
-                                </div>
+                                <iframe
+                                    onLoad={videoPostIframeAutoOnloadHandle}
+                                    src='/api/preview'
+                                    srcDoc={postBody}
+                                    id={'previewIframeHeight' + post_id}
+                                    frameBorder="0"
+                                    scrolling="no"
+                                    height='200'
+                                    className={' w-full'}
+                                >
+                                </iframe>
                             </div>
                         </>
                     }
@@ -188,7 +217,7 @@ const PostMap = ({ post, refetch }) => {
 
                                     <div
                                         dangerouslySetInnerHTML={{ __html: short_description }}
-                                    
+
                                     >
                                     </div>
                                     <iframe
@@ -198,7 +227,7 @@ const PostMap = ({ post, refetch }) => {
                                         id={'previewIframeHeight' + post_id}
                                         frameBorder="0"
                                         scrolling="no"
-                                        className={styles.iframeAutoHightTransition + 'text-white w-full h-0'}
+                                        className={styles.iframeAutoHightTransition + '  w-full'}
                                     >
                                     </iframe>
                                     {/* <iframe
