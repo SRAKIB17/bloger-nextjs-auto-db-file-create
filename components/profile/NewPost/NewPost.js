@@ -152,8 +152,8 @@ const NewPost = () => {
                         </p>
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
-                        <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs">
-                            <option disabled selected>Post Roll</option>
+                        <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs" defaultValue=''>
+                            <option value='' disabled selected>Post Roll</option>
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
                         </select>

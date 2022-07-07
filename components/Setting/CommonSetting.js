@@ -33,7 +33,7 @@ const CommonSetting = () => {
         try {
             const getHeader = document.getElementById('header');
             const getHeaderBottomMargin = document.getElementById('topHeaderMargin');
-            if (window.innerWidth<=640) {
+            if (window.innerWidth <= 640) {
                 if (hideMobileNab === 'true') {
                     setNabBarMobile(true)
                     getHeaderBottomMargin.className = ''
@@ -71,7 +71,9 @@ const CommonSetting = () => {
                                 type="checkbox"
                                 onClick={hideAndroidAppsHandle}
                                 className="toggle toggle-primary"
-                                checked={hideApk} />
+                                defaultChecked=''
+                                checked={hideApk}
+                            />
                         </label>
                     </div>
                     <div className="form-control shadow-md p-2 rounded-md">
@@ -84,6 +86,7 @@ const CommonSetting = () => {
                                 onClick={hideMobileNabBarHandler}
                                 className="toggle toggle-primary"
                                 checked={hideNabBarMobile}
+                                defaultChecked=''
                             />
                         </label>
                     </div>
@@ -95,6 +98,7 @@ const CommonSetting = () => {
                             <input
                                 type="checkbox"
                                 onClick={hideAndroidAppsHandle}
+                                defaultChecked=''
                                 className="toggle toggle-primary"
                             />
                         </label>

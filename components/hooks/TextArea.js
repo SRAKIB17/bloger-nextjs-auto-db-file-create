@@ -20,9 +20,6 @@ const TextArea = ({ textareaRef }) => {
     let saveData = ''
     useEffect(() => {
         saveData = JSON.parse(window.localStorage.getItem('saveBody'));
-        console.log(JSON.parse(window.localStorage.getItem('saveBody')))
-        console.log(saveData)
-
         setWindowHeight(window.innerHeight);
         setLayoutForm(window.innerWidth / 2);
         setWindowWidth(window.innerWidth);
@@ -61,8 +58,10 @@ const TextArea = ({ textareaRef }) => {
         livePreview.style.height = 'auto';
         setWindowHeight(window.innerHeight - 50)
         const iframe = document.getElementById('liveViewIframe');
+        onloadIframeHeightStylesHandle()
         //---------------------- for iframe ---------/
         try {
+
             // const iframeContentHeight = iframe.contentWindow.document.documentElement.scrollHeight;
             // e.target.style.height = 'auto';
             // console.log(iframeContentHeight, windowHeight)
@@ -90,6 +89,28 @@ const TextArea = ({ textareaRef }) => {
 
     }
 
+
+    const onloadIframeHeightStylesHandle = () => {
+        console.log(45345)
+        let link = document.createElement("link");
+        link.href = "/api/styleIframe.css";
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        const iframe = document.getElementById('liveViewIframe')
+        iframe.contentDocument.head.append(link);
+
+        let darkStyle = document.createElement("link");
+        const darkMode = window.localStorage.getItem('dark')
+        if (darkMode) {
+            darkStyle.href = "/api/styleIframe.css?dark=true";
+        }
+        else {
+            darkStyle.href = "/api/styleIframe.css?dark=false";
+        }
+        darkStyle.rel = "stylesheet";
+        darkStyle.type = "text/css";
+        iframe.contentDocument.head.append(darkStyle);
+    }
     return (
         <div className='m-1'>
             <div className='flex'>
@@ -156,6 +177,7 @@ const TextArea = ({ textareaRef }) => {
                     style={{ width: (rotate ? (windowWidth - 200) : `${windowWidth - dragging[dragging.length - 2] || layoutForm}px`) }}
                 >
                     <iframe
+                        onLoad={onloadIframeHeightStylesHandle}
                         src='/api/preview'
                         srcDoc={liveView}
                         className={styles.livePreviewScrollBarHide + ' w-full'}

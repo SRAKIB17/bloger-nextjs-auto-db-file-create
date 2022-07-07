@@ -34,18 +34,18 @@ export default async function handler(req, res) {
 
 
     const videoPostStyle = `
+
     iframe,
     video,
     embed,
     object {
        width: 100% !important;
+       height: 280px !important;
     }
     `
 
 
     const { dark, video } = req.query;
-    console.log(video)
-
 
     res.writeHead(200, { 'Content-Type': 'text/css' });
 

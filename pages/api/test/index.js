@@ -19,7 +19,7 @@ export default async function handler(req, res) {
                 name: 'Vegetables',
                 tags: ['html'],
             },
-            postBody: '<iframe  height="315" src="https://www.youtube.com/embed/ANSWToElgjM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n',
+            postBody: '<iframe  src="https://www.youtube.com/embed/ANSWToElgjM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n',
             sort: '5345345345',
             postRefMode: 'video'
         },

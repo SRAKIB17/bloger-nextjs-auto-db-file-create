@@ -146,7 +146,7 @@ const PostMap = ({ post, refetch }) => {
                                     time
                                 }
                                 <b> | </b>
-                                <button className='link-primary link-hover' onClick={() => navigate(`?cat=${category?.name}`)}>
+                                <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category?.name}`)}>
                                     {
                                         category?.name
                                     }
@@ -177,7 +177,7 @@ const PostMap = ({ post, refetch }) => {
                                 {/* -------------see more short description----------- */}
                                 {
                                     short_description?.length >= 100 &&
-                                    <div className="card-actions justify-end">
+                                    <div className="card-actions justify-end text-xs">
                                         <button className="link-primary font-semibold link-hover" onClick={moreShortDescriptionVideoHandle}>
                                             See {seeMorePostShow ? 'Less' : 'More'}
                                         </button>
@@ -215,11 +215,16 @@ const PostMap = ({ post, refetch }) => {
                                 {/* ---------post body ----------------- */}
                                 <div className={styles.postMap + ' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} >
 
-                                    <div
+                                    <div>
+                                        {
+                                            short_description?.slice(0, 1000)
+                                        }
+                                    </div>
+                                    {/* <div
                                         dangerouslySetInnerHTML={{ __html: short_description }}
 
                                     >
-                                    </div>
+                                    </div> */}
                                     <iframe
                                         onLoad={onloadIframeHeightStylesHandle}
                                         src='/api/preview'
@@ -230,14 +235,6 @@ const PostMap = ({ post, refetch }) => {
                                         className={styles.iframeAutoHightTransition + '  w-full'}
                                     >
                                     </iframe>
-                                    {/* <iframe
-                                        id={'previewIframeHeight' + post_id}
-                                        height='0'
-                                        scrolling="no"
-                                        src={"/api/preview/" + post_id}
-                                        frameBorder="0"
-                                        className={styles.iframeAutoHightTransition + 'text-white w-full'} >
-                                    </iframe> */}
                                 </div>
 
                                 {/* ------------see more -------------------- */}
@@ -254,7 +251,7 @@ const PostMap = ({ post, refetch }) => {
                                     thumbnail &&
                                     <div className='mt-4 mb-4'>
                                         <figure>
-                                            <img src={thumbnail} alt="" className='w-full h-[255px] lg:h-[270px] rounded-md' />
+                                            <img src={thumbnail} alt="" className='w-full h-[200px] lg:h-[240px] rounded-md' />
                                         </figure>
                                     </div>
                                 }

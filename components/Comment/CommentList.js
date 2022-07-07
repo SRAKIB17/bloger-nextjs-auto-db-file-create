@@ -12,7 +12,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             userID: 42342343,
             time: Date(),
             sort: '',
-            comment_id: 45345455435435,
+            comment_id: 423,
             reply: 'flsdjflsdjflsdjflsdfjksdlkfsdf'
         },
         {
@@ -21,7 +21,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             userID: 42342343,
             time: Date(),
             sort: '',
-            comment_id: 45345455435435,
+            comment_id: 2,
             reply: 'ipsum dolor sit, amet consectetur adipisicing elit. Ipsa tenetur, vel, architecto unde ex quos, distinctio vero et commodi quia expedita pariatur? Eveniet, quod nostrum impedit illo earum exercitationem consequuntur?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt laborum aliquid nihil, architecto quod fugit, hic cumque explicabo facilis iste perspiciatis tem'
         },
         {
@@ -30,7 +30,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             userID: 42342343,
             time: Date(),
             sort: '',
-            comment_id: 45345455435435,
+            comment_id: 222,
             reply: `
             <video width="320" height="240"  preload="auto" controls muted poster="http://rakib17.hexat.com/icon/busy.gif" loop autoplay>
                 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">

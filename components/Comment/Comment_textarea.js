@@ -5,7 +5,7 @@ import LikeLoveFavorite from './LikeLoveFevorite/LikeLoveFavorite';
 import CommentList from './CommentList';
 import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
 const Comment_textarea = ({ post_id }) => {
-    const textareaRef = useRef();
+    const CommentTextareaRef = useRef();
 
     const commentBody = [
         {
@@ -15,7 +15,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wing elit. Ipsa tenetur, vel, architecto unde ex quos, distinctio vero et commodi quia expedita pariatur? Eveniet, quod nostrum impedit illo earum exercitationem consequuntur?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt laborum aliquid nihil, architecto quod fugit, hic cumque ex',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 555
         },
         {
             _id: 4,
@@ -24,7 +24,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 55555
         },
         {
             _id: 5,
@@ -33,7 +33,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 55
         },
         {
             _id: 6,
@@ -42,7 +42,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 33
         },
         {
             _id: 7,
@@ -51,7 +51,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 8
         },
         {
             _id: 74,
@@ -60,7 +60,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 7
         },
         {
             _id: 67,
@@ -69,7 +69,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wow so gosssssssssssssssssssssssssoooood',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 5
         },
         {
             _id: 77,
@@ -78,7 +78,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 4
         },
         {
             _id: 9,
@@ -87,7 +87,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 3
         },
         {
             _id: 8,
@@ -96,7 +96,7 @@ const Comment_textarea = ({ post_id }) => {
             comment: 'wow so gooooood',
             time: Date(),
             sort: '',
-            comment_id: 45345455435435
+            comment_id: 2
         },
     ]
 
@@ -105,7 +105,7 @@ const Comment_textarea = ({ post_id }) => {
     }
     const onchangeInput = (e) => {
         heightAutoHandle(e)
-        classTagShortcutInput(e, textareaRef)
+        classTagShortcutInput(e, CommentTextareaRef)
     }
     const heightAutoHandle = (e) => {
         e.target.style.height = 'auto';
@@ -133,7 +133,7 @@ const Comment_textarea = ({ post_id }) => {
                 commentForm.style.height = '100%'
                 commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
                 showComment.style.height = '500px'
-                document.getElementById('textForm' + id).focus()
+                document.getElementById('commentTextArea' + id).focus()
                 showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
             }
             else {
@@ -153,12 +153,42 @@ const Comment_textarea = ({ post_id }) => {
     const [replyNow, setReplyNow] = useState(null)
     const replySetHandle = (targetComment, id) => {
         try {
-            document.getElementById('textForm' + id).focus()
+            document.getElementById('commentTextArea' + id).focus()
         }
         catch {
 
         }
         setReplyNow(targetComment)
+    }
+
+
+    const postCommentHandler = (e) => {
+        e.preventDefault()
+
+        if (replyNow?.comment_id) {
+            const replyBody = {
+                _id: 8,
+                post_id: post_id,
+                userID: 42342343,
+                time: Date(),
+                sort: '',
+                comment_id: replyNow?.comment_id,
+                reply: CommentTextareaRef.current.value
+            }
+            console.log(replyBody)
+        }
+        else {
+            const comment = {
+                _id: 8,
+                post_id: post_id,
+                userID: 42342343,
+                comment: CommentTextareaRef.current.value,
+                time: Date(),
+                sort: '',
+                comment_id: 2
+            }
+            console.log(comment)
+        }
     }
     return (
         <div>
@@ -183,7 +213,8 @@ const Comment_textarea = ({ post_id }) => {
             {/* -----------------------------for comment form and comment auto hight----------------------------- */}
             <div id={'commentForm' + post_id} className={styles.showComment}>
 
-                <form className=' pt-4 mb-4'>
+                <form className=' pt-4 mb-4' onSubmit={postCommentHandler} >
+                    {/****************** for reply section when a user reply other this name show display ************************ */}
                     {
                         replyNow &&
                         <div className='mt-3 flex items-center mb-2 pl-3 pr-3 text-secondary bg-gray-100 w-fit rounded-3xl'>
@@ -193,11 +224,12 @@ const Comment_textarea = ({ post_id }) => {
                             </div>
                         </div>
                     }
-                    <div className='relative flex items-end pt-1 pl-3 mt-1'>
-                        <textarea ref={textareaRef}
-                            id={'textForm' + post_id}
+
+                    <div className="relative flex items-end pt-1 pl-3 mt-1">
+                        <textarea ref={CommentTextareaRef}
+                            id={'commentTextArea' + post_id}
                             className='input input-success w-full font-mono'
-                            name="postBody"
+                            name="commentBody"
                             onBlur={onchangeInput}
                             onKeyUp={(e) => shortcutKeyboard(e)}
                             onChange={onchangeInput}
