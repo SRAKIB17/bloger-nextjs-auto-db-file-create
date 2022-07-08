@@ -1,17 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from './hooks/useFindClassAttr';
 import styles from './TextArea.module.css';
-const TextArea = ({ textareaRef }) => {
+const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => {
 
-    const jsTextareaRef = useRef()
-    const cssTextareaRef = useRef()
+
     const shortcutKeyboard = (e) => {
         // setLiveView(e.target.value)
-        liveSettingAddScriptHandler()
+        // liveSettingAddScriptHandler()
     }
     const onchangeInput = (e) => {
         // setLiveView(e.target.value);
-        liveSettingAddScriptHandler()
+        // liveSettingAddScriptHandler()
         heightAutoHandle(e)
         classTagShortcutInput(e, textareaRef)
     }
@@ -57,9 +56,7 @@ const TextArea = ({ textareaRef }) => {
 
     const [dragSeparate, setDraggingSeparate] = useState();
     const heightAutoHandle = (e) => {
-        // setLiveView(e.target.value);
-        liveSettingAddScriptHandler()
-        // console.log(e.target.value.split(`<!-- jscode -->`))
+        // liveSettingAddScriptHandler()
         const livePreview = document.querySelector('#livePreview')
         livePreview.style.height = 'auto';
         setWindowHeight(window.innerHeight - 50)
@@ -167,6 +164,14 @@ const TextArea = ({ textareaRef }) => {
         `
         setLiveView(liveDocs)
     }
+    useEffect(() => {
+        document.documentElement.onkeydown = (e) => {
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault()
+                liveSettingAddScriptHandler();
+            }
+        }
+    }, [])
     return (
         <div className='m-1'>
             <div className='flex'>
@@ -185,7 +190,7 @@ const TextArea = ({ textareaRef }) => {
             </div>
             <div className='border  rounded-md p-1 border-primary'>
                 <div>
-                    <div className='flex gap-3 p-2'>
+                    <div className='flex gap-3 p-2 items-center'>
                         <div className={(htmlEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-info'} onClick={() => handleCssJsHtmlEditor('html')}>
                             html
                         </div>
@@ -194,6 +199,17 @@ const TextArea = ({ textareaRef }) => {
                         </div>
                         <div className={(jsEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-info'} onClick={() => handleCssJsHtmlEditor('js')}>
                             js
+                        </div>
+                        <div className='flex items-center'>
+                            <kbd className="kbd kbd-sm">ctrl</kbd>
+                            +
+                            <kbd className="kbd kbd-sm">s </kbd>
+                            <p className='ml-1 text-sm'>
+                                or
+                            </p>
+                        </div>
+                        <div className={' btn btn-xs btn-info text-white'} onClick={() => liveSettingAddScriptHandler()}>
+                            Run
                         </div>
 
                     </div>

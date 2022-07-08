@@ -14,7 +14,8 @@ const NewPost = () => {
     const [quickTextPost, setQuickTextPost] = useState(true);
     const [quickImagePost, setQuickImagePost] = useState(false);
     const textareaRef = useRef();
-
+    const jsTextareaRef = useRef()
+    const cssTextareaRef = useRef()
     function closeNewPost() {
         document.getElementById("newPostClose").style.width = "0";
     }
@@ -27,7 +28,6 @@ const NewPost = () => {
     const postHandle = async (event) => {
         setNewPostLoading(true)
         event.preventDefault();
-        const body = event.target.postBody.value;
         let postRefMode = '';
         if (quickTextPost) {
             postRefMode = 'text'
@@ -39,6 +39,12 @@ const NewPost = () => {
             postRefMode = 'video'
 
         }
+        const postDocs = `
+        <style>${cssTextareaRef.current.value}</style>
+        ${textareaRef.current.value}        
+        <script>${jsTextareaRef.current.value}</script>
+
+        `
         const post = {
             userID: '54fsdlj53',
             post_id: '534fsdfjo345',
@@ -51,7 +57,7 @@ const NewPost = () => {
                 name: event.target.category.value,
                 tags: ['html'],
             },
-            postBody: body,
+            postBody: postDocs,
             sort: '5345345345',
             postBy: event.target.postBy.value,
             // tags: event.target.tags.value.split(','),
@@ -64,6 +70,7 @@ const NewPost = () => {
             console.log(data)
             if (data?.result?.acknowledged) {
                 event.target.reset()
+                setThumbnail('')
             }
             // console.log(data)
 
@@ -220,7 +227,7 @@ const NewPost = () => {
                                 <kbd className="kbd">s</kbd>
                             </p> */}
                         </div>
-                        <TextArea textareaRef={textareaRef} />
+                        <TextArea props={{ cssTextareaRef, jsTextareaRef, textareaRef }} />
                         <input type="submit" value="Post" className='btn rounded-3xl btn-primary text-white w-fit' />
                     </form>
 

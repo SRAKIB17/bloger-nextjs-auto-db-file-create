@@ -81,7 +81,6 @@ const TextAreaEdit = ({ post_id, editBody, textareaRef }) => {
 
         }
         catch {
-            // iframe.style.height = windowHeight + 'px';
             livePreview.style.height = windowHeight + 'px'
             e.target.style.height = windowHeight + 'px'
             setDraggingSeparate(windowHeight + 'px')
