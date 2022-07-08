@@ -302,6 +302,8 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                         style={{ width: (rotate ? (windowWidth - 200) : `${windowWidth - dragging[dragging.length - 2] || layoutForm}px`) }}
                     >
                         <iframe
+                            allow="fullscreen"
+                            allowFullScreen
                             onLoad={onloadIframeHeightStylesHandle}
                             src='/api/preview'
                             srcDoc={liveView}
