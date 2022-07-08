@@ -7,36 +7,48 @@ const ProfileEdit = () => {
         document.getElementById("profileEdit").style.width = "0";
     }
 
-    const postHandle = async (event) => {
+    const updateHandle = async (event) => {
         event.preventDefault();
-        const body = event.target.postBody.value;
-        const post = {
-            body: body
+        // const body = event.target.postBody.value;
+        const updateForm = {
+            work: event.target.work.value,
+            location: event.target.address.value,
+            school: event.target.study.value,
+            github: event.target.github.value,
+            youtube: event.target.youtube.value,
+            facebook: event.target.facebook.value,
+            linkedin: event.target.linkedin.value,
+            linkedin: event.target.linkedin.value,
+            instagram: event.target.instagram.value,
+            twitter: event.target.twitter.value,
+            gender: event.target.gender.value,
+            quote: event.target.quote.value,
+
         }
-        // console.log()
-        const { data } = await axios.post('/api/test', post);
-        console.log(data)
+        console.log(updateForm)
+        // const { data } = await axios.post('/api/test', post);
+        // console.log(data)
     }
     return (
         <div>
             <div id="profileEdit" className={styles.NewPostNav + ' bg-base-100'}>
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
-                <div>
-                    <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
+                <div className='shadow-2xl max-w-md mx-auto p-4 h-full bg-base-300 rounded-3xl'>
+                    <form action="" onSubmit={updateHandle} className='flex flex-col gap-2 m-10'>
 
 
-                        <div className='p-1'>
-                            <table className='table-auto'>
+                        <div className='p-1 mx-auto'>
+                            <table className='table-auto '>
                                 <tbody className='flex flex-col gap-2'>
                                     <tr>
                                         <td className='flex items-center gap-1'>
                                             <Worker />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="work"
+                                                id="work"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Work'
                                             />
                                         </td>
                                     </tr>
@@ -45,10 +57,10 @@ const ProfileEdit = () => {
                                             <Location />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="address"
+                                                id="addressProfile"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Address'
                                             />
                                         </td>
                                     </tr>
@@ -57,28 +69,22 @@ const ProfileEdit = () => {
                                             <School />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="study"
+                                                id="study"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Study'
                                             />
                                         </td>
                                     </tr>
-                                    {/* <tr>
-                    <td><img src={relationship} alt="" /> Single</td>
-                </tr> */}
-                                    {/* <tr>
-                    <td><img src={birthday} alt="" /> Birthday</td>
-                </tr> */}
                                     <tr>
                                         <td className='flex items-center gap-1'>
                                             <Github />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="github"
+                                                id="github"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Github'
                                             />
                                         </td>
                                     </tr>
@@ -88,10 +94,10 @@ const ProfileEdit = () => {
                                             <Youtube />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="youtube"
+                                                id="Youtube"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Youtube'
                                             />
                                         </td>
                                     </tr>
@@ -100,10 +106,10 @@ const ProfileEdit = () => {
                                             <FacebookSquare className='rounded-sm' />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="facebook"
+                                                id="Facebook"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Facebook'
                                             />
                                         </td>
                                     </tr>
@@ -112,10 +118,10 @@ const ProfileEdit = () => {
                                             <LinkedinNew />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="linkedin"
+                                                id="linkedin"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Linkedin'
                                             />
                                         </td>
                                     </tr>
@@ -124,10 +130,10 @@ const ProfileEdit = () => {
                                             <Instagram />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="instagram"
+                                                id="Instagram"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Instagram'
                                             />
                                         </td>
                                     </tr>
@@ -136,48 +142,48 @@ const ProfileEdit = () => {
                                             <Twitter />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="twitter"
+                                                id="Twitter"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Twitter'
                                             />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td className='flex items-center gap-1'>
                                             <Gender />
-                                            <select className="select select-primary select-sm select-bordered select-md w-full max-w-xs">
+                                            <select id='Gender' name='gender' className="select select-primary select-sm select-bordered select-md form-control max-w-xs">
                                                 <option disabled selected>Gender</option>
                                                 <option value='Male'>Male</option>
                                                 <option value='Female'>Female</option>
                                             </select>
                                         </td>
                                     </tr>
-                                    {/* <tr>
-                    <td> <img src={religion} alt="" /> riligion</td>
-                </tr> */}
                                     <tr>
                                         <td className='flex items-center gap-1'>
                                             <Quote />
                                             <input
                                                 type="text"
-                                                name="title"
-                                                id=""
+                                                name="quote"
+                                                id="Quote"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Title'
+                                                placeholder='Quote'
                                             />
                                         </td>
 
                                     </tr>
                                     <tr>
                                         <td className='flex items-center gap-1'>
-                                            <input type="submit" value="Post" className='btn btn-sm rounded-3xl btn-primary text-white w-fit' />
+                                            <input
+                                                type="submit"
+                                                value="Update"
+                                                className='btn btn-sm rounded-3xl btn-primary font-light w-fit  '
+                                            />
                                         </td>
 
                                     </tr>
                                 </tbody>
                             </table>
-
                         </div>
                     </form>
 

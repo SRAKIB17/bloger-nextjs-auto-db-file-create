@@ -54,6 +54,7 @@ const TextAreaEdit = ({ post_id, editBody, textareaRef }) => {
 
     const [dragSeparate, setDraggingSeparate] = useState();
     const heightAutoHandle = (e, id) => {
+        onloadIframeHeightStylesHandle()
         setLiveView(e.target.value);
         const livePreview = document.getElementById('livePreviewEdit' + id)
         livePreview.style.height = 'auto';
@@ -84,6 +85,33 @@ const TextAreaEdit = ({ post_id, editBody, textareaRef }) => {
             livePreview.style.height = windowHeight + 'px'
             e.target.style.height = windowHeight + 'px'
             setDraggingSeparate(windowHeight + 'px')
+        }
+    }
+
+
+    const onloadIframeHeightStylesHandle = (e) => {
+        try {
+            let link = document.createElement("link");
+            link.href = "/api/styleIframe.css";
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            const iframe = e.target
+            iframe.contentDocument.head.append(link);
+
+            let darkStyle = document.createElement("link");
+            const darkMode = window.localStorage.getItem('dark')
+            if (darkMode) {
+                darkStyle.href = "/api/styleIframe.css?dark=true";
+            }
+            else {
+                darkStyle.href = "/api/styleIframe.css?dark=false";
+            }
+            darkStyle.rel = "stylesheet";
+            darkStyle.type = "text/css";
+            iframe.contentDocument.head.append(darkStyle);
+        }
+        catch {
+
         }
     }
 
@@ -153,6 +181,7 @@ const TextAreaEdit = ({ post_id, editBody, textareaRef }) => {
                     style={{ width: (rotate ? (windowWidth - 200) : `${windowWidth - dragging[dragging.length - 2] || layoutForm}px`) }}
                 >
                     <iframe
+                        onLoad={onloadIframeHeightStylesHandle}
                         src='/api/preview'
                         srcDoc={liveView}
                         className={styles.livePreviewScrollBarHide + ' w-full'}

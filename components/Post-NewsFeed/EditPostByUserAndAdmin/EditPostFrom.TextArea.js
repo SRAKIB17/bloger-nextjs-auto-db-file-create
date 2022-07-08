@@ -141,7 +141,7 @@ const EditPostFromTextArea = ({ post_id }) => {
     return (
         <div>
 
-            <div id={"EditPostFromTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100'}>
+            <div id={"EditPostFromTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100'} style={{zIndex:40000 , position:'absolute'}}>
                 {
                     NewPostLoading &&
                     <div className=' w-60 mx-auto '>
