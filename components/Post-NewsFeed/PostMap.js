@@ -8,7 +8,7 @@ import useAdminCheck from '../hooks/checkUser/useAdminCheck';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
 
 const PostMap = ({ post, refetch }) => {
-    const { _id, category, image, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
+    const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
 
     const { admin } = useAdminCheck();
@@ -117,6 +117,29 @@ const PostMap = ({ post, refetch }) => {
         darkStyle.type = "text/css";
         e.target.contentDocument.head.append(darkStyle);
     }
+    const iframePostFullBody = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+        ${postBodyCss}
+        </style>
+    </head>
+    <body>
+        ${postBody}
+        <script>
+            ${postBodyJs}
+        </script>
+    </body>
+    </html>
+    `
+   
+    // postBody: textareaRef.current.value,
+    // postBodyCss: cssTextareaRef.current.value,
+    // postBodyJs: jsTextareaRef.current.value,
     return (
         <div>
             <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" id={'postMap' + post_id}>
@@ -230,7 +253,7 @@ const PostMap = ({ post, refetch }) => {
                                     <iframe
                                         onLoad={onloadIframeHeightStylesHandle}
                                         src='/api/preview'
-                                        srcDoc={postBody}
+                                        srcDoc={iframePostFullBody}
                                         id={'previewIframeHeight' + post_id}
                                         frameBorder="0"
                                         scrolling="no"

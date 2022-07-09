@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import NewPost from '../profile/NewPost/NewPost';
 import { useRouter, withRouter } from 'next/router';
+import useUserCheck from '../hooks/checkUser/useUserCheck';
 
 
 const ContextMenu = () => {
-
+    const { user } = useUserCheck()
     // const [postShareId, setPostShareId] = useState(null);
     const router = useRouter();
     // console.log(pathname.route = '/story')
@@ -39,13 +40,18 @@ const ContextMenu = () => {
         })
 
         document.onclick = (e) => {
-            if (!e.target.hasAttribute('data-profile')) {
-                const getProfileMenu = document.getElementById('profileLogOut');
-                getProfileMenu.style.right = '-500px'
+            try {
+                if (!e.target.hasAttribute('data-profile')) {
+                    const getProfileMenu = document.getElementById('profileLogOut');
+                    getProfileMenu.style.right = '-500px'
+                }
+                const getContextMenu = document.getElementById('contextMenu');
+                // setPostShareId(null)
+                getContextMenu.style.display = 'none'
             }
-            const getContextMenu = document.getElementById('contextMenu');
-            // setPostShareId(null)
-            getContextMenu.style.display = 'none'
+            catch {
+
+            }
         }
 
 
@@ -146,19 +152,24 @@ const ContextMenu = () => {
                             Story
                         </button>
                     </li>
-                    <li>
-                        <button onClick={() => navigate('/profile')}>
-                            Profile
-                        </button>
-                    </li>
+                    {
+                        user?.user &&
+                        <>
+                            <li>
+                                <button onClick={() => navigate('/profile')}>
+                                    Profile
+                                </button>
+                            </li>
 
-                    <li>
-                        <button className='btn btn-sm btn-primary rounded-3xl btn-outline'
-                            onClick={() => { OpenNewPost() }}
-                        >
-                            New Post
-                        </button>
-                    </li>
+                            <li>
+                                <button className='btn btn-sm btn-primary rounded-3xl btn-outline'
+                                    onClick={() => { OpenNewPost() }}
+                                >
+                                    New Post
+                                </button>
+                            </li>
+                        </>
+                    }
                 </ul>
             </div>
 

@@ -7,9 +7,10 @@ import ImageUpload from './ImageUpload';
 
 import styles from './NewPost.module.css'
 import QuickPost from './QuickPost';
+import useAdminCheck from '../../hooks/checkUser/useAdminCheck';
 
 const NewPost = () => {
-
+    const { admin } = useAdminCheck();
     const [quickVideoPost, setQuickVideoPost] = useState(false);
     const [quickTextPost, setQuickTextPost] = useState(true);
     const [quickImagePost, setQuickImagePost] = useState(false);
@@ -39,15 +40,11 @@ const NewPost = () => {
             postRefMode = 'video'
 
         }
-        const postDocs = `
-        <style>${cssTextareaRef.current.value}</style>
-        ${textareaRef.current.value}        
-        <script>${jsTextareaRef.current.value}</script>
 
-        `
+
         const post = {
             userID: '54fsdlj53',
-            post_id: '534fsdfjo345',
+            post_id: '',
             post_title: event.target.title.value,
             thumbnail: thumbnail,
             image: '',
@@ -57,7 +54,9 @@ const NewPost = () => {
                 name: event.target.category.value,
                 tags: ['html'],
             },
-            postBody: postDocs,
+            postBody: textareaRef.current.value,
+            postBodyCss: cssTextareaRef.current.value,
+            postBodyJs: jsTextareaRef.current.value,
             sort: '5345345345',
             postBy: event.target.postBy.value,
             // tags: event.target.tags.value.split(','),
@@ -159,11 +158,14 @@ const NewPost = () => {
                         </p>
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
-                        <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs" defaultValue=''>
-                            <option value='' disabled selected>Post Roll</option>
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                        </select>
+                        {
+                            admin?.admin &&
+                            <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs" defaultValue=''>
+                                <option value='' disabled selected>Post Roll</option>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                            </select>
+                        }
                         <input
                             type="text"
                             name="title"

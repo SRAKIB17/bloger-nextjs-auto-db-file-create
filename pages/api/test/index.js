@@ -34,7 +34,7 @@ export default async function handler(req, res) {
             time: 'dec 15, 2021',
             short_description: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর         রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের        ব্যবস্থা করলাম।  আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।',
 
-            postBody: "So, as has been mentioned, that really isn't possible. However, there are some ways you can still be smart about it.\n" +
+            postBody: `<script src="//d3js.org/d3.v3.min.js"></script>So, as has been mentioned, that really isn't possible. However, there are some ways you can still be smart about it.\n" +
                 '\n' +
                 'Three of the five major browsers all allow you to see the zoom level of the browser, furthermore, should the browser be zoomed a window.onresize event is fired.\n' +
                 '\n' +
@@ -49,7 +49,49 @@ export default async function handler(req, res) {
                 '\n' +
                 "So what you can now do is get the zoom level, and then offset your zoom to where it doesn't do anything. So if I force my browser to 50% zoom, you just go to 200%. Thus, no change. Of course it will be a bit more complicated, you'll have to store the last browser zoom, the new browser zoom, and do some slightly more complicated math, but based on what you already have, that should be a breeze.\n" +
                 '\n' +
-                'Another idea might be to just listen for a resize event, and calculate based off the new visible size, but that might cause issues if the window is just resized. I think the above is going to be your best option, with perhaps a fallback alert to warn the user not to zoom if necessary.',
+                'Another idea might be to just listen for a resize event, and calculate based off the new visible size, but that might cause issues if the window is just resized. I think the above is going to be your best option, with perhaps a fallback alert to warn the user not to zoom if necessary.',`,
+            postBodyJs: `
+                
+                var w = 960,
+                h = 500,
+                z = 20,
+                x = w / z,
+                y = h / z;
+
+                var svg = d3.select("body").append("svg")
+                .attr("width", w)
+                .attr("height", h);
+
+                svg.selectAll("rect")
+                .data(d3.range(x * y))
+                .enter().append("rect")
+                .attr("transform", translate)
+                .attr("width", z)
+                .attr("height", z)
+                .style("fill", function(d) { return d3.hsl(d % x / x * 360, 1, Math.floor(d / x) / y); })
+                .on("mouseover", mouseover);
+
+                function translate(d) {
+                return "translate(" + (d % x) * z + "," + Math.floor(d / x) * z + ")";
+                }
+
+                function mouseover(d) {
+                this.parentNode.appendChild(this);
+                
+                d3.select(this)
+                  .style("pointer-events", "none")
+                .transition()
+                  .duration(750)
+                  .attr("transform", "translate(480,480)scale(23)rotate(180)")
+                .transition()
+                  .delay(1500)
+                  .attr("transform", "translate(240,240)scale(0)")
+                  .style("fill-opacity", 0)
+                  .remove();
+                }
+
+                `,
+            postBodyCss:'',
             sort: '5345345345',
 
             category: {

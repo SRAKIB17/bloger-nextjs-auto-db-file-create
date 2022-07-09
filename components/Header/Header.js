@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRouter, withRouter } from 'next/router';
 import Link from 'next/dist/client/link';
 import React, { useEffect } from 'react';
@@ -9,8 +10,9 @@ import SearchForm from './SearchForm';
 import ProfilePicture from './ProfilePicture';
 import DownloadApk from './DownloadApk';
 import useCommonWindowResizeHeaderComponent from './CommonWindowReisizeHeaderComponent';
-
+import useUserCheck from '../hooks/checkUser/useUserCheck';
 const Header = () => {
+    const { user } = useUserCheck()
 
     const router = useRouter();
     // console.log(pathname.route = '/story')
@@ -77,7 +79,7 @@ const Header = () => {
                     </div>
                     <div className="flex absolute right-0 top-2px md:static items-center ml-2 mr-2">
                         <SearchForm />
-                        <ProfilePicture />
+                        < ProfilePicture />
                     </div>
                 </div>
 

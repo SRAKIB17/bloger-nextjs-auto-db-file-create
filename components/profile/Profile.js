@@ -8,9 +8,12 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import UpdateProfilePicture from './UpdateProfilePicture';
 import { Camera } from '../ReactRSIcon';
+import useUserCheck from '../hooks/checkUser/useUserCheck';
+import privatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
+import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 
 const Profile = () => {
-
+    usePrivatePageCheckUser()
     const OpenNewPost = () => {
         document.getElementById("newPostClose").style.width = "100%";
     }
