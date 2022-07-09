@@ -228,7 +228,7 @@ const NewPost = () => {
                             </p> */}
                         </div>
                         <TextArea props={{ cssTextareaRef, jsTextareaRef, textareaRef }} />
-                        <input type="submit" value="Post" className='btn rounded-3xl btn-primary text-white w-fit' />
+                        <input type="submit" value="Post" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' />
                     </form>
 
                 </div>

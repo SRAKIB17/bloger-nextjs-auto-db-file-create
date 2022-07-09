@@ -4,8 +4,10 @@ import styles from './Comment.module.css'
 import LikeLoveFavorite from './LikeLoveFevorite/LikeLoveFavorite';
 import CommentList from './CommentList';
 import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
+import useUserCheck from '../hooks/checkUser/useUserCheck';
 const Comment_textarea = ({ post_id }) => {
     const CommentTextareaRef = useRef();
+    const { user } = useUserCheck()
 
     const commentBody = [
         {
@@ -131,7 +133,12 @@ const Comment_textarea = ({ post_id }) => {
             //----------------------------------------------------------------------------------
             if (showComment.offsetHeight <= 2) {
                 commentForm.style.height = '100%'
-                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
+                try {
+                    commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
+                }
+                catch {
+
+                }
                 showComment.style.height = '500px'
                 document.getElementById('commentTextArea' + id).focus()
                 showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
@@ -201,10 +208,11 @@ const Comment_textarea = ({ post_id }) => {
             <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto hideScrollBar'}>
                 <div className='ml-2 p-1 overflow-auto border-l-[3px] rounded-bl-3xl'>
                     {
+                        user?.user &&
                         commentBody?.map(comment => <CommentList key={comment._id} replySetHandle={replySetHandle} comment={comment} />)
                     }
                     {
-                        false ||
+                        user?.user ||
                         <GuestCommentLikeLogin />
                     }
                 </div>
@@ -213,38 +221,41 @@ const Comment_textarea = ({ post_id }) => {
             {/* -----------------------------for comment form and comment auto hight----------------------------- */}
             <div id={'commentForm' + post_id} className={styles.showComment}>
 
-                <form className=' pt-4 mb-4' onSubmit={postCommentHandler} >
-                    {/****************** for reply section when a user reply other this name show display ************************ */}
-                    {
-                        replyNow &&
-                        <div className='mt-3 flex items-center mb-2 pl-3 pr-3 text-secondary bg-gray-100 w-fit rounded-3xl'>
-                            <h1 className='text-xs'>@{replyNow?.name}</h1>
-                            <div>
-                                <a href="#" onClick={() => setReplyNow(null)} className=' text-xl ml-2 hover:text-[grey]'>&times;</a>
+                {
+                    user?.user &&
+                    <form className=' pt-4 mb-4' onSubmit={postCommentHandler} >
+                        {/****************** for reply section when a user reply other this name show display ************************ */}
+                        {
+                            replyNow &&
+                            <div className='mt-3 flex items-center mb-2 pl-3 pr-3 text-secondary bg-gray-100 w-fit rounded-3xl'>
+                                <h1 className='text-xs'>@{replyNow?.name}</h1>
+                                <div>
+                                    <a href="#" onClick={() => setReplyNow(null)} className=' text-xl ml-2 hover:text-[grey]'>&times;</a>
+                                </div>
+                            </div>
+                        }
+
+                        <div className="relative flex items-end pt-1 pl-3 mt-1">
+                            <textarea ref={CommentTextareaRef}
+                                id={'commentTextArea' + post_id}
+                                className='input input-success w-full font-mono'
+                                name="commentBody"
+                                onBlur={onchangeInput}
+                                onKeyUp={(e) => shortcutKeyboard(e)}
+                                onChange={onchangeInput}
+                                onInput={onchangeInput}
+                                onCut={heightAutoHandle}
+                                onPaste={heightAutoHandle}
+                                onDrop={heightAutoHandle}
+                                onKeyDown={heightAutoHandle}
+                            >
+                            </textarea>
+                            <div className='align-bottom left-[50%] bottom-0'>
+                                <button className='btn btn-sm btn-primary ml-2 text-xs'>Comment</button>
                             </div>
                         </div>
-                    }
-
-                    <div className="relative flex items-end pt-1 pl-3 mt-1">
-                        <textarea ref={CommentTextareaRef}
-                            id={'commentTextArea' + post_id}
-                            className='input input-success w-full font-mono'
-                            name="commentBody"
-                            onBlur={onchangeInput}
-                            onKeyUp={(e) => shortcutKeyboard(e)}
-                            onChange={onchangeInput}
-                            onInput={onchangeInput}
-                            onCut={heightAutoHandle}
-                            onPaste={heightAutoHandle}
-                            onDrop={heightAutoHandle}
-                            onKeyDown={heightAutoHandle}
-                        >
-                        </textarea>
-                        <div className='align-bottom left-[50%] bottom-0'>
-                            <button className='btn btn-sm btn-primary ml-2 text-xs'>Comment</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                }
 
             </div>
         </div>

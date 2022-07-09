@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Comment, EmoticonLove, Like, Share, } from '../../ReactRSIcon/index'
 import ShareOption from './ShareOption';
+import { useRouter } from 'next/router';
 import styles from './LikeTransition.module.css'
 import LikeUserList from './LikeUsersList';
 import GuestCommentLikeLogin from '../../Login/GuestCommentLikeLogin';
+import useUserCheck from '../../hooks/checkUser/useUserCheck';
+import Login from '../../Login/Login';
 
 const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
     // const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
@@ -12,9 +15,13 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
     //     document.getElementById('likeLoveFavorite' + post_id).style.top = '-1px'
     //     document.getElementById('likeLoveFavorite' + post_id).style.display = 'flex'
     // }
-
+    const { user } = useUserCheck()
     const [showShareOption, setShowShareOption] = useState(false)
-
+    const router = useRouter()
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
+    }
     const [likePost, setLikePost] = useState(false);
     const [unLikePost, setUnLikePost] = useState(false);
     const [lovePost, setLovePost] = useState(false);
@@ -27,37 +34,42 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
             rating: 'like'
         }
     }
-    const onlyLikePostHandle = (mode) => {
-        let rating;
-        switch (mode) {
-            case 'like':
-                setLovePost(false)
-                setUnLikePost(false)
-                rating = likePost ? '' : 'like'
-                setLikePost(!likePost)
-                break;
-            case 'unlike':
-                setLovePost(false)
-                setLikePost(false)
-                rating = unLikePost ? '' : 'unlike'
-                setUnLikePost(!unLikePost)
-                break;
-            case 'love':
-                setUnLikePost(false)
-                setLikePost(false)
-                rating = lovePost ? '' : 'love'
-                setLovePost(!lovePost)
-                break;
+    const LikeUnlikeLovePostHandle = (mode) => {
+        if (user?.user) {
+            let rating;
+            switch (mode) {
+                case 'like':
+                    setLovePost(false)
+                    setUnLikePost(false)
+                    rating = likePost ? '' : 'like'
+                    setLikePost(!likePost)
+                    break;
+                case 'unlike':
+                    setLovePost(false)
+                    setLikePost(false)
+                    rating = unLikePost ? '' : 'unlike'
+                    setUnLikePost(!unLikePost)
+                    break;
+                case 'love':
+                    setUnLikePost(false)
+                    setLikePost(false)
+                    rating = lovePost ? '' : 'love'
+                    setLovePost(!lovePost)
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
+            const ratingPostId = {
+                rating: rating,
+                post_id: post_id,
+                userID: '53454'
+            }
+            console.log(ratingPostId)
         }
-        const ratingPostId = {
-            rating: rating,
-            post_id: post_id,
-            userID: '53454'
+        else {
+            navigate('/login?')
         }
-        console.log(ratingPostId)
     }
     // useEffect(() => {
     //     setLikePost(true)
@@ -71,7 +83,12 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
             const showCommentButton = document.getElementById('showCommentButton' + id)
             showComment.style.height = '0px'
             commentForm.style.height = '0px'
-            commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
+            try {
+                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
+            }
+            catch {
+
+            }
             showCommentButton.className = ' btn-outline btn btn-xs btn-primary ml-2 '
             //-------------------------------------------------------------------------------------
             if (showLikeUnlikeUser.offsetHeight <= 2) {
@@ -120,7 +137,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                         <Like color='white' size='15' style={{ transform: 'rotate(180deg)' }} />
                     </button>
                     <button
-                        onClick={() => onlyLikePostHandle('unlike')}
+                        onClick={() => LikeUnlikeLovePostHandle('unlike')}
                         className='bg-[#ff00f2] p-1 rounded-[50%] btn-disabled relative left-[-6px]'
                     >
                         <EmoticonLove size='15' color='white' />
@@ -134,9 +151,12 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
 
             {/* show like love unlike  user list  */}
             <div className={(styles.showLikeUnlikeUser) + ' overflow-hidden ' + (styles.likeUnlikeUserList)} id={'showLikeUnlikeUser' + post_id}>
-                <LikeUserList post_id={post_id} />
                 {
-                    false ||
+                    user?.user &&
+                    <LikeUserList post_id={post_id} />
+                }
+                {
+                    user?.user ||
                     <GuestCommentLikeLogin />
                 }
             </div>
@@ -145,19 +165,19 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                 <div className='flex items-center justify-between'>
                     <div>
                         <button
-                            onClick={() => onlyLikePostHandle('like')}
+                            onClick={() => LikeUnlikeLovePostHandle('like')}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
                             <Like size='18' color={likePost ? '#00ff00' : 'grey'} />
                         </button>
                         <button
-                            onClick={() => onlyLikePostHandle('unlike')}
+                            onClick={() => LikeUnlikeLovePostHandle('unlike')}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
                             <Like size='18' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
                         </button>
                         <button
-                            onClick={() => onlyLikePostHandle('love')}
+                            onClick={() => LikeUnlikeLovePostHandle('love')}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
                             <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='19' />

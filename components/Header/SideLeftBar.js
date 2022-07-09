@@ -7,10 +7,12 @@ import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 import { useRouter } from 'next/router'
 import RegisterFormFixed from '../Login/LoginFormSIde';
+import useUserCheck from '../hooks/checkUser/useUserCheck';
 
 const SideLeftBar = () => {
     /** ------------------------------for dark mode state----------------------------- */
     const [dark, setDark] = useState(false);
+    const { user } = useUserCheck()
 
     /** -------------------------------- show side left bar mouseenter or mouseleave and  
      * when mouse enter check side bar has title contain flex or none class 
@@ -157,7 +159,7 @@ const SideLeftBar = () => {
 
                 {/* for support inbox */}
                 {
-                    true &&
+                    user?.user &&
                     <>
                         <button
                             onClick={OpenNewPost}

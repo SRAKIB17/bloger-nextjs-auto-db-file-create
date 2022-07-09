@@ -1,42 +1,121 @@
-import React from 'react';
-import { } from '../ReactRSIcon/index'
-import avatar from '../../public/loginAvatar.png'
-import Image from 'next/image'
+import React, { useState } from 'react';
+import styles from '../profile/NewPost/NewPost.module.css'
+import bgLogin from '../../public/loginBg.jpg'
+import { useRouter } from 'next/router';
+const RegisterFormFixed = () => {
+    function closeFixesLogin() {
+        document.getElementById("loginFixedForm").style.width = "0";
+    }
+    const router = useRouter()
+    console.log(router)
 
-const Login = () => {
+    const [register, setRegister] = useState(true);
+    const registerHandleButton = () => {
+        setRegister(!register)
+    }
+    const resetPassword = () => {
+        setRegister(!register)
+    }
+
+    const loginOrRegisterHandler = (e) => {
+        e.preventDefault()
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const name = e.target.name.value;
+        if (register) {
+            const form = {
+                email, password
+            }
+            console.log(form)
+        }
+        else if (!register) {
+            const form = {
+                email, password, name
+            }
+            console.log(form)
+        }
+    }
+
+
     return (
         <div>
-            <div className=" bg-base-100 flex flex-col md:flex-row justify-between items-center lg:pt-20">
+            <div id="loginFixedForm"
+                style={{ backgroundImage: `url(${bgLogin?.src})`, backgroundSize: 'cover' }}
+            >
+                <div className='max-w-xl mx-auto shadow-2xl p-4 ' >
 
-                <div className="w-full max-w-[400px] mx-auto hidden md:block">
+                    <div>
+                        <div className="w-full max-w-[400px] mx-auto h-[100vh] lg:max-w-xl">
+                            <h1 className='text-center text-2xl font-bold text-white'>
+                                {
+                                    register ? 'Login' : 'Register'
+                                }
+                            </h1>
+                            <div className='p-8'>
+                                <form className=" flex gap-2 flex-col" onSubmit={loginOrRegisterHandler}>
+                                    {
+                                        register ||
+                                        <div>
+                                            <input
+                                                type="text"
+                                                placeholder="Name"
+                                                id='name'
+                                                className="input rounded-3xl input-bordered input-primary w-full"
+                                            />
+                                        </div>
+                                    }
+                                    <div>
+                                        <input
+                                            type="text"
+                                            placeholder="email"
+                                            id='email'
+                                            className="input rounded-3xl input-bordered input-primary w-full"
+                                        />
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="password"
+                                            id='password'
+                                            placeholder="password"
+                                            className="input rounded-3xl input-bordered input-primary w-full"
+                                        />
 
-                    <Image src={avatar} layout='fixed' alt='' />
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <button className="btn btn-primary rounded-3xl font-light text-lg">
+                                            {
+                                                register ? 'Login' : 'Register'
+                                            }
+                                        </button>
+                                    </div>
+                                </form>
+                                {
+                                    register &&
+                                    <label className="label">
+                                        <button className="text-sm label-text-alt link-hover text-white font-light">
+                                            Forgot password? (this is coming soon)
+                                        </button>
+                                    </label>
+                                }
+                                <label className="label">
 
-                </div>
+                                    <button onClick={registerHandleButton} className="text-sm label-text-alt link-hover text-white font-light">
+                                        {
+                                            !register ? "Already have an account →" : " Create a account →"
+                                        }
+                                    </button>
+                                </label>
+                            </div>
 
-                <div className="w-full max-w-[400px] mx-auto lg:max-w-xl">
-                    <div className="p-8 flex gap-2">
-                        <div>
-                            <input type="text" placeholder="email" id='email' className="input input-bordered input-primary " />
                         </div>
-                        <div>
-                            <input type="text" placeholder="password" id='password' className="input input-bordered input-primary " />
-
-                        </div>
-                        <div className="flex flex-col">
-                            <button className="btn btn-primary">Login</button>
-
-                        </div>
-
-
                     </div>
-                    <label className="label">
-                        <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                    </label>
                 </div>
             </div>
-        </div >
+
+        </div>
     );
 };
 
-export default Login;
+
+
+export default RegisterFormFixed;

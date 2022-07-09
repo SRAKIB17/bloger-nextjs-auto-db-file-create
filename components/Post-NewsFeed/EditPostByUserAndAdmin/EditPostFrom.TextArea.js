@@ -242,7 +242,7 @@ const EditPostFromTextArea = ({ post_id }) => {
                             required
                         />
                         <TextAreaEdit post_id={post_id} textareaRef={textareaRef} editBody={getPost?.postBody} />
-                        <input type="submit" value="Post" className='btn rounded-3xl btn-primary text-white w-fit' />
+                        <input type="submit" value="Post" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' />
                     </form>
 
                 </div>

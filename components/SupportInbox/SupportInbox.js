@@ -1,11 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
+import useAdminCheck from '../hooks/checkUser/useAdminCheck';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from '../profile/NewPost/NewPost.module.css'
 import { SendShare } from '../ReactRSIcon';
+import AdminSupportInbox from './AdminSupportInbox';
 import MessageBody from './MessageBody';
 import inbox from './SupportInbox.module.css'
+import style from './Admin.module.css'
 
 const SupportInbox = () => {
 
@@ -13,7 +17,7 @@ const SupportInbox = () => {
     function closeSupportInbox() {
         document.getElementById("SupportInbox").style.width = "0";
     }
-
+    const { admin } = useAdminCheck()
 
 
     const textareaRef = useRef();
@@ -51,14 +55,14 @@ const SupportInbox = () => {
     // const message = data?.data
     const message = [
         {
-            userID: '3534fsdf553',
+            userID: '2',
             adminReply: false,
             adminId: '534fsdf545534',
             message: '543fsf5645',
             support_id: 54435345
         },
         {
-            userID: '35345fsdff53',
+            userID: '1',
             support_id: 54465435345
             ,
             adminReply: true,
@@ -66,7 +70,7 @@ const SupportInbox = () => {
             message: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quam quis amet enim qui illo facilis corrupti libero molestias commodi itaque voluptate molestiae, ab ducimus? Quis perspiciatis quam quod voluptas?'
         },
         {
-            userID: '35fsdfsdf34553',
+            userID: '1',
             adminReply: false,
             adminId: '534545534',
             message: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম। আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।',
@@ -74,7 +78,7 @@ const SupportInbox = () => {
 
         },
         {
-            userID: '353fsdsdfsdsf4553',
+            userID: '4',
             adminReply: false,
             adminId: '534545534',
             message: `
@@ -89,7 +93,7 @@ const SupportInbox = () => {
         },
 
         {
-            userID: '35345sdfdsfsdsfs53',
+            userID: '4',
             adminReply: true,
             adminId: '534545534',
             message: `
@@ -104,10 +108,13 @@ const SupportInbox = () => {
 
         }
     ]
-    const [messageSet, setMessst] = useState([])
+    const [inboxMessage, setInboxMessage] = useState([]);
+    const [inboxUserId, setInboxUserId] = useState(1);
     useEffect(() => {
-        setMessst(message)
-    }, [])
+        const getInboxMessage = message.filter(inbox => inbox.userID == inboxUserId);
+        setInboxMessage(getInboxMessage)
+    }, [inboxUserId])
+
 
 
     const postHandle = async (event) => {
@@ -141,24 +148,26 @@ const SupportInbox = () => {
         // console.log(post)
         // const { data } = await axios.post('/api/comment', message);
         // console.log(data)
-        setMessst([...messageSet, messageBody])
+        setInboxMessage([...inboxMessage, messageBody])
 
         const myDiv = document.getElementById("supportMessageBody");
         myDiv.scrollTop = myDiv.scrollHeight;
         // refetch()
     }
-    // console.log(data)
+    const hideAllInboxMessageForAdmin = () => {
+        try {
+            const adminAllInboxMessage = document.getElementById('adminAllInboxMessage')
+            if (adminAllInboxMessage.offsetHeight < 1) {
+                adminAllInboxMessage.style.height = '224px'
+            }
+            else {
+                adminAllInboxMessage.style.height = '0px'
+            }
+        }
+        catch {
 
-    useEffect(() => {
-        // document.onclick = (e) => {
-        //     const getSupportInboxIframe = (document.getElementById("supportMessageBody").getElementsByTagName('iframe'))
-        //     for (const iframe of getSupportInboxIframe) {
-        //         const iframeG = document.getElementById(iframe.id);
-        //         iframeG.style.height = iframeG.contentWindow.document.documentElement.scrollHeight + 'px';
-        //         console.log( iframeG.contentWindow.document.documentElement.scrollHeight + 'px')
-        //     }
-        // }
-    }, [])
+        }
+    }
     return (
         <div>
 
@@ -171,13 +180,26 @@ const SupportInbox = () => {
                     className='max-w-xl mx-auto shadow-2xl p-4'
                 >
                     <div
-                        className='w-full bg-base-100 z-20 border-b-2 flex items-center' id='topSupportInboxDIV'
+                        className='w-full bg-base-100 z-20 border-b-2 ' id='topSupportInboxDIV'
                     >
-                        <h1
-                            className=' relative text-2xl pb-1 left-[25px] ml-[25px]'
+                        <div
+                            className='flex justify-between items-center ml-[20px] mr-[20px] relative text-2xl pb-1 '
                         >
-                            Support Inbox
-                        </h1>
+                            <h1>
+                                5345
+                            </h1>
+                            {
+                                admin?.admin &&
+                                <div className='mr-20'>
+                                    <button
+                                        onClick={hideAllInboxMessageForAdmin}
+                                        className='font-bold btn btn-sm text-white btn-warning'
+                                    >
+                                        X
+                                    </button>
+                                </div>
+                            }
+                        </div>
                         <a
                             href="#"
                             className={styles.closebtn}
@@ -187,15 +209,25 @@ const SupportInbox = () => {
                         </a>
                     </div>
 
-
                     <div
                         className={(inbox.inboxHideScrollBar) + ' p-4 overflow-auto overflow-x-hidden  h-full'}
                         id='supportMessageBody'
                     >
+
+                        {
+                            admin?.admin &&
+                            <div className={style.showAllMessage + ' overflow-hidden border-b-2 border-b-primary pb-1'} id='adminAllInboxMessage'>
+                                <div className='rounded-lg border-b overflow-auto h-56 hideScrollBar'>
+                                    <AdminSupportInbox setInboxMessage={{ setInboxMessage, inboxUserId, setInboxUserId }} />
+                                </div>
+                            </div>
+
+                        }
+
                         <div>
 
                             {
-                                messageSet?.map((messageBody, index) => <MessageBody key={messageBody?.support_id} messageBody={messageBody} />)
+                                inboxMessage?.map((messageBody, index) => <MessageBody key={messageBody?.support_id} messageBody={messageBody} />)
                             }
                         </div>
 

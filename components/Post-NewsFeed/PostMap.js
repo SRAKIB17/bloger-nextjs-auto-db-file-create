@@ -4,12 +4,16 @@ import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
 import styles from './PostMap.module.css'
 import EditDeleteComponentMenu from './EditPostByUserAndAdmin/EditDeleteComponentMenu';
+import useAdminCheck from '../hooks/checkUser/useAdminCheck';
+import useUserCheck from '../hooks/checkUser/useUserCheck';
 
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
 
-
+    const { admin } = useAdminCheck();
+    const { user } = useUserCheck()
+    console.log(admin.admin)
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
@@ -49,10 +53,7 @@ const PostMap = ({ post, refetch }) => {
     // -----------------------------------------------for iframe -----------------------------------------
 
     const [fullIframeShow, setFullIframeShow] = useState(false);
-    useEffect(() => {
-        const darkMode = window.localStorage.getItem('dark')
 
-    }, [])
     const heightHandle = async (id) => {
         try {
             const iframe = document.getElementById('previewIframeHeight' + id);
@@ -118,7 +119,7 @@ const PostMap = ({ post, refetch }) => {
     }
     return (
         <div>
-            <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none">
+            <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" id={'postMap' + post_id}>
                 {/* -------------------------------------- for user configure --------------------------------------------- */}
                 <div className='flex justify-between  border-b-[1px] m-3 items-center'>
                     <div className='flex gap-2 justify-start items-center '>
@@ -156,7 +157,8 @@ const PostMap = ({ post, refetch }) => {
                     </div>
 
                     {
-                        // post_id?.split('-')[0] === userID &&
+                        // post_id?.split('-')[0] === userID 
+                        (admin?.admin && user?.user) &&
                         <EditDeleteComponentMenu post_id={post_id} />
                     }
                 </div>

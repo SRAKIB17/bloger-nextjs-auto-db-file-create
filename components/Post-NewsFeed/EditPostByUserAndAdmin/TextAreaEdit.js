@@ -58,10 +58,10 @@ const TextAreaEdit = ({ post_id, editBody, textareaRef }) => {
         setLiveView(e.target.value);
         const livePreview = document.getElementById('livePreviewEdit' + id)
         livePreview.style.height = 'auto';
-        console.log(livePreview)
-        console.log(e.target.scrollHeight)
+
         setWindowHeight(window.innerHeight - 50)
         const iframe = document.getElementById('liveViewIframe' + id);
+        
         //---------------------- for iframe ---------/
         try {
             e.target.style.height = 'auto';
@@ -123,12 +123,12 @@ const TextAreaEdit = ({ post_id, editBody, textareaRef }) => {
                         liveOff ? ' On' : ' Off'
                     }
                 </li>
-                <li onClick={rotateHandle} className='btn btn-warning btn-xs text-white m-4 hidden sm:flex w-fit'>
+                {/* <li onClick={rotateHandle} className='btn btn-warning btn-xs text-white m-4 hidden sm:flex w-fit'>
                     Rotate
                     {
                         rotate ? ' On' : ' Off'
                     }
-                </li>
+                </li> */}
             </div>
             <div className={'flex flex-col ' + (rotate ? 'sm:flex-col' : 'sm:flex-row ')}>
                 <div
