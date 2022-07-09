@@ -13,7 +13,7 @@ const Index = () => {
     const router = useRouter()
     const { cat, tag } = router.query;
     const [shows, setShowPosts] = useState(10)
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&tag=${tag}&show=${shows}`))
+    const { data, refetch, isLoading } = useQuery(['userPost_id_Story_page', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&tag=${tag}&show=${shows}`))
 
     // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
 

@@ -11,6 +11,8 @@ export default async function handler(req, res) {
       @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Open+Sans:wght@300;500&family=Orbitron&family=Poppins:wght@500&display=swap');
       html,
       body {
+        width: 100%;
+        overflow: auto;
         font-family: 'Poppins', sans-serif;
         text-align: justify;
         background-color: transparent;

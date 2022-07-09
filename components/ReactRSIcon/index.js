@@ -90,6 +90,10 @@ export { default as MusicMute } from './icon/Music/music_mute'
 
 export { default as NewsFeed } from './icon/NewsFeed/NewsFeed'
 
+
+export { default as FemaleProfileAvatar } from './icon/ProfileAvatar/FemaleProfileAvatar'
+export { default as MaleProfileAvatar } from './icon/ProfileAvatar/MaleProfileAvatar'
+
 export { default as Quote } from './icon/Quote'
 
 

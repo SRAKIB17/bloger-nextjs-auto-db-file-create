@@ -53,7 +53,6 @@ const PostMap = ({ post, refetch }) => {
     // -----------------------------------------------for iframe -----------------------------------------
 
     const [fullIframeShow, setFullIframeShow] = useState(false);
-
     const heightHandle = async (id) => {
         try {
             const iframe = document.getElementById('previewIframeHeight' + id);
@@ -220,7 +219,6 @@ const PostMap = ({ post, refetch }) => {
                                     id={'previewIframeHeight' + post_id}
                                     frameBorder="0"
                                     scrolling="no"
-                                    height='200'
                                     className={' w-full'}
                                 >
                                 </iframe>

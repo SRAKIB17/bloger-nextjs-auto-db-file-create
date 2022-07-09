@@ -23,12 +23,18 @@ const Index = () => {
         if (posts) {
 
             // eslint-disable-next-line react-hooks/exhaustive-deps
-            posts = data?.data?.filter((post, _index, arr) => {
-                if (post?.postRefMode === 'video') {
-                    return arr;
-                }
-            })
-            setPost(posts)
+            try {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                posts = data?.data?.filter((post, _index, arr) => {
+                    if (post?.postRefMode === 'video') {
+                        return arr;
+                    }
+                })
+                setPost(posts)
+            }
+            catch {
+
+            }
         }
     }, [posts])
     useEffect(() => {
