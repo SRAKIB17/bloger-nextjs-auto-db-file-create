@@ -27,6 +27,8 @@ const SupportInbox = () => {
         heightAutoHandle(e)
         classTagShortcutInput(e, textareaRef)
     }
+
+    //********************************************** set auto height support inbox box*************************** */
     const handleChatBoxHeight = () => {
         const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
         document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
@@ -37,6 +39,7 @@ const SupportInbox = () => {
             handleChatBoxHeight()
         }
     }, [])
+    //***(*************************************************************** auto matic high increase for inbox ***************************) */
     const heightAutoHandle = (e) => {
         handleChatBoxHeight()
         e.target.style.height = 'auto';
@@ -48,14 +51,12 @@ const SupportInbox = () => {
         }
     }
 
-    // const { data, refetch } = useQuery(['supportMessage', 54354], () => axios.get('/api/comment'))
-    // const message = data?.data
+
 
     const [inboxMessage, setInboxMessage] = useState([]);
     const [inboxUserId, setInboxUserId] = useState(1);
 
-    const { data } = useQuery(['SupportInbox',inboxUserId], () => axios.get(`/api/support_inbox/${inboxUserId}`))
-    console.log()
+    const { data } = useQuery(['SupportInbox', inboxUserId], () => axios.get(`/api/support_inbox/${inboxUserId}`))
 
     const postHandle = async (event) => {
         event.preventDefault();
@@ -124,11 +125,8 @@ const SupportInbox = () => {
                     className='max-w-xl mx-auto shadow-2xl p-4'
                 >
                     <div
-                        className='w-full bg-base-100 z-20 border-b-2 ' id='topSupportInboxDIV'
-                    >
-                        <div
-                            className='flex justify-between items-center ml-[20px] mr-[20px] relative text-2xl pb-1 '
-                        >
+                        className='w-full bg-base-100 z-20 border-b-2 ' id='topSupportInboxDIV'>
+                        <div className='flex justify-between items-center ml-[20px] mr-[20px] relative text-2xl pb-1 '>
                             <h1>
                                 Support Inbox
                             </h1>
@@ -159,7 +157,7 @@ const SupportInbox = () => {
                     </div>
 
                     <div
-                        className={(inbox.inboxHideScrollBar) + ' p-4 overflow-auto overflow-x-hidden  h-full'}
+                        className={(inbox.inboxHideScrollBar) + '  p-4 overflow-auto overflow-x-hidden  h-full '}
                         id='supportMessageBody'
                     >
 
@@ -172,8 +170,8 @@ const SupportInbox = () => {
 
                         {
                             admin?.admin &&
-                            <div className={style.showAllMessage + ' overflow-hidden  border-b-primary'} id='adminAllInboxMessage'>
-                                <div className='rounded-lg border-b overflow-auto h-56 hideScrollBar'>
+                            <div className={style.showAllMessage + ' overflow-auto  border-b-primary absolute top-[57px] w-full max-w-[500px] z-40 bg-base-100'} id='adminAllInboxMessage'>
+                                <div className='rounded-lg border-b overflow-auto h-56 hideScrollBar '>
                                     <AdminSupportInbox setInboxMessage={{ setInboxMessage, inboxUserId, setInboxUserId }} />
                                 </div>
                             </div>
