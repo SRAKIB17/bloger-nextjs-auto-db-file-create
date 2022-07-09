@@ -23,10 +23,7 @@ const MessageBody = ({ messageBody }) => {
                             </div>
 
                             <div className='bg-base-200  p-3 w-full max-w-[80%] shadow-inner rounded-lg rounded-br-3xl'>
-                                <div className='break-words overflow-hidden text-sm'>
-                                    {message}
-                                </div>
-                                {/* <div dangerouslySetInnerHTML={{ __html: message }}></div> */}
+                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
                                 {/* <iframe
                                     data-supportibox='true'
                                     onLoad={() => onloadMessageSupport(userID + support_id)}

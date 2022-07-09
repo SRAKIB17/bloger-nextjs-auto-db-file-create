@@ -78,6 +78,45 @@ const SupportInbox = () => {
 
         },
         {
+            userID: '1',
+            adminReply: false,
+            adminId: '534545534',
+            message: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম। আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।',
+            support_id: 54435345454445
+
+        },
+        {
+            userID: '1',
+            adminReply: false,
+            adminId: '534545534',
+            message: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম। আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।',
+            support_id: 54435345454445
+
+        },
+        {
+            userID: '1',
+            adminReply: true,
+            adminId: '534545534',
+            message: `'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম। আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।
+            <video width="320" height="240"  preload="auto" controls muted poster="http://rakib17.hexat.com/icon/busy.gif" loop autoplay>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+    
+            `,
+            support_id: 54435345454445
+
+        },
+        {
+            userID: '1',
+            adminReply: false,
+            adminId: '534545534',
+            message: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম। আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।',
+            support_id: 54435345454445
+
+        },
+        {
             userID: '4',
             adminReply: false,
             adminId: '534545534',
@@ -154,14 +193,18 @@ const SupportInbox = () => {
         myDiv.scrollTop = myDiv.scrollHeight;
         // refetch()
     }
+    //************************************************ hide or show all inbox message********************************************** */
     const hideAllInboxMessageForAdmin = () => {
         try {
-            const adminAllInboxMessage = document.getElementById('adminAllInboxMessage')
-            if (adminAllInboxMessage.offsetHeight < 1) {
+            const adminAllInboxMessage = document.getElementById('adminAllInboxMessage');
+            console.log(adminAllInboxMessage.offsetHeight)
+            if (adminAllInboxMessage.offsetHeight < 10) {
                 adminAllInboxMessage.style.height = '224px'
+                adminAllInboxMessage.style.borderBottomWidth = '2px'
             }
             else {
                 adminAllInboxMessage.style.height = '0px'
+                adminAllInboxMessage.style.borderBottomWidth = '0px'
             }
         }
         catch {
@@ -186,8 +229,13 @@ const SupportInbox = () => {
                             className='flex justify-between items-center ml-[20px] mr-[20px] relative text-2xl pb-1 '
                         >
                             <h1>
-                                5345
+                                Support Inbox
                             </h1>
+
+                            {/* ********************************************* ***********************************
+                             it show only admin show and it will work for hide all inbox message ..
+                             hight 0 to 224px
+                            *************************************************************************** */}
                             {
                                 admin?.admin &&
                                 <div className='mr-20'>
@@ -214,9 +262,16 @@ const SupportInbox = () => {
                         id='supportMessageBody'
                     >
 
+                        {/* ********************************************* ***********************************
+                             it show only admin show and
+                             here setInboxMessage, 
+                             1. inboxUserId = set id userId who want massage admin 
+                             2. setInboxUserId  = admin click a userId and see message specific userId
+                    ****************************************************************************** */}
+
                         {
                             admin?.admin &&
-                            <div className={style.showAllMessage + ' overflow-hidden border-b-2 border-b-primary pb-1'} id='adminAllInboxMessage'>
+                            <div className={style.showAllMessage + ' overflow-hidden border-b-2 border-b-primary'} id='adminAllInboxMessage'>
                                 <div className='rounded-lg border-b overflow-auto h-56 hideScrollBar'>
                                     <AdminSupportInbox setInboxMessage={{ setInboxMessage, inboxUserId, setInboxUserId }} />
                                 </div>
