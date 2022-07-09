@@ -11,6 +11,8 @@ import TextAreaEdit from './TextAreaEdit';
 
 const EditPostFromTextArea = ({ post_id }) => {
     const textareaRef = useRef();
+    const jsTextareaRef = useRef()
+    const cssTextareaRef = useRef()
     const [thumbnail, setThumbnail] = useState('')
     const [thumbnailData, setThumbnailData] = useState('')
 
@@ -41,7 +43,48 @@ const EditPostFromTextArea = ({ post_id }) => {
             '\n' +
             'Another idea might be to just listen for a resize event, and calculate based off the new visible size, but that might cause issues if the window is just resized. I think the above is going to be your best option, with perhaps a fallback alert to warn the user not to zoom if necessary.',
         sort: '5345345345',
+        postBodyJs: `
+                
+        var w = 960,
+        h = 500,
+        z = 20,
+        x = w / z,
+        y = h / z;
 
+        var svg = d3.select("body").append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+        svg.selectAll("rect")
+        .data(d3.range(x * y))
+        .enter().append("rect")
+        .attr("transform", translate)
+        .attr("width", z)
+        .attr("height", z)
+        .style("fill", function(d) { return d3.hsl(d % x / x * 360, 1, Math.floor(d / x) / y); })
+        .on("mouseover", mouseover);
+
+        function translate(d) {
+        return "translate(" + (d % x) * z + "," + Math.floor(d / x) * z + ")";
+        }
+
+        function mouseover(d) {
+        this.parentNode.appendChild(this);
+        
+        d3.select(this)
+          .style("pointer-events", "none")
+        .transition()
+          .duration(750)
+          .attr("transform", "translate(480,480)scale(23)rotate(180)")
+        .transition()
+          .delay(1500)
+          .attr("transform", "translate(240,240)scale(0)")
+          .style("fill-opacity", 0)
+          .remove();
+        }
+
+        `,
+        postBodyCss: '5343434343434343434343434343433',
         category: {
             name: 'Vegetables',
             tags: ['html', 'React', "Java"],
@@ -67,7 +110,12 @@ const EditPostFromTextArea = ({ post_id }) => {
 
         }
     }
-
+    //**************************************************************************************************************** */
+    useEffect(() => {
+        textareaRef.current.value = getPost.postBody
+        jsTextareaRef.current.value = getPost?.postBodyJs
+        cssTextareaRef.current.value = getPost?.postBodyCss
+    }, [])
 
     // ---------------------------------------------JSON object sent backend-----------------------------------------
     const [NewPostLoading, setNewPostLoading] = useState(false)
@@ -141,7 +189,7 @@ const EditPostFromTextArea = ({ post_id }) => {
     return (
         <div>
 
-            <div id={"EditPostFromTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100'} style={{zIndex:40000 , position:'absolute'}}>
+            <div id={"EditPostFromTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100'} style={{ zIndex: 40000, position: 'absolute' }}>
                 {
                     NewPostLoading &&
                     <div className=' w-60 mx-auto '>
@@ -241,7 +289,7 @@ const EditPostFromTextArea = ({ post_id }) => {
                             defaultValue={editPost?.category?.tags}
                             required
                         />
-                        <TextAreaEdit post_id={post_id} textareaRef={textareaRef} editBody={getPost?.postBody} />
+                        <TextAreaEdit props={{ cssTextareaRef, jsTextareaRef, textareaRef, post_id }} />
                         <input type="submit" value="Post" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' />
                     </form>
 
