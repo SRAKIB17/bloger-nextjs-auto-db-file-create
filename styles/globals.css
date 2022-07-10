@@ -100,7 +100,6 @@ a {
 
 .hideScrollBar::-webkit-scrollbar {
   display: none;
-
 }
 
 body::-webkit-scrollbar {

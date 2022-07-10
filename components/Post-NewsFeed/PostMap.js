@@ -123,6 +123,7 @@ const PostMap = ({ post, refetch }) => {
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/api/styleIframe.css?video=video" type='text/css' />
         <style>
         ${postBodyCss}
         </style>
@@ -135,7 +136,7 @@ const PostMap = ({ post, refetch }) => {
     </body>
     </html>
     `
-   
+
     // postBody: textareaRef.current.value,
     // postBodyCss: cssTextareaRef.current.value,
     // postBodyJs: jsTextareaRef.current.value,
@@ -263,10 +264,16 @@ const PostMap = ({ post, refetch }) => {
                                 {/* ------------see more -------------------- */}
 
                                 <div className="card-actions justify-end">
-                                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => heightHandle(post_id)}>
+                                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => profileNavigate('/story/' + post_id)}>
                                         See {fullIframeShow ? 'Less' : 'More'}
                                     </button>
                                 </div>
+                                {/* 
+                                <div className="card-actions justify-end">
+                                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => heightHandle(post_id)}>
+                                        See {fullIframeShow ? 'Less' : 'More'}
+                                    </button>
+                                </div> */}
 
 
                                 {/* ----thumbnail------------ */}

@@ -11,8 +11,7 @@ export default async function handler(req, res) {
       @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Open+Sans:wght@300;500&family=Orbitron&family=Poppins:wght@500&display=swap');
       html,
       body {
-        width: 100%;
-        overflow: auto;
+        overflow-wrap: break-word;
         font-family: 'Poppins', sans-serif;
         text-align: justify;
         background-color: transparent;
@@ -42,7 +41,8 @@ export default async function handler(req, res) {
     embed,
     object {
        width: 100% !important;
-       height: 280px !important;
+       margin-bottom: 2px;
+       height: 100%;
     }
     `
 

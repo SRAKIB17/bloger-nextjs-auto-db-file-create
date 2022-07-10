@@ -24,7 +24,7 @@ const Header = () => {
         if (router.pathname === '/') {
             document.getElementById('home').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
         }
-        else if (pathname === 'story' && !Object.keys(router.query).includes('cat')) {
+        else if (pathname === 'story' && !Object.keys(router.query).includes('cat') && !router.pathname.includes('[post_id]')) {
             document.getElementById('story').className = 'border-b-2 bg-base-200 border-primary btn-disabled'
 
         }

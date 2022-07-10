@@ -189,7 +189,7 @@ const EditPostFromTextArea = ({ post_id }) => {
     return (
         <div>
 
-            <div id={"EditPostFromTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100 border-t b border-b'} style={{ zIndex: 40000, position: 'absolute' }}>
+            <div id={"EditPostFromTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100 border-t b border-b'} style={{ zIndex: 40, position: 'absolute' }}>
                 {
                     NewPostLoading &&
                     <div className=' w-60 mx-auto '>
