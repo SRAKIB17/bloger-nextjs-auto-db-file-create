@@ -78,7 +78,7 @@ const Index = () => {
             }
 
             `,
-        postBodyCss: '',
+        postBodyCss: 'fsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd',
         sort: '5345345345',
 
         category: {

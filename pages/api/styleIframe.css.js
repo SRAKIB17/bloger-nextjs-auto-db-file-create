@@ -16,7 +16,13 @@ export default async function handler(req, res) {
         text-align: justify;
         background-color: transparent;
       }
+      body *{
+        overflow:auto;
+      }
       body::-webkit-scrollbar {
+        display: none;
+      }
+      * ::-webkit-scrollbar {
         display: none;
       }
     `

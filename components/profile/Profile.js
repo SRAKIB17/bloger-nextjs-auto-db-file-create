@@ -8,12 +8,11 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import UpdateProfilePicture from './UpdateProfilePicture';
 import { Camera } from '../ReactRSIcon';
-import useUserCheck from '../hooks/checkUser/useUserCheck';
-import privatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
+import maleAvatar from '../../public/maleAvatar.png'
 
 const Profile = () => {
-    usePrivatePageCheckUser()
+    usePrivatePageCheckUser('/profile')
     const OpenNewPost = () => {
         document.getElementById("newPostClose").style.width = "100%";
     }
@@ -105,6 +104,10 @@ const Profile = () => {
                                 <div
                                     className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
                                 >
+                                    {/* <img
+                                        src={maleAvatar.src}
+                                        alt=''
+                                    /> */}
                                     <img
                                         src="https://api.lorem.space/image/face?hash=3174"
                                         alt=''

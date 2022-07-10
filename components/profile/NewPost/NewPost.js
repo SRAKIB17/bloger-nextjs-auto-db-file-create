@@ -8,6 +8,7 @@ import ImageUpload from './ImageUpload';
 import styles from './NewPost.module.css'
 import QuickPost from './QuickPost';
 import useAdminCheck from '../../hooks/checkUser/useAdminCheck';
+import { useQuery } from 'react-query';
 
 const NewPost = () => {
     const { admin } = useAdminCheck();
@@ -50,10 +51,8 @@ const NewPost = () => {
             image: '',
             time: 'dec 15, 2021',
             short_description: event.target.short_description.value,
-            category: {
-                name: event.target.category.value,
-                tags: ['html'],
-            },
+            category: event.target.category.value,
+            tags: ['html'],
             postBody: textareaRef.current.value,
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,
@@ -119,6 +118,9 @@ const NewPost = () => {
             }
         }
     }, [])
+
+    // ***************************************for category **********************
+    const { data } = useQuery('category', () => axios.get('/api/category'))
     return (
         <div>
 
@@ -141,7 +143,7 @@ const NewPost = () => {
                 <div>
                     <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm font-serif'>
 
-                        <p className='font-mono texhi'>
+                        <p className='font-mono'>
 
                             {
                                 quickVideoPost && <code>{` tips: .<vid or .<ifr or .<emb use for shortcut html tag.`}</code>
@@ -206,6 +208,7 @@ const NewPost = () => {
 
                         </div>
                         <input
+                            list='categories'
                             type="text"
                             name="category"
                             id="category"
@@ -213,6 +216,14 @@ const NewPost = () => {
                             placeholder='Category'
                             required
                         />
+                        <datalist id="categories">
+                            {
+                                data?.data?.map((i, index) =>
+                                    <option key={index} value={i?.category}></option>
+                                )
+                            }
+                        </datalist>
+
                         <div>
                             <input
                                 type="text"

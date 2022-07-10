@@ -6,8 +6,12 @@ const RegisterFormFixed = () => {
     function closeFixesLogin() {
         document.getElementById("loginFixedForm").style.width = "0";
     }
-    const router = useRouter()
-    console.log(router)
+    const router = useRouter();
+    const { red_url } = router.query
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
+    }
 
     const [register, setRegister] = useState(true);
     const registerHandleButton = () => {
@@ -32,7 +36,7 @@ const RegisterFormFixed = () => {
             const form = {
                 email, password, name
             }
-            console.log(form)
+            navigate(red_url)
         }
     }
 

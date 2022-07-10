@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import category from './Category.module.css'
 import { useRouter } from 'next/router';
 import styles from '../profile/NewPost/NewPost.module.css'
+import { useQuery } from 'react-query'
 
 
 const Category = () => {
@@ -16,10 +17,10 @@ const Category = () => {
     const showTagsHandleMouseEnter = (id, event) => {
         try {
             if (event.type === 'mouseenter') {
-                document.getElementById(id).style.height = '100%'
+                document.getElementById('category' + id).style.height = '100%'
             }
             else if (event.type === 'mouseleave') {
-                document.getElementById(id).style.height = '0px'
+                document.getElementById('category' + id).style.height = '0px'
             }
         }
         catch {
@@ -31,6 +32,8 @@ const Category = () => {
         router.push(url)
         router.prefetch(url)
     }
+
+    const { data } = useQuery('category', () => axios.get('/api/category'))
     return (
         <div>
 
@@ -40,21 +43,23 @@ const Category = () => {
                 <div className='w-full h-full overflow-auto p-4 border-t-2'>
                     <ul className="menu menu-vertical p-0 flex-col gap-1">
                         {
-                            [...Array(6).keys()].map(i =>
+                            data?.data?.map((i, index) =>
 
-                                <div key={i} onMouseLeave={(event) => showTagsHandleMouseEnter('html-' + i, event)} onMouseEnter={(event) => showTagsHandleMouseEnter('html-' + i, event)}>
+                                <div key={i} onMouseLeave={(event) => showTagsHandleMouseEnter(i?.category + index, event)} onMouseEnter={(event) => showTagsHandleMouseEnter(i?.category + index, event)}>
                                     <li className='btn btn-outline btn-primary text-left rounded-md'>
-                                        Html
+                                        {i?.category}
                                     </li>
 
-                                    <div className={category.showTags} id={'html-' + i} >
-                                        <div onClick={() => navigate('/story?cat=html')} className={"m-2 btn btn-xs btn-outline cursor-pointer " + badge[Math.floor(Math.random() * badge.length)]}>
-                                            Html
+                                    <div className={category.showTags} id={'category' + i?.category + index} >
+                                        <div onClick={() => navigate(`/story?cat=${i?.category}`)} className={"m-2 btn btn-xs btn-outline cursor-pointer " + badge[Math.floor(Math.random() * badge.length)]}>
+                                            {i?.category}
                                         </div>
                                         <div className='flex flex-wrap gap-2 ml-6 p-2'>
                                             {
-                                                [...Array(9).keys()].map(a =>
-                                                    <div onClick={() => navigate('/story?cat=html')} key={a} className={"btn btn-xs btn-outline cursor-pointer " + badge[Math.floor(Math.random() * badge.length)]}>Html css</div>
+                                                i?.tags?.map(tag =>
+                                                    <div onClick={() => navigate(`/story?cat=${i?.category}&tag=${tag}`)} key={tag} className={"btn btn-xs btn-outline cursor-pointer " + badge[Math.floor(Math.random() * badge.length)]}>
+                                                        {tag}
+                                                    </div>
                                                 )
                                             }
                                         </div>

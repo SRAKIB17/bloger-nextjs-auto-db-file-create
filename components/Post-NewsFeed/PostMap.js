@@ -13,7 +13,6 @@ const PostMap = ({ post, refetch }) => {
 
     const { admin } = useAdminCheck();
     const { user } = useUserCheck()
-    console.log(admin.admin)
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
@@ -263,17 +262,17 @@ const PostMap = ({ post, refetch }) => {
 
                                 {/* ------------see more -------------------- */}
 
-                                <div className="card-actions justify-end">
+                                {/* <div className="card-actions justify-end">
                                     <button className="link-primary font-semibold link-hover text-xs" onClick={() => profileNavigate('/story/' + post_id)}>
                                         See {fullIframeShow ? 'Less' : 'More'}
                                     </button>
                                 </div>
-                                {/* 
+                                 */}
                                 <div className="card-actions justify-end">
                                     <button className="link-primary font-semibold link-hover text-xs" onClick={() => heightHandle(post_id)}>
                                         See {fullIframeShow ? 'Less' : 'More'}
                                     </button>
-                                </div> */}
+                                </div>
 
 
                                 {/* ----thumbnail------------ */}
