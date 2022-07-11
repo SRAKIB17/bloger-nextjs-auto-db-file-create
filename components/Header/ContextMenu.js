@@ -15,8 +15,11 @@ const ContextMenu = () => {
         router.push(path)
         router.prefetch(path)
     }
+
+    const [newPost, setNewPost] = useState(null)
     const OpenNewPost = () => {
-        document.getElementById("newPostClose").style.width = "100%";
+        // document.getElementById("newPostClose").style.width = "100%";
+        setNewPost(true)
     }
 
     useEffect(() => {
@@ -173,7 +176,10 @@ const ContextMenu = () => {
                 </ul>
             </div>
 
-            <NewPost />
+            {
+                newPost &&
+                <NewPost props={setNewPost}/>
+            }
         </div>
     );
 };

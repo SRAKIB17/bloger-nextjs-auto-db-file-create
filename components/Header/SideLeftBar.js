@@ -8,6 +8,7 @@ import SupportInboxComponent from '../SupportInbox/SupportInbox';
 import { useRouter } from 'next/router'
 import RegisterFormFixed from '../Login/LoginFormSIde';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
+import NewPost from '../profile/NewPost/NewPost';
 
 const SideLeftBar = () => {
     /** ------------------------------for dark mode state----------------------------- */
@@ -121,9 +122,12 @@ const SideLeftBar = () => {
     }
 
     //---------------------------for open new post ------------------------
+    const [newPost, setNewPost] = useState(null)
+
     const OpenNewPost = () => {
         try {
-            document.getElementById("newPostClose").style.width = "100%";
+            // document.getElementById("newPostClose").style.width = "100%";
+            setNewPost(true)
         }
         catch {
 
@@ -207,7 +211,7 @@ const SideLeftBar = () => {
                     </>
                 }
                 {
-                    false ||
+                    user?.user ||
                     <>
                         <button
                             onClick={openLoginForm}
@@ -275,12 +279,21 @@ const SideLeftBar = () => {
 
 
             {/* for external component  */}
-            <SupportInboxComponent />
+            {
+                user?.user &&
+                <SupportInboxComponent />
+            }
             <Help />
             <Category />
             <Settings />
-            <LoginAutoShow />
-            <RegisterFormFixed />
+            {
+                user?.user ||
+                <RegisterFormFixed />
+            }
+            {
+                newPost &&
+                <NewPost  props={setNewPost}/>
+            }
 
 
         </div>

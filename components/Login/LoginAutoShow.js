@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import React from 'react';
-
+import bgLogin from '../../public/loginBg.jpg'
 
 const LoginAutoShow = () => {
     setTimeout(() => {
@@ -21,14 +22,14 @@ const LoginAutoShow = () => {
         sessionStorage.setItem('autoLoginShowFrom', true)
     }
     return (
-        <div>
-            <div className='onClickProfileMenu rounded-md fixed top-[60px] bg-base-100 shadow-md right-[-200px]' id='autoLoginShow'>
+        <div >
+            <div style={{ backgroundImage: `url(${bgLogin?.src})`, backgroundSize: 'cover' }} className='onClickProfileMenu rounded-md fixed top-[60px] bg-base-100 shadow-md right-[-200px]' id='autoLoginShow'>
                 <div className="w-full max-w-[400px] mx-auto lg:max-w-xl ">
                     <div>
                         <a href="#" onClick={hiddenAutoLoginShow} className='relative top-1 left-2 text-2xl hover:text-[grey]'>&times;</a>
 
                     </div>
-                    <div className="p-4 border-dashed border-4 rounded-md flex flex-col gap-2">
+                    <div className="p-4 m-1 border-dotted border-4 rounded-md flex flex-col gap-2">
                         <div>
                             <input type="text" id='autoShowLoginEmail' placeholder="email" className="input input-xs input-bordered input-primary " />
                         </div>
@@ -40,9 +41,9 @@ const LoginAutoShow = () => {
                             <button className="btn btn-primary btn-xs">Login</button>
                         </div>
                         <label className="label">
-                            <button className=" label-text-alt link-hover text-xs">
+                            <a className=" label-text-alt link-hover text-xs" href='/login'>
                                 Create Account
-                            </button>
+                            </a>
                         </label>
                     </div>
 

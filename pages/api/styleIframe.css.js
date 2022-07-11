@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     object {
        width: 100% !important;
        margin-bottom: 2px;
-       height: 100%;
+       height: 250px !important;
     }
     `
 

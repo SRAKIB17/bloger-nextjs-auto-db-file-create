@@ -10,19 +10,24 @@ import UpdateProfilePicture from './UpdateProfilePicture';
 import { Camera } from '../ReactRSIcon';
 import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 import maleAvatar from '../../public/maleAvatar.png'
+import femaleAvatar from '../../public/female-avatar.png'
+import NewPost from './NewPost/NewPost';
 
 const Profile = () => {
     usePrivatePageCheckUser('/profile')
+    const [newPost, setNewPost] = useState(null)
     const OpenNewPost = () => {
-        document.getElementById("newPostClose").style.width = "100%";
+        // document.getElementById("newPostClose").style.width = "100%";
+        setNewPost(true)
     }
 
-    function OpenEditProfile() {
-        document.getElementById("profileEdit").style.width = "100%";
-    }
+
 
     useEffect(() => {
         // document.body.setAttribute('data-theme', 'retro')
+        //*************************************************************
+        //*WHEN SCROLL WINDOW THIS FUNCTION AUTO RUN AND SHOW PROFILE SUB MENU
+        //*********************************************************** 
         const GeneratedScrollProfile = () => {
             try {
                 const stickyTop = document.getElementById('stickyTop')
@@ -57,12 +62,19 @@ const Profile = () => {
 
     const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
 
-    const [uploadMethod, setUploadMethod] = useState(null)
+    const [uploadMethod, setUploadMethod] = useState(null);
+    const [editProfile, setEditProfile] = useState(null);
+
+    function OpenEditProfile() {
+        // document.getElementById("profileEdit").style.width = "100%";
+        setEditProfile(true)
+    }
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <div id='stickyTop' className='bg-base-100 rounded-lg m-2 pb-4 md:pb-6'>
                 <div className=' rounded-lg relative bg-base-100'>
-                    {/* ------------------------------for cover photo ------------------------------------ */}
+                    {/* ************************************************************************************************ */}
+                    {/* **********************************FOR COVER PHOTO ************************************************ */}
                     <label
                         htmlFor="openModalUploadProfilePicture"
                         title='Upload cover photo'
@@ -70,9 +82,7 @@ const Profile = () => {
                     >
                         <div
                             className='cursor-pointer relative'>
-                            <div
-                                className='bg-base-300 p-1 absolute top-2 left-4 rounded-full'
-                            >
+                            <div className='bg-base-300 p-1 absolute top-2 left-4 rounded-full'>
                                 <Camera />
                             </div>
                             <img
@@ -83,7 +93,8 @@ const Profile = () => {
                         </div>
                     </label>
 
-                    {/* ------------------------------for profile photo ------------------------------------ */}
+                    {/* ************************************************************************************************ */}
+                    {/* **********************************FOR PROFILE PICTURE PHOTO ************************************************ */}
 
                     <div
                         className='cursor-pointer absolute bottom-[-48px] sm:bottom-[-52px] left-[50%] ml-[-55px] md:left-[100px] md:bottom-[-120px]'
@@ -101,24 +112,20 @@ const Profile = () => {
                                 >
                                     <Camera />
                                 </div>
-                                <div
-                                    className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
-                                >
+                                <div className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" >
+                                    <img src={femaleAvatar.src} alt='' className='w-full' />
                                     {/* <img
-                                        src={maleAvatar.src}
-                                        alt=''
-                                    /> */}
-                                    <img
                                         src="https://api.lorem.space/image/face?hash=3174"
                                         alt=''
-                                    />
+                                    /> */}
                                 </div>
                             </div>
                         </label>
                     </div>
-                    {/* ---------------------------------------------------------------------------------------- */}
+                    {/* ******************************************************************************************************************** */}
                 </div>
-                {/* for profile info */}
+                {/* ****************************************************************************************************************** */}
+                {/* **************************************FOR PROFILE NAME , NEW POST, EDIT PROFILE******************************** */}
                 <div className='relative md:mt-[10px] md:left-[250px] md:border-b-2 md:mr-[260px] md:pb-[10px]'>
                     <div className='flex flex-col mt-[60px] md:mt-[20px]  items-center md:justify-between md:flex-row'>
                         <div className='text-center'>
@@ -127,15 +134,12 @@ const Profile = () => {
                         </div>
                         <div className='flex flex-row justify-between gap-3 md:flex-col'>
                             <button className='btn btn-sm btn-primary rounded-3xl btn-outline '
-                                onClick={() => { OpenNewPost() }}
-                            >
-
+                                onClick={() => { OpenNewPost() }}>
                                 New Post
                             </button>
                             <button
                                 className='btn btn-sm  btn-outline btn-secondary  rounded-3xl'
-                                onClick={OpenEditProfile}
-                            >
+                                onClick={OpenEditProfile} >
                                 Edit Profile
                             </button>
 
@@ -143,7 +147,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-
+            {/* ******************************************************WHEN SCROLL WINDOW THIS SECTION AUTO SHOW****************************************** */}
 
             <div className='scrollBarTopProfileFixed bg-base-300 pb-1 hidden sm:block' id='scrollProfile'>
                 <div className="avatar ">
@@ -153,26 +157,32 @@ const Profile = () => {
                 </div>
             </div>
 
-            <div>
-
-                <ProfileEdit />
-            </div>
-            {/* about me section  */}
+            {/********************************************* about me section ************************************ */}
             <div className='grid grid-cols-12 gap-5 text-justify'>
                 <div className='col-span-12 md:col-span-5 sm:border-r-2 md:p-2'>
                     <div className='bg-base-100 p-4 md:p-2 rounded-t-lg'>
                         <About />
                     </div>
                 </div>
-
+                {/* *****************************************USER POST ********************************************************** */}
                 <div className='col-span-12 md:col-span-7 sticky' id='post'>
                     <Post posts={data?.data} />
                 </div>
             </div>
-
+            {/* ********************************************************************************************** */}
+            <div>
+                {
+                    editProfile &&
+                    <ProfileEdit props={setEditProfile} />
+                }
+            </div>
             {
                 uploadMethod && <UpdateProfilePicture props={{ setUploadMethod, uploadMethod }} />
 
+            }
+            {
+                newPost &&
+                <NewPost props={setNewPost} />
             }
         </div>
     );

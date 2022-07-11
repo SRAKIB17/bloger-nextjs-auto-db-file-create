@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import TextArea from '../../hooks/TextArea';
@@ -10,7 +11,7 @@ import QuickPost from './QuickPost';
 import useAdminCheck from '../../hooks/checkUser/useAdminCheck';
 import { useQuery } from 'react-query';
 
-const NewPost = () => {
+const NewPost = ({ props: setNewPost }) => {
     const { admin } = useAdminCheck();
     const [quickVideoPost, setQuickVideoPost] = useState(false);
     const [quickTextPost, setQuickTextPost] = useState(true);
@@ -19,7 +20,8 @@ const NewPost = () => {
     const jsTextareaRef = useRef()
     const cssTextareaRef = useRef()
     function closeNewPost() {
-        document.getElementById("newPostClose").style.width = "0";
+        // document.getElementById("newPostClose").style.width = "0";
+        setNewPost(null)
     }
 
 
@@ -120,11 +122,13 @@ const NewPost = () => {
     }, [])
 
     // ***************************************for category **********************
-    const { data } = useQuery('category', () => axios.get('/api/category'))
+    const { data } = useQuery('category', () => axios.get('/api/category'));
+    const categoryPattern = data?.data?.map(i => i?.category).join('|')
+
     return (
         <div>
 
-            <div id="newPostClose" className={styles.NewPostNav + ' bg-base-100'}>
+            <div id="newPostClose" className={styles.NewPostNav + ' bg-base-100'} style={{ width: '100%' }}>
                 {
                     NewPostLoading &&
                     <div className=' w-60 mx-auto '>
@@ -214,6 +218,8 @@ const NewPost = () => {
                             id="category"
                             className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Category'
+                            pattern={categoryPattern}
+                            title={'Must be ' + (data?.data?.map(i => i?.category))}
                             required
                         />
                         <datalist id="categories">

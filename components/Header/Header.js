@@ -11,6 +11,7 @@ import ProfilePicture from './ProfilePicture';
 import DownloadApk from './DownloadApk';
 import useCommonWindowResizeHeaderComponent from './CommonWindowReisizeHeaderComponent';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
+import LoginAutoShow from '../Login/LoginAutoShow';
 const Header = () => {
     const { user } = useUserCheck()
 
@@ -88,6 +89,11 @@ const Header = () => {
                 <DownloadApk />
             </div>
             <ContextMenu />
+            {
+                user?.user ||
+                <LoginAutoShow />
+            }
+
         </div>
 
 

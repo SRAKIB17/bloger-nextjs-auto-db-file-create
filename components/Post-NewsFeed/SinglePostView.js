@@ -67,25 +67,27 @@ const PostMap = ({ post, refetch }) => {
 
         }
     }
-    const iframePostFullBody = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>
-        ${postBodyCss}
-        </style>
-    </head>
-    <body>
-        ${postBody}
-        <script>
-            ${postBodyJs}
-        </script>
-    </body>
-    </html>
-    `
+    // const iframePostFullBody = `
+    // <!DOCTYPE html>
+    // <html lang="en">
+    // <head>
+    //     <meta charset="UTF-8" />
+    //     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    //     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    //     <link href="/api/styleIframe.css" rel="stylesheet" type="text/css">
+    //     <link href="/api/styleIframe.css?video=video" rel="stylesheet" type="text/css">
+    //     <style>
+    //     ${postBodyCss}
+    //     </style>
+    // </head>
+    // <body>
+    //     ${postBody}
+    //     <script>
+    //         ${postBodyJs}
+    //     </script>
+    // </body>
+    // </html>
+    // `
     const count = 0;
     const click = setInterval(() => {
         onloadIframeHeightStylesHandle()
@@ -130,9 +132,9 @@ const PostMap = ({ post, refetch }) => {
                                     time
                                 }
                                 <b> | </b>
-                                <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category?.name}`)}>
+                                <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category}`)}>
                                     {
-                                        category?.name
+                                        category
                                     }
                                 </button>
                             </h1>
@@ -161,10 +163,19 @@ const PostMap = ({ post, refetch }) => {
                                 }
                             </div>
 
-                            <iframe
+                            {/* <iframe
                                 onLoad={onloadIframeHeightStylesHandle}
                                 src='/api/preview'
                                 srcDoc={iframePostFullBody}
+                                id={'PreviewFullStory'}
+                                frameBorder="0"
+                                scrolling="no"
+                                className={styles.iframeAutoHightTransition + '  w-full'}
+                            >
+                            </iframe> */}
+                            <iframe
+                                onLoad={onloadIframeHeightStylesHandle}
+                                src={'/api/preview/' + post_id}
                                 id={'PreviewFullStory'}
                                 frameBorder="0"
                                 scrolling="no"
@@ -175,7 +186,7 @@ const PostMap = ({ post, refetch }) => {
 
                         {/* ----thumbnail------------ */}
                         {
-                            thumbnail &&
+                            (postRefMode === 'text' && thumbnail) &&
                             <div className='mt-4 mb-4'>
                                 <figure>
                                     <img src={thumbnail} alt="" className='w-full h-[200px] lg:h-[240px] rounded-md' />

@@ -15,10 +15,8 @@ export default async function handler(req, res) {
             image: '',
             time: 'dec 15, 2021',
             short_description: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর         রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের        ব্যবস্থা করলাম।  আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।',
-            category: {
-                name: 'Vegetables',
-                tags: ['html'],
-            },
+            category: 'Vegetables',
+            tags: ['html'],
             postBody: '<iframe  src="https://www.youtube.com/embed/ANSWToElgjM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n',
             sort: '5345345345',
             postRefMode: 'video'
@@ -91,13 +89,11 @@ export default async function handler(req, res) {
                 }
 
                 `,
-            postBodyCss:'',
+            postBodyCss: '',
             sort: '5345345345',
 
-            category: {
-                name: 'Vegetables',
-                tags: ['html'],
-            },
+            category: 'Vegetables',
+            tags: ['html'],
             postRefMode: 'text'
         },
 
@@ -114,10 +110,8 @@ export default async function handler(req, res) {
             postBody: '',
             sort: '5345345345',
 
-            category: {
-                name: 'Vegetables',
-                tags: ['html'],
-            },
+            category: 'Vegetables',
+            tags: ['html'],
             postRefMode: 'text'
         },
         {
@@ -133,10 +127,8 @@ export default async function handler(req, res) {
             postBody: '',
             sort: '5345345345',
 
-            category: {
-                name: 'Vegetables',
-                tags: ['html'],
-            },
+            category: 'Vegetables',
+            tags: ['html'],
             postRefMode: 'text'
         },
         {
@@ -320,10 +312,8 @@ export default async function handler(req, res) {
             `,
             sort: '5345345345',
 
-            category: {
-                name: 'Vegetables',
-                tags: ['html'],
-            },
+            category: 'Vegetables',
+            tags: ['html'],
             postRefMode: 'text'
         },
 

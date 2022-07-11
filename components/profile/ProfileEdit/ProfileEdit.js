@@ -2,9 +2,10 @@ import React from 'react';
 import styles from '../NewPost/NewPost.module.css'
 import { FacebookSquare, Github, Youtube, LinkedinNew, Instagram, Twitter, TwitterSquare, Quote, Gender, School, Location, Worker } from '../../ReactRSIcon/index';
 
-const ProfileEdit = () => {
+const ProfileEdit = ({ props: setEditProfile }) => {
     function closeNewPost() {
-        document.getElementById("profileEdit").style.width = "0";
+        // document.getElementById("profileEdit").style.width = "0";
+        setEditProfile(null)
     }
 
     const updateHandle = async (event) => {
@@ -31,7 +32,7 @@ const ProfileEdit = () => {
     }
     return (
         <div>
-            <div id="profileEdit" className={styles.NewPostNav + ' bg-base-100'}>
+            <div id="profileEdit" className={styles.NewPostNav + ' bg-base-100 '} style={{ width: '100%' }}>
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
                 <div className='shadow-2xl max-w-md mx-auto p-4 h-full bg-base-300 rounded-3xl'>
                     <form action="" onSubmit={updateHandle} className='flex flex-col gap-2 m-10'>

@@ -17,6 +17,7 @@ const usePrivatePageCheckUser = (backPath) => {
         if (!user.user) {
             navigate('/login?red_url=' + backPath)
         }
+       
     }
     catch {
 

@@ -1,18 +1,18 @@
 const category = [
     {
-        category: 'Web Development',
+        category: 'web development',
         tags: ['html', 'css', 'js', 'node'],
     },
     {
-        category: 'Programming',
+        category: 'programming',
         tags: ['c++', 'python', 'c', 'java'],
     },
     {
-        category: 'HSC',
+        category: 'hsc',
         tags: ['bangla', 'css', 'js', 'node'],
     },
     {
-        category: 'Web Development',
+        category: '',
         tags: ['html', 'css', 'js', 'node'],
     },
 ]

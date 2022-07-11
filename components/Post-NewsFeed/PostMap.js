@@ -12,7 +12,7 @@ const PostMap = ({ post, refetch }) => {
     const router = useRouter();
 
     const { admin } = useAdminCheck();
-    const { user } = useUserCheck()
+    const { user } = useUserCheck();
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
@@ -169,9 +169,9 @@ const PostMap = ({ post, refetch }) => {
                                     time
                                 }
                                 <b> | </b>
-                                <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category?.name}`)}>
+                                <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category}`)}>
                                     {
-                                        category?.name
+                                        category
                                     }
                                 </button>
                             </h1>
@@ -219,6 +219,7 @@ const PostMap = ({ post, refetch }) => {
                                     id={'previewIframeHeight' + post_id}
                                     frameBorder="0"
                                     scrolling="no"
+                                    height='250'
                                     className={' w-full'}
                                 >
                                 </iframe>
@@ -262,17 +263,17 @@ const PostMap = ({ post, refetch }) => {
 
                                 {/* ------------see more -------------------- */}
 
-                                {/* <div className="card-actions justify-end">
+                                <div className="card-actions justify-end">
                                     <button className="link-primary font-semibold link-hover text-xs" onClick={() => profileNavigate('/story/' + post_id)}>
-                                        See {fullIframeShow ? 'Less' : 'More'}
+                                        See More
                                     </button>
                                 </div>
-                                 */}
-                                <div className="card-actions justify-end">
+
+                                {/* <div className="card-actions justify-end">
                                     <button className="link-primary font-semibold link-hover text-xs" onClick={() => heightHandle(post_id)}>
                                         See {fullIframeShow ? 'Less' : 'More'}
                                     </button>
-                                </div>
+                                </div> */}
 
 
                                 {/* ----thumbnail------------ */}
