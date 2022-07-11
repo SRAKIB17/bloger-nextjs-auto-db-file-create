@@ -304,7 +304,6 @@ const PostMap = ({ post, refetch }) => {
                                     scrolling="no"
                                     height='250'
                                     className={' w-full'}
-                                    sandbox="allow-forms allow-modals allow-scripts"
                                 >
                                 </iframe>
                             </div>
