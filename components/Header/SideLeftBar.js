@@ -131,7 +131,12 @@ const SideLeftBar = () => {
             sideLeftBarTitle.forEach(title => {
                 title.style.display = 'none'
             })
-            sideLeftBar.style.width = '64px'
+            if (window.innerWidth >= 1024) {
+                sideLeftBar.style.width = '64px'
+            }
+            else {
+                hiddenSideLeftBarHandle()
+            }
             // document.getElementById("newPostClose").style.width = "100%";
             setNewPost(true)
         }
