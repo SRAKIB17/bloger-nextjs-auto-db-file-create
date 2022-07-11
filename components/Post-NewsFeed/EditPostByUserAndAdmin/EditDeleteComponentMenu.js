@@ -17,10 +17,12 @@ const EditDeleteComponentMenu = ({ post_id }) => {
         try {
             const editPostBYuser = document.getElementById('editPostBYuser' + id);
             if (event.type === 'mouseenter') {
+                editPostBYuser.style.display = 'block'
                 editPostBYuser.style.left = '-125px'
             }
             else if (event.type === 'mouseleave') {
                 editPostBYuser.style.left = '200px'
+                editPostBYuser.style.display = 'none'
             }
         }
         catch {
@@ -42,7 +44,7 @@ const EditDeleteComponentMenu = ({ post_id }) => {
                 </button>
                 {/* ---------------for edit post --------------- */}
                 <div
-                    className={styles.EditPost + ' absolute z-20 left-[-50px] top-[30px] '}
+                    className={styles.EditPost + ' absolute z-20 left-[-50px] top-[30px] hidden'}
                     id={'editPostBYuser' + post_id}
                 >
                     <ul className='flex w-40 bg-base-300 p-4 rounded-md shadow-md flex-col gap-1'>

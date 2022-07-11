@@ -193,25 +193,25 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                             <Comment size='18' color='currentColor' />
                         </button>
                     </div>
-                    <div>
+                    <div onMouseEnter={() => setShowShareOption(!showShareOption)}  onMouseLeave={() => setShowShareOption(!showShareOption)} >
                         <button
-                            onClick={() => setShowShareOption(!showShareOption)}
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >
                             <Share size='18' />
                         </button>
+                        {
+                            showShareOption &&
+                            <div className={styles.shareOption}>
+                                <ShareOption post_id={post_id} />
+                            </div>
+                        }
                     </div>
 
                 </div>
             </div>
 
 
-            {
-                showShareOption &&
-                <div className={styles.shareOption}>
-                    <ShareOption post_id={post_id} />
-                </div>
-            }
+
         </div >
     );
 };
