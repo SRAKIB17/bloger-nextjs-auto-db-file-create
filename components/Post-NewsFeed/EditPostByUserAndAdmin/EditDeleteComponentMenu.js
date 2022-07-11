@@ -17,7 +17,7 @@ const EditDeleteComponentMenu = ({ post_id }) => {
         try {
             const editPostBYuser = document.getElementById('editPostBYuser' + id);
             if (event.type === 'mouseenter') {
-                editPostBYuser.style.left = '-120px'
+                editPostBYuser.style.left = '-125px'
             }
             else if (event.type === 'mouseleave') {
                 editPostBYuser.style.left = '200px'
@@ -31,12 +31,12 @@ const EditDeleteComponentMenu = ({ post_id }) => {
     return (
         <div>
             <div
-                className='relative'
+                className='absolute right-0 top-[18px]'
                 onMouseLeave={(event) => threeDotEditHandle(post_id, event)}
                 onMouseEnter={(event) => threeDotEditHandle(post_id, event)}
             >
                 <button
-                    className='text-2xl font-extrabold mr-4 link-primary flex'
+                    className='text-2xl font-extrabold mr-6 link-primary flex'
                 >
                     ...
                 </button>
