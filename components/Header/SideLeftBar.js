@@ -126,6 +126,12 @@ const SideLeftBar = () => {
 
     const OpenNewPost = () => {
         try {
+            const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle');
+            const sideLeftBar = document.getElementById('sideLeftBar');
+            sideLeftBarTitle.forEach(title => {
+                title.style.display = 'none'
+            })
+            sideLeftBar.style.width = '64px'
             // document.getElementById("newPostClose").style.width = "100%";
             setNewPost(true)
         }
@@ -292,7 +298,7 @@ const SideLeftBar = () => {
             }
             {
                 newPost &&
-                <NewPost  props={setNewPost}/>
+                <NewPost props={setNewPost} />
             }
 
 

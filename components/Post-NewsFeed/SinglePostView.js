@@ -8,9 +8,9 @@ import useAdminCheck from '../hooks/checkUser/useAdminCheck';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
 
 const PostMap = ({ post, refetch }) => {
-    const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
+    const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
-
+    const { post_id } = router.query;
     const { admin } = useAdminCheck();
     const { user } = useUserCheck()
     console.log(admin.admin)
@@ -34,7 +34,7 @@ const PostMap = ({ post, refetch }) => {
         try {
             const iframe = document.getElementById('PreviewFullStory')
             iframe.contentDocument.head.append(link);
-            iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+
 
 
             let link = document.createElement("link");
@@ -62,49 +62,57 @@ const PostMap = ({ post, refetch }) => {
             videosCssLink.rel = "stylesheet";
             videosCssLink.type = "text/css";
             iframe.contentDocument.head.append(videosCssLink);
+            showCommentHandle(post_id)
+            const count = 0;
+            const click = setInterval(() => {
+                iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                if (count === 6) {
+                    clearTimeout(click)
+                }
+                count++
+            }, 100);
         }
         catch {
 
         }
     }
-    // const iframePostFullBody = `
-    // <!DOCTYPE html>
-    // <html lang="en">
-    // <head>
-    //     <meta charset="UTF-8" />
-    //     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    //     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    //     <link href="/api/styleIframe.css" rel="stylesheet" type="text/css">
-    //     <link href="/api/styleIframe.css?video=video" rel="stylesheet" type="text/css">
-    //     <style>
-    //     ${postBodyCss}
-    //     </style>
-    // </head>
-    // <body>
-    //     ${postBody}
-    //     <script>
-    //         ${postBodyJs}
-    //     </script>
-    // </body>
-    // </html>
-    // `
-    const count = 0;
-    const click = setInterval(() => {
-        onloadIframeHeightStylesHandle()
-        if (count === 10) {
-            clearTimeout(click)
+
+    //************************************************************************************ */
+    //********************FOR COMMENT AUTO SHOW AND SHOW********************************** */
+    //************************************************************************************ */
+    const showCommentHandle = (id) => {
+        try {
+
+            const showComment = document.getElementById('commentShow' + id)
+            const commentForm = document.getElementById('commentForm' + id)
+            const showCommentButton = document.getElementById('showCommentButton' + id)
+
+            if (showComment.offsetHeight <= 2) {
+                commentForm.style.height = '100%'
+                try {
+                    commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
+                }
+                catch {
+
+                }
+                showComment.style.height = '500px'
+                document.getElementById('commentTextArea' + id).focus()
+                showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
+            }
+            else {
+                showComment.style.height = '0px'
+                commentForm.style.height = '0px'
+                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
+                showCommentButton.className = ' btn-outline btn btn-xs btn-primary ml-2 '
+            }
         }
-        count++
-    }, 100);
+        catch {
 
-
-
-    // postBody: textareaRef.current.value,
-    // postBodyCss: cssTextareaRef.current.value,
-    // postBodyJs: jsTextareaRef.current.value,
+        }
+    }
     return (
         <div>
-            <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" id={'postMap' + post_id}>
+            <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none h-[100vh] overflow-auto hideScrollBar " id={'postMap' + post_id}>
                 {/* -------------------------------------- for user configure --------------------------------------------- */}
                 <div className='flex justify-between  border-b-[1px] m-3 items-center'>
                     <div className='flex gap-2 justify-start items-center '>
@@ -163,16 +171,6 @@ const PostMap = ({ post, refetch }) => {
                                 }
                             </div>
 
-                            {/* <iframe
-                                onLoad={onloadIframeHeightStylesHandle}
-                                src='/api/preview'
-                                srcDoc={iframePostFullBody}
-                                id={'PreviewFullStory'}
-                                frameBorder="0"
-                                scrolling="no"
-                                className={styles.iframeAutoHightTransition + '  w-full'}
-                            >
-                            </iframe> */}
                             <iframe
                                 onLoad={onloadIframeHeightStylesHandle}
                                 src={'/api/preview/' + post_id}
@@ -195,7 +193,7 @@ const PostMap = ({ post, refetch }) => {
                         }
                     </div>
 
-                    <div className='relative bg-base-100'>
+                    <div className='relative bg-base-100 '>
                         <Comment_textarea post_id={post_id} />
                     </div>
                 </div>

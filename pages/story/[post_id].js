@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import Header from '../../components/Header/Header';
 import SinglePostView from '../../components/Post-NewsFeed/SinglePostView';
-import RightMenu from '../../components/Story/RightMenu';
 import { useRouter } from 'next/router'
 import LoadingSpin from '../../components/LoadingSpin'
 import Login from '../../components/Login/Login';
 import LoadingFlowCircle from '../../components/LoadingFlowCircle';
+import RightSideLg from '../../components/Post-NewsFeed/RightSideLg';
 
 const Index = () => {
     const router = useRouter()
@@ -84,7 +84,7 @@ const Index = () => {
         category: 'Vegetables',
         tags: ['html'],
 
-        postRefMode: 'video'
+        postRefMode: 'text'
     }
 
 
@@ -139,7 +139,7 @@ const Index = () => {
 
                 <div className=' col-span-2 hidden lg:block relative bg-base-100 p-3'>
                     <div className='fixed h-full overflow-auto text-justify p-2'>
-
+                        <RightSideLg />
                     </div>
                 </div>
             </div>

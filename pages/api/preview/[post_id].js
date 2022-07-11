@@ -351,6 +351,8 @@ export default function handler(req, res) {
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link href="/api/styleIframe.css" rel="stylesheet" type="text/css">
+      <link href="/api/styleIframe.css?video=video" rel="stylesheet" type="text/css">
       <style>
       ${post?.postBodyCss}
       </style>
@@ -364,7 +366,7 @@ export default function handler(req, res) {
   </html>
   `
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write(iframePostFullBody || '<h1>Sorry Can\'t load document</h1>');
+    res.write(post? iframePostFullBody : '<h1>Sorry Can\'t load document</h1>');
     res.end();
   }
   run()

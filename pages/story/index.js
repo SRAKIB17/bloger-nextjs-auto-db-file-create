@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import Header from '../../components/Header/Header';
 import Post from '../../components/Post-NewsFeed/Post';
-import RightMenu from '../../components/Story/RightMenu';
 import { useRouter } from 'next/router'
 import LoadingSpin from '../../components/LoadingSpin'
 import Login from '../../components/Login/Login';

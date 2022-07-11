@@ -23,23 +23,6 @@ const PostMap = ({ post, refetch }) => {
         router.prefetch(path)
     }
 
-
-    const [seeMorePostShow, setSeeMorePostShow] = useState(false)
-    // --------------------------------------------- for video -------------------------------------------------//
-    const [shortDescriptionVideo, setShortDescriptionVideo] = useState('')
-    useEffect(() => {
-        setShortDescriptionVideo(short_description?.slice(0, 100))
-    }, [post, short_description])
-
-    const moreShortDescriptionVideoHandle = () => {
-        setSeeMorePostShow(!seeMorePostShow)
-        if (shortDescriptionVideo.length <= 100) {
-            setShortDescriptionVideo(short_description)
-        }
-        else {
-            setShortDescriptionVideo(short_description?.slice(0, 100))
-        }
-    }
     const videoPostIframeAutoOnloadHandle = (e) => {
         e.target.height = e.target.contentWindow.document.documentElement.scrollHeight + 'px'
         let link = document.createElement("link");
@@ -48,54 +31,54 @@ const PostMap = ({ post, refetch }) => {
         link.type = "text/css";
         e.target.contentDocument.head.append(link);
     }
-
     // -----------------------------------------------for iframe -----------------------------------------
 
-    const [fullIframeShow, setFullIframeShow] = useState(false);
-    const heightHandle = async (id) => {
-        try {
-            const iframe = document.getElementById('previewIframeHeight' + id);
-            // console.log(iframe.contentDocument.documentElement.scrollHeight)
-            const darkMode = window.localStorage.getItem('dark')
+    // const [fullIframeShow, setFullIframeShow] = useState(false);
+    // const heightHandle = async (id) => {
+    //     try {
+    //         const iframe = document.getElementById('previewIframeHeight' + id);
+    //         // console.log(iframe.contentDocument.documentElement.scrollHeight)
+    //         const darkMode = window.localStorage.getItem('dark')
 
-            let link = document.createElement("link");
-            link.href = "/api/styleIframe.css";      /**** your CSS file ****/
-            // link.href = "/_next/static/css/73d1bb86bcd5bddc.css";      /**** your CSS file ****/
-            link.rel = "stylesheet";
-            link.type = "text/css";
+    //         let link = document.createElement("link");
+    //         link.href = "/api/styleIframe.css";      /**** your CSS file ****/
+    //         // link.href = "/_next/static/css/73d1bb86bcd5bddc.css";      /**** your CSS file ****/
+    //         link.rel = "stylesheet";
+    //         link.type = "text/css";
 
-            /**** 0 is an index of your iframe ****/
-            let doc = await iframe.contentDocument;
-            if (darkMode) {
-                doc.body.style.color = '#A9C5EF'
-            }
-            else {
-                doc.body.style.color = ''
-            }
+    //         /**** 0 is an index of your iframe ****/
+    //         let doc = await iframe.contentDocument;
+    //         if (darkMode) {
+    //             doc.body.style.color = '#A9C5EF'
+    //         }
+    //         else {
+    //             doc.body.style.color = ''
+    //         }
 
-            if (fullIframeShow) {
-                iframe.style.height = 0 + 'px';
-                setFullIframeShow(false)
-            }
-            else {
-                let count = 0
-                const showIframe = setInterval(() => {
-                    iframe.contentDocument.head.append(link);
-                    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
-                    if (count === 3) {
-                        clearInterval(showIframe)
-                    }
-                    count++
-                }, 100);
-                setFullIframeShow(true)
-            }
+    //         if (fullIframeShow) {
+    //             iframe.style.height = 0 + 'px';
+    //             setFullIframeShow(false)
+    //         }
+    //         else {
+    //             let count = 0
+    //             const showIframe = setInterval(() => {
+    //                 iframe.contentDocument.head.append(link);
+    //                 iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+    //                 if (count === 3) {
+    //                     clearInterval(showIframe)
+    //                 }
+    //                 count++
+    //             }, 100);
+    //             setFullIframeShow(true)
+    //         }
 
-        }
-        catch {
+    //     }
+    //     catch {
 
-        }
+    //     }
 
-    }
+    // }
+
     const onloadIframeHeightStylesHandle = (e) => {
         let link = document.createElement("link");
         link.href = "/api/styleIframe.css";
@@ -123,6 +106,7 @@ const PostMap = ({ post, refetch }) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/api/styleIframe.css?video=video" type='text/css' />
+        <link href="/api/styleIframe.css" rel="stylesheet" type="text/css">
         <style>
         ${postBodyCss}
         </style>
@@ -189,28 +173,26 @@ const PostMap = ({ post, refetch }) => {
                     <h2 className="card-title">{post_title}</h2>
 
                     {/* ---------------------------------------for video body--------------------------------- */}
-                    {
-                        postRefMode === 'video' && <>
-                            <div className='text-justify mb-2'>
-                                {
-                                    shortDescriptionVideo
-                                }
-                                {
-                                    shortDescriptionVideo?.length <= 100 && <>.....</>
-                                }
-                                {/* -------------see more short description----------- */}
-                                {
-                                    short_description?.length >= 100 &&
-                                    <div className="card-actions justify-end text-xs">
-                                        <button className="link-primary font-semibold link-hover" onClick={moreShortDescriptionVideoHandle}>
-                                            See {seeMorePostShow ? 'Less' : 'More'}
-                                        </button>
-                                    </div>
-                                }
-                            </div>
 
-                            {/*----------------------------- for video code --------------------- */}
-                            <div className='mx-auto' id='videoPost' >
+                    <div className={styles.postMap + ' w-full h-fit transition-all text-justify mb-2'} id={'postBody' + post_id} >
+                        <div>
+                            {
+                                short_description?.slice(0, 1000)
+                            }
+                        </div>
+                        {/* -------------see more short description----------- */}
+
+                    </div>
+                    <div className="card-actions justify-end">
+                        <button className="link-primary font-semibold link-hover text-xs" onClick={() => profileNavigate('/story/' + post_id)}>
+                            See More
+                        </button>
+                    </div>
+                    {/*----------------------------- for video code --------------------- */}
+                    <div className='mx-auto' id='videoPost' >
+                        {
+                            postRefMode === 'video' &&
+                            <>
 
                                 <iframe
                                     onLoad={videoPostIframeAutoOnloadHandle}
@@ -223,79 +205,45 @@ const PostMap = ({ post, refetch }) => {
                                     className={' w-full'}
                                 >
                                 </iframe>
+                            </>
+
+                        }
+
+                        {
+                            (postRefMode === 'text' && thumbnail) &&
+                            <div className='mt-4 mb-4'>
+                                <figure>
+                                    <img src={thumbnail} alt="" className='w-full h-[200px] lg:h-[240px] rounded-md' />
+                                </figure>
                             </div>
-                        </>
-                    }
-                    {/* ------------------------------------------------------------------------------------------------------------- */}
-                    {/* -----------------------------------------------for Text/Html body----------------------------------------- */}
-
-                    {
-                        postRefMode === 'text' &&
-                        <>
-
-                            <div className='mx-auto' id='videoPost'>
+                        }
 
 
-                                {/* ---------post body ----------------- */}
-                                <div className={styles.postMap + ' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} >
+                        {
+                            postRefMode === 'text' &&
+                            <>
+                                <iframe
+                                    onLoad={onloadIframeHeightStylesHandle}
+                                    src='/api/preview'
+                                    srcDoc={iframePostFullBody}
+                                    id={'previewIframeHeight' + post_id}
+                                    frameBorder="0"
+                                    scrolling="no"
 
-                                    <div>
-                                        {
-                                            short_description?.slice(0, 1000)
-                                        }
-                                    </div>
-                                    {/* <div
-                                        dangerouslySetInnerHTML={{ __html: short_description }}
+                                    className={styles.iframeAutoHightTransition + '  w-full'}
+                                >
+                                </iframe>
+                            </>
+                        }
 
-                                    >
-                                    </div> */}
-                                    <iframe
-                                        onLoad={onloadIframeHeightStylesHandle}
-                                        src='/api/preview'
-                                        srcDoc={iframePostFullBody}
-                                        id={'previewIframeHeight' + post_id}
-                                        frameBorder="0"
-                                        scrolling="no"
-                                        className={styles.iframeAutoHightTransition + '  w-full'}
-                                    >
-                                    </iframe>
-                                </div>
-
-                                {/* ------------see more -------------------- */}
-
-                                <div className="card-actions justify-end">
-                                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => profileNavigate('/story/' + post_id)}>
-                                        See More
-                                    </button>
-                                </div>
-
-                                {/* <div className="card-actions justify-end">
-                                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => heightHandle(post_id)}>
-                                        See {fullIframeShow ? 'Less' : 'More'}
-                                    </button>
-                                </div> */}
-
-
-                                {/* ----thumbnail------------ */}
-                                {
-                                    thumbnail &&
-                                    <div className='mt-4 mb-4'>
-                                        <figure>
-                                            <img src={thumbnail} alt="" className='w-full h-[200px] lg:h-[240px] rounded-md' />
-                                        </figure>
-                                    </div>
-                                }
-                            </div>
-                        </>
-
-                    }
+                    </div>
 
                     <div className='relative bg-base-100'>
                         <Comment_textarea post_id={post_id} />
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
