@@ -11,11 +11,12 @@ import MessageBody from './MessageBody';
 import inbox from './SupportInbox.module.css'
 import style from './Admin.module.css'
 
-const SupportInbox = () => {
+const SupportInbox = ({ props: setSupportInbox }) => {
 
 
     function closeSupportInbox() {
-        document.getElementById("SupportInbox").style.width = "0";
+        // document.getElementById("SupportInbox").style.width = "0";
+        setSupportInbox(null)
     }
     const { admin } = useAdminCheck()
 
@@ -118,7 +119,7 @@ const SupportInbox = () => {
 
             <div
                 id="SupportInbox"
-                style={{ overflow: 'hidden', paddingTop: '0px' }}
+                style={{ overflow: 'hidden', paddingTop: '0px' , width:'100%'}}
                 className={styles.NewPostNav + ' bg-base-100 '}
             >
                 <div
@@ -142,7 +143,7 @@ const SupportInbox = () => {
                                         onClick={hideAllInboxMessageForAdmin}
                                         className='font-bold btn btn-sm text-white btn-warning'
                                     >
-                                        X
+                                        All Message
                                     </button>
                                 </div>
                             }

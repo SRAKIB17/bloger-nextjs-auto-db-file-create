@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import Category from '../Category/Category';
 import Help from '../Help/Help';
 import LoginAutoShow from '../Login/LoginAutoShow';
@@ -108,9 +108,23 @@ const SideLeftBar = () => {
     }, [])
 
     //--------------------open support inbox modal-------------------
+    const [supportInbox, setSupportInbox] = useState(null)
     const OpenSupportInbox = () => {
         try {
-            document.getElementById("SupportInbox").style.width = "100%";
+
+            const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle');
+            const sideLeftBar = document.getElementById('sideLeftBar');
+            sideLeftBarTitle.forEach(title => {
+                title.style.display = 'none'
+            })
+            if (window.innerWidth >= 1024) {
+                sideLeftBar.style.width = '64px'
+            }
+            else {
+                hiddenSideLeftBarHandle()
+            }
+            setSupportInbox(user?.user)
+            // document.getElementById("SupportInbox").style.width = "100%";
         }
         catch {
 
@@ -291,8 +305,8 @@ const SideLeftBar = () => {
 
             {/* for external component  */}
             {
-                user?.user &&
-                <SupportInboxComponent />
+                (user?.user && supportInbox) &&
+                <SupportInboxComponent  props={setSupportInbox}/>
             }
             <Help />
             <Category />
@@ -302,7 +316,7 @@ const SideLeftBar = () => {
                 <RegisterFormFixed />
             }
             {
-                newPost &&
+                (user?.user && newPost) &&
                 <NewPost props={setNewPost} />
             }
 

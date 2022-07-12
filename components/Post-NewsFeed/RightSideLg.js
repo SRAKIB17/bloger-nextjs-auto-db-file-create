@@ -28,6 +28,9 @@ const RightSideLg = () => {
 
                 <div className='w-[90%] mt-4'>
                     <a href="https://wap4dollar.com/ad/serve.php?id=aqrfshf5g1" className='text-xl text-blue-500 '> Download Now</a>
+                    <code>
+Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam cupiditate quia adipisci voluptatem doloremque! Veniam asperiores odio, laborum voluptatum, hic libero nostrum ullam maxime corporis nesciunt reprehenderit. Est, ex cupiditate.
+                    </code>
                 </div>
             </div>
 

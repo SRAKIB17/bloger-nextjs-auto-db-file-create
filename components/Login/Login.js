@@ -12,7 +12,7 @@ const RegisterFormFixed = () => {
         router.push(path)
         router.prefetch(path)
     }
-
+    console.log(process.env.DB_HOST)
     const [register, setRegister] = useState(true);
     const registerHandleButton = () => {
         setRegister(!register)
@@ -26,6 +26,7 @@ const RegisterFormFixed = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         const name = e.target.name.value;
+        const gender = e.target.gender.value;
         if (register) {
             const form = {
                 email, password
@@ -34,13 +35,14 @@ const RegisterFormFixed = () => {
         }
         else if (!register) {
             const form = {
-                email, password, name
+                email, password, name, gender
             }
-            navigate(red_url)
+            console.log(form)
+            // navigate(red_url)
         }
     }
 
-
+    // funct()
     return (
         <div>
             <div id="loginFixedForm"
@@ -59,14 +61,23 @@ const RegisterFormFixed = () => {
                                 <form className=" flex gap-2 flex-col" onSubmit={loginOrRegisterHandler}>
                                     {
                                         register ||
-                                        <div>
-                                            <input
-                                                type="text"
-                                                placeholder="Name"
-                                                id='name'
-                                                className="input rounded-3xl input-bordered input-primary w-full"
-                                            />
-                                        </div>
+                                        <>
+                                            <div>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Name"
+                                                    id='name'
+                                                    className="input rounded-3xl input-bordered input-primary w-full"
+                                                />
+                                            </div>
+                                            <div className='flex gap-1 items-center'>
+                                                <select id='Gender' name='gender' className="rounded-3xl select select-primary select-bordered select-md w-full">
+                                                    <option disabled selected>Gender</option>
+                                                    <option value='Male'>Male</option>
+                                                    <option value='Female'>Female</option>
+                                                </select>
+                                            </div>
+                                        </>
                                     }
                                     <div>
                                         <input
@@ -119,7 +130,6 @@ const RegisterFormFixed = () => {
         </div>
     );
 };
-
 
 
 export default RegisterFormFixed;

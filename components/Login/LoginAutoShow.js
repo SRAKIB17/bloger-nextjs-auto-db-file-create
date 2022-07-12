@@ -41,7 +41,7 @@ const LoginAutoShow = () => {
                             <button className="btn btn-primary btn-xs">Login</button>
                         </div>
                         <label className="label">
-                            <a className=" label-text-alt link-hover text-xs" href='/login'>
+                            <a className=" label-text-alt link-hover text-xs text-white" href='/login'>
                                 Create Account
                             </a>
                         </label>

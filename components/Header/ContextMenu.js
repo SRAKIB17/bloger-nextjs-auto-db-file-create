@@ -48,6 +48,13 @@ const ContextMenu = () => {
                     const getProfileMenu = document.getElementById('profileLogOut');
                     getProfileMenu.style.right = '-500px'
                 }
+
+            }
+
+            catch {
+
+            }
+            try {
                 const getContextMenu = document.getElementById('contextMenu');
                 // setPostShareId(null)
                 getContextMenu.style.display = 'none'
@@ -178,7 +185,7 @@ const ContextMenu = () => {
 
             {
                 newPost &&
-                <NewPost props={setNewPost}/>
+                <NewPost props={setNewPost} />
             }
         </div>
     );

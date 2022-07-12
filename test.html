@@ -2,12 +2,7 @@
 <html>
 <style>
     #scrollingDiv {
-        display: flex;
-        gap: 4px;
-        overflow: auto;
-        padding: 3px;
         width: 400px;
-        height: auto;
     }
 
     #scrollingDiv::-webkit-scrollbar {
@@ -72,57 +67,63 @@
             quae molestias?
         </div>
     </div>
-    <script src="https://bloger-nextjs-auto-db-file-create-ll9vdpmwl-srakib17.vercel.app/api/js">
+    <!-- <script src="https://bloger-nextjs-auto-db-file-create-ll9vdpmwl-srakib17.vercel.app/api/js">
         
 
-    </script>
+    </script> -->
     <script>
-        // let isScrolling = false;
-        // let x = 0;
-        // let y = 0;
-        // let count = 0
-        // const autoShow = (e) => {
-        //     isScrolling = true;
-        // }
-        // const mouseMove = (e) => {
-        //     if (isScrolling) {
-        //         const getId = document.getElementById('scrollingDiv')
-        //         x = e.pageX;
-        //         y = e.pageY
-        //         getId.scrollTo(getId.scrollLeft - e.movementX, 0)
-        //         count = getId.scrollLeft - e.movementX
 
-        //     }
-        // }
+        let isScrolling = false;
+        let x = 0;
+        let y = 0;
+        let count = 0
+        const autoShow = (e) => {
+            isScrolling = true;
+        }
+        const mouseMove = (e) => {
+            if (isScrolling) {
+                const getId = document.getElementById('scrollingDiv')
+                x = e.pageX;
+                y = e.pageY
+                getId.scrollTo(getId.scrollLeft - e.movementX, 0)
+                count = getId.scrollLeft - e.movementX
 
-
-        // let end = false;
-        // const getId = document.getElementById('scrollingDiv');
-        // setInterval(() => {
-        //     const getTotalWidth = (getId.scrollWidth - getId.clientWidth + 10)
-        //     if (getTotalWidth <= count && !end) {
-        //         end = true
-        //         count = count - 10
-        //     }
-
-        //     else if (getTotalWidth >= count && end) {
-        //         count--
-        //         if (getId.scrollLeft == 0) {
-        //             end = false
-        //         }
-        //     }
+            }
+        }
 
 
-        //     else if (getTotalWidth >= count && !end) {
-        //         count++
-        //         end = false;
-        //     }
-        //     getId.scrollTo(count, 0)
+        let end = false;
+        const getId = document.getElementById('scrollingDiv');
+        getId.style.display = 'flex';
+        getId.style.overflow = 'auto';
+        getId.style.height = 'auto'
+        getId.style.padding = '3px'
+        getId.style.gap = '5px'
+        setInterval(() => {
+            const getTotalWidth = (getId.scrollWidth - getId.clientWidth + 10)
+            if (getTotalWidth <= count && !end) {
+                end = true
+                count = count - 10
+            }
 
-        // }, getId.hasAttribute('data-ms') ? getId.getAttribute('data-ms') : 10)
-        // document.documentElement.onmouseup = (e) => {
-        //     isScrolling = false
-        // }
+            else if (getTotalWidth >= count && end) {
+                count--
+                if (getId.scrollLeft == 0) {
+                    end = false
+                }
+            }
+
+
+            else if (getTotalWidth >= count && !end) {
+                count++
+                end = false;
+            }
+            getId.scrollTo(count, 0)
+
+        }, getId.hasAttribute('data-ms') ? getId.getAttribute('data-ms') : 10)
+        document.documentElement.onmouseup = (e) => {
+            isScrolling = false
+        }
 
     </script>
 

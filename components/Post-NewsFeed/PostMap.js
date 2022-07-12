@@ -228,6 +228,11 @@ const PostMap = ({ post, refetch }) => {
         darkStyle.type = "text/css";
         iframe.contentDocument.head.append(darkStyle);
     }
+
+    const unloadIframeHandle = () => {
+       alert('54543')
+    }
+
     return (
         <div>
             <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" id={'postMap' + post_id}>
@@ -345,6 +350,7 @@ const PostMap = ({ post, refetch }) => {
                                     }
 
                                     <iframe
+                                        // onUnload={unloadIframeHandle}
                                         onLoad={onloadIframeHeightStylesHandle}
                                         src={'/api/preview/' + post_id}
                                         id={'previewIframeHeight' + post_id}
