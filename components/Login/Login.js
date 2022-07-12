@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import styles from '../profile/NewPost/NewPost.module.css'
 import bgLogin from '../../public/loginBg.jpg'
+import axios from 'axios'
 import { useRouter } from 'next/router';
 const RegisterFormFixed = () => {
     function closeFixesLogin() {
         document.getElementById("loginFixedForm").style.width = "0";
     }
     const router = useRouter();
-    const { red_url } = router.query
+    const { return_url } = router.query
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
     }
-    console.log(process.env.DB_HOST)
+    console.log(process.env.LOGIN_SIGNUP_ACCESS_API)
     const [register, setRegister] = useState(true);
     const registerHandleButton = () => {
         setRegister(!register)
@@ -21,12 +22,11 @@ const RegisterFormFixed = () => {
         setRegister(!register)
     }
 
-    const loginOrRegisterHandler = (e) => {
+    const loginOrRegisterHandler = async (e) => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const name = e.target.name.value;
-        const gender = e.target.gender.value;
+
         if (register) {
             const form = {
                 email, password
@@ -35,14 +35,19 @@ const RegisterFormFixed = () => {
         }
         else if (!register) {
             const form = {
-                email, password, name, gender
+                email, password, name: e.target.name.value, gender: e.target.gender.value
             }
-            console.log(form)
-            // navigate(red_url)
+            const { data } = await axios.post('/api/login_signup/signup', form, {
+                headers: {
+                    'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
+                }
+            });
+            console.log(data)
         }
+
     }
 
-    // funct()
+
     return (
         <div>
             <div id="loginFixedForm"
@@ -68,11 +73,11 @@ const RegisterFormFixed = () => {
                                                     placeholder="Name"
                                                     id='name'
                                                     className="input rounded-3xl input-bordered input-primary w-full"
+                                                    required
                                                 />
                                             </div>
                                             <div className='flex gap-1 items-center'>
-                                                <select id='Gender' name='gender' className="rounded-3xl select select-primary select-bordered select-md w-full">
-                                                    <option disabled selected>Gender</option>
+                                                <select id='Gender' name='gender' className="rounded-3xl select select-primary select-bordered select-md w-full" required>
                                                     <option value='Male'>Male</option>
                                                     <option value='Female'>Female</option>
                                                 </select>
@@ -85,6 +90,7 @@ const RegisterFormFixed = () => {
                                             placeholder="email"
                                             id='email'
                                             className="input rounded-3xl input-bordered input-primary w-full"
+                                            required
                                         />
                                     </div>
                                     <div>
@@ -93,11 +99,12 @@ const RegisterFormFixed = () => {
                                             id='password'
                                             placeholder="password"
                                             className="input rounded-3xl input-bordered input-primary w-full"
+                                            required
                                         />
 
                                     </div>
                                     <div className="flex flex-col">
-                                        <button className="btn btn-primary rounded-3xl font-light text-lg">
+                                        <button className="btn btn-primary rounded-3xl font-light text-lg text-white">
                                             {
                                                 register ? 'Login' : 'Register'
                                             }
@@ -130,6 +137,7 @@ const RegisterFormFixed = () => {
         </div>
     );
 };
+
 
 
 export default RegisterFormFixed;
