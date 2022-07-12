@@ -5,6 +5,8 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import About from '../profile/About';
 import Post from '../Post-NewsFeed/Post';
+import maleAvatar from '../../public/maleAvatar.png'
+import femaleAvatar from '../../public/femaleAvatar.png'
 
 const PublicProfile = () => {
 
@@ -43,10 +45,10 @@ const PublicProfile = () => {
                                 title='Upload Profile picture'
                             >
                                 <div
-                                    className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
+                                    className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1 bg-base-100"
                                 >
                                     <img
-                                        src="https://api.lorem.space/image/face?hash=3174"
+                                        src={femaleAvatar?.src}
                                         alt=''
                                     />
                                 </div>

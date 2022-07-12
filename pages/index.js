@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/Header/Header';
 import Link from 'next/link';
 import Home from '../components/Home/Home';
+
 export default function Index() {
 
   return (
@@ -17,7 +18,7 @@ export default function Index() {
       <Header />
       <div className='md:ml-16'>
         <div className='bg-base-100 p-2'>
-          <Home/>
+            <Home />
         </div>
       </div>
     </div>

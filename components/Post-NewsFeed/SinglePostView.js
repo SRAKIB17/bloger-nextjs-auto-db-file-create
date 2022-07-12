@@ -6,6 +6,8 @@ import styles from './PostMap.module.css'
 import EditDeleteComponentMenu from './EditPostByUserAndAdmin/EditDeleteComponentMenu';
 import useAdminCheck from '../hooks/checkUser/useAdminCheck';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
+import maleAvatar from '../../public/maleAvatar.png'
+import femaleAvatar from '../../public/femaleAvatar.png'
 
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_title, short_description, sort, thumbnail, time, userID } = post
@@ -123,7 +125,7 @@ const PostMap = ({ post, refetch }) => {
                                 className="w-10 cursor-pointer h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
                             >
                                 <img
-                                    src="https://api.lorem.space/image/face?hash=3174"
+                                    src={femaleAvatar?.src}
                                     alt=''
                                 />
                             </div>

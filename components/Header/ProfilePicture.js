@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router'
 import loginProfile from '../../public/loginAvatar.png'
 import useUserCheck from '../hooks/checkUser/useUserCheck';
+import maleAvatar from '../../public/maleAvatar.png'
+import femaleAvatar from '../../public/femaleAvatar.png'
 
 const ProfilePicture = () => {
     const { user } = useUserCheck()
@@ -31,7 +33,7 @@ const ProfilePicture = () => {
                             <button data-profile='profileLogOut'>
                                 <div className="avatar " data-profile='profileLogOut'>
                                     <div className="w-[28px] rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-profile='profileLogOut'>
-                                        <img src="https://api.lorem.space/image/face?hash=3174" alt='' data-profile='profileLogOut' />
+                                        <img src={femaleAvatar?.src} alt='' data-profile='profileLogOut' />
                                     </div>
                                 </div>
                             </button>

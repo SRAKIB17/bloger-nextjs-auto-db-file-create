@@ -10,7 +10,7 @@ import UpdateProfilePicture from './UpdateProfilePicture';
 import { Camera } from '../ReactRSIcon';
 import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 import maleAvatar from '../../public/maleAvatar.png'
-import femaleAvatar from '../../public/female-avatar.png'
+import femaleAvatar from '../../public/femaleAvatar.png'
 import NewPost from './NewPost/NewPost';
 
 const Profile = () => {
@@ -113,7 +113,7 @@ const Profile = () => {
                                     <Camera />
                                 </div>
                                 <div className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" >
-                                    <img src={femaleAvatar.src} alt='' className='w-full' />
+                                    <img src={femaleAvatar.src} alt='' className='w-full bg-base-100' />
                                     {/* <img
                                         src="https://api.lorem.space/image/face?hash=3174"
                                         alt=''
@@ -152,7 +152,7 @@ const Profile = () => {
             <div className='scrollBarTopProfileFixed bg-base-300 pb-1 hidden sm:block' id='scrollProfile'>
                 <div className="avatar ">
                     <div className="w-8 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1 sm:ml-10 md:ml-[100px]">
-                        <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                        <img src={femaleAvatar?.src} alt='' />
                     </div>
                 </div>
             </div>
