@@ -1,6 +1,6 @@
 
 import aa from '../../public/jscode.json'
-
+import fs from 'fs'
 export default async function handler(req, res) {
 
   const { post_id } = req.query;
@@ -55,15 +55,19 @@ export default async function handler(req, res) {
             isScrolling = false
         }
     `
-
-    const { dark, video } = req.query;
-
-    // res.writeHead(200, { 'Content-Type': 'text/javascript' });
-
-    res.send(aa);
+    // fs.appendFile('mynewfile1.json', JSON.stringify({ code: jsCode }), function (err) {
+    //   if (err) throw err;
+    //   console.log('Saved!');
+    // });
 
 
-    // res.end();
+
+    res.writeHead(200, { 'Content-Type': 'text/javascript' });
+
+    res.write(aa?.code);
+
+
+    res.end();
   }
   finally {
 
