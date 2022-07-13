@@ -3,17 +3,13 @@ import styles from '../profile/NewPost/NewPost.module.css'
 import bgLogin from '../../public/loginBg.jpg'
 import axios from 'axios'
 import { useRouter } from 'next/router';
+import useUserCheck from '../hooks/checkUser/useUserCheck';
 const RegisterFormFixed = () => {
+    const { user, isLoading } = useUserCheck()
     function closeFixesLogin() {
         document.getElementById("loginFixedForm").style.width = "0";
     }
-    const router = useRouter();
-    const { return_url } = router.query
-    const navigate = (path) => {
-        router.push(path)
-        router.prefetch(path)
-    }
-    console.log(process.env.LOGIN_SIGNUP_ACCESS_API)
+   
     const [register, setRegister] = useState(true);
     const registerHandleButton = () => {
         setRegister(!register)
@@ -26,23 +22,39 @@ const RegisterFormFixed = () => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
-
-        if (register) {
-            const form = {
-                email, password
-            }
-            console.log(form)
-        }
-        else if (!register) {
-            const form = {
-                email, password, name: e.target.name.value, gender: e.target.gender.value
-            }
-            const { data } = await axios.post('/api/login_signup/signup', form, {
-                headers: {
-                    'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
+        let data = undefined;
+        try {
+            // (A). IF USER REGISTER THIS IS LOGIN SYSTEM
+            if (register) {
+                const form = {
+                    email, password
                 }
-            });
-            console.log(data)
+                data = await axios.post('/api/login_signup/login', form, {
+                    headers: {
+                        'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
+                    }
+                });
+            }
+
+            //(B). IF USER ARE NEW HERE REGISTER SYSTEM
+            else if (!register) {
+                const form = {
+                    email, password, name: e.target.name.value, gender: e.target.gender.value
+                }
+                data = await axios.post('/api/login_signup/signup', form, {
+                    headers: {
+                        'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
+                    }
+                });
+            }
+            if (data?.data?.message) {
+                const { token, login_info } = data?.data;
+                localStorage.setItem('token', token)
+                document.cookie = (`login=${login_info}`)
+            }
+        }
+        catch {
+
         }
 
     }

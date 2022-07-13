@@ -128,9 +128,14 @@ const PostMap = ({ post, refetch }) => {
             catch {
 
             }
-            iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
             if (count === 6) {
-                iframe.style.display = 'none'
+                try {
+                    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                    iframe.style.display = 'none'
+                }
+                catch {
+
+                }
                 clearInterval(showIframe)
             }
             count++
@@ -230,7 +235,7 @@ const PostMap = ({ post, refetch }) => {
     }
 
     const unloadIframeHandle = () => {
-       alert('54543')
+        alert('54543')
     }
 
     return (

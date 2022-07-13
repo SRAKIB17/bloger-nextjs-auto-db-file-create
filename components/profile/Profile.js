@@ -12,6 +12,7 @@ import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 import NewPost from './NewPost/NewPost';
+import useUserCheck from '../hooks/checkUser/useUserCheck';
 
 const Profile = () => {
     usePrivatePageCheckUser('/profile')
@@ -21,7 +22,10 @@ const Profile = () => {
         setNewPost(true)
     }
 
+    const { user, user_details, isLoading } = useUserCheck()
+    console.log(isLoading)
 
+    console.log(user_details)
 
     useEffect(() => {
         // document.body.setAttribute('data-theme', 'retro')
@@ -113,7 +117,12 @@ const Profile = () => {
                                     <Camera />
                                 </div>
                                 <div className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" >
-                                    <img src={femaleAvatar.src} alt='' className='w-full bg-base-100' />
+                                    <img
+                                        src={user_details?.gender == 'Male' ? maleAvatar?.src : femaleAvatar.src}
+                                        alt=''
+                                        className='w-full bg-base-100'
+                                    />
+                                   
                                     {/* <img
                                         src="https://api.lorem.space/image/face?hash=3174"
                                         alt=''

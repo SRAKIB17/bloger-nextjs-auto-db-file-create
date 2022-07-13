@@ -1,12 +1,10 @@
+const crypto = require("crypto");
+const jwt = require('jsonwebtoken');
 export default function handler(req, res) {
 
     try {
         // (A) REQUIRE CRYPTO LIBRARY
         const body = req.body
-
-        const crypto = require("crypto");
-        const jwt = require('jsonwebtoken');
-
         // (B) CREATE PASSWORD HASH
         if (req.headers.login_api_code == process.env.LOGIN_SIGNUP_ACCESS_API) {
             const encryptingPassword = (password) => {
@@ -32,34 +30,33 @@ export default function handler(req, res) {
 
             const encryptedPassword = encryptingPassword(password);
             body.password = encryptedPassword?.hash;
-            console.log(body)
+            // console.log(body)
             const method = req.method;
-            res.status(200).json({ message: "success", hash: encryptedPassword?.hash })
             const cookiesLogs = {}
-            jwt.sign({ body }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1s' }, function (err, token) {
-                console.log(token);
-            });
 
+            // JWT USER INFO (EMAIL SAVED) SEND LIKE TOKEN AND SAVED LOCALSTORAGE OR COOKIES
+            const jwtInfo = {
+                email: body?.email
+            }
+            const jwtToken = jwt.sign({ jwtInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' }, { algorithm: 'RSASHA256' });
+
+
+            //******************************************************************************* */
+            // USER LOGIN INFO SAVED COOKIE 
+            const userInfo = {
+                token: body?.password,
+                userId: 5345,
+            }
+            const loginInfo = jwt.sign({ userInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' }, { algorithm: 'RSASHA256' });
+            // console.log(savedUserInfo)
+            // jwt.verify(savedUserInfo, process.env.LOGIN_SIGNUP_ACCESS_API, (err, decode) => {
+            //     // console.log(decode)
+            // })
+            res.status(200).json({ message: "success", token: jwtToken, login_info: loginInfo })
         }
         else {
             res.status(200).json({ message: "Sorry ..Couldn't access it " })
         }
-
-        // // (D) VALIDATE PASSWORD
-        // const validate = (userPassword, hashedPass, salt) => {
-        //     let hash = crypto.createHmac("sha512", salt);
-        //     hash.update(userPassword);
-        //     userPassword = hash.digest("hex");
-        //     return userPassword == hashedPass;
-        // };
-
-        // // (E) TEST VALIDATE
-        // // clearpass = "FOOBAR";
-        // const validated = validate(password, encryptedPassword.hash, process.env.PASSWORD_SALT);
-        // // console.log("===== VALIDATION =====");
-        // // console.log("Clear password: " + password);
-        // console.log("Validation status: " + validated);
-
 
 
     }

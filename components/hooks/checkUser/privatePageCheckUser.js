@@ -2,10 +2,11 @@
 import React from 'react';
 import { useRouter, withRouter } from 'next/router';
 import useUserCheck from './useUserCheck';
+import LoadingSpin from '../../LoadingSpin';
 
 
 const usePrivatePageCheckUser = (backPath) => {
-    console.log(backPath)
+
     const router = useRouter()
     /* --------------------------path router navigate--------------------*/
     try {
@@ -13,11 +14,14 @@ const usePrivatePageCheckUser = (backPath) => {
             router.push(path)
             router.prefetch(path)
         }
-        const { user } = useUserCheck()
-        if (!user.user) {
-            navigate('/login?red_url=' + backPath)
+        const { user, isLoading } = useUserCheck()
+        if (isLoading) {
+            return <LoadingSpin/>
         }
-       
+        if (!user.user) {
+            navigate('/login?return_url=' + backPath)
+        }
+
     }
     catch {
 
