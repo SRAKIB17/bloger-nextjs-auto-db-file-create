@@ -9,12 +9,12 @@ export default function handler(req, res) {
         if (req.headers.login_api_code == process.env.LOGIN_SIGNUP_ACCESS_API) {
             const encryptingPassword = (password) => {
                 // (B1) GENERATE RANDOM SALT
-                // let length = 16;
+                let length = 16;
                 let salt = process.env.PASSWORD_SALT;
-                //   let salt =  crypto.randomBytes(Math.ceil(length / 2))
-                //   .toString("hex")
-                //   .slice(0, length);
-
+                let userId = crypto.randomBytes(Math.ceil(length / 2))
+                    .toString("hex")
+                    .slice(0, length);
+                console.log(userId)
                 // (B2) SHA512 HASH
                 let hash = crypto.createHmac("sha512", salt);
                 hash.update(password);
@@ -30,9 +30,6 @@ export default function handler(req, res) {
 
             const encryptedPassword = encryptingPassword(password);
             body.password = encryptedPassword?.hash;
-            // console.log(body)
-            const method = req.method;
-            const cookiesLogs = {}
 
             // JWT USER INFO (EMAIL SAVED) SEND LIKE TOKEN AND SAVED LOCALSTORAGE OR COOKIES
             const jwtInfo = {

@@ -118,11 +118,11 @@ const Profile = () => {
                                 </div>
                                 <div className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" >
                                     <img
-                                        src={user_details?.gender == 'Male' ? maleAvatar?.src : femaleAvatar.src}
+                                        src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
                                         alt=''
                                         className='w-full bg-base-100'
                                     />
-                                   
+
                                     {/* <img
                                         src="https://api.lorem.space/image/face?hash=3174"
                                         alt=''

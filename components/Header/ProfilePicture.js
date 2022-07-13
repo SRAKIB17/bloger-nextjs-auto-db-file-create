@@ -18,9 +18,14 @@ const ProfilePicture = () => {
     // console.log(pathname.route = '/story')
     // console.log(useRouter())
     const navigate = (path) => {
-        router.new= 'profile'
+        router.new = 'profile'
         router.push(path)
         router.prefetch(path)
+    }
+    const logOut = () => {
+        localStorage.removeItem('token')
+        document.cookie = `login=`
+        location.reload()
     }
     return (
         <div>
@@ -43,7 +48,7 @@ const ProfilePicture = () => {
                     {
                         user?.user ||
                         <li>
-                            <button onClick={()=>navigate('/login')}>
+                            <button onClick={() => navigate('/login')}>
                                 <div className="avatar ">
                                     <div className="w-[28px] rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-profile='profileLogOut'>
                                         <img src={loginProfile.src} alt="" width='30' />
@@ -63,7 +68,7 @@ const ProfilePicture = () => {
                     <div className='p-3'>
                         <ul className="menu bg-base-100 w-56 rounded-box">
                             <li className="hover-bordered"><button onClick={() => navigate('/profile')}>Profile</button></li>
-                            <li className="hover-bordered"><button onClick={() => navigate('/profile')}>Log out</button></li>
+                            <li className="hover-bordered"><button onClick={() => logOut()}>Log out</button></li>
                         </ul>
                     </div>
                 </div>

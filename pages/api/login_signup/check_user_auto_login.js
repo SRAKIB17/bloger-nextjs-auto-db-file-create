@@ -1,9 +1,7 @@
 
 export default async function handler(req, res) {
-    const crypto = require("crypto");
-    const jwt = require('jsonwebtoken')
-    try {
 
+    try {
         if (req.headers.login_api_code == process.env.LOGIN_SIGNUP_ACCESS_API) {
             const body = req.body;
             const { email } = body;
@@ -13,7 +11,7 @@ export default async function handler(req, res) {
                 const hashedPass = encryptedPassword
                 if (hashedPass == encryptedPassword) {
                     const getUserFullInfo = {
-
+                        userID: 5345435435,
                         email: email,
                         password: password,
                         name: "MD Rakibul Islam",

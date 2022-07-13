@@ -4,12 +4,20 @@ import bgLogin from '../../public/loginBg.jpg'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
+const crypto = require("crypto");
+
+
 const RegisterFormFixed = () => {
     const { user, isLoading } = useUserCheck()
-    function closeFixesLogin() {
-        document.getElementById("loginFixedForm").style.width = "0";
+    const router = useRouter();
+    const { return_url } = router.query
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
     }
-   
+
+  
+
     const [register, setRegister] = useState(true);
     const registerHandleButton = () => {
         setRegister(!register)
@@ -17,7 +25,11 @@ const RegisterFormFixed = () => {
     const resetPassword = () => {
         setRegister(!register)
     }
-
+    let length = 222;
+    let userId = crypto.randomBytes(Math.ceil(length / 2))
+        .toString("hex")
+        .slice(0, length);
+    console.log(userId)
     const loginOrRegisterHandler = async (e) => {
         e.preventDefault()
         const email = e.target.email.value;
@@ -51,6 +63,7 @@ const RegisterFormFixed = () => {
                 const { token, login_info } = data?.data;
                 localStorage.setItem('token', token)
                 document.cookie = (`login=${login_info}`)
+                navigate(return_url ? return_url : '/')
             }
         }
         catch {

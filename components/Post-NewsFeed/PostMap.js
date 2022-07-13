@@ -180,7 +180,12 @@ const PostMap = ({ post, refetch }) => {
         window.onresize = (e) => {
             const iframes = document.getElementsByTagName('iframe')
             for (const iframe of iframes) {
-                iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                try {
+                    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                }
+                catch {
+
+                }
             }
         }
     }, [])
