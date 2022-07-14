@@ -18,14 +18,14 @@ export default async function handler(req, res) {
                 const jwtInfo = {
                     email: body?.email
                 }
-                const jwtToken = jwt.sign({ jwtInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1s' }, { algorithm: 'RSASHA256' });
+                const jwtToken = jwt.sign({ jwtInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' }, { algorithm: 'RSASHA256' });
 
                 // USER LOGIN INFO SAVED COOKIE 
                 const userInfo = {
                     token: password,
                     userId: validation?.userId,
                 }
-                const loginInfo = jwt.sign({ userInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1h' }, { algorithm: 'RSASHA256' });
+                const loginInfo = jwt.sign({ userInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' }, { algorithm: 'RSASHA256' });
 
                 // JWT USER INFO(EMAIL SAVED) SEND LIKE TOKEN AND SAVED LOCALSTORAGE OR COOKIES
                 res.status(200).json({ message: "success", token: jwtToken, login_info: loginInfo })

@@ -14,6 +14,7 @@ export default async function handler(req, res) {
             const validate = (encryptedPassword, userEmail) => {
                 const hashedPass = findUser?.password
                 if (hashedPass == encryptedPassword) {
+         
                     res.status(200).json({ success: true, message: "welcome!", user_details: findUser })
                 }
                 else {
