@@ -22,8 +22,8 @@ const LoginAutoShow = () => {
         sessionStorage.setItem('autoLoginShowFrom', true)
     }
     return (
-        <div >
-            <div style={{ backgroundImage: `url(${bgLogin?.src})`, backgroundSize: 'cover' }} className='onClickProfileMenu rounded-md fixed top-[60px] bg-base-100 shadow-md right-[-200px]' id='autoLoginShow'>
+        <div>
+            <div style={{ backgroundImage: `url(${bgLogin?.src})`, backgroundSize: 'cover', zIndex: 80 }} className='onClickProfileMenu rounded-md fixed top-[60px] bg-base-100 shadow-md right-[-200px]' id='autoLoginShow'>
                 <div className="w-full max-w-[400px] mx-auto lg:max-w-xl ">
                     <div>
                         <a href="#" onClick={hiddenAutoLoginShow} className='relative top-1 left-2 text-2xl hover:text-[grey]'>&times;</a>

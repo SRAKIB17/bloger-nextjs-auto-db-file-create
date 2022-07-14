@@ -42,7 +42,8 @@ export default async function handler(req, res) {
                     const encryptingPassword = (password) => {
 
 
-                        let salt = process.env.PASSWORD_SALT;
+                        let salt = crypto.randomBytes(Math.ceil(16))
+                            .toString("hex");
                         // (B2) SHA512 HASH
                         let hash = crypto.createHmac("sha512", salt);
                         hash.update(password);
@@ -65,7 +66,7 @@ export default async function handler(req, res) {
                         cover: '',
                         userID: userID,
                         email: body?.email,
-                        password: body?.password,
+                        password: encryptedPassword?.hash + '##' + encryptedPassword?.salt,
                         name: body?.name,
                         gender: body?.gender,
                         work: "Student",

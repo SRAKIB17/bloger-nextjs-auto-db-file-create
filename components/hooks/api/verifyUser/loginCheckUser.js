@@ -19,17 +19,20 @@ const LoginCheckValidate = () => {
             //FIND USER********************
             const findUser = await userCollection.findOne({ email: userEmail });
 
-            //PASSWORD ENCRYPT BY HASH AND SALT //
-            const salt = process.env.PASSWORD_SALT;
-            let hash = crypto.createHmac("sha512", salt);
-            hash.update(userPassword);
-            userPassword = hash.digest("hex");
 
-            console.log(userPassword)
+
+
             //**********CHECK USER BY PASSWORD********************* */
             if (findUser) {
+                const hashedPass = findUser?.password?.split('##')[0];
+                //PASSWORD ENCRYPT BY HASH AND SALT //
+                const salt = findUser?.password?.split('##')[1];
+                let hash = crypto.createHmac("sha512", salt);
+                hash.update(userPassword);
+                userPassword = hash.digest("hex");
+              
                 //PASSWORD CHECK IF TRUE
-                if (findUser?.password === userPassword) {
+                if (hashedPass === userPassword) {
                     const message = { message: 'success', password: userPassword, userId: findUser?.userId };
                     return message;
 

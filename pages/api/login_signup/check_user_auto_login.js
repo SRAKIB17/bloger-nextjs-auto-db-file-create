@@ -12,9 +12,10 @@ export default async function handler(req, res) {
             const userCollection = client.db("users").collection("user_details");
             const findUser = await userCollection.findOne({ email: email })
             const validate = (encryptedPassword, userEmail) => {
-                const hashedPass = findUser?.password
+                const hashedPass = findUser?.password?.split('##')[0]
+                console.log(hashedPass)
                 if (hashedPass == encryptedPassword) {
-         
+
                     res.status(200).json({ success: true, message: "welcome!", user_details: findUser })
                 }
                 else {

@@ -4,6 +4,7 @@ import bgLogin from '../../public/loginBg.jpg'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
+import LoadingFlowCircle from '../LoadingFlowCircle';
 const crypto = require("crypto");
 
 
@@ -15,7 +16,7 @@ const RegisterFormFixed = () => {
         router.push(path)
         router.prefetch(path)
     }
-
+    const [loginLoading, setLoginLoading] = useState(false)
 
 
     const [register, setRegister] = useState(true);
@@ -27,6 +28,7 @@ const RegisterFormFixed = () => {
     }
     const [errMsg, setErrMsg] = useState('')
     const loginOrRegisterHandler = async (e) => {
+        setLoginLoading(true)
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value.toLowerCase();
@@ -70,9 +72,10 @@ const RegisterFormFixed = () => {
             if (data?.data?.message === 'error') {
                 setErrMsg(data?.data?.error)
             }
+            setLoginLoading(false)
         }
         catch {
-
+            setLoginLoading(false)
         }
 
     }
@@ -168,6 +171,13 @@ const RegisterFormFixed = () => {
                         </div>
                     </div>
                 </div>
+                {/* FOR LOADING FOR LOGIN */}
+                {
+                    loginLoading && 
+                    <div className='fixed top-[5x] z-[100]'>
+                        <LoadingFlowCircle/>
+                    </div>
+                }
             </div>
 
         </div>
