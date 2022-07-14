@@ -60,13 +60,13 @@ const useUserCheck = () => {
 
                     //IF FAILED SET_USER TRUE
                     else {
-                        setUser({ user: true });
-                        // setUser({ user: false });
+                        // setUser({ user: true });
+                        setUser({ user: false });
                     }
                 }
                 else {
-                    setUser({ user: true });
-                    // setUser({ user: false });
+                    // setUser({ user: true });
+                    setUser({ user: false });
                 }
                 setIsLoading(null)
             }
