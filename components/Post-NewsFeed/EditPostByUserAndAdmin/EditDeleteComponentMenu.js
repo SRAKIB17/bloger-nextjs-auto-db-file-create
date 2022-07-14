@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import useAdminCheck from '../../hooks/checkUser/useAdminCheck';
 import useUserCheck from '../../hooks/checkUser/useUserCheck';
 import { Delete, Writing } from '../../ReactRSIcon/index'
 import DeletePost from '../DeletePost/DeletePost';
 import styles from '../PostMap.module.css'
 import EditPostFromTextArea from './EditPostFrom.TextArea';
 const EditDeleteComponentMenu = ({ post_id }) => {
-    const { user } = useUserCheck()
-    const { admin } = useAdminCheck()
+    const { user, isAdmin } = useUserCheck()
     const openEditPostFromTextArea = (id) => {
         try {
             document.getElementById("EditPostFromTextArea" + id).style.width = "100%";
@@ -53,7 +51,7 @@ const EditDeleteComponentMenu = ({ post_id }) => {
                 >
                     <ul className='flex w-40 bg-base-300 p-4 rounded-md shadow-md flex-col gap-1'>
                         {
-                            (admin?.admin || user?.user) &&
+                            (isAdmin?.admin || user?.user) &&
                             <>
                                 <li onClick={() => openEditPostFromTextArea(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
                                     <Writing size='17' /> Edit Post
@@ -81,11 +79,11 @@ const EditDeleteComponentMenu = ({ post_id }) => {
                 </div>
             </div>
             {
-                (admin?.admin || user?.user) &&
+                (isAdmin?.admin || user?.user) &&
                 <EditPostFromTextArea post_id={post_id} />
             }
             {
-                ((admin?.admin || user?.user) && deletePost) &&
+                ((isAdmin?.admin || user?.user) && deletePost) &&
                 <div className=''>
                     <DeletePost props={{ deletePost, setDeletePost }} />
                 </div>

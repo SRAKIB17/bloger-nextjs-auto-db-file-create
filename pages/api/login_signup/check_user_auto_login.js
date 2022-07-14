@@ -14,26 +14,6 @@ export default async function handler(req, res) {
             const validate = (encryptedPassword, userEmail) => {
                 const hashedPass = findUser?.password
                 if (hashedPass == encryptedPassword) {
-                    // const getUserFullInfo = {
-                    //     profile: '',
-                    //     cover: '',
-                    //     userID: 5345435435,
-                    //     email: email,
-                    //     password: password,
-                    //     name: "MD Rakibul Islam",
-                    //     gender: 'Male',
-                    //     work: "Student",
-                    //     location: 'Kurigram',
-                    //     school: 'mec',
-                    //     github: 'https://github.com/SRAKIB17',
-                    //     youtube: null,
-                    //     facebook: null,
-                    //     linkedin: null,
-                    //     linkedin: null,
-                    //     instagram: null,
-                    //     twitter: null,
-                    //     quote: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorum, natus enim eos laboriosam ab id libero consectetur quidem eveniet unde ratione culpa. Placeat sit odit minus neque inventore necessitatibus?`,
-                    // }
                     res.status(200).json({ success: true, message: "welcome!", user_details: findUser })
                 }
                 else {

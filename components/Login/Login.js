@@ -42,6 +42,7 @@ const RegisterFormFixed = () => {
                         'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
                     }
                 });
+                console.log(data)
             }
 
             //(B). IF USER ARE NEW HERE REGISTER SYSTEM
@@ -61,7 +62,10 @@ const RegisterFormFixed = () => {
                 const { token, login_info } = data?.data;
                 localStorage.setItem('token', token)
                 document.cookie = (`login=${login_info}`)
-                navigate(return_url ? return_url : '/')
+                setErrMsg('Welcome')
+                setTimeout(() => {
+                    navigate(return_url ? return_url : '/')
+                }, 500)
             }
             if (data?.data?.message === 'error') {
                 setErrMsg(data?.data?.error)
@@ -90,14 +94,15 @@ const RegisterFormFixed = () => {
                             </h1>
                             <div className='p-8'>
                                 <form className=" flex gap-2 flex-col" onSubmit={loginOrRegisterHandler}>
+                                    <p className='text-red-300'>
+                                        {
+                                            errMsg
+                                        }
+                                    </p>
                                     {
                                         register ||
                                         <>
-                                            <p className='text-red-300'>
-                                                {
-                                                    errMsg
-                                                }
-                                            </p>
+
                                             <div>
                                                 <input
                                                     type="text"

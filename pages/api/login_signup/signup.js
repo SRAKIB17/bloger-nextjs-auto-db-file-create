@@ -59,10 +59,11 @@ export default async function handler(req, res) {
                     const encryptedPassword = encryptingPassword(password);
                     body.password = encryptedPassword?.hash;
                     //USER ALL INFO SET AUTOMATIC
+                    const userID = await getUserId()
                     const getUserFullInfo = {
                         profile: '',
                         cover: '',
-                        userID: await getUserId(),
+                        userID: userID,
                         email: body?.email,
                         password: body?.password,
                         name: body?.name,
@@ -77,6 +78,7 @@ export default async function handler(req, res) {
                         linkedin: null,
                         instagram: null,
                         twitter: null,
+                        roll: "user",
                         quote: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorum, natus enim eos laboriosam ab id libero consectetur quidem eveniet unde ratione culpa. Placeat sit odit minus neque inventore necessitatibus?`,
                     }
                     // INSERT USER FULL INFO
@@ -89,12 +91,10 @@ export default async function handler(req, res) {
                         }
                         const jwtToken = jwt.sign({ jwtInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' }, { algorithm: 'RSASHA256' });
 
-
-                        //******************************************************************************* */
                         // USER LOGIN INFO SAVED COOKIE 
                         const userInfo = {
                             token: body?.password,
-                            userId: 5345,
+                            userId: userID,
                         }
                         const loginInfo = jwt.sign({ userInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' }, { algorithm: 'RSASHA256' });
 
@@ -105,7 +105,6 @@ export default async function handler(req, res) {
                     }
 
                 }
-
 
             }
             run().catch(console.dir)

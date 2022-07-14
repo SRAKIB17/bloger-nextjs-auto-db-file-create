@@ -23,7 +23,6 @@ const Profile = () => {
     }
 
     const { user, user_details, isLoading } = useUserCheck()
-    console.log(isLoading)
 
 
     useEffect(() => {

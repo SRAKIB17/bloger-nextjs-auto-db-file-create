@@ -4,7 +4,6 @@ import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
 import styles from './PostMap.module.css'
 import EditDeleteComponentMenu from './EditPostByUserAndAdmin/EditDeleteComponentMenu';
-import useAdminCheck from '../hooks/checkUser/useAdminCheck';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
@@ -12,8 +11,8 @@ const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
 
-    const { admin } = useAdminCheck();
-    const { user } = useUserCheck();
+    const { user, isAdmin } = useUserCheck();
+    console.log(isAdmin)
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)

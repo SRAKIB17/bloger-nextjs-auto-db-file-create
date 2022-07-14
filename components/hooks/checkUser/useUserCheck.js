@@ -7,6 +7,7 @@ const useUserCheck = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState({ user: false })
     const [user_details, setUserInfo] = useState(null)
+    const [isAdmin, setIsAdmin] = useState({ admin: false })
 
 
 
@@ -52,7 +53,9 @@ const useUserCheck = () => {
 
                     //IF SUCCESS SET_USER TRUE
                     if (data?.success) {
-                        setUserInfo(data?.user_details)
+                        setUserInfo(data?.user_details);
+                        setIsAdmin(data?.user_details?.roll === 'admin' ? { admin: true } : { admin: false })
+                        //for checkAdmin
                         setUser({ user: true });
 
                     }
@@ -75,7 +78,7 @@ const useUserCheck = () => {
         // console.log(login_info)
     }, [])
 
-    return { user, isLoading, user_details }
+    return { user, isLoading, user_details, isAdmin }
 };
 
 export default useUserCheck;
