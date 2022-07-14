@@ -33,10 +33,10 @@ const ProfilePicture = () => {
                     {
                         user?.user &&
 
-                        <li onMouseEnter={ProfilePictureHandle} onClick={ProfilePictureHandle} data-profile='profileLogOut'>
-                            <button data-profile='profileLogOut' onMouseEnter={ProfilePictureHandle} onClick={ProfilePictureHandle} >
-                                <div className="avatar " data-profile='profileLogOut'>
-                                    <div className="w-[28px] rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-profile='profileLogOut'>
+                        <li onMouseEnter={ProfilePictureHandle} onClick={() => navigate('/profile')} data-profile='profileLogOut'>
+                            <button data-profile='profileLogOut' onMouseEnter={ProfilePictureHandle} onClick={() => navigate('/profile')} >
+                                <div className="avatar " data-profile='profileLogOut' onClick={() => navigate('/profile')} >
+                                    <div className="w-[28px] rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" data-profile='profileLogOut' onClick={() => navigate('/profile')} >
                                         {
                                             user_details?.profile == '' ?
                                                 <img

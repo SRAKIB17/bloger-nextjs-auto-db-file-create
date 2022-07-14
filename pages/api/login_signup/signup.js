@@ -69,10 +69,10 @@ export default async function handler(req, res) {
                         password: encryptedPassword?.hash + '##' + encryptedPassword?.salt,
                         name: body?.name,
                         gender: body?.gender,
-                        work: "Student",
-                        location: 'Kurigram',
-                        school: 'mec',
-                        github: 'https://github.com/SRAKIB17',
+                        work: "",
+                        location: '',
+                        school: '',
+                        github: '',
                         youtube: null,
                         facebook: null,
                         linkedin: null,
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
                         instagram: null,
                         twitter: null,
                         roll: "user",
-                        quote: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorum, natus enim eos laboriosam ab id libero consectetur quidem eveniet unde ratione culpa. Placeat sit odit minus neque inventore necessitatibus?`,
+                        quote: ``,
                     }
                     // INSERT USER FULL INFO
                     const result = await userCollection.insertOne(getUserFullInfo)

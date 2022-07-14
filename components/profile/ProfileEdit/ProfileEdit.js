@@ -47,6 +47,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
             if (data?.message === 'success') {
                 setErrMsg('')
                 setEditProfile(null)
+                location.reload()
             }
             if (data?.message === 'error') {
                 setErrMsg(data?.error)
@@ -84,6 +85,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                                 type="text"
                                                 name="work"
                                                 id="work"
+                                                defaultValue={user_details?.work}
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
                                                 placeholder='Work'
                                             />
@@ -93,6 +95,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <Location />
                                             <input
+                                                defaultValue={user_details?.location}
                                                 type="text"
                                                 name="address"
                                                 id="addressProfile"
@@ -105,6 +108,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <School />
                                             <input
+                                                defaultValue={user_details?.school}
                                                 type="text"
                                                 name="study"
                                                 id="study"
@@ -117,6 +121,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <Github />
                                             <input
+                                                defaultValue={user_details?.github}
                                                 type="text"
                                                 name="github"
                                                 id="github"
@@ -130,6 +135,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <Youtube />
                                             <input
+                                                defaultValue={user_details?.youtube}
                                                 type="text"
                                                 name="youtube"
                                                 id="Youtube"
@@ -142,6 +148,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <FacebookSquare className='rounded-sm' />
                                             <input
+                                                defaultValue={user_details?.facebook}
                                                 type="text"
                                                 name="facebook"
                                                 id="Facebook"
@@ -154,6 +161,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <LinkedinNew />
                                             <input
+                                                defaultValue={user_details?.linkedin}
                                                 type="text"
                                                 name="linkedin"
                                                 id="linkedin"
@@ -166,6 +174,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <Instagram />
                                             <input
+                                                defaultValue={user_details?.instagram}
                                                 type="text"
                                                 name="instagram"
                                                 id="Instagram"
@@ -178,6 +187,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <Twitter />
                                             <input
+                                                defaultValue={user_details?.twitter}
                                                 type="text"
                                                 name="twitter"
                                                 id="Twitter"
@@ -189,7 +199,8 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                     <tr>
                                         <td className='flex items-center gap-1'>
                                             <Gender />
-                                            <select id='Gender' name='gender' className="select select-primary select-sm select-bordered select-md form-control max-w-xs">
+
+                                            <select id='Gender' defaultValue={user_details?.gender} name='gender' className="select select-primary select-sm select-bordered select-md form-control max-w-xs">
                                                 <option value='Male'>Male</option>
                                                 <option value='Female'>Female</option>
                                             </select>
@@ -199,6 +210,7 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <Quote />
                                             <input
+                                                defaultValue={user_details?.quote}
                                                 type="text"
                                                 name="quote"
                                                 id="Quote"
