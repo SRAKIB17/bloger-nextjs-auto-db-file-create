@@ -1,34 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../NewPost/NewPost.module.css'
 import { FacebookSquare, Github, Youtube, LinkedinNew, Instagram, Twitter, TwitterSquare, Quote, Gender, School, Location, Worker } from '../../ReactRSIcon/index';
+import useUserCheck from '../../hooks/checkUser/useUserCheck';
+import axios from 'axios';
+import LoadingFlowCircle from '../../LoadingFlowCircle';
+import private_access_token_client from '../../hooks/hooks/private_access_token_client';
 
 const ProfileEdit = ({ props: setEditProfile }) => {
+    const { user_details } = useUserCheck();
+    const [updateLoading, setUpdateLoading] = useState(false)
+
     function closeNewPost() {
         // document.getElementById("profileEdit").style.width = "0";
         setEditProfile(null)
     }
+    const [errMsg, setErrMsg] = useState('')
 
     const updateHandle = async (event) => {
         event.preventDefault();
+        setUpdateLoading(true)
         // const body = event.target.postBody.value;
-        const updateForm = {
-            work: event.target.work.value,
-            location: event.target.address.value,
-            school: event.target.study.value,
-            github: event.target.github.value,
-            youtube: event.target.youtube.value,
-            facebook: event.target.facebook.value,
-            linkedin: event.target.linkedin.value,
-            linkedin: event.target.linkedin.value,
-            instagram: event.target.instagram.value,
-            twitter: event.target.twitter.value,
-            gender: event.target.gender.value,
-            quote: event.target.quote.value,
+        try {
+            const updateForm = {
+                userID: user_details?.userID,
+                work: event.target.work.value,
+                location: event.target.address.value,
+                school: event.target.study.value,
+                github: event.target.github.value,
+                youtube: event.target.youtube.value,
+                facebook: event.target.facebook.value,
+                linkedin: event.target.linkedin.value,
+                linkedin: event.target.linkedin.value,
+                instagram: event.target.instagram.value,
+                twitter: event.target.twitter.value,
+                gender: event.target.gender.value,
+                quote: event.target.quote.value,
+            }
+            const { user_check } = private_access_token_client()
+            // setEditProfile(null)
+            const { data } = await axios.put('/api/profile/update_profile', updateForm, {
+                headers: {
+                    user_check: user_check
+                }
+            });
+            console.log(data)
+            if (data?.message === 'success') {
+                setErrMsg('')
+                setEditProfile(null)
+            }
+            if (data?.message === 'error') {
+                setErrMsg(data?.error)
+            }
+            setUpdateLoading(false)
+        }
+        catch {
+            setUpdateLoading(false)
 
         }
-        console.log(updateForm)
-        // const { data } = await axios.post('/api/test', post);
-        // console.log(data)
+
     }
     return (
         <div>
@@ -36,7 +65,14 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
                 <div className='shadow-2xl max-w-md mx-auto p-4 h-full bg-base-300 rounded-3xl'>
                     <form action="" onSubmit={updateHandle} className='flex flex-col gap-2 m-10'>
-
+                        {
+                            updateLoading &&
+                            <div className=' relative flex items-center justify-center z-[1000]'>
+                                <div className='absolute top-0 pb-40 pt-40'>
+                                    <LoadingFlowCircle />
+                                </div>
+                            </div>
+                        }
 
                         <div className='p-1 mx-auto'>
                             <table className='table-auto '>
@@ -154,7 +190,6 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                         <td className='flex items-center gap-1'>
                                             <Gender />
                                             <select id='Gender' name='gender' className="select select-primary select-sm select-bordered select-md form-control max-w-xs">
-                                                <option disabled selected>Gender</option>
                                                 <option value='Male'>Male</option>
                                                 <option value='Female'>Female</option>
                                             </select>
@@ -178,13 +213,18 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                                             <input
                                                 type="submit"
                                                 value="Update"
-                                                className='btn btn-sm rounded-3xl btn-primary font-light w-fit  '
+                                                className='btn btn-sm text-white rounded-3xl btn-primary font-light w-fit  '
                                             />
                                         </td>
 
                                     </tr>
                                 </tbody>
                             </table>
+                            <p className='text-red-600 tab-xs m-4'>
+                                {
+                                    errMsg
+                                }
+                            </p>
                         </div>
                     </form>
 

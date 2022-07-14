@@ -283,7 +283,6 @@ const PostMap = ({ post, refetch }) => {
                     </div>
 
                     {
-                        // post_id?.split('-')[0] === userID 
                         <EditDeleteComponentMenu post_id={post_id} />
                     }
                 </div>

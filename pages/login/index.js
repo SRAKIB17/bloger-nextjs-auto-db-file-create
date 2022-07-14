@@ -18,8 +18,11 @@ const index = () => {
     }
     if (isLoading) {
         return (
-            <div className='bg-base-100 h-full w-full'>
-                <LoadingSpin />
+            <div className='bg-base-100 h-[100vh] w-full'>
+                <Header />
+                <div className='mt-40'>
+                    <LoadingSpin />
+                </div>
             </div>
         )
     }

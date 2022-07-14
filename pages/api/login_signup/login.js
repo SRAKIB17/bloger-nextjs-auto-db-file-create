@@ -37,7 +37,7 @@ export default async function handler(req, res) {
         }
     }
     catch {
-        res.status(200).json( { message: "error", error: 'Oops! Sorry .Server Down. Please try again' })
+        res.status(200).json( { message: "error", error: 'Oops! Sorry .Something is wrong. Please try again' })
 
     }
 }
