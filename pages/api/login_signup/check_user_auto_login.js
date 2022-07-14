@@ -1,11 +1,12 @@
 import login_user_without_post_body from "../../../components/hooks/api/social/login_user_without_post_body";
+import private_access_token_client from "../../../components/hooks/hooks/private_access_token_client";
 
 export default async function handler(req, res) {
-
+    const { login_api_token } = private_access_token_client()
     try {
         const { client } = login_user_without_post_body()
         await client.connect();
-        if (req.headers.login_api_code == process.env.LOGIN_SIGNUP_ACCESS_API) {
+        if (req.headers.login_api_code == login_api_token) {
             const body = req.body;
             const { email } = body;
             const { password } = body
