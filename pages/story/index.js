@@ -19,7 +19,7 @@ const Index = () => {
     const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
 
     // const posts = data?.data?.result
-    const posts = data?.data
+    const posts = data?.data;
     const [getPost, setPost] = useState([])
     useEffect(() => {
         if (posts) {

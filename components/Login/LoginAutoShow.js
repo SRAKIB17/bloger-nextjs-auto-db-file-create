@@ -38,7 +38,7 @@ const LoginAutoShow = () => {
 
                         </div>
                         <div className="flex flex-col">
-                            <button className="btn btn-primary btn-xs">Login</button>
+                            <button className="btn btn-primary btn-xs text-white">Login</button>
                         </div>
                         <label className="label">
                             <a className=" label-text-alt link-hover text-xs text-white" href='/login'>

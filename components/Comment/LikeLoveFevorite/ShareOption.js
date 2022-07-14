@@ -4,7 +4,6 @@ import { Email, Facebook, FacebookSquare, Google, LinkedinSquare, SkypeSquare } 
 
 const ShareOption = ({ post_id }) => {
     const router = useRouter()
-    console.log(location)
     const pushShareUrlHandle = (url) => {
         if (url === 'linkedin') {
 

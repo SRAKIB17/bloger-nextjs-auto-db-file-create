@@ -15,7 +15,6 @@ const PostMap = ({ post, refetch }) => {
     const { post_id } = router.query;
     const { admin } = useAdminCheck();
     const { user } = useUserCheck()
-    console.log(admin.admin)
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)

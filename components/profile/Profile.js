@@ -25,7 +25,6 @@ const Profile = () => {
     const { user, user_details, isLoading } = useUserCheck()
     console.log(isLoading)
 
-    console.log(user_details)
 
     useEffect(() => {
         // document.body.setAttribute('data-theme', 'retro')
@@ -73,6 +72,7 @@ const Profile = () => {
         // document.getElementById("profileEdit").style.width = "100%";
         setEditProfile(true)
     }
+    console.log(user_details?.profile)
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <div id='stickyTop' className='bg-base-100 rounded-lg m-2 pb-4 md:pb-6'>
@@ -117,16 +117,19 @@ const Profile = () => {
                                     <Camera />
                                 </div>
                                 <div className="w-28 sm:w-32 md:w-36 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1" >
-                                    <img
-                                        src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
-                                        alt=''
-                                        className='w-full bg-base-100'
-                                    />
-
-                                    {/* <img
-                                        src="https://api.lorem.space/image/face?hash=3174"
-                                        alt=''
-                                    /> */}
+                                    {
+                                        user_details?.profile == '' ?
+                                            <img
+                                                src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
+                                                alt=''
+                                                className='w-full bg-base-100'
+                                            />
+                                            :
+                                            <img
+                                                src={user_details?.profile}
+                                                alt=''
+                                            />
+                                    }
                                 </div>
                             </div>
                         </label>
@@ -138,7 +141,7 @@ const Profile = () => {
                 <div className='relative md:mt-[10px] md:left-[250px] md:border-b-2 md:mr-[260px] md:pb-[10px]'>
                     <div className='flex flex-col mt-[60px] md:mt-[20px]  items-center md:justify-between md:flex-row'>
                         <div className='text-center'>
-                            <h1 className='text-2xl sm:text-3xl'>Md Rakibul Islam</h1>
+                            <h1 className='text-2xl sm:text-3xl'>{user_details?.name}</h1>
                             <h1 className='text-orange-500'>Total Point: 300</h1>
                         </div>
                         <div className='flex flex-row justify-between gap-3 md:flex-col'>

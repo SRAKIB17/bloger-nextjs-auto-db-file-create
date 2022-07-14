@@ -3,6 +3,7 @@ const post = () => {
     const dbPass = 'JdYT4aERpw0oqpjc'
     const { MongoClient, ServerApiVersion } = require('mongodb');
     const uri = `mongodb+srv://social-blogdb:${dbPass}@cluster0.wad1r.mongodb.net/?retryWrites=true&w=majority`;
+    console.log(uri)
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
    
     return { client }

@@ -16,7 +16,7 @@ const RegisterFormFixed = () => {
         router.prefetch(path)
     }
 
-  
+
 
     const [register, setRegister] = useState(true);
     const registerHandleButton = () => {
@@ -25,15 +25,11 @@ const RegisterFormFixed = () => {
     const resetPassword = () => {
         setRegister(!register)
     }
-    let length = 222;
-    let userId = crypto.randomBytes(Math.ceil(length / 2))
-        .toString("hex")
-        .slice(0, length);
-    console.log(userId)
+    const [errMsg, setErrMsg] = useState('')
     const loginOrRegisterHandler = async (e) => {
         e.preventDefault()
         const email = e.target.email.value;
-        const password = e.target.password.value;
+        const password = e.target.password.value.toLowerCase();
         let data = undefined;
         try {
             // (A). IF USER REGISTER THIS IS LOGIN SYSTEM
@@ -58,12 +54,17 @@ const RegisterFormFixed = () => {
                         'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
                     }
                 });
+
             }
-            if (data?.data?.message) {
+            //IF USER SUCCESSFULLY LOGIN OR SIGNUP THIS CONDITION RUN AND SAVE LOCALSTORAGE AND COOKIES
+            if (data?.data?.message === 'success') {
                 const { token, login_info } = data?.data;
                 localStorage.setItem('token', token)
                 document.cookie = (`login=${login_info}`)
                 navigate(return_url ? return_url : '/')
+            }
+            if (data?.data?.message === 'error') {
+                setErrMsg(data?.data?.error)
             }
         }
         catch {
@@ -92,6 +93,11 @@ const RegisterFormFixed = () => {
                                     {
                                         register ||
                                         <>
+                                            <p className='text-red-300'>
+                                                {
+                                                    errMsg
+                                                }
+                                            </p>
                                             <div>
                                                 <input
                                                     type="text"

@@ -19,6 +19,7 @@ const useUserCheck = () => {
             return err;
         }
     }
+
     useEffect(() => {
         const run = async () => {
             setIsLoading(true)
@@ -29,7 +30,7 @@ const useUserCheck = () => {
             //GET USER PASS CODE GET FROM COOKIES AND SPLIT , FIND PASS CODE
             const login_info = document.cookie.split(';').find(token => token.includes('login'))?.split('=')?.[1]
             const login_pass = jwtDecode(login_info)?.userInfo
-            console.log(login_pass)
+
             // IF EMAIL AND LOGIN_INFO GET THEN THIS CONDITION IS TRUE
             if (email && login_pass) {
                 const password = login_pass?.token;
@@ -47,7 +48,7 @@ const useUserCheck = () => {
                         'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
                     }
                 });
-
+         
                 //IF SUCCESS SET_USER TRUE
                 if (data?.success) {
                     setUserInfo(data?.user_details)
@@ -63,7 +64,6 @@ const useUserCheck = () => {
             else {
                 setUser({ user: false });
             }
-            console.log(544543)
             setIsLoading(null)
         }
         run().catch(console.dir)
