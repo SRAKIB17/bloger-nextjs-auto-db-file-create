@@ -94,6 +94,9 @@ export { default as NewsFeed } from './icon/NewsFeed/NewsFeed'
 export { default as FemaleProfileAvatar } from './icon/ProfileAvatar/FemaleProfileAvatar'
 export { default as MaleProfileAvatar } from './icon/ProfileAvatar/MaleProfileAvatar'
 
+export { default as  PreviewOff} from './icon/Preview/PreviewOff'
+export { default as  PreviewOn} from './icon/Preview/PreviewOn'
+
 export { default as Quote } from './icon/Quote'
 
 

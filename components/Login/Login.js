@@ -6,7 +6,8 @@ import { useRouter } from 'next/router';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
 import LoadingFlowCircle from '../LoadingFlowCircle';
 const crypto = require("crypto");
-
+import private_access_token_client from '../hooks/hooks/private_access_token_client';
+import { PreviewOff, PreviewOn } from '../ReactRSIcon';
 
 const RegisterFormFixed = () => {
     const { user, isLoading } = useUserCheck()
@@ -30,6 +31,7 @@ const RegisterFormFixed = () => {
     const loginOrRegisterHandler = async (e) => {
         setLoginLoading(true)
         e.preventDefault()
+        const { login_api_token } = private_access_token_client()
         const email = e.target.email.value;
         const password = e.target.password.value.toLowerCase();
         let data = undefined;
@@ -41,7 +43,7 @@ const RegisterFormFixed = () => {
                 }
                 data = await axios.post('/api/login_signup/login', form, {
                     headers: {
-                        'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
+                        'login_api_code': login_api_token
                     }
                 });
             }
@@ -53,7 +55,7 @@ const RegisterFormFixed = () => {
                 }
                 data = await axios.post('/api/login_signup/signup', form, {
                     headers: {
-                        'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
+                        'login_api_code': login_api_token
                     }
                 });
 
@@ -79,6 +81,11 @@ const RegisterFormFixed = () => {
     }
 
 
+    // FOR SHOW PASSWORD HANDLER USESTATE;
+    const [showPass, setShowPass] = useState(false)
+    const showPasswordHandler = () => {
+        setShowPass(!showPass)
+    }
     return (
         <div>
             <div id="loginFixedForm"
@@ -138,14 +145,22 @@ const RegisterFormFixed = () => {
                                             required
                                         />
                                     </div>
-                                    <div>
+                                    <div className='relative'>
                                         <input
-                                            type="password"
+                                            type={showPass ? 'text' : "password"}
                                             id='password'
                                             placeholder="password"
                                             className="input rounded-3xl input-bordered input-primary w-full"
                                             required
                                         />
+                                        <div className='absolute top-[30%] right-0 mr-5'>
+                                            <div className='cursor-pointer' onClick={showPasswordHandler}>
+                                                {
+
+                                                    showPass ? <PreviewOff size='20' /> : <PreviewOn size='20' />
+                                                }
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <div className="flex flex-col">
