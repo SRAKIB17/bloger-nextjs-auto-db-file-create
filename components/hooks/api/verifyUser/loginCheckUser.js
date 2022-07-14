@@ -12,36 +12,42 @@ const LoginCheckValidate = () => {
     //     return userPassword == hashedPass;
     // };
     const validate = async (userPassword, userEmail) => {
-        const { client } = login_user_without_post_body()
-        await client.connect();
-        const userCollection = client.db("users").collection("user_details");
-        //FIND USER********************
-        const findUser = await userCollection.findOne({ email: userEmail });
+        try {
+            const { client } = login_user_without_post_body()
+            await client.connect();
+            const userCollection = client.db("users").collection("user_details");
+            //FIND USER********************
+            const findUser = await userCollection.findOne({ email: userEmail });
 
-        //PASSWORD ENCRYPT BY HASH AND SALT //
-        const salt = process.env.PASSWORD_SALT;
-        let hash = crypto.createHmac("sha512", salt);
-        hash.update(userPassword);
-        userPassword = hash.digest("hex");
+            //PASSWORD ENCRYPT BY HASH AND SALT //
+            const salt = process.env.PASSWORD_SALT;
+            let hash = crypto.createHmac("sha512", salt);
+            hash.update(userPassword);
+            userPassword = hash.digest("hex");
 
-        console.log(userPassword)
-        //**********CHECK USER BY PASSWORD********************* */
-        if (findUser) {
-            //PASSWORD CHECK IF TRUE
-            if (findUser?.password === userPassword) {
-                const message = { message: 'success', password: userPassword, userId: findUser?.userId };
-                return message;
+            console.log(userPassword)
+            //**********CHECK USER BY PASSWORD********************* */
+            if (findUser) {
+                //PASSWORD CHECK IF TRUE
+                if (findUser?.password === userPassword) {
+                    const message = { message: 'success', password: userPassword, userId: findUser?.userId };
+                    return message;
 
+                }
+                //PASSWORD CHECK IF FALSE
+                else {
+                    const message = { message: "error", error: 'Could not match password' }
+                    return message;
+                }
             }
-            //PASSWORD CHECK IF FALSE
             else {
-                const message = { message: "error", error: 'Could not match password' }
-                return message;
+                const message = { message: "error", error: 'Could not find this email' }
+                return message
             }
+
         }
-        else {
-            const message = { message: "error", error: 'Could not find this email' }
-            return message
+        catch {
+
         }
     };
 
