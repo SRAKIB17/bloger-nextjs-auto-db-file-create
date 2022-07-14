@@ -14,7 +14,6 @@ const useUserCheck = () => {
     const jwtDecode = (token) => {
         try {
             return jwt.verify(token, 'dcab4733a9ce28bbb1a7a66d80a4097b')
-
         }
         catch (err) {
             return err;

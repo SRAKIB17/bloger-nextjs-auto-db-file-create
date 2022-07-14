@@ -87,7 +87,15 @@ const RegisterFormFixed = () => {
                 style={{ backgroundImage: `url(${bgLogin?.src})`, backgroundSize: 'cover' }}
             >
                 <div className='max-w-xl mx-auto shadow-2xl p-4 ' >
-
+                    {/* FOR LOADING FOR LOGIN */}
+                    {
+                        loginLoading &&
+                        <div className=' relative flex items-center justify-center'>
+                            <div className='absolute top-32 pb-40'>
+                                <LoadingFlowCircle />
+                            </div>
+                        </div>
+                    }
                     <div>
                         <div className="w-full max-w-[400px] mx-auto h-[100vh] lg:max-w-xl">
                             <h1 className='text-center text-2xl font-bold text-white'>
@@ -171,13 +179,7 @@ const RegisterFormFixed = () => {
                         </div>
                     </div>
                 </div>
-                {/* FOR LOADING FOR LOGIN */}
-                {
-                    loginLoading && 
-                    <div className='fixed top-[5x] z-[100]'>
-                        <LoadingFlowCircle/>
-                    </div>
-                }
+
             </div>
 
         </div>

@@ -17,7 +17,11 @@ const index = () => {
         router.prefetch(path)
     }
     if (isLoading) {
-        return <LoadingSpin />
+        return (
+            <div className='bg-base-100 h-full w-full'>
+                <LoadingSpin />
+            </div>
+        )
     }
     if (return_url && user?.user) {
         navigate(return_url)
