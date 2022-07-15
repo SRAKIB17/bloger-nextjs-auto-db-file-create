@@ -15,37 +15,107 @@
 
 /**
  * Category:
- *      |- Category.js
- *      |- Category.module.css
+ *      ┌○ Category.js
+ *      ├○ Category.module.css
  * 
  * Comment:
- *      |- LikeLoveFavorite
- *      |      |- LikeLoveFavorite.js
- *      |      |- LikeTransition.module.css
- *      |      |- LikeUserList.js
- *      |      |- ShareOption.js
- *      |- Comment_textarea.js
- *      |- Comment.module.css
- *      |- CommentList.js
- *      |- MoreCommentReply.js
+ *      ┌○ /LikeLoveFavorite/
+ *      ├○      ┌○ /LikeLoveFavorite.js
+ *      ├○      ├○ /LikeTransition.module.css
+ *      ├○      ├○ /LikeUserList.js
+ *      ├○      ├○ /ShareOption.js
+ *      ├○      └○
+ *      ├○ /Comment_textarea.js
+ *      ├○ /Comment.module.css
+ *      ├○ /CommentList.js
+ *      ├○ /MoreCommentReply.js
  *               
  * Header:
- *      |- CommonWindowResizeHeaderComponent.js
- *      |- ContextMenu.js
- *      |- DownloadApk.js
- *      |- ProfilePicture.js
- *      |- SearchForm.js
- *      |- SideLeftBar.js
- *      |- WindowOnscrollEvent.js
+ *      ┌○ /CommonWindowResizeHeaderComponent.js
+ *      ├○ /ContextMenu.js
+ *      ├○ /DownloadApk.js
+ *      ├○ /DownloadApk.module.css
+ *      ├○ /Header.js
+ *      ├○ /ProfilePicture.js
+ *      ├○ /SearchForm.js
+ *      ├○ /SideLeftBar.js
+ *      ├○ /WindowOnscrollEvent.js 
+ *      ├○ / 
+ * 
+ * Help:
+ *      ┌○ /Docs.js
+ *      ├○ /Help.js
+ *      ├○ /Help.module.css
+ * 
+ * 
+ * 
+ * hooks:
+ *      ┌○ /api/
+ *      ├○      ┌○ /social/
+ *      ├○      ├○      ┌○ /post.js
+ *      ├○      ├○      ├○ /login_user_without_post_body.js
+ *      ├○      ├○      ├○ /
+ *      ├○      ├○ /verifyUser/
+ *      ├○      ├○      ┌○ /loginCheckUser.js
+ *      ├○      ├○      ├○ 
+ *      ├○      ├○
+ *      ├○      └○
+ *      ├○ /checkUser/
+ *      ├○      ┌○ /privatePageCheckUser.js
+ *      ├○      ├○ /useAdminCheck.js
+ *      ├○      ├○ /useUserCheck.js
+ *      ├○      ├○ /
+ *      ├○      └○
+ *      ├○ /hooks/
+ *      ├○      ┌○ /private_access_token_client.js
+ *      ├○      ├○ /useFindClassAttr.js
+ *      ├○      ├○ /useHtmlAttribute.js
+ *      ├○      ├○ /useHtmlTags.js
+ *      ├○      ├○ /useShortcut.js
+ *      ├○      └○
+ *      ├○ /Uploader/
+ *      ├○      ┌○ /useUploadImage.js
+ *      ├○      ├○ /useUploadProfileCoverPhoto.js
+ *      ├○      └○
+ *      ├○ /TextArea.js
+ *      ├○ /TextArea.module.css
+ * 
  * 
  * Home:
- *      |- Home.js
+ *      ┌○ /Home.js
  * 
  * Login: 
- *      |- GuestCommentLikeLogin.js
- *      |- Login.js
- *      |- LoginAutoShow.js
- *      |- LoginFormSide.js
+ *      ┌○ /GuestCommentLikeLogin.js
+ *      ├○ /Login.js
+ *      ├○ /LoginAutoShow.js
+ *      ├○ /LoginFormSide.js
+ * 
+ * 
+ *  * Post-NewFeed:
+ *      ┌○ /DeletePost/
+ *      ├○      ┌○ /DeletePost.js
+ *      ├○      ├○     
+ *      ├○ /EditPostByUserAndAdmin
+ *      ├○      ┌○ /EditDeleteComponentMenu.js
+ *      ├○      ├○ /EditPostForm.TextArea.js
+ *      ├○      ├○ /TextAreaEdit.js
+ *      ├○      ├○
+ *      ├○      └○
+ *      ├○ /LeftSideLg.js   
+ *      ├○ /Post.js   
+ *      ├○ /PostMap.js   
+ *      ├○ /PostMap.module.css
+ *      ├○ /RightSideLg.js
+ *      ├○ /SinglePostView.js
+ *      ├○      
+ * 
+ * 
  * 
  * 
  */
+┌ ○ /                                        1.26 kB         293 kB
+├   /_app                                    0 B             246 kB
+├ ○ 
+
+ ├ ○ /test                                    388 B           247 kB
+└ ○ /videos 

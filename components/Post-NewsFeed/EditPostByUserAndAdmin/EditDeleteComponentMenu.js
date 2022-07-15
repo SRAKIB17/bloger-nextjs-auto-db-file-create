@@ -3,12 +3,12 @@ import { UserFullInfoProvider } from '../../../pages/_app';
 import { Delete, Writing } from '../../ReactRSIcon/index'
 import DeletePost from '../DeletePost/DeletePost';
 import styles from '../PostMap.module.css'
-import EditPostFromTextArea from './EditPostFrom.TextArea';
+import EditPostFormTextArea from './EditPostFormTextArea';
 const EditDeleteComponentMenu = ({ post_id }) => {
     const { user, user_details, isLoading ,isAdmin} = useContext(UserFullInfoProvider);
-    const openEditPostFromTextArea = (id) => {
+    const openEditPostFormTextArea = (id) => {
         try {
-            document.getElementById("EditPostFromTextArea" + id).style.width = "100%";
+            document.getElementById("EditPostFormTextArea" + id).style.width = "100%";
         }
         catch {
 
@@ -53,7 +53,7 @@ const EditDeleteComponentMenu = ({ post_id }) => {
                         {
                             (isAdmin?.admin || user?.user) &&
                             <>
-                                <li onClick={() => openEditPostFromTextArea(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
+                                <li onClick={() => openEditPostFormTextArea(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
                                     <Writing size='17' /> Edit Post
                                 </li>
 
@@ -65,7 +65,7 @@ const EditDeleteComponentMenu = ({ post_id }) => {
 
 
                         <>
-                            <li onClick={() => openEditPostFromTextArea(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
+                            <li onClick={() => openEditPostFormTextArea(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
                                 {/* <Writing size='17' /> Edit Post */}
                                 Save Offline
                             </li>
@@ -80,7 +80,7 @@ const EditDeleteComponentMenu = ({ post_id }) => {
             </div>
             {
                 (isAdmin?.admin || user?.user) &&
-                <EditPostFromTextArea post_id={post_id} />
+                <EditPostFormTextArea post_id={post_id} />
             }
             {
                 ((isAdmin?.admin || user?.user) && deletePost) &&

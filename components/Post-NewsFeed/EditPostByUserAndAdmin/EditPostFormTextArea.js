@@ -9,7 +9,7 @@ import QuickPost from '../../profile/NewPost/QuickPost';
 import TextAreaEdit from './TextAreaEdit';
 // import QuickPost from './QuickPost';
 
-const EditPostFromTextArea = ({ post_id }) => {
+const EditPostFormTextArea = ({ post_id }) => {
     const textareaRef = useRef();
     const jsTextareaRef = useRef()
     const cssTextareaRef = useRef()
@@ -102,9 +102,9 @@ const EditPostFromTextArea = ({ post_id }) => {
     const [quickTextPost, setQuickTextPost] = useState(true);
     const [quickImagePost, setQuickImagePost] = useState(false);
 
-    function closeEditPostFromTextArea(id) {
+    function closeEditPostFormTextArea(id) {
         try {
-            document.getElementById("EditPostFromTextArea" + id).style.width = "0";
+            document.getElementById("EditPostFormTextArea" + id).style.width = "0";
         }
         catch {
 
@@ -189,7 +189,7 @@ const EditPostFromTextArea = ({ post_id }) => {
     return (
         <div>
 
-            <div id={"EditPostFromTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100 border-t b border-b'} style={{ zIndex: 100, position: 'absolute' }}>
+            <div id={"EditPostFormTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100 border-t b border-b'} style={{ zIndex: 100, position: 'absolute' }}>
                 {
                     NewPostLoading &&
                     <div className=' w-60 mx-auto '>
@@ -200,7 +200,7 @@ const EditPostFromTextArea = ({ post_id }) => {
                         </div>
                     </div>
                 }
-                <a href="#" className={styles.closebtn} onClick={() => closeEditPostFromTextArea(post_id)}>&times;</a>
+                <a href="#" className={styles.closebtn} onClick={() => closeEditPostFormTextArea(post_id)}>&times;</a>
 
                 <div>
                     <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, quickImagePost, setQuickImagePost }} />
@@ -300,4 +300,4 @@ const EditPostFromTextArea = ({ post_id }) => {
     );
 };
 
-export default EditPostFromTextArea;
+export default EditPostFormTextArea;
