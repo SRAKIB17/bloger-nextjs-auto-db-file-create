@@ -41,11 +41,7 @@ const RegisterFormFixed = () => {
                 const form = {
                     email, password
                 }
-                data = await axios.post('/api/login_signup/login', form, {
-                    headers: {
-                        'login_api_code': login_api_token
-                    }
-                });
+                data = await axios.post('/api/login_signup/login', form);
             }
 
             //(B). IF USER ARE NEW HERE REGISTER SYSTEM
@@ -53,11 +49,7 @@ const RegisterFormFixed = () => {
                 const form = {
                     email, password, name: e.target.name.value, gender: e.target.gender.value
                 }
-                data = await axios.post('/api/login_signup/signup', form, {
-                    headers: {
-                        'login_api_code': login_api_token
-                    }
-                });
+                data = await axios.post('/api/login_signup/signup', form);
 
             }
             //IF USER SUCCESSFULLY LOGIN OR SIGNUP THIS CONDITION RUN AND SAVE LOCALSTORAGE AND COOKIES

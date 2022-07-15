@@ -11,7 +11,7 @@ export default async function handler(req, res) {
         // (A) REQUIRE CRYPTO LIBRARY
 
         // (B) CREATE PASSWORD HASH
-        if (req.headers.login_api_code == process.env.LOGIN_SIGNUP_ACCESS_API) {
+        if (req.body) {
             //GET MONGODB
             const { client } = login_user_without_post_body()
             await client.connect();

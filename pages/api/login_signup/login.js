@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     const crypto = require("crypto");
     const jwt = require('jsonwebtoken')
     try {
-        if (req.headers.login_api_code == process.env.LOGIN_SIGNUP_ACCESS_API) {
+        if (req.body) {
             // (A) REQUIRE CRYPTO LIBRARY
             const body = req.body;
             const { validate } = LoginCheckValidate()

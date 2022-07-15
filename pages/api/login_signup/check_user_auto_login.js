@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     try {
         const { client } = login_user_without_post_body()
         await client.connect();
-        if (req.headers.login_api_code == login_api_token) {
+        if (req.body) {
             const body = req.body;
             const { email } = body;
             const { password } = body
