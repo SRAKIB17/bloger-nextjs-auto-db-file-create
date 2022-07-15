@@ -1,7 +1,6 @@
-
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect, useId, useState } from 'react';
-import { useQuery } from 'react-query'
 
 const useUserCheck = () => {
     const jwt = require('jsonwebtoken');
@@ -22,7 +21,7 @@ const useUserCheck = () => {
     }
 
     useEffect(() => {
-        const RUN = async () => {
+        const run = async () => {
             setIsLoading(true)
             //GET USER EMAIL JWT TOKEN FROM LOCALSTORAGE
             try {
@@ -44,12 +43,12 @@ const useUserCheck = () => {
                         userId: userId
                     }
 
-                    const getStoreInfo = useQuery('userInfo', () => axios.post('/api/login_signup/check_user_auto_login', form, {
+                    const { data } = await axios.post('/api/login_signup/check_user_auto_login', form, {
                         headers: {
                             'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
                         }
-                    }))
-                    const data = getStoreInfo?.data?.data
+                    });
+
                     //IF SUCCESS SET_USER TRUE
                     if (data?.success) {
                         setUserInfo(data?.user_details);
@@ -61,7 +60,7 @@ const useUserCheck = () => {
 
                     //IF FAILED SET_USER TRUE
                     else {
-                        // setUser({ user: true });
+                        setUser({ user: true });
                         setUser({ user: false });
                     }
                 }
@@ -75,7 +74,7 @@ const useUserCheck = () => {
                 setIsLoading(null)
             }
         }
-        RUN().catch(console.dir)
+        run().catch(console.dir)
         // console.log(login_info)
     }, [])
 
