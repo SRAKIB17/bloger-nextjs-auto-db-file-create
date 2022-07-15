@@ -52,8 +52,8 @@ const useUserCheck = () => {
                    
                     //IF SUCCESS SET_USER TRUE
                     if (data?.data?.success) {
-                        setUserInfo(data?.user_details);
-                        setIsAdmin(data?.user_details?.roll === 'admin' ? { admin: true } : { admin: false })
+                        setUserInfo(data?.data?.user_details);
+                        setIsAdmin(data?.data?.user_details?.roll === 'admin' ? { admin: true } : { admin: false })
                         //for checkAdmin
                         setUser({ user: true });
 

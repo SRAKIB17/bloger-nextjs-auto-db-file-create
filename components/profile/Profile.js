@@ -18,7 +18,7 @@ import useUserCheck from '../hooks/checkUser/useUserCheck';
 
 const Profile = () => {
     const {user,user_details, isLoading} = useUserCheck()
-  
+  console.log(user_details)
     // const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
     usePrivatePageCheckUser('/profile');
     const [newPost, setNewPost] = useState(null)
@@ -75,7 +75,6 @@ const Profile = () => {
         // document.getElementById("profileEdit").style.width = "100%";
         setEditProfile(true)
     }
-    console.log(user_details?.profile)
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <div id='stickyTop' className='bg-base-100 rounded-lg m-2 pb-4 md:pb-6'>
