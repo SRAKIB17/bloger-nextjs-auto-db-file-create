@@ -1,28 +1,31 @@
+import axios from 'axios';
 import React from 'react';
-
-const test = () => {
-    const fileUploader = (e) => {
-        const file = e.target.files[0];
-        const oReader = new FileReader()
-        oReader.onload = (e) => {
-            const blob = oReader.result;
-            let pd = new Blob([blob], { type: 'application/pdf' });
-            let fileURL = window.URL.createObjectURL(pd);
+import {useQuery} from 'react-query'
+const TEST = () => {
+    // const fileUploader = (e) => {
+    //     const file = e.target.files[0];
+    //     const oReader = new FileReader()
+    //     oReader.onload = (e) => {
+    //         const blob = oReader.result;
+    //         let pd = new Blob([blob], { type: 'application/pdf' });
+    //         let fileURL = window.URL.createObjectURL(pd);
             
-            document.getElementById('pdf').src = blob
+    //         document.getElementById('pdf').src = blob
 
-        }
-        oReader.readAsDataURL(file);
-    }
+    //     }
+    //     oReader.readAsDataURL(file);
+    // }
+    const data = useQuery('aa',()=>axios.post('http://localhost:3000/api/testEamil',{name:'sfsdfjsdlfsdlfs'}))
+    console.log(data)
     return (
         <div>
-            <input type="file" name="" id="" onChange={(e) => fileUploader(e)} />
-            <embed src="" id='pdf' type="" height='600' width='600' />
+            {/* <input type="file" name="" id="" onChange={(e) => fileUploader(e)} />
+            <embed src="" id='pdf' type="" height='600' width='600' /> */}
         </div>
     );
 };
 
-export default test;
+export default TEST;
 
 //   //Step 4:turn array buffer into typed array
 //   var typedarray = new Uint8Array(this.result);

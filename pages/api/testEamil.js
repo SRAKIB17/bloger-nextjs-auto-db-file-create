@@ -5,7 +5,8 @@ export default function handler(req, res) {
         res.status(200).json('message')
     }
     if (method === 'POST') {
-        // message.push(req.body)
+        // message.push(re)
+        res.status(200).json('534534534534534545')
     }
 
 }

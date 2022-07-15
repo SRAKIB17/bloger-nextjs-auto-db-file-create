@@ -10,7 +10,6 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
     const [pictureThumbnail, setPictureThumbnail] = useState(null)
     const [ThumbnailData, setThumbnailData] = useState('')
     const { fileData, uploadFileHandler, message, result } = useFileUploader();
-    console.log(result)
     useEffect(() => {
         setThumbnailData(fileData);
         setPictureThumbnail(result?.data?.url)
@@ -36,9 +35,8 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
         e.preventDefault()
         const thumb = pictureThumbnail
         const { user_check } = private_access_token_client()
-        // setEditProfile(null)
-        let updateForm;
 
+        let updateForm;
         if (uploadMethod === 'cover') {
             updateForm = {
                 userID: user_details?.userID,
@@ -58,10 +56,10 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
                 user_check: user_check
             }
         });
-        console.log(data.message)
+
         if (data?.message === 'success') {
             setErrMsg('')
-            setEditProfile(null)
+            setUploadMethod(null)
             location.reload()
         }
         if (data?.message === 'error') {

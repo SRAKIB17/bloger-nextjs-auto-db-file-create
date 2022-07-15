@@ -40,17 +40,16 @@ const ProfileEdit = ({props}) => {
                 quote: event.target.quote.value,
             }
             const { user_check } = private_access_token_client()
-            // setEditProfile(null)
+            setEditProfile(null)
             const { data } = await axios.put('/api/profile/update_profile', updateForm, {
                 headers: {
                     user_check: user_check
                 }
             });
-            console.log(data)
             if (data?.message === 'success') {
                 setErrMsg('')
-                setEditProfile(null)
                 location.reload()
+                setEditProfile(null)
             }
             if (data?.message === 'error') {
                 setErrMsg(data?.error)
