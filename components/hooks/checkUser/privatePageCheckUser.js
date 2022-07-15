@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter, withRouter } from 'next/router';
 import useUserCheck from './useUserCheck';
 import LoadingSpin from '../../LoadingSpin';
+import { UserFullInfoProvider } from '../../../pages/_app';
 
 
 const usePrivatePageCheckUser = (backPath) => {
@@ -14,9 +15,10 @@ const usePrivatePageCheckUser = (backPath) => {
             router.push(path)
             router.prefetch(path)
         }
-        const { user, isLoading } = useUserCheck()
+        const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+
         if (isLoading) {
-            return <LoadingSpin/>
+            return <LoadingSpin />
         }
         if (!user.user) {
             navigate('/login?return_url=' + backPath)

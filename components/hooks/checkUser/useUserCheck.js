@@ -60,7 +60,7 @@ const useUserCheck = () => {
 
                     //IF FAILED SET_USER TRUE
                     else {
-                        setUser({ user: true });
+                        // setUser({ user: true });
                         setUser({ user: false });
                     }
                 }

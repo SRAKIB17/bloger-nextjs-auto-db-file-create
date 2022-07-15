@@ -54,18 +54,18 @@ const Home = () => {
         }
 
     }, [])
-    useEffect(() => {
-        const script = document.createElement("script");
-        script.src = "https://bloger-nextjs-auto-db-file-create-ll9vdpmwl-srakib17.vercel.app/api/js";
-        script.async = true;
-        console.log(script)
-        // script.onload = () => this. scriptLoaded() {
-        //     window.A.sort();
-        //   }
+    // useEffect(() => {
+    //     const script = document.createElement("script");
+    //     script.src = "https://bloger-nextjs-auto-db-file-create-ll9vdpmwl-srakib17.vercel.app/api/js";
+    //     script.async = true;
+    //     console.log(script)
+    //     // script.onload = () => this. scriptLoaded() {
+    //     //     window.A.sort();
+    //     //   }
 
-        document.body.appendChild(script);
+    //     document.body.appendChild(script);
         
-    }, [])
+    // }, [])
 
 
 

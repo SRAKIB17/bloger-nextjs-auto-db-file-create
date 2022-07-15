@@ -1,15 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from '../../components/Header/Header';
-import Home from '../../components/Home/Home';
-import useUserCheck from '../../components/hooks/checkUser/useUserCheck';
 import Login from '../../components/Login/Login';
-import avat from '../../public/loginAvatar.png'
 import { useRouter } from 'next/router';
 import LoadingSpin from '../../components/LoadingSpin';
+import { UserFullInfoProvider } from '../_app';
 
 const index = () => {
-    const { user, isLoading } = useUserCheck()
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+    
     const router = useRouter();
     const { return_url } = router.query
     const navigate = (path) => {

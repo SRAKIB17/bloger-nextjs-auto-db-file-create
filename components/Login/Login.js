@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import styles from '../profile/NewPost/NewPost.module.css'
+import React, { useContext, useState } from 'react';
 import bgLogin from '../../public/loginBg.jpg'
 import axios from 'axios'
 import { useRouter } from 'next/router';
-import useUserCheck from '../hooks/checkUser/useUserCheck';
 import LoadingFlowCircle from '../LoadingFlowCircle';
-const crypto = require("crypto");
+
 import private_access_token_client from '../hooks/hooks/private_access_token_client';
 import { PreviewOff, PreviewOn } from '../ReactRSIcon';
+import { UserFullInfoProvider } from '../../pages/_app';
 
 const RegisterFormFixed = () => {
-    const { user, isLoading } = useUserCheck()
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+
     const router = useRouter();
     const { return_url } = router.query
     const navigate = (path) => {
