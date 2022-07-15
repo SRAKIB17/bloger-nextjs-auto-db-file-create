@@ -1,13 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router'
 import loginProfile from '../../public/loginAvatar.png'
-import useUserCheck from '../hooks/checkUser/useUserCheck';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
+import { UserFullInfoProvider } from '../../pages/_app';
 
 const ProfilePicture = () => {
-    const { user, user_details } = useUserCheck()
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+
     const [showMenuProfile, setShowMenuProfile] = useState(false)
     const ProfilePictureHandle = (e) => {
         const getProfileMenu = document.getElementById('profileLogOut');

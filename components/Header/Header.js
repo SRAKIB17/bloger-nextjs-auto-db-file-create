@@ -10,10 +10,10 @@ import SearchForm from './SearchForm';
 import ProfilePicture from './ProfilePicture';
 import DownloadApk from './DownloadApk';
 import useCommonWindowResizeHeaderComponent from './CommonWindowResizeHeaderComponent';
-import useUserCheck from '../hooks/checkUser/useUserCheck';
+
 import LoginAutoShow from '../Login/LoginAutoShow';
 const Header = () => {
-    const { user } = useUserCheck()
+    
 
     const router = useRouter();
     // console.log(pathname.route = '/story')

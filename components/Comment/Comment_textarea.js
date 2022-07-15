@@ -4,7 +4,6 @@ import styles from './Comment.module.css'
 import LikeLoveFavorite from './LikeLoveFavorite/LikeLoveFavorite';
 import CommentList from './CommentList';
 import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
-import useUserCheck from '../hooks/checkUser/useUserCheck';
 import { UserFullInfoProvider } from '../../pages/_app';
 const Comment_textarea = ({ post_id }) => {
     const CommentTextareaRef = useRef();

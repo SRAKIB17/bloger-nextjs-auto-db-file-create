@@ -1,20 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useId, useState } from 'react';
+import React, { useContext, useEffect, useId, useState } from 'react';
 import Comment_textarea from '../Comment/Comment_textarea';
 import { useRouter, withRouter } from 'next/router';
 import styles from './PostMap.module.css'
 import EditDeleteComponentMenu from './EditPostByUserAndAdmin/EditDeleteComponentMenu';
 import useAdminCheck from '../hooks/checkUser/useAdminCheck';
-import useUserCheck from '../hooks/checkUser/useUserCheck';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
+import { UserFullInfoProvider } from '../../pages/_app';
 
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
     const { post_id } = router.query;
     const { admin } = useAdminCheck();
-    const { user } = useUserCheck()
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)

@@ -1,19 +1,19 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useContext, useEffect, useId, useState } from 'react';
 import Category from '../Category/Category';
 import Help from '../Help/Help';
-import LoginAutoShow from '../Login/LoginAutoShow';
-import { Category1, ChatForum, Info, Login, MessageDotDotDot, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import { Category1, ChatForum, Info, Login, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 import { useRouter } from 'next/router'
 import RegisterFormFixed from '../Login/LoginFormSIde';
-import useUserCheck from '../hooks/checkUser/useUserCheck';
 import NewPost from '../profile/NewPost/NewPost';
+import { UserFullInfoProvider } from '../../pages/_app';
 
 const SideLeftBar = () => {
     /** ------------------------------for dark mode state----------------------------- */
     const [dark, setDark] = useState(false);
-    const { user } = useUserCheck()
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+
 
     /** -------------------------------- show side left bar mouseenter or mouseleave and  
      * when mouse enter check side bar has title contain flex or none class 
@@ -306,7 +306,7 @@ const SideLeftBar = () => {
             {/* for external component  */}
             {
                 (user?.user && supportInbox) &&
-                <SupportInboxComponent  props={setSupportInbox}/>
+                <SupportInboxComponent props={setSupportInbox} />
             }
             <Help />
             <Category />

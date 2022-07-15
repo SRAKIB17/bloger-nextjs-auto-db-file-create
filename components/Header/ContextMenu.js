@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import NewPost from '../profile/NewPost/NewPost';
 import { useRouter, withRouter } from 'next/router';
-import useUserCheck from '../hooks/checkUser/useUserCheck';
+import { UserFullInfoProvider } from '../../pages/_app';
 
 
 const ContextMenu = () => {
-    const { user } = useUserCheck()
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
     // const [postShareId, setPostShareId] = useState(null);
     const router = useRouter();
     // console.log(pathname.route = '/story')
