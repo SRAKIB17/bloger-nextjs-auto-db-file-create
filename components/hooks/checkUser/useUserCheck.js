@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect, useId, useState } from 'react';
+import { useQuery } from 'react-query'
 
 const useUserCheck = () => {
     const jwt = require('jsonwebtoken');
@@ -21,7 +23,7 @@ const useUserCheck = () => {
     }
 
     useEffect(() => {
-        const run = async () => {
+        const RUN = async () => {
             setIsLoading(true)
             //GET USER EMAIL JWT TOKEN FROM LOCALSTORAGE
             try {
@@ -43,12 +45,12 @@ const useUserCheck = () => {
                         userId: userId
                     }
 
-                    const { data } = await axios.post('/api/login_signup/check_user_auto_login', form, {
+                    const getStoreInfo = useQuery('userInfo', () => axios.post('/api/login_signup/check_user_auto_login', form, {
                         headers: {
                             'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
                         }
-                    });
-
+                    }))
+                    const data = getStoreInfo?.data?.data
                     //IF SUCCESS SET_USER TRUE
                     if (data?.success) {
                         setUserInfo(data?.user_details);
@@ -74,7 +76,7 @@ const useUserCheck = () => {
                 setIsLoading(null)
             }
         }
-        run().catch(console.dir)
+        RUN().catch(console.dir)
         // console.log(login_info)
     }, [])
 
