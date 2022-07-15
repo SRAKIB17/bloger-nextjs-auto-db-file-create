@@ -49,7 +49,7 @@ const useUserCheck = () => {
                             'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
                         }
                     }));
-
+                    console.log(data)
                     //IF SUCCESS SET_USER TRUE
                     if (data?.success) {
                         setUserInfo(data?.user_details);
