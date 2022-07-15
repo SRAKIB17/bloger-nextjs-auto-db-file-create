@@ -109,6 +109,44 @@
  *      ├○ /SinglePostView.js
  *      ├○      
  * 
+ * profile:
+ *      ┌○ /NewPost/
+ *      ├○      ┌○ /ImageUpload.js
+ *      ├○      ├○ /NewPost.js    
+ *      ├○      ├○ /NewPost.module.css    
+ *      ├○      ├○ /QuickPost.js    
+ *      ├○      ├○     
+ *      ├○ /ProfileEdit
+ *      ├○      ┌○ /ProfileEdit.js
+ *      ├○      ├○ /EditPostForm.TextArea.js
+ *      ├○      ├○ /TextAreaEdit.js
+ *      ├○      ├○
+ *      ├○      └○
+ *      ├○ /About.js   
+ *      ├○ /Profile.js  
+ *      ├○ /UploadProfilePicture.js   
+ *      ├○      
+ * 
+ * 
+ *  PublicProfile:
+ *      ┌○ /PublicProfile.js
+ *      ├○    
+ * 
+ * 
+ *  Setting:
+ *      ┌○ /CommonSetting.js
+ *      ┌○ /Setting.js
+ *      ├○    
+ * 
+ * 
+ *  SupportInbox:
+ *      ┌○ /Admin.module.css
+ *      ├○  /AdminSupportInbox.js
+ *      ├○  /MessageBody.js
+ *      ├○  /SupportInbox.js
+ *      ├○  /SupportInbox.module.css
+ *      ├○     
+ * 
  * 
  * 
  * 
