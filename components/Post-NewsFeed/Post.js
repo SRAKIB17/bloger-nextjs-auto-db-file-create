@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserFullInfoProvider } from '../../pages/_app';
 import PostMap from './PostMap';
 
 const Post = ({ posts, refetch }) => {
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
     return (
         <div className='flex flex-col gap-2 sm:gap-3'>
             {

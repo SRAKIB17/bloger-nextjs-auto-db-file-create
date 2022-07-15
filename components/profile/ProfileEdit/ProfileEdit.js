@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from '../NewPost/NewPost.module.css'
 import { FacebookSquare, Github, Youtube, LinkedinNew, Instagram, Twitter, TwitterSquare, Quote, Gender, School, Location, Worker } from '../../ReactRSIcon/index';
-import useUserCheck from '../../hooks/checkUser/useUserCheck';
 import axios from 'axios';
 import LoadingFlowCircle from '../../LoadingFlowCircle';
 import private_access_token_client from '../../hooks/hooks/private_access_token_client';
+import LoadingSpin from '../../LoadingSpin';
+import { UserFullInfoProvider } from '../../../pages/_app';
 
-const ProfileEdit = ({ props: setEditProfile }) => {
-    const { user_details } = useUserCheck();
+const ProfileEdit = ({props}) => {
+    const setEditProfile = props
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+
     const [updateLoading, setUpdateLoading] = useState(false)
 
     function closeNewPost() {
@@ -66,6 +69,14 @@ const ProfileEdit = ({ props: setEditProfile }) => {
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
                 <div className='shadow-2xl max-w-md mx-auto p-4 h-full bg-base-300 rounded-3xl'>
                     <form action="" onSubmit={updateHandle} className='flex flex-col gap-2 m-10'>
+                        {
+                            isLoading &&
+                            <div className=' relative flex items-center justify-center z-[1000]'>
+                                <div className='absolute top-0 pb-40 pt-40'>
+                                    <LoadingSpin />
+                                </div>
+                            </div>
+                        }
                         {
                             updateLoading &&
                             <div className=' relative flex items-center justify-center z-[1000]'>

@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from './Comment.module.css'
-import LikeLoveFavorite from './LikeLoveFevorite/LikeLoveFavorite';
+import LikeLoveFavorite from './LikeLoveFavorite/LikeLoveFavorite';
 import CommentList from './CommentList';
 import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
+import { UserFullInfoProvider } from '../../pages/_app';
 const Comment_textarea = ({ post_id }) => {
     const CommentTextareaRef = useRef();
-    const { user } = useUserCheck()
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider)
+
 
     const commentBody = [
         {

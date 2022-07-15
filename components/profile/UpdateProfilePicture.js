@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserFullInfoProvider } from '../../pages/_app';
+import private_access_token_client from '../hooks/hooks/private_access_token_client';
 import useFileUploader from '../hooks/Uploader/useUploadProfileCoverPhoto';
 
 const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
 
-    const [thumbnail, setThumbnail] = useState('')
+    const [pictureThumbnail, setPictureThumbnail] = useState(null)
     const [ThumbnailData, setThumbnailData] = useState('')
     const { fileData, uploadFileHandler, message, result } = useFileUploader();
     console.log(result)
     useEffect(() => {
         setThumbnailData(fileData);
-        setThumbnail(result?.data?.url)
+        setPictureThumbnail(result?.data?.url)
     }, [fileData, result])
 
 
@@ -27,16 +31,44 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
         event.target.ownerDocument.querySelector('#uploaderCoverProfileFile').classList.remove('highlight')
     }
 
-    const uploadCoverProfilePicHandler = (e) => {
+    const [errMsg, setErrMsg] = useState('')
+    const uploadCoverProfilePicHandler = async (e) => {
         e.preventDefault()
-        const thumb = thumbnail
-        if (uploadMethod === 'cover') {
+        const thumb = pictureThumbnail
+        const { user_check } = private_access_token_client()
+        // setEditProfile(null)
+        let updateForm;
 
+        if (uploadMethod === 'cover') {
+            updateForm = {
+                userID: user_details?.userID,
+                cover: pictureThumbnail || ''
+            }
         }
         else if (uploadMethod === 'profile') {
-            console.log(4534545345435345)
+            updateForm = {
+                userID: user_details?.userID,
+                profile: pictureThumbnail || ''
+            }
         }
-        console.log(thumbnail)
+
+        // PUT SERVER AND SAVE USER COVER AND PROFILE PICTURE//
+        const { data } = await axios.put('/api/profile/update_profile', updateForm, {
+            headers: {
+                user_check: user_check
+            }
+        });
+        console.log(data.message)
+        if (data?.message === 'success') {
+            setErrMsg('')
+            setEditProfile(null)
+            location.reload()
+        }
+        if (data?.message === 'error') {
+            setErrMsg(data?.error)
+        }
+
+        console.log(pictureThumbnail)
     }
     return (
         <div>
@@ -53,6 +85,9 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
                     </h1>
                     <form onSubmit={uploadCoverProfilePicHandler} className='flex flex-col items-center w-full'>
                         <div>
+                            <p className='text-red-600'>
+                                {errMsg}
+                            </p>
                             <div className=' max-w-xs w-full'>
                                 <div>
                                     <div
@@ -80,7 +115,7 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
                                 </div >
                             </div>
                             <div className='shadow-md w-fit p-2'>
-                                <img src={thumbnail} className='max-w-40 max-h-40 rounded-md' alt="" />
+                                <img src={pictureThumbnail} className='max-w-40 max-h-40 rounded-md' alt="" />
                             </div>
                             <button className='btn btn-sm m-4 btn-primary'>Save</button>
                         </div>

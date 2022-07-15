@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Comment, EmoticonLove, Like, Share, } from '../../ReactRSIcon/index'
 import ShareOption from './ShareOption';
 import { useRouter } from 'next/router';
 import styles from './LikeTransition.module.css'
 import LikeUserList from './LikeUsersList';
 import GuestCommentLikeLogin from '../../Login/GuestCommentLikeLogin';
-import useUserCheck from '../../hooks/checkUser/useUserCheck';
+
 import Login from '../../Login/Login';
+import { UserFullInfoProvider } from '../../../pages/_app';
 
 const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
     // const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
@@ -15,7 +16,8 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
     //     document.getElementById('likeLoveFavorite' + post_id).style.top = '-1px'
     //     document.getElementById('likeLoveFavorite' + post_id).style.display = 'flex'
     // }
-    const { user } = useUserCheck()
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+
     const [showShareOption, setShowShareOption] = useState(false)
     const router = useRouter()
     const navigate = (path) => {
@@ -193,7 +195,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                             <Comment size='18' color='currentColor' />
                         </button>
                     </div>
-                    <div onMouseEnter={() => setShowShareOption(!showShareOption)}  onMouseLeave={() => setShowShareOption(!showShareOption)} >
+                    <div onMouseEnter={() => setShowShareOption(!showShareOption)} onMouseLeave={() => setShowShareOption(!showShareOption)} >
                         <button
                             className='btn btn-xs btn-primary ml-2 btn-outline'
                         >

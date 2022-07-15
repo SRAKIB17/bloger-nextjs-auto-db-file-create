@@ -12,17 +12,18 @@ import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 import NewPost from './NewPost/NewPost';
-import useUserCheck from '../hooks/checkUser/useUserCheck';
+import { useContext } from 'react';
+import { UserFullInfoProvider } from '../../pages/_app';
 
 const Profile = () => {
-    usePrivatePageCheckUser('/profile')
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+    usePrivatePageCheckUser('/profile');
     const [newPost, setNewPost] = useState(null)
     const OpenNewPost = () => {
         // document.getElementById("newPostClose").style.width = "100%";
         setNewPost(true)
     }
 
-    const { user, user_details, isLoading } = useUserCheck()
 
 
     useEffect(() => {
@@ -88,11 +89,22 @@ const Profile = () => {
                             <div className='bg-base-300 p-1 absolute top-2 left-4 rounded-full'>
                                 <Camera />
                             </div>
-                            <img
-                                src="https://images.unsplash.com/photo-1655465184678-548fb85fa74a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"
-                                alt=""
-                                className='h-[200px] w-full sm:h-[300px] rounded-t-lg'
-                            />
+                            {/* //****************************FOR COVER PHOTO SET CONDITION******************************  */}
+                            {
+                                (user_details?.cover == '' || !user_details?.cover) ?
+                                    <img
+                                        src="https://images.unsplash.com/photo-1655465184678-548fb85fa74a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"
+                                        alt=""
+                                        className='h-[200px] w-full sm:h-[300px] rounded-t-lg'
+                                    />
+                                    :
+                                    <img
+                                        src={user_details?.cover}
+                                        alt=''
+                                        className='h-[200px] w-full sm:h-[300px] rounded-t-lg'
+                                    />
+                            }
+
                         </div>
                     </label>
 

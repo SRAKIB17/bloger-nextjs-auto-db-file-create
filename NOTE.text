@@ -1,0 +1,51 @@
+/**
+ * User Profile section  === Ok without story api
+ * Path: Story = 
+ * Path: videos= 
+ * Path: Profile
+ * Path: Login:
+ *      1. signup
+ *      2. login
+ *      3. reset password
+ * 
+ * Path: Forum
+ * 
+ */
+
+
+/**
+ * Category:
+ *      |- Category.js
+ *      |- Category.module.css
+ * 
+ * Comment:
+ *      |- LikeLoveFavorite
+ *      |      |- LikeLoveFavorite.js
+ *      |      |- LikeTransition.module.css
+ *      |      |- LikeUserList.js
+ *      |      |- ShareOption.js
+ *      |- Comment_textarea.js
+ *      |- Comment.module.css
+ *      |- CommentList.js
+ *      |- MoreCommentReply.js
+ *               
+ * Header:
+ *      |- CommonWindowResizeHeaderComponent.js
+ *      |- ContextMenu.js
+ *      |- DownloadApk.js
+ *      |- ProfilePicture.js
+ *      |- SearchForm.js
+ *      |- SideLeftBar.js
+ *      |- WindowOnscrollEvent.js
+ * 
+ * Home:
+ *      |- Home.js
+ * 
+ * Login: 
+ *      |- GuestCommentLikeLogin.js
+ *      |- Login.js
+ *      |- LoginAutoShow.js
+ *      |- LoginFormSide.js
+ * 
+ * 
+ */

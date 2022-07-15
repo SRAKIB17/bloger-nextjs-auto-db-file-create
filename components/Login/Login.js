@@ -66,6 +66,7 @@ const RegisterFormFixed = () => {
                 localStorage.setItem('token', token)
                 document.cookie = (`login=${login_info}`)
                 setErrMsg('Welcome')
+                location.reload()
                 navigate(return_url ? return_url : '/')
 
             }

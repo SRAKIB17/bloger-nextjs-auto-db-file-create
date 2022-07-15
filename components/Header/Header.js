@@ -9,7 +9,7 @@ import Head from 'next/head';
 import SearchForm from './SearchForm';
 import ProfilePicture from './ProfilePicture';
 import DownloadApk from './DownloadApk';
-import useCommonWindowResizeHeaderComponent from './CommonWindowReisizeHeaderComponent';
+import useCommonWindowResizeHeaderComponent from './CommonWindowResizeHeaderComponent';
 import useUserCheck from '../hooks/checkUser/useUserCheck';
 import LoginAutoShow from '../Login/LoginAutoShow';
 const Header = () => {
@@ -89,10 +89,10 @@ const Header = () => {
                 <DownloadApk />
             </div>
             <ContextMenu />
-            {
+            {/* {
                 user?.user ||
                 <LoginAutoShow />
-            }
+            } */}
 
         </div>
 

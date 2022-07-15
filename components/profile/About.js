@@ -1,16 +1,23 @@
-import React from 'react';
-import useUserCheck from '../hooks/checkUser/useUserCheck';
-
+import React, { useContext } from 'react';
+import { UserFullInfoProvider } from '../../pages/_app';
+import LoadingSpin from '../LoadingSpin';
 import { FacebookSquare, Github, Youtube, LinkedinNew, Instagram, Twitter, TwitterSquare, Quote, Gender, School, Location, Worker } from '../ReactRSIcon/index';
 
 
-const About = () => {
+const About = ({ props }) => {
 
-
-    const { user_details } = useUserCheck();
-
+    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+   
+    if (isLoading) {
+        return (
+            <div className='p-5'>
+                <LoadingSpin />
+            </div>
+        )
+    }
     return (
         <div className='p-1'>
+
             <table className='table-auto'>
                 <tbody>
                     <tr>

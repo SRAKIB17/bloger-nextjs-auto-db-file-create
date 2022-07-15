@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import useUserCheck from '../../hooks/checkUser/useUserCheck';
+import React, { useContext, useState } from 'react';
+import { UserFullInfoProvider } from '../../../pages/_app';
 import { Delete, Writing } from '../../ReactRSIcon/index'
 import DeletePost from '../DeletePost/DeletePost';
 import styles from '../PostMap.module.css'
 import EditPostFromTextArea from './EditPostFrom.TextArea';
 const EditDeleteComponentMenu = ({ post_id }) => {
-    const { user, isAdmin } = useUserCheck()
+    const { user, user_details, isLoading ,isAdmin} = useContext(UserFullInfoProvider);
     const openEditPostFromTextArea = (id) => {
         try {
             document.getElementById("EditPostFromTextArea" + id).style.width = "100%";
