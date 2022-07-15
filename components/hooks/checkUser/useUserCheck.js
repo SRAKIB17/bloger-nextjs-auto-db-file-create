@@ -44,14 +44,14 @@ const useUserCheck = () => {
                     }
 
                     // eslint-disable-next-line react-hooks/rules-of-hooks
-                    const { data } = await useQuery('userInfo', axios.post('/api/login_signup/check_user_auto_login', form, {
+                    const { data } = useQuery('userInfo', axios.post('/api/login_signup/check_user_auto_login', form, {
                         headers: {
                             'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
                         }
                     }));
-                    console.log(data)
+                   
                     //IF SUCCESS SET_USER TRUE
-                    if (data?.success) {
+                    if (data?.data?.success) {
                         setUserInfo(data?.user_details);
                         setIsAdmin(data?.user_details?.roll === 'admin' ? { admin: true } : { admin: false })
                         //for checkAdmin
@@ -61,13 +61,13 @@ const useUserCheck = () => {
 
                     //IF FAILED SET_USER TRUE
                     else {
-                        setUser({ user: true });
-                        // setUser({ user: false });
+                        // setUser({ user: true });
+                        setUser({ user: false });
                     }
                 }
                 else {
-                    setUser({ user: true });
-                    // setUser({ user: false });
+                    // setUser({ user: true });
+                    setUser({ user: false });
                 }
                 setIsLoading(null)
             }

@@ -14,9 +14,12 @@ import femaleAvatar from '../../public/femaleAvatar.png'
 import NewPost from './NewPost/NewPost';
 import { useContext } from 'react';
 import { UserFullInfoProvider } from '../../pages/_app';
+import useUserCheck from '../hooks/checkUser/useUserCheck';
 
 const Profile = () => {
-    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+    const {user,user_details, isLoading} = useUserCheck()
+  
+    // const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
     usePrivatePageCheckUser('/profile');
     const [newPost, setNewPost] = useState(null)
     const OpenNewPost = () => {

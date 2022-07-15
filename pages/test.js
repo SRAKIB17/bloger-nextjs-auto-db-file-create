@@ -16,7 +16,7 @@ const TEST = () => {
     //     oReader.readAsDataURL(file);
     // }
     const data = useQuery('aa',()=>axios.post('http://localhost:3000/api/testEamil',{name:'sfsdfjsdlfsdlfs'}))
-    console.log(data)
+    console.log(data?.data?.data)
     return (
         <div>
             {/* <input type="file" name="" id="" onChange={(e) => fileUploader(e)} />
