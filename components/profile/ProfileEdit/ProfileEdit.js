@@ -225,7 +225,7 @@ const ProfileEdit = ({props}) => {
                                                 name="quote"
                                                 id="Quote"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
-                                                placeholder='Quote'
+                                                placeholder='About Me'
                                             />
                                         </td>
 

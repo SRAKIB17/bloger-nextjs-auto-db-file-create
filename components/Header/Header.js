@@ -13,7 +13,9 @@ import useCommonWindowResizeHeaderComponent from './CommonWindowResizeHeaderComp
 
 import LoginAutoShow from '../Login/LoginAutoShow';
 const Header = () => {
-    
+
+
+
 
     const router = useRouter();
     // console.log(pathname.route = '/story')
@@ -89,6 +91,7 @@ const Header = () => {
                 <DownloadApk />
             </div>
             <ContextMenu />
+
             {/* {
                 user?.user ||
                 <LoginAutoShow />

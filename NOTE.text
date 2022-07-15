@@ -15,7 +15,7 @@
 
 /**
  * Category:
- *      ┌○ Category.js
+ *      ┌○ Category.js > FOR CATEGORY SECTION
  *      ├○ Category.module.css
  * 
  * Comment:
@@ -130,7 +130,7 @@
  * 
  *  PublicProfile:
  *      ┌○ /PublicProfile.js
- *      ├○    
+ *      ├○ /about.js
  * 
  * 
  *  Setting:
