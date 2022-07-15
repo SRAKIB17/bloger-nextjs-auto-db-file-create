@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import axios from 'axios';
 import React, { useEffect, useId, useState } from 'react';
 import { useQuery } from 'react-query'
