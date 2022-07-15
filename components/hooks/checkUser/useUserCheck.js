@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect, useId, useState } from 'react';
-import { useQuery } from 'react-query'
+
 const useUserCheck = () => {
     const jwt = require('jsonwebtoken');
     const [isLoading, setIsLoading] = useState(true);
@@ -43,17 +43,16 @@ const useUserCheck = () => {
                         userId: userId
                     }
 
-                    // eslint-disable-next-line react-hooks/rules-of-hooks
-                    const { data } = useQuery('userInfo', axios.post('/api/login_signup/check_user_auto_login', form, {
+                    const { data } = await axios.post('/api/login_signup/check_user_auto_login', form, {
                         headers: {
                             'login_api_code': `dcab4733a9ce28bbb1a7a66d80a4097b`
                         }
-                    }));
-                   
+                    });
+
                     //IF SUCCESS SET_USER TRUE
-                    if (data?.data?.success) {
-                        setUserInfo(data?.data?.user_details);
-                        setIsAdmin(data?.data?.user_details?.roll === 'admin' ? { admin: true } : { admin: false })
+                    if (data?.success) {
+                        setUserInfo(data?.user_details);
+                        setIsAdmin(data?.user_details?.roll === 'admin' ? { admin: true } : { admin: false })
                         //for checkAdmin
                         setUser({ user: true });
 
