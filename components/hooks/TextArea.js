@@ -247,21 +247,21 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                         </div>
 
                     </div>
-                    {/* ********************UPLOAD A CODE ****************************** */}
-                    <div className='flex items-center gap-3 relative'>
-                        <label className="  btn btn-primary btn-sm text-white mb-2">
-                            <input type="file" name="image_file" id="uploader" className='form-control absolute top-[-10000px] p-3' onChange={(e) => codeUploaderHandle(e)} />
-                            <span>Select a file</span>
-                        </label>
-                        <div>
-                            <p className='cursor-pointer btn btn-xs btn-outline' onMouseEnter={showHintUploadCodeHandler} onMouseLeave={showHintUploadCodeHandler}>
-                                ℹ️
-                            </p>
-                            <p className='absolute bg-base-300 p-4 w-60 text-xs rounded-3xl hidden' id='showCodeHints'>
-                                File type: * html, * js, * css, * text
-                            </p>
+                        {/* ********************UPLOAD A CODE ****************************** */}
+                        <div className='flex items-center gap-3 relative'>
+                            <label className="  btn btn-primary btn-sm text-white mb-2">
+                                <input type="file" name="image_file" id="uploader" className='form-control absolute top-[-10000px] p-3' onChange={(e) => codeUploaderHandle(e)} />
+                                <span>Select a file</span>
+                            </label>
+                            <div>
+                                <p className='cursor-pointer btn btn-xs btn-outline' onMouseEnter={showHintUploadCodeHandler} onMouseLeave={showHintUploadCodeHandler}>
+                                    ℹ️
+                                </p>
+                                <p className='absolute bg-base-300 p-4 w-60 text-xs rounded-3xl hidden' id='showCodeHints'>
+                                    File type: * html, * js, * css, * text
+                                </p>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
                 <div className={'flex flex-col ' + (rotate ? 'sm:flex-col' : 'sm:flex-row ')}>
