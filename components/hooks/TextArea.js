@@ -249,7 +249,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                     </div>
                     {/* ********************UPLOAD A CODE ****************************** */}
                     <div className='flex items-center gap-3 relative'>
-                        <label className="  btn btn-primary btn-sm text-white">
+                        <label className="  btn btn-primary btn-sm text-white mb-2">
                             <input type="file" name="image_file" id="uploader" className='form-control absolute top-[-10000px] p-3' onChange={(e) => codeUploaderHandle(e)} />
                             <span>Select a file</span>
                         </label>
@@ -263,7 +263,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                         </div>
                     </div>
                 </div>
-                
+
                 <div className={'flex flex-col ' + (rotate ? 'sm:flex-col' : 'sm:flex-row ')}>
                     <div
                         className={
