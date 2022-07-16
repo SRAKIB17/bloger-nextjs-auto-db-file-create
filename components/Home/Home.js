@@ -64,7 +64,7 @@ const Home = () => {
         //   }
 
         document.body.appendChild(script);
-        
+
     }, [])
 
 
@@ -72,6 +72,7 @@ const Home = () => {
     // }, 400);
     return (
         <div>
+           
             <div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores doloremque, quis architecto earum cum facilis in provident aperiam alias expedita ducimus quibusdam, incidunt maxime ab officiis dicta quod voluptatibus ipsa.
 

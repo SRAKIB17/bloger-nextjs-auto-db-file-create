@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from '../../hooks/hooks/useFindClassAttr';
 import styles from '../../hooks/TextArea.module.css';
+import useUploadCode from '../../hooks/Uploader/useUploadCode';
 const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, post_id } }) => {
 
     const shortcutKeyboard = (e) => {
@@ -118,6 +119,23 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
         }
     }
 
+    // UPLOAD CODE //
+    const { code, codeUploaderHandle } = useUploadCode();
+    useEffect(() => {
+        if (htmlEdit) {
+            textareaRef.current.value = code
+        }
+        else if (jsEdit) {
+            jsTextareaRef.current.value = code
+        }
+        else if (CssEdit) {
+            cssTextareaRef.current.value = code
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [code])
+
+
+
     const liveSettingAddScriptHandler = () => {
         const liveDocs = `
         <style>${cssTextareaRef.current.value}</style>
@@ -157,7 +175,7 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
                             <div className={(jsEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-info'} onClick={() => handleCssJsHtmlEditor('js', post_id)}>
                                 js
                             </div>
-                        
+
                             <div className={' btn btn-xs btn-info text-white'} onClick={() => liveSettingAddScriptHandler()}>
                                 Run
                             </div>

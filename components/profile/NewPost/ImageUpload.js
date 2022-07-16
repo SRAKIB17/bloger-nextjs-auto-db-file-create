@@ -41,8 +41,10 @@ const ImageUpload = ({ props }) => {
                 </div>
                 <div className="divider">OR</div>
                 <div>
-
-                    <input type="file" name="image_file" id="uploaderManually" className='form-control' onChange={(e) => uploadFileHandler(e)} />
+                    <label className="  btn btn-primary btn-sm text-white">
+                        <input type="file" name="image_file" id="uploaderManually" className='form-control absolute top-[-10000px] p-3' onChange={(e) => uploadFileHandler(e)} />
+                        <span>Select a file</span>
+                    </label>
                 </div>
                 {message && <span className='label-text-alt text-red-500 mb-4'>  {message}</span>}
             </div >
