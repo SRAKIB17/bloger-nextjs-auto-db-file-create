@@ -6,6 +6,8 @@ import styles from './PostMap.module.css'
 import EditDeleteComponentMenu from './EditPostByUserAndAdmin/EditDeleteComponentMenu';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
+import { useQuery } from 'react-query'
+import axios from 'axios';
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
@@ -185,27 +187,27 @@ const PostMap = ({ post, refetch }) => {
             }
         }
     }, [])
-    // const iframePostFullBody = `
-    // <!DOCTYPE html>
-    // <html lang="en">
-    // <head>
-    //     <meta charset="UTF-8" />
-    //     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    //     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    //     <link rel="stylesheet" href="/api/styleIframe.css?video=video" type='text/css' />
-    //     <style>
-    //     ${postBodyCss}
-    //     </style>
-    // </head>
-    // <body>
-    //     ${postBody}
-    //     <script>
-    //         ${postBodyJs}
-    //     </script>
-    // </body>
-    // </html>
-    // `
-
+    const iframePostFullBody = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="/api/styleIframe.css" rel="stylesheet" type="text/css">
+        <link href="/api/styleIframe.css?video=video" rel="stylesheet" type="text/css">
+        <style>
+        ${postBodyCss}
+        </style>
+    </head>
+    <body>
+        ${postBody}
+        <script>
+            ${postBodyJs}
+        </script>
+    </body>
+    </html>
+    `
     // // postBody: textareaRef.current.value,
     // // postBodyCss: cssTextareaRef.current.value,
     // // postBodyJs: jsTextareaRef.current.value,
@@ -239,6 +241,10 @@ const PostMap = ({ post, refetch }) => {
         alert('54543')
     }
 
+
+    const userInfo = useQuery(['public_post', userID], () => axios.get(`/api/public_user_details/${userID}`));
+    const user_details = userInfo?.data?.data?.user_details;
+    console.log(user_details)
     return (
         <div>
             <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" id={'postMap' + post_id}>
@@ -251,14 +257,20 @@ const PostMap = ({ post, refetch }) => {
                                 onClick={() => profileNavigate(`/profile/${userID}`)}
                                 className="w-10 cursor-pointer h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
                             >
-                                <img
-                                    src={femaleAvatar?.src}
-                                    alt=''
-                                />
-                                {/* <img
-                                    src="https://api.lorem.space/image/face?hash=3174"
-                                    alt=''
-                                /> */}
+                                {/* **********PROFILE AVATAR */}
+                                {
+                                    (user_details?.profile == '' || !user_details?.profile) ?
+                                        <img
+                                            src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
+                                            alt=''
+                                            className='w-full bg-base-100'
+                                        />
+                                        :
+                                        <img
+                                            src={user_details?.profile}
+                                            alt=''
+                                        />
+                                }
                             </div>
                         </div>
                         <div>
@@ -273,7 +285,7 @@ const PostMap = ({ post, refetch }) => {
                                     time
                                 }
                                 <b> | </b>
-                                <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category}`)}>
+                                <button className='link-primary link-hover ' onClick={() => navigate(`? cat = ${category} `)}>
                                     {
                                         category
                                     }
@@ -356,6 +368,7 @@ const PostMap = ({ post, refetch }) => {
 
                                     <iframe
                                         // onUnload={unloadIframeHandle}
+                                        srcDoc={iframePostFullBody}
                                         onLoad={onloadIframeHeightStylesHandle}
                                         src={'/api/preview/' + post_id}
                                         id={'previewIframeHeight' + post_id}
