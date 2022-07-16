@@ -244,7 +244,6 @@ const PostMap = ({ post, refetch }) => {
 
     const userInfo = useQuery(['public_post', userID], () => axios.get(`/api/public_user_details/${userID}`));
     const user_details = userInfo?.data?.data?.user_details;
-    console.log(user_details)
     return (
         <div>
             <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" id={'postMap' + post_id}>

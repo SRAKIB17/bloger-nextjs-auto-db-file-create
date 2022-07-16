@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from './hooks/useFindClassAttr';
 import styles from './TextArea.module.css';
+import useUploadCode from './Uploader/useUploadCode';
 const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => {
 
 
@@ -155,6 +156,27 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
         }
     }
 
+    // UPLOAD CODE //
+    const { code, codeUploaderHandle } = useUploadCode();
+    useEffect(() => {
+        if (htmlEdit) {
+            textareaRef.current.value = code
+        }
+        else if (jsEdit) {
+            jsTextareaRef.current.value = code
+        }
+        else if (CssEdit) {
+            cssTextareaRef.current.value = code
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [code])
+
+
+
+
+
+
+
     const liveSettingAddScriptHandler = () => {
         const liveDocs = `
         <style>${cssTextareaRef.current.value}</style>
@@ -172,6 +194,10 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
             }
         }
     }, [])
+
+
+
+
     return (
         <div className='m-1'>
             <div className='flex'>
@@ -212,6 +238,9 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                             Run
                         </div>
 
+                    </div>
+                    <div>
+                        <input type="file" name="image_file" id="uploader" className='form-control p-3' onChange={(e) => codeUploaderHandle(e)} />
                     </div>
                 </div>
                 <div className={'flex flex-col ' + (rotate ? 'sm:flex-col' : 'sm:flex-row ')}>
