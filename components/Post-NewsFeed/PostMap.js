@@ -275,10 +275,10 @@ const PostMap = ({ post, refetch }) => {
                         <div>
                             <h2
                                 onClick={() => profileNavigate(`/profile/${userID}`)}
-                                className="card-title cursor-pointer"
+                                className="card-title cursor-pointer text-xl mb-1"
                             >
                                 {
-                                    user_details?.name
+                                    user_details?.name || 'Loading'
                                 }
                             </h2>
                             <h1 className='text-xs'>
@@ -419,3 +419,31 @@ const PostMap = ({ post, refetch }) => {
 };
 
 export default PostMap;
+
+// <h2
+//                                 onClick={() => profileNavigate(`/story/${post_id}`)}
+//                                 className="card-title text-xl mb-1 cursor-pointer"
+//                             >
+//                                 {post_title}
+//                             </h2>
+//                             {/* </h2> */}
+//                             <h1 className='text-xs font-extralight'>
+//                                 <button
+//                                     className='link-primary link-hover '
+//                                     onClick={() => profileNavigate(`/profile/${userID}`)}
+//                                 >
+//                                     {
+//                                         user_details?.name || 'loading'
+//                                     }
+//                                 </button>
+//                                 <b> | </b>
+//                                 {
+//                                     time
+//                                 }
+//                                 <b> | </b>
+//                                 <button className='link-primary link-hover ' onClick={() => navigate(`? cat = ${category} `)}>
+//                                     {
+//                                         category
+//                                     }
+//                                 </button>
+//                             </h1>

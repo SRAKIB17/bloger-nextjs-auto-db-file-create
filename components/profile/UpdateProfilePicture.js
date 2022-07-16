@@ -109,18 +109,20 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
 
                                             <span>Select a file</span>
                                         </label>
-                                    {message && <span className='label-text-alt text-red-500 mb-4'>  {message}</span>}
-                                </div >
+                                        {message && <span className='label-text-alt text-red-500 mb-4'>  {message}</span>}
+                                    </div >
+                                </div>
+                                <div className='shadow-md w-fit p-2'>
+                                    <img src={pictureThumbnail} className='max-w-40 max-h-40 rounded-md' alt="" />
+                                </div>
+                                <button className='btn btn-sm m-4 btn-primary'>Save</button>
                             </div>
-                            <div className='shadow-md w-fit p-2'>
-                                <img src={pictureThumbnail} className='max-w-40 max-h-40 rounded-md' alt="" />
-                            </div>
-                            <button className='btn btn-sm m-4 btn-primary'>Save</button>
+
                         </div>
                     </form>
                 </div>
-            </div>
 
+            </div>
         </div>
     );
 };
