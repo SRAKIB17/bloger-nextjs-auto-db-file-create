@@ -100,15 +100,15 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
                                     </div>
                                     <div className="divider">OR</div>
                                     <div>
+                                        <label className="  btn btn-primary btn-sm text-white mb-2">
+                                            <input
+                                                type="file" name="image_file" id="uploaderManuallyProfileCover"
+                                                className='form-control absolute top-[-10000px] p-3'
+                                                onChange={(e) => uploadFileHandler(e)}
+                                            />
 
-                                        <input
-                                            type="file"
-                                            name="image_file"
-                                            id="uploaderManuallyProfileCover"
-                                            className='form-control'
-                                            onChange={(e) => uploadFileHandler(e)}
-                                        />
-                                    </div>
+                                            <span>Select a file</span>
+                                        </label>
                                     {message && <span className='label-text-alt text-red-500 mb-4'>  {message}</span>}
                                 </div >
                             </div>
