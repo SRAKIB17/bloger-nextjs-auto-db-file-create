@@ -24,6 +24,40 @@ const RegisterFormFixed = () => {
     const registerHandleButton = () => {
         setRegister(!register)
     }
+
+    // ********************** FOR LOGIN EMAIL PATTERN CHECK*************************
+    const [checkingEmail, setCheckingEmail] = useState(true)
+    const emailCheckHandler = (e) => {
+        const check = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(e.target.value)
+        if (check) {
+            setCheckingEmail(false)
+            e.target.className = 'input rounded-3xl input-bordered input-primary w-full'
+        }
+        else {
+            setCheckingEmail(true)
+            e.target.className = 'input rounded-3xl input-bordered input-warning w-full text-warning'
+        }
+
+    }
+
+    const [checkingPassword, setCheckingPassWord] = useState(true)
+    const PasswordCheckHandler = (e) => {
+        const check = (e.target.value)
+        const getLastValue = e.target.value.slice(check.length - 1)
+
+        if (check?.length > 6) {
+            setCheckingPassWord(false)
+            e.target.className = 'input rounded-3xl input-bordered input-primary w-full'
+        }
+        else {
+            setCheckingPassWord(true)
+            e.target.className = 'input rounded-3xl input-bordered input-warning w-full text-warning'
+        }
+
+    }
+
+
+
     const resetPassword = () => {
         setRegister(!register)
     }
@@ -102,7 +136,7 @@ const RegisterFormFixed = () => {
                                 }
                             </h1>
                             <div className='p-8'>
-                                <form className=" flex gap-2 flex-col" onSubmit={loginOrRegisterHandler}>
+                                <form className=" flex gap-2 flex-col " onSubmit={loginOrRegisterHandler}>
                                     <p className='text-red-300'>
                                         {
                                             errMsg
@@ -131,15 +165,17 @@ const RegisterFormFixed = () => {
                                     }
                                     <div>
                                         <input
-                                            type="text"
+                                            type="email"
                                             placeholder="email"
                                             id='email'
+                                            onKeyUp={emailCheckHandler}
                                             className="input rounded-3xl input-bordered input-primary w-full"
                                             required
                                         />
                                     </div>
                                     <div className='relative'>
                                         <input
+                                            onKeyUp={PasswordCheckHandler}
                                             type={showPass ? 'text' : "password"}
                                             id='password'
                                             placeholder="password"
@@ -157,7 +193,7 @@ const RegisterFormFixed = () => {
 
                                     </div>
                                     <div className="flex flex-col">
-                                        <button className="btn btn-primary rounded-3xl font-light text-lg text-white">
+                                        <button className="btn btn-primary rounded-3xl font-light text-lg text-white" disabled={checkingEmail || checkingPassword}>
                                             {
                                                 register ? 'Login' : 'Register'
                                             }

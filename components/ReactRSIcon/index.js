@@ -63,7 +63,8 @@ export { default as LinkedinCircle } from './icon/Social/Linkedin/linkedin_circl
 export { default as LinkedinSquare } from './icon/Social/Linkedin/linkedin_square'
 export { default as LinkedinText } from './icon/Social/Linkedin/linkedin_text'
 
-export { default as Login } from './icon/LoginRegister/Login'
+export { default as LoginOutline } from './icon/LoginRegister/LoginOutline'
+export { default as LogOutOutline } from './icon/LoginRegister/LogOutOutline'
 
 
 

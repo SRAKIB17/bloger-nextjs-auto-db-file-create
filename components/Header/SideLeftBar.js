@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useId, useState } from 'react';
 import Category from '../Category/Category';
 import Help from '../Help/Help';
-import { Category1, ChatForum, Info, Login, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import { Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 import { useRouter } from 'next/router'
@@ -180,6 +180,13 @@ const SideLeftBar = () => {
 
         }
     }
+
+    //****************************FOR LOG OUT USR*********************** */
+    const logOutHandler = () => {
+        localStorage.removeItem('token')
+        document.cookie = `login=`
+        location.reload()
+    }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
 
@@ -242,7 +249,7 @@ const SideLeftBar = () => {
                             onClick={openLoginForm}
                             className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
                         >
-                            <Login size='30' />
+                            <LoginOutline size='30' />
                             <p className='hidden' id='sideLeftBarTitle'>
                                 Login
                             </p>
@@ -299,6 +306,20 @@ const SideLeftBar = () => {
                         Setting
                     </p>
                 </button>
+                {/* *******FOR SIGN OUT USER ************* */}
+
+                {
+                    user?.user &&
+                    <button
+                        onClick={logOutHandler}
+                        className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                    >
+                        <LogOutOutline size='30' />
+                        <p className='hidden' id='sideLeftBarTitle'>
+                            Log out
+                        </p>
+                    </button>
+                }
 
             </div>
 

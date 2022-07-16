@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Login = ({ color = 'currentColor', size = '1em', ...rest }) => {
+const LoginOutline = ({ color = 'currentColor', size = '1em', ...rest }) => {
     return (
         <svg
 
@@ -16,4 +16,4 @@ const Login = ({ color = 'currentColor', size = '1em', ...rest }) => {
 };
 // https://github.com/SRAKIB17/ReactCustomIconsLibrary.git
 
-export default Login;
+export default LoginOutline;

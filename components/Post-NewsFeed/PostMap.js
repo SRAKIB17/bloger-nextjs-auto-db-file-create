@@ -278,7 +278,9 @@ const PostMap = ({ post, refetch }) => {
                                 onClick={() => profileNavigate(`/profile/${userID}`)}
                                 className="card-title cursor-pointer"
                             >
-                                Shoes
+                                {
+                                    user_details?.name
+                                }
                             </h2>
                             <h1 className='text-xs'>
                                 {
