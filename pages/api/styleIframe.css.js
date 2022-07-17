@@ -39,7 +39,6 @@ export default async function handler(req, res) {
         background-color: var(--bg-color);
         border-radius: 10px;
         color: white;
-        margin: 20px;
         border: 20px solid silver;
         height: 250px;
     }
@@ -66,7 +65,6 @@ export default async function handler(req, res) {
     }
 
     .codeParent textarea {
-        margin-left: 15px;
         font-weight: lighter;
         font-size: 15px;
         line-height: 25px;
@@ -137,10 +135,6 @@ export default async function handler(req, res) {
 
     .codeDot div:nth-child(3) {
         background-color: rgb(75, 255, 20);
-    }
-
-    code {
-        overflow: auto;
     }
     `
     const darkStyle = `
