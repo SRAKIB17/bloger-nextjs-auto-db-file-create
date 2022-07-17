@@ -190,7 +190,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
         <style>${cssTextareaRef.current.value}</style>
         ${textareaRef.current.value}        
         <script>${jsTextareaRef.current.value}</script>
-
+        <script src="/api/styleIframe.js?js=code-copy"></script>
         `
         setLiveView(liveDocs)
     }
@@ -201,6 +201,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                 liveSettingAddScriptHandler();
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
@@ -228,6 +229,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                         <div className={(htmlEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-info'} onClick={() => handleCssJsHtmlEditor('html')}>
                             html
                         </div>
+
                         <div className={(CssEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-info'} onClick={() => handleCssJsHtmlEditor('css')}>
                             css
                         </div>
@@ -247,21 +249,21 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                         </div>
 
                     </div>
-                        {/* ********************UPLOAD A CODE ****************************** */}
-                        <div className='flex items-center gap-3 relative'>
-                            <label className="  btn btn-primary btn-sm text-white mb-2">
-                                <input type="file" name="image_file" id="uploader" className='form-control absolute top-[-10000px] p-3' onChange={(e) => codeUploaderHandle(e)} />
-                                <span>Select a file</span>
-                            </label>
-                            <div>
-                                <p className='cursor-pointer btn btn-xs btn-outline' onMouseEnter={showHintUploadCodeHandler} onMouseLeave={showHintUploadCodeHandler}>
-                                    ℹ️
-                                </p>
-                                <p className='absolute bg-base-300 p-4 w-60 text-xs rounded-3xl hidden' id='showCodeHints'>
-                                    File type: * html, * js, * css, * text
-                                </p>
-                            </div>
+                    {/* ********************UPLOAD A CODE ****************************** */}
+                    <div className='flex items-center gap-3 relative'>
+                        <label className="  btn btn-primary btn-sm text-white mb-2">
+                            <input type="file" name="image_file" id="uploader" className='form-control absolute top-[-10000px] p-3' onChange={(e) => codeUploaderHandle(e)} />
+                            <span>Select a file</span>
+                        </label>
+                        <div>
+                            <p className='cursor-pointer btn btn-xs btn-outline' onMouseEnter={showHintUploadCodeHandler} onMouseLeave={showHintUploadCodeHandler}>
+                                ℹ️
+                            </p>
+                            <p className='absolute bg-base-300 p-4 w-52 text-xs rounded-3xl hidden' id='showCodeHints'>
+                                File type: * html, * js, * css, * text
+                            </p>
                         </div>
+                    </div>
                 </div>
 
                 <div className={'flex flex-col ' + (rotate ? 'sm:flex-col' : 'sm:flex-row ')}>

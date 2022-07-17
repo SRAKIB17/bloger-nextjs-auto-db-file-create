@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import ImageUpload from '../../profile/NewPost/ImageUpload';
@@ -9,94 +10,14 @@ import QuickPost from '../../profile/NewPost/QuickPost';
 import TextAreaEdit from './TextAreaEdit';
 // import QuickPost from './QuickPost';
 
-const EditPostFormTextArea = ({ post_id }) => {
+const EditPostFormTextArea = ({ post, setEditPost }) => {
+    const { _id, category, tags, image, postBy, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, time, userID } = post
+
     const textareaRef = useRef();
     const jsTextareaRef = useRef()
     const cssTextareaRef = useRef()
-    const [thumbnail, setThumbnail] = useState('')
+    const [thumbnail, setThumbnail] = useState(post?.thumbnail)
     const [thumbnailData, setThumbnailData] = useState('')
-
-    const getPost = {
-        _id: 55635435,
-        userID: '54fsdlj53',
-        post_id: '2',
-        post_title: 'StackOverFlow',
-        thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
-        image: '',
-        time: 'dec 15, 2021',
-        short_description: 'গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন কর         রেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের        ব্যবস্থা করলাম।  আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।',
-
-        postBody: "So, as has been mentioned, that really isn't possible. However, there are some ways you can still be smart about it.\n" +
-            '\n' +
-            'Three of the five major browsers all allow you to see the zoom level of the browser, furthermore, should the browser be zoomed a window.onresize event is fired.\n' +
-            '\n' +
-            'IE:      event.view.devicePixelRatio           OR window.view.devicePixelRatio\n' +
-            'Chrome:  event.currentTarget.devicePixelRatio  OR window.devicePixelRatio\n' +
-            'Firefox: event.originalTarget.devicePixelRatio OR window.devicePixelRatio\n' +
-            'Safari:  /* Not possible */\n' +
-            'Opera:   /* Not possible */\n' +
-            "I think the stuff after OR works based on something I noticed as I was messing around. The first ones I know work in at least the latest version of each one. Note that Safari and Opera both have the devicePixelRatio, however both never change. It's always just 1.\n" +
-            '\n' +
-            "The above is your easy way if you don't care that much. If you do, then you could try out the detect-zoom script, which I came across while looking for solutions to Safari and Opera.\n" +
-            '\n' +
-            "So what you can now do is get the zoom level, and then offset your zoom to where it doesn't do anything. So if I force my browser to 50% zoom, you just go to 200%. Thus, no change. Of course it will be a bit more complicated, you'll have to store the last browser zoom, the new browser zoom, and do some slightly more complicated math, but based on what you already have, that should be a breeze.\n" +
-            '\n' +
-            'Another idea might be to just listen for a resize event, and calculate based off the new visible size, but that might cause issues if the window is just resized. I think the above is going to be your best option, with perhaps a fallback alert to warn the user not to zoom if necessary.',
-        sort: '5345345345',
-        postBodyJs: `
-                
-        var w = 960,
-        h = 500,
-        z = 20,
-        x = w / z,
-        y = h / z;
-
-        var svg = d3.select("body").append("svg")
-        .attr("width", w)
-        .attr("height", h);
-
-        svg.selectAll("rect")
-        .data(d3.range(x * y))
-        .enter().append("rect")
-        .attr("transform", translate)
-        .attr("width", z)
-        .attr("height", z)
-        .style("fill", function(d) { return d3.hsl(d % x / x * 360, 1, Math.floor(d / x) / y); })
-        .on("mouseover", mouseover);
-
-        function translate(d) {
-        return "translate(" + (d % x) * z + "," + Math.floor(d / x) * z + ")";
-        }
-
-        function mouseover(d) {
-        this.parentNode.appendChild(this);
-        
-        d3.select(this)
-          .style("pointer-events", "none")
-        .transition()
-          .duration(750)
-          .attr("transform", "translate(480,480)scale(23)rotate(180)")
-        .transition()
-          .delay(1500)
-          .attr("transform", "translate(240,240)scale(0)")
-          .style("fill-opacity", 0)
-          .remove();
-        }
-
-        `,
-        postBodyCss: '5343434343434343434343434343433',
-        category: {
-            name: 'Vegetables',
-            tags: ['html', 'React', "Java"],
-        },
-        postRefMode: 'video',
-        postBy: 'admin'
-    }
-    const [editPost, setEditPost] = useState({})
-    useEffect(() => {
-        setThumbnail(getPost?.thumbnail)
-        setEditPost(getPost);
-    }, [])
 
     const [quickVideoPost, setQuickVideoPost] = useState(false);
     const [quickTextPost, setQuickTextPost] = useState(true);
@@ -104,7 +25,8 @@ const EditPostFormTextArea = ({ post_id }) => {
 
     function closeEditPostFormTextArea(id) {
         try {
-            document.getElementById("EditPostFormTextArea" + id).style.width = "0";
+            // document.getElementById("EditPostFormTextArea" + id).style.width = "0";
+            setEditPost(null)
         }
         catch {
 
@@ -112,9 +34,9 @@ const EditPostFormTextArea = ({ post_id }) => {
     }
     //**************************************************************************************************************** */
     useEffect(() => {
-        textareaRef.current.value = getPost.postBody
-        jsTextareaRef.current.value = getPost?.postBodyJs
-        cssTextareaRef.current.value = getPost?.postBodyCss
+        textareaRef.current.value = postBody
+        jsTextareaRef.current.value = postBodyJs
+        cssTextareaRef.current.value = postBodyCss
     }, [])
 
     // ---------------------------------------------JSON object sent backend-----------------------------------------
@@ -136,17 +58,17 @@ const EditPostFormTextArea = ({ post_id }) => {
         }
         const post = {
             userID: '54fsdlj53',
-            post_id: '534fsdfjo345',
+            post_id: '',
             post_title: event.target.title.value,
             thumbnail: thumbnail,
             image: '',
             time: 'dec 15, 2021',
             short_description: event.target.short_description.value,
-            category: {
-                name: event.target.category.value,
-                tags: ['html'],
-            },
-            postBody: body,
+            category: event.target.category.value,
+            tags: ['html'],
+            postBody: textareaRef.current.value,
+            postBodyCss: cssTextareaRef.current.value,
+            postBodyJs: jsTextareaRef.current.value,
             sort: '5345345345',
             postBy: event.target.postBy.value,
             // tags: event.target.tags.value.split(','),
@@ -189,7 +111,7 @@ const EditPostFormTextArea = ({ post_id }) => {
     return (
         <div>
 
-            <div id={"EditPostFormTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100 border-t b border-b'} style={{ zIndex: 100, position: 'absolute' }}>
+            <div id={"EditPostFormTextArea" + post_id} className={styles.NewPostNav + ' bg-base-100 border-t b border-b'} style={{ zIndex: 100, position: 'absolute', width: '100%' }}>
                 {
                     NewPostLoading &&
                     <div className=' w-60 mx-auto '>
@@ -226,7 +148,7 @@ const EditPostFormTextArea = ({ post_id }) => {
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
                         <select name="postBy" id="" className="select select-primary w-full max-w-xs"
-                            defaultValue={editPost?.postBy}>
+                            defaultValue={postBy}>
                             <option disabled selected>Post Roll</option>
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
@@ -237,7 +159,7 @@ const EditPostFormTextArea = ({ post_id }) => {
                             id=""
                             className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Title'
-                            defaultValue={editPost?.post_title}
+                            defaultValue={post_title}
                             required
                         />
 
@@ -259,7 +181,7 @@ const EditPostFormTextArea = ({ post_id }) => {
                                 onPaste={autoHightIncreaseShortDescription}
                                 onDrop={autoHightIncreaseShortDescription}
                                 onKeyDown={autoHightIncreaseShortDescription}
-                                defaultValue={editPost?.short_description}
+                                defaultValue={short_description}
                                 required
                             >
                             </textarea>
@@ -277,7 +199,7 @@ const EditPostFormTextArea = ({ post_id }) => {
                             id=""
                             className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Category'
-                            defaultValue={editPost?.category?.name}
+                            defaultValue={category}
                             required
                         />
                         <input
@@ -286,7 +208,7 @@ const EditPostFormTextArea = ({ post_id }) => {
                             id=""
                             className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Tags (separate with comma)'
-                            defaultValue={editPost?.category?.tags}
+                            defaultValue={tags}
                             required
                         />
                         <TextAreaEdit props={{ cssTextareaRef, jsTextareaRef, textareaRef, post_id }} />

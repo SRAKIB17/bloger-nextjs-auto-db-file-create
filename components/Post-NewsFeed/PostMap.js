@@ -106,6 +106,15 @@ const PostMap = ({ post, refetch }) => {
         link.type = "text/css";
         e.target.contentDocument.head.append(link);
 
+
+        //****************FOR JS COPY CODE ************* */
+        const script = document.createElement("script");
+        script.src = "/api/styleIframe.js?js=code-copy";
+        script.async = true;
+        console.log(script)
+        e.target.contentDocument.head.append(script);
+        e.target.contentDocument.body.append(script);
+
         let darkStyle = document.createElement("link");
         const darkMode = window.localStorage.getItem('dark')
         if (darkMode) {
@@ -205,6 +214,7 @@ const PostMap = ({ post, refetch }) => {
         <script>
             ${postBodyJs}
         </script>
+        <script src="/api/styleIframe.js?js=code-copy"></script>
     </body>
     </html>
     `
@@ -278,7 +288,7 @@ const PostMap = ({ post, refetch }) => {
                                 className="card-title cursor-pointer text-xl mb-1"
                             >
                                 {
-                                    user_details?.name || 'Loading'
+                                    user_details?.name || 'User'
                                 }
                             </h2>
                             <h1 className='text-xs'>
@@ -296,7 +306,7 @@ const PostMap = ({ post, refetch }) => {
                     </div>
 
                     {
-                        <EditDeleteComponentMenu post_id={post_id} />
+                        <EditDeleteComponentMenu post={post} />
                     }
                 </div>
                 {/* --------------------------------------------------------------------------------------------------- */}

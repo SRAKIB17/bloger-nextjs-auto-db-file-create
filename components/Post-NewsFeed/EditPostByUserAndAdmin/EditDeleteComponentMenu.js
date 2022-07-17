@@ -4,8 +4,9 @@ import { Delete, Writing } from '../../ReactRSIcon/index'
 import DeletePost from '../DeletePost/DeletePost';
 import styles from '../PostMap.module.css'
 import EditPostFormTextArea from './EditPostFormTextArea';
-const EditDeleteComponentMenu = ({ post_id }) => {
-    const { user, user_details, isLoading ,isAdmin} = useContext(UserFullInfoProvider);
+const EditDeleteComponentMenu = ({ post }) => {
+    const { post_id } = post
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const openEditPostFormTextArea = (id) => {
         try {
             document.getElementById("EditPostFormTextArea" + id).style.width = "100%";
@@ -31,7 +32,8 @@ const EditDeleteComponentMenu = ({ post_id }) => {
 
         }
     }
-    const [deletePost, setDeletePost] = useState(null)
+    const [deletePost, setDeletePost] = useState(null);
+    const [editPost, setEditPost] = useState(null)
     return (
         <div>
             <div
@@ -53,7 +55,7 @@ const EditDeleteComponentMenu = ({ post_id }) => {
                         {
                             (isAdmin?.admin || user?.user) &&
                             <>
-                                <li onClick={() => openEditPostFormTextArea(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
+                                <li onClick={() => setEditPost(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
                                     <Writing size='17' /> Edit Post
                                 </li>
 
@@ -79,8 +81,8 @@ const EditDeleteComponentMenu = ({ post_id }) => {
                 </div>
             </div>
             {
-                (isAdmin?.admin || user?.user) &&
-                <EditPostFormTextArea post_id={post_id} />
+                ((isAdmin?.admin || user?.user) && editPost) &&
+                <EditPostFormTextArea post={post} setEditPost={setEditPost} />
             }
             {
                 ((isAdmin?.admin || user?.user) && deletePost) &&

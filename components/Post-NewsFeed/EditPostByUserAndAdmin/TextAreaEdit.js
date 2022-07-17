@@ -26,7 +26,6 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
     const heightAutoHandle = (e, id) => {
         onloadIframeHeightStylesHandle()
         const livePreview = document.getElementById('livePreviewEdit' + id)
-
         setWindowHeight(window.innerHeight - 50)
         const iframe = document.getElementById('liveViewIframe' + id);
 
@@ -137,6 +136,7 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
 
     const showHintUploadCodeHandler = (id) => {
         const getHints = document.getElementById('showCodeHints' + id)
+
         if (getHints.style.display == 'block') {
             getHints.style.display = 'none'
         }
@@ -152,7 +152,7 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
         <style>${cssTextareaRef.current.value}</style>
         ${textareaRef.current.value}        
         <script>${jsTextareaRef.current.value}</script>
-
+        <script src="/api/styleIframe.js?js=code-copy"></script>
         `
         setLiveView(liveDocs)
     }
@@ -202,7 +202,7 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
                                 <p className='cursor-pointer btn btn-xs btn-outline' onMouseEnter={() => showHintUploadCodeHandler(post_id)} onMouseLeave={() => showHintUploadCodeHandler(post_id)}>
                                     ℹ️
                                 </p>
-                                <p className='absolute bg-base-300 p-4 w-60 text-xs rounded-3xl hidden' id={'showCodeHints'+post_id}>
+                                <p className='absolute bg-base-300 p-4 w-60 text-xs rounded-3xl hidden' id={'showCodeHints' + post_id}>
                                     File type: * html, * js, * css, * text
                                 </p>
                             </div>
@@ -214,14 +214,14 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
                             id={'HtmlEditTexTForm' + post_id}
                             className='input input-primary w-full font-mono'
                             name="postBody"
-                            onBlur={onchangeInput}
-                            onKeyUp={(e) => shortcutKeyboard(e)}
-                            onChange={onchangeInput}
-                            onInput={onchangeInput}
-                            onCut={heightAutoHandle}
-                            onPaste={heightAutoHandle}
-                            onDrop={heightAutoHandle}
-                            onKeyDown={heightAutoHandle}
+                            onBlur={(e) => onchangeInput(e, post_id)}
+                            onKeyUp={(e) => shortcutKeyboard(e, post_id)}
+                            onChange={(e) => onchangeInput(e, post_id)}
+                            onInput={(e) => onchangeInput(e, post_id)}
+                            onCut={(e) => heightAutoHandle(e, post_id)}
+                            onPaste={(e) => heightAutoHandle(e, post_id)}
+                            onDrop={(e) => heightAutoHandle(e, post_id)}
+                            onKeyDown={(e) => heightAutoHandle(e, post_id)}
                         >
 
                         </textarea>
@@ -231,14 +231,14 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
                             id={'cssEditTextForm' + post_id}
                             className='input input-primary w-full font-mono'
                             name="postBody"
-                            onBlur={onchangeInput}
-                            onKeyUp={(e) => shortcutKeyboard(e)}
-                            onChange={onchangeInput}
-                            onInput={onchangeInput}
-                            onCut={heightAutoHandle}
-                            onPaste={heightAutoHandle}
-                            onDrop={heightAutoHandle}
-                            onKeyDown={heightAutoHandle}
+                            onBlur={(e) => onchangeInput(e, post_id)}
+                            onKeyUp={(e) => shortcutKeyboard(e, post_id)}
+                            onChange={(e) => onchangeInput(e, post_id)}
+                            onInput={(e) => onchangeInput(e, post_id)}
+                            onCut={(e) => heightAutoHandle(e, post_id)}
+                            onPaste={(e) => heightAutoHandle(e, post_id)}
+                            onDrop={(e) => heightAutoHandle(e, post_id)}
+                            onKeyDown={(e) => heightAutoHandle(e, post_id)}
                         >
 
                         </textarea>
@@ -248,14 +248,14 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
                             id={'jsEditTextForm' + post_id}
                             className='input input-primary w-full font-mono'
                             name="postBody"
-                            onBlur={onchangeInput}
-                            onKeyUp={(e) => shortcutKeyboard(e)}
-                            onChange={onchangeInput}
-                            onInput={onchangeInput}
-                            onCut={heightAutoHandle}
-                            onPaste={heightAutoHandle}
-                            onDrop={heightAutoHandle}
-                            onKeyDown={heightAutoHandle}
+                            onBlur={(e) => onchangeInput(e, post_id)}
+                            onKeyUp={(e) => shortcutKeyboard(e, post_id)}
+                            onChange={(e) => onchangeInput(e, post_id)}
+                            onInput={(e) => onchangeInput(e, post_id)}
+                            onCut={(e) => heightAutoHandle(e, post_id)}
+                            onPaste={(e) => heightAutoHandle(e, post_id)}
+                            onDrop={(e) => heightAutoHandle(e, post_id)}
+                            onKeyDown={(e) => heightAutoHandle(e, post_id)}
 
                         >
                         </textarea>
