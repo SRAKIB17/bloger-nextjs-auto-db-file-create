@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserFullInfoProvider } from '../../pages/_app';
-import private_access_token_client from '../hooks/hooks/private_access_token_client';
+import private_access_token_client from '../hooks/api/verifyUser/private_access_token_client';
 import useFileUploader from '../hooks/Uploader/useUploadProfileCoverPhoto';
 
 const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {

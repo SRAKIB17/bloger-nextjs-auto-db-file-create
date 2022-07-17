@@ -3,7 +3,7 @@ import styles from '../NewPost/NewPost.module.css'
 import { FacebookSquare, Github, Youtube, LinkedinNew, Instagram, Twitter, TwitterSquare, Quote, Gender, School, Location, Worker } from '../../ReactRSIcon/index';
 import axios from 'axios';
 import LoadingFlowCircle from '../../LoadingFlowCircle';
-import private_access_token_client from '../../hooks/hooks/private_access_token_client';
+import private_access_token_client from '../../hooks/api/verifyUser/private_access_token_client';
 import LoadingSpin from '../../LoadingSpin';
 import { UserFullInfoProvider } from '../../../pages/_app';
 

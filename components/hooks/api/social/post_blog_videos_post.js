@@ -1,4 +1,4 @@
-const post = () => {
+const SocialPostBlog = () => {
     const dbUser = 'post_blog_videos_post_social_project'
     const dbPass = '4ZiKbXFoVufdMuVq'
     const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -9,5 +9,5 @@ const post = () => {
     return { client }
 };
 
-export default post;
+export default SocialPostBlog;
 

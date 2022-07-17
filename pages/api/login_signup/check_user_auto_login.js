@@ -1,5 +1,6 @@
 import login_user_without_post_body from "../../../components/hooks/api/social/login_user_without_post_body";
-import private_access_token_client from "../../../components/hooks/hooks/private_access_token_client";
+import private_access_token_client from "../../../components/hooks/api/verifyUser/private_access_token_client";
+
 
 export default async function handler(req, res) {
     const { login_api_token } = private_access_token_client()
@@ -16,7 +17,8 @@ export default async function handler(req, res) {
                 const hashedPass = findUser?.password?.split('##')[0]
                 console.log(hashedPass)
                 if (hashedPass == encryptedPassword) {
-
+                    delete findUser?.email;
+                    delete findUser?.password;
                     res.status(200).json({ success: true, message: "welcome!", user_details: findUser })
                 }
                 else {

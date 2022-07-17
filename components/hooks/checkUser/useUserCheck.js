@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect, useId, useState } from 'react';
+import private_access_token_client from '../api/verifyUser/private_access_token_client';
 
 const useUserCheck = () => {
     const jwt = require('jsonwebtoken');
@@ -10,10 +11,10 @@ const useUserCheck = () => {
     const [isAdmin, setIsAdmin] = useState({ admin: false })
 
 
-
+    const { login_api_token } = private_access_token_client()
     const jwtDecode = (token) => {
         try {
-            return jwt.verify(token, 'dcab4733a9ce28bbb1a7a66d80a4097b')
+            return jwt.verify(token, login_api_token)
         }
         catch (err) {
             return err;
@@ -26,8 +27,9 @@ const useUserCheck = () => {
             //GET USER EMAIL JWT TOKEN FROM LOCALSTORAGE
             try {
                 const token = localStorage.getItem('token');
+                console.log(jwtDecode(token))
                 const email = jwtDecode(token)?.jwtInfo?.email;
-
+                console.log(email)
                 //GET USER PASS CODE GET FROM COOKIES AND SPLIT , FIND PASS CODE
                 const login_info = document.cookie.split(';').find(token => token.includes('login'))?.split('=')?.[1]
                 const login_pass = jwtDecode(login_info)?.userInfo
@@ -40,7 +42,8 @@ const useUserCheck = () => {
                     const form = {
                         email: email,
                         password: password,
-                        userId: userId
+                        userId: userId,
+                        accessToken: ''
                     }
 
                     const { data } = await axios.post('/api/login_signup/check_user_auto_login', form);

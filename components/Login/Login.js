@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router';
 import LoadingFlowCircle from '../LoadingFlowCircle';
 
-import private_access_token_client from '../hooks/hooks/private_access_token_client';
+import private_access_token_client from '../hooks/api/verifyUser/private_access_token_client';
 import { PreviewOff, PreviewOn } from '../ReactRSIcon';
 import { UserFullInfoProvider } from '../../pages/_app';
 

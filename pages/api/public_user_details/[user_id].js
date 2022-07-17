@@ -3,12 +3,13 @@ import login_user_without_post_body from "../../../components/hooks/api/social/l
 export default async function handler(req, res) {
     const { user_id } = req.query;
 
-    const crypto = require("crypto");
-
+    
     const jwt = require('jsonwebtoken');
-    console.log(user_id)
+    
+    console.log(req.headers.referer , )
     try {
-        if (user_id) {
+       
+        if (user_id ) {
             const { client } = login_user_without_post_body();
             await client.connect()
 

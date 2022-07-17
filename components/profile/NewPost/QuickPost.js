@@ -32,9 +32,9 @@ const QuickPost = ({ props: { quickVideoPost, setQuickVideoPost, quickTextPost, 
                 <div>
                     <button onClick={() => quickPostButtonHandle('text')} className={(quickTextPost ? 'text-white btn-disabled bg-green-500 ' : 'btn-outline ') + ' btn  btn-sm btn-success'}>Text </button>
                 </div>
-                <div>
+                {/* <div>
                     <button onClick={() => quickPostButtonHandle('image')} className={(quickImagePost ? 'text-white btn-disabled bg-green-500 ' : 'btn-outline ') + ' btn  btn-sm btn-success'}>Image </button>
-                </div>
+                </div> */}
                 <div>
                     <button onClick={() => quickPostButtonHandle('video')} className={(quickVideoPost ? 'text-white btn-disabled bg-green-500 ' : 'btn-outline ') + ' btn  btn-sm btn-success'}>Video </button>
                 </div>
