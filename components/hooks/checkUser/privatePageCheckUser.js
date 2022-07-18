@@ -34,10 +34,12 @@ const usePrivatePageCheckUser = (backPath) => {
         if (isLoading) {
             return <LoadingSpin />
         }
-        if (!user.user || (user_details?.email !== email)) {
-            logOutHandler()
-            navigate('/login?return_url=' + backPath)
-        }
+        setTimeout(() => {
+            if (!user.user || (user_details?.email !== email)) {
+                logOutHandler()
+                navigate('/login?return_url=' + backPath)
+            }
+        }, 100);
 
     }
     catch {
