@@ -1,15 +1,17 @@
 import login_user_without_post_body from "../../../components/hooks/api/social/login_user_without_post_body";
-
+import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTokenVerifyServer";
 export default async function handler(req, res) {
     const { user_id } = req.query;
+    const token = req.headers?.access_token;
 
-    
-    const jwt = require('jsonwebtoken');
-    
-    console.log(req.headers.referer , )
+    const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
+    const accessToken = tokenDetails?.token;
+    const roll = tokenDetails?.roll;
+
+
     try {
-       
-        if (user_id ) {
+
+        if (accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN || accessToken === process.env.USER_CHECK_ACCESS_FEATURE) {
             const { client } = login_user_without_post_body();
             await client.connect()
 

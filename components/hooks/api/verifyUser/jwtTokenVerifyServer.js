@@ -1,6 +1,7 @@
-const jwtTokenVerifyServer = (token) => {
+const jwtTokenVerifyServer = (token,secretCode) => {
+    const jwt = require('jsonwebtoken')
     try {
-        return jwt.verify(token, process.env.LOGIN_SIGNUP_ACCESS_API)
+        return jwt.verify(token, secretCode)
     }
     catch (err) {
         return err;

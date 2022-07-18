@@ -66,8 +66,8 @@ const RegisterFormFixed = () => {
         setLoginLoading(true)
         e.preventDefault()
         const { login_api_token } = private_access_token_client()
-        const email = e.target.email.value;
-        const password = e.target.password.value.toLowerCase();
+        const email = e.target.email.value.toLowerCase();
+        const password = e.target.password.value;
         let data = undefined;
         try {
             // (A). IF USER REGISTER THIS IS LOGIN SYSTEM
@@ -97,7 +97,9 @@ const RegisterFormFixed = () => {
 
             }
             if (data?.data?.message === 'error') {
-                setErrMsg(data?.data?.error)
+                setErrMsg(data?.data?.error);
+                localStorage.removeItem('token')
+                document.cookie = `login=`
             }
             setLoginLoading(false)
         }

@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect, useId, useState } from 'react';
-import private_access_token_client from '../api/verifyUser/private_access_token_client';
 
 const useUserCheck = () => {
     const jwt = require('jsonwebtoken');
@@ -11,39 +10,21 @@ const useUserCheck = () => {
     const [isAdmin, setIsAdmin] = useState({ admin: false })
 
 
-    const { login_api_token } = private_access_token_client()
-    const jwtDecode = (token) => {
-        try {
-            return jwt.verify(token, login_api_token)
-        }
-        catch (err) {
-            return err;
-        }
-    }
-
+ 
     useEffect(() => {
         const run = async () => {
             setIsLoading(true)
             //GET USER EMAIL JWT TOKEN FROM LOCALSTORAGE
             try {
                 const token = localStorage.getItem('token');
-                console.log(jwtDecode(token))
-                const email = jwtDecode(token)?.jwtInfo?.email;
-           
                 //GET USER PASS CODE GET FROM COOKIES AND SPLIT , FIND PASS CODE
                 const login_info = document.cookie.split(';').find(token => token.includes('login'))?.split('=')?.[1]
-                const login_pass = jwtDecode(login_info)?.userInfo
                 // IF EMAIL AND LOGIN_INFO GET THEN THIS CONDITION IS TRUE
-                if (email && login_pass) {
-                    const password = login_pass?.token;
-                    const userId = login_pass?.userId;
-
+                if (token && login_info) {
                     // FORM SEND BACKEND API BY POST METHOD
                     const form = {
-                        email: email,
-                        password: password,
-                        userId: userId,
-                        accessToken: ''
+                        token: token,
+                        login_info: login_info
                     }
 
                     const { data } = await axios.post('/api/login_signup/check_user_auto_login', form);

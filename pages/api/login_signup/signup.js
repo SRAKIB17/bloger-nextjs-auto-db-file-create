@@ -90,14 +90,14 @@ export default async function handler(req, res) {
                         const jwtInfo = {
                             email: body?.email
                         }
-                        const jwtToken = jwt.sign({ jwtInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' }, { algorithm: 'RSASHA256' });
+                        const jwtToken = jwt.sign({ jwtInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' });
 
                         // USER LOGIN INFO SAVED COOKIE 
                         const userInfo = {
                             token: body?.password,
                             userId: userID,
                         }
-                        const loginInfo = jwt.sign({ userInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' }, { algorithm: 'RSASHA256' });
+                        const loginInfo = jwt.sign({ userInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' });
 
                         res.status(200).json({ message: "success", token: jwtToken, login_info: loginInfo })
                     }

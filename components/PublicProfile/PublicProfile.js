@@ -12,8 +12,10 @@ import { useRouter } from 'next/router';
 const PublicProfile = () => {
     const router = useRouter()
     const user_id = router?.query?.user_id;
-    console.log(user_id)
-    const userInfo = useQuery(['public_profile', user_id], () => axios.get(`/api/public_user_details/${user_id}`));
+    const userInfo = useQuery(['public_profile', user_id], () => axios.get(`/api/public_user_details/${user_id}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }));
     const user_details = userInfo?.data?.data?.user_details;
     const isLoadingAbout = userInfo?.isLoading;
     console.log(user_details)
@@ -102,7 +104,7 @@ const PublicProfile = () => {
             <div className='grid grid-cols-12 gap-5 text-justify'>
                 <div className='col-span-12 md:col-span-5 sm:border-r-2 md:p-2'>
                     <div className='bg-base-100 p-4 md:p-2 rounded-t-lg'>
-                        <About props={{isLoadingAbout, user_details}}/>
+                        <About props={{ isLoadingAbout, user_details }} />
                     </div>
                 </div>
 

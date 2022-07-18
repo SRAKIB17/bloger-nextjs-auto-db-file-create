@@ -12,10 +12,11 @@ import DownloadApk from './DownloadApk';
 import useCommonWindowResizeHeaderComponent from './CommonWindowResizeHeaderComponent';
 
 import LoginAutoShow from '../Login/LoginAutoShow';
+import autoJwtTokenGenerateForUserOrGuest from '../hooks/autoJwtTokenGenerateForUserOrGuest';
 const Header = () => {
 
 
-
+    autoJwtTokenGenerateForUserOrGuest()
 
     const router = useRouter();
     // console.log(pathname.route = '/story')

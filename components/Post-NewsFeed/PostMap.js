@@ -252,7 +252,10 @@ const PostMap = ({ post, refetch }) => {
     }
 
 
-    const userInfo = useQuery(['public_post', userID], () => axios.get(`/api/public_user_details/${userID}`));
+    const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }));
     const user_details = userInfo?.data?.data?.user_details;
     return (
         <div>
