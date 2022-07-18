@@ -36,7 +36,6 @@ const usePrivatePageCheckUser = (backPath) => {
         }
         if (!user.user || (user_details?.email !== email)) {
             logOutHandler()
-            location.reload()
             navigate('/login?return_url=' + backPath)
         }
 

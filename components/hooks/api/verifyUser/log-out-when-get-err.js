@@ -4,7 +4,6 @@ const logOutWhenGetErr = () => {
     const logOutHandler = () => {
         localStorage.removeItem('token')
         document.cookie = `login=`
-        location.reload()
     }
     return{logOutHandler}
 };
