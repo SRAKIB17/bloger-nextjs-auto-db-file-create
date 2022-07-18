@@ -4,13 +4,6 @@ import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTo
 
 export default async function handler(req, res) {
 
-    const token = req.headers?.access_token;
-    console.log(token)
-
-    // const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
-    // const accessToken = tokenDetails?.token;
-    // const roll = tokenDetails?.roll;
-    // console.log(token)
     try {
         const { client } = login_user_without_post_body()
         await client.connect();

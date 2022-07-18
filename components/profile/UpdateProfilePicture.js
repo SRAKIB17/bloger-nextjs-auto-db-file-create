@@ -34,7 +34,6 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
     const uploadCoverProfilePicHandler = async (e) => {
         e.preventDefault()
         const thumb = pictureThumbnail
-        const { user_check } = private_access_token_client()
 
         let updateForm;
         if (uploadMethod === 'cover') {
@@ -52,9 +51,7 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
 
         // PUT SERVER AND SAVE USER COVER AND PROFILE PICTURE//
         const { data } = await axios.put('/api/profile/update_profile', updateForm, {
-            headers: {
-                user_check: user_check
-            }
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
         });
 
         if (data?.message === 'success') {

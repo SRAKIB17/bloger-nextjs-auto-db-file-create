@@ -114,8 +114,8 @@ const NewPost = ({ props: setNewPost }) => {
             if (e.key == 'Control') isCtrl = true;
             if (e.key == 's' && isCtrl == true) {
                 e.preventDefault()
-                const getPostBody = textareaRef.current.value;
-                window.localStorage.setItem('saveBody', JSON.stringify(getPostBody))
+                // const getPostBody = textareaRef.current.value;
+                // window.localStorage.setItem('saveBody', JSON.stringify(getPostBody))
                 return false;
             }
         }

@@ -1,10 +1,16 @@
+import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTokenVerifyServer";
 import LoginCheckValidate from "../../../components/hooks/api/verifyUser/loginCheckUser";
 
 export default async function handler(req, res) {
     const crypto = require("crypto");
-    const jwt = require('jsonwebtoken')
+    const jwt = require('jsonwebtoken');
+
+    const token = req.headers?.access_token;
+    const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
+    const accessToken = tokenDetails?.token;
+    const roll = tokenDetails?.roll;
     try {
-        if (req.body) {
+        if (accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN && roll === 'guest') {
             // (A) REQUIRE CRYPTO LIBRARY
             const body = req.body;
             const { validate } = LoginCheckValidate()
@@ -37,7 +43,7 @@ export default async function handler(req, res) {
         }
     }
     catch {
-        res.status(200).json( { message: "error", error: 'Oops! Sorry .Something is wrong. Please try again' })
+        res.status(200).json({ message: "error", error: 'Oops! Sorry .Something is wrong. Please try again' })
 
     }
 }

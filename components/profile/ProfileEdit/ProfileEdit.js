@@ -7,7 +7,7 @@ import private_access_token_client from '../../hooks/api/verifyUser/private_acce
 import LoadingSpin from '../../LoadingSpin';
 import { UserFullInfoProvider } from '../../../pages/_app';
 
-const ProfileEdit = ({props}) => {
+const ProfileEdit = ({ props }) => {
     const setEditProfile = props
     const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
 
@@ -42,9 +42,7 @@ const ProfileEdit = ({props}) => {
             const { user_check } = private_access_token_client()
             setEditProfile(null)
             const { data } = await axios.put('/api/profile/update_profile', updateForm, {
-                headers: {
-                    user_check: user_check
-                }
+                headers: { access_token: sessionStorage.getItem('accessAutoG') }
             });
             if (data?.message === 'success') {
                 setErrMsg('')

@@ -19,7 +19,7 @@ const autoJwtTokenGenerateForUserOrGuest = () => {
     }
     else if (!user?.user) {
         access = {
-            token: user_check_access_feature,
+            token: guest_check_access_token,
             roll: "guest",
         }
     }

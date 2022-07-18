@@ -75,7 +75,9 @@ const RegisterFormFixed = () => {
                 const form = {
                     email, password
                 }
-                data = await axios.post('/api/login_signup/login', form);
+                data = await axios.post('/api/login_signup/login', form, {
+                    headers: { access_token: sessionStorage.getItem('accessAutoG') }
+                });
             }
 
             //(B). IF USER ARE NEW HERE REGISTER SYSTEM
@@ -83,7 +85,9 @@ const RegisterFormFixed = () => {
                 const form = {
                     email, password, name: e.target.name.value, gender: e.target.gender.value
                 }
-                data = await axios.post('/api/login_signup/signup', form);
+                data = await axios.post('/api/login_signup/signup', form, {
+                    headers: { access_token: sessionStorage.getItem('accessAutoG') }
+                });
 
             }
             //IF USER SUCCESSFULLY LOGIN OR SIGNUP THIS CONDITION RUN AND SAVE LOCALSTORAGE AND COOKIES

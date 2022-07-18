@@ -1,17 +1,20 @@
+import { root } from "postcss";
 import login_user_without_post_body from "../../../components/hooks/api/social/login_user_without_post_body";
+import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTokenVerifyServer";
 
 const crypto = require("crypto");
 const jwt = require('jsonwebtoken');
 export default async function handler(req, res) {
-
+    const token = req.headers?.access_token;
+    const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
+    const accessToken = tokenDetails?.token;
+    const roll = tokenDetails?.roll;
     try {
+        
 
-
-
-        // (A) REQUIRE CRYPTO LIBRARY
 
         // (B) CREATE PASSWORD HASH
-        if (req.body) {
+        if (accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN && roll === 'guest') {
             //GET MONGODB
             const { client } = login_user_without_post_body()
             await client.connect();
@@ -36,7 +39,7 @@ export default async function handler(req, res) {
 
                 const findSpecific = await userCollection.findOne({ email: body?.email?.toLowerCase() });
                 if (findSpecific) {
-                    res.status(200).json({ message: "error", error: 'Already signup by this email' })
+                    res.status(200).json({ message: "error", error: 'Already registered this email' })
                 }
                 else {
                     const encryptingPassword = (password) => {
@@ -83,7 +86,8 @@ export default async function handler(req, res) {
                         quote: ``,
                     }
                     // INSERT USER FULL INFO
-                    const result = await userCollection.insertOne(getUserFullInfo)
+                    // const result = await userCollection.insertOne(getUserFullInfo)
+                    const result = {}
                     if (result?.acknowledged) {
 
                         // JWT USER INFO (EMAIL SAVED) SEND LIKE TOKEN AND SAVED LOCALSTORAGE OR COOKIES

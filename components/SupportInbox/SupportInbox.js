@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import useAdminCheck from '../hooks/checkUser/useAdminCheck';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
@@ -10,15 +10,21 @@ import AdminSupportInbox from './AdminSupportInbox';
 import MessageBody from './MessageBody';
 import inbox from './SupportInbox.module.css'
 import style from './Admin.module.css'
+import { UserFullInfoProvider } from '../../pages/_app';
+import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
+import {useRouter} from 'next/router'
 
 const SupportInbox = ({ props: setSupportInbox }) => {
 
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    const asPath = useRouter()?.asPath
+    usePrivatePageCheckUser(asPath)
 
     function closeSupportInbox() {
         // document.getElementById("SupportInbox").style.width = "0";
         setSupportInbox(null)
     }
-    const { admin } = useAdminCheck()
+
 
 
     const textareaRef = useRef();
@@ -119,7 +125,7 @@ const SupportInbox = ({ props: setSupportInbox }) => {
 
             <div
                 id="SupportInbox"
-                style={{ overflow: 'hidden', paddingTop: '0px' , width:'100%'}}
+                style={{ overflow: 'hidden', paddingTop: '0px', width: '100%' }}
                 className={styles.NewPostNav + ' bg-base-100 '}
             >
                 <div
@@ -137,7 +143,7 @@ const SupportInbox = ({ props: setSupportInbox }) => {
                              hight 0 to 224px
                             *************************************************************************** */}
                             {
-                                admin?.admin &&
+                                isAdmin?.admin &&
                                 <div className='mr-20'>
                                     <button
                                         onClick={hideAllInboxMessageForAdmin}
@@ -170,8 +176,8 @@ const SupportInbox = ({ props: setSupportInbox }) => {
                     ****************************************************************************** */}
 
                         {
-                            admin?.admin &&
-                            <div className={style.showAllMessage + ' overflow-auto  border-b-primary absolute top-[57px] w-full max-w-[500px] z-40 bg-base-100'} id='adminAllInboxMessage'>
+                            isAdmin?.admin &&
+                            < div className={style.showAllMessage + ' overflow-auto  border-b-primary absolute top-[57px] w-full max-w-[500px] z-40 bg-base-100'} id='adminAllInboxMessage'>
                                 <div className='rounded-lg border-b overflow-auto h-56 hideScrollBar '>
                                     <AdminSupportInbox setInboxMessage={{ setInboxMessage, inboxUserId, setInboxUserId }} />
                                 </div>
@@ -218,7 +224,7 @@ const SupportInbox = ({ props: setSupportInbox }) => {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 };
 
