@@ -17,7 +17,6 @@ export default async function handler(req, res) {
                 const hashedPass = findUser?.password?.split('##')[0]
                 console.log(hashedPass)
                 if (hashedPass == encryptedPassword) {
-                    delete findUser?.email;
                     delete findUser?.password;
                     res.status(200).json({ success: true, message: "welcome!", user_details: findUser })
                 }

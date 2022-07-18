@@ -29,7 +29,7 @@ const useUserCheck = () => {
                 const token = localStorage.getItem('token');
                 console.log(jwtDecode(token))
                 const email = jwtDecode(token)?.jwtInfo?.email;
-                console.log(email)
+           
                 //GET USER PASS CODE GET FROM COOKIES AND SPLIT , FIND PASS CODE
                 const login_info = document.cookie.split(';').find(token => token.includes('login'))?.split('=')?.[1]
                 const login_pass = jwtDecode(login_info)?.userInfo
