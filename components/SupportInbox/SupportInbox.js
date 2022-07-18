@@ -2,7 +2,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
-import useAdminCheck from '../hooks/checkUser/useAdminCheck';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from '../profile/NewPost/NewPost.module.css'
 import { SendShare } from '../ReactRSIcon';

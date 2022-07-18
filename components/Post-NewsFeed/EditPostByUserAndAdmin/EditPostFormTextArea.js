@@ -1,17 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { UserFullInfoProvider } from '../../../pages/_app';
 import ImageUpload from '../../profile/NewPost/ImageUpload';
 // import TextArea from '../../hooks/TextArea';
+import { useRouter } from 'next/router'
 
 
 import styles from '../../profile/NewPost/NewPost.module.css'
 import QuickPost from '../../profile/NewPost/QuickPost';
 import TextAreaEdit from './TextAreaEdit';
+import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser';
 // import QuickPost from './QuickPost';
 
 const EditPostFormTextArea = ({ post, setEditPost }) => {
     const { _id, category, tags, image, postBy, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, time, userID } = post
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    const asPath = useRouter()?.asPath
+    usePrivatePageCheckUser(asPath)
+
+
 
     const textareaRef = useRef();
     const jsTextareaRef = useRef()
@@ -21,7 +29,6 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
 
     const [quickVideoPost, setQuickVideoPost] = useState(false);
     const [quickTextPost, setQuickTextPost] = useState(true);
-    const [quickImagePost, setQuickImagePost] = useState(false);
 
     function closeEditPostFormTextArea(id) {
         try {
@@ -49,9 +56,7 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
         if (quickTextPost) {
             postRefMode = 'text'
         }
-        else if (quickImagePost) {
-            postRefMode = 'image'
-        }
+    
         else if (quickVideoPost) {
             postRefMode = 'video'
 
@@ -70,7 +75,7 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,
             sort: '5345345345',
-            postBy: event.target.postBy.value,
+            postBy: event?.target?.postBy?.value || 'user',
             // tags: event.target.tags.value.split(','),
             postRefMode: postRefMode
         }
@@ -125,7 +130,7 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
                 <a href="#" className={styles.closebtn} onClick={() => closeEditPostFormTextArea(post_id)}>&times;</a>
 
                 <div>
-                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, quickImagePost, setQuickImagePost }} />
+                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost}} />
                 </div>
                 <div>
                     <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm font-serif'>
@@ -147,12 +152,13 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
                         </p>
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
-                        <select name="postBy" id="" className="select select-primary w-full max-w-xs"
-                            defaultValue={postBy}>
-                            <option disabled selected>Post Roll</option>
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                        </select>
+                        {
+                            isAdmin?.admin &&
+                            <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs" defaultValue=''>
+                                <option value="admin">Admin</option>
+                                <option value="user" selected>User</option>
+                            </select>
+                        }
                         <input
                             type="text"
                             name="title"

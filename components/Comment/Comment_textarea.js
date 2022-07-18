@@ -13,7 +13,7 @@ const Comment_textarea = ({ post_id }) => {
     const commentBody = [
         {
             _id: 3,
-            post_id: 13,
+            post_id: post_id,
             userID: 42342343,
             comment: 'wing elit. Ipsa tenetur, vel, architecto unde ex quos, distinctio vero et commodi quia expedita pariatur? Eveniet, quod nostrum impedit illo earum exercitationem consequuntur?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt laborum aliquid nihil, architecto quod fugit, hic cumque ex',
             time: Date(),
@@ -22,7 +22,7 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 4,
-            post_id: 13,
+            post_id: post_id,
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
@@ -31,7 +31,7 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 5,
-            post_id: 13,
+            post_id: post_id,
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
@@ -40,7 +40,7 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 6,
-            post_id: 13,
+            post_id: post_id,
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
@@ -49,7 +49,7 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 7,
-            post_id: 13,
+            post_id: post_id,
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
@@ -58,7 +58,7 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 74,
-            post_id: 13,
+            post_id: post_id,
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
@@ -67,7 +67,7 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 67,
-            post_id: '54fsdlj53-ToSQ6BpPgMjh6lA',
+            post_id: post_id,
             userID: 42342343,
             comment: 'wow so gosssssssssssssssssssssssssoooood',
             time: Date(),
@@ -76,7 +76,7 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 77,
-            post_id: 13,
+            post_id: post_id,
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
@@ -85,7 +85,7 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 9,
-            post_id: 13,
+            post_id: post_id,
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
@@ -94,7 +94,7 @@ const Comment_textarea = ({ post_id }) => {
         },
         {
             _id: 8,
-            post_id: 13,
+            post_id: post_id,
             userID: 42342343,
             comment: 'wow so gooooood',
             time: Date(),
@@ -141,7 +141,7 @@ const Comment_textarea = ({ post_id }) => {
 
                 }
                 showComment.style.height = '500px'
-                document.getElementById('commentTextArea' + id).focus()
+                // document.getElementById('commentTextArea' + id).focus()
                 showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
             }
             else {

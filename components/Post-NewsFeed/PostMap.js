@@ -169,7 +169,6 @@ const PostMap = ({ post, refetch }) => {
 
                 }
                 showComment.style.height = '500px'
-                document.getElementById('commentTextArea' + id).focus()
                 showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
             }
             else {

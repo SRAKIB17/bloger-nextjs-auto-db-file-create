@@ -54,6 +54,17 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             setFullComment(comment?.slice(0, 100))
         }
     }
+    const replyComment = (id, comment_id, name) => {
+        try {
+            replySetHandle({ name: name, comment_id: comment_id }, id);
+            console.log(post_id)
+            document.getElementById('commentTextArea' + id).focus()
+        }
+        catch {
+
+        }
+
+    }
     return (
         <div>
             <div className='border-t' id={post_id}>
@@ -112,7 +123,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     <div>
                         < button
                             className='link link-hover link-primary text-xs'
-                            onClick={() => replySetHandle({ name: name, comment_id: comment_id }, post_id)}
+                            onClick={() => replyComment(post_id, comment_id, name)}
                         >
                             Reply
                         </button>

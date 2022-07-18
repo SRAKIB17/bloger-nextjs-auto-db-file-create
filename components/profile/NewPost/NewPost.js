@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import TextArea from '../../hooks/TextArea';
 import Image from 'next/image'
 import ImageUpload from './ImageUpload';
@@ -8,14 +8,18 @@ import ImageUpload from './ImageUpload';
 
 import styles from './NewPost.module.css'
 import QuickPost from './QuickPost';
-import useAdminCheck from '../../hooks/checkUser/useAdminCheck';
 import { useQuery } from 'react-query';
+import { useRouter } from 'next/router'
+import { UserFullInfoProvider } from '../../../pages/_app';
+import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser';
+
 
 const NewPost = ({ props: setNewPost }) => {
-    const { admin } = useAdminCheck();
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    const asPath = useRouter()?.asPath
+    usePrivatePageCheckUser(asPath)
     const [quickVideoPost, setQuickVideoPost] = useState(false);
     const [quickTextPost, setQuickTextPost] = useState(true);
-    const [quickImagePost, setQuickImagePost] = useState(false);
     const textareaRef = useRef();
     const jsTextareaRef = useRef()
     const cssTextareaRef = useRef()
@@ -35,9 +39,6 @@ const NewPost = ({ props: setNewPost }) => {
         let postRefMode = '';
         if (quickTextPost) {
             postRefMode = 'text'
-        }
-        else if (quickImagePost) {
-            postRefMode = 'image'
         }
         else if (quickVideoPost) {
             postRefMode = 'video'
@@ -59,7 +60,7 @@ const NewPost = ({ props: setNewPost }) => {
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,
             sort: '5345345345',
-            postBy: event.target.postBy.value,
+            postBy: event?.target?.postBy?.value || 'user',
             // tags: event.target.tags.value.split(','),
             postRefMode: postRefMode
         }
@@ -142,7 +143,7 @@ const NewPost = ({ props: setNewPost }) => {
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
 
                 <div>
-                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, quickImagePost, setQuickImagePost }} />
+                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost }} />
                 </div>
                 <div>
                     <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm font-serif'>
@@ -165,13 +166,13 @@ const NewPost = ({ props: setNewPost }) => {
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
                         {
-                            admin?.admin &&
+                            isAdmin?.admin &&
                             <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs" defaultValue=''>
-                                <option value='' disabled selected>Post Roll</option>
                                 <option value="admin">Admin</option>
-                                <option value="user">User</option>
+                                <option value="user" selected>User</option>
                             </select>
                         }
+                       
                         <input
                             type="text"
                             name="title"
