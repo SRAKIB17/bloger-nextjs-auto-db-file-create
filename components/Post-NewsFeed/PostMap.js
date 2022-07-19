@@ -9,11 +9,10 @@ import femaleAvatar from '../../public/femaleAvatar.png'
 import { useQuery } from 'react-query'
 import axios from 'axios';
 import TextPost from './TextPost';
-import VideoPost from './videoPost';
+import VideoPost from './VideoPost'
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
-
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
@@ -23,12 +22,6 @@ const PostMap = ({ post, refetch }) => {
         router.push(path)
         router.prefetch(path)
     }
-
-
-
-    // --------------------------------------------- for video -------------------------------------------------//
-
-
 
 
 
@@ -44,14 +37,7 @@ const PostMap = ({ post, refetch }) => {
                 }
             }
         }
-    }, [])
-
-    // // postBody: textareaRef.current.value,
-    // // postBodyCss: cssTextareaRef.current.value,
-    // // postBodyJs: jsTextareaRef.current.value,
-
-
-
+    }, []);
 
 
     const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,

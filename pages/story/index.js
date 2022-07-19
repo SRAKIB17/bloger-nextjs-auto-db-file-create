@@ -16,13 +16,13 @@ const Index = () => {
     const [shows, setShowPosts] = useState(10)
    
 
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
+    // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
     
-    // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/story?cat=${cat}&show=${shows}`,
-    //     {
-    //         headers: { access_token: sessionStorage.getItem('accessAutoG') }
-    //     }
-    // ))
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/story?cat=${cat}&show=${shows}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }
+    ))
 
 
     // const posts = data?.data?.result
