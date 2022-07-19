@@ -78,7 +78,6 @@ const NewPost = ({ props: setNewPost }) => {
             console.log(data)
             if (data?.message === 'success') {
                 setErrMsg(<p className='text-green-600'>Success</p>)
-                console.log('534534543534534545345345345345345345')
                 if (data?.result?.acknowledged) {
                     event.target.reset()
                     setThumbnail('')

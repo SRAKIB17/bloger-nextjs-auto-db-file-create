@@ -214,6 +214,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                     id={'previewIframeHeight' + post_id}
                     frameBorder="0"
                     scrolling="no"
+                    height='0'
                     className='w-full'
                 >
                 </iframe>
