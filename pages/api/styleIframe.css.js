@@ -5,9 +5,6 @@ export default async function handler(req, res) {
 
   try {
     const defaultStyle = `
-      @tailwind base;
-      @tailwind components;
-      @tailwind utilities;
       @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Open+Sans:wght@300;500&family=Orbitron&family=Poppins:wght@500&display=swap');
       html,
       body {
