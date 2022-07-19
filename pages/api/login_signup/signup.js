@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     const accessToken = tokenDetails?.token;
     const roll = tokenDetails?.roll;
     try {
-        
+
 
 
         // (B) CREATE PASSWORD HASH
@@ -86,8 +86,7 @@ export default async function handler(req, res) {
                         quote: ``,
                     }
                     // INSERT USER FULL INFO
-                    // const result = await userCollection.insertOne(getUserFullInfo)
-                    const result = {}
+                    const result = await userCollection.insertOne(getUserFullInfo)
                     if (result?.acknowledged) {
 
                         // JWT USER INFO (EMAIL SAVED) SEND LIKE TOKEN AND SAVED LOCALSTORAGE OR COOKIES
