@@ -112,6 +112,7 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
     }
 
     // ----------------------------------------------for short_description --------------------------------
+    const [disableBtn, setDisableBtn] = useState(true)
     const disabledBtnLength = (e) => {
         const length = e.target.value.trim().length;
         if (length >= 200 && length <= 500) {
@@ -251,7 +252,7 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
                             required
                         />
                         <TextAreaEdit props={{ cssTextareaRef, jsTextareaRef, textareaRef, post_id }} />
-                        <input type="submit" value="Post" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' />
+                        <input type="submit" value="Post" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' disabled={disableBtn} />
                     </form>
 
                 </div>
