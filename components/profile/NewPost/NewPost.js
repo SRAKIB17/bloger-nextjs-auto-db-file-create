@@ -127,13 +127,13 @@ const NewPost = ({ props: setNewPost }) => {
         }
 
         document.onkeydown = async function (e) {
-            if (e.key == 'Control') isCtrl = true;
-            if (e.key == 's' && isCtrl == true) {
-                e.preventDefault()
-                // const getPostBody = textareaRef.current.value;
-                // window.localStorage.setItem('saveBody', JSON.stringify(getPostBody))
-                return false;
-            }
+            // if (e.key == 'Control') isCtrl = true;
+            // if (e.key == 's' && isCtrl == true) {
+            //     e.preventDefault()
+            //     // const getPostBody = textareaRef.current.value;
+            //     // window.localStorage.setItem('saveBody', JSON.stringify(getPostBody))
+            //     return false;
+            // }
         }
     }, [])
 
@@ -209,6 +209,7 @@ const NewPost = ({ props: setNewPost }) => {
                                 name="short_description"
                                 id="short_description"
                                 maxLength='500'
+                                minLength='100'
                                 size='500'
                                 placeholder='Short description'
                                 className='input input-success form-control w-56 sm:w-80'

@@ -1,4 +1,5 @@
 import SocialPostBlog from "../../../components/hooks/api/social/post_blog_videos_post";
+import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTokenVerifyServer";
 
 export default async function handler(req, res) {
     const { client } = SocialPostBlog();
@@ -6,16 +7,25 @@ export default async function handler(req, res) {
     const postCollection = client.db("postBlogs").collection("postBlog");
 
     // VERIFY USER
+    const token = req.headers?.access_token;
 
-    // console.log(process.env.GUEST_CHECK_ACCESS_TOKEN)
+    const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
+    const accessToken = tokenDetails?.token;
+    const roll = tokenDetails?.roll;
+    if (accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN || accessToken === process.env.USER_CHECK_ACCESS_FEATURE) {
+        const { cat } = await req.query;
+        if (cat === 'undefined' || !cat) {
+            const getPosts = await postCollection.find({}).toArray()
+            res.status(200).json(getPosts)
+        }
+        else {
+            const getPosts = await postCollection.find({ category: cat }).toArray()
+            res.status(200).json(getPosts)
+        }
 
-    const method = req.method;
-    if (method === "GET") {
-        const getPosts = await postCollection.find({}).toArray()
-        res.status(200).json(getPosts)
     }
-    // if (method === 'POST') {
-    //     message.push(req.body)
-    // }
+    else {
+        res.status(200).json({ message: 'error', error: "Can't access " })
+    }
 
 }

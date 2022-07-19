@@ -195,12 +195,23 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
         setLiveView(liveDocs)
     }
     useEffect(() => {
-        document.documentElement.onkeydown = (e) => {
+
+        document.onkeyup = function (e) {
+            if (e.key == 'Control') {
+                e.preventDefault()
+                // isCtrl = false;
+            }
+        }
+
+        document.onkeydown = async function (e) {
+
             if (e.ctrlKey && e.key === 's') {
                 e.preventDefault()
                 liveSettingAddScriptHandler();
+                return false;
             }
         }
+      
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
