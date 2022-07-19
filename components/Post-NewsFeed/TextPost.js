@@ -90,7 +90,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
             }
             if (count === 6) {
                 try {
-                    e.target.width = document.getElementById('postBodyCode' + e.target.id?.slice(19)).offsetWidth
+                    e.target.width = document.getElementById('postBodyCode' + e.target.id?.slice(19)).offsetWidth - 30;
                     iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
                     iframe.style.display = 'none'
                 }
@@ -128,7 +128,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
         darkStyle.type = "text/css";
         iframe.contentDocument.head.append(darkStyle);
     }
-    
+
     //************************************************************************************ */
     //********************FOR COMMENT AUTO SHOW AND SHOW********************************** */
     //************************************************************************************ */
@@ -213,7 +213,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                     id={'previewIframeHeight' + post_id}
                     frameBorder="0"
                     scrolling="no"
-                    style={{ width: '100%' }}
+                    width='2000'
                 >
                 </iframe>
             </div>
