@@ -33,7 +33,7 @@ const EditDeleteComponentMenu = ({ post }) => {
         }
     }
     const [deletePost, setDeletePost] = useState(null);
-    const [editPost, setEditPost] = useState(null)
+    const [editPost, setEditPost] = useState(null);
     return (
         <div>
             <div
@@ -53,7 +53,7 @@ const EditDeleteComponentMenu = ({ post }) => {
                 >
                     <ul className='flex w-40 bg-base-300 p-4 rounded-md shadow-md flex-col gap-1'>
                         {
-                            (isAdmin?.admin || user?.user) &&
+                            (isAdmin?.admin || (user?.user && user_details?.userID === post_id?.split('-')?.[1])) &&
                             <>
                                 <li onClick={() => setEditPost(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
                                     <Writing size='17' /> Edit Post

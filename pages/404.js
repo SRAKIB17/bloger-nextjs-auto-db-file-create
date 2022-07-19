@@ -14,7 +14,9 @@ const Index = () => {
         <div className='bg-white'>
             <Header />
             <div className='flex items-center justify-around flex-col'>
-                <video src="/404.mp4" loop autoPlay className='h-auto w-auto'></video>
+                <video loop autoPlay className='h-auto w-auto'>
+                    <source src='/404.mp4'/>
+                </video>
                 <button className='btn btn-xl font-extralight btn-primary text-white' onClick={()=>navigate('/')}>
                     Back To Home
                 </button>

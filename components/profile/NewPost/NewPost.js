@@ -32,7 +32,8 @@ const NewPost = ({ props: setNewPost }) => {
     // ---------------------------------------------JSON object sent backend-----------------------------------------
     const [NewPostLoading, setNewPostLoading] = useState(false);
     const [thumbnail, setThumbnail] = useState('')
-    const [thumbnailData, setThumbnailData] = useState('')
+    const [thumbnailData, setThumbnailData] = useState('');
+    const [errMsg, setErrMsg] = useState('')
     const postHandle = async (event) => {
         setNewPostLoading(true)
         event.preventDefault();
@@ -47,7 +48,7 @@ const NewPost = ({ props: setNewPost }) => {
 
 
         const post = {
-            userID: '54fsdlj53',
+            userID: user_details?.userID,
             post_id: '',
             post_title: event.target.title.value,
             thumbnail: thumbnail,
@@ -65,14 +66,28 @@ const NewPost = ({ props: setNewPost }) => {
             postRefMode: postRefMode
         }
 
-        console.log(post)
+
         try {
-            const { data } = await axios.post('/api/post/newpost', post);
+            const { data } = await axios.post(`/api/post/create-post?email=${user_details?.email}`, post,
+                {
+                    headers: {
+                        access_token: sessionStorage.getItem('accessAutoG'),
+                        token: localStorage.getItem('token')
+                    }
+                });
             console.log(data)
-            if (data?.result?.acknowledged) {
-                event.target.reset()
-                setThumbnail('')
+            if (data?.message === 'success') {
+                setErrMsg(<p className='text-green-600'>Success</p>)
+                console.log('534534543534534545345345345345345345')
+                if (data?.result?.acknowledged) {
+                    event.target.reset()
+                    setThumbnail('')
+                }
             }
+            else if (data?.message === 'error') {
+                setErrMsg(<p className='text-red-600'>{data?.error}</p>)
+            }
+
             // console.log(data)
 
         }
@@ -165,6 +180,11 @@ const NewPost = ({ props: setNewPost }) => {
                         </p>
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
+                        <p className='text-red-600'>
+                            {
+                                errMsg
+                            }
+                        </p>
                         {
                             isAdmin?.admin &&
                             <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs" defaultValue=''>
@@ -172,7 +192,7 @@ const NewPost = ({ props: setNewPost }) => {
                                 <option value="user" selected>User</option>
                             </select>
                         }
-                       
+
                         <input
                             type="text"
                             name="title"
