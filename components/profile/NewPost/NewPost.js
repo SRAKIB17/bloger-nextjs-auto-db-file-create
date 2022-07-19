@@ -99,15 +99,24 @@ const NewPost = ({ props: setNewPost }) => {
 
 
     // ----------------------------------------------for short_description --------------------------------
-    const shortcutKeyboard = (e) => {
-        // classTagShortcutInput(e, textareaRef)
+    const [disableBtn, setDisableBtn] = useState(true)
+    const disabledBtnLength = (e) => {
+        const length = e.target.value.trim().length;
+        if (length >= 200 && length <= 500) {
+            setDisableBtn(false)
+        }
+        else {
+            setDisableBtn(true)
+        }
     }
     const ShortDescriptionRef = useRef();
     const onchangeInput = (e) => {
+        disabledBtnLength(e)
         autoHightIncreaseShortDescription(e)
     }
 
     const autoHightIncreaseShortDescription = (e) => {
+        disabledBtnLength(e)
         e.target.style.height = 'auto';
         if (e.target.scrollHeight < 200) {
             e.target.style.height = e.target.scrollHeight + 'px'
@@ -209,12 +218,12 @@ const NewPost = ({ props: setNewPost }) => {
                                 name="short_description"
                                 id="short_description"
                                 maxLength='500'
-                                minLength='100'
+                                minLength='150'
                                 size='500'
                                 placeholder='Short description'
                                 className='input input-success form-control w-56 sm:w-80'
                                 onBlur={onchangeInput}
-                                onKeyUp={(e) => shortcutKeyboard(e)}
+                                onKeyUp={(e) => disabledBtnLength(e)}
                                 onChange={onchangeInput}
                                 onInput={onchangeInput}
                                 onCut={autoHightIncreaseShortDescription}
@@ -269,7 +278,7 @@ const NewPost = ({ props: setNewPost }) => {
                             </p> */}
                         </div>
                         <TextArea props={{ cssTextareaRef, jsTextareaRef, textareaRef }} />
-                        <input type="submit" value="Post" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' />
+                        <input type="submit" value="Post" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' disabled={disableBtn} />
                     </form>
 
                 </div>

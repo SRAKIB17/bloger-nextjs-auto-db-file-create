@@ -47,7 +47,9 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
     }, [])
 
     // ---------------------------------------------JSON object sent backend-----------------------------------------
-    const [NewPostLoading, setNewPostLoading] = useState(false)
+    const [NewPostLoading, setNewPostLoading] = useState(false);
+    const [errMsg, setErrMsg] = useState('')
+
     const postHandle = async (event) => {
         setNewPostLoading(true)
         event.preventDefault();
@@ -56,14 +58,14 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
         if (quickTextPost) {
             postRefMode = 'text'
         }
-    
+
         else if (quickVideoPost) {
             postRefMode = 'video'
 
         }
         const post = {
-            userID: '54fsdlj53',
-            post_id: '',
+            userID: user_details?.userID,
+            post_id: post_id,
             post_title: event.target.title.value,
             thumbnail: thumbnail,
             image: '',
@@ -79,31 +81,54 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
             // tags: event.target.tags.value.split(','),
             postRefMode: postRefMode
         }
-        console.log(post)
+
         try {
-            // const { data } = await axios.post('/api/post/newpost', post);
-            // console.log(data)
-            // if (data?.result?.acknowledged) {
-            //     event.target.reset()
-            // }
+            const { data } = await axios.put(`/api/post/update-post?email=${user_details?.email}&post_id=${post_id}`, post,
+                {
+                    headers: {
+                        access_token: sessionStorage.getItem('accessAutoG'),
+                        token: localStorage.getItem('token')
+                    }
+                });
+            console.log(data)
+            if (data?.message === 'success') {
+                setErrMsg(<p className='text-green-600'>Success</p>)
+                console.log('534534543534534545345345345345345345')
+                if (data?.result?.acknowledged) {
+                    location.reload();
+                }
+            }
+            else if (data?.message === 'error') {
+                setErrMsg(<p className='text-red-600'>{data?.error}</p>)
+            }
+
             // console.log(data)
 
         }
         finally {
             setNewPostLoading(false)
+
         }
     }
 
     // ----------------------------------------------for short_description --------------------------------
-    const shortcutKeyboard = (e) => {
-        // classTagShortcutInput(e, textareaRef)
+    const disabledBtnLength = (e) => {
+        const length = e.target.value.trim().length;
+        if (length >= 200 && length <= 500) {
+            setDisableBtn(false)
+        }
+        else {
+            setDisableBtn(true)
+        }
     }
     const ShortDescriptionRef = useRef();
     const onchangeInput = (e) => {
+        disabledBtnLength(e)
         autoHightIncreaseShortDescription(e)
     }
 
     const autoHightIncreaseShortDescription = (e) => {
+        disabledBtnLength(e)
         e.target.style.height = 'auto';
         if (e.target.scrollHeight < 200) {
             e.target.style.height = e.target.scrollHeight + 'px'
@@ -130,7 +155,7 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
                 <a href="#" className={styles.closebtn} onClick={() => closeEditPostFormTextArea(post_id)}>&times;</a>
 
                 <div>
-                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost}} />
+                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost }} />
                 </div>
                 <div>
                     <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm font-serif'>
@@ -152,6 +177,12 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
                         </p>
                     </div>
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
+                        <p className='text-red-600'>
+                            {
+                                errMsg
+                            }
+                        </p>
+
                         {
                             isAdmin?.admin &&
                             <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs" defaultValue=''>
@@ -159,6 +190,7 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
                                 <option value="user" selected>User</option>
                             </select>
                         }
+
                         <input
                             type="text"
                             name="title"
@@ -177,10 +209,11 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
                                 name="short_description"
                                 maxLength='500'
                                 size='500'
+                                minLength='150'
                                 placeholder='Short description'
                                 className='input input-success form-control w-56 sm:w-80'
                                 onBlur={onchangeInput}
-                                onKeyUp={(e) => shortcutKeyboard(e)}
+                                onKeyUp={(e) => disabledBtnLength(e)}
                                 onChange={onchangeInput}
                                 onInput={onchangeInput}
                                 onCut={autoHightIncreaseShortDescription}

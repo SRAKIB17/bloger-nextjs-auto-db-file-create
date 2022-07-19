@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react';
 
 const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_id, postRefMode, thumbnail }) => {
@@ -90,7 +91,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
             }
             if (count === 6) {
                 try {
-                    e.target.width = document.getElementById('postBodyCode' + e.target.id?.slice(19)).offsetWidth - 30;
+                    // e.target.width = document.getElementById('postBodyCode' + e.target.id?.slice(19)).offsetWidth - 30;
                     iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
                     iframe.style.display = 'none'
                 }
@@ -213,7 +214,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                     id={'previewIframeHeight' + post_id}
                     frameBorder="0"
                     scrolling="no"
-                    width='2000'
+                    className='w-full'
                 >
                 </iframe>
             </div>
