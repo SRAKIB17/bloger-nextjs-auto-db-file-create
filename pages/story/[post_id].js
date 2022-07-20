@@ -18,7 +18,7 @@ const Index = () => {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
     ))
-    const post = data?.data;
+    const post = data?.data || {}
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
