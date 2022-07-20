@@ -131,6 +131,10 @@ body::-webkit-scrollbar {
 #uploaderCoverProfileFile.highlight {
   border-color: purple;
 }
+/* 
+a{
 
+word-wrap: break-word;
+white-space: pre-wrap;
+} */
 
- 

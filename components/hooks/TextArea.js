@@ -204,15 +204,12 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
         }
 
         document.onkeydown = async function (e) {
-
             if (e.ctrlKey && e.key === 's') {
                 e.preventDefault()
                 liveSettingAddScriptHandler();
                 return false;
             }
         }
-      
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
