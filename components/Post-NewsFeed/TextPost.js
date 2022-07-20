@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import IframeLoading from '../../public/loading_iframe.gif'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_id, postRefMode, thumbnail }) => {
     //********************************************************************************* */
@@ -8,7 +8,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
     //********************************************************************************** */
     const [fullIframeShow, setFullIframeShow] = useState(false);
     const [iframeLoading, setIframeLoading] = useState(false)
-    const heightHandle = async (id) => {
+    const autoHeightHandle = async (id) => {
         setIframeLoading(true)
         try {
             const iframe = document.getElementById('previewIframeHeight' + id);
@@ -101,7 +101,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
     }
     // ******************************************* TOGGLE BUTTON AND SHOW OR HIDE IFRAME POST ************
     const showIframeDisplayHandle = (id) => {
-        heightHandle(id)
+        autoHeightHandle(id)
         const iframe = document.getElementById('previewIframeHeight' + id);
         setFullIframeShow(!fullIframeShow)
         showCommentHandle(id)
@@ -181,6 +181,20 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
     </body>
     </html>
     `
+
+    useEffect(() => {
+        window.onclick = () => {
+            try {
+                const iframes = document.getElementsByTagName('iframe');
+                for (const iframe of iframes) {
+                    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px'
+                }
+            }
+            catch {
+
+            }
+        }
+    }, [])
     return (
         <div className='mx-auto' id={'textPost' + post_id}>
 
