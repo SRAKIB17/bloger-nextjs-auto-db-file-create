@@ -11,7 +11,7 @@ import axios from 'axios';
 import TextPost from './TextPost';
 import VideoPost from './VideoPost'
 const PostMap = ({ post, refetch }) => {
-    const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
+    const { category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, thumbnail, time, userID } = post
     const router = useRouter();
     const navigate = (path) => {
         router.push(path)
@@ -104,7 +104,7 @@ const PostMap = ({ post, refetch }) => {
                 <div className='card-body pb-2 pt-3 p-5' id={'postBodyCode' + post_id}>
                     <h2 className="card-title">{post_title}</h2>
 
-                   
+
                     {
                         postRefMode === 'video' &&
                         <>
