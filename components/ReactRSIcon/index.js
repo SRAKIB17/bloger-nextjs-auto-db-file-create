@@ -8,6 +8,7 @@ export { default as Comment } from './icon/Comment/comment'
 
 export { default as ChatForum } from './icon/ChatForum/ChatForum'
 export { default as Camera } from './icon/Camera/Camera'
+export { default as Copy } from './icon/Copy/Copy'
 
 export { default as Category1 } from './icon/Category/Category1'
 export { default as Delete } from './icon/Delete/Delete'

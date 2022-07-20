@@ -1,10 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { UserFullInfoProvider } from '../../../pages/_app';
-import { Delete, Writing } from '../../ReactRSIcon/index'
+import { Copy, Delete, Writing } from '../../ReactRSIcon/index'
 import DeletePost from '../DeletePost/DeletePost';
 import styles from '../PostMap.module.css'
 import EditPostFormTextArea from './EditPostFormTextArea';
+import { useRouter } from 'next/router';
+import CopyEdit from './CopyEdit.module.css'
+
 const EditDeleteComponentMenu = ({ post }) => {
+    const router = useRouter()
     const { post_id } = post
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const openEditPostFormTextArea = (id) => {
@@ -34,6 +38,27 @@ const EditDeleteComponentMenu = ({ post }) => {
     }
     const [deletePost, setDeletePost] = useState(null);
     const [editPost, setEditPost] = useState(null);
+    const CopyUrlHandle = (id, e) => {
+        e.preventDefault();
+        const getInput = e.target.getElementsByTagName('input')[0];
+        getInput.select()
+        document.execCommand('copy')
+
+        const copiedMsg = e.target.getElementsByTagName('p')[0];
+        copiedMsg.style.display = 'block'
+        setTimeout(() => {
+            copiedMsg.style.display = 'none'
+        }, 1000);
+    }
+
+
+    const copyLink = `
+    ${typeof window !== 'undefined' && window.location.origin ? window.location.origin : ''}/story/${post_id}
+    `;
+    const apiLinkCopy = `
+    ${typeof window !== 'undefined' && window.location.origin ? window.location.origin : ''}/api/preview/${post_id}
+    `;
+
     return (
         <div>
             <div
@@ -67,15 +92,32 @@ const EditDeleteComponentMenu = ({ post }) => {
 
 
                         <>
-                            <li onClick={() => openEditPostFormTextArea(post_id)} className='text-left btn btn-outline btn-primary rounded-md btn-xs'>
-                                {/* <Writing size='17' /> Edit Post */}
-                                Save Offline
+                            <li onClick={(e) => CopyUrlHandle(post_id, e)} className={CopyEdit.tooltip + ' text-left btn btn-outline btn-primary rounded-md btn-xs'}>
+                                <Copy size='17' className="pr-1" />
+                                Copy Url
+                                <p className={CopyEdit.tooltiptext + ' hidden'}>
+                                    Copied
+                                </p>
+                                <input type="text" value={copyLink} className="fixed top-[-100000px]" />
                             </li>
+
+                            <li onClick={(e) => CopyUrlHandle(post_id, e)} className={CopyEdit.tooltip + ' text-left btn btn-outline btn-primary rounded-md btn-xs'}>
+                                <Copy size='17' className="pr-1" />
+                                Copy Api Url
+                                <p className={CopyEdit.tooltiptext + ' hidden'}>
+                                    Copied
+                                </p>
+                                <input type="text" value={apiLinkCopy} className="fixed top-[-100000px]" />
+                            </li>
+
+
 
                             <li className=' btn btn-outline btn-primary text-left rounded-md btn-xs' onClick={() => setDeletePost(post_id)}>
                                 {/* <Delete size='17' />Delete Post */}
                                 Shorten Url
                             </li>
+                           
+
                         </>
                     </ul>
                 </div>
