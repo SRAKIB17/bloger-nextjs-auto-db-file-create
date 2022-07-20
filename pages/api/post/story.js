@@ -16,7 +16,8 @@ export default async function handler(req, res) {
         const { cat } = await req.query;
         const { show } = req.query;
         if (cat === 'undefined' || !cat) {
-            const getPosts = await postCollection.find({}).skip(0).limit(parseInt(show)).toArray();
+            const getPosts = await postCollection.find({}).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
+            console.log(getPosts)
             res.status(200).json(getPosts)
         }
         else {

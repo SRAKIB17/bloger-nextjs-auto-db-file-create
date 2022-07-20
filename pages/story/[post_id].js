@@ -10,7 +10,8 @@ import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 import RightSideLg from '../../components/Post-NewsFeed/RightSideLg';
 
 const Index = () => {
-    const router = useRouter()
+    const router = useRouter();
+    const {post_id} = router.query;
     const post = {
         _id: 55635435,
         userID: '54fsdlj53',
