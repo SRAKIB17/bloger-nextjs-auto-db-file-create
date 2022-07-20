@@ -8,6 +8,8 @@ export default async function handler(req, res) {
       @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Open+Sans:wght@300;500&family=Orbitron&family=Poppins:wght@500&display=swap');
       html,
       body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
         word-wrap: break-word;
         white-space: pre-line;
         font-family: 'Poppins', sans-serif;

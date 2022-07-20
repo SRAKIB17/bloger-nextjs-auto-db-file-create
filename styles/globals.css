@@ -132,8 +132,8 @@ body::-webkit-scrollbar {
   border-color: purple;
 }
 
-/* a {
+.homeTEST {
 
-  word-wrap: break-word;
-  white-space: pre-line;
-} */
+  word-wrap: break-word !important;
+  white-space: pre-line !important;
+}

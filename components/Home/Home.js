@@ -83,7 +83,7 @@ const Home = () => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores doloremque, quis architecto earum cum facilis in provident aperiam alias expedita ducimus quibusdam, incidunt maxime ab officiis dicta quod voluptatibus ipsa.
 
             </div>
-            <div className='mockup-code'>
+            <div className='-'>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut nihil iure nisi veritatis quaerat asperiores amet quo praesentium, eligendi sit delectus aspernatur, similique ad laudantium quam dolor itaque sunt. Porro.
             </div>
             <div className='flex gap-2 overflow-auto p-2 ' id='scrollingDiv' onMouseDown={autoShow} onMouseMove={mouseMove} data->
