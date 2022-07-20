@@ -252,7 +252,7 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
                             required
                         />
                         <TextAreaEdit props={{ cssTextareaRef, jsTextareaRef, textareaRef, post_id }} />
-                        <input type="submit" value="Post" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' disabled={disableBtn} />
+                        <input type="submit" value="Update" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' disabled={disableBtn} />
                     </form>
 
                 </div>
