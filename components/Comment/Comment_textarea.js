@@ -4,6 +4,7 @@ import styles from './Comment.module.css'
 import LikeLoveFavorite from './LikeLoveFavorite/LikeLoveFavorite';
 import CommentList from './CommentList';
 import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
+import Login from '../Login/Login'
 import { UserFullInfoProvider } from '../../pages/_app';
 const Comment_textarea = ({ post_id }) => {
     const CommentTextareaRef = useRef();
@@ -214,7 +215,8 @@ const Comment_textarea = ({ post_id }) => {
                     }
                     {
                         user?.user ||
-                        <GuestCommentLikeLogin />
+                        <Login/>
+                        // <GuestCommentLikeLogin />
                     }
                 </div>
             </div>
