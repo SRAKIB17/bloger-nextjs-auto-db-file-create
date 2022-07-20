@@ -35,7 +35,7 @@ const Index = () => {
                 </div>
 
                 <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-6' id='storyScroll'>
-                    <PostMap key={post?._id} post={post} />
+                    <PostMap key={post_id} post={post} />
                 </div>
 
                 <div className=' col-span-2 hidden lg:block relative bg-base-100 p-3'>
