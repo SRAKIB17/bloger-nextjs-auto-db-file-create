@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import IframeLoading from '../../public/loading_iframe.gif'
 import React, { useState } from 'react';
 
 const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_id, postRefMode, thumbnail }) => {
@@ -6,49 +7,43 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
     // FOR MORE INFO /FULL POST SHOW BY ONCLICK AND.
     //********************************************************************************** */
     const [fullIframeShow, setFullIframeShow] = useState(false);
-    // const heightHandle = async (id) => {
+    const [iframeLoading, setIframeLoading] = useState(false)
+    const heightHandle = async (id) => {
+        setIframeLoading(true)
+        try {
+            const iframe = document.getElementById('previewIframeHeight' + id);
+            // console.log(iframe.contentDocument.documentElement.scrollHeight)
 
-    //     try {
-    //         const iframe = document.getElementById('previewIframeHeight' + id);
-    //         // console.log(iframe.contentDocument.documentElement.scrollHeight)
-    //         const darkMode = window.localStorage.getItem('dark')
+            let link = document.createElement("link");
+            link.href = "/api/styleIframe.css";
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            let darkStyle = document.createElement("link");
+            const darkMode = window.localStorage.getItem('dark')
+            if (darkMode) {
+                darkStyle.href = "/api/styleIframe.css?dark=true";
+            }
+            else {
+                darkStyle.href = "/api/styleIframe.css?dark=false";
+            }
+            darkStyle.rel = "stylesheet";
+            darkStyle.type = "text/css";
+            let count = 0
+            const showIframe = setInterval(() => {
+                iframe.contentDocument.head.append(link);
+                iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                if (count === 6) {
+                    clearInterval(showIframe)
+                }
+                count++
+            }, 100);
+            setIframeLoading(false)
+        }
+        catch {
+            setIframeLoading(false)
+        }
 
-    //         let link = document.createElement("link");
-    //         link.href = "/api/styleIframe.css";
-    //         link.rel = "stylesheet";
-    //         link.type = "text/css";
-    //         let doc = await iframe.contentDocument;
-
-    //         if (darkMode) {
-    //             doc.body.style.color = '#A9C5EF'
-    //         }
-    //         else {
-    //             doc.body.style.color = ''
-    //         }
-
-    //         if (fullIframeShow) {
-    //             iframe.style.height = 0 + 'px';
-    //             setFullIframeShow(false)
-    //         }
-    //         else {
-    //             let count = 0
-    //             const showIframe = setInterval(() => {
-    //                 iframe.contentDocument.head.append(link);
-    //                 iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
-    //                 if (count === 6) {
-    //                     clearInterval(showIframe)
-    //                 }
-    //                 count++
-    //             }, 100);
-    //             setFullIframeShow(true)
-    //         }
-
-    //     }
-    //     catch {
-
-    //     }
-
-    // }
+    }
     //****************************************************************************************** */
     //*WHEN IFRAME LOAD / PAGE RELOAD THEN AUTO MATIC THIS FUNCTION RUN AND HEADER ADD CSS STYLES
     //*1. VIDEO, DARK, LIGHT, (API/LINK/ BY POST ID)
@@ -106,6 +101,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
     }
     // ******************************************* TOGGLE BUTTON AND SHOW OR HIDE IFRAME POST ************
     const showIframeDisplayHandle = (id) => {
+        heightHandle(id)
         const iframe = document.getElementById('previewIframeHeight' + id);
         setFullIframeShow(!fullIframeShow)
         showCommentHandle(id)
@@ -191,7 +187,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
 
             {/* ---------post body ----------------- */}
             <div className={' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} style={{ width: '100%' }}>
-                <div className='w-full' style={{ width: '100%', wordWrap: "break-word", whiteSpace: 'pre-line'}}>
+                <div className='w-full' style={{ width: '100%', wordWrap: "break-word", whiteSpace: 'pre-wrap' }}>
                     {
                         short_description?.slice(0, 1000)
                     }
@@ -203,6 +199,13 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                         <button className="link-primary font-semibold link-hover text-xs" onClick={() => showIframeDisplayHandle(post_id)}>
                             See Less
                         </button>
+                    </div>
+                }
+
+                {
+                    iframeLoading &&
+                    <div className='flex justify-center items-center p-4'>
+                        <img src={IframeLoading?.src} alt="" />
                     </div>
                 }
 
