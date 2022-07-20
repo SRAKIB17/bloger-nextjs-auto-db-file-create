@@ -21,7 +21,7 @@ export default async function handler(req, res) {
             res.status(200).json(getPosts)
         }
         else {
-            const getPosts = await postCollection.find({ category: cat }).skip(0).limit(parseInt(show)).toArray();
+            const getPosts = await postCollection.find({ category: cat }).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
             res.status(200).json(getPosts)
         }
 
