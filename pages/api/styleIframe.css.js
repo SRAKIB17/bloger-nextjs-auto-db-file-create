@@ -10,13 +10,13 @@ export default async function handler(req, res) {
       body {
         overflow-y: auto !important;
         overflow-x: hidden !important;
-        word-wrap: break-word;
-        white-space: pre-line;
         font-family: 'Poppins', sans-serif;
         /* text-align: justify; */
         background-color: transparent;
       }
       body *{
+        word-wrap: break-word;
+        white-space: pre-line;
         overflow:auto;
       }
       body::-webkit-scrollbar {

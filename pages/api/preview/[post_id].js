@@ -11,7 +11,6 @@ export default async function handler(req, res) {
 
   const run = async () => {
     const findPost = await postCollection.findOne({ post_id: post_id });
-    console.log(findPost)
     const iframePostFullBody = `
     <!DOCTYPE html>
     <html lang="en">
