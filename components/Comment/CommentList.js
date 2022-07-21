@@ -1,50 +1,36 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 import MoreCommentReply from './MoreCommentReply';
+import { useQuery } from 'react-query';
 
 const CommentList = ({ comment: commentBody, replySetHandle }) => {
-    const { post_id, userID, comment, time, comment_id } = commentBody
+    const { post_id, userID, comment, time, comment_id } = commentBody;
+    const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }));
+    const user_details = userInfo?.data?.data?.user_details;
+
+    // GET REPLY 
+    const { data, refetch, isLoading } = useQuery(['commentList'], () => axios.get(`/api/post/comments-reply?email=${user_details?.email}`,
+        {
+            headers: {
+                access_token: sessionStorage.getItem('accessAutoG'),
+                token: localStorage.getItem('token')
+            }
+        }
+    ));
+
+    const repliesBody = data?.data?.result || []
+
+
+
     const [moreComment, setMoreComment] = useState(true);
-    const getMoreComment = [
-
-        {
-            _id: 8,
-            post_id: 13,
-            userID: 42342343,
-            time: Date(),
-            sort: '',
-            comment_id: 423,
-            reply: 'flsdjflsdjflsdjflsdfjksdlkfsdf'
-        },
-        {
-            _id: 8,
-            post_id: 13,
-            userID: 42342343,
-            time: Date(),
-            sort: '',
-            comment_id: 2,
-            reply: 'ipsum dolor sit, amet consectetur adipisicing elit. Ipsa tenetur, vel, architecto unde ex quos, distinctio vero et commodi quia expedita pariatur? Eveniet, quod nostrum impedit illo earum exercitationem consequuntur?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt laborum aliquid nihil, architecto quod fugit, hic cumque explicabo facilis iste perspiciatis tem'
-        },
-        {
-            _id: 8,
-            post_id: 13,
-            userID: 42342343,
-            time: Date(),
-            sort: '',
-            comment_id: 222,
-            reply: `
-            <video width="320" height="240"  preload="auto" controls muted poster="http://rakib17.hexat.com/icon/busy.gif" loop autoplay>
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <source src="movie.ogg" type="video/ogg">
-                Your browser does not support the video tag.
-            </video>    `
 
 
-        },
 
-    ]
+    const [showReply, setShowReply] = useState(false);
 
-    const name = 'rakib'
-    const [showReply, setShowReply] = useState(false)
     const [showFullComment, setFullComment] = useState(comment?.length >= 100 ? comment?.slice(0, 100) : comment)
     const handleShowFullComment = () => {
         if (showFullComment?.length === 100) {
@@ -71,12 +57,12 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 {/* ------------------------------------------for profile picture  ----------------------------*/}
                 <div className='mt-2 flex items-center gap-1'>
                     <div className="avatar ">
-                        <div className="w-6 rounded-full">
-                            <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                        <div className="w-5 rounded-full">
+                            <img src={user_details?.profile} alt='' />
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>
-                        <h6 className='m-0'>{name}</h6>
+                        <h6 className='m-0'>{user_details?.name}</h6>
                     </div>
 
                 </div>
@@ -107,14 +93,14 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 {/*--------------- for reply count and handle show more  reply  -------------------*/}
                 <div className='flex items-center'>
                     {
-                        getMoreComment?.length > 0 &&
+                        repliesBody?.length > 0 &&
                         <div>
 
                             < button
                                 className='link ml-4 link-hover link-primary text-xs'
                                 onClick={() => setShowReply(!showReply)}
                             >
-                                {getMoreComment?.length + ' '}  Reply
+                                {repliesBody?.length + ' '}  Reply
                             </button>
 
                             <b className='text-xs p-1'>|</b>
@@ -123,7 +109,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     <div>
                         < button
                             className='link link-hover link-primary text-xs'
-                            onClick={() => replyComment(post_id, comment_id, name)}
+                            onClick={() => replyComment(post_id, comment_id, user_details?.name)}
                         >
                             Reply
                         </button>
@@ -136,7 +122,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     showReply &&
                     <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
                         {
-                            getMoreComment?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} />)
+                            repliesBody?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} />)
                         }
                     </div>
                 }

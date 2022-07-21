@@ -10,7 +10,7 @@ const useUserCheck = () => {
     const [isAdmin, setIsAdmin] = useState({ admin: false })
 
 
- 
+
     useEffect(() => {
         const run = async () => {
             setIsLoading(true)
@@ -27,7 +27,10 @@ const useUserCheck = () => {
                         login_info: login_info
                     }
 
-                    const { data } = await axios.post('/api/login_signup/check_user_auto_login', form);
+                    const { data } = await axios.post('/api/login_signup/check_user_auto_login', form,
+                        {
+                            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+                        });
 
                     //IF SUCCESS SET_USER TRUE
                     if (data?.success) {

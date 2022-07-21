@@ -6,104 +6,27 @@ import CommentList from './CommentList';
 import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
 import Login from '../Login/Login'
 import { UserFullInfoProvider } from '../../pages/_app';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+
 const Comment_textarea = ({ post_id }) => {
+    // const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    // const asPath = useRouter()?.asPath
+    // usePrivatePageCheckUser(asPath)
+
     const CommentTextareaRef = useRef();
-    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider)
+    const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
+    const { data, refetch, isLoading } = useQuery(['commentList'], () => axios.get(`/api/post/comment?email=${user_details?.email}`,
+        {
+            headers: {
+                access_token: sessionStorage.getItem('accessAutoG'),
+                token: localStorage.getItem('token')
+            }
+        }
+    ));
 
-
-    const commentBody = [
-        {
-            _id: 3,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wing elit. Ipsa tenetur, vel, architecto unde ex quos, distinctio vero et commodi quia expedita pariatur? Eveniet, quod nostrum impedit illo earum exercitationem consequuntur?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt laborum aliquid nihil, architecto quod fugit, hic cumque ex',
-            time: Date(),
-            sort: '',
-            comment_id: 555
-        },
-        {
-            _id: 4,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wow so gooooood',
-            time: Date(),
-            sort: '',
-            comment_id: 55555
-        },
-        {
-            _id: 5,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wow so gooooood',
-            time: Date(),
-            sort: '',
-            comment_id: 55
-        },
-        {
-            _id: 6,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wow so gooooood',
-            time: Date(),
-            sort: '',
-            comment_id: 33
-        },
-        {
-            _id: 7,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wow so gooooood',
-            time: Date(),
-            sort: '',
-            comment_id: 8
-        },
-        {
-            _id: 74,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wow so gooooood',
-            time: Date(),
-            sort: '',
-            comment_id: 7
-        },
-        {
-            _id: 67,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wow so gosssssssssssssssssssssssssoooood',
-            time: Date(),
-            sort: '',
-            comment_id: 5
-        },
-        {
-            _id: 77,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wow so gooooood',
-            time: Date(),
-            sort: '',
-            comment_id: 4
-        },
-        {
-            _id: 9,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wow so gooooood',
-            time: Date(),
-            sort: '',
-            comment_id: 3
-        },
-        {
-            _id: 8,
-            post_id: post_id,
-            userID: 42342343,
-            comment: 'wow so gooooood',
-            time: Date(),
-            sort: '',
-            comment_id: 2
-        },
-    ]
-
+    const commentBody = data?.data?.result || []
+    const TotalComment = commentBody?.length;
     const shortcutKeyboard = (e) => {
         // classTagShortcutInput(e, textareaRef)
     }
@@ -122,6 +45,8 @@ const Comment_textarea = ({ post_id }) => {
     }
     // ----------------------------------for show commnet toggle and auto height increase-------------------------------
     const showCommentHandle = (id) => {
+        refetch()
+
         try {
 
             const showComment = document.getElementById('commentShow' + id)
@@ -170,40 +95,76 @@ const Comment_textarea = ({ post_id }) => {
         setReplyNow(targetComment)
     }
 
-
-    const postCommentHandler = (e) => {
+    const [errMsg, setErrMsg] = useState('')
+    const postCommentHandler = async (e) => {
         e.preventDefault()
 
         if (replyNow?.comment_id) {
             const replyBody = {
-                _id: 8,
                 post_id: post_id,
-                userID: 42342343,
+                userID: user_details?.userID,
                 time: Date(),
                 sort: '',
                 comment_id: replyNow?.comment_id,
                 reply: CommentTextareaRef.current.value
             }
-            console.log(replyBody)
+            const { data } = await axios.post(`/api/post/comments-reply?email=${user_details?.email}`, replyBody,
+                {
+                    headers: {
+                        access_token: sessionStorage.getItem('accessAutoG'),
+                        token: localStorage.getItem('token')
+                    }
+                }
+            );
+
+            if (data?.message === 'success') {
+                setErrMsg(<p className='text-green-600'>Success</p>)
+                if (data?.result?.acknowledged) {
+                    e.target.reset();
+                    setReplyNow(null)
+                }
+            }
+            else if (data?.message === 'error') {
+                setErrMsg(<p className='text-red-600'>{data?.error}</p>)
+            }
         }
+
+        // FOR COMMENT 
         else {
             const comment = {
-                _id: 8,
                 post_id: post_id,
-                userID: 42342343,
+                userID: user_details?.userID,
                 comment: CommentTextareaRef.current.value,
                 time: Date(),
                 sort: '',
-                comment_id: 2
+                comment_id: 2,
+                likeUnlike: []
             }
-            console.log(comment)
+            const { data } = await axios.post(`/api/post/comment?email=${user_details?.email}`, comment,
+                {
+                    headers: {
+                        access_token: sessionStorage.getItem('accessAutoG'),
+                        token: localStorage.getItem('token')
+                    }
+                }
+            );
+
+            if (data?.message === 'success') {
+                setErrMsg(<p className='text-green-600'>Success</p>)
+                if (data?.result?.acknowledged) {
+                    e.target.reset()
+                }
+            }
+            else if (data?.message === 'error') {
+                setErrMsg(<p className='text-red-600'>{data?.error}</p>)
+            }
         }
     }
     return (
         <div>
             <div className='mb-1'>
                 {/* -------------------------------------like unlike and show user who like this post---------------------------- */}
-                <LikeLoveFavorite props={{ showCommentHandle, post_id }} />
+                <LikeLoveFavorite props={{ showCommentHandle, post_id, TotalComment }} />
             </div>
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
@@ -211,11 +172,11 @@ const Comment_textarea = ({ post_id }) => {
                 <div className='ml-2 p-1 overflow-auto border-l-[3px] rounded-bl-3xl'>
                     {
                         user?.user &&
-                        commentBody?.map(comment => <CommentList key={comment._id} replySetHandle={replySetHandle} comment={comment} />)
+                        commentBody?.map(comment => <CommentList key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} />)
                     }
                     {
                         user?.user ||
-                        <Login/>
+                        <Login />
                         // <GuestCommentLikeLogin />
                     }
                 </div>
@@ -237,6 +198,11 @@ const Comment_textarea = ({ post_id }) => {
                                 </div>
                             </div>
                         }
+                        <p className='text-red-600 text-xs p-1'>
+                            {
+                                errMsg
+                            }
+                        </p>
 
                         <div className="relative flex items-end pt-1 pl-3 mt-1">
                             <textarea ref={CommentTextareaRef}

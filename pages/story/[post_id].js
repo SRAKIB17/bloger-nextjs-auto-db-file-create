@@ -24,7 +24,7 @@ const Index = () => {
     }, [])
 
     return (
-        <div className='h-[100vh]'>
+        <div className='h-[100vh] '>
             <Header />
 
             <div className='grid grid-cols-12 gap-2'>
@@ -35,7 +35,17 @@ const Index = () => {
                 </div>
 
                 <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-6' id='storyScroll'>
+
+                    {
+                        isLoading &&
+                        <div className='relative flex flex-col justify-center items-center'>
+                            <div className='absolute top-14 z-[10]'>
+                                <LoadingFlowCircle />
+                            </div>
+                        </div>
+                    }
                     <PostMap key={post_id} post={post} />
+
                 </div>
 
                 <div className=' col-span-2 hidden lg:block relative bg-base-100 p-3'>

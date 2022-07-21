@@ -15,10 +15,10 @@ const Index = () => {
     const router = useRouter()
     const { cat, tag } = router.query;
     const [shows, setShowPosts] = useState(10)
-   
+
 
     // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
-    
+
     const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/story?cat=${cat}&show=${shows}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
@@ -35,7 +35,13 @@ const Index = () => {
         }
     }, [posts])
     useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
+        if (tag) {
+            const getTagPost = getPost.filter(post => post?.tags?.includes(tag))
+            console.log(getTagPost)
+
+        }
+
     }, [cat, tag])
 
     return (
@@ -45,7 +51,7 @@ const Index = () => {
             <div className='grid grid-cols-12 gap-2'>
                 <div className='hidden sm:block sm:col-span-4 md:col-span-4 lg:col-span-3 text-justify lg:ml-16 p-1 relative bg-base-100'>
                     <div className='fixed h-[100vh] overflow-auto sm:w-[200px] md:max-w-[300px] lg:max-w-[350px] md:w-full'>
-                        <LeftSideLg/>
+                        <LeftSideLg />
                     </div>
                 </div>
 

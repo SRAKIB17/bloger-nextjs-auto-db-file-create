@@ -9,7 +9,7 @@ import GuestCommentLikeLogin from '../../Login/GuestCommentLikeLogin';
 import Login from '../../Login/Login';
 import { UserFullInfoProvider } from '../../../pages/_app';
 
-const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
+const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment } }) => {
     // const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
     // const handleLikeComponent = (id) => {
     //     // setShoLikeUnlikeLove(true);
@@ -131,23 +131,25 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id } }) => {
                     <button
                         className='bg-[#00ff00] p-1 rounded-[50%] btn-disabled relative'
                     >
-                        <Like color='white' size='15' />
+                        <Like color='white' size='14' />
                     </button>
                     <button
                         className='bg-[#ff2020] p-1 rounded-[50%] btn-disabled relative left-[-4px]'
                     >
-                        <Like color='white' size='15' style={{ transform: 'rotate(180deg)' }} />
+                        <Like color='white' size='14' style={{ transform: 'rotate(180deg)' }} />
                     </button>
                     <button
                         onClick={() => LikeUnlikeLovePostHandle('unlike')}
                         className='bg-[#ff00f2] p-1 rounded-[50%] btn-disabled relative left-[-6px]'
                     >
-                        <EmoticonLove size='15' color='white' />
+                        <EmoticonLove size='14' color='white' />
                     </button>
-                    <h1 className='text-gray-500'>5345</h1>
+                    <h1 className='text-gray-500  text-[14px]'>5345</h1>
                 </div>
-                <div className='mr-3 text-gray-500 cursor-pointer' onClick={() => showCommentHandle(post_id)}>
-                    20 comment
+                <div className='mr-3 text-[14px] text-gray-500 cursor-pointer' onClick={() => showCommentHandle(post_id)}>
+                   {
+                    TotalComment + ' comment'
+                   }
                 </div>
             </div>
 

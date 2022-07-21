@@ -195,7 +195,12 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
         setLiveView(liveDocs)
     }
     useEffect(() => {
-
+        textareaRef.current.value = `
+<div class="plaintext">
+    <!--  Note: If you write HTML then delete the following code and write  -->
+    <!-- write here plain text  -->
+</div>
+        `
         document.onkeyup = function (e) {
             if (e.key == 'Control') {
                 e.preventDefault()
@@ -233,6 +238,11 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
             </div>
             <div className='border  rounded-md p-1 border-primary'>
                 <div>
+                    <div>
+                        <p className='text-xs p-1'>
+                            Note: If you write HTML then delete the following code and write
+                        </p>
+                    </div>
                     <div className='flex gap-3 p-2 items-center'>
                         <div className={(htmlEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-info'} onClick={() => handleCssJsHtmlEditor('html')}>
                             html

@@ -5,14 +5,18 @@ import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTo
 export default async function handler(req, res) {
 
     try {
-        const { client } = login_user_without_post_body()
+        const { client } = login_user_without_post_body();
         await client.connect();
-        if (req.body) {
-            const body = req.body;
-            const token = body?.token;
-            const login_info = body?.login_info;
+        const token = req.headers?.access_token;
 
-            const email = jwtTokenVerifyServer(token, process.env.LOGIN_SIGNUP_ACCESS_API)?.jwtInfo?.email;
+        const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
+        const accessToken = tokenDetails?.token;
+        const roll = tokenDetails?.roll;
+        if (accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN || accessToken === process.env.USER_CHECK_ACCESS_FEATURE) {
+            const body = req.body;
+            const emailToken = body?.token;
+            const login_info = body?.login_info;
+            const email = jwtTokenVerifyServer(emailToken, process.env.LOGIN_SIGNUP_ACCESS_API)?.jwtInfo?.email;
 
             const password = jwtTokenVerifyServer(login_info, process.env.LOGIN_SIGNUP_ACCESS_API)?.userInfo?.token;
             // const userId = login_pass?.userId;

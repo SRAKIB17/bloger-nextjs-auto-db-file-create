@@ -29,6 +29,11 @@ export default async function handler(req, res) {
       * ::-webkit-scrollbar {
         display: none;
       }
+
+      .plaintext {
+        word-wrap: break-word !important;
+        white-space: pre-line !important;
+      }
       :root {
         --bg-color: rgb(27, 27, 27);
         /* --bg-color: rgb(65 65 65); */
