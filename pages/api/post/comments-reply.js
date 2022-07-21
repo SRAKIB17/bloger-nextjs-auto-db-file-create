@@ -15,9 +15,9 @@ export default async function handler(req, res) {
     const checkUser = await verifyUserAndAccessFeatureServer(req);
     const method = req.method;
     const replyBody = req.body;
-
     if (checkUser && method === "GET") {
-        const getAllReply = await repliesCollection.find({}).toArray();
+        const { comment_id } = req.query;
+        const getAllReply = await repliesCollection.find({ comment_id: comment_id }).toArray();
         return res.status(200).json({ message: "success", result: getAllReply })
     }
 

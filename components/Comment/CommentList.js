@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios'
 import MoreCommentReply from './MoreCommentReply';
 import { useQuery } from 'react-query';
+import { UserFullInfoProvider } from '../../pages/_app';
 
 const CommentList = ({ comment: commentBody, replySetHandle }) => {
     const { post_id, userID, comment, time, comment_id } = commentBody;
@@ -9,10 +10,11 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
-    const user_details = userInfo?.data?.data?.user_details;
+    const comment_user_details = userInfo?.data?.data?.user_details;
 
     // GET REPLY 
-    const { data, refetch, isLoading } = useQuery(['ReplyList'], () => axios.get(`/api/post/comments-reply?email=${user_details?.email}`,
+    const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
+    const { data, refetch, isLoading } = useQuery(['ReplyList'], () => axios.get(`/api/post/comments-reply?comment_id=${comment_id}&email=${user_details?.email}`,
         {
             headers: {
                 access_token: sessionStorage.getItem('accessAutoG'),
@@ -20,8 +22,9 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             }
         }
     ));
-
+    console.log(data?.data)
     const repliesBody = data?.data?.result || []
+    console.log(repliesBody)
 
 
 
@@ -58,11 +61,11 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 <div className='mt-2 flex items-center gap-1'>
                     <div className="avatar ">
                         <div className="w-5 rounded-full">
-                            <img src={user_details?.profile} alt='' />
+                            <img src={comment_user_details?.profile} alt='' />
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>
-                        <h6 className='m-0'>{user_details?.name}</h6>
+                        <h6 className='m-0'>{comment_user_details?.name}</h6>
                     </div>
 
                 </div>
@@ -109,7 +112,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     <div>
                         < button
                             className='link link-hover link-primary text-xs'
-                            onClick={() => replyComment(post_id, comment_id, user_details?.name)}
+                            onClick={() => replyComment(post_id, comment_id, comment_user_details?.name)}
                         >
                             Reply
                         </button>
