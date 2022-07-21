@@ -12,7 +12,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
     const user_details = userInfo?.data?.data?.user_details;
 
     // GET REPLY 
-    const { data, refetch, isLoading } = useQuery(['commentList'], () => axios.get(`/api/post/comments-reply?email=${user_details?.email}`,
+    const { data, refetch, isLoading } = useQuery(['ReplyList'], () => axios.get(`/api/post/comments-reply?email=${user_details?.email}`,
         {
             headers: {
                 access_token: sessionStorage.getItem('accessAutoG'),

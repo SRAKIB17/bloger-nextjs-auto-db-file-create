@@ -1,8 +1,16 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 
 const MoreCommentReply = ({ replyComment }) => {
     const { post_id, userID, time, sort, reply, comment_id } = replyComment;
-    const name = 'Rakib'
+
+    const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }));
+    const user_details = userInfo?.data?.data?.user_details;
+
     const [showFullReply, setFullReply] = useState(reply?.length >= 100 ? reply?.slice(0, 100) : reply)
     const handleShowFullReply = () => {
         if (showFullReply?.length === 100) {
@@ -22,7 +30,7 @@ const MoreCommentReply = ({ replyComment }) => {
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>
-                        <h6 className='m-0'>{name}</h6>
+                        <h6 className='m-0'>{user_details?.name}</h6>
                     </div>
 
                 </div>
