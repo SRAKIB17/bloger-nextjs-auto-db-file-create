@@ -55,13 +55,12 @@ const EditDeleteComponentMenu = ({ post }) => {
     const copyLink = `
     ${typeof window !== 'undefined' && window.location.origin ? window.location.origin : ''}/story/${post_id}
     `;
-    const apiLinkCopy = `
-    ${typeof window !== 'undefined' && window.location.origin ? window.location.origin : ''}/api/preview/${post_id}
-    `;
+    const apiCodeCopy = `<iframe src="${typeof window !== 'undefined' && window.location.origin ? window.location.origin : ''}/api/preview/${post_id}" width="100%" height="300" style="border:1px solid black;"></iframe>`
 
     return (
         <div>
             <div
+                style={{ zIndex: 100 }}
                 className='absolute right-0 top-[18px]'
                 onMouseLeave={(event) => threeDotEditHandle(post_id, event)}
                 onMouseEnter={(event) => threeDotEditHandle(post_id, event)}
@@ -103,11 +102,11 @@ const EditDeleteComponentMenu = ({ post }) => {
 
                             <li onClick={(e) => CopyUrlHandle(post_id, e)} className={CopyEdit.tooltip + ' text-left btn btn-outline btn-primary rounded-md btn-xs'}>
                                 <Copy size='17' className="pr-1" />
-                                Copy Api Url
+                                Copy Api Code
                                 <p className={CopyEdit.tooltiptext + ' hidden'}>
                                     Copied
                                 </p>
-                                <input type="text" value={apiLinkCopy} className="fixed top-[-100000px]" />
+                                <input type="text" value={apiCodeCopy} className="fixed top-[-100000px]" />
                             </li>
 
 
@@ -116,7 +115,7 @@ const EditDeleteComponentMenu = ({ post }) => {
                                 {/* <Delete size='17' />Delete Post */}
                                 Shorten Url
                             </li>
-                           
+
 
                         </>
                     </ul>

@@ -201,7 +201,8 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
 
             {/* ---------post body ----------------- */}
             <div className={' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} style={{ width: '100%' }}>
-                <div className='w-full' style={{ width: '100%', wordWrap: "break-word", whiteSpace: 'pre-wrap' }}>
+                <div className='w-full'>
+                {/* style={{ width: '100%', wordWrap: "break-word", whiteSpace: 'pre-wrap' }} */}
                     {
                         short_description?.slice(0, 1000)
                     }
