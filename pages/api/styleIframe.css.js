@@ -60,10 +60,6 @@ export default async function handler(req, res) {
         height: 100%;
         overflow: auto !important;
     }
-
-    
-
-  
     .codePreview::-webkit-scrollbar {
         display: none;
     }
@@ -106,6 +102,10 @@ export default async function handler(req, res) {
         color: white;
         border: 2px solid grey;
         border-radius: 10px;
+    }
+
+    .codeHeader>div>button>p {
+        margin: 0;
     }
 
     .codeHeader>div>button:active {

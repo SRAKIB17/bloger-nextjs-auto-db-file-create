@@ -14,11 +14,13 @@ import femaleAvatar from '../../public/femaleAvatar.png'
 import NewPost from './NewPost/NewPost';
 import { useContext } from 'react';
 import { UserFullInfoProvider } from '../../pages/_app';
+import { useRouter } from 'next/router';
 
 const Profile = () => {
-    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+    const { user, user_details } = useContext(UserFullInfoProvider)
     usePrivatePageCheckUser('/profile');
-    const [newPost, setNewPost] = useState(null)
+    const [newPost, setNewPost] = useState(null);
+    // 
     const OpenNewPost = () => {
         // document.getElementById("newPostClose").style.width = "100%";
         setNewPost(true)
@@ -63,7 +65,28 @@ const Profile = () => {
         }
     }, [])
 
-    const { data } = useQuery('userPost_id', () => axios.get('/api/test'))
+
+    const router = useRouter()
+    const { cat, tag } = router.query;
+    const [shows, setShowPosts] = useState(10)
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/user-post?cat=${cat}&show=${shows}&&userID=${user_details?.userID}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }
+    ))
+
+
+    // const posts = data?.data?.result
+    const posts = data?.data;
+    const [getPost, setPost] = useState([])
+    useEffect(() => {
+        if (posts) {
+            setPost(posts)
+        }
+    }, [posts])
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [cat, tag])
 
     const [uploadMethod, setUploadMethod] = useState(null);
     const [editProfile, setEditProfile] = useState(null);
@@ -188,7 +211,7 @@ const Profile = () => {
                 </div>
                 {/* *****************************************USER POST ********************************************************** */}
                 <div className='col-span-12 md:col-span-7 sticky' id='post'>
-                    <Post posts={data?.data} />
+                    <Post posts={getPost} />
                 </div>
             </div>
             {/* ********************************************************************************************** */}

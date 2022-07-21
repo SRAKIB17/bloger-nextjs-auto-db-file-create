@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
@@ -26,7 +27,7 @@ const Index = () => {
 
 
     // const posts = data?.data?.result
-    const posts = data?.data;
+    const posts = data?.data || []
     const [getPost, setPost] = useState([])
     useEffect(() => {
         if (posts) {
@@ -42,13 +43,13 @@ const Index = () => {
             <Header />
 
             <div className='grid grid-cols-12 gap-2'>
-                <div className='hidden sm:block sm:col-span-4 md:col-span-4 text-justify lg:ml-16 p-1 relative bg-base-100'>
+                <div className='hidden sm:block sm:col-span-4 md:col-span-4 lg:col-span-3 text-justify lg:ml-16 p-1 relative bg-base-100'>
                     <div className='fixed h-[100vh] overflow-auto sm:w-[200px] md:max-w-[300px] lg:max-w-[350px] md:w-full'>
                         <LeftSideLg/>
                     </div>
                 </div>
 
-                <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-6' id='storyScroll'>
+                <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-7' id='storyScroll'>
 
                     <Post posts={getPost} refetch={refetch} />
 
