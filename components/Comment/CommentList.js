@@ -112,13 +112,14 @@ const CommentList = ({ comment: commentBody, replySetHandle, fetchComment }) => 
                                     :
                                     (comment_user_details?.profile == '' ?
                                         <img
-                                            src={(!comment_user_details?.gender) ? maleAvatar?.src : (comment_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src)}
+                                            src={(comment_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src)}
                                             alt=''
                                             className='w-full bg-base-100'
                                         />
                                         :
+
                                         <img
-                                            src={comment_user_details?.profile}
+                                            src={(!comment_user_details?.gender) ? maleAvatar?.src : comment_user_details?.profile}
                                             alt=''
                                         />)
                             }

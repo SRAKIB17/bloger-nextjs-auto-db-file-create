@@ -74,13 +74,14 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch }) => {
                                     :
                                     (reply_user_details?.profile == '' ?
                                         <img
-                                            src={(!reply_user_details?.gender) ? maleAvatar?.src : (reply_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src)}
+                                            src={(reply_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src)}
                                             alt=''
                                             className='w-full bg-base-100'
                                         />
                                         :
+
                                         <img
-                                            src={reply_user_details?.profile}
+                                            src={(!reply_user_details?.gender) ? maleAvatar?.src : reply_user_details?.profile}
                                             alt=''
                                         />)
                             }
