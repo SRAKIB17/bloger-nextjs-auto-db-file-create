@@ -104,9 +104,10 @@ const Comment_textarea = ({ post_id }) => {
     }
 
     const [errMsg, setErrMsg] = useState('')
+    const [sendCommentLoading, setSendCommentLoading] = useState(null)
     const postCommentHandler = async (e) => {
         e.preventDefault()
-
+        setSendCommentLoading(true)
         if (replyNow?.comment_id) {
             const replyBody = {
                 post_id: post_id,
@@ -167,10 +168,13 @@ const Comment_textarea = ({ post_id }) => {
                 setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             }
         }
+
+        // for loading 
+        setSendCommentLoading(null)
     }
 
     if (isLoading) {
-        return
+        // return
     }
 
     return (
@@ -233,7 +237,17 @@ const Comment_textarea = ({ post_id }) => {
                             >
                             </textarea>
                             <div className='align-bottom left-[50%] bottom-0'>
-                                <button className='btn btn-sm btn-primary ml-2 text-xs'>Comment</button>
+                                <button className='btn btn-sm btn-primary ml-2 text-xs w-fit text-white'>
+                                    {
+                                        sendCommentLoading ||
+                                            replyNow?.comment_id ? "Reply" : "Comment"
+                                    }
+                                    {
+                                        sendCommentLoading &&
+                                        <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                        </p>
+                                    }
+                                </button>
                             </div>
                         </div>
                     </form>
