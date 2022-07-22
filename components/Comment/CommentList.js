@@ -172,20 +172,26 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     {
                         ((userID == user_details?.userID && user?.user) || (isAdmin?.admin || user_details?.userID === post_id?.split('-')?.[1])) &&
                         <div>
+
                             <b className='text-xs p-1'>|</b>
-                            < button
-                                className='link link-hover link-primary text-xs'
-                                onClick={() => deleteCommentHandle(comment_id)}
-                            >
-                                {
-                                    deleteLoading || 'delete'
-                                }
-                                {
-                                    deleteLoading &&
+                            {deleteLoading ||
+                                < button
+                                    className='link link-hover link-primary text-xs'
+                                    onClick={() => deleteCommentHandle(comment_id)}
+                                >
+                                    delete
+                                </button>
+                            }
+                            {
+                                deleteLoading &&
+                                < button
+                                    className='link link-hover link-primary text-xs'
+                                >
                                     <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
                                     </p>
-                                }
-                            </button>
+
+                                </button>
+                            }
                         </div>
                     }
 
@@ -196,7 +202,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     showReply &&
                     <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
                         {
-                            repliesBody?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} />)
+                            repliesBody?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} isLoading={isLoading}/>)
                         }
                     </div>
                 }

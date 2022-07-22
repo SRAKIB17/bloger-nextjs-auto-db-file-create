@@ -10,6 +10,7 @@ import Login from '../../components/Login/Login';
 import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 import RightSideLg from '../../components/Post-NewsFeed/RightSideLg';
 import LeftSideLg from '../../components/Post-NewsFeed/LeftSideLg';
+import PostMap from '../../components/Post-NewsFeed/PostMap';
 
 const Index = () => {
     const router = useRouter()
@@ -57,7 +58,9 @@ const Index = () => {
 
                 <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-7' id='storyScroll'>
 
-                    <Post posts={getPost} refetch={refetch} />
+                    {
+                        getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
+                    }
 
                     {
                         isLoading ||

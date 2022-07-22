@@ -34,7 +34,7 @@ const Comment_textarea = ({ post_id }) => {
     }, [])
 
     const commentBody = data?.data?.result || []
-    const TotalComment = commentBody?.length;
+    const TotalComment = data?.data?.total_comment || commentBody?.length;
     const shortcutKeyboard = (e) => {
         // classTagShortcutInput(e, textareaRef)
     }
@@ -177,15 +177,13 @@ const Comment_textarea = ({ post_id }) => {
         setSendCommentLoading(null)
     }
 
-    if (isLoading) {
-        return
-    }
+   
 
     return (
         <div>
             <div className='mb-1'>
                 {/* -------------------------------------like unlike and show user who like this post---------------------------- */}
-                <LikeLoveFavorite props={{ showCommentHandle, post_id, TotalComment }} />
+                <LikeLoveFavorite props={{ showCommentHandle, post_id, TotalComment, isLoading }} />
             </div>
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
@@ -245,7 +243,7 @@ const Comment_textarea = ({ post_id }) => {
                                 <button className='btn btn-sm btn-primary ml-2 text-xs w-fit text-white'>
                                     {
                                         sendCommentLoading ||
-                                            (replyNow?.comment_id ? "Reply" : "Comment")
+                                        (replyNow?.comment_id ? "Reply" : "Comment")
                                     }
                                     {
                                         sendCommentLoading &&

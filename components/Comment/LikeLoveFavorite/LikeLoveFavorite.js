@@ -9,14 +9,14 @@ import GuestCommentLikeLogin from '../../Login/GuestCommentLikeLogin';
 import Login from '../../Login/Login';
 import { UserFullInfoProvider } from '../../../pages/_app';
 
-const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment } }) => {
+const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment, isLoading } }) => {
     // const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
     // const handleLikeComponent = (id) => {
     //     // setShoLikeUnlikeLove(true);
     //     document.getElementById('likeLoveFavorite' + post_id).style.top = '-1px'
     //     document.getElementById('likeLoveFavorite' + post_id).style.display = 'flex'
     // }
-    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+    const { user, user_details } = useContext(UserFullInfoProvider)
 
     const [showShareOption, setShowShareOption] = useState(false)
     const router = useRouter()
@@ -147,9 +147,14 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment } 
                     <h1 className='text-gray-500  text-[14px]'>5345</h1>
                 </div>
                 <div className='mr-3 text-[14px] text-gray-500 cursor-pointer' onClick={() => showCommentHandle(post_id)}>
-                   {
-                    TotalComment + ' comment'
-                   }
+                    {
+                        (isLoading ?
+                            <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                            </p>
+                            :
+                            (TotalComment + ' comment'))
+                    }
+
                 </div>
             </div>
 
