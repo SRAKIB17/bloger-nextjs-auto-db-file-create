@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
@@ -26,7 +27,7 @@ const MoreCommentReply = ({ replyComment }) => {
                 <div className='pt-2 flex items-center border-t gap-1'>
                     <div className="avatar ">
                         <div className="w-6 rounded-full">
-                            <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                            <img src={user_details?.profile} alt='' />
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>

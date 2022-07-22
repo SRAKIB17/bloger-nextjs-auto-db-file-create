@@ -26,6 +26,13 @@ const Comment_textarea = ({ post_id }) => {
         }
     ));
 
+    useEffect(() => {
+        window.onclick = () => {
+            refetch()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     const commentBody = data?.data?.result || []
     const TotalComment = commentBody?.length;
     const shortcutKeyboard = (e) => {

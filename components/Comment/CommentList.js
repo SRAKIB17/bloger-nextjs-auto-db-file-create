@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios'
 import MoreCommentReply from './MoreCommentReply';
 import { useQuery } from 'react-query';
@@ -22,9 +22,14 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             }
         }
     ));
-    console.log(data?.data)
+    
     const repliesBody = data?.data?.result || []
-
+    useEffect(() => {
+        window.onclick=()=>{
+            refetch()
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 
     const [moreComment, setMoreComment] = useState(true);
