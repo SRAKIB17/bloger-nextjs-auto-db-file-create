@@ -83,7 +83,7 @@ const PostMap = ({ post, refetch }) => {
                                 }
                                 {
                                     post?.postBy === 'admin' && user_details?.roll === 'admin' &&
-                                    <span className="badge badge-secondary text-xs font-extralight">
+                                    <span className="badge h-4 pl-2 pr-2 badge-secondary text-[10px] font-extralight">
                                         Admin Post
                                     </span>
                                 }

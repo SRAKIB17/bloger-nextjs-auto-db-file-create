@@ -111,6 +111,7 @@ const Comment_textarea = ({ post_id }) => {
         if (replyNow?.comment_id) {
             const replyBody = {
                 post_id: post_id,
+                reply_id: '',
                 userID: user_details?.userID,
                 time: Date(),
                 sort: '',
@@ -177,7 +178,7 @@ const Comment_textarea = ({ post_id }) => {
         setSendCommentLoading(null)
     }
 
-   
+
 
     return (
         <div>

@@ -8,7 +8,7 @@ import { UserFullInfoProvider } from '../../pages/_app';
 
 
 const MoreCommentReply = ({ replyComment, isLoading }) => {
-    const { post_id, userID, time, sort, reply, comment_id } = replyComment;
+    const { post_id, userID, time, sort, reply, reply_id, comment_id } = replyComment;
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
 
     const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
@@ -33,7 +33,7 @@ const MoreCommentReply = ({ replyComment, isLoading }) => {
     const [deleteLoading, setDeleteLoading] = useState(false)
     const deleteCommentHandle = async (id) => {
         setDeleteLoading(true)
-        const { data } = await axios.delete(`/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}`, comment,
+        const { data } = await axios.delete(`/api/post/comments-reply-delete?email=${user_details?.email}&reply_id=${id}`,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -122,7 +122,7 @@ const MoreCommentReply = ({ replyComment, isLoading }) => {
                             {deleteLoading ||
                                 < button
                                     className='link link-hover link-primary text-xs'
-                                    onClick={() => deleteCommentHandle(comment_id)}
+                                    onClick={() => deleteCommentHandle(reply_id)}
                                 >
                                     delete
                                 </button>

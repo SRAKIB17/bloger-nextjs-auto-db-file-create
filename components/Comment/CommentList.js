@@ -207,7 +207,7 @@ const CommentList = ({ comment: commentBody, replySetHandle, fetchComment }) => 
                             showReply &&
                             <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
                                 {
-                                    repliesBody?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} isLoading={isLoading} />)
+                                    repliesBody?.map(reply => <MoreCommentReply key={reply?._id} refetch={refetch} replyComment={reply} isLoading={isLoading} />)
                                 }
                             </div>
                         )
