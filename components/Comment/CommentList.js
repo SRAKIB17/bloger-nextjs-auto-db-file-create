@@ -14,7 +14,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
 
     // GET REPLY 
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
-    const { data, refetch, isLoading } = useQuery(['ReplyList'], () => axios.get(`/api/post/comments-reply?comment_id=${comment_id}&email=${user_details?.email}`,
+    const { data, refetch, isLoading } = useQuery(['ReplyList', comment_id, user_details], () => axios.get(`/api/post/comments-reply?comment_id=${comment_id}&email=${user_details?.email}`,
         {
             headers: {
                 access_token: sessionStorage.getItem('accessAutoG'),
@@ -24,7 +24,6 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
     ));
     console.log(data?.data)
     const repliesBody = data?.data?.result || []
-    console.log(repliesBody)
 
 
 
@@ -53,6 +52,10 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
 
         }
 
+    }
+
+    if (isLoading) {
+        return
     }
     return (
         <div>

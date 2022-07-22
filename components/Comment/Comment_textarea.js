@@ -16,11 +16,12 @@ const Comment_textarea = ({ post_id }) => {
 
     const CommentTextareaRef = useRef();
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
-    const { data, refetch, isLoading } = useQuery(['commentList'], () => axios.get(`/api/post/comment?email=${user_details?.email}`,
+    const { data, refetch, isLoading } = useQuery(['commentList', post_id], () => axios.get(`/api/post/comment?post_id=${post_id}&email=${user_details?.email}`,
         {
             headers: {
                 access_token: sessionStorage.getItem('accessAutoG'),
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                session_token: sessionStorage.getItem('accessAutoG')
             }
         }
     ));
@@ -160,6 +161,11 @@ const Comment_textarea = ({ post_id }) => {
             }
         }
     }
+
+    if (isLoading) {
+        return
+    }
+
     return (
         <div>
             <div className='mb-1'>
