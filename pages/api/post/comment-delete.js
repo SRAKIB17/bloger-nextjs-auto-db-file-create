@@ -9,6 +9,7 @@ export default async function handler(req, res) {
         const { client } = login_user_without_post_body()
         await client.connect();
         const commentCollection = client.db("CommentReply").collection("comment");
+        const repliesCollection = client.db("CommentReply").collection("replies");
 
         // VERIFY USER
         const checkUser = await verifyUserAndAccessFeatureServer(req);
@@ -20,7 +21,8 @@ export default async function handler(req, res) {
         if (checkUser && method === "DELETE") {
             const { comment_id } = req.query
             const result = await commentCollection.deleteOne({ comment_id: comment_id });
-            if (result?.acknowledged && result?.deletedCount == 1) {
+            const allReplyDelete = await repliesCollection.deleteMany({ comment_id: comment_id })
+            if (result?.acknowledged && allReplyDelete.acknowledged) {
                 res.status(200).json({ message: "success", result: result })
             }
             else {
