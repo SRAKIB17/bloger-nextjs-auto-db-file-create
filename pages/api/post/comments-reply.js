@@ -1,4 +1,5 @@
 import login_user_without_post_body from "../../../components/hooks/api/social/login_user_without_post_body";
+import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTokenVerifyServer";
 import verifyUserAndAccessFeatureServer from "../../../components/hooks/api/verifyUser/verifyUserAndAccessFeatureServer";
 const crypto = require('crypto')
 
@@ -10,12 +11,18 @@ export default async function handler(req, res) {
         await client.connect();
         const repliesCollection = client.db("CommentReply").collection("replies");
 
+
+        // FOR GUEST 
+        const session_token = req.headers.session_token;
+        const guestToken = jwtTokenVerifyServer(session_token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
+        const accessToken = guestToken?.token;
+        const roll = guestToken?.roll;
         // VERIFY USER
 
         const checkUser = await verifyUserAndAccessFeatureServer(req);
         const method = req.method;
         const replyBody = req.body;
-        if (checkUser && method === "GET") {
+        if ((accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN || accessToken === process.env.USER_CHECK_ACCESS_FEATURE) && method === "GET") {
             const { comment_id } = req.query;
             const getAllReply = await repliesCollection.find({ comment_id: comment_id }).toArray();
             return res.status(200).json({ message: "success", result: getAllReply })

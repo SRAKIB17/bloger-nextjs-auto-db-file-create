@@ -16,6 +16,8 @@ const Comment_textarea = ({ post_id }) => {
 
     const CommentTextareaRef = useRef();
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
+
+    // FOR COMMENT GET 
     const { data, refetch, isLoading } = useQuery(['commentList', post_id], () => axios.get(`/api/post/comment?post_id=${post_id}&email=${user_details?.email}`,
         {
             headers: {
@@ -196,8 +198,7 @@ const Comment_textarea = ({ post_id }) => {
             <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto hideScrollBar'}>
                 <div className='ml-2 p-1 overflow-auto border-l-[3px] rounded-bl-3xl'>
                     {
-                        user?.user &&
-                        commentBody?.map(comment => <CommentList key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} setTotalComment={setTotalComment} />)
+                        commentBody?.map(comment => <CommentList key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} setTotalComment={setTotalComment}  />)
                     }
                     {
                         user?.user ||

@@ -9,6 +9,7 @@ import femaleAvatar from '../../public/femaleAvatar.png'
 
 
 const CommentList = ({ comment: commentBody, replySetHandle, setTotalComment }) => {
+
     const { post_id, userID, comment, time, comment_id } = commentBody;
     const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
@@ -21,15 +22,16 @@ const CommentList = ({ comment: commentBody, replySetHandle, setTotalComment }) 
     const { data, refetch, isLoading } = useQuery(['ReplyList', comment_id, user_details], () => axios.get(`/api/post/comments-reply?comment_id=${comment_id}&email=${user_details?.email}`,
         {
             headers: {
+                session_token: sessionStorage.getItem('accessAutoG'),
                 access_token: sessionStorage.getItem('accessAutoG'),
                 token: localStorage.getItem('token')
             }
         }
     ));
 
-    const repliesBody = data?.data?.result || []
+    const repliesBody = data?.data?.result || [];
     useEffect(() => {
-        setTotalComment(repliesBody?.length + commentBody?.length)
+        setTotalComment((parseInt(repliesBody?.length) + parseInt(commentBody?.length)))
     }, [data])
     useEffect(() => {
         window.onclick = () => {
@@ -37,8 +39,6 @@ const CommentList = ({ comment: commentBody, replySetHandle, setTotalComment }) 
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    console.log(repliesBody?.length + commentBody?.length)
-
 
     const [moreComment, setMoreComment] = useState(true);
 
@@ -72,94 +72,99 @@ const CommentList = ({ comment: commentBody, replySetHandle, setTotalComment }) 
     }
     return (
         <div>
-            <div className='border-t' id={post_id}>
-                {/* ------------------------------------------for profile picture  ----------------------------*/}
-                <div className='mt-2 flex items-center gap-1'>
-                    <div className="avatar ">
-                        <div className="w-5 rounded-full">
-                            {
-                                comment_user_details?.profile == '' ?
-                                    <img
-                                        src={comment_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
-                                        alt=''
-                                        className='w-full bg-base-100'
-                                    />
-                                    :
-                                    <img
-                                        src={comment_user_details?.profile}
-                                        alt=''
-                                    />
-                            }
-                        </div>
-                    </div>
-                    <div className='text-[14px] font-bold'>
-                        <h6 className='m-0'>{comment_user_details?.name}</h6>
-                    </div>
+            {
+                user?.user &&
 
-                </div>
-                <div className='rounded-lg rounded-bl-3xl shadow-inner bg-base-200 pt-2 px-3 pb-2 m-1 mr-2'>
-                    {/* -----------------------=======================-for comment  -------------------------------*/}
-                    <div className=' overflow-auto w-full'>
-
-                        <div className='w-full'>
-                            {/* <div className='break-words text-[15px]' dangerouslySetInnerHTML={{ __html: showFullComment }}></div> */}
-                            <div className='break-words overflow-hidden text-sm'>
-                                {showFullComment}
-                            </div>
-                            {
-                                comment?.length >= 100 && <button
-                                    onClick={handleShowFullComment}
-                                    className='text-xs link-hover link-primary'>
-                                    show
+                <div>
+                    <div className='border-t' id={post_id}>
+                        {/* ------------------------------------------for profile picture  ----------------------------*/}
+                        <div className='mt-2 flex items-center gap-1'>
+                            <div className="avatar ">
+                                <div className="w-5 rounded-full">
                                     {
-                                        showFullComment?.length === 100 ? ' more' : ' less'
+                                        comment_user_details?.profile == '' ?
+                                            <img
+                                                src={comment_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
+                                                alt=''
+                                                className='w-full bg-base-100'
+                                            />
+                                            :
+                                            <img
+                                                src={comment_user_details?.profile}
+                                                alt=''
+                                            />
                                     }
-                                </button>
+                                </div>
+                            </div>
+                            <div className='text-[14px] font-bold'>
+                                <h6 className='m-0'>{comment_user_details?.name}</h6>
+                            </div>
+
+                        </div>
+                        <div className='rounded-lg rounded-bl-3xl shadow-inner bg-base-200 pt-2 px-3 pb-2 m-1 mr-2'>
+                            {/* -----------------------=======================-for comment  -------------------------------*/}
+                            <div className=' overflow-auto w-full'>
+
+                                <div className='w-full'>
+                                    {/* <div className='break-words text-[15px]' dangerouslySetInnerHTML={{ __html: showFullComment }}></div> */}
+                                    <div className='break-words overflow-hidden text-sm'>
+                                        {showFullComment}
+                                    </div>
+                                    {
+                                        comment?.length >= 100 && <button
+                                            onClick={handleShowFullComment}
+                                            className='text-xs link-hover link-primary'>
+                                            show
+                                            {
+                                                showFullComment?.length === 100 ? ' more' : ' less'
+                                            }
+                                        </button>
+                                    }
+                                </div>
+
+                            </div>
+
+                        </div>
+                        {/*--------------- for reply count and handle show more  reply  -------------------*/}
+                        <div className='flex items-center'>
+                            {
+                                repliesBody?.length > 0 &&
+                                <div>
+
+                                    < button
+                                        className='link ml-4 link-hover link-primary text-xs'
+                                        onClick={() => setShowReply(!showReply)}
+                                    >
+                                        {repliesBody?.length + ' '}  Reply
+                                    </button>
+
+                                    <b className='text-xs p-1'>|</b>
+                                </div>
                             }
+                            <div>
+                                < button
+                                    className='link link-hover link-primary text-xs'
+                                    onClick={() => replyComment(post_id, comment_id, comment_user_details?.name)}
+                                >
+                                    Reply
+                                </button>
+                            </div>
+
                         </div>
-
-                    </div>
-
-                </div>
-                {/*--------------- for reply count and handle show more  reply  -------------------*/}
-                <div className='flex items-center'>
-                    {
-                        repliesBody?.length > 0 &&
-                        <div>
-
-                            < button
-                                className='link ml-4 link-hover link-primary text-xs'
-                                onClick={() => setShowReply(!showReply)}
-                            >
-                                {repliesBody?.length + ' '}  Reply
-                            </button>
-
-                            <b className='text-xs p-1'>|</b>
-                        </div>
-                    }
-                    <div>
-                        < button
-                            className='link link-hover link-primary text-xs'
-                            onClick={() => replyComment(post_id, comment_id, comment_user_details?.name)}
-                        >
-                            Reply
-                        </button>
-                    </div>
-
-                </div>
-                {/* -----------------------------------------for show more reply  ----------------*/}
-                {
-
-                    showReply &&
-                    <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
+                        {/* -----------------------------------------for show more reply  ----------------*/}
                         {
-                            repliesBody?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} />)
+
+                            showReply &&
+                            <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
+                                {
+                                    repliesBody?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} />)
+                                }
+                            </div>
                         }
                     </div>
-                }
-            </div>
-        </div >
-
+                </div>
+            }
+        </div>
     );
 };
 
