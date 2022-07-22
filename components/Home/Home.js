@@ -1,8 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect } from 'react';
+import { UserFullInfoProvider } from '../../pages/_app';
 // import file from 'https://bloger-nextjs-auto-db-file-create-ll9vdpmwl-srakib17.vercel.app/api/js'
 // console.log(file)
 const Home = () => {
+
+    const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
+
     let isScrolling = false;
     let x = 0;
     let y = 0;
@@ -76,13 +81,24 @@ const Home = () => {
             code.style.width = '100px'
         }
     }, [])
+    const aa = async () => {
+        const { data } = await axios.delete(`/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}`, comment,
+            {
+                headers: {
+                    access_token: sessionStorage.getItem('accessAutoG'),
+                    token: localStorage.getItem('token')
+                }
+            }
+        );
+    }
     return (
         <div>
-           
+
             <div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores doloremque, quis architecto earum cum facilis in provident aperiam alias expedita ducimus quibusdam, incidunt maxime ab officiis dicta quod voluptatibus ipsa.
 
             </div>
+            b
             <div className='-'>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut nihil iure nisi veritatis quaerat asperiores amet quo praesentium, eligendi sit delectus aspernatur, similique ad laudantium quam dolor itaque sunt. Porro.
             </div>

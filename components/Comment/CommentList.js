@@ -8,7 +8,7 @@ import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 
 
-const CommentList = ({ comment: commentBody, replySetHandle }) => {
+const CommentList = ({ comment: commentBody, replySetHandle, fetchComment }) => {
     const { post_id, userID, comment, time, comment_id } = commentBody;
     const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
@@ -70,7 +70,8 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
     const [deleteLoading, setDeleteLoading] = useState(false)
     const deleteCommentHandle = async (id) => {
         setDeleteLoading(true)
-        const { data } = await axios.delete(`/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}`, comment,
+
+        const { data } = await axios.delete(`/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}`,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -79,21 +80,21 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             }
         );
         if (data?.message === 'success') {
+            fetchComment()
             // setErrMsg(<p className='text-green-600'>Success</p>)
             if (data?.result?.acknowledged) {
-                // location.reload()
+                fetchComment()
             }
         }
         else if (data?.message === 'error') {
             // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             alert('something is wrong')
         }
+        fetchComment()
         setDeleteLoading(false)
     }
 
-    if (isLoading) {
-        return
-    }
+
     return (
         <div>
             <div className='border-t' id={post_id}>
@@ -198,13 +199,18 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 </div>
                 {/* -----------------------------------------for show more reply  ----------------*/}
                 {
-
-                    showReply &&
-                    <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
-                        {
-                            repliesBody?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} isLoading={isLoading}/>)
-                        }
-                    </div>
+                    isLoading ?
+                        <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                        </p>
+                        :
+                        (
+                            showReply &&
+                            <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
+                                {
+                                    repliesBody?.map(reply => <MoreCommentReply key={reply?._id} replyComment={reply} isLoading={isLoading} />)
+                                }
+                            </div>
+                        )
                 }
             </div>
         </div >

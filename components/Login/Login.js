@@ -45,7 +45,7 @@ const RegisterFormFixed = () => {
         const check = (e.target.value)
         const getLastValue = e.target.value.slice(check.length - 1)
 
-        if (check?.length > 6) {
+        if (check?.length >= 6) {
             setCheckingPassWord(false)
             e.target.className = 'input rounded-3xl input-bordered input-primary w-full'
         }

@@ -13,11 +13,12 @@ export default async function handler(req, res) {
         // VERIFY USER
         const checkUser = await verifyUserAndAccessFeatureServer(req);
         const method = req.method;
+        console.log(method)
+        console.log(checkUser)
 
         // GET COMMENT BODY
         if (checkUser && method === "DELETE") {
             const { comment_id } = req.query
-
             const result = await commentCollection.deleteOne({ comment_id: comment_id });
             if (result?.acknowledged && result?.deletedCount == 1) {
                 res.status(200).json({ message: "success", result: result })

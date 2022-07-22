@@ -59,7 +59,7 @@ const Index = () => {
                 <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-7' id='storyScroll'>
 
                     {
-                        getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
+                        isLoading || getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
                     }
 
                     {

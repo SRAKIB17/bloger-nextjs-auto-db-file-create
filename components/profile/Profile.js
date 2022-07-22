@@ -197,7 +197,19 @@ const Profile = () => {
             <div className='scrollBarTopProfileFixed bg-base-300 pb-1 hidden sm:block' id='scrollProfile'>
                 <div className="avatar ">
                     <div className="w-8 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1 sm:ml-10 md:ml-[100px]">
-                        <img src={femaleAvatar?.src} alt='' />
+
+                        {
+                            user_details?.profile == '' ?
+                                <img
+                                    src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
+                                    alt=''
+                                />
+                                :
+                                <img
+                                    src={user_details?.profile}
+                                    alt=''
+                                />
+                        }
                     </div>
                 </div>
             </div>

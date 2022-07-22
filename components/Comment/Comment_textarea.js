@@ -191,7 +191,7 @@ const Comment_textarea = ({ post_id }) => {
                 <div className='ml-2 p-1 overflow-auto border-l-[3px] rounded-bl-3xl'>
                     {
                         user?.user &&
-                        commentBody?.map(comment => <CommentList key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} />)
+                        commentBody?.map(comment => <CommentList fetchComment={refetch} key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} />)
                     }
                     {
                         user?.user ||

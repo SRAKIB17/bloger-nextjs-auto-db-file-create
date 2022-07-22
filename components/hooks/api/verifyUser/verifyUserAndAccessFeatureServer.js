@@ -2,7 +2,6 @@ import jwtTokenVerifyServer from "./jwtTokenVerifyServer";
 
 const verifyUserAndAccessFeatureServer = async (req) => {
     const { email } = req.query
-    
     const emailToken = req.headers?.token
     const getTokenEmail = jwtTokenVerifyServer(emailToken, process.env.LOGIN_SIGNUP_ACCESS_API)?.jwtInfo?.email;
     const token = await req?.headers?.access_token;
