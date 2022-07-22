@@ -81,6 +81,13 @@ const PostMap = ({ post, refetch }) => {
                                 {
                                     user_details?.name || 'User'
                                 }
+                                {
+                                    post?.postBy === 'admin' && user_details?.roll === 'admin' &&
+                                    <span className="badge badge-secondary text-xs font-extralight">
+                                        Admin Post
+                                    </span>
+                                }
+
                             </h2>
                             <h1 className='text-xs'>
                                 {
@@ -104,7 +111,7 @@ const PostMap = ({ post, refetch }) => {
                 <div className='card-body pb-2 pt-3 p-5' id={'postBodyCode' + post_id}>
                     <h2 className="card-title">{post_title}</h2>
 
-                   
+
                     {
                         postRefMode === 'video' &&
                         <>
@@ -131,30 +138,3 @@ const PostMap = ({ post, refetch }) => {
 
 export default PostMap;
 
-// <h2
-//                                 onClick={() => profileNavigate(`/story/${post_id}`)}
-//                                 className="card-title text-xl mb-1 cursor-pointer"
-//                             >
-//                                 {post_title}
-//                             </h2>
-//                             {/* </h2> */}
-//                             <h1 className='text-xs font-extralight'>
-//                                 <button
-//                                     className='link-primary link-hover '
-//                                     onClick={() => profileNavigate(`/profile/${userID}`)}
-//                                 >
-//                                     {
-//                                         user_details?.name || 'loading'
-//                                     }
-//                                 </button>
-//                                 <b> | </b>
-//                                 {
-//                                     time
-//                                 }
-//                                 <b> | </b>
-//                                 <button className='link-primary link-hover ' onClick={() => navigate(`? cat = ${category} `)}>
-//                                     {
-//                                         category
-//                                     }
-//                                 </button>
-//                             </h1>

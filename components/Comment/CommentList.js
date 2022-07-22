@@ -4,8 +4,11 @@ import axios from 'axios'
 import MoreCommentReply from './MoreCommentReply';
 import { useQuery } from 'react-query';
 import { UserFullInfoProvider } from '../../pages/_app';
+import maleAvatar from '../../public/maleAvatar.png'
+import femaleAvatar from '../../public/femaleAvatar.png'
 
-const CommentList = ({ comment: commentBody, replySetHandle }) => {
+
+const CommentList = ({ comment: commentBody, replySetHandle, setTotalComment }) => {
     const { post_id, userID, comment, time, comment_id } = commentBody;
     const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
@@ -26,11 +29,15 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
 
     const repliesBody = data?.data?.result || []
     useEffect(() => {
+        setTotalComment(repliesBody?.length + commentBody?.length)
+    }, [data])
+    useEffect(() => {
         window.onclick = () => {
             refetch()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    console.log(repliesBody?.length + commentBody?.length)
 
 
     const [moreComment, setMoreComment] = useState(true);

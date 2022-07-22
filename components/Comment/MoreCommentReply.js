@@ -2,7 +2,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-
+import maleAvatar from '../../public/maleAvatar.png'
+import femaleAvatar from '../../public/femaleAvatar.png'
 const MoreCommentReply = ({ replyComment }) => {
     const { post_id, userID, time, sort, reply, comment_id } = replyComment;
 
@@ -26,7 +27,7 @@ const MoreCommentReply = ({ replyComment }) => {
             <div>
                 <div className='pt-2 flex items-center border-t gap-1'>
                     <div className="avatar ">
-                        <div className="w-6 rounded-full">
+                        <div className="w-5 rounded-full">
                             {
                                 user_details?.profile == '' ?
                                     <img

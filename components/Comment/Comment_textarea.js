@@ -34,7 +34,11 @@ const Comment_textarea = ({ post_id }) => {
     }, [])
 
     const commentBody = data?.data?.result || []
-    const TotalComment = commentBody?.length;
+    //******************FOR TOTAL COMMENT*********************** */
+    const [TotalComment, setTotalComment] = useState(commentBody?.length);
+    useEffect(() => {
+        setTotalComment(commentBody?.length)
+    }, [data])
     const shortcutKeyboard = (e) => {
         // classTagShortcutInput(e, textareaRef)
     }
@@ -127,8 +131,10 @@ const Comment_textarea = ({ post_id }) => {
             );
 
             if (data?.message === 'success') {
+                refetch()
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
+                    refetch()
                     e.target.reset();
                     setReplyNow(null)
                 }
@@ -159,8 +165,10 @@ const Comment_textarea = ({ post_id }) => {
             );
 
             if (data?.message === 'success') {
+                refetch()
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
+                    refetch()
                     e.target.reset()
                 }
             }
@@ -174,7 +182,7 @@ const Comment_textarea = ({ post_id }) => {
     }
 
     if (isLoading) {
-        // return
+        return
     }
 
     return (
@@ -189,7 +197,7 @@ const Comment_textarea = ({ post_id }) => {
                 <div className='ml-2 p-1 overflow-auto border-l-[3px] rounded-bl-3xl'>
                     {
                         user?.user &&
-                        commentBody?.map(comment => <CommentList key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} />)
+                        commentBody?.map(comment => <CommentList key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} setTotalComment={setTotalComment} />)
                     }
                     {
                         user?.user ||
