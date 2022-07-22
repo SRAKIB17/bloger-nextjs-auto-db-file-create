@@ -66,8 +66,11 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
 
     // FOR COMMENT DELETE BY ADMIN POST USER AND USER WHO COMMENT THIS 
     // comment-delete
+
+    const [deleteLoading, setDeleteLoading] = useState(false)
     const deleteCommentHandle = async (id) => {
-        const { data } = await axios.post(`http://localhost:3000/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}`, comment,
+        setDeleteLoading(true)
+        const { data } = await axios.delete(`/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}`, comment,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -75,7 +78,17 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 }
             }
         );
-        console.log(data)
+        if (data?.message === 'success') {
+            // setErrMsg(<p className='text-green-600'>Success</p>)
+            if (data?.result?.acknowledged) {
+                // location.reload()
+            }
+        }
+        else if (data?.message === 'error') {
+            // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
+            alert('something is wrong')
+        }
+        setDeleteLoading(false)
     }
 
     if (isLoading) {
@@ -164,7 +177,14 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                                 className='link link-hover link-primary text-xs'
                                 onClick={() => deleteCommentHandle(comment_id)}
                             >
-                                delete
+                                {
+                                    deleteLoading || 'delete'
+                                }
+                                {
+                                    deleteLoading &&
+                                    <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    </p>
+                                }
                             </button>
                         </div>
                     }

@@ -17,7 +17,6 @@ export default async function handler(req, res) {
 
         // VERIFY USER
         const checkUser = await verifyUserAndAccessFeatureServer(req);
-        console.log(process.env.GUEST_CHECK_ACCESS_TOKEN)
 
         const method = req.method;
         // GET COMMENT BODY
