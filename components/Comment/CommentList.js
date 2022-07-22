@@ -10,11 +10,13 @@ import femaleAvatar from '../../public/femaleAvatar.png'
 
 const CommentList = ({ comment: commentBody, replySetHandle, fetchComment }) => {
     const { post_id, userID, comment, time, comment_id } = commentBody;
-    const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
+    const commentUserInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
-    const comment_user_details = userInfo?.data?.data?.user_details;
+    const comment_user_details = commentUserInfo?.data?.data?.user_details;
+    const commentUserLoading = commentUserInfo?.isLoading;
+    const commentUserRefetch = commentUserInfo?.refetch;
 
     // GET REPLY 
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
@@ -102,23 +104,29 @@ const CommentList = ({ comment: commentBody, replySetHandle, fetchComment }) => 
                 <div className='mt-2 flex items-center gap-1'>
                     <div className="avatar ">
                         <div className="w-5 rounded-full">
+
                             {
-                                comment_user_details?.profile == '' ?
-                                    <img
-                                        src={comment_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
-                                        alt=''
-                                        className='w-full bg-base-100'
-                                    />
+                                commentUserLoading ?
+                                    <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    </p>
                                     :
-                                    <img
-                                        src={comment_user_details?.profile}
-                                        alt=''
-                                    />
+                                    (comment_user_details?.profile == '' ?
+                                        <img
+                                            src={(!comment_user_details?.gender) ? maleAvatar?.src : (comment_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src)}
+                                            alt=''
+                                            className='w-full bg-base-100'
+                                        />
+                                        :
+                                        <img
+                                            src={comment_user_details?.profile}
+                                            alt=''
+                                        />)
                             }
+
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>
-                        <h6 className='m-0'>{comment_user_details?.name}</h6>
+                        <h6 className='m-0'>{comment_user_details?.name || "User"}</h6>
                     </div>
 
                 </div>

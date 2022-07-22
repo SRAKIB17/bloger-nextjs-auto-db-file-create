@@ -7,15 +7,17 @@ import femaleAvatar from '../../public/femaleAvatar.png'
 import { UserFullInfoProvider } from '../../pages/_app';
 
 
-const MoreCommentReply = ({ replyComment, isLoading }) => {
+const MoreCommentReply = ({ replyComment, isLoading, refetch }) => {
     const { post_id, userID, time, sort, reply, reply_id, comment_id } = replyComment;
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
 
-    const userInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
+    const replyUserInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
-    const reply_user_details = userInfo?.data?.data?.user_details;
+    const reply_user_details = replyUserInfo?.data?.data?.user_details;
+    const isLoading = replyUserInfo?.isLoading;
+    const refetchReply = replyUserInfo?.refetch;
 
     const [showFullReply, setFullReply] = useState(reply?.length >= 100 ? reply?.slice(0, 100) : reply)
     const handleShowFullReply = () => {
@@ -33,6 +35,8 @@ const MoreCommentReply = ({ replyComment, isLoading }) => {
     const [deleteLoading, setDeleteLoading] = useState(false)
     const deleteCommentHandle = async (id) => {
         setDeleteLoading(true)
+        refetch()
+        refetchReply()
         const { data } = await axios.delete(`/api/post/comments-reply-delete?email=${user_details?.email}&reply_id=${id}`,
             {
                 headers: {
@@ -42,8 +46,11 @@ const MoreCommentReply = ({ replyComment, isLoading }) => {
             }
         );
         if (data?.message === 'success') {
+            refetch()
+            refetchReply()
             // setErrMsg(<p className='text-green-600'>Success</p>)
             if (data?.result?.acknowledged) {
+                refetch()
                 // location.reload()
             }
         }
@@ -61,22 +68,26 @@ const MoreCommentReply = ({ replyComment, isLoading }) => {
                     <div className="avatar ">
                         <div className="w-5 rounded-full">
                             {
-                                reply_user_details?.profile == '' ?
-                                    <img
-                                        src={reply_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
-                                        alt=''
-                                        className='w-full bg-base-100'
-                                    />
+                                isLoading ?
+                                    <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    </p>
                                     :
-                                    <img
-                                        src={reply_user_details?.profile}
-                                        alt=''
-                                    />
+                                    (reply_user_details?.profile == '' ?
+                                        <img
+                                            src={(!reply_user_details?.gender) ? maleAvatar?.src : (reply_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src)}
+                                            alt=''
+                                            className='w-full bg-base-100'
+                                        />
+                                        :
+                                        <img
+                                            src={reply_user_details?.profile}
+                                            alt=''
+                                        />)
                             }
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>
-                        <h6 className='m-0'>{reply_user_details?.name}</h6>
+                        <h6 className='m-0'>{reply_user_details?.name || 'User'}</h6>
                     </div>
 
                 </div>
