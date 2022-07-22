@@ -63,6 +63,21 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
 
     }
 
+
+    // FOR COMMENT DELETE BY ADMIN POST USER AND USER WHO COMMENT THIS 
+    // comment-delete
+    const deleteCommentHandle = async (id) => {
+        const { data } = await axios.post(`http://localhost:3000/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}`, comment,
+            {
+                headers: {
+                    access_token: sessionStorage.getItem('accessAutoG'),
+                    token: localStorage.getItem('token')
+                }
+            }
+        );
+        console.log(data)
+    }
+
     if (isLoading) {
         return
     }
@@ -144,9 +159,10 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     {
                         ((userID == user_details?.userID && user?.user) || (isAdmin?.admin || user_details?.userID === post_id?.split('-')?.[1])) &&
                         <div>
+                            <b className='text-xs p-1'>|</b>
                             < button
                                 className='link link-hover link-primary text-xs'
-                                onClick={() => replyComment(post_id, comment_id, comment_user_details?.name)}
+                                onClick={() => deleteCommentHandle(comment_id)}
                             >
                                 delete
                             </button>
