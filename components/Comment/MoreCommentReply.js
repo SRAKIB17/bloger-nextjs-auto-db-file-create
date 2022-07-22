@@ -27,7 +27,19 @@ const MoreCommentReply = ({ replyComment }) => {
                 <div className='pt-2 flex items-center border-t gap-1'>
                     <div className="avatar ">
                         <div className="w-6 rounded-full">
-                            <img src={user_details?.profile} alt='' />
+                            {
+                                user_details?.profile == '' ?
+                                    <img
+                                        src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
+                                        alt=''
+                                        className='w-full bg-base-100'
+                                    />
+                                    :
+                                    <img
+                                        src={user_details?.profile}
+                                        alt=''
+                                    />
+                            }
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>

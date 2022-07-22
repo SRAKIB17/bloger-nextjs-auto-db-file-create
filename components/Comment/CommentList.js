@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios'
 import MoreCommentReply from './MoreCommentReply';
@@ -22,13 +23,13 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             }
         }
     ));
-    
+
     const repliesBody = data?.data?.result || []
     useEffect(() => {
-        window.onclick=()=>{
+        window.onclick = () => {
             refetch()
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
@@ -69,7 +70,19 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 <div className='mt-2 flex items-center gap-1'>
                     <div className="avatar ">
                         <div className="w-5 rounded-full">
-                            <img src={comment_user_details?.profile} alt='' />
+                            {
+                                comment_user_details?.profile == '' ?
+                                    <img
+                                        src={comment_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
+                                        alt=''
+                                        className='w-full bg-base-100'
+                                    />
+                                    :
+                                    <img
+                                        src={comment_user_details?.profile}
+                                        alt=''
+                                    />
+                            }
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>
