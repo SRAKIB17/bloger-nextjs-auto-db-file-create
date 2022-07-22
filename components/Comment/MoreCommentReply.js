@@ -16,7 +16,7 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch }) => {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
     const reply_user_details = replyUserInfo?.data?.data?.user_details;
-    const isLoading = replyUserInfo?.isLoading;
+    const replyIsLoading = replyUserInfo?.isLoading;
     const refetchReply = replyUserInfo?.refetch;
 
     const [showFullReply, setFullReply] = useState(reply?.length >= 100 ? reply?.slice(0, 100) : reply)
@@ -68,7 +68,7 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch }) => {
                     <div className="avatar ">
                         <div className="w-5 rounded-full">
                             {
-                                isLoading ?
+                                replyIsLoading ?
                                     <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
                                     </p>
                                     :
