@@ -238,13 +238,14 @@ const Comment_textarea = ({ post_id }) => {
                                 onPaste={heightAutoHandle}
                                 onDrop={heightAutoHandle}
                                 onKeyDown={heightAutoHandle}
+                                required
                             >
                             </textarea>
                             <div className='align-bottom left-[50%] bottom-0'>
                                 <button className='btn btn-sm btn-primary ml-2 text-xs w-fit text-white'>
                                     {
                                         sendCommentLoading ||
-                                            replyNow?.comment_id ? "Reply" : "Comment"
+                                            (replyNow?.comment_id ? "Reply" : "Comment")
                                     }
                                     {
                                         sendCommentLoading &&

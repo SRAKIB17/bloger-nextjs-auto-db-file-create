@@ -6,7 +6,6 @@ const crypto = require('crypto')
 
 
 export default async function handler(req, res) {
-
     try {
         const { client } = login_user_without_post_body()
         await client.connect();
@@ -18,11 +17,12 @@ export default async function handler(req, res) {
 
         // VERIFY USER
         const checkUser = await verifyUserAndAccessFeatureServer(req);
+        console.log(process.env.GUEST_CHECK_ACCESS_TOKEN)
 
         const method = req.method;
         // GET COMMENT BODY
         const commentBody = req.body;
-
+ 
         //METHOD GET AND SHOW 
         if ((accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN || accessToken === process.env.USER_CHECK_ACCESS_FEATURE) && method === "GET") {
             const { post_id } = req.query;

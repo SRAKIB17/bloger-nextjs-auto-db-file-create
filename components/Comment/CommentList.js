@@ -141,6 +141,17 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                             Reply
                         </button>
                     </div>
+                    {
+                        ((userID == user_details?.userID && user?.user) || (isAdmin?.admin || user_details?.userID === post_id?.split('-')?.[1])) &&
+                        <div>
+                            < button
+                                className='link link-hover link-primary text-xs'
+                                onClick={() => replyComment(post_id, comment_id, comment_user_details?.name)}
+                            >
+                                delete
+                            </button>
+                        </div>
+                    }
 
                 </div>
                 {/* -----------------------------------------for show more reply  ----------------*/}
