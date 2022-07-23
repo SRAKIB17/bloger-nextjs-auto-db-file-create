@@ -63,7 +63,10 @@ const NewPost = ({ props: setNewPost }) => {
             sort: '5345345345',
             postBy: event?.target?.postBy?.value || 'user',
             // tags: event.target.tags.value.split(','),
-            postRefMode: postRefMode
+            postRefMode: postRefMode,
+            //for comment react replies
+            comments: [],
+            react: []
         }
 
 
@@ -166,7 +169,7 @@ const NewPost = ({ props: setNewPost }) => {
                 <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
 
                 <div>
-                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost,textareaRef }} />
+                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, textareaRef }} />
                 </div>
                 <div>
                     <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm font-serif'>
