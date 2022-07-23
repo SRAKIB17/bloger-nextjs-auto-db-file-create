@@ -6,10 +6,9 @@ import CommentList from './CommentList';
 import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
 import Login from '../Login/Login'
 import { UserFullInfoProvider } from '../../pages/_app';
-import { useQuery } from 'react-query';
 import axios from 'axios';
 
-const Comment_textarea = ({ post }) => {
+const Comment_textarea = ({ post, refetch }) => {
     const { post_id } = post;
     const CommentTextareaRef = useRef();
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
@@ -17,8 +16,8 @@ const Comment_textarea = ({ post }) => {
 
 
     const commentBody = post?.comments;
-    const TotalComment = post?.comments?.length;
-    const totalReplies = commentBody?.map(reply =>(reply?.replies?.length))
+    const TotalComment = post?.comments?.length || 0;
+    const totalReplies = commentBody?.map(reply => (reply?.replies?.length))
     const shortcutKeyboard = (e) => {
         // classTagShortcutInput(e, textareaRef)
     }
@@ -93,14 +92,12 @@ const Comment_textarea = ({ post }) => {
         if (replyNow?.comment_id) {
             const replyBody = {
                 post_id: post_id,
-                reply_id: '',
                 userID: user_details?.userID,
                 time: Date(),
-                sort: '',
                 comment_id: replyNow?.comment_id,
                 reply: CommentTextareaRef.current.value
             }
-            const { data } = await axios.post(`/api/post/comments-reply?email=${user_details?.email}`, replyBody,
+            const { data } = await axios.put(`/api/post/comments-reply?email=${user_details?.email}`, replyBody,
                 {
                     headers: {
                         access_token: sessionStorage.getItem('accessAutoG'),
@@ -112,7 +109,6 @@ const Comment_textarea = ({ post }) => {
             if (data?.message === 'success') {
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
-                    refetch()
                     e.target.reset();
                     setReplyNow(null)
                 }
@@ -122,7 +118,7 @@ const Comment_textarea = ({ post }) => {
             }
         }
 
-        // FOR COMMENT 
+        // **************************************FOR COMMENT ******************************
         else {
             const comment = {
                 post_id: post_id,
@@ -132,6 +128,7 @@ const Comment_textarea = ({ post }) => {
                 comment_id: 2,
                 replies: []
             }
+            // FETCH POST AXIOS METHOD
             const { data } = await axios.post(`/api/post/post-comments?email=${user_details?.email}`, comment,
                 {
                     headers: {
@@ -142,6 +139,7 @@ const Comment_textarea = ({ post }) => {
             );
 
             if (data?.message === 'success') {
+                refetch()
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
                     refetch()
@@ -149,6 +147,7 @@ const Comment_textarea = ({ post }) => {
                 }
             }
             else if (data?.message === 'error') {
+                refetch()
                 setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             }
         }
@@ -163,7 +162,7 @@ const Comment_textarea = ({ post }) => {
         <div>
             <div className='mb-1'>
                 {/* -------------------------------------like unlike and show user who like this post---------------------------- */}
-                <LikeLoveFavorite props={{ showCommentHandle, TotalComment, post }} />
+                <LikeLoveFavorite props={{ showCommentHandle, TotalComment, post, refetch }} />
             </div>
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}

@@ -10,7 +10,7 @@ import Login from '../../Login/Login';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import axios from 'axios';
 
-const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post } }) => {
+const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refetch } }) => {
     const { post_id } = post;
 
     const { user, user_details } = useContext(UserFullInfoProvider)
@@ -94,6 +94,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post } }) 
             );
 
             if (data?.message === 'success') {
+                refetch()
                 // setErrMsg(<p className='text-green-600'>Success</p>)
                 console.log('534534543534534545345345345345345345')
                 if (data?.result?.acknowledged) {
@@ -101,6 +102,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post } }) 
                 }
             }
             else if (data?.message === 'error') {
+                refetch()
                 setLovePost(false)
                 setUnLikePost(false)
                 setLikePost(false)

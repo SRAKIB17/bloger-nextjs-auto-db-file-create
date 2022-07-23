@@ -13,7 +13,6 @@ export default async function handler(req, res) {
         // VERIFY USER
 
         const checkUser = await verifyUserAndAccessFeatureServer(req);
-        console.log(checkUser)
 
 
         const { userID } = req.body;
@@ -26,9 +25,11 @@ export default async function handler(req, res) {
             // console.log(getPost)
 
             const getCommentId = async () => {
+                // 1. RANDOMLY CREATE A COMMENT ID;
                 const commentId = crypto.randomBytes(Math.ceil(9))
                     .toString("hex")
 
+                // 2. CHECK UNIQUE ID;
                 const checkCommentId = await findPost?.comments?.find(comment => comment?.comment_id?.includes(commentId));
                 if (checkCommentId) {
                     return getCommentId();
@@ -37,28 +38,38 @@ export default async function handler(req, res) {
                     return commentId;
                 }
             }
+
+            // 3. GET COMMENT ID;
             const comment_id = await getCommentId();
+
+            // 4. SET COMMENT ID
             commentBody.comment_id = comment_id;
-            // console.log(commentBody)
+
+            //5. DELETE POST ID FROM COMMENT BODY BECAUSE IT DON'T NEED
             delete commentBody?.post_id
 
-            const findCommentAll = await findPost?.comments?.map(commentBody => commentBody);
-            const updateComment = [...findCommentAll, commentBody]
+            //6. FIND ALL COMMENT  BY MAP FUNCTION;
+            // const findCommentAll = await findPost?.comments?.map(commentBody => commentBody);
+            await findPost?.comments?.push(commentBody)
+
+
+            //7. GET UPDATE DOC
+            // const updateComment = [...findCommentAll, commentBody]
+
             const updateDoc = {
-                $set: {
-                    comments: updateComment
-                }
+                $set: findPost
             }
+            
+            // 8. UPDATE POST BODY
+            const result = await postCollection.updateOne(filter, updateDoc);
 
-
-            // const result = await postCollection.updateOne(filter, updateDoc);
-            // console.log(result)
-            // if (result?.acknowledged) {
-            //     res.status(200).json({ message: "success", result: result })
-            // }
-            // else {
-            //     res.status(200).json({ message: "error", error: "Something is wrong" })
-            // }
+            // ALL OK 
+            if (result?.acknowledged) {
+                res.status(200).json({ message: "success", result: result })
+            }
+            else {
+                res.status(200).json({ message: "error", error: "Something is wrong" })
+            }
 
         }
         else {
