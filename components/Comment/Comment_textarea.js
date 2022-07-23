@@ -9,32 +9,17 @@ import { UserFullInfoProvider } from '../../pages/_app';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-const Comment_textarea = ({ post_id }) => {
-    // const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
-    // const asPath = useRouter()?.asPath
-    // usePrivatePageCheckUser(asPath)
-
+const Comment_textarea = ({ post }) => {
+    const { post_id } = post;
     const CommentTextareaRef = useRef();
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
-    const { data, refetch, isLoading } = useQuery(['commentList', post_id], () => axios.get(`/api/post/comment?post_id=${post_id}&email=${user_details?.email}`,
-        {
-            headers: {
-                access_token: sessionStorage.getItem('accessAutoG'),
-                token: localStorage.getItem('token'),
-                session_token: sessionStorage.getItem('accessAutoG')
-            }
-        }
-    ));
 
-    useEffect(() => {
-        window.onclick = () => {
-            refetch()
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
-    const commentBody = data?.data?.result || []
-    const TotalComment = data?.data?.total_comment || commentBody?.length;
+
+    const commentBody = post?.comments;
+    const TotalComment = post?.comments?.length;
+    const totalReplies = commentBody?.map(reply =>(reply?.replies?.length))
+    console.log(...totalReplies)
     const shortcutKeyboard = (e) => {
         // classTagShortcutInput(e, textareaRef)
     }
@@ -53,8 +38,6 @@ const Comment_textarea = ({ post_id }) => {
     }
     // ----------------------------------for show commnet toggle and auto height increase-------------------------------
     const showCommentHandle = (id) => {
-        refetch()
-
         try {
 
             const showComment = document.getElementById('commentShow' + id)
@@ -128,7 +111,6 @@ const Comment_textarea = ({ post_id }) => {
             );
 
             if (data?.message === 'success') {
-                refetch()
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
                     refetch()
@@ -148,11 +130,10 @@ const Comment_textarea = ({ post_id }) => {
                 userID: user_details?.userID,
                 comment: CommentTextareaRef.current.value,
                 time: Date(),
-                sort: '',
                 comment_id: 2,
-                likeUnlike: []
+                replies: []
             }
-            const { data } = await axios.post(`/api/post/comment?email=${user_details?.email}`, comment,
+            const { data } = await axios.post(`/api/post/post-comments?email=${user_details?.email}`, comment,
                 {
                     headers: {
                         access_token: sessionStorage.getItem('accessAutoG'),
@@ -162,7 +143,6 @@ const Comment_textarea = ({ post_id }) => {
             );
 
             if (data?.message === 'success') {
-                refetch()
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
                     refetch()
@@ -184,7 +164,7 @@ const Comment_textarea = ({ post_id }) => {
         <div>
             <div className='mb-1'>
                 {/* -------------------------------------like unlike and show user who like this post---------------------------- */}
-                <LikeLoveFavorite props={{ showCommentHandle, post_id, TotalComment, isLoading }} />
+                <LikeLoveFavorite props={{ showCommentHandle, TotalComment, post }} />
             </div>
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
@@ -192,7 +172,7 @@ const Comment_textarea = ({ post_id }) => {
                 <div className='ml-2 p-1 overflow-auto border-l-[3px] rounded-bl-3xl'>
                     {
                         user?.user &&
-                        commentBody?.map(comment => <CommentList fetchComment={refetch} key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} />)
+                        commentBody?.map(comment => <CommentList key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} />)
                     }
                     {
                         user?.user ||

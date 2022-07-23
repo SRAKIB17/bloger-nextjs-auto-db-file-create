@@ -8,14 +8,11 @@ import GuestCommentLikeLogin from '../../Login/GuestCommentLikeLogin';
 
 import Login from '../../Login/Login';
 import { UserFullInfoProvider } from '../../../pages/_app';
+import axios from 'axios';
 
-const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment, isLoading } }) => {
-    // const [showLikeUnlikeLove, setShoLikeUnlikeLove] = useState(false)
-    // const handleLikeComponent = (id) => {
-    //     // setShoLikeUnlikeLove(true);
-    //     document.getElementById('likeLoveFavorite' + post_id).style.top = '-1px'
-    //     document.getElementById('likeLoveFavorite' + post_id).style.display = 'flex'
-    // }
+const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post } }) => {
+    const { post_id } = post;
+
     const { user, user_details } = useContext(UserFullInfoProvider)
 
     const [showShareOption, setShowShareOption] = useState(false)
@@ -28,16 +25,35 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment, i
     const [unLikePost, setUnLikePost] = useState(false);
     const [lovePost, setLovePost] = useState(false);
 
-    const likeLovePostObject = {
-        post_id: post_id,
-        likeUnlike:
-        {
-            userID: 53453555,
-            rating: 'like'
+    useEffect(() => {
+        const getRating = post?.react?.find(react => react.userID == user_details?.userID)
+        if (getRating?.rating) {
+            const mode = getRating?.rating;
+            switch (mode) {
+                case 'like':
+                    setLovePost(false)
+                    setUnLikePost(false)
+                    setLikePost(true)
+                    break;
+                case 'unlike':
+                    setLovePost(false)
+                    setLikePost(false)
+                    setUnLikePost(true)
+                    break;
+                case 'love':
+                    setUnLikePost(false)
+                    setLikePost(false)
+                    setLovePost(true)
+                    break;
+                default:
+                    break;
+            }
         }
-    }
-    const LikeUnlikeLovePostHandle = (mode) => {
+    }, [post, user_details?.userID])
+    const [reactLoading, setReactLoading] = useState(null)
+    const LikeUnlikeLovePostHandle = async (mode) => {
         if (user?.user) {
+            setReactLoading(true)
             let rating;
             switch (mode) {
                 case 'like':
@@ -65,9 +81,31 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment, i
             const ratingPostId = {
                 rating: rating,
                 post_id: post_id,
-                userID: '53454'
+                userID: user_details?.userID
             }
-            console.log(ratingPostId)
+            console.log(ratingPostId);
+            const { data } = await axios.post(`/api/post/post-react?email=${user_details?.email}`, ratingPostId,
+                {
+                    headers: {
+                        access_token: sessionStorage.getItem('accessAutoG'),
+                        token: localStorage.getItem('token')
+                    }
+                }
+            );
+
+            if (data?.message === 'success') {
+                // setErrMsg(<p className='text-green-600'>Success</p>)
+                console.log('534534543534534545345345345345345345')
+                if (data?.result?.acknowledged) {
+                    setReactLoading(null)
+                }
+            }
+            else if (data?.message === 'error') {
+                setLovePost(false)
+                setUnLikePost(false)
+                setLikePost(false)
+            }
+            setReactLoading(null)
         }
         else {
             navigate('/login?')
@@ -113,46 +151,30 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment, i
     return (
         <div className='relative'>
 
-            {/* <div data-likelovefavorite='true' className={styles.shareOption + ' z-10 hidden absolute bg-base-100 left-0 border top-[-1px] w-36 rounded-md hover:shadow-md shadow-lg p-2'} id={'likeLoveFavorite' + post_id}>
-                <button className='btn btn-xs btn-primary ml-2 btn-outline'>
-                    <Like />
-                </button>
-                <button className='btn btn-xs btn-primary ml-2 btn-outline' >
-                    <Like style={{ transform: 'rotate(180deg)' }} />
-                </button>
-                <button className='btn btn-xs btn-primary ml-2 btn-outline' >
-                    <Like style={{ transform: 'rotate(180deg)' }} />
-                </button>
-            </div> */}
-
 
             <div className='p-1  border-t flex items-center justify-between font-mono' >
                 <div className='flex relative cursor-pointer' onClick={() => showLikeUnlikeUser(post_id)} >
                     <button
-                        className='bg-[#00ff00] p-1 rounded-[50%] btn-disabled relative'
+                        className='bg-[#00ff00] p-1 rounded-[50%] btn-disabled relative w-5 h-5'
                     >
-                        <Like color='white' size='14' />
+                        <Like color='white' size='12' />
                     </button>
                     <button
-                        className='bg-[#ff2020] p-1 rounded-[50%] btn-disabled relative left-[-4px]'
+                        className='bg-[#ff2020] p-1 rounded-[50%] btn-disabled relative w-5 h-5 left-[-4px]'
                     >
-                        <Like color='white' size='14' style={{ transform: 'rotate(180deg)' }} />
+                        <Like color='white' size='12' style={{ transform: 'rotate(180deg)' }} />
                     </button>
                     <button
                         onClick={() => LikeUnlikeLovePostHandle('unlike')}
-                        className='bg-[#ff00f2] p-1 rounded-[50%] btn-disabled relative left-[-6px]'
+                        className='bg-[#ff00f2] p-1 rounded-[50%] btn-disabled relative w-5 h-5 left-[-6px]'
                     >
-                        <EmoticonLove size='14' color='white' />
+                        <EmoticonLove size='12' color='white' />
                     </button>
-                    <h1 className='text-gray-500  text-[14px]'>5345</h1>
+                    <h1 className='text-gray-500  text-[14px]'>{post?.react?.length || 0}</h1>
                 </div>
                 <div className='mr-3 text-[14px] text-gray-500 cursor-pointer' onClick={() => showCommentHandle(post_id)}>
                     {
-                        (isLoading ?
-                            <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
-                            </p>
-                            :
-                            (TotalComment + ' comment'))
+                        (TotalComment + ' comment')
                     }
 
                 </div>
@@ -162,7 +184,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment, i
             <div className={(styles.showLikeUnlikeUser) + ' overflow-hidden ' + (styles.likeUnlikeUserList)} id={'showLikeUnlikeUser' + post_id}>
                 {
                     user?.user &&
-                    <LikeUserList post_id={post_id} />
+                    <LikeUserList post={post} />
                 }
                 {
                     user?.user ||
@@ -173,38 +195,78 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post_id, TotalComment, i
             <div className='relative border-b p-2 border-t z-50 bg-base-100'>
                 <div className='flex items-center justify-between'>
                     <div>
-                        <button
-                            onClick={() => LikeUnlikeLovePostHandle('like')}
-                            className='btn btn-xs btn-primary ml-2 btn-outline'
-                        >
-                            <Like size='18' color={likePost ? '#00ff00' : 'grey'} />
-                        </button>
-                        <button
-                            onClick={() => LikeUnlikeLovePostHandle('unlike')}
-                            className='btn btn-xs btn-primary ml-2 btn-outline'
-                        >
-                            <Like size='18' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
-                        </button>
-                        <button
-                            onClick={() => LikeUnlikeLovePostHandle('love')}
-                            className='btn btn-xs btn-primary ml-2 btn-outline'
-                        >
-                            <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='19' />
-                        </button>
+                        {/* ************FOR LIKE *************************** */}
+                        {
+                            !reactLoading ?
+                                <button
+                                    onClick={() => LikeUnlikeLovePostHandle('like')}
+                                    className='btn relative btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                >
+                                    <Like size='18' color={likePost ? '#00ff00' : 'grey'} />
+                                </button>
+                                :
+                                <button
+                                    className='btn relative btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                >
+                                    <Like size='18' color={likePost ? '#00ff00' : 'grey'} />
+                                    <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    </p>
+                                </button>
+
+                        }
+                        {/* ************FOR UNLIKE *************************** */}
+                        {
+                            !reactLoading ?
+                                <button
+                                    onClick={() => LikeUnlikeLovePostHandle('unlike')}
+                                    className='btn btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                >
+                                    <Like size='18' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
+                                </button>
+                                :
+                                <button
+                                    className='btn relative btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                >
+                                    <Like size='18' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
+                                    <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    </p>
+                                </button>
+
+                        }
+                        {/* ************FOR lOVE *************************** */}
+                        {
+                            !reactLoading ?
+                                <button
+                                    onClick={() => LikeUnlikeLovePostHandle('love')}
+                                    className='btn btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                >
+                                    <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='19' />
+                                </button>
+                                :
+                                <button
+                                    className='btn relative btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                >
+                                    <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='19' />
+                                    <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    </p>
+                                </button>
+
+                        }
+
                     </div>
                     <div>
                         <button
                             title='Comment'
                             onClick={() => showCommentHandle(post_id)}
                             id={'showCommentButton' + post_id}
-                            className='btn-primary btn-outline btn btn-xs  ml-2 '
+                            className='btn-primary btn-outline btn btn-xs  ml-2 h-5 w-8 '
                         >
                             <Comment size='18' color='currentColor' />
                         </button>
                     </div>
                     <div onMouseEnter={() => setShowShareOption(!showShareOption)} onMouseLeave={() => setShowShareOption(!showShareOption)} >
                         <button
-                            className='btn btn-xs btn-primary ml-2 btn-outline'
+                            className='btn btn-xs btn-primary ml-2 btn-outline w-8 h-5'
                         >
                             <Share size='18' />
                         </button>

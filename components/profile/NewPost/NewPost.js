@@ -55,12 +55,11 @@ const NewPost = ({ props: setNewPost }) => {
             image: '',
             time: 'dec 15, 2021',
             short_description: event.target.short_description.value,
-            category: event.target.category.value,
+            category: event.target.category.value?.toLowerCase(),
             tags: ['html'],
             postBody: textareaRef.current.value,
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,
-            sort: '5345345345',
             postBy: event?.target?.postBy?.value || 'user',
             // tags: event.target.tags.value.split(','),
             postRefMode: postRefMode,
@@ -68,6 +67,7 @@ const NewPost = ({ props: setNewPost }) => {
             comments: [],
             react: []
         }
+        
 
 
         try {

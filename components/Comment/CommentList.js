@@ -8,12 +8,14 @@ import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 
 
-const CommentList = ({ comment: commentBody, replySetHandle, fetchComment }) => {
+const CommentList = ({ comment: commentBody, replySetHandle }) => {
+    
     const { post_id, userID, comment, time, comment_id } = commentBody;
     const commentUserInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
+
     const comment_user_details = commentUserInfo?.data?.data?.user_details;
     const commentUserLoading = commentUserInfo?.isLoading;
     const commentUserRefetch = commentUserInfo?.refetch;
@@ -82,17 +84,14 @@ const CommentList = ({ comment: commentBody, replySetHandle, fetchComment }) => 
             }
         );
         if (data?.message === 'success') {
-            fetchComment()
             // setErrMsg(<p className='text-green-600'>Success</p>)
             if (data?.result?.acknowledged) {
-                fetchComment()
             }
         }
         else if (data?.message === 'error') {
             // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             alert('something is wrong')
         }
-        fetchComment()
         setDeleteLoading(false)
     }
 
