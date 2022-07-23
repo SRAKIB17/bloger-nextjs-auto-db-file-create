@@ -19,7 +19,6 @@ const Comment_textarea = ({ post }) => {
     const commentBody = post?.comments;
     const TotalComment = post?.comments?.length;
     const totalReplies = commentBody?.map(reply =>(reply?.replies?.length))
-    console.log(...totalReplies)
     const shortcutKeyboard = (e) => {
         // classTagShortcutInput(e, textareaRef)
     }
