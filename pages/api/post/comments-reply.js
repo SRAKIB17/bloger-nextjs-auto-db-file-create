@@ -69,19 +69,19 @@ export default async function handler(req, res) {
 
             // ALL OK 
             if (result?.acknowledged) {
-                res.status(200).json({ message: "success", result: result })
+                return res.status(200).json({ message: "success", result: result })
             }
             else {
-                res.status(200).json({ message: "error", error: "Something is wrong" })
+                return res.status(200).json({ message: "error", error: "Something is wrong" })
             }
 
-            
+
         }
 
     }
 
     catch {
-        res.status(200).json({ message: "Ops! Something is wrong " })
+        return res.status(200).json({ message: "Ops! Something is wrong " })
     }
 
 }

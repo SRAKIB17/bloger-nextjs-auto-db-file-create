@@ -7,8 +7,8 @@ import femaleAvatar from '../../public/femaleAvatar.png'
 import { UserFullInfoProvider } from '../../pages/_app';
 
 
-const MoreCommentReply = ({ replyComment, isLoading, refetch,post_id, comment_id }) => {
-    const { userID, time, reply, reply_id} = replyComment;
+const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_id }) => {
+    const { userID, time, reply, reply_id } = replyComment;
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
 
     const replyUserInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
@@ -33,11 +33,11 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch,post_id, comment_id
 
     // for delete reply 
     const [deleteLoading, setDeleteLoading] = useState(false);
-    const deleteCommentHandle = async (id) => {
+    const deleteCommentHandle = async (id, comment_id, post_id) => {
         setDeleteLoading(true)
         refetch()
         refetchReply()
-        const { data } = await axios.delete(`/api/post/comments-reply-delete?email=${user_details?.email}&reply_id=${id}`,
+        const { data } = await axios.delete(`/api/post/comments-reply-delete?email=${user_details?.email}&reply_id=${id}&comment_id=${comment_id}&post_id=${post_id}`,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -129,7 +129,7 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch,post_id, comment_id
                             {deleteLoading ||
                                 < button
                                     className='link link-hover link-primary text-xs'
-                                    onClick={() => deleteCommentHandle(reply_id)}
+                                    onClick={() => deleteCommentHandle(reply_id, comment_id, post_id)}
                                 >
                                     delete
                                 </button>
@@ -139,7 +139,7 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch,post_id, comment_id
                                 < button
                                     className='link link-hover link-primary text-xs'
                                 >
-                                    <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    <p className='animate-spin border-b-2 border-r-2 border-red-200 w-4 h-4 rounded-[50%]'>
                                     </p>
 
                                 </button>

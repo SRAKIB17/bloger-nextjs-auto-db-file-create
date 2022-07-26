@@ -58,10 +58,10 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
     // comment-delete
 
     const [deleteLoading, setDeleteLoading] = useState(false)
-    const deleteCommentHandle = async (id) => {
+    const deleteCommentHandle = async (id, post_id) => {
         setDeleteLoading(true)
 
-        const { data } = await axios.delete(`/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}`,
+        const { data } = await axios.delete(`/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}&post_id=${post_id}`,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -119,7 +119,7 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
                     <div className=' overflow-auto w-full'>
 
                         <div className='w-full'>
-                        
+
                             <div className='break-words overflow-hidden text-sm'>
                                 {showFullComment}
                             </div>
@@ -170,7 +170,7 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
                             {deleteLoading ||
                                 < button
                                     className='link link-hover link-primary text-xs'
-                                    onClick={() => deleteCommentHandle(comment_id)}
+                                    onClick={() => deleteCommentHandle(comment_id, post_id)}
                                 >
                                     delete
                                 </button>
@@ -196,7 +196,7 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
                         showReply &&
                         <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
                             {
-                                replies?.map(reply => <MoreCommentReply key={reply?.reply_id} replyComment={reply} refetch={refetch} post_id={post_id} comment_id={comment_id}/>)
+                                replies?.map(reply => <MoreCommentReply key={reply?.reply_id} replyComment={reply} refetch={refetch} post_id={post_id} comment_id={comment_id} />)
                             }
                         </div>
                     )

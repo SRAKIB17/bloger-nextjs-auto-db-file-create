@@ -1,35 +1,57 @@
 import { pid } from "process";
-import login_user_without_post_body from "../../../components/hooks/api/social/login_user_without_post_body";
+import SocialPostBlog from "../../../components/hooks/api/social/post_blog_videos_post";
 import verifyUserAndAccessFeatureServer from "../../../components/hooks/api/verifyUser/verifyUserAndAccessFeatureServer";
 const crypto = require('crypto')
 
 
 export default async function handler(req, res) {
     try {
-        const { client } = login_user_without_post_body()
+        const { client } = SocialPostBlog();
         await client.connect();
-        const commentCollection = client.db("CommentReply").collection("comment");
-        const repliesCollection = client.db("CommentReply").collection("replies");
+        const postCollection = client.db("postBlogs").collection("postBlog");
 
         // VERIFY USER
+
         const checkUser = await verifyUserAndAccessFeatureServer(req);
         const method = req.method;
 
         // GET COMMENT BODY
         if (checkUser && method === "DELETE") {
-            const { comment_id } = req.query
-            const result = await commentCollection.deleteOne({ comment_id: comment_id });
-            const allReplyDelete = await repliesCollection.deleteMany({ comment_id: comment_id })
-            if (result?.acknowledged && allReplyDelete.acknowledged) {
-                res.status(200).json({ message: "success", result: result })
+            const { comment_id } = req.query;
+            const { post_id } = req.query;
+            console.log(comment_id, post_id)
+
+            
+            // B. FIND POST
+            const filter = { post_id: post_id };
+            const findPost = await postCollection.findOne(filter);
+
+            // C. FILTER COMMENT AND REPLIES
+            const filterComment = await findPost?.comments?.filter(comment => comment?.comment_id != comment_id);
+
+
+            findPost.comments = await (filterComment);
+
+            // D. UPDATE DOC
+            const updateDoc = {
+                $set: findPost
+            }
+
+            // H. UPDATE POST BODY
+            const result = await postCollection.updateOne(filter, updateDoc);
+
+            // ALL OK 
+            if (result?.acknowledged) {
+                return res.status(200).json({ message: "success", result: result })
             }
             else {
-                res.status(200).json({ message: "error", error: "Something is wrong" })
+                return res.status(200).json({ message: "error", error: "Something is wrong" })
             }
+
 
         }
         else {
-            res.status(200).json({ message: "error", error: 'Could not match header file' })
+            return res.status(200).json({ message: "error", error: 'Could not match header file' })
         }
 
     }
