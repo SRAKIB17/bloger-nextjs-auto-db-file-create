@@ -101,6 +101,8 @@ export { default as  PreviewOn} from './icon/Preview/PreviewOn'
 
 export { default as Quote } from './icon/Quote'
 
+export { default as Refresh } from './icon/Refresh/Refresh'
+
 
 export { default as SkypeCircle } from './icon/Social/Skype/Skype_circle'
 export { default as SkypeSquare } from './icon/Social/Skype/Skype_square'

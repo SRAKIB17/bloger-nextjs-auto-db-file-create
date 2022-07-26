@@ -5,6 +5,9 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/Header/Header';
 import Link from 'next/link';
 import Home from '../components/Home/Home';
+import Notice from '../components/Home/Notice';
+import RightSideLg from '../components/Post-NewsFeed/RightSideLg';
+import LeftSideNoticeComponent from '../components/Home/LeftSideNoticeComponent';
 
 export default function Index() {
 
@@ -16,9 +19,20 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className='md:ml-16 h-[100vh]'>
-        <div className='bg-base-100 p-2'>
+
+      <div className='md:ml-16 h-[100vh] bg-base-100'>
+        {/* ********************************************** */}
+        <div>
+          {/* ***************************FOR ADMIN NOTICE *********************** */}
+          <div className='min-h-[450px] bg-base-100'>
+            <Notice/>
+          </div>
+
+          {/* ************** WITH OUT NOTICE HOME PAGE */}
+          <div className='p-2'>
             <Home />
+          </div>
+
         </div>
       </div>
     </div>

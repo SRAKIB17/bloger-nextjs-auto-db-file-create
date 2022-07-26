@@ -7,8 +7,8 @@ import femaleAvatar from '../../public/femaleAvatar.png'
 import { UserFullInfoProvider } from '../../pages/_app';
 
 
-const MoreCommentReply = ({ replyComment, isLoading, refetch }) => {
-    const { post_id, userID, time, sort, reply, reply_id, comment_id } = replyComment;
+const MoreCommentReply = ({ replyComment, isLoading, refetch,post_id, comment_id }) => {
+    const { userID, time, reply, reply_id} = replyComment;
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
 
     const replyUserInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
@@ -32,7 +32,7 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch }) => {
 
 
     // for delete reply 
-    const [deleteLoading, setDeleteLoading] = useState(false)
+    const [deleteLoading, setDeleteLoading] = useState(false);
     const deleteCommentHandle = async (id) => {
         setDeleteLoading(true)
         refetch()
@@ -61,12 +61,13 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch }) => {
         setDeleteLoading(false)
     }
 
+
     return (
         <div>
             <div>
                 <div className='pt-2 flex items-center border-t gap-1'>
                     <div className="avatar ">
-                        <div className="w-5 rounded-full">
+                        <div className="w-5 rounded-full border-2 border-gray-500  overflow-hidden">
                             {
                                 replyIsLoading ?
                                     <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
@@ -98,14 +99,9 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch }) => {
 
                         <div className='w-full p-1'>
                             {
-                                (isLoading ?
-                                    <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
-                                    </p>
-                                    :
-                                    (<div className='break-words overflow-hidden text-sm'>
-                                        {showFullReply}
-                                    </div>)
-                                )
+                                (<div className='break-words overflow-hidden text-sm'>
+                                    {showFullReply}
+                                </div>)
                             }
 
 
@@ -130,7 +126,6 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch }) => {
                         ((userID == user_details?.userID && user?.user) || (isAdmin?.admin || user_details?.userID === post_id?.split('-')?.[1])) &&
                         <div>
 
-                            <b className='text-xs p-1'>|</b>
                             {deleteLoading ||
                                 < button
                                     className='link link-hover link-primary text-xs'

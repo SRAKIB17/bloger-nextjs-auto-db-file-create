@@ -10,7 +10,7 @@ import Login from '../../Login/Login';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import axios from 'axios';
 
-const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refetch } }) => {
+const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refetch, setShowReactUser, setShowComment, showReactUserState } }) => {
     const { post_id } = post;
 
     const { user, user_details } = useContext(UserFullInfoProvider)
@@ -117,6 +117,9 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
     //     setLikePost(true)
     // }, [])
     const showLikeUnlikeUser = (id) => {
+        setShowComment(null)
+        setShowReactUser(true)
+
         try {
             const showLikeUnlikeUser = document.getElementById('showLikeUnlikeUser' + id);
             // -------------------------for comment section 0----------------------------------------
@@ -149,7 +152,9 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
         }
     }
 
-
+    // FOR ALL REACT LIST FILTERING
+    const postReact = post?.react;
+    const allReact = postReact?.filter((like, index, arr) => like.rating != '')?.length;
     return (
         <div className='relative'>
 
@@ -172,7 +177,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                     >
                         <EmoticonLove size='12' color='white' />
                     </button>
-                    <h1 className='text-gray-500  text-[14px]'>{post?.react?.length || 0}</h1>
+                    <h1 className='text-gray-500  text-[14px]'>{allReact || 0}</h1>
                 </div>
                 <div className='mr-3 text-[14px] text-gray-500 cursor-pointer' onClick={() => showCommentHandle(post_id)}>
                     {
@@ -185,12 +190,12 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
             {/* show like love unlike  user list  */}
             <div className={(styles.showLikeUnlikeUser) + ' overflow-hidden ' + (styles.likeUnlikeUserList)} id={'showLikeUnlikeUser' + post_id}>
                 {
-                    user?.user &&
-                    <LikeUserList post={post} />
+                    (user?.user && showReactUserState) &&
+                    < LikeUserList post={post} />
                 }
                 {
-                    user?.user ||
-                    <GuestCommentLikeLogin />
+                    (!user?.user && showReactUserState) &&
+                    <Login />
                 }
             </div>
 

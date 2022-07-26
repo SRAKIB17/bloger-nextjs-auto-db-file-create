@@ -12,9 +12,11 @@ const LikeUsersList = ({ post }) => {
     const { post_id } = post
     const postReact = post?.react;
 
+
+    const allReact = postReact?.filter((like, index, arr) => like.rating != '')?.length
     const [userList, setUserList] = useState([])
     useEffect(() => {
-        setUserList(postReact?.filter((like, index, arr) => like.rating));
+        setUserList(postReact?.filter((like, index, arr) => like.rating != ''));
     }, [postReact])
     const like = postReact?.filter((like, index, arr) => like.rating === 'like');
     const unlike = postReact?.filter((like, index, arr) => like.rating === 'unlike');
@@ -29,7 +31,7 @@ const LikeUsersList = ({ post }) => {
                         onClick={() => setUserList(postReact?.filter((like, index, arr) => like.rating))}
                     >
                         <p className='font-mono text-xs'>
-                            All {postReact?.length}
+                            All {allReact}
                         </p>
                     </button>
                     <button
@@ -80,7 +82,7 @@ const LikeUsersList = ({ post }) => {
 
 const GetUserNameAndLikeUnlike = ({ likeUnlike }) => {
     const router = useRouter()
-    const navigate = (path)=>{
+    const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
     }

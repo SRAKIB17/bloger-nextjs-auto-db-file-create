@@ -8,9 +8,11 @@ import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 
 
-const CommentList = ({ comment: commentBody, replySetHandle }) => {
-    
-    const { post_id, userID, comment, time, comment_id } = commentBody;
+const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch }) => {
+
+    const { userID, comment, time, comment_id, replies } = commentBody;
+
+    // GET COMMENT USER DETAILS 
     const commentUserInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
@@ -20,32 +22,15 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
     const commentUserLoading = commentUserInfo?.isLoading;
     const commentUserRefetch = commentUserInfo?.refetch;
 
-    // GET REPLY 
+    // GET REPLY USER DETAILS 
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
-    const { data, refetch, isLoading } = useQuery(['ReplyList', comment_id, user_details], () => axios.get(`/api/post/comments-reply?comment_id=${comment_id}&email=${user_details?.email}`,
-        {
-            headers: {
-                access_token: sessionStorage.getItem('accessAutoG'),
-                token: localStorage.getItem('token')
-            }
-        }
-    ));
 
-    const repliesBody = data?.data?.result || []
-    useEffect(() => {
-        window.onclick = () => {
-            refetch()
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // GET ALL REPLY A COMMENT //
 
 
-    const [moreComment, setMoreComment] = useState(true);
-
-
+    const repliesCount = replies?.length;
 
     const [showReply, setShowReply] = useState(false);
-
     const [showFullComment, setFullComment] = useState(comment?.length >= 100 ? comment?.slice(0, 100) : comment)
     const handleShowFullComment = () => {
         if (showFullComment?.length === 100) {
@@ -55,10 +40,11 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             setFullComment(comment?.slice(0, 100))
         }
     }
+
     const replyComment = (id, comment_id, name) => {
         try {
             replySetHandle({ name: name, comment_id: comment_id }, id);
-            console.log(post_id)
+
             document.getElementById('commentTextArea' + id).focus()
         }
         catch {
@@ -84,12 +70,10 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
             }
         );
         if (data?.message === 'success') {
-            // setErrMsg(<p className='text-green-600'>Success</p>)
             if (data?.result?.acknowledged) {
             }
         }
         else if (data?.message === 'error') {
-            // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             alert('something is wrong')
         }
         setDeleteLoading(false)
@@ -102,7 +86,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 {/* ------------------------------------------for profile picture  ----------------------------*/}
                 <div className='mt-2 flex items-center gap-1'>
                     <div className="avatar ">
-                        <div className="w-5 rounded-full">
+                        <div className="w-5 rounded-[50%] border-2 border-gray-500  overflow-hidden">
 
                             {
                                 commentUserLoading ?
@@ -135,7 +119,7 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                     <div className=' overflow-auto w-full'>
 
                         <div className='w-full'>
-                            {/* <div className='break-words text-[15px]' dangerouslySetInnerHTML={{ __html: showFullComment }}></div> */}
+                        
                             <div className='break-words overflow-hidden text-sm'>
                                 {showFullComment}
                             </div>
@@ -157,20 +141,20 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 {/*--------------- for reply count and handle show more  reply  -------------------*/}
                 <div className='flex items-center'>
                     {
-                        repliesBody?.length > 0 &&
+                        repliesCount > 0 &&
                         <div>
 
                             < button
                                 className='link ml-4 link-hover link-primary text-xs'
                                 onClick={() => setShowReply(!showReply)}
                             >
-                                {repliesBody?.length + ' '}  Reply
+                                {repliesCount + ' '}  Reply
                             </button>
 
                             <b className='text-xs p-1'>|</b>
                         </div>
                     }
-                    <div>
+                    <div className='pl-1'>
                         < button
                             className='link link-hover link-primary text-xs'
                             onClick={() => replyComment(post_id, comment_id, comment_user_details?.name)}
@@ -207,18 +191,15 @@ const CommentList = ({ comment: commentBody, replySetHandle }) => {
                 </div>
                 {/* -----------------------------------------for show more reply  ----------------*/}
                 {
-                    isLoading ?
-                        <p className='animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
-                        </p>
-                        :
-                        (
-                            showReply &&
-                            <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
-                                {
-                                    repliesBody?.map(reply => <MoreCommentReply key={reply?._id} refetch={refetch} replyComment={reply} isLoading={isLoading} />)
-                                }
-                            </div>
-                        )
+
+                    (
+                        showReply &&
+                        <div className='ml-4 border-l-[3px] rounded-bl-3xl mb-3 pl-1 pt-1'>
+                            {
+                                replies?.map(reply => <MoreCommentReply key={reply?.reply_id} replyComment={reply} refetch={refetch} post_id={post_id} comment_id={comment_id}/>)
+                            }
+                        </div>
+                    )
                 }
             </div>
         </div >

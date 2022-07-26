@@ -81,16 +81,7 @@ const Home = () => {
             code.style.width = '100px'
         }
     }, [])
-    const aa = async () => {
-        const { data } = await axios.delete(`/api/post/comment-delete?email=${user_details?.email}&comment_id=${id}`, comment,
-            {
-                headers: {
-                    access_token: sessionStorage.getItem('accessAutoG'),
-                    token: localStorage.getItem('token')
-                }
-            }
-        );
-    }
+
     return (
         <div>
 

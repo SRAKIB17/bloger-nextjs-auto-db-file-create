@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter, withRouter } from 'next/router';
 import Link from 'next/dist/client/link';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ContextMenu from './ContextMenu';
 import SideLeftBar from './SideLeftBar';
 import { Home, MenuBarCircle, NewsFeed, Video } from '../ReactRSIcon/index'
@@ -13,9 +13,10 @@ import useCommonWindowResizeHeaderComponent from './CommonWindowResizeHeaderComp
 
 import LoginAutoShow from '../Login/LoginAutoShow';
 import autoJwtTokenGenerateForUserOrGuest from '../hooks/autoJwtTokenGenerateForUserOrGuest';
+import { UserFullInfoProvider } from '../../pages/_app';
 const Header = () => {
 
-
+    const { user, user_details } = useContext(UserFullInfoProvider)
     autoJwtTokenGenerateForUserOrGuest()
 
     const router = useRouter();

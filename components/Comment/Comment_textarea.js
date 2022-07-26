@@ -9,15 +9,20 @@ import { UserFullInfoProvider } from '../../pages/_app';
 import axios from 'axios';
 
 const Comment_textarea = ({ post, refetch }) => {
+    // POST INFO AND USER INFO
     const { post_id } = post;
     const CommentTextareaRef = useRef();
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
 
 
-
+    // SET COMMENT BODY AND COUNT TOTAL COMMENT
     const commentBody = post?.comments;
-    const TotalComment = post?.comments?.length || 0;
-    const totalReplies = commentBody?.map(reply => (reply?.replies?.length))
+    //COUNT TOTAL REPLIES
+    const totalReplies = eval(commentBody?.map(reply => (reply?.replies?.length))?.join('+'))
+    const TotalComment = post?.comments?.length + totalReplies || 0;
+
+
+    // AUTO HEIGHT TEXTAREA FORM
     const shortcutKeyboard = (e) => {
         // classTagShortcutInput(e, textareaRef)
     }
@@ -34,8 +39,13 @@ const Comment_textarea = ({ post, refetch }) => {
             e.target.style.height = 200 + 'px'
         }
     }
-    // ----------------------------------for show commnet toggle and auto height increase-------------------------------
+    //FOR SHOW COMMENT TOGGLE AND AUTO HEIGHT INCREASE
+
+    const [showCommentState, setShowComment] = useState(null);
+    const [showReactUserState, setShowReactUser] = useState(null);
     const showCommentHandle = (id) => {
+        setShowComment(true)
+        setShowReactUser(null)
         try {
 
             const showComment = document.getElementById('commentShow' + id)
@@ -71,8 +81,7 @@ const Comment_textarea = ({ post, refetch }) => {
         }
     }
 
-    //------------------------------------------------------------------------------------------
-    //......--------------------------------------------- for reply a comment a auto show name -----------------------------------
+    // FOR REPLY A COMMENT A AUTO SHOW NAME
     const [replyNow, setReplyNow] = useState(null)
     const replySetHandle = (targetComment, id) => {
         try {
@@ -88,7 +97,7 @@ const Comment_textarea = ({ post, refetch }) => {
     const [sendCommentLoading, setSendCommentLoading] = useState(null)
     const postCommentHandler = async (e) => {
         e.preventDefault()
-        setSendCommentLoading(true)
+        setSendCommentLoading(true);
         if (replyNow?.comment_id) {
             const replyBody = {
                 post_id: post_id,
@@ -107,8 +116,10 @@ const Comment_textarea = ({ post, refetch }) => {
             );
 
             if (data?.message === 'success') {
+                refetch()
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
+                    refetch()
                     e.target.reset();
                     setReplyNow(null)
                 }
@@ -162,21 +173,26 @@ const Comment_textarea = ({ post, refetch }) => {
         <div>
             <div className='mb-1'>
                 {/* -------------------------------------like unlike and show user who like this post---------------------------- */}
-                <LikeLoveFavorite props={{ showCommentHandle, TotalComment, post, refetch }} />
+                <LikeLoveFavorite props={{ showCommentHandle, TotalComment, post, refetch, setShowReactUser, setShowComment, showReactUserState }} />
             </div>
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
             <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto hideScrollBar'}>
-                <div className='ml-2 p-1 overflow-auto border-l-[3px] rounded-bl-3xl'>
-                    {
-                        user?.user &&
-                        commentBody?.map(comment => <CommentList key={comment?.comment_id} replySetHandle={replySetHandle} comment={comment} />)
-                    }
-                    {
-                        user?.user ||
-                        <Login />
-                        // <GuestCommentLikeLogin />
-                    }
+                <div className='ml-2 overflow-auto '>
+                    <div className='border-l-[3px] rounded-bl-3xl p-1'>
+                        {
+                            // FOR ALL COMMENT GET AND SEND LIKE PROPS COMMENT COMPONENT
+                            (user?.user && showCommentState) &&
+                            commentBody?.map(comment => <CommentList key={comment?.comment_id} post_id={post_id} replySetHandle={replySetHandle} comment={comment} refetch={refetch} />)
+                        }
+                    </div>
+                    <div className='pl-1'>
+                        {
+                            (!user?.user && showCommentState) &&
+                            <Login />
+                            // <GuestCommentLikeLogin />
+                        }
+                    </div>
                 </div>
             </div>
 

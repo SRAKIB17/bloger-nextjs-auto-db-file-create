@@ -54,12 +54,11 @@ export default async function handler(req, res) {
 
 
             //7. GET UPDATE DOC
-            // const updateComment = [...findCommentAll, commentBody]
 
             const updateDoc = {
                 $set: findPost
             }
-            
+
             // 8. UPDATE POST BODY
             const result = await postCollection.updateOne(filter, updateDoc);
 
