@@ -20,7 +20,7 @@ const Index = () => {
 
     // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
 
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/story?cat=${cat}&show=${shows}`,
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows, tag], () => axios.get(`/api/post/story?cat=${cat}&show=${shows}&tag=${tag}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }

@@ -63,6 +63,7 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
             postRefMode = 'video'
 
         }
+        
         const post = {
             userID: user_details?.userID,
             post_id: post_id,
@@ -72,11 +73,10 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
             time: 'dec 15, 2021',
             short_description: event.target.short_description.value,
             category: event.target.category.value,
-            tags: ['html'],
+            tags: event.target.tags.value.toLowerCase(),
             postBody: textareaRef.current.value,
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,
-            sort: '5345345345',
             postBy: event?.target?.postBy?.value || 'user',
             // tags: event.target.tags.value.split(','),
             postRefMode: postRefMode

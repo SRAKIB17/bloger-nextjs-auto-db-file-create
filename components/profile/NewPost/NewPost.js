@@ -56,7 +56,7 @@ const NewPost = ({ props: setNewPost }) => {
             time: 'dec 15, 2021',
             short_description: event.target.short_description.value,
             category: event.target.category.value?.toLowerCase(),
-            tags: ['html'],
+            tags: event.target.tags.value.toLowerCase(),
             postBody: textareaRef.current.value,
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,
@@ -67,7 +67,7 @@ const NewPost = ({ props: setNewPost }) => {
             comments: [],
             react: []
         }
-        
+
 
 
         try {

@@ -122,7 +122,7 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
 
                         <div className='w-full'>
 
-                            <div className='break-words overflow-hidden text-sm whitespace-pre-wrap'>
+                            <div className='break-words overflow-hidden text-sm whitespace-pre-wrap font-extraligh font-sans'>
                                 {showFullComment}
                             </div>
                             {
