@@ -212,20 +212,23 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                                         <img
                                             src={thumbnail}
                                             alt=""
-                                            className='max-w-[200px] h-[200px] md:w-full md:h-[240px] rounded-md border-2'
+                                            className='max-w-[200px] h-[200px] md:max-w-[300px] md:h-[200px] rounded-md border-2'
                                         />
                                     </figure>
                                 </div>
                                 :
                                 <div className='mr-4'>
-                                    <Camera size='150' className="border-2 rounded-md"/>
+                                    <Camera size='150' className="border-2 rounded-md" />
                                 </div>
                         }
                     </div>
-                    {/* style={{ width: '100%', wordWrap: "break-word", whiteSpace: 'pre-wrap' }} */}
-                    {
-                        short_description?.slice(0, 1000)
-                    }
+                    {/* style={{ width: '100%', wordWrap: "break-word", whiteSpace: 'pre-line' }} */}
+                    <div>
+                        {
+                            short_description?.slice(0, 1000)
+                        }
+                    </div>
+
                 </div>
 
                 <div className='clear-both'>
