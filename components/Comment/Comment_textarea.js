@@ -220,7 +220,7 @@ const Comment_textarea = ({ post, refetch }) => {
                             }
                         </p>
 
-                        <div className="relative flex items-end pt-1 pl-3 mt-1">
+                        <div className="relative flex items-end pt-1 pl-3 mt-1 ">
                             <textarea ref={CommentTextareaRef}
                                 id={'commentTextArea' + post_id}
                                 className='input input-success w-full font-mono'

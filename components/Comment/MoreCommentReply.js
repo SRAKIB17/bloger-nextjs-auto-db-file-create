@@ -99,7 +99,7 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_i
 
                         <div className='w-full p-1'>
                             {
-                                (<div className='break-words overflow-hidden text-sm'>
+                                (<div className='break-words overflow-hidden text-sm whitespace-pre-wrap'>
                                     {showFullReply}
                                 </div>)
                             }

@@ -70,7 +70,9 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
             }
         );
         if (data?.message === 'success') {
+            refetch()
             if (data?.result?.acknowledged) {
+                refetch()
             }
         }
         else if (data?.message === 'error') {
@@ -120,7 +122,7 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
 
                         <div className='w-full'>
 
-                            <div className='break-words overflow-hidden text-sm'>
+                            <div className='break-words overflow-hidden text-sm whitespace-pre-wrap'>
                                 {showFullComment}
                             </div>
                             {
