@@ -3,10 +3,8 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useRouter } from 'next/router'
 import LoadingFlowCircle from '../LoadingFlowCircle';
-import RightSideLg from '../Post-NewsFeed/RightSideLg';
 import PostMap from '../Post-NewsFeed/PostMap';
-import LeftSideLg from '../Post-NewsFeed/LeftSideLg';
-import LeftSideNoticeComponent from './LeftSideNoticeComponent';
+import NoticeLeft from './NoticeLeft';
 
 
 const Notice = () => {
@@ -16,7 +14,7 @@ const Notice = () => {
         router.push(path);
         router.prefetch(path);
     }
-    const [shows, setShowPosts] = useState(10)
+    const [shows, setShowPosts] = useState(1)
 
     const { data, refetch, isLoading } = useQuery(['adminPost', cat, shows], () => axios.get(`/api/post/admin-post?cat=${cat}&show=${shows}`,
         {
@@ -28,13 +26,13 @@ const Notice = () => {
     return (
 
         <div className='grid grid-cols-12 gap-2'>
-            <div className='hidden sm:block sm:col-span-4 md:col-span-4 lg:col-span-4 text-justify lg:pl-16 p-1 relative bg-base-100'>
-                <div className='absolute h-[100vh] overflow-auto sm:w-[200px] md:max-w-[300px] lg:max-w-[350px] md:w-full'>
-                    <LeftSideNoticeComponent />
+            <div className='hidden sm:block sm:col-span-3 lg:col-span-7 text-justify p-1 relative bg-base-100'>
+                <div className='absolute h-[100vh] overflow-auto sm:w-[200px] md:w-full lg:pr-[2rem] sm:pr-[1rem]'>
+                    <NoticeLeft/>
                 </div>
             </div>
-
-            <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-5' id='storyScroll'>
+            <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-9 lg:col-span-5' id='storyScroll'>
+                <h1 className='text-2xl font-extrabold font-sans text-center m-4 border-b-4 w-fit'>Notice</h1>
                 {
                     isLoading || typeof adminPost?.map === 'function'
                         ?
@@ -70,12 +68,6 @@ const Notice = () => {
                         </div>
                     </div>
                 }
-            </div>
-
-            <div className=' col-span-3 hidden lg:block relative bg-base-100 p-3'>
-                <div className='absolute h-full overflow-auto text-justify p-2'>
-                    <RightSideLg />
-                </div>
             </div>
         </div>
     );

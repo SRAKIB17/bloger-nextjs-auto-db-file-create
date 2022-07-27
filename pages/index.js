@@ -7,7 +7,6 @@ import Link from 'next/link';
 import Home from '../components/Home/Home';
 import Notice from '../components/Home/Notice';
 import RightSideLg from '../components/Post-NewsFeed/RightSideLg';
-import LeftSideNoticeComponent from '../components/Home/LeftSideNoticeComponent';
 import Mobile from '../components/Home/Mobile';
 import Footer from '../components/Home/Footer';
 
@@ -22,7 +21,7 @@ export default function Index() {
       </Head>
       <Header />
 
-      <div className='md:ml-16 h-[100vh] bg-base-100'>
+      <div className='lg:ml-16 sm:pl-3 h-[100vh] bg-base-100'>
         {/* ********************************************** */}
         <div>
           {/* ***************************FOR ADMIN NOTICE *********************** */}
