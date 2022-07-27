@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import IframeLoading from '../../public/loading_iframe.gif'
 import React, { useEffect, useState } from 'react';
+import { Camera } from '../ReactRSIcon';
 
 const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_id, postRefMode, thumbnail }) => {
     //********************************************************************************* */
@@ -202,40 +203,61 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
             {/* ---------post body ----------------- */}
             <div className={' w-full h-fit transition-all text-justify'} id={'postBody' + post_id} style={{ width: '100%' }}>
                 <div className='w-full'>
-                {/* style={{ width: '100%', wordWrap: "break-word", whiteSpace: 'pre-wrap' }} */}
+                    <div className='float-left'>
+                        {/* ----thumbnail------------ */}
+                        {
+                            (postRefMode === 'text' && thumbnail) ?
+                                <div className='mr-4'>
+                                    <figure>
+                                        <img
+                                            src={thumbnail}
+                                            alt=""
+                                            className='max-w-[200px] h-[200px] md:w-full md:h-[240px] rounded-md border-2'
+                                        />
+                                    </figure>
+                                </div>
+                                :
+                                <div className='mr-4'>
+                                    <Camera size='150' className="border-2 rounded-md"/>
+                                </div>
+                        }
+                    </div>
+                    {/* style={{ width: '100%', wordWrap: "break-word", whiteSpace: 'pre-wrap' }} */}
                     {
                         short_description?.slice(0, 1000)
                     }
                 </div>
 
-                {
-                    fullIframeShow &&
-                    <div className="card-actions justify-end">
-                        <button className="link-primary font-semibold link-hover text-xs" onClick={() => showIframeDisplayHandle(post_id)}>
-                            See Less
-                        </button>
-                    </div>
-                }
+                <div className='clear-both'>
+                    {
+                        fullIframeShow &&
+                        <div className="card-actions justify-end">
+                            <button className="link-primary font-semibold link-hover text-xs" onClick={() => showIframeDisplayHandle(post_id)}>
+                                See Less
+                            </button>
+                        </div>
+                    }
 
-                {
-                    iframeLoading &&
-                    <div className='flex justify-center items-center p-4'>
-                        <img src={IframeLoading?.src} alt="" />
-                    </div>
-                }
+                    {
+                        iframeLoading &&
+                        <div className='flex justify-center items-center p-4'>
+                            <img src={IframeLoading?.src} alt="" />
+                        </div>
+                    }
 
-                <iframe
-                    // onUnload={unloadIframeHandle}
-                    srcDoc={iframePostFullBody}
-                    onLoad={onloadIframeHeightStylesHandle}
-                    src={'/api/preview/' + post_id}
-                    id={'previewIframeHeight' + post_id}
-                    frameBorder="0"
-                    scrolling="no"
-                    height='0'
-                    className='w-full'
-                >
-                </iframe>
+                    <iframe
+                        // onUnload={unloadIframeHandle}
+                        srcDoc={iframePostFullBody}
+                        onLoad={onloadIframeHeightStylesHandle}
+                        src={'/api/preview/' + post_id}
+                        id={'previewIframeHeight' + post_id}
+                        frameBorder="0"
+                        scrolling="no"
+                        height='0'
+                        className='w-full'
+                    >
+                    </iframe>
+                </div>
             </div>
 
             {/* ------------see more -------------------- */}
@@ -254,14 +276,14 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
 
 
             {/* ----thumbnail------------ */}
-            {
+            {/* {
                 (postRefMode === 'text' && thumbnail) &&
                 <div className='mt-4 mb-4'>
                     <figure>
                         <img src={thumbnail} alt="" className='w-full h-[200px] lg:h-[240px] rounded-md' />
                     </figure>
                 </div>
-            }
+            } */}
         </div>
     );
 };

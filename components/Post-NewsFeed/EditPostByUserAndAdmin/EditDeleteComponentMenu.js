@@ -7,7 +7,7 @@ import EditPostFormTextArea from './EditPostFormTextArea';
 import { useRouter } from 'next/router';
 import CopyEdit from './CopyEdit.module.css'
 
-const EditDeleteComponentMenu = ({ post }) => {
+const EditDeleteComponentMenu = ({ post, refetch }) => {
     const router = useRouter()
     const { post_id } = post
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
@@ -123,12 +123,12 @@ const EditDeleteComponentMenu = ({ post }) => {
             </div>
             {
                 ((isAdmin?.admin || user?.user) && editPost) &&
-                <EditPostFormTextArea post={post} setEditPost={setEditPost} />
+                <EditPostFormTextArea post={post} setEditPost={setEditPost} refetch={refetch} />
             }
             {
                 ((isAdmin?.admin || user?.user) && deletePost) &&
                 <div className=''>
-                    <DeletePost props={{ deletePost, setDeletePost }} />
+                    <DeletePost props={{ deletePost, setDeletePost, refetch }} />
                 </div>
             }
         </div>

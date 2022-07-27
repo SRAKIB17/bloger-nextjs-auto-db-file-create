@@ -13,7 +13,7 @@ import TextAreaEdit from './TextAreaEdit';
 import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser';
 // import QuickPost from './QuickPost';
 
-const EditPostFormTextArea = ({ post, setEditPost }) => {
+const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
     const { _id, category, tags, image, postBy, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, sort, time, userID } = post
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
@@ -93,9 +93,11 @@ const EditPostFormTextArea = ({ post, setEditPost }) => {
             console.log(data)
             if (data?.message === 'success') {
                 setErrMsg(<p className='text-green-600'>Success</p>)
-                console.log('534534543534534545345345345345345345')
+                refetch()
+                setEditPost(null)
                 if (data?.result?.acknowledged) {
-                    location.reload();
+                    refetch()
+                    setEditPost(null)
                 }
             }
             else if (data?.message === 'error') {

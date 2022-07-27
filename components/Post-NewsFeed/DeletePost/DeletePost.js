@@ -5,7 +5,7 @@ import { UserFullInfoProvider } from '../../../pages/_app';
 import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser';
 import { useRouter } from 'next/router'
 
-const DeletePost = ({ props: { deletePost, setDeletePost } }) => {
+const DeletePost = ({ props: { deletePost, setDeletePost, refetch } }) => {
     console.log(deletePost)
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
@@ -23,8 +23,9 @@ const DeletePost = ({ props: { deletePost, setDeletePost } }) => {
             });
         if (data?.message === 'success') {
             setErrMsg(<p className='text-green-600'>Success</p>)
+            refetch()
             if (data?.result?.acknowledged) {
-                location.reload()
+                refetch()
                 setDeletePost(null)
             }
         }
@@ -36,7 +37,7 @@ const DeletePost = ({ props: { deletePost, setDeletePost } }) => {
     return (
         <div className='h-60 w-full z-[30] absolute top-0 left-0 rounded-lg bg-base-300'>
             <div className='relative flex flex-col items-center justify-between mx-auto mt-20'>
-              
+
                 <h1 className='text-2xl text-warning'> Are You Sure?</h1>
                 <p className='text-red-600 text-center'>
                     {

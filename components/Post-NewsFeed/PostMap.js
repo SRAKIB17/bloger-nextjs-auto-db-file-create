@@ -105,7 +105,7 @@ const PostMap = ({ post, refetch }) => {
                     </div>
 
                     {
-                        <EditDeleteComponentMenu post={post} />
+                        <EditDeleteComponentMenu post={post} refetch={refetch}/>
                     }
                 </div>
                 {/* --------------------------------------------------------------------------------------------------- */}
