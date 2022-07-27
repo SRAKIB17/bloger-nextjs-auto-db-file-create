@@ -8,6 +8,8 @@ import Home from '../components/Home/Home';
 import Notice from '../components/Home/Notice';
 import RightSideLg from '../components/Post-NewsFeed/RightSideLg';
 import LeftSideNoticeComponent from '../components/Home/LeftSideNoticeComponent';
+import Mobile from '../components/Home/Mobile';
+import Footer from '../components/Home/Footer';
 
 export default function Index() {
 
@@ -25,14 +27,24 @@ export default function Index() {
         <div>
           {/* ***************************FOR ADMIN NOTICE *********************** */}
           <div className='min-h-[450px] bg-base-100'>
-            <Notice/>
+            <Notice />
           </div>
 
           {/* ************** WITH OUT NOTICE HOME PAGE */}
           <div className='p-2'>
             <Home />
           </div>
+          <div className='p-2 w-full h-full bg-base-100'>
+            <div>
 
+            </div>
+            <div className='flex justify-end p-10'>
+              <Mobile />
+            </div>
+          </div>
+          <div className='clear-both'>
+            <Footer />
+          </div>
         </div>
       </div>
     </div>

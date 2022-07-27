@@ -29,9 +29,19 @@
     justify-content: center;
     text-align: center;
 }
+.apk {
+    height: 30px;
+    width: 100%;
+    top: -3px;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
 
 .speaker div {
-    color: rgb(255, 0, 0);
+    color: rgb(144, 144, 144);
 }
 
 .refresh {

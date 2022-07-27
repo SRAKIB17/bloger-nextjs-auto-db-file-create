@@ -179,13 +179,13 @@ const Comment_textarea = ({ post, refetch }) => {
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
             <div id={'commentShow' + post_id} className={styles.showComment + ' overflow-auto hideScrollBar'}>
                 <div className='ml-2 overflow-auto '>
-                    <div className='border-l-[3px] rounded-bl-3xl p-1'>
-                        {
-                            // FOR ALL COMMENT GET AND SEND LIKE PROPS COMMENT COMPONENT
-                            (user?.user && showCommentState) &&
+                    {
+                        // FOR ALL COMMENT GET AND SEND LIKE PROPS COMMENT COMPONENT
+                        (user?.user && showCommentState) &&
+                        <div className='border-l-[3px] rounded-bl-3xl p-1'>
                             commentBody?.map(comment => <CommentList key={comment?.comment_id} post_id={post_id} replySetHandle={replySetHandle} comment={comment} refetch={refetch} />)
-                        }
-                    </div>
+                        </div>
+                    }
                     <div className='pl-1'>
                         {
                             (!user?.user && showCommentState) &&
