@@ -25,11 +25,12 @@ export default async function handler(req, res) {
             return res.status(200).json(getPosts)
         }
         else if (cat != 'undefined' && tag != 'undefined') {
+            const query = new RegExp(tag, 'i')
             const getPosts = await postCollection.find({
                 "$and":
                     [
                         { category: cat },
-                        { tags: tag }
+                        { tags: { $regex: query } }
                     ]
             }).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
             console.log(getPosts)
