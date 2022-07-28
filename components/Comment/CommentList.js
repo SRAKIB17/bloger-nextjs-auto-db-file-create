@@ -123,6 +123,11 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
                         <div className='w-full'>
 
                             <div className='break-words overflow-hidden text-sm whitespace-pre-wrap font-extraligh font-sans'>
+                                {(commentBody?.emoji) &&
+                                    <div>
+                                        <img src={commentBody?.emoji} alt="" />
+                                    </div>
+                                }
                                 {showFullComment}
                             </div>
                             {

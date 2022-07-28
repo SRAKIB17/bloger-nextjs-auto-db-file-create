@@ -27,7 +27,7 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
                 </div>
             </div>
 
-            <div>
+            <div className='bg-base-300'>
                 {
                     showEmojiGifSection == 'emoji' &&
                     <EmojiIndex props={{ selectEmoji, setSelectEmoji }} />

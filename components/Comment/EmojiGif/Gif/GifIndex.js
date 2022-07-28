@@ -25,7 +25,7 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji } }) => {
                 </span>
 
             </div>
-            <div className='h-[300px] overflow-auto border-2 rounded-md p-1 max-w-sm absolute top-[-310px] w-full z-20'>
+            <div className='h-[300px] overflow-auto bg-base-300 border-2 rounded-md p-1 max-w-sm absolute top-[-310px] w-full z-20'>
                 {
                     gifView == 'emoji' && <EmojiGif props={{ selectEmoji, setSelectEmoji }} />
                 }

@@ -187,7 +187,6 @@ const Comment_textarea = ({ post, refetch }) => {
     }
 
 
-
     return (
         <div>
             <div className='mb-1'>
@@ -273,7 +272,7 @@ const Comment_textarea = ({ post, refetch }) => {
                                 onPaste={heightAutoHandle}
                                 onDrop={heightAutoHandle}
                                 onKeyDown={heightAutoHandle}
-                                required
+                                required={selectEmoji ? false : true}
                             >
                             </textarea>
                             <div className='align-bottom left-[50%] bottom-0'>
