@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { PreviewOff, PreviewOn } from '../ReactRSIcon';
 import classTagShortcutInput from './hooks/useFindClassAttr';
 import styles from './TextArea.module.css';
 import useUploadCode from './Uploader/useUploadCode';
@@ -224,9 +225,10 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
         <div className='m-1'>
             <div className='flex'>
                 <li onClick={liveOffHandle} className='btn btn-warning btn-xs text-white m-4'>
-                    Live
+
                     {
-                        liveOff ? ' On' : ' Off'
+                        liveOff ? <PreviewOn size='22' /> : <PreviewOff size='22' />
+
                     }
                 </li>
                 <li onClick={rotateHandle} className='btn btn-warning btn-xs text-white m-4 hidden sm:flex w-fit'>

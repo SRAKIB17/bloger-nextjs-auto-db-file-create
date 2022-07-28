@@ -31,7 +31,7 @@ const Notice = () => {
                     <NoticeLeft/>
                 </div>
             </div>
-            <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-9 lg:col-span-5' id='storyScroll'>
+            <div className='col-span-12 pr-4 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-9 lg:col-span-5' id='noticeHome'>
                 <h1 className='text-2xl font-extrabold font-sans text-center m-4 border-b-4 w-fit'>Notice</h1>
                 {
                     isLoading || typeof adminPost?.map === 'function'

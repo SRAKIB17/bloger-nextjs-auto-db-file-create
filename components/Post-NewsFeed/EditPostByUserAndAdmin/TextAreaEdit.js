@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from '../../hooks/hooks/useFindClassAttr';
 import styles from '../../hooks/TextArea.module.css';
 import useUploadCode from '../../hooks/Uploader/useUploadCode';
+import { PreviewOff, PreviewOn } from '../../ReactRSIcon';
 const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, post_id } }) => {
 
     const shortcutKeyboard = (e) => {
@@ -161,9 +162,9 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
         <div className='m-1'>
             <div className='flex'>
                 <li onClick={liveOffHandle} className='btn btn-warning btn-xs text-white m-4'>
-                    Live
                     {
-                        liveOff ? ' On' : ' Off'
+                        liveOff ? <PreviewOn size='22' /> : <PreviewOff size='22' />
+
                     }
                 </li>
 

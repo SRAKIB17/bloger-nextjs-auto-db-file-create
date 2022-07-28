@@ -99,6 +99,8 @@ export { default as MaleProfileAvatar } from './icon/ProfileAvatar/MaleProfileAv
 export { default as  PreviewOff} from './icon/Preview/PreviewOff'
 export { default as  PreviewOn} from './icon/Preview/PreviewOn'
 
+export { default as  Printer} from './icon/Printer/Printer'
+
 export { default as Quote } from './icon/Quote'
 
 export { default as Refresh } from './icon/Refresh/Refresh'

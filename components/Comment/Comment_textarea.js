@@ -72,8 +72,8 @@ const Comment_textarea = ({ post, refetch }) => {
             else {
                 showComment.style.height = '0px'
                 commentForm.style.height = '0px'
-                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
                 showCommentButton.className = ' btn-outline btn btn-xs btn-primary ml-2 '
+                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
             }
         }
         catch {

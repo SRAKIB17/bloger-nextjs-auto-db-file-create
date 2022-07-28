@@ -14,13 +14,19 @@ import PostMap from '../../components/Post-NewsFeed/PostMap';
 
 const Index = () => {
     const router = useRouter()
-    const { cat, tag } = router.query;
+    const { cat, tag, page } = router.query;
     const [shows, setShowPosts] = useState(10)
+    const [getPage, setGetPage] = useState(1)
 
+    const pageHandle = () => {
+        router.query.page = getPage + 1;
+        setGetPage(getPage + 1)
+        router.push(router)
+        router.prefetch(router);
+    }
+    // const { data, refetch, isLoading } = useQuery(['userPost_id', cpage], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
 
-    // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
-
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows, tag], () => axios.get(`/api/post/story?cat=${cat}&show=${shows}&tag=${tag}`,
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows, tag, page], () => axios.get(`/api/post/story?cat=${cat}&show=${shows * getPage}&tag=${tag}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
@@ -29,29 +35,19 @@ const Index = () => {
 
     // const posts = data?.data?.result
     const posts = data?.data || []
-    const [getPost, setPost] = useState([])
+    const [getPost, setPost] = useState([]);
     useEffect(() => {
-        if (posts) {
+        if (posts?.length > 0) {
             setPost(posts)
         }
     }, [posts])
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        if (tag) {
-            const getTagPost = getPost.filter(post => post?.tags?.includes(tag))
-            console.log(getTagPost)
 
-        }
-
-    }, [cat, tag])
-
-    console.log(typeof getPost.map)
     return (
         <div className='h-[100vh]'>
             <Header />
 
 
-       
+
             <div className='grid grid-cols-12 gap-2'>
                 <div className='hidden sm:block sm:col-span-4 md:col-span-4 lg:col-span-3 text-justify lg:ml-16 p-1 relative bg-base-100'>
                     <div className='fixed h-[100vh] overflow-auto sm:w-[200px] md:w-full lg:max-w-[350px] lg:pr-[8rem] md:max-w-[300px] md:pr-[7rem]'>
@@ -74,7 +70,7 @@ const Index = () => {
                         <div className=" p-4 mt-2 text-center w-full bg-base-100">
                             <button
                                 className='btn btn-primary lg:btn-sm btn-xs w-32 btn-outline mb-4'
-                                onClick={() => setShowPosts(shows + 10)}
+                                onClick={() => pageHandle()}
                             >
                                 Next
                             </button>

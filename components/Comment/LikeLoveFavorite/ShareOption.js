@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Email, Facebook, FacebookSquare, Google, LinkedinSquare, SkypeSquare } from '../../ReactRSIcon';
+import { Email, Facebook, FacebookSquare, Google, LinkedinSquare, Printer, SkypeSquare } from '../../ReactRSIcon';
 
 const ShareOption = ({ post_id }) => {
     const router = useRouter()
@@ -24,6 +24,12 @@ const ShareOption = ({ post_id }) => {
         else if (url === 'email') {
             const url = `mailto:?subject=I wanted you to see this site&body=Check out this site ${window.location.origin}/story/${post_id} `
             router.push(url)
+
+        }
+        else if (url === 'print') {
+            const url = '/print/' + post_id
+            router.push(url)
+            router.prefetch(url)
 
         }
         else {
@@ -53,6 +59,11 @@ const ShareOption = ({ post_id }) => {
                     <div>
                         <button onClick={() => pushShareUrlHandle('email', post_id)}>
                             <Email size='22' className="rounded-sm text-[#ff0000] hover:text-[#ff5555]" />
+                        </button>
+                    </div>
+                    <div>
+                        <button onClick={() => pushShareUrlHandle('print', post_id)}>
+                            <Printer size='22' className="rounded-sm text-[#00ff33] hover:text-[#ff5555]" />
                         </button>
                     </div>
                 </div>

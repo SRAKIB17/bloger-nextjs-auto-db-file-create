@@ -151,8 +151,8 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
             else {
                 showComment.style.height = '0px'
                 commentForm.style.height = '0px'
-                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
                 showCommentButton.className = ' btn-outline btn btn-xs btn-primary ml-2 '
+                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
             }
         }
         catch {
@@ -212,7 +212,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                                         <img
                                             src={thumbnail}
                                             alt=""
-                                            className='max-w-[200px] h-[200px] md:max-w-[300px] md:h-[200px] rounded-md border-2'
+                                            className='max-w-[200px] h-[200px] md:max-w-[250px] md:h-[160px] rounded-md border-2'
                                         />
                                     </figure>
                                 </div>
