@@ -27,41 +27,35 @@ const Index = () => {
         }));
     const user_details = userInfo?.data?.data?.user_details;
 
+    const [t, setT] = useState(6)
     const onloadIframeHeightStylesHandle = async (id) => {
         const iframe = document.getElementById('print' + id)
         iframe.style.height = await iframe.contentWindow.document.documentElement.scrollHeight + 'px';
 
+        const time = 6
+        const count = setInterval(() => {
+            if (time === 0) {
+                document.getElementById('count').style.display = 'none'
+                clearInterval(count);
+                print()
+            }
+            time--
+            setT(time)
+        }, 1000);
     }
 
 
     const copyLink = `${typeof window !== 'undefined' && window.location.origin ? window.location.origin : ''}/story/${id}`;
     const { thumbnail, postRefMode, short_description } = post;
 
-    // const coverPhoto = [
-    //     {
-    //         pic: coverPhoto1?.src
-    //     }
-    // ]
-    // badge[Math.floor(Math.random() * badge.length)]
 
-    let count = 10;
-    const [countT, setCountT] = useState(10)
-    const countTime = setInterval(() => {
-        if (count < 0) {
-            document.getElementById('count').style.display = 'none'
-            clearInterval(countTime);
-            print()
-        }
-        setCountT(count);
-        count--
 
-    }, 1000);
     return (
         <div>
             <div className='border-b-4 border-red-200'>
                 <div className='fixed top-[50%] left-[50%]'>
                     <p className='btn btn-disabled bg-secondary text-white font-mono font-light' id='count'>
-                        Please Wait {countT + ' '}sec
+                        Please Wait {t + ' '} sec
                     </p>
                 </div>
                 <div className='p-5 pl-10 pr-10'>
