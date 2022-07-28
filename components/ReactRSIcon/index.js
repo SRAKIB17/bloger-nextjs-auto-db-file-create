@@ -14,6 +14,8 @@ export { default as Category1 } from './icon/Category/Category1'
 export { default as Delete } from './icon/Delete/Delete'
 export { default as Email } from './icon/Email/Email'
 
+export { default as Emoji } from './icon/Emoji/Emoji'
+
 //------------------ serial G-----------------
 
 
@@ -32,6 +34,8 @@ export { default as GithubSquare } from './icon/Social/Github/github_square'
 export { default as GithubText } from './icon/Social/Github/github_text'
 
 export { default as GooglePlayBadge } from './icon/googlePlayBadge'
+
+export { default as GifText } from './icon/Gif/GifText'
 
 
 export { default as FemaleGender } from './icon/Gender/FemaleGender'

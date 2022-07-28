@@ -23,12 +23,12 @@ const EmojiShowImg = ({ index, selectEmoji, selectEmojiHandle }) => {
     let emojiGif = images(`./others (${index + 1}).gif`);
     return (
         <div>
-            <button
-                className={(selectEmoji == emojiGif?.default?.src ? "border-primary btn-disabled " : " border-grey-300") + " border-2 p-1 rounded-md"}
+            <span
+                className={(selectEmoji == emojiGif?.default?.src ? "btn btn-disabled bg-primary" : " btn btn-primary btn-outline")}
                 onClick={() => selectEmojiHandle(emojiGif?.default?.src)}
             >
-                <img src={emojiGif?.default?.src} alt="" />
-            </button>
+                <img src={emojiGif?.default?.src} alt="" className='h-full'/>
+            </span>
         </div>
     )
 }

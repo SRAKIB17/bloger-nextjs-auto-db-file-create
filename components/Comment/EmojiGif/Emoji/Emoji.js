@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './emoji.module.css'
 const Emoji = ({ props: { selectEmoji, setSelectEmoji } }) => {
     const selectEmojiHandle = (path) => {
-        console.log(path)
         setSelectEmoji(path)
     }
     return (
@@ -23,12 +22,12 @@ const EmojiShowImg = ({ index, selectEmoji, selectEmojiHandle }) => {
     let emoji = images(`./emoji${index + 1}/2.png`);
     return (
         <div>
-            <button
-                className={(selectEmoji == emoji?.default?.src ? "border-primary btn-disabled " : " border-grey-300") + " border-2 p-1"}
+            <span
+                className={(selectEmoji == emoji?.default?.src ? "btn btn-disabled bg-primary" : " btn btn-primary btn-outline")}
                 onClick={() => selectEmojiHandle(emoji?.default?.src)}
             >
                 <img src={emoji?.default?.src} alt="" />
-            </button>
+            </span>
         </div>
     )
 }

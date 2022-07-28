@@ -9,23 +9,23 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji } }) => {
         setGifView(view)
     }
     return (
-        <div>
-            <div className='flex gap-2 p-4'>
-                <button
+        <div >
+            <div className='flex gap-2 p-4 '>
+                <span
                     className={(gifView == 'emoji' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs text-2xs "}
                     onClick={() => viewGifHandle('emoji')}
                 >
                     Emoji
-                </button>
-                <button
+                </span>
+                <span
                     className={(gifView == 'others' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs text-2xs "}
                     onClick={() => viewGifHandle('others')}
                 >
                     Others
-                </button>
+                </span>
 
             </div>
-            <div className='h-[300px] overflow-auto border-2 rounded-md p-1 max-w-sm'>
+            <div className='h-[300px] overflow-auto border-2 rounded-md p-1 max-w-sm absolute top-[-310px] w-full z-20'>
                 {
                     gifView == 'emoji' && <EmojiGif props={{ selectEmoji, setSelectEmoji }} />
                 }

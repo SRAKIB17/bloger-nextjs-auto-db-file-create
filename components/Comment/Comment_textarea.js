@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from './Comment.module.css'
@@ -7,6 +8,7 @@ import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
 import Login from '../Login/Login'
 import { UserFullInfoProvider } from '../../pages/_app';
 import axios from 'axios';
+import EmojiGifIndex from './EmojiGif/EmojiGifIndex';
 
 const Comment_textarea = ({ post, refetch }) => {
     // POST INFO AND USER INFO
@@ -94,7 +96,13 @@ const Comment_textarea = ({ post, refetch }) => {
     }
 
     const [errMsg, setErrMsg] = useState('')
-    const [sendCommentLoading, setSendCommentLoading] = useState(null)
+    const [sendCommentLoading, setSendCommentLoading] = useState(null);
+
+
+    // FOR GIF EMOJI
+    const [selectEmoji, setSelectEmoji] = useState(null)
+    const [showEmojiGifSection, setShowEmojiGifSection] = useState(null);
+
     const postCommentHandler = async (e) => {
         e.preventDefault()
         setSendCommentLoading(true);
@@ -104,8 +112,10 @@ const Comment_textarea = ({ post, refetch }) => {
                 userID: user_details?.userID,
                 time: Date(),
                 comment_id: replyNow?.comment_id,
-                reply: CommentTextareaRef.current.value
+                reply: CommentTextareaRef.current.value,
+                emoji: selectEmoji
             }
+
             const { data } = await axios.put(`/api/post/comments-reply?email=${user_details?.email}`, replyBody,
                 {
                     headers: {
@@ -117,9 +127,13 @@ const Comment_textarea = ({ post, refetch }) => {
 
             if (data?.message === 'success') {
                 refetch()
+                setSelectEmoji(null)
+                setShowEmojiGifSection(null)
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
                     refetch()
+                    setShowEmojiGifSection(null)
+                    setSelectEmoji(null)
                     e.target.reset();
                     setReplyNow(null)
                 }
@@ -137,7 +151,8 @@ const Comment_textarea = ({ post, refetch }) => {
                 comment: CommentTextareaRef.current.value,
                 time: Date(),
                 comment_id: 2,
-                replies: []
+                replies: [],
+                emoji: selectEmoji
             }
             // FETCH POST AXIOS METHOD
             const { data } = await axios.post(`/api/post/post-comments?email=${user_details?.email}`, comment,
@@ -151,9 +166,13 @@ const Comment_textarea = ({ post, refetch }) => {
 
             if (data?.message === 'success') {
                 refetch()
+                setSelectEmoji(null)
+                setShowEmojiGifSection(null)
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
                     refetch()
+                    setSelectEmoji(null)
+                    setShowEmojiGifSection(null)
                     e.target.reset()
                 }
             }
@@ -205,15 +224,36 @@ const Comment_textarea = ({ post, refetch }) => {
                     user?.user &&
                     <form className=' pt-4 mb-4' onSubmit={postCommentHandler} >
                         {/****************** for reply section when a user reply other this name show display ************************ */}
-                        {
-                            replyNow &&
-                            <div className='mt-3 flex items-center mb-2 pl-3 pr-3 text-secondary bg-gray-100 w-fit rounded-3xl'>
-                                <h1 className='text-xs'>@{replyNow?.name}</h1>
+
+
+                        {/* *********FOR GIF EMOJI************* */}
+                        <div>
+                            <EmojiGifIndex props={{ selectEmoji, setSelectEmoji, showEmojiGifSection, setShowEmojiGifSection }} />
+                            <div className='flex items-center gap-2'>
                                 <div>
-                                    <a href="#" onClick={() => setReplyNow(null)} className=' text-xl ml-2 hover:text-[grey]'>&times;</a>
+                                    {
+                                        replyNow &&
+                                        <div className='mt-3 flex items-center mb-2 pl-3 pr-3 text-secondary bg-gray-100 w-fit rounded-3xl'>
+                                            <h1 className='text-xs'>@{replyNow?.name}</h1>
+                                            <div>
+                                                <a href="#" onClick={() => setReplyNow(null)} className=' text-xl ml-2 hover:text-[grey]'>&times;</a>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        selectEmoji &&
+                                        <div className='w-11 h-11 p-1 border-2 rounded-md relative'>
+                                            <span className='absolute text-2xs top-[-18px] right-[-10px] btn-primary btn btn-xs btn-outline bg-base-100'>
+                                                x
+                                            </span>
+                                            <img src={selectEmoji} alt="" />
+                                        </div>
+                                    }
                                 </div>
                             </div>
-                        }
+                        </div>
                         <p className='text-red-600 text-xs p-1'>
                             {
                                 errMsg
