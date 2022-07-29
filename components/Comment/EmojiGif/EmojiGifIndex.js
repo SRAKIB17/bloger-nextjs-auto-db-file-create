@@ -8,9 +8,13 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
     const viewEmojiSectionHandle = (view) => {
         setShowEmojiGifSection(view)
     }
+
+    const closeCloseSectionHandle = () => {
+        setShowEmojiGifSection(null)
+    }
     return (
         <div className='relative'>
-            <div className='mb-2'>
+            <div className='m-2'>
                 <div className='flex  items-center gap-2'>
                     <span
                         className='btn btn-xs h-8 btn-outline btn-info'
@@ -28,6 +32,17 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
             </div>
 
             <div className='bg-base-300'>
+                {
+                    showEmojiGifSection &&
+                    <div>
+                        <span
+                            className='absolute top-[-330px] z-20 left-[381px] btn btn-primary text-white btn-xs'
+                            onClick={closeCloseSectionHandle}
+                        >
+                            x
+                        </span>
+                    </div>
+                }
                 {
                     showEmojiGifSection == 'emoji' &&
                     <EmojiIndex props={{ selectEmoji, setSelectEmoji }} />
