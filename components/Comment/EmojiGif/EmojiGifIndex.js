@@ -32,24 +32,14 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
             </div>
 
             <div className='bg-base-300'>
-                {
-                    showEmojiGifSection &&
-                    <div>
-                        <span
-                            className='absolute top-[-330px] z-20 left-[381px] btn btn-primary text-white btn-xs'
-                            onClick={closeCloseSectionHandle}
-                        >
-                            x
-                        </span>
-                    </div>
-                }
+              
                 {
                     showEmojiGifSection == 'emoji' &&
-                    <EmojiIndex props={{ selectEmoji, setSelectEmoji }} />
+                    <EmojiIndex props={{ selectEmoji, setSelectEmoji, closeCloseSectionHandle }} />
                 }
                 {
                     showEmojiGifSection == 'gif' &&
-                    <GifIndex props={{ selectEmoji, setSelectEmoji }} />
+                    <GifIndex props={{ selectEmoji, setSelectEmoji, closeCloseSectionHandle }} />
                 }
             </div>
         </div>

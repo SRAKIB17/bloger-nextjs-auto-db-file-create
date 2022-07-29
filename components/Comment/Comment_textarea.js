@@ -222,7 +222,7 @@ const Comment_textarea = ({ post, refetch }) => {
             <div id={'commentForm' + post_id} className={styles.showComment}>
 
                 {
-                    user?.user &&
+                    // user?.user &&
                     <form className=' pt-4 mb-4' onSubmit={postCommentHandler} >
                         {/****************** for reply section when a user reply other this name show display ************************ */}
 

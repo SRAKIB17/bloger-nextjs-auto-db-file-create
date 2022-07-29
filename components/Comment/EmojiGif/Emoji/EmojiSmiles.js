@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react';
 import styles from './emoji.module.css'
-const Emoji = ({ props: { selectEmoji, setSelectEmoji } }) => {
+const EmojiSmiles = ({ props: { selectEmoji, setSelectEmoji } }) => {
     const selectEmojiHandle = (path) => {
         setSelectEmoji(path)
     }
@@ -9,7 +9,7 @@ const Emoji = ({ props: { selectEmoji, setSelectEmoji } }) => {
         <div>
             <div className={styles?.emoji}>
                 {
-                    [...Array(21).keys()].map((index) => < EmojiShowImg index={index} key={index} selectEmoji={selectEmoji} selectEmojiHandle={selectEmojiHandle} />)
+                    [...Array(25).keys()].map((index) => < EmojiShowImg index={index} key={index} selectEmoji={selectEmoji} selectEmojiHandle={selectEmojiHandle} />)
                 }
             </div>
         </div>
@@ -18,8 +18,8 @@ const Emoji = ({ props: { selectEmoji, setSelectEmoji } }) => {
 
 const EmojiShowImg = ({ index, selectEmoji, selectEmojiHandle }) => {
 
-    const images = require.context('../../../../public/emojis/emojis', true);
-    let emoji = images(`./emoji${index + 1}/2.png`);
+    const images = require.context('../../../../public/emojis/smiles', true);
+    let emoji = images(`./${index + 1}.webp`);
     return (
         <div>
             <span
@@ -33,4 +33,4 @@ const EmojiShowImg = ({ index, selectEmoji, selectEmojiHandle }) => {
 }
 
 
-export default Emoji;
+export default EmojiSmiles;
