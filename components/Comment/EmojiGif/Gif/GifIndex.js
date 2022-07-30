@@ -2,6 +2,17 @@
 import React, { useState } from 'react';
 import EmojiGif from './EmojiGif';
 import OtherEmojiGif from './OtherEmojiGif';
+import loveGif from '../../../../public/gif/love emoji/love (5).gif'
+import roseGif from '../../../../public/gif/Rose/1.gif'
+import catAnimal from '../../../../public/gif/cat emoji/cat (1).gif'
+import emojiGif2 from '../../../../public/gif/emoji 2/emoji (3).gif'
+
+import LoveEmojiGif from './LoveEmojiGif';
+import RoseGif from './RoseGif';
+import CatAnimal from './CatAnimal';
+import EmojiGif2 from './EmojiGif2';
+
+
 
 const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandle } }) => {
 
@@ -11,22 +22,49 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
     }
     return (
         <div >
-            <div className='flex gap-2 p-4 '>
+            <div className='flex gap-2 p-4 flex-wrap'>
                 <span
-                    className={(gifView == 'emoji' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-sm "}
+                    className={(gifView == 'emoji' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewGifHandle('emoji')}
                 >
                     <img src='/_next/static/media/0.f5ccf354.gif' alt="" className='h-full' />
                 </span>
                 <span
-                    className={(gifView == 'others' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-sm "}
+                    className={(gifView == 'emoji2' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
+                    onClick={() => viewGifHandle('emoji2')}
+                >
+                    <img src={emojiGif2?.src} alt="" className='h-full' />
+                </span>
+                <span
+                    className={(gifView == 'others' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewGifHandle('others')}
                 >
                     <img src='/_next/static/media/others%20(1).26ce2553.gif' alt="" className='h-full' />
                 </span>
 
                 <span
-                    className='btn btn-sm text-white bg-red-600 hover:bg-red-500'
+                    className={(gifView == 'catAnimal' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
+                    onClick={() => viewGifHandle('catAnimal')}
+                >
+                    <img src={catAnimal?.src} alt="" className='h-full' />
+                </span>
+
+                <span
+                    className={(gifView == 'loveGif' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
+                    onClick={() => viewGifHandle('loveGif')}
+                >
+                    <img src={loveGif?.src} alt="" className='h-full' />
+                </span>
+
+                <span
+                    className={(gifView == 'roseGif' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
+                    onClick={() => viewGifHandle('roseGif')}
+                >
+                    <img src={roseGif?.src} alt="" className='h-full' />
+                </span>
+
+                <span
+                    className='btn btn-xs text-white bg-red-600 hover:bg-red-500'
                     onClick={closeCloseSectionHandle}
                 >
                     X
@@ -38,7 +76,19 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
                     gifView == 'emoji' && <EmojiGif props={{ selectEmoji, setSelectEmoji }} />
                 }
                 {
+                    gifView == 'emoji2' && <EmojiGif2 props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
                     gifView == 'others' && <OtherEmojiGif props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    gifView == 'loveGif' && <LoveEmojiGif props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    gifView == 'roseGif' && <RoseGif props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    gifView == 'catAnimal' && <CatAnimal props={{ selectEmoji, setSelectEmoji }} />
                 }
             </div>
 

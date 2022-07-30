@@ -3,6 +3,7 @@ import { Emoji, GifText } from '../../ReactRSIcon';
 import EmojiIndex from './Emoji/EmojiIndex';
 import GifIndex from './Gif/GifIndex';
 
+
 const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSection, setShowEmojiGifSection } }) => {
 
     const viewEmojiSectionHandle = (view) => {
@@ -17,13 +18,13 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
             <div className='m-2'>
                 <div className='flex  items-center gap-2'>
                     <span
-                        className='btn btn-xs h-8 btn-outline btn-info'
+                        className={(showEmojiGifSection === 'emoji' ? 'btn-disabled text-white bg-primary ' : 'btn-outline ') + ' btn btn-xs h-8  btn-info'}
                         onClick={() => viewEmojiSectionHandle('emoji')}
                     >
                         <Emoji size='22' />
                     </span>
                     <span
-                        className='btn btn-xs h-8 btn-outline btn-info'
+                        className={(showEmojiGifSection === 'gif' ? 'btn-disabled text-white bg-primary ' : 'btn-outline ') + ' btn btn-xs h-8  btn-info'}
                         onClick={() => viewEmojiSectionHandle('gif')}
                     >
                         <GifText size='24' />
@@ -32,7 +33,7 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
             </div>
 
             <div className='bg-base-300'>
-              
+
                 {
                     showEmojiGifSection == 'emoji' &&
                     <EmojiIndex props={{ selectEmoji, setSelectEmoji, closeCloseSectionHandle }} />
@@ -42,7 +43,7 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
                     <GifIndex props={{ selectEmoji, setSelectEmoji, closeCloseSectionHandle }} />
                 }
             </div>
-        </div>
+        </div >
     );
 };
 
