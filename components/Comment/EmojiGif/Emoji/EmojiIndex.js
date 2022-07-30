@@ -35,12 +35,14 @@ const EmojiIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHan
         <div>
             <div className='flex gap-2 p-4 flex-wrap '>
 
+                {/* ***********FOR EMOJI 00 ***************** */}
                 <span
                     className={(emojiView == 'emoji' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewEmojiHandle('emoji')}
                 >
                     <img src={emoji?.src} alt="" className='h-full' />
                 </span>
+                {/* **********FOR EMOJI 01 ***************** */}
 
                 <span
                     className={(emojiView == 'emoji1' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
@@ -48,12 +50,16 @@ const EmojiIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHan
                 >
                     <img src={emoji1?.src} alt="" className='h-full' />
                 </span>
+
+                {/* **********FOR EMOJI 02 ***************** */}
+
                 <span
                     className={(emojiView == 'emoji2' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewEmojiHandle('emoji2')}
                 >
                     <img src={emoji2?.src} alt="" className='h-full' />
                 </span>
+                {/* **********FOR EMOJI 03 ***************** */}
 
                 <span
                     className={(emojiView == 'emoji3' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
@@ -62,12 +68,14 @@ const EmojiIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHan
                     <img src={emoji3?.src} alt="" className='h-full' />
                 </span>
 
+                {/* ****************KOLOBANGA*************** */}
                 <span
                     className={(emojiView == 'kolobanga' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewEmojiHandle('kolobanga')}
                 >
                     <img src={kolobanga?.src} alt="" className='h-full' />
                 </span>
+                {/* ****************SMILES*************** */}
 
                 <span
                     className={(emojiView == 'smiles' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
@@ -76,6 +84,8 @@ const EmojiIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHan
                     <img src={smiles?.src} alt="" className='h-full' />
                 </span>
 
+                {/* ***************DOG EMOJI*************** */}
+
                 <span
                     className={(emojiView == 'dogEmoji' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewEmojiHandle('dogEmoji')}
@@ -83,24 +93,32 @@ const EmojiIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHan
                     <img src={dogEmoji?.src} alt="" className='h-full' />
                 </span>
 
+                {/* ***************HAND EMOJI*************** */}
+
                 <span
                     className={(emojiView == 'handEmoji' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
-                    onClick={() => viewEmojiHandle('handEmoji')} 
+                    onClick={() => viewEmojiHandle('handEmoji')}
                 >
                     <img src={handEmoji?.src} alt="" className='h-full' />
                 </span>
+
+                {/* **************PAPE*************** */}
                 <span
                     className={(emojiView == 'pape' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
-                    onClick={() => viewEmojiHandle('pape')} 
+                    onClick={() => viewEmojiHandle('pape')}
                 >
                     <img src={pape?.src} alt="" className='h-full' />
                 </span>
+
+                {/* **************SPONG BOB EMOJI*********** */}
                 <span
                     className={(emojiView == 'spongbob' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
-                    onClick={() => viewEmojiHandle('spongbob')} 
+                    onClick={() => viewEmojiHandle('spongbob')}
                 >
                     <img src={spongbob?.src} alt="" className='h-full' />
                 </span>
+
+                {/* **************FUNNY BABY***************** */}
                 <span
                     className={(emojiView == 'funnyBaby' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewEmojiHandle('funnyBaby')}
@@ -108,7 +126,7 @@ const EmojiIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHan
                     <img src={funnyBaby?.src} alt="" className='h-full' />
                 </span>
 
-
+                {/* **********************CLOSE BUTTON************* */}
                 <span
                     className='btn btn-xs text-white bg-red-600 hover:bg-red-500'
                     onClick={closeCloseSectionHandle}

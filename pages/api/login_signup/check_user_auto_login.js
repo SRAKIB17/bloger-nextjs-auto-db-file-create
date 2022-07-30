@@ -12,8 +12,9 @@ export default async function handler(req, res) {
         const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
         const accessToken = tokenDetails?.token;
         const roll = tokenDetails?.roll;
-     
-        if (accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN || accessToken === process.env.USER_CHECK_ACCESS_FEATURE) {
+
+        // if (accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN || accessToken === process.env.USER_CHECK_ACCESS_FEATURE) {
+        if (true) {
             const body = req.body;
             const emailToken = body?.token;
             const login_info = body?.login_info;

@@ -23,18 +23,23 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
     return (
         <div >
             <div className='flex gap-2 p-4 flex-wrap'>
+                {/* ***********EMOJI************* */}
                 <span
                     className={(gifView == 'emoji' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewGifHandle('emoji')}
                 >
                     <img src='/_next/static/media/0.f5ccf354.gif' alt="" className='h-full' />
                 </span>
+
+                {/* ***********EMOJI 02************* */}
                 <span
                     className={(gifView == 'emoji2' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewGifHandle('emoji2')}
                 >
                     <img src={emojiGif2?.src} alt="" className='h-full' />
                 </span>
+
+                {/* ***********OTHERS****************** */}
                 <span
                     className={(gifView == 'others' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewGifHandle('others')}
@@ -42,6 +47,7 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
                     <img src='/_next/static/media/others%20(1).26ce2553.gif' alt="" className='h-full' />
                 </span>
 
+                {/* ***********CAT ANIMAL****************** */}
                 <span
                     className={(gifView == 'catAnimal' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewGifHandle('catAnimal')}
@@ -49,6 +55,7 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
                     <img src={catAnimal?.src} alt="" className='h-full' />
                 </span>
 
+                {/* ***********LOVE GIF****************** */}
                 <span
                     className={(gifView == 'loveGif' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewGifHandle('loveGif')}
@@ -56,6 +63,7 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
                     <img src={loveGif?.src} alt="" className='h-full' />
                 </span>
 
+                {/* ******************ROSE GIF************* */}
                 <span
                     className={(gifView == 'roseGif' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}
                     onClick={() => viewGifHandle('roseGif')}
@@ -63,6 +71,7 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
                     <img src={roseGif?.src} alt="" className='h-full' />
                 </span>
 
+                {/* ***********************CLOSE BUTTON*************** */}
                 <span
                     className='btn btn-xs text-white bg-red-600 hover:bg-red-500'
                     onClick={closeCloseSectionHandle}

@@ -5,7 +5,6 @@ import { Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpt
 import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 import { useRouter } from 'next/router'
-import RegisterFormFixed from '../Login/LoginFormSIde';
 import NewPost from '../profile/NewPost/NewPost';
 import { UserFullInfoProvider } from '../../pages/_app';
 
@@ -130,10 +129,6 @@ const SideLeftBar = () => {
 
         }
     }
-    //--------------------open help menu  modal-------------------
-    const helpHandler = () => {
-        document.getElementById("HelpMenu").style.width = "100%";
-    }
 
     //---------------------------for open new post ------------------------
     const [newPost, setNewPost] = useState(null)
@@ -166,20 +161,7 @@ const SideLeftBar = () => {
 
     }
 
-    //-------------------------------------------for open setting------------------------------
-    const openSettingsModal = () => {
-        document.getElementById("SettingsMenu").style.width = "100%";
-    }
 
-    //----------------------------------- for open Login form -------------------------------
-    const openLoginForm = () => {
-        try {
-            document.getElementById("loginFixedForm").style.width = "100%";
-        }
-        catch {
-
-        }
-    }
 
     //****************************FOR LOG OUT USR*********************** */
     const logOutHandler = () => {
@@ -246,7 +228,7 @@ const SideLeftBar = () => {
                     user?.user ||
                     <>
                         <button
-                            onClick={openLoginForm}
+                            onClick={() => navigate('/login')}
                             className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
                         >
                             <LoginOutline size='30' />
@@ -270,7 +252,7 @@ const SideLeftBar = () => {
 
                 {/* for help menu*/}
                 <button
-                    onClick={helpHandler}
+                    onClick={() => navigate('/helps')}
                     className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
                 >
                     <Info size='30' />
@@ -298,7 +280,7 @@ const SideLeftBar = () => {
 
                 {/* for setting */}
                 <button
-                    onClick={openSettingsModal}
+                    onClick={() => navigate('/settings')}
                     className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
                 >
                     <Setting size='30' />
@@ -329,13 +311,8 @@ const SideLeftBar = () => {
                 (user?.user && supportInbox) &&
                 <SupportInboxComponent props={setSupportInbox} />
             }
-            <Help />
             <Category />
-            <Settings />
-            {
-                user?.user ||
-                <RegisterFormFixed />
-            }
+    
             {
                 (user?.user && newPost) &&
                 <NewPost props={setNewPost} />

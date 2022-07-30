@@ -7,11 +7,17 @@ const Docs = () => {
     return (
         <div>
             <div className='flex mb-5'>
-                <button className='btn btn-outline btn-primary btn-xs mr-1' onClick={() => setClassEmmet(true)}>
-                    Class
+                <button
+                    className={(classEmmet ? 'btn-disabled bg-primary text-white' : 'btn-primary ') + ' btn btn-outline btn-xs mr-1'}
+                    onClick={() => setClassEmmet(true)}
+                >
+                    Attributes
                 </button>
-                <button className='btn btn-outline btn-primary btn-xs' onClick={() => setClassEmmet(false)}>
-                    Html
+                <button
+                    className={(!classEmmet ? 'btn-disabled bg-primary text-white' : 'btn-primary ') + ' btn btn-outline btn-xs mr-1'}
+                    onClick={() => setClassEmmet(false)}
+                >
+                    Tag
                 </button>
             </div>
             <table className="table table-zebra w-full overflow-x-auto" >

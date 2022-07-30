@@ -2,9 +2,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserFullInfoProvider } from '../../pages/_app';
-import EmojiIndex from '../Comment/EmojiGif/Emoji/EmojiIndex';
 
-import GifIndex from '../Comment/EmojiGif/Gif/GifIndex';
 // import file from 'https://bloger-nextjs-auto-db-file-create-ll9vdpmwl-srakib17.vercel.app/api/js'
 // console.log(file)
 const Home = () => {
@@ -95,17 +93,8 @@ const Home = () => {
         // console.log(emoji?.default?.src)
     }
     run()
-    const [selectEmoji, setSelectEmoji] = useState(null)
     return (
         <div>
-            <EmojiIndex props={{ selectEmoji, setSelectEmoji }} />
-            <GifIndex props={{ selectEmoji, setSelectEmoji }} />
-            
-            <div className='p-5'>
-                {
-                    <img src={selectEmoji} alt="" />
-                }
-            </div>
             <div>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores doloremque, quis architecto earum cum facilis in provident aperiam alias expedita ducimus quibusdam, incidunt maxime ab officiis dicta quod voluptatibus ipsa.
 

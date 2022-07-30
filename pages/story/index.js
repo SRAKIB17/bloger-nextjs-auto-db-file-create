@@ -32,7 +32,6 @@ const Index = () => {
         }
     ))
 
-
     // const posts = data?.data?.result
     const posts = data?.data || []
     const [getPost, setPost] = useState([]);
