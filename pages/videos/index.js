@@ -2,45 +2,43 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import Header from '../../components/Header/Header';
-import Post from '../../components/Post-NewsFeed/Post';
 import { useRouter } from 'next/router'
 import LoadingSpin from '../../components/LoadingSpin'
 import Login from '../../components/Login/Login';
 import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 import RightSideLg from '../../components/Post-NewsFeed/RightSideLg';
 import LeftSideLg from '../../components/Post-NewsFeed/LeftSideLg';
+import PostMap from '../../components/Post-NewsFeed/PostMap';
 
 const Index = () => {
     const router = useRouter()
-    const { cat, tag } = router.query;
+    const { cat, tag, page } = router.query;
     const [shows, setShowPosts] = useState(10)
-    // const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/newpost?cat=${cat}&tag=${tag}&show=${shows}`))
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
+    const [getPage, setGetPage] = useState(1)
 
-    // const posts = data?.data?.result
-    const posts = data?.data
-    const [getPost, setPost] = useState([])
+    const pageHandle = () => {
+        router.query.page = getPage + 1;
+        setGetPage(getPage + 1)
+        router.push(router)
+        router.prefetch(router);
+    }
+    // const { data, refetch, isLoading } = useQuery(['userPost_id', cpage], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
+
+    const { data, refetch, isLoading } = useQuery(['videosPost', cat, shows, tag, page], () => axios.get(`/api/post/videos?cat=${cat}&show=${shows * getPage}&tag=${tag}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }
+    ))
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const posts = data?.data || []
+    const [getPost, setPost] = useState([]);
     useEffect(() => {
-        if (posts) {
-
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            try {
-                // eslint-disable-next-line react-hooks/exhaustive-deps
-                posts = data?.data?.filter((post, _index, arr) => {
-                    if (post?.postRefMode === 'video') {
-                        return arr;
-                    }
-                })
-                setPost(posts)
-            }
-            catch {
-
-            }
+        if (posts?.length > 0) {
+            setPost(posts)
         }
     }, [posts])
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [cat, tag])
+
 
     return (
         <div className='h-[100vh]'>
@@ -55,14 +53,20 @@ const Index = () => {
 
                 <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-6' id='storyScroll'>
 
-                    <Post posts={getPost} refetch={refetch} />
+                    {
+                        isLoading || typeof getPost?.map === 'function'
+                            ?
+                            getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
+                            :
+                            ''
+                    }
 
                     {
                         isLoading ||
                         <div className=" p-4 mt-2 text-center w-full bg-base-100">
                             <button
                                 className='btn btn-primary lg:btn-sm btn-xs w-32 btn-outline mb-4'
-                                onClick={() => setShowPosts(shows + 10)}
+                                onClick={() => pageHandle()}
                             >
                                 Next
                             </button>

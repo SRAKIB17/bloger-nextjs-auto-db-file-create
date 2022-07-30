@@ -16,13 +16,10 @@ export default async function handler(req, res) {
         const { cat } = await req.query;
         const { show } = req.query;
         const { tag } = req.query;
-        const { userID } = req.query;
-
 
         // DEFAULT
         if (cat === 'undefined' || !cat) {
-            const getPosts = await postCollection.find({ userID: userID }).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
-            
+            const getPosts = await postCollection.find({ postRefMode: 'video' }).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
             return res.status(200).json(getPosts)
         }
 
@@ -32,11 +29,12 @@ export default async function handler(req, res) {
             const getPosts = await postCollection.find({
                 "$and":
                     [
-                        { userID: userID },
+                        { postRefMode: 'video' },
                         { category: cat },
                         { tags: { $regex: query } }
                     ]
-            }).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
+            }
+            ).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
             return res.status(200).json(getPosts)
         }
 
@@ -47,7 +45,7 @@ export default async function handler(req, res) {
             const getPosts = await postCollection.find({
                 "$and":
                     [
-                        { userID: userID },
+                        { postRefMode: 'video' },
                         { category: cat },
                         { tags: { $regex: query } }
                     ]

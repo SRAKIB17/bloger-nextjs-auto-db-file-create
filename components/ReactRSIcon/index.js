@@ -1,7 +1,12 @@
 
 export { default as AlarmFill } from './icon/alarm-fill'
+export { default as Announcement } from './icon/Announcement/Announcement'
+
 export { default as AppStore } from './icon/app-store'
 export { default as ApkColor } from './icon/Apk/ApkColor'
+
+export { default as ArrowsRight } from './icon/Arrow/ArrowsRight'
+export { default as ArrowsRightDouble } from './icon/Arrow/ArrowsRightDouble'
 
 export { default as BubbleCommentChat } from './icon/Comment/bubbleCommentChat'
 export { default as Comment } from './icon/Comment/comment'
@@ -9,6 +14,8 @@ export { default as Comment } from './icon/Comment/comment'
 export { default as ChatForum } from './icon/ChatForum/ChatForum'
 export { default as Camera } from './icon/Camera/Camera'
 export { default as Copy } from './icon/Copy/Copy'
+
+export { default as CloseCross } from './icon/CloseCross/CloseCross'
 
 export { default as Category1 } from './icon/Category/Category1'
 export { default as Delete } from './icon/Delete/Delete'
@@ -59,6 +66,7 @@ export { default as InstagramSquare } from './icon/Social/Instagram/instagramSqu
 
 
 export { default as Location } from './icon/Address/Location'
+export { default as Line } from './icon/Line/Line'
 export { default as Like } from './icon/Like/Like'
 export { default as EmoticonLove } from './icon/Like/EmoticonLove'
 

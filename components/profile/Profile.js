@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 
-import Post from '../Post-NewsFeed/Post';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
 import About from './About';
 import { useQuery } from 'react-query';
@@ -15,6 +15,8 @@ import NewPost from './NewPost/NewPost';
 import { useContext } from 'react';
 import { UserFullInfoProvider } from '../../pages/_app';
 import { useRouter } from 'next/router';
+import LoadingFlowCircle from '../LoadingFlowCircle';
+import PostMap from '../Post-NewsFeed/PostMap';
 
 const Profile = () => {
     const { user, user_details } = useContext(UserFullInfoProvider)
@@ -66,28 +68,34 @@ const Profile = () => {
     }, [])
 
 
+
     const router = useRouter()
-    const { cat, tag } = router.query;
+    const { cat, tag, page } = router.query;
     const [shows, setShowPosts] = useState(10)
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows], () => axios.get(`/api/post/user-post?cat=${cat}&show=${shows}&&userID=${user_details?.userID}`,
+    const [getPage, setGetPage] = useState(1)
+
+    const pageHandle = () => {
+        router.query.page = getPage + 1;
+        setGetPage(getPage + 1)
+        router.push(router)
+        router.prefetch(router);
+    }
+    // const { data, refetch, isLoading } = useQuery(['userPost_id', cpage], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
+
+    const { data, refetch, isLoading } = useQuery(['userPostSpecific', cat, shows, tag, page], () => axios.get(`/api/post/user-post?userID=${user_details?.userID}&cat=${cat}&show=${shows * getPage}&tag=${tag}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
     ))
 
-
     // const posts = data?.data?.result
-    const posts = data?.data;
-    const [getPost, setPost] = useState([])
+    const posts = data?.data || []
+    const [getPost, setPost] = useState([]);
     useEffect(() => {
-        if (posts) {
+        if (posts?.length > 0) {
             setPost(posts)
         }
     }, [posts])
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [cat, tag])
-
     const [uploadMethod, setUploadMethod] = useState(null);
     const [editProfile, setEditProfile] = useState(null);
 
@@ -223,7 +231,42 @@ const Profile = () => {
                 </div>
                 {/* *****************************************USER POST ********************************************************** */}
                 <div className='col-span-12 md:col-span-7 sticky' id='post'>
-                    <Post posts={getPost} />
+                    {
+                        isLoading || typeof getPost?.map === 'function'
+                            ?
+                            getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
+                            :
+                            ''
+                    }
+
+                    {
+                        isLoading ||
+                        <div className=" p-4 mt-2 text-center w-full bg-base-100">
+                            <button
+                                className='btn btn-primary lg:btn-sm btn-xs w-32 btn-outline mb-4'
+                                onClick={() => pageHandle()}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    }
+                    {
+                        (isLoading && getPost.length === 0) &&
+                        <div className='flex flex-col justify-between pt-40 bg-base-100 h-[100vh] items-center'>
+                            <div>
+                                <LoadingFlowCircle />
+                            </div>
+                        </div>
+                    }
+                    {
+                        (isLoading && getPost.length !== 0) && <div className='flex flex-col justify-between pt-4 bg-base-100 pb-4 items-center'>
+
+                            <div>
+                                <LoadingFlowCircle />
+                            </div>
+                        </div>
+                    }
+
                 </div>
             </div>
             {/* ********************************************************************************************** */}

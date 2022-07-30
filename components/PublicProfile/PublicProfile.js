@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useQuery } from 'react-query';
 import axios from 'axios';
@@ -8,6 +9,8 @@ import Post from '../Post-NewsFeed/Post';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 import { useRouter } from 'next/router';
+import PostMap from '../Post-NewsFeed/PostMap';
+import LoadingFlowCircle from '../LoadingFlowCircle';
 
 const PublicProfile = () => {
     const router = useRouter()
@@ -18,9 +21,34 @@ const PublicProfile = () => {
         }));
     const user_details = userInfo?.data?.data?.user_details;
     const isLoadingAbout = userInfo?.isLoading;
-    console.log(user_details)
-    const { data } = useQuery(['public_profile_post', user_id], () => axios.get('/api/test'))
 
+
+    const { cat, tag, page } = router.query;
+    const [shows, setShowPosts] = useState(10)
+    const [getPage, setGetPage] = useState(1)
+
+    const pageHandle = () => {
+        router.query.page = getPage + 1;
+        setGetPage(getPage + 1)
+        router.push(router)
+        router.prefetch(router);
+    }
+    // const { data, refetch, isLoading } = useQuery(['userPost_id', cpage], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
+
+    const { data, refetch, isLoading } = useQuery(['userPostSpecificPublic', cat, shows, tag, page], () => axios.get(`/api/post/user-post?userID=${user_details?.userID}&cat=${cat}&show=${shows * getPage}&tag=${tag}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }
+    ))
+
+    // const posts = data?.data?.result
+    const posts = data?.data || []
+    const [getPost, setPost] = useState([]);
+    useEffect(() => {
+        if (posts?.length > 0) {
+            setPost(posts)
+        }
+    }, [posts])
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <div id='stickyTop' className='bg-base-100 rounded-lg m-2 pb-4 md:pb-6'>
@@ -109,7 +137,41 @@ const PublicProfile = () => {
                 </div>
 
                 <div className='col-span-12 md:col-span-7 sticky' id='post'>
-                    <Post posts={data?.data} />
+                    {
+                        isLoading || typeof getPost?.map === 'function'
+                            ?
+                            getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
+                            :
+                            ''
+                    }
+
+                    {
+                        isLoading ||
+                        <div className=" p-4 mt-2 text-center w-full bg-base-100">
+                            <button
+                                className='btn btn-primary lg:btn-sm btn-xs w-32 btn-outline mb-4'
+                                onClick={() => pageHandle()}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    }
+                    {
+                        (isLoading && getPost.length === 0) &&
+                        <div className='flex flex-col justify-between pt-40 bg-base-100 h-[100vh] items-center'>
+                            <div>
+                                <LoadingFlowCircle />
+                            </div>
+                        </div>
+                    }
+                    {
+                        (isLoading && getPost.length !== 0) && <div className='flex flex-col justify-between pt-4 bg-base-100 pb-4 items-center'>
+
+                            <div>
+                                <LoadingFlowCircle />
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
 

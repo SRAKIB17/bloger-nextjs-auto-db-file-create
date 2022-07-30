@@ -11,28 +11,33 @@ const QuickPost = ({ props: { quickVideoPost, setQuickVideoPost, quickTextPost, 
                 break;
 
             case 'video':
-                textareaRef.current.value = `
-            <video
-                width="320"
-                height="240"
-                preload="auto"
-                controls
-                muted
-                loop
-                autoplay
-                poster="http://rakib17.hexat.com/icon/busy.gif"
-            >
-                <source
-                    src="https://www.w3schools.com/html/mov_bbb.mp4"
-                    type="video/mp4"
-                />
-                <source
-                    src="movie.ogg"
-                    type="video/ogg"
-                />
-                Your browser does not support the video tag.
-            </video>
-                `
+                try {
+                    textareaRef.current.value = `
+                <video
+                    width="320"
+                    height="240"
+                    preload="auto"
+                    controls
+                    muted
+                    loop
+                    autoplay
+                    poster="http://rakib17.hexat.com/icon/busy.gif"
+                >
+                    <source
+                        src="https://www.w3schools.com/html/mov_bbb.mp4"
+                        type="video/mp4"
+                    />
+                    <source
+                        src="movie.ogg"
+                        type="video/ogg"
+                    />
+                    Your browser does not support the video tag.
+                </video>
+                    `
+                }
+                catch {
+
+                }
                 setQuickTextPost(false);
                 setQuickVideoPost(true);
                 break;

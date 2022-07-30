@@ -43,7 +43,6 @@ const NewPost = ({ props: setNewPost }) => {
         }
         else if (quickVideoPost) {
             postRefMode = 'video'
-
         }
 
 
@@ -237,11 +236,16 @@ const NewPost = ({ props: setNewPost }) => {
                             </textarea>
                         </div>
                         <div>
-                            <ImageUpload props={{ setThumbnail, setThumbnailData }} />
+                            {
+                                quickVideoPost ||
+                                <>
+                                    <ImageUpload props={{ setThumbnail, setThumbnailData }} />
 
-                            <div className='shadow-md w-fit p-2'>
-                                <img src={thumbnail} className='max-w-xs max-h-[100px] rounded-md' alt="" />
-                            </div>
+                                    <div className='shadow-md w-fit p-2'>
+                                        <img src={thumbnail} className='max-w-xs max-h-[100px] rounded-md' alt="" />
+                                    </div>
+                                </>
+                            }
 
                         </div>
                         <input

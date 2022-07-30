@@ -1,0 +1,12 @@
+.helpAutoShow {
+    height: 100%;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow: auto;
+    transition: 0.5s;
+    padding-top: 60px;
+    /* text-align:center; */
+}

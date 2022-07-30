@@ -20,11 +20,11 @@ const Docs = () => {
                     Tag
                 </button>
             </div>
-            <table className="table table-zebra w-full overflow-x-auto" >
+            <table className="table table-zebra w-full overflow-auto" >
                 <thead>
                     <tr>
-                        <th>Shortcut</th>
-                        <th>Details</th>
+                        <td>Shortcut</td>
+                        <td>Details</td>
                     </tr>
                 </thead>
                 <tbody>

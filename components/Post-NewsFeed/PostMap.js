@@ -10,8 +10,12 @@ import { useQuery } from 'react-query'
 import axios from 'axios';
 import TextPost from './TextPost';
 import VideoPost from './VideoPost'
+import { Announcement, ArrowsRight, Line } from '../ReactRSIcon';
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, thumbnail, time, userID } = post
+
+
+
     // console.log(post)
     const router = useRouter();
     const navigate = (path) => {
@@ -84,28 +88,48 @@ const PostMap = ({ post, refetch }) => {
                                 }
                                 {
                                     post?.postBy === 'admin' &&
-                                    <span className="badge h-4 pl-2 pr-2 badge-secondary text-[10px] font-extralight">
-                                        Admin Post
-                                    </span>
+                                    <Announcement size='16' className="badge h-4 text-white pl-2 pr-2 badge-secondary text-[10px] font-extralight" />
                                 }
 
                             </h2>
-                            <h1 className='text-xs'>
+                            <h1 className='text-xs flex mr-[2px] items-center'>
                                 {
                                     time
                                 }
-                                <b> | </b>
-                                <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category}`)}>
-                                    {
-                                        category
-                                    }
-                                </button>
+                                <Line size='18' />
+                                <div className='flex items-center'>
+                                    <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category}`)}>
+                                        {
+                                            " " + category
+                                        }
+                                    </button>
+                                    {/* ***************FOR TAG SERIAL************ */}
+                                    <ArrowsRight size='17' className='font-extrabold' />
+                                    <div className='flex flex-wrap'>
+                                        {
+                                            (typeof post?.tags?.split === 'function') &&
+
+                                            post?.tags?.split(',')?.map((tag, index) =>
+                                                <>
+                                                    {
+                                                        index > 0 && <Line />
+                                                    }
+                                                    <button key={index + tag + category} className='link-primary link-hover ' onClick={() => navigate(`?cat=${category}&tag=${tag}`)}>
+                                                        {
+                                                            tag
+                                                        }
+                                                    </button>
+                                                </>
+                                            )
+                                        }
+                                    </div>
+                                </div>
                             </h1>
                         </div>
                     </div>
 
                     {
-                        <EditDeleteComponentMenu post={post} refetch={refetch}/>
+                        <EditDeleteComponentMenu post={post} refetch={refetch} />
                     }
                 </div>
                 {/* --------------------------------------------------------------------------------------------------- */}
@@ -129,7 +153,7 @@ const PostMap = ({ post, refetch }) => {
                     }
 
                     <div className='relative bg-base-100'>
-                        <Comment_textarea post={post} refetch={refetch}/>
+                        <Comment_textarea post={post} refetch={refetch} />
                     </div>
                 </div>
             </div>

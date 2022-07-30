@@ -16,35 +16,37 @@
 /**
  * Category:
  *      ┌○ Category.js > FOR CATEGORY SECTION
- *      ├○ Category.module.css
+ *      ├○ Category.module.css > Category style sheet
  * 
  * Comment:
+ *      ┌○ /EmojiGif/
+ *      ├○      ┌○ /Emoji/ > Emoji Handle 
+ *      ├○      ├○ /Gif/  > Gif Handle
+ *      ├○    
  *      ┌○ /LikeLoveFavorite/
- *      ├○      ┌○ /LikeLoveFavorite.js
- *      ├○      ├○ /LikeTransition.module.css
- *      ├○      ├○ /LikeUserList.js
- *      ├○      ├○ /ShareOption.js
+ *      ├○      ┌○ /LikeLoveFavorite.js > LikeUnlike Handle
+ *      ├○      ├○ /LikeTransition.module.css > style sheet
+ *      ├○      ├○ /LikeUserList.js > like user list who like this post
+ *      ├○      ├○ /ShareOption.js > share post option
  *      ├○      └○
- *      ├○ /Comment_textarea.js
- *      ├○ /Comment.module.css
- *      ├○ /CommentList.js
- *      ├○ /MoreCommentReply.js
+ *      ├○ /Comment_textarea.js > Comment Form
+ *      ├○ /Comment.module.css > style sheet
+ *      ├○ /CommentList.js > Comment list 
+ *      ├○ /MoreCommentReply.js > For reply 
  *               
  * Header:
- *      ┌○ /CommonWindowResizeHeaderComponent.js
- *      ├○ /ContextMenu.js
- *      ├○ /DownloadApk.js
+ *      ┌○ /CommonWindowResizeHeaderComponent.js > window resize , here common window event for header and other component
+ *      ├○ /ContextMenu.js > Mouse right key click and show context menu 
+ *      ├○ /DownloadApk.js > Auto show for Download Apk
  *      ├○ /DownloadApk.module.css
- *      ├○ /Header.js
- *      ├○ /ProfilePicture.js
- *      ├○ /SearchForm.js
- *      ├○ /SideLeftBar.js
- *      ├○ /WindowOnscrollEvent.js 
- *      ├○ / 
+ *      ├○ /Header.js > Header Main component
+ *      ├○ /ProfilePicture.js >Header right side profile picture show and open menu
+ *      ├○ /SearchForm.js > search Form for user can search anything
+ *      ├○ /SideLeftBar.js > for laptop or medium device show and other device hide and here have some option
+ *      ├○ /
  * 
  * Help:
- *      ┌○ /Docs.js
- *      ├○ /Help.js
+ *      ┌○ /Docs.js > for html and tags shortcut emmet
  *      ├○ /Help.module.css
  * 
  * 
@@ -153,9 +155,58 @@
  * 
  * 
  */
-┌ ○ /                                        1.26 kB         293 kB
-├   /_app                                    0 B             246 kB
-├ ○ 
 
- ├ ○ /test                                    388 B           247 kB
-└ ○ /videos 
+
+ *  Pages:
+ *      ┌○ /admin/
+ *      ├○      ┌○ /index.js > Header, PostMap, LoadingFlowCircle [for admin announcement] => ok
+ *      ├○      ├○
+ *      ├○  /api/
+ *      ├○      ┌○
+ *      ├○      ├○
+ *      ├○  /forum/
+ *      ├○      ┌○ index.js > updating
+ *      ├○  
+ *      ├○  /helps/
+ *      ├○      ┌○ /index.js > Header, Docs => updating
+ *      ├○  
+ *      ├○  /login/
+ *      ├○      ┌○ /index.js > [Login >LoadingFlowCircle] > Refresh doesn't work
+ *      ├○      
+ *      ├○  /print/
+ *      ├○      ┌○ /[id].js => updating(template randomly)
+ *      ├○     
+ *      ├○  /profile/ =>done
+ *      ├○      ┌○ /[user_id].js > Header, PublicProfile [for public profile]
+ *      ├○      ├○  /index.js > Header, [Profile > ProfileEdit, NewPost, UpdateProfilePicture] [for user profile]
+ *      ├○ 
+ *      ├○  /service/
+ *      ├○      ┌○ /[...service].js
+ *      ├○      ├○  /index.js 
+ *      ├○ 
+ *      ├○  /setting/
+ *      ├○      ┌○ /index.js > Header, [setting> CommonSetting]
+ *      ├○      ├○  
+ *      ├○ 
+ *      ├○  /story/
+ *      ├○      ┌○ /[post_id].js > Header, PostMap, RightSideLg (for specific post)
+ *      ├○      ├○  /index.js > Header, PostMap, LeftSideLg, LoadingFlowCircle, RightSideLg 
+ *      ├○ 
+ *      ├○  /videos/
+ *      ├○      ┌○ /index.js > Header, PostMap, LeftSideLg, LoadingFlowCircle, RightSideLg 
+ *      ├○      ├○  
+ *      ├○ 
+ *      ├○  /helps/
+ *      ├○  /helps/
+ *      ├○  /helps/
+ *      ├○  /helps/
+ *      ├○  /helps/
+ *      ├○  /helps/
+ *      ├○  /helps/
+ *      ├○  /AdminSupportInbox.js
+ *      ├○  /MessageBody.js
+ *      ├○  /SupportInbox.js
+ *      ├○  /SupportInbox.module.css
+ *      ├○     
+ * 
+ * 

@@ -26,7 +26,7 @@ const Index = () => {
     }
     // const { data, refetch, isLoading } = useQuery(['userPost_id', cpage], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
 
-    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows, tag, page], () => axios.get(`/api/post/story?cat=${cat}&show=${shows * getPage}&tag=${tag}`,
+    const { data, refetch, isLoading } = useQuery(['userPostAll', cat, shows, tag, page], () => axios.get(`/api/post/story?cat=${cat}&show=${shows * getPage}&tag=${tag}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }

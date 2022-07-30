@@ -63,7 +63,7 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
             postRefMode = 'video'
 
         }
-        
+
         const post = {
             userID: user_details?.userID,
             post_id: post_id,
@@ -229,10 +229,15 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
                             </textarea>
                         </div>
                         <div>
-                            <ImageUpload props={{ setThumbnail, setThumbnailData }} />
-                            <div className='shadow-md w-fit p-2'>
-                                <img src={thumbnail} className='max-w-xs max-h-[100px] rounded-md' alt="" />
-                            </div>
+                            {
+                                quickVideoPost ||
+                                <>
+                                    <ImageUpload props={{ setThumbnail, setThumbnailData }} />
+                                    <div className='shadow-md w-fit p-2'>
+                                        <img src={thumbnail} className='max-w-xs max-h-[100px] rounded-md' alt="" />
+                                    </div>
+                                </>
+                            }
                         </div>
 
                         <input

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useId, useState } from 'react';
 import Category from '../Category/Category';
-import Help from '../Help/Help';
-import { Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import { Announcement, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 import { useRouter } from 'next/router'
@@ -252,6 +251,16 @@ const SideLeftBar = () => {
 
                 {/* for help menu*/}
                 <button
+                    onClick={() => navigate('/admin')}
+                    className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                >
+                    <Announcement size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Announce
+                    </p>
+                </button>
+                {/* for announcement*/}
+                <button
                     onClick={() => navigate('/helps')}
                     className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
                 >
@@ -312,7 +321,7 @@ const SideLeftBar = () => {
                 <SupportInboxComponent props={setSupportInbox} />
             }
             <Category />
-    
+
             {
                 (user?.user && newPost) &&
                 <NewPost props={setNewPost} />

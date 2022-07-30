@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useRouter } from 'next/router'
 
@@ -11,19 +11,32 @@ import Header from '../../components/Header/Header';
 
 const Index = () => {
     const router = useRouter()
-    const { cat, tag } = router.query;
-    const navigate = (path) => {
-        router.push(path);
-        router.prefetch(path);
-    }
+    const { cat, tag, page } = router.query;
     const [shows, setShowPosts] = useState(10)
+    const [getPage, setGetPage] = useState(1)
 
-    const { data, refetch, isLoading } = useQuery(['adminPost', cat, shows], () => axios.get(`/api/post/admin-post?cat=${cat}&show=${shows}`,
+    const pageHandle = () => {
+        router.query.page = getPage + 1;
+        setGetPage(getPage + 1)
+        router.push(router)
+        router.prefetch(router);
+    }
+
+
+    const { data, refetch, isLoading } = useQuery(['userPost_id', cat, shows, tag, page], () => axios.get(`/api/post/admin-post?cat=${cat}&show=${shows * getPage}&tag=${tag}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
     ))
-    const adminPost = data?.data;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const posts = data?.data || []
+    const [adminPost, setAdminPost] = useState([]);
+    useEffect(() => {
+        if (posts?.length > 0) {
+            setAdminPost(posts)
+        }
+    }, [posts])
+
 
     return (
         <div>
@@ -54,14 +67,14 @@ const Index = () => {
                         <div className=" p-4 mt-2 text-center w-full bg-base-100">
                             <button
                                 className='btn btn-primary lg:btn-sm btn-xs w-32 btn-outline mb-4'
-                                onClick={() => navigate('/admin/')}
+                                onClick={() => pageHandle()}
                             >
-                                See All
+                                Next
                             </button>
                         </div>
                     }
                     {
-                        (isLoading && adminPost?.length === 0) &&
+                        (isLoading && adminPost.length === 0) &&
                         <div className='flex flex-col justify-between pt-40 bg-base-100 h-[100vh] items-center'>
                             <div>
                                 <LoadingFlowCircle />
@@ -69,7 +82,7 @@ const Index = () => {
                         </div>
                     }
                     {
-                        (isLoading && adminPost?.length !== 0) && <div className='flex flex-col justify-between pt-4 bg-base-100 pb-4 items-center'>
+                        (isLoading && adminPost.length !== 0) && <div className='flex flex-col justify-between pt-4 bg-base-100 pb-4 items-center'>
 
                             <div>
                                 <LoadingFlowCircle />

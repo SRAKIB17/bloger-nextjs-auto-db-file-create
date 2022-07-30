@@ -9,18 +9,21 @@ import NoticeLeft from './NoticeLeft';
 
 const Notice = () => {
     const router = useRouter()
-    const { cat, tag } = router.query;
+    const { cat, tag, page } = router.query;
     const navigate = (path) => {
         router.push(path);
         router.prefetch(path);
     }
     const [shows, setShowPosts] = useState(1)
+    const [getPage, setGetPage] = useState(1)
 
-    const { data, refetch, isLoading } = useQuery(['adminPost', cat, shows], () => axios.get(`/api/post/admin-post?cat=${cat}&show=${shows}`,
+
+    const { data, refetch, isLoading } = useQuery(['adminNoticeOneShow', cat, shows, tag, page], () => axios.get(`/api/post/admin-post?cat=${cat}&show=${shows * getPage}&tag=${tag}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
     ))
+
     const adminPost = data?.data;
 
     return (
@@ -28,7 +31,7 @@ const Notice = () => {
         <div className='grid grid-cols-12 gap-2'>
             <div className='hidden sm:block sm:col-span-3 lg:col-span-7 text-justify p-1 relative bg-base-100'>
                 <div className='absolute h-[100vh] overflow-auto sm:w-[200px] md:w-full lg:pr-[2rem] sm:pr-[1rem]'>
-                    <NoticeLeft/>
+                    <NoticeLeft />
                 </div>
             </div>
             <div className='col-span-12 md:pr-4 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-9 lg:col-span-5' id='noticeHome'>
