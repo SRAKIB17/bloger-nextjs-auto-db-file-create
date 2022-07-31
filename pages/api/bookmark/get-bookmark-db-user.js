@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
         const checkUser = await verifyUserAndAccessFeatureServer(req);
         const method = req.method;
-        if (true) {
+        if (checkUser) {
             const { user_id } = req.query;
             if (method === "GET") {
                 const filter = { userID: user_id }
