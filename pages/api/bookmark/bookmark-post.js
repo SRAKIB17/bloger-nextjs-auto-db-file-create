@@ -15,8 +15,7 @@ export default async function handler(req, res) {
         const checkUser = await verifyUserAndAccessFeatureServer(req);
 
 
-        const { post_id } = req?.query
-        if (!checkUser) {
+        if (checkUser) {
             const filter = { post_id: req?.body?.post_id };
             const userID = req?.body?.userID
 
