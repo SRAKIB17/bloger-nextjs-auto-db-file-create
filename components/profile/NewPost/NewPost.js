@@ -64,7 +64,8 @@ const NewPost = ({ props: setNewPost }) => {
             postRefMode: postRefMode,
             //for comment react replies
             comments: [],
-            react: []
+            react: [],
+            bookmarkUserID: []
         }
 
 

@@ -15,16 +15,19 @@ export default async function handler(req, res) {
         const checkUser = await verifyUserAndAccessFeatureServer(req);
 
 
-        if (checkUser) {
+        if (!checkUser) {
+
             const filter = { post_id: req?.body?.post_id };
             const userID = req?.body?.userID
 
             const getPost = await postCollection.findOne(filter);
-            const check = getPost?.bookmarkUserID?.includes(userID);
+
             if (!getPost?.bookmarkUserID) {
-                getPost.bookmarkUserID = []
+                getPost.bookmarkUserID = [];
             }
-            // getPost.bookmarkUserID = [getPost?.bookmarkUserID?.includes(userID) ?]
+
+            const check = getPost?.bookmarkUserID?.includes(userID);
+
             if (check) {
                 const filterBookmarkUserID = getPost?.bookmarkUserID?.filter(id != userID);
                 getPost.bookmarkUserID = filterBookmarkUserID
