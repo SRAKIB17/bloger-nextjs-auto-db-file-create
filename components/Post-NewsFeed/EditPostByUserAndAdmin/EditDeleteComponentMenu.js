@@ -115,8 +115,6 @@ const EditDeleteComponentMenu = ({ post, refetch }) => {
                                 {/* <Delete size='17' />Delete Post */}
                                 Shorten Url
                             </li>
-
-
                         </>
                     </ul>
                 </div>

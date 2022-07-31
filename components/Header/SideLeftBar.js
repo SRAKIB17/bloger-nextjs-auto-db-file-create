@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useId, useState } from 'react';
 import Category from '../Category/Category';
-import { Announcement, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import { Announcement, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 import Settings from '../Setting/Setting';
 import SupportInboxComponent from '../SupportInbox/SupportInbox';
 import { useRouter } from 'next/router'
@@ -185,6 +185,16 @@ const SideLeftBar = () => {
                             <Writing size='30' />
                             <p className='hidden' id='sideLeftBarTitle'>
                                 New Post
+                            </p>
+                        </button>
+
+                        <button
+                            onClick={()=>navigate('/bookmark')}
+                            className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                        >
+                            <BookmarkStar size='32' />
+                            <p className='hidden' id='sideLeftBarTitle'>
+                                Bookmark
                             </p>
                         </button>
                         {/* for  inbox */}

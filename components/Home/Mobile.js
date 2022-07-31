@@ -32,13 +32,15 @@ const Mobile = () => {
     return (
         <div>
             <div className={styles.mobile + ' overflow-hidden'} >
-                <div className={styles.speaker}>
-                    <div>
-                        ○ ○ ○
+                <div className=''>
+                    <div className={styles.speaker}>
+                        <div>
+                            ○ ○ ○
+                        </div>
                     </div>
-                </div>
-                <div className={styles.apk} >
-                    <ApkColor size='28' />
+                    <div className={styles.apk} >
+                        <ApkColor size='28' />
+                    </div>
                 </div>
                 <div className='p-1 overflow-auto h-full pt-10'>
                     <form onSubmit={onSearchHandle}>

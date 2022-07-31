@@ -8,6 +8,8 @@ export { default as ApkColor } from './icon/Apk/ApkColor'
 export { default as ArrowsRight } from './icon/Arrow/ArrowsRight'
 export { default as ArrowsRightDouble } from './icon/Arrow/ArrowsRightDouble'
 
+export { default as BookmarkStar } from './icon/Bookmark/BookmarkStar'
+
 export { default as BubbleCommentChat } from './icon/Comment/bubbleCommentChat'
 export { default as Comment } from './icon/Comment/comment'
 

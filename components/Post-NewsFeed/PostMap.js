@@ -11,6 +11,7 @@ import axios from 'axios';
 import TextPost from './TextPost';
 import VideoPost from './VideoPost'
 import { Announcement, ArrowsRight, Line } from '../ReactRSIcon';
+import AdsStory from '../Ads/AdsStory';
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, thumbnail, time, userID } = post
 
@@ -170,6 +171,7 @@ const PostMap = ({ post, refetch }) => {
                     }
 
                     <div className='relative bg-base-100'>
+                        <AdsStory/>
                         <Comment_textarea post={post} refetch={refetch} setShowComment={setShowComment} showCommentState={showCommentState} />
                     </div>
                 </div>

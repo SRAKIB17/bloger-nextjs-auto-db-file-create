@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Comment, EmoticonLove, Like, Share, } from '../../ReactRSIcon/index'
+import { BookmarkStar, Comment, EmoticonLove, Like, Share, } from '../../ReactRSIcon/index'
 import ShareOption from './ShareOption';
 import { useRouter } from 'next/router';
 import styles from './LikeTransition.module.css'
@@ -9,6 +9,7 @@ import GuestCommentLikeLogin from '../../Login/GuestCommentLikeLogin';
 import Login from '../../Login/Login';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import axios from 'axios';
+import BookmarkPost from '../BookmarkPost';
 
 const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refetch, setShowReactUser, setShowComment, showReactUserState } }) => {
     const { post_id } = post;
@@ -191,7 +192,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
             <div className={(styles.showLikeUnlikeUser) + ' overflow-hidden ' + (styles.likeUnlikeUserList)} id={'showLikeUnlikeUser' + post_id}>
                 {
                     (user?.user && showReactUserState) &&
-                    < LikeUserList post={post} />
+                    <LikeUserList post={post} />
                 }
                 {
                     (!user?.user && showReactUserState) &&
@@ -261,7 +262,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                         }
 
                     </div>
-                    <div>
+                    <div className='flex items-center'>
                         <button
                             title='Comment'
                             onClick={() => showCommentHandle(post_id)}
@@ -270,6 +271,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                         >
                             <Comment size='18' color='currentColor' />
                         </button>
+                        <BookmarkPost post={post} refetch={refetch}/>
                     </div>
                     <div onMouseEnter={() => setShowShareOption(!showShareOption)} onMouseLeave={() => setShowShareOption(!showShareOption)} >
                         <button

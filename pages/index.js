@@ -51,7 +51,8 @@ export default function Index() {
             <div>
 
             </div>
-            <div className='flex justify-end p-10'>
+            {/* *************FOR MOBILE****************** */}
+            <div className='justify-end p-10 hidden md:flex'>
               <Mobile />
             </div>
           </div>

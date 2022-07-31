@@ -9,7 +9,11 @@ const RightSideLg = () => {
         router.push(url)
         router.prefetch(url)
     }
-    const { data } = useQuery('category', () => axios.get('/api/category'))
+    const { data, refetch, isLoading } = useQuery(['categoryAll'], () => axios.get(`/api/category`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }
+    ))
     const badge = [' btn-primary', ' btn-secondary', ' btn-accent', ' btn-info', ' btn-warning', ' btn-accent', ' btn-success'];
 
     return (
