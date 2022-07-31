@@ -188,7 +188,7 @@ const SideLeftBar = () => {
                             </p>
                         </button>
 
-                        <button
+                        {/* <button
                             onClick={()=>navigate('/bookmark')}
                             className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
                         >
@@ -196,7 +196,7 @@ const SideLeftBar = () => {
                             <p className='hidden' id='sideLeftBarTitle'>
                                 Bookmark
                             </p>
-                        </button>
+                        </button> */}
                         {/* for  inbox */}
                         {/* <button
                             onClick={OpenSupportInbox}

@@ -52,7 +52,7 @@ const NewPost = ({ props: setNewPost }) => {
             post_title: event.target.title.value,
             thumbnail: thumbnail,
             image: '',
-            time: 'dec 15, 2021',
+            time: new Date(),
             short_description: event.target.short_description.value,
             category: event.target.category.value?.toLowerCase(),
             tags: event.target.tags.value.toLowerCase(),

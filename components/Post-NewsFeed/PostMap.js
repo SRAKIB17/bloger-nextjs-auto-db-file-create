@@ -12,13 +12,15 @@ import TextPost from './TextPost';
 import VideoPost from './VideoPost'
 import { Announcement, ArrowsRight, Line } from '../ReactRSIcon';
 import AdsStory from '../Ads/AdsStory';
+import timeSince from './TimeSince';
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, thumbnail, time, userID } = post
 
     const [showCommentState, setShowComment] = useState(null);
 
 
-    // console.log(post)
+    const getTimeSince = timeSince(time)
+
     const router = useRouter();
     const navigate = (path) => {
         router.push(path)
@@ -94,15 +96,17 @@ const PostMap = ({ post, refetch }) => {
                                 }
 
                             </h2>
-                            <h1 className='text-xs flex mr-[2px] items-center'>
-                                {
-                                    time
-                                }
+                            <h1 className='flex mr-[2px] items-center flex-wrap text-[11px]'>
+                                <div className='text-[10px] text-gray-500'>
+                                    {
+                                        getTimeSince
+                                    }
+                                </div>
                                 <Line size='18' />
                                 <div className='flex items-center'>
                                     <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category}`)}>
                                         {
-                                            " " + category
+                                            category
                                         }
                                     </button>
                                     {/* ***************FOR TAG SERIAL************ */}
@@ -171,7 +175,7 @@ const PostMap = ({ post, refetch }) => {
                     }
 
                     <div className='relative bg-base-100'>
-                        <AdsStory/>
+                        <AdsStory />
                         <Comment_textarea post={post} refetch={refetch} setShowComment={setShowComment} showCommentState={showCommentState} />
                     </div>
                 </div>

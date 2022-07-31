@@ -70,7 +70,6 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
             post_title: event.target.title.value,
             thumbnail: thumbnail,
             image: '',
-            time: 'dec 15, 2021',
             short_description: event.target.short_description.value,
             category: event.target.category.value,
             tags: event.target.tags.value.toLowerCase(),

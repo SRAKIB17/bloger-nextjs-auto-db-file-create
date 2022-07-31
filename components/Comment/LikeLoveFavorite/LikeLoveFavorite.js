@@ -271,7 +271,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                         >
                             <Comment size='18' color='currentColor' />
                         </button>
-                        <BookmarkPost post={post} refetch={refetch}/>
+                        {/* <BookmarkPost post={post} refetch={refetch}/> */}
                     </div>
                     <div onMouseEnter={() => setShowShareOption(!showShareOption)} onMouseLeave={() => setShowShareOption(!showShareOption)} >
                         <button
