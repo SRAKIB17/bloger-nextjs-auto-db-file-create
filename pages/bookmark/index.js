@@ -99,7 +99,7 @@ const Bookmark = ({ bookmark, refetch }) => {
     // *****************EDIT NAME*******************
 
     const [editBookmark, setEditBookmark] = useState(null);
-    const [editLoading, setEditLoading] = useState(null)
+    const [editLoading, setEditLoading] = useState(null);
     const editTitleBookmarkHandle = async (e) => {
         e.preventDefault()
         setEditLoading(true);
