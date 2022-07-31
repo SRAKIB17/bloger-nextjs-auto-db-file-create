@@ -10,7 +10,7 @@ import { UserFullInfoProvider } from '../../pages/_app';
 import axios from 'axios';
 import EmojiGifIndex from './EmojiGif/EmojiGifIndex';
 
-const Comment_textarea = ({ post, refetch }) => {
+const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) => {
     // POST INFO AND USER INFO
     const { post_id } = post;
     const CommentTextareaRef = useRef();
@@ -43,7 +43,6 @@ const Comment_textarea = ({ post, refetch }) => {
     }
     //FOR SHOW COMMENT TOGGLE AND AUTO HEIGHT INCREASE
 
-    const [showCommentState, setShowComment] = useState(null);
     const [showReactUserState, setShowReactUser] = useState(null);
     const showCommentHandle = (id) => {
         setShowComment(true)

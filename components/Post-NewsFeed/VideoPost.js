@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const VideoPost = ({short_description, postBody, post_id }) => {
+const VideoPost = ({ short_description, postBody, post_id, showCommentState, setShowComment }) => {
 
     const [shortDescriptionVideo, setShortDescriptionVideo] = useState('');
     const [seeMorePostShow, setSeeMorePostShow] = useState(false);
@@ -9,7 +9,8 @@ const VideoPost = ({short_description, postBody, post_id }) => {
         setShortDescriptionVideo(short_description?.slice(0, 100))
     }, [short_description])
 
-    const moreShortDescriptionVideoHandle = () => {
+    const moreShortDescriptionVideoHandle = (id) => {
+        showCommentHandle(id)
         setSeeMorePostShow(!seeMorePostShow)
         if (shortDescriptionVideo.length <= 100) {
             setShortDescriptionVideo(short_description)
@@ -26,6 +27,41 @@ const VideoPost = ({short_description, postBody, post_id }) => {
         link.type = "text/css";
         e.target.contentDocument.head.append(link);
     }
+
+    //************************************************************************************ */
+    //********************FOR COMMENT AUTO SHOW AND SHOW********************************** */
+    //************************************************************************************ */
+    const showCommentHandle = (id) => {
+        try {
+
+            const showComment = document.getElementById('commentShow' + id)
+            const commentForm = document.getElementById('commentForm' + id)
+            const showCommentButton = document.getElementById('showCommentButton' + id)
+
+            if (showComment.offsetHeight <= 2) {
+                commentForm.style.height = '100%'
+                setShowComment(true)
+                try {
+                    commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
+                }
+                catch {
+
+                }
+                showComment.style.height = '500px'
+                showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
+            }
+            else {
+                setShowComment(false)
+                showComment.style.height = '0px'
+                commentForm.style.height = '0px'
+                showCommentButton.className = ' btn-outline btn btn-xs btn-primary ml-2 '
+                commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '0px'
+            }
+        }
+        catch {
+
+        }
+    }
     return (
         <div>
             <div className='text-justify mb-2'>
@@ -39,7 +75,7 @@ const VideoPost = ({short_description, postBody, post_id }) => {
                 {
                     short_description?.length >= 100 &&
                     <div className="card-actions justify-end text-xs">
-                        <button className="link-primary font-semibold link-hover" onClick={moreShortDescriptionVideoHandle}>
+                        <button className="link-primary font-semibold link-hover" onClick={() => moreShortDescriptionVideoHandle(post_id)}>
                             See {seeMorePostShow ? 'Less' : 'More'}
                         </button>
                     </div>

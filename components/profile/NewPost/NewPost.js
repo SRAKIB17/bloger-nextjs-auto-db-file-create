@@ -80,9 +80,11 @@ const NewPost = ({ props: setNewPost }) => {
             console.log(data)
             if (data?.message === 'success') {
                 setErrMsg(<p className='text-green-600'>Success</p>)
+                setNewPost(null)
                 if (data?.result?.acknowledged) {
                     event.target.reset()
                     setThumbnail('')
+                    setNewPost(null)
                 }
             }
             else if (data?.message === 'error') {
@@ -148,7 +150,12 @@ const NewPost = ({ props: setNewPost }) => {
     }, [])
 
     // ***************************************for category **********************
-    const { data } = useQuery('category', () => axios.get('/api/category'));
+
+    const { data } = useQuery(['categoryAll'], () => axios.get(`/api/category`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }
+    ))
     const categoryPattern = data?.data?.map(i => i?.category).join('|')
 
     return (
@@ -255,8 +262,8 @@ const NewPost = ({ props: setNewPost }) => {
                             id="category"
                             className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Category'
-                            pattern={categoryPattern}
-                            title={'Must be ' + (data?.data?.map(i => i?.category))}
+                            // pattern={categoryPattern}
+                            // title={'Must be ' + (data?.data?.map(i => i?.category))}
                             required
                         />
                         <datalist id="categories">

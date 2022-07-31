@@ -14,6 +14,7 @@ import { Announcement, ArrowsRight, Line } from '../ReactRSIcon';
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, thumbnail, time, userID } = post
 
+    const [showCommentState, setShowComment] = useState(null);
 
 
     // console.log(post)
@@ -140,20 +141,36 @@ const PostMap = ({ post, refetch }) => {
                     {
                         postRefMode === 'video' &&
                         <>
-                            <VideoPost postBody={postBody} post_id={post_id} short_description={short_description} key='453453454453' />
+                            <VideoPost
+                                setShowComment={setShowComment}
+                                showCommentState={showCommentState}
+                                postBody={postBody} post_id={post_id}
+                                short_description={short_description}
+                                key={post_id} />
                         </>
                     }
 
                     {
                         postRefMode === 'text' &&
                         <>
-                            <TextPost postBody={postBody} postBodyJs={postBodyJs} postBodyCss={postBodyCss} post_id={post_id} postRefMode={postRefMode} short_description={short_description} key='523252345345634534534' thumbnail={thumbnail} />
+                            <TextPost
+                                postBody={postBody}
+                                postBodyJs={postBodyJs}
+                                postBodyCss={postBodyCss}
+                                post_id={post_id}
+                                postRefMode={postRefMode}
+                                short_description={short_description}
+                                key={post_id}
+                                setShowComment={setShowComment}
+                                showCommentState={showCommentState}
+                                thumbnail={thumbnail}
+                            />
                         </>
 
                     }
 
                     <div className='relative bg-base-100'>
-                        <Comment_textarea post={post} refetch={refetch} />
+                        <Comment_textarea post={post} refetch={refetch} setShowComment={setShowComment} showCommentState={showCommentState} />
                     </div>
                 </div>
             </div>

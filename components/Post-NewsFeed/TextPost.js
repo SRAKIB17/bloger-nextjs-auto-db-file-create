@@ -3,7 +3,7 @@ import IframeLoading from '../../public/loading_iframe.gif'
 import React, { useEffect, useState } from 'react';
 import { Camera } from '../ReactRSIcon';
 
-const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_id, postRefMode, thumbnail }) => {
+const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_id, postRefMode, thumbnail, showCommentState, setShowComment }) => {
     //********************************************************************************* */
     // FOR MORE INFO /FULL POST SHOW BY ONCLICK AND.
     //********************************************************************************** */
@@ -139,6 +139,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
 
             if (showComment.offsetHeight <= 2 && !fullIframeShow) {
                 commentForm.style.height = '100%'
+                setShowComment(true)
                 try {
                     commentForm.childNodes[0].childNodes[0].style.borderTopWidth = '1px'
                 }
@@ -149,6 +150,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                 showCommentButton.className = 'btn-primary btn btn-xs  ml-2 '
             }
             else {
+                setShowComment(false)
                 showComment.style.height = '0px'
                 commentForm.style.height = '0px'
                 showCommentButton.className = ' btn-outline btn btn-xs btn-primary ml-2 '

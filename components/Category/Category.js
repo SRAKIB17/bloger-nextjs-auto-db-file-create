@@ -33,7 +33,11 @@ const Category = () => {
         router.prefetch(url)
     }
 
-    const { data } = useQuery('category', () => axios.get('/api/category'))
+    const { data, refetch, isLoading } = useQuery(['categoryAll'], () => axios.get(`/api/category`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }
+    ))
     return (
         <div>
 
