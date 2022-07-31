@@ -5,6 +5,7 @@ export { default as Announcement } from './icon/Announcement/Announcement'
 export { default as AppStore } from './icon/app-store'
 export { default as ApkColor } from './icon/Apk/ApkColor'
 
+export { default as ArrowsCheck } from './icon/Arrow/ArrowsCheck'
 export { default as ArrowsRight } from './icon/Arrow/ArrowsRight'
 export { default as ArrowsRightDouble } from './icon/Arrow/ArrowsRightDouble'
 

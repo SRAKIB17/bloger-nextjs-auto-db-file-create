@@ -34,7 +34,7 @@ const BookmarkPost = ({ post, refetch }) => {
             const bookmarkPost = {
                 post_id: id,
                 userID: userID,
-                bookmark: '',
+                bookmark: null,
                 title: post?.post_title,
                 date: new Date(),
             }
@@ -51,15 +51,16 @@ const BookmarkPost = ({ post, refetch }) => {
                     });
                 if (data?.message === 'success') {
                     refetch()
-                    setCheckBookmarkPost(!checkBookmarkPost);
                     setBookmarkLoading(false)
                     if (data?.result?.acknowledged) {
                         refetch()
-                        setCheckBookmarkPost(!checkBookmarkPost);
                         setBookmarkLoading(false)
                     }
                 }
                 else if (data?.message === 'error') {
+                    if (bookmarkPost?.bookmark) {
+                        setCheckBookmarkPost(null)
+                    }
                     alert('something is wrong')
                     setBookmarkLoading(false)
                 }
@@ -74,7 +75,7 @@ const BookmarkPost = ({ post, refetch }) => {
             setBookmarkLoading(false)
         }
         else {
-            navigate('/login')
+            navigate('/login?return_url=/' + router?.asPath)
         }
 
     }

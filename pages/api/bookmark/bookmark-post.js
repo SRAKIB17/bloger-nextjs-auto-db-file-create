@@ -15,8 +15,7 @@ export default async function handler(req, res) {
         // ****************ONLY BOOKMARK POST******
         const { client: bookmarkDBUser } = login_user_without_post_body();
         await bookmarkDBUser.connect();
-        const bookmarkCollection = client.db("BookmarkDB").collection("bookmarks");
-
+        const bookmarkCollection = bookmarkDBUser.db("BookmarkDB").collection("bookmarks");
         // 01. CHECK USER
         const checkUser = await verifyUserAndAccessFeatureServer(req);
         if (checkUser) {
@@ -42,14 +41,22 @@ export default async function handler(req, res) {
                 const filterBookmarkUserID = getPost?.bookmarkUserID?.filter(id => id != userID);
                 //DELETE BOOKMARK DB
                 const deleteBookmark = await bookmarkCollection.deleteOne({ userID: userID })
+
                 if (deleteBookmark?.acknowledged) {
                     getPost.bookmarkUserID = filterBookmarkUserID
+                }
+                else {
+                    return res.status(200).json({ message: "error", error: "Something is wrong" })
                 }
             }
             else {
                 const saveBookmark = await bookmarkCollection.insertOne(bookmarkDBUser);
+
                 if (saveBookmark?.acknowledged) {
                     getPost?.bookmarkUserID?.push(userID)
+                }
+                else {
+                    return res.status(200).json({ message: "error", error: "Something is wrong" })
                 }
             }
             const updateDoc = {
