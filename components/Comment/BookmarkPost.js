@@ -51,9 +51,11 @@ const BookmarkPost = ({ post, refetch }) => {
                     });
                 if (data?.message === 'success') {
                     refetch()
+                    setCheckBookmarkPost(!checkBookmarkPost);
                     setBookmarkLoading(false)
                     if (data?.result?.acknowledged) {
                         refetch()
+                        setCheckBookmarkPost(!checkBookmarkPost);
                         setBookmarkLoading(false)
                     }
                 }
