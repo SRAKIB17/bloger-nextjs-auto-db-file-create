@@ -1,7 +1,10 @@
+// const { client } = login_user_without_post_body();
+// await client.connect();
+// const token = req.headers?.access_token;
+
 import SocialPostBlog from "../../../components/hooks/api/social/post_blog_videos_post";
 import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTokenVerifyServer";
 import verifyUserAndAccessFeatureServer from "../../../components/hooks/api/verifyUser/verifyUserAndAccessFeatureServer";
-const crypto = require("crypto");
 
 export default async function handler(req, res) {
 
@@ -10,19 +13,17 @@ export default async function handler(req, res) {
         await client.connect();
         const postCollection = client.db("postBlogs").collection("postBlog");
 
-
-        const { client: bookmarkDBUser } = login_user_without_post_body();
-        await bookmarkDBUser.connect();
         // VERIFY USER
-        const bookmarkCollection = client.db("BookmarkDB").collection("bookmarks");
 
         const checkUser = await verifyUserAndAccessFeatureServer(req);
 
-        if (checkUser) {
+
+        if (!checkUser) {
 
             const filter = { post_id: req?.body?.post_id };
             const userID = req?.body?.userID
-
+            const bookmarkDBUser = req.body;
+            console.log(bookmarkDBUser)
 
             const getPost = await postCollection.findOne(filter);
 
@@ -31,8 +32,6 @@ export default async function handler(req, res) {
             }
 
             const check = getPost?.bookmarkUserID?.includes(userID);
-            const bookmarkDBUser = req.body;
-
             if (check) {
                 const filterBookmarkUserID = getPost?.bookmarkUserID?.filter(id => id != userID);
                 getPost.bookmarkUserID = filterBookmarkUserID
@@ -44,8 +43,7 @@ export default async function handler(req, res) {
                 $set: getPost
             }
             const result = await postCollection.updateOne(filter, updateDoc);
-            const resultBookmarkDB = await bookmarkCollection.insertOne(filter);
-            if (result?.acknowledged && resultBookmarkDB?.acknowledged) {
+            if (result?.acknowledged) {
                 res.status(200).json({ message: "success", result: result })
             }
             else {

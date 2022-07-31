@@ -35,6 +35,7 @@ const BookmarkPost = ({ post, refetch }) => {
                 post_id: id,
                 userID: userID,
                 bookmark: '',
+                title: post?.post_title,
                 date: new Date(),
             }
             checkBookmarkPost ? (bookmarkPost.bookmark = false) : (bookmarkPost.bookmark = true);
@@ -48,7 +49,6 @@ const BookmarkPost = ({ post, refetch }) => {
                             token: localStorage.getItem('token')
                         }
                     });
-                console.log(data)
                 if (data?.message === 'success') {
                     refetch()
                     setBookmarkLoading(false)

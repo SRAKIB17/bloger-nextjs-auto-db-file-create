@@ -19,7 +19,7 @@ const AdsStory = () => {
                             </button>
                         </div>
                         <div className='cursor-pointer'>
-                            <h1 className='text-3xl  font-mono font-light border-dotted border-2 cursor-pointer'>All is good ..Some Special feature coming</h1>
+                            <h1 className='text-xl  font-mono font-light border-dotted border-2 cursor-pointer'>All is good ..Some Special feature coming</h1>
                         </div>
                     </div>
                 </div>
