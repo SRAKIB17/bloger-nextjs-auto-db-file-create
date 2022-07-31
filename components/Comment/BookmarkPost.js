@@ -30,7 +30,7 @@ const BookmarkPost = ({ post, refetch }) => {
     const [bookmarkLoading, setBookmarkLoading] = useState(false)
     const bookmarkPostHandle = async (id) => {
         setBookmarkLoading(true)
-        if (!user?.user) {
+        if (user?.user) {
             const bookmarkPost = {
                 post_id: id,
                 userID: userID || '9b836a9c57a91ce7805cc6a0',
