@@ -33,7 +33,7 @@ const BookmarkPost = ({ post, refetch }) => {
         if (user?.user) {
             const bookmarkPost = {
                 post_id: id,
-                userID: userID || '9b836a9c57a91ce7805cc6a0',
+                userID: userID,
                 bookmark: '',
                 date: new Date(),
             }
