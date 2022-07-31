@@ -114,10 +114,9 @@ const BookmarkPost = ({ post, refetch }) => {
                 <button
                     title='Comment'
                     // onClick={() => bookmarkPostHandle(post_id)}
-                    onClick={() => {
+                    onClick={(e) => {
                         // check user and navigate login page
-                        user?.user ? setEditTitle(post_id) : navigate('/login?return_url=/' + router?.asPath)
-
+                        checkBookmarkPost ? bookmarkPostHandle(e, post_id) : (user?.user ? setEditTitle(post_id) : navigate('/login?return_url=/' + router?.asPath));
                     }}
                     id={'showCommentButton' + post_id}
                     className={(checkBookmarkPost ? 'bg-purple-600 text-white ' : 'btn-outline ') + ' btn-primary btn btn-xs  ml-2 h-5 w-8 '}
