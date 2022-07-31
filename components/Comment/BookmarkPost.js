@@ -41,7 +41,7 @@ const BookmarkPost = ({ post, refetch }) => {
 
             setCheckBookmarkPost(!checkBookmarkPost);
             try {
-                const { data } = await axios.put(`/api/bookmark/bookmark-post?email=${user_details?.email}}`, bookmarkPost,
+                const { data } = await axios.put(`/api/bookmark/bookmark-post?email=${user_details?.email}&post_id=${post_id}`, bookmarkPost,
                     {
                         headers: {
                             access_token: sessionStorage.getItem('accessAutoG'),

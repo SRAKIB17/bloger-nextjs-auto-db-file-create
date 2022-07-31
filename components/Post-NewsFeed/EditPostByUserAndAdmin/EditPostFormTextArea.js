@@ -90,7 +90,7 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
                         token: localStorage.getItem('token')
                     }
                 });
-            console.log(data)
+
             if (data?.message === 'success') {
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 refetch()
