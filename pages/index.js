@@ -10,7 +10,7 @@ import RightSideLg from '../components/Post-NewsFeed/RightSideLg';
 import Mobile from '../components/Home/Mobile';
 import Footer from '../components/Home/Footer';
 import { useRouter } from 'next/router'
-import pageTitle from '../components/hooks/pageTitle';
+import PageTitle from '../components/hooks/PageTitle';
 
 export default function Index() {
   const router = useRouter()
@@ -26,7 +26,7 @@ export default function Index() {
   }
 
 
-  const { title } = pageTitle()
+  const { title } = PageTitle()
   return (
     <div data-scroll='[green, ,]'>
       <Head>

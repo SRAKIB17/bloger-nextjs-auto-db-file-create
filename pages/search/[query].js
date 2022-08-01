@@ -9,7 +9,7 @@ import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 import timeSince from '../../components/Post-NewsFeed/TimeSince';
 import { Announcement, ArrowsRight, Camera, Line } from '../../components/ReactRSIcon';
 import Head from 'next/head';
-import pageTitle from '../../components/hooks/pageTitle';
+import PageTitle from '../../components/hooks/PageTitle';
 
 const Search = () => {
     const router = useRouter()
@@ -53,7 +53,7 @@ const Search = () => {
         }
     }, [posts])
 
-    const { title } = pageTitle()
+    const { title } = PageTitle()
 
     return (
         <div>

@@ -9,7 +9,7 @@ import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 import RightSideLg from '../../components/Post-NewsFeed/RightSideLg';
 import LeftSideLg from '../../components/Post-NewsFeed/LeftSideLg';
 import PostMap from '../../components/Post-NewsFeed/PostMap';
-import pageTitle from '../../components/hooks/pageTitle';
+import PageTitle from '../../components/hooks/PageTitle';
 import Head from 'next/head';
 
 const Index = () => {
@@ -40,7 +40,7 @@ const Index = () => {
             setPost(posts)
         }
     }, [posts])
-    const { title } = pageTitle()
+    const { title } = PageTitle()
     return (
         <div className='h-[100vh]'>
             <Header />

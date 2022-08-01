@@ -12,7 +12,7 @@ import QuickPost from '../../profile/NewPost/QuickPost';
 import TextAreaEdit from './TextAreaEdit';
 import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser';
 import Head from 'next/head';
-import pageTitle from '../../hooks/pageTitle';
+import PageTitle from '../../hooks/PageTitle';
 // import QuickPost from './QuickPost';
 
 const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
@@ -149,7 +149,7 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
     ))
     const categoryPattern = data?.data?.map(i => i?.category).join('|')
 
-    const { title } = pageTitle()
+    const { title } = PageTitle()
     return (
         <div>
             <Head>

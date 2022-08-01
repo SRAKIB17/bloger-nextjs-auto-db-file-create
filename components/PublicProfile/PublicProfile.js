@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import PostMap from '../Post-NewsFeed/PostMap';
 import LoadingFlowCircle from '../LoadingFlowCircle';
 import Head from 'next/head';
-import pageTitle from '../hooks/pageTitle';
+import PageTitle from '../hooks/PageTitle';
 
 const PublicProfile = () => {
     const router = useRouter()
@@ -52,7 +52,7 @@ const PublicProfile = () => {
         }
     }, [posts])
 
-    const { title } = pageTitle()
+    const { title } = PageTitle()
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <Head>

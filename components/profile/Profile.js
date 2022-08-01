@@ -18,7 +18,7 @@ import { useRouter } from 'next/router';
 import LoadingFlowCircle from '../LoadingFlowCircle';
 import PostMap from '../Post-NewsFeed/PostMap';
 import Head from 'next/head';
-import pageTitle from '../hooks/pageTitle';
+import PageTitle from '../hooks/PageTitle';
 
 const Profile = () => {
     const { user, user_details } = useContext(UserFullInfoProvider)
@@ -106,7 +106,7 @@ const Profile = () => {
         setEditProfile(true)
     }
 
-    const { title } = pageTitle()
+    const { title } = PageTitle()
     return (
         <div className='lg:ml-[200px] lg:mr-[200px]'>
             <Head>
