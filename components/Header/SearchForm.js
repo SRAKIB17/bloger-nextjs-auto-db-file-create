@@ -25,8 +25,9 @@ const SearchForm = () => {
             const search = { search: [searchValue] }
             localStorage.setItem('search', JSON.stringify(search))
         }
-        router.push('/search/' + e.target.search.value)
-        router.prefetch('/search/' + e.target.search.value)
+        setShowFormMobile(null)
+        router.push('/search/' + searchValue)
+        router.prefetch('/search/' + searchValue)
     }
 
     const saveSearch = typeof window !== 'undefined' && window.localStorage ? JSON.parse(window.localStorage.getItem('search')) : {}
@@ -51,8 +52,8 @@ const SearchForm = () => {
                 <div className='fixed flex top-[60px] w-full bg-base-100 left-0 h-full border-b-2'>
                     <div className='absolute top-[15px] left-[40px] flex md:hidden'>
                         <form onSubmit={searchHandle}>
-                            <input type="search" name="" placeholder='🔍' className='input input-sm pl-1 w-[250px] input-secondary bg-base-300' id="mobileSearchField" />
-                            <input type="submit" value="🔍"  className='btn btn-primary btn-sm outline-none ml-1'/>
+                            <input type="search" name="search" placeholder='🔍' className='input input-sm pl-1 w-[250px] input-secondary bg-base-300' id="mobileSearchField" />
+                            <input type="submit" value="🔍" className='btn btn-primary btn-sm outline-none ml-1' />
                         </form>
                     </div>
                     {/*---------------------- for recent search result-------------------------*/}

@@ -56,7 +56,7 @@ const Search = () => {
             <div>
                 <Header />
             </div>
-            <div className='h-full bg-base-100 lg:ml-16'>
+            <div className='min-h-screen overflow-auto bg-base-100 lg:ml-16'>
 
                 {
                     // !isLoading || typeof getPost?.map === 'function'
