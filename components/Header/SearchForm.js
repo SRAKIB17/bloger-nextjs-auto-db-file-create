@@ -1,10 +1,42 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { SearchIcon } from '../ReactRSIcon/index'
+import { Delete, SearchIcon } from '../ReactRSIcon/index'
 
 const SearchForm = () => {
     const [showFormMobile, setShowFormMobile] = useState(false);
     const focusSearchBoxHandle = () => {
         setShowFormMobile(true)
+    }
+    const router = useRouter()
+    const searchHandle = async (e) => {
+        e.preventDefault()
+        const searchValue = e.target.search.value.trim()
+
+        const getLocalSearchObj = await localStorage.getItem('search')
+        if (getLocalSearchObj) {
+            const searchParch = JSON.parse(getLocalSearchObj)
+            const check = await searchParch?.search?.includes(searchValue);
+            if (!check) {
+                searchParch?.search?.push(searchValue);
+                localStorage.setItem('search', JSON.stringify(searchParch))
+            }
+        }
+        else {
+            const search = { search: [searchValue] }
+            localStorage.setItem('search', JSON.stringify(search))
+        }
+        router.push('/search/' + e.target.search.value)
+        router.prefetch('/search/' + e.target.search.value)
+    }
+
+    const saveSearch = typeof window !== 'undefined' && window.localStorage ? JSON.parse(window.localStorage.getItem('search')) : {}
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
+    }
+
+    const deleteAllSearchActivity = () => {
+        localStorage.removeItem('search')
     }
     return (
         <div>
@@ -18,8 +50,9 @@ const SearchForm = () => {
             {showFormMobile &&
                 <div className='fixed flex top-[60px] w-full bg-base-100 left-0 h-full border-b-2'>
                     <div className='absolute top-[15px] left-[40px] flex md:hidden'>
-                        <form>
-                            <input type="search" name="" placeholder='🔍' className='input h-[30px] pl-1 w-[250px] input-ghost bg-base-300' id="" />
+                        <form onSubmit={searchHandle}>
+                            <input type="search" name="" placeholder='🔍' className='input input-sm pl-1 w-[250px] input-secondary bg-base-300' id="mobileSearchField" />
+                            <input type="submit" value="🔍"  className='btn btn-primary btn-sm outline-none ml-1'/>
                         </form>
                     </div>
                     {/*---------------------- for recent search result-------------------------*/}
@@ -33,25 +66,29 @@ const SearchForm = () => {
                             </button>
                         </div>
                         <div className='p-4'>
-                            <h1 className='underline text-xl font-medium'>Your recent search</h1>
+                            <div className='flex items-center'>
+                                <h1 className='underline text-xl font-medium'>Your recent search</h1>
+                                <button onClick={deleteAllSearchActivity} className="ml-4 btn btn-xs btn-secondary btn-outline">
+                                    <Delete />
+                                </button>
+                            </div>
                             <div className='flex gap-2 flex-wrap mt-2'>
-                                <button className='btn btn-xs btn-outline btn-info'>
-                                    mamun
-                                </button>
-                                <button className='btn btn-xs btn-outline btn-info'>
-                                    mamun
-                                </button>
-                                <button className='btn btn-xs btn-outline btn-info'>
-                                    mamun
-                                </button>
+
+                                {
+                                    saveSearch?.search?.map((value, index) =>
+                                        <button key={index} className='btn btn-xs btn-outline btn-info' onClick={() => navigate('/search/' + value)}>
+                                            {value}
+                                        </button>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             }
             <div className='hidden md:block fixed left-[30px] top-[15px] border rounded-lg' >
-                <form>
-                    <input type="search" name="" placeholder='🔍' className='input h-[30px] pl-1 input-ghost bg-base-300 ' id="" onKeyUp={focusSearchBoxHandle} />
+                <form onSubmit={searchHandle}>
+                    <input type="search" name="search" placeholder='🔍' className='input h-[30px] pl-1 input-ghost bg-base-300 ' id="laptopSearchField" onKeyUp={focusSearchBoxHandle} />
                 </form>
             </div>
         </div>
