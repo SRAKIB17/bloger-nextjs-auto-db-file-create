@@ -109,7 +109,7 @@ const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) =
             const replyBody = {
                 post_id: post_id,
                 userID: user_details?.userID,
-                time: Date(),
+                time: new Date(),
                 comment_id: replyNow?.comment_id,
                 reply: CommentTextareaRef.current.value,
                 emoji: selectEmoji
@@ -148,7 +148,7 @@ const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) =
                 post_id: post_id,
                 userID: user_details?.userID,
                 comment: CommentTextareaRef.current.value,
-                time: Date(),
+                time: new Date(),
                 comment_id: 2,
                 replies: [],
                 emoji: selectEmoji
@@ -188,6 +188,7 @@ const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) =
     const closeSelectEmojiGifHandle = () => {
         setSelectEmoji(null)
     }
+    console.log(post)
     return (
         <div>
             <div className='mb-1'>

@@ -5,10 +5,12 @@ import { useQuery } from 'react-query';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 import { UserFullInfoProvider } from '../../pages/_app';
+import timeSince from '../Post-NewsFeed/TimeSince';
 
 
 const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_id }) => {
     const { userID, time, reply, reply_id } = replyComment;
+    const getTimeSince = timeSince(time)
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
 
     const replyUserInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
@@ -90,6 +92,7 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_i
                     </div>
                     <div className='text-[14px] font-bold'>
                         <h6 className='m-0'>{reply_user_details?.name || 'User'}</h6>
+                        <p className='text-[8px] text-gray-500'>{getTimeSince}</p>
                     </div>
 
                 </div>

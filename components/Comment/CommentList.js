@@ -6,12 +6,13 @@ import { useQuery } from 'react-query';
 import { UserFullInfoProvider } from '../../pages/_app';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
+import timeSince from '../Post-NewsFeed/TimeSince';
 
 
 const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch }) => {
 
     const { userID, comment, time, comment_id, replies } = commentBody;
-
+    const getTimeSince = timeSince(time)
     // GET COMMENT USER DETAILS 
     const commentUserInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
@@ -113,6 +114,7 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
                     </div>
                     <div className='text-[14px] font-bold'>
                         <h6 className='m-0'>{comment_user_details?.name || "User"}</h6>
+                        <p className='text-[8px] text-gray-500'>{getTimeSince}</p>
                     </div>
 
                 </div>
