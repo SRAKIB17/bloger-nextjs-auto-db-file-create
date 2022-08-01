@@ -188,7 +188,6 @@ const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) =
     const closeSelectEmojiGifHandle = () => {
         setSelectEmoji(null)
     }
-    console.log(post)
     return (
         <div>
             <div className='mb-1'>

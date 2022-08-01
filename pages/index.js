@@ -11,6 +11,7 @@ import Mobile from '../components/Home/Mobile';
 import Footer from '../components/Home/Footer';
 import { useRouter } from 'next/router'
 import PageTitle from '../components/hooks/PageTitle';
+import Feature from '../components/Home/Feature';
 
 export default function Index() {
   const router = useRouter()
@@ -36,7 +37,7 @@ export default function Index() {
       </Head>
       <Header />
 
-      <div className='lg:ml-16 sm:pl-3 h-[100vh] bg-base-100'>
+      <div className='lg:pl-16 sm:pl-3 h-[100vh] bg-base-100'>
         {/* ********************************************** */}
         <div>
           <button className='btn' onClick={changeParam}>
@@ -48,10 +49,10 @@ export default function Index() {
           </div>
 
           {/* ************** WITH OUT NOTICE HOME PAGE */}
-          <div className='p-2'>
+          <div className=''>
             <Home />
           </div>
-          <div className='p-2 w-full h-full bg-base-100'>
+          <div className='w-full h-full bg-base-100'>
             <div>
 
             </div>
@@ -60,7 +61,10 @@ export default function Index() {
               <Mobile />
             </div>
           </div>
-          <div className='clear-both'>
+          <div className='clear-both '>
+            <div>
+              <Feature/>
+            </div>
             <Footer />
           </div>
         </div>

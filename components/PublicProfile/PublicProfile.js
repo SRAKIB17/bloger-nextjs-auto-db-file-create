@@ -76,10 +76,7 @@ const PublicProfile = () => {
                         htmlFor="openModalUploadProfilePicture"
                         title='Upload cover photo'
                     >
-                        <div
-                            className='cursor-pointer relative'>
-                            <div className='bg-base-300 p-1 absolute top-2 left-4 rounded-full'>
-                            </div>
+                        <div className='cursor-pointer relative'>
                             {/* //****************************FOR COVER PHOTO SET CONDITION******************************  */}
                             {
                                 (user_details?.cover == '' || !user_details?.cover) ?

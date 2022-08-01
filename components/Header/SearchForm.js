@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Delete, SearchIcon } from '../ReactRSIcon/index'
 
 const SearchForm = () => {
@@ -31,13 +31,15 @@ const SearchForm = () => {
     }
 
     const saveSearch = typeof window !== 'undefined' && window.localStorage ? JSON.parse(window.localStorage.getItem('search')) : {}
+    const [saveSearchHistory, setSaveSearchHistory] = useState(saveSearch)
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
     }
 
     const deleteAllSearchActivity = () => {
-        localStorage.removeItem('search')
+        localStorage.removeItem('search');
+        setSaveSearchHistory({})
     }
     return (
         <div>
@@ -76,7 +78,7 @@ const SearchForm = () => {
                             <div className='flex gap-2 flex-wrap mt-2'>
 
                                 {
-                                    saveSearch?.search?.map((value, index) =>
+                                    saveSearchHistory?.search?.map((value, index) =>
                                         <button key={index} className='btn btn-xs btn-outline btn-info' onClick={() => navigate('/search/' + value)}>
                                             {value}
                                         </button>

@@ -21,6 +21,7 @@ export { default as Copy } from './icon/Copy/Copy'
 export { default as CloseCross } from './icon/CloseCross/CloseCross'
 
 export { default as Category1 } from './icon/Category/Category1'
+export { default as CSS3 } from './icon/WebDevelopment/Css3'
 export { default as Delete } from './icon/Delete/Delete'
 export { default as Email } from './icon/Email/Email'
 
@@ -58,6 +59,7 @@ export { default as GoogleColorFull } from './icon/Social/Google/Google_Color_Fu
 export { default as GoogleText } from './icon/Social/Google/GoogleText'
 
 export { default as Home } from './icon/home'
+export { default as HTML5 } from './icon/WebDevelopment/Html5'
 
 
 // for instagram 
@@ -66,6 +68,8 @@ export { default as Info } from './icon/Info/Info'
 export { default as InstagramColor } from './icon/Social/Instagram/instagram-color'
 export { default as Instagram } from './icon/Social/Instagram/instagram'
 export { default as InstagramSquare } from './icon/Social/Instagram/instagramSquare'
+
+export { default as JavaScript } from './icon/WebDevelopment/JavaScript'
 
 
 export { default as Location } from './icon/Address/Location'
@@ -96,7 +100,7 @@ export { default as MenuBarCircle } from './icon/Menu/menu_bar_circle'
 export { default as MenuBarSquare } from './icon/Menu/menu_bar_square'
 
 export { default as MessageDotDotDot } from './icon/Message/MessageDotDotDot'
-export { default as Message} from './icon/Message/Message'
+export { default as Message } from './icon/Message/Message'
 
 // for music 
 export { default as MusicBell } from './icon/Music/musicBell'
@@ -111,10 +115,10 @@ export { default as NewsFeed } from './icon/NewsFeed/NewsFeed'
 export { default as FemaleProfileAvatar } from './icon/ProfileAvatar/FemaleProfileAvatar'
 export { default as MaleProfileAvatar } from './icon/ProfileAvatar/MaleProfileAvatar'
 
-export { default as  PreviewOff} from './icon/Preview/PreviewOff'
-export { default as  PreviewOn} from './icon/Preview/PreviewOn'
+export { default as PreviewOff } from './icon/Preview/PreviewOff'
+export { default as PreviewOn } from './icon/Preview/PreviewOn'
 
-export { default as  Printer} from './icon/Printer/Printer'
+export { default as Printer } from './icon/Printer/Printer'
 
 export { default as Quote } from './icon/Quote'
 
