@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useId, useState } from 'react';
 import Category from '../Category/Category';
 import { Announcement, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
-import Settings from '../Setting/Setting';
-import SupportInboxComponent from '../SupportInbox/SupportInbox';
+
 import { useRouter } from 'next/router'
 import NewPost from '../profile/NewPost/NewPost';
 import { UserFullInfoProvider } from '../../pages/_app';
@@ -105,29 +104,7 @@ const SideLeftBar = () => {
 
     }, [])
 
-    //--------------------open support inbox modal-------------------
-    const [supportInbox, setSupportInbox] = useState(null)
-    const OpenSupportInbox = () => {
-        try {
-
-            const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle');
-            const sideLeftBar = document.getElementById('sideLeftBar');
-            sideLeftBarTitle.forEach(title => {
-                title.style.display = 'none'
-            })
-            if (window.innerWidth >= 1024) {
-                sideLeftBar.style.width = '64px'
-            }
-            else {
-                hiddenSideLeftBarHandle()
-            }
-            setSupportInbox(user?.user)
-            // document.getElementById("SupportInbox").style.width = "100%";
-        }
-        catch {
-
-        }
-    }
+  
 
     //---------------------------for open new post ------------------------
     const [newPost, setNewPost] = useState(null)
@@ -209,7 +186,7 @@ const SideLeftBar = () => {
                         </button> */}
                         {/* for support inbox */}
                         <button
-                            onClick={OpenSupportInbox}
+                            onClick={() => navigate('/inbox/support')}
                             className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
                         >
                             <SupportInbox size='30' />
@@ -325,11 +302,7 @@ const SideLeftBar = () => {
             </div>
 
 
-            {/* for external component  */}
-            {
-                (user?.user && supportInbox) &&
-                <SupportInboxComponent props={setSupportInbox} />
-            }
+
             <Category />
 
             {

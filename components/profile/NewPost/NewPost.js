@@ -78,7 +78,7 @@ const NewPost = ({ props: setNewPost }) => {
                         token: localStorage.getItem('token')
                     }
                 });
-            console.log(data)
+          
             if (data?.message === 'success') {
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 setNewPost(null)

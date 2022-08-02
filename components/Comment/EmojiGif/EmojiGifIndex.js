@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react';
 import { Emoji, GifText } from '../../ReactRSIcon';
 import EmojiIndex from './Emoji/EmojiIndex';
@@ -13,8 +14,22 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
     const closeCloseSectionHandle = () => {
         setShowEmojiGifSection(null)
     }
+    const closeSelectEmojiGifHandle = () => {
+        setSelectEmoji(null)
+    }
     return (
         <div className='relative'>
+            <div className='bg-base-300'>
+
+                {
+                    showEmojiGifSection == 'emoji' &&
+                    <EmojiIndex props={{ selectEmoji, setSelectEmoji, closeCloseSectionHandle }} />
+                }
+                {
+                    showEmojiGifSection == 'gif' &&
+                    <GifIndex props={{ selectEmoji, setSelectEmoji, closeCloseSectionHandle }} />
+                }
+            </div>
             <div className='m-2'>
                 <div className='flex  items-center gap-2'>
                     <span
@@ -29,20 +44,24 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
                     >
                         <GifText size='24' />
                     </span>
+                    <div className='pt-2'>
+                        {
+                            selectEmoji &&
+                            <div className='w-11 h-11 p-1 border-2 rounded-md relative'>
+                                <span
+                                    onClick={closeSelectEmojiGifHandle}
+                                    className='absolute text-2xs top-[-18px] right-[-10px] btn-primary btn btn-xs btn-outline bg-base-100'
+                                >
+                                    x
+                                </span>
+                                <img src={selectEmoji} alt="" />
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
 
-            <div className='bg-base-300'>
 
-                {
-                    showEmojiGifSection == 'emoji' &&
-                    <EmojiIndex props={{ selectEmoji, setSelectEmoji, closeCloseSectionHandle }} />
-                }
-                {
-                    showEmojiGifSection == 'gif' &&
-                    <GifIndex props={{ selectEmoji, setSelectEmoji, closeCloseSectionHandle }} />
-                }
-            </div>
         </div >
     );
 };

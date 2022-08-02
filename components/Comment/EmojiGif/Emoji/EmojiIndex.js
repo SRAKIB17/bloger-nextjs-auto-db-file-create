@@ -33,6 +33,53 @@ const EmojiIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHan
     }
     return (
         <div>
+
+            <div className='bg-base-100 h-[300px] overflow-auto border-2 rounded-md p-1 max-w-sm absolute top-[-310px] w-full z-20'>
+                {
+                    emojiView == 'emoji' &&
+                    <Emoji props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView == 'emoji1' &&
+                    <Emoji1 props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView == 'emoji2' &&
+                    <Emoji2 props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView == 'emoji3' &&
+                    <Emoji3 props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView === 'smiles' &&
+                    <EmojiSmiles props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView === 'funnyBaby' &&
+                    <FunnyBaby props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView === 'kolobanga' &&
+                    <KoloBangaEmoji props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView === 'dogEmoji' &&
+                    <DogEmoji props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView === 'pape' &&
+                    <Pape props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView === 'handEmoji' &&
+                    <HandEmoji props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    emojiView === 'spongbob' &&
+                    <Spongbob props={{ selectEmoji, setSelectEmoji }} />
+                }
+            </div>
             <div className='flex gap-2 p-4 flex-wrap '>
 
                 {/* ***********FOR EMOJI 00 ***************** */}
@@ -134,53 +181,6 @@ const EmojiIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHan
                     X
                 </span>
             </div>
-            <div className='bg-base-100 h-[300px] overflow-auto border-2 rounded-md p-1 max-w-sm absolute top-[-310px] w-full z-20'>
-                {
-                    emojiView == 'emoji' &&
-                    <Emoji props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView == 'emoji1' &&
-                    <Emoji1 props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView == 'emoji2' &&
-                    <Emoji2 props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView == 'emoji3' &&
-                    <Emoji3 props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView === 'smiles' &&
-                    <EmojiSmiles props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView === 'funnyBaby' &&
-                    <FunnyBaby props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView === 'kolobanga' &&
-                    <KoloBangaEmoji props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView === 'dogEmoji' &&
-                    <DogEmoji props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView === 'pape' &&
-                    <Pape props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView === 'handEmoji' &&
-                    <HandEmoji props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    emojiView === 'spongbob' &&
-                    <Spongbob props={{ selectEmoji, setSelectEmoji }} />
-                }
-            </div>
-
         </div>
     );
 };

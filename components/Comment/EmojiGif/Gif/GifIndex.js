@@ -21,9 +21,30 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
         setGifView(view)
     }
 
-    
+
     return (
         <div >
+
+            <div className='h-[300px] overflow-auto bg-base-100 border-2 rounded-md p-1 max-w-sm absolute top-[-310px] w-full z-20'>
+                {
+                    gifView == 'emoji' && <EmojiGif props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    gifView == 'emoji2' && <EmojiGif2 props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    gifView == 'others' && <OtherEmojiGif props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    gifView == 'loveGif' && <LoveEmojiGif props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    gifView == 'roseGif' && <RoseGif props={{ selectEmoji, setSelectEmoji }} />
+                }
+                {
+                    gifView == 'catAnimal' && <CatAnimal props={{ selectEmoji, setSelectEmoji }} />
+                }
+            </div>
             <div className='flex gap-2 p-4 flex-wrap'>
                 {/* ***********EMOJI************* */}
                 <span
@@ -81,27 +102,6 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
                 </span>
 
             </div>
-            <div className='h-[300px] overflow-auto bg-base-100 border-2 rounded-md p-1 max-w-sm absolute top-[-310px] w-full z-20'>
-                {
-                    gifView == 'emoji' && <EmojiGif props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    gifView == 'emoji2' && <EmojiGif2 props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    gifView == 'others' && <OtherEmojiGif props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    gifView == 'loveGif' && <LoveEmojiGif props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    gifView == 'roseGif' && <RoseGif props={{ selectEmoji, setSelectEmoji }} />
-                }
-                {
-                    gifView == 'catAnimal' && <CatAnimal props={{ selectEmoji, setSelectEmoji }} />
-                }
-            </div>
-
 
         </div>
     );

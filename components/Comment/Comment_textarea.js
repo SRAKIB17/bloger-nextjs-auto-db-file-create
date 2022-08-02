@@ -185,9 +185,7 @@ const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) =
         setSendCommentLoading(null)
     }
 
-    const closeSelectEmojiGifHandle = () => {
-        setSelectEmoji(null)
-    }
+
     return (
         <div>
             <div className='mb-1'>
@@ -241,20 +239,7 @@ const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) =
                                         </div>
                                     }
                                 </div>
-                                <div className='pt-2'>
-                                    {
-                                        selectEmoji &&
-                                        <div className='w-11 h-11 p-1 border-2 rounded-md relative'>
-                                            <span
-                                                onClick={closeSelectEmojiGifHandle}
-                                                className='absolute text-2xs top-[-18px] right-[-10px] btn-primary btn btn-xs btn-outline bg-base-100'
-                                            >
-                                                x
-                                            </span>
-                                            <img src={selectEmoji} alt="" />
-                                        </div>
-                                    }
-                                </div>
+                               
                             </div>
                         </div>
                         <p className='text-red-600 text-xs p-1'>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect } from 'react';
 
 const MessageBody = ({ messageBody }) => {
@@ -23,6 +24,12 @@ const MessageBody = ({ messageBody }) => {
                             </div>
 
                             <div className='bg-base-200  p-3 w-full max-w-[80%] shadow-inner rounded-lg rounded-br-3xl'>
+                                {
+                                    messageBody?.emoji &&
+                                    <div>
+                                        <img src={messageBody?.emoji} alt="" />
+                                    </div>
+                                }
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                                 {/* <iframe
                                     data-supportibox='true'
@@ -56,6 +63,12 @@ const MessageBody = ({ messageBody }) => {
                                 ></iframe> */}
                                 {/* <div dangerouslySetInnerHTML={{ __html: message }}></div> */}
                                 <div className='break-words overflow-hidden text-sm'>
+                                    {
+                                        messageBody?.emoji &&
+                                        <div className='pb-[2px]'>
+                                            <img src={messageBody?.emoji} alt="" />
+                                        </div>
+                                    }
                                     {message}
                                 </div>
                             </div>

@@ -3,26 +3,23 @@ import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
-import styles from '../profile/NewPost/NewPost.module.css'
-import { SendShare } from '../ReactRSIcon';
+import { MenuBar, MenuBarCircle, SendShare } from '../ReactRSIcon';
 import AdminSupportInbox from './AdminSupportInbox';
 import MessageBody from './MessageBody';
 import inbox from './SupportInbox.module.css'
 import style from './Admin.module.css'
 import { UserFullInfoProvider } from '../../pages/_app';
 import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
+import EmojiGifIndex from '../Comment/EmojiGif/EmojiGifIndex';
+import LoadingSpin from '../LoadingSpin';
+import styles from '../profile/NewPost/NewPost.module.css'
 
-const SupportInbox = ({ props: setSupportInbox }) => {
+const SupportInbox = () => {
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
-    usePrivatePageCheckUser(asPath)
-
-    function closeSupportInbox() {
-        // document.getElementById("SupportInbox").style.width = "0";
-        setSupportInbox(null)
-    }
+    // usePrivatePageCheckUser(asPath)
 
 
 
@@ -36,8 +33,13 @@ const SupportInbox = ({ props: setSupportInbox }) => {
 
     //********************************************** set auto height support inbox box*************************** */
     const handleChatBoxHeight = () => {
-        const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
-        document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
+        try {
+            const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
+            document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
+        }
+        catch {
+
+        }
     }
     useEffect(() => {
         handleChatBoxHeight()
@@ -60,64 +62,94 @@ const SupportInbox = ({ props: setSupportInbox }) => {
 
 
     const [inboxMessage, setInboxMessage] = useState([]);
-    const [inboxUserId, setInboxUserId] = useState(1);
+    const [inboxUserId, setInboxUserId] = useState(null);
+    useEffect(() => {
+        if (isAdmin?.admin) {
+            setInboxUserId('')
+        }
+        else {
+            setInboxUserId(user_details?.userID)
+        }
+    }, [user_details])
 
-    const { data } = useQuery(['SupportInbox', inboxUserId], () => axios.get(`/api/support_inbox/${inboxUserId}`))
 
-    const postHandle = async (event) => {
+    const { data, refetch, isLoading: InboxLoading } = useQuery(['SupportInbox', inboxUserId, user_details], () => axios.get(`/api/inbox/support/${inboxUserId}?email=${user_details?.email}`,
+        {
+            headers: {
+                access_token: sessionStorage.getItem('accessAutoG'),
+                token: localStorage.getItem('token')
+            }
+        }
+    ))
+    const message = data?.data?.result;
+    useEffect(() => {
+        setInboxMessage(message)
+    }, [message])
+
+
+    // FOR EMOJI GIF AND OTHER //
+    const [selectEmoji, setSelectEmoji] = useState(null)
+    const [showEmojiGifSection, setShowEmojiGifSection] = useState(null);
+    const [showMenuEmoji, setShowMenuEmoji] = useState(null);
+
+    const [messageLoading, setMessageLoading] = useState(null)
+    const messagePostHandle = async (event) => {
+        setMessageLoading(true)
         event.preventDefault();
         handleChatBoxHeight()
         const body = event.target.supportMessage.value;
         const messageBody = {
-            userID: '3534553',
-            adminReply: false,
-            adminId: '534545534',
+            emoji: selectEmoji,
+            userID: inboxUserId,
+            adminReply: isAdmin?.admin,
+            adminId: isAdmin?.admin ? user_details?.userID : '',
             message: body
         }
-
+        const { data } = await axios.post(`/api/inbox/support/${inboxUserId}?email=${user_details?.email}`, messageBody,
+            {
+                headers: {
+                    access_token: sessionStorage.getItem('accessAutoG'),
+                    token: localStorage.getItem('token')
+                }
+            });
+        if (data?.message === 'success') {
+            // setErrMsg(<p className='text-green-600'>Success</p>)
+            setMessageLoading(false)
+            refetch()
+            setSelectEmoji(null)
+            setShowMenuEmoji(null)
+            setShowEmojiGifSection(null)
+            if (data?.result?.acknowledged) {
+                refetch()
+                event.target.reset()
+                setMessageLoading(false)
+            }
+        }
+        else if (data?.message === 'error') {
+            refetch()
+            alert('something is wrong')
+            // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
+            setMessageLoading(false)
+        }
         event.target.reset()
-
-
-        // const post = {
-        //     userID: '54fsdlj53',
-        //     post_id: '534fsdfjo345',
-        //     post_title: event.target.title.value,
-        //     thumbnail: 'https://api.lorem.space/image/shoes?w=400&h=225',
-        //     image: '',
-        //     time: 'dec 15, 2021',
-        //     short_description: event.target.short_description.value,
-        //     category: event.target.category.value,
-        //     postBody: body,
-        //     sort: '5345345345',
-        //     tags: event.target.tags.value.split(','),
-        //     postRefMode: postRefMode
-        // }
-        // console.log(post)
-        // const { data } = await axios.post('/api/comment', message);
-        // console.log(data)
+        setMessageLoading(false)
         setInboxMessage([...inboxMessage, messageBody])
 
         const myDiv = document.getElementById("supportMessageBody");
         myDiv.scrollTop = myDiv.scrollHeight;
-        // refetch()
+        refetch()
     }
     //************************************************ hide or show all inbox message********************************************** */
+    const [showMessageList, setShowMessageList] = useState(true)
     const hideAllInboxMessageForAdmin = () => {
-        try {
-            const adminAllInboxMessage = document.getElementById('adminAllInboxMessage');
-            console.log(adminAllInboxMessage.offsetHeight)
-            if (adminAllInboxMessage.offsetHeight < 10) {
-                adminAllInboxMessage.style.height = '224px'
-                adminAllInboxMessage.style.borderBottomWidth = '2px'
-            }
-            else {
-                adminAllInboxMessage.style.height = '0px'
-                adminAllInboxMessage.style.borderBottomWidth = '0px'
-            }
-        }
-        catch {
+        setShowMessageList(!showMessageList)
+    }
 
-        }
+
+    const showMenuEmojiHandle = () => {
+        setShowMenuEmoji(!showMenuEmoji)
+        setSelectEmoji(null)
+        setShowEmojiGifSection(null)
     }
     return (
         <div>
@@ -125,7 +157,7 @@ const SupportInbox = ({ props: setSupportInbox }) => {
             <div
                 id="SupportInbox"
                 style={{ overflow: 'hidden', paddingTop: '0px', width: '100%' }}
-                className={styles.NewPostNav + ' bg-base-100 '}
+                className="bg-base-100 h-[100vh]"
             >
                 <div
                     className='max-w-xl mx-auto shadow-2xl p-4'
@@ -142,7 +174,7 @@ const SupportInbox = ({ props: setSupportInbox }) => {
                              hight 0 to 224px
                             *************************************************************************** */}
                             {
-                                isAdmin?.admin &&
+                                // isAdmin?.admin &&
                                 <div className='mr-20'>
                                     <button
                                         onClick={hideAllInboxMessageForAdmin}
@@ -153,17 +185,9 @@ const SupportInbox = ({ props: setSupportInbox }) => {
                                 </div>
                             }
                         </div>
-                        <a
-                            href="#"
-                            className={styles.closebtn}
-                            onClick={closeSupportInbox}
-                        >
-                            &times;
-                        </a>
                     </div>
-
                     <div
-                        className={(inbox.inboxHideScrollBar) + '  p-4 overflow-auto overflow-x-hidden  h-full '}
+                        className={(inbox.inboxHideScrollBar) + ' relative  p-4 overflow-auto overflow-x-hidden  h-full '}
                         id='supportMessageBody'
                     >
 
@@ -175,19 +199,30 @@ const SupportInbox = ({ props: setSupportInbox }) => {
                     ****************************************************************************** */}
 
                         {
-                            isAdmin?.admin &&
-                            < div className={style.showAllMessage + ' overflow-auto  border-b-primary absolute top-[57px] w-full max-w-[500px] z-40 bg-base-100'} id='adminAllInboxMessage'>
-                                <div className='rounded-lg border-b overflow-auto h-56 hideScrollBar '>
+                            // isAdmin?.admin &&
+                            showMessageList &&
+                            <div className={' overflow-auto  border-b-primary sticky top-[-16px] w-full  z-40 bg-base-100'}
+                                id='adminAllInboxMessage'
+                            >
+                                <div className=' absolute right-0 z-[30] top-[2px]'>
+                                    <button className='btn btn-sm btn-secondary btn-outline text-right' onClick={hideAllInboxMessageForAdmin}>
+                                        X
+                                    </button>
+                                </div>
+                                <div className='rounded-lg border-b overflow-auto h-56 hideScrollBar mt-4'>
                                     <AdminSupportInbox setInboxMessage={{ setInboxMessage, inboxUserId, setInboxUserId }} />
                                 </div>
                             </div>
 
                         }
 
-                        <div>
+                        <div className='relative'>
 
                             {
-                                data?.data?.map((messageBody, index) => <MessageBody key={messageBody?.support_id} messageBody={messageBody} />)
+                                InboxLoading && <LoadingSpin />
+                            }
+                            {
+                                inboxMessage?.map((messageBody, index) => <MessageBody key={messageBody?.support_id} messageBody={messageBody} />)
                             }
                         </div>
 
@@ -196,9 +231,22 @@ const SupportInbox = ({ props: setSupportInbox }) => {
                     </div>
                     <div className='border-t-2 pt-3' id='sendMessageSupportInboxForm'>
 
-                        <form action="" onSubmit={postHandle} className='flex flex-col ml-4 mr-4'>
+                        <form action="" onSubmit={messagePostHandle} className='flex flex-col ml-1 mr-1 relative'>
+                            {
+                                showMenuEmoji &&
+                                <div className={(showEmojiGifSection ? 'top-[-150px] h-[150px]' : ' top-[-55px]') + ' absolute left-0 bg-base-100 w-full mb-1 z-20'}>
+                                    <EmojiGifIndex props={{ selectEmoji, setSelectEmoji, showEmojiGifSection, setShowEmojiGifSection }} />
+                                </div>
 
-                            <div className='flex items-end w-full'>
+                            }
+
+                            <div className='flex items-end w-full gap-2'>
+                                <span
+                                    className='btn btn-sm btn-outline w-8 p-1 h-8 outline-none'
+                                    onClick={() => showMenuEmojiHandle()}
+                                >
+                                    <MenuBarCircle size='20' />
+                                </span>
                                 <textarea ref={textareaRef}
                                     id='textForm'
                                     className='input input-success font-mono  w-full'
@@ -211,10 +259,22 @@ const SupportInbox = ({ props: setSupportInbox }) => {
                                     onPaste={heightAutoHandle}
                                     onDrop={heightAutoHandle}
                                     onKeyDown={heightAutoHandle}
+                                    required={selectEmoji ? false : true}
                                 >
                                 </textarea>
                                 <div>
-                                    <button className='btn btn-sm btn-primary ml-2 text-xs'><SendShare size='25' /></button>
+                                    {
+                                        messageLoading ?
+                                            <span className='btn btn-sm btn-primary text-xs relative'>
+                                                <SendShare size='25' />
+                                                <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                                </p>
+                                            </span>
+                                            :
+                                            <button className='btn btn-sm btn-primary text-xs'><SendShare size='25' /></button>
+                                    }
+
+
                                 </div>
                             </div>
                             {/* <TextArea /> */}

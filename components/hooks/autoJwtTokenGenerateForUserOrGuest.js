@@ -10,7 +10,7 @@ const autoJwtTokenGenerateForUserOrGuest = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { user_check_access_feature, guest_check_access_token, auto_jwt_token_generate_for_user_or_guest } = private_access_token_client()
 
-    let access = {}
+    let access = {};
     if (user?.user) {
         access = {
             token: user_check_access_feature,
