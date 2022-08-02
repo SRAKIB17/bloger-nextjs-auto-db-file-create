@@ -10,8 +10,7 @@ export default async function handler(req, res) {
     const userCollection = client.db("users").collection("user_details");
     const { email } = req.query;
     const findUserCheckAdmin = await userCollection.findOne({ email: email });
-    const roll = findUserCheckAdmin?.roll === 'user'
-    console.log(checkUser)
+    const roll = findUserCheckAdmin?.roll === 'admin'
 
     if (checkUser && roll) {
         const findAllMessage = await supportInbox.find({}).toArray()

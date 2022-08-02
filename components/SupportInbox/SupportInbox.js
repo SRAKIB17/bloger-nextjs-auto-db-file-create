@@ -174,7 +174,7 @@ const SupportInbox = () => {
                              hight 0 to 224px
                             *************************************************************************** */}
                             {
-                                // isAdmin?.admin &&
+                                isAdmin?.admin &&
                                 <div className='mr-20'>
                                     <button
                                         onClick={hideAllInboxMessageForAdmin}
@@ -199,8 +199,7 @@ const SupportInbox = () => {
                     ****************************************************************************** */}
 
                         {
-                            // isAdmin?.admin &&
-                            showMessageList &&
+                            (isAdmin?.admin && showMessageList) &&
                             <div className={' overflow-auto  border-b-primary sticky top-[-16px] w-full  z-40 bg-base-100'}
                                 id='adminAllInboxMessage'
                             >
