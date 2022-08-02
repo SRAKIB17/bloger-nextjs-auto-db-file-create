@@ -15,7 +15,6 @@ import Feature from '../components/Home/Feature';
 
 export default function Index() {
   const router = useRouter()
-  const { cat, tag } = router.query;
   useEffect(() => {
     console.log(router.query)
   }, [router.query])
@@ -40,9 +39,7 @@ export default function Index() {
       <div className='lg:pl-16 sm:pl-3 h-[100vh] bg-base-100'>
         {/* ********************************************** */}
         <div>
-          <button className='btn' onClick={changeParam}>
-            change
-          </button>
+
           {/* ***************************FOR ADMIN NOTICE *********************** */}
           <div className='min-h-[450px] bg-base-100'>
             <Notice />
@@ -63,7 +60,7 @@ export default function Index() {
           </div>
           <div className='clear-both '>
             <div>
-              <Feature/>
+              <Feature />
             </div>
             <Footer />
           </div>

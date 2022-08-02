@@ -3,14 +3,17 @@ import React from 'react';
 import { Comment, CSS3, EmoticonLove, HTML5, JavaScript, Like, Setting, Share } from '../ReactRSIcon';
 
 import emmet from '../../public/homeGif/emmet.gif'
+import styles from './Feature.module.css'
 
 const Feature = () => {
+    const badge = [' btn-primary', ' btn-secondary', ' btn-accent', ' btn-info', ' btn-warning', ' btn-accent', ' btn-success'];
+    // 
     return (
         <div>
-            <div className='flex flex-wrap bg-base-100 w-full p-4 gap-4 items-start font-mono'>
+            <div className={styles.feature + ' bg-base-100 w-full p-4 font-mono'}>
                 {/* *******FOR JS CSS HTML */}
-                <div className='btn text-white btn-success h-[160px] w-44'>
-                    <div className='flex text-xl flex-col'>
+                <div className={'btn h-[160px] ' + badge[Math.floor(Math.random() * badge.length)]}>
+                    <div className='text-white flex text-xl flex-col'>
                         <h1 className='underline font-bold text-xl'>Support</h1>
                         <div className='text-[18px]'>
                             <div className='flex items-center'>
@@ -34,7 +37,7 @@ const Feature = () => {
                         </div>
                     </div>
                 </div>
-                <div className='btn  text-white btn-secondary h-[160px] w-44 p-2'>
+                <div className={'text-white btn h-[160px] ' + badge[Math.floor(Math.random() * badge.length)]}>
                     <div className='flex flex-col items-center'>
                         <div>
                             <h1 className='underline font-bold text-xl block'>Customize</h1>
@@ -49,10 +52,10 @@ const Feature = () => {
                 </div>
 
                 {/* for reaction */}
-                <div className='flex flex-col  btn btn-primary h-[160px] items-start w-44'>
+                <div className={'btn h-[160px] ' + badge[Math.floor(Math.random() * badge.length)]}>
 
-                    <h1 className='underline font-bold text-xl text-center'>React</h1>
-                    <div className='text-[18px] flex flex-col gap-1'>
+                    <div className=' text-white text-[18px] flex flex-col gap-1 items-start'>
+                        <h1 className='underline font-bold text-xl text-center'>React</h1>
                         <div className='flex gap-1'>
                             <Like /> Like
                         </div>
@@ -83,17 +86,31 @@ const Feature = () => {
                     </div>
                 </div>
                 {/* ********FOR shortcut********** */}
-                <div className='h-[160px] overflow-hidden btn btn-warning flex items-start flex-wrap text-white'>
+                <div className={' text-white col-span-2  h-[160px] overflow-hidden btn flex items-start flex-wrap  ' + badge[Math.floor(Math.random() * badge.length)]}>
                     <div>
                         <div>
                             <h1 className='text-xl underline font-bold'>Shortcut HTML Emmet</h1>
                         </div>
-                        <video loop autoPlay className='h-[160px] w-full max-w-xs' >
+                        <video loop autoPlay className='h-[160px] w-full ' >
                             <source src='/homeGif/emmet.mp4' />
                         </video>
                         {/* <img src={emmet?.src} alt="" className='h-[200px] w-full max-w-xs' /> */}
                     </div>
                 </div>
+                {/* ********FOR shortcut********** */}
+                <div className={' col-span-2 text-white h-[160px] overflow-hidden btn flex items-start flex-wrap  ' + badge[Math.floor(Math.random() * badge.length)]}>
+                    <div>
+                        <div>
+                            <h1 className='text-xl underline font-bold'>Support Emoji</h1>
+                        </div>
+                        <video loop autoPlay className='h-[160px] w-full ' >
+                            <source src='/homeGif/emmet.mp4' />
+                        </video>
+                        {/* <img src={emmet?.src} alt="" className='h-[200px] w-full max-w-xs' /> */}
+                    </div>
+                </div>
+
+
 
             </div>
 
@@ -109,7 +126,7 @@ const Feature = () => {
                     </video>
                 </div>
             </div> */}
-        </div>
+        </div >
     );
 };
 

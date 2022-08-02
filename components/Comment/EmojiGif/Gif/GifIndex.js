@@ -20,6 +20,8 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
     const viewGifHandle = (view) => {
         setGifView(view)
     }
+
+    
     return (
         <div >
             <div className='flex gap-2 p-4 flex-wrap'>
@@ -30,7 +32,6 @@ const GifIndex = ({ props: { selectEmoji, setSelectEmoji, closeCloseSectionHandl
                 >
                     <img src='/_next/static/media/0.f5ccf354.gif' alt="" className='h-full' />
                 </span>
-
                 {/* ***********EMOJI 02************* */}
                 <span
                     className={(gifView == 'emoji2' ? 'btn-disabled bg-primary text-white' : 'btn-outline ') + " btn btn-primary btn-xs "}

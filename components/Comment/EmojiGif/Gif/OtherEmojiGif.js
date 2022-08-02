@@ -6,32 +6,35 @@ const OtherEmojiGif = ({ props: { selectEmoji, setSelectEmoji } }) => {
         console.log(path)
         setSelectEmoji(path)
     }
+
+    const cache = []
+    const getM = require.context('../../../../public/gif/others', true, /\.(htm|html|js|css|gif|png)$/, 'sync');
+    getM.keys().forEach(element => {
+        const moduleEmoji = getM(element)
+        cache.push(moduleEmoji)
+    });
     return (
         <div>
             <div className={styles?.emojiGif}>
                 {
-                    [...Array(122).keys()].map((index) => < EmojiShowImg index={index} key={index} selectEmoji={selectEmoji} selectEmojiHandle={selectEmojiHandle} />)
+                    cache?.map((moduleEmoji, index) =>
+                        <div key={index}>
+                            <span
+                                className={(selectEmoji == moduleEmoji?.default?.src ? "btn btn-disabled bg-primary" : " btn btn-primary btn-outline")}
+                                onClick={() => selectEmojiHandle(moduleEmoji?.default?.src)}
+                            >
+                                <img src={moduleEmoji?.default?.src} alt="" className='h-full' />
+                            </span>
+                        </div>
+                    )
                 }
             </div>
         </div>
     );
 };
 
-const EmojiShowImg = ({ index, selectEmoji, selectEmojiHandle }) => {
 
-    const images = require.context('../../../../public/gif/others', true);
-    let emojiGif = images(`./others (${index + 1}).gif`);
-    return (
-        <div>
-            <span
-                className={(selectEmoji == emojiGif?.default?.src ? "btn btn-disabled bg-primary" : " btn btn-primary btn-outline")}
-                onClick={() => selectEmojiHandle(emojiGif?.default?.src)}
-            >
-                <img src={emojiGif?.default?.src} alt="" className='h-full'/>
-            </span>
-        </div>
-    )
-}
+
 
 
 export default OtherEmojiGif;
