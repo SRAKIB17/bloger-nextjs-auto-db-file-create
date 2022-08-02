@@ -86,6 +86,18 @@ const Feature = () => {
                     </div>
                 </div>
                 {/* ********FOR shortcut********** */}
+                <div className={' text-white h-[160px] overflow-hidden btn flex items-start flex-wrap  ' + badge[Math.floor(Math.random() * badge.length)]}>
+                    <div>
+                        <div>
+                            <h1 className='text-xl underline font-bold'>Support Emoji</h1>
+                        </div>
+                        <video loop autoPlay className='h-[160px] w-full ' >
+                            <source src='/homeGif/emoji.mp4' />
+                        </video>
+                        {/* <img src={emmet?.src} alt="" className='h-[200px] w-full max-w-xs' /> */}
+                    </div>
+                </div>
+                {/* ********FOR shortcut********** */}
                 <div className={' text-white col-span-2  h-[160px] overflow-hidden btn flex items-start flex-wrap  ' + badge[Math.floor(Math.random() * badge.length)]}>
                     <div>
                         <div>
@@ -97,18 +109,7 @@ const Feature = () => {
                         {/* <img src={emmet?.src} alt="" className='h-[200px] w-full max-w-xs' /> */}
                     </div>
                 </div>
-                {/* ********FOR shortcut********** */}
-                <div className={' col-span-2 text-white h-[160px] overflow-hidden btn flex items-start flex-wrap  ' + badge[Math.floor(Math.random() * badge.length)]}>
-                    <div>
-                        <div>
-                            <h1 className='text-xl underline font-bold'>Support Emoji</h1>
-                        </div>
-                        <video loop autoPlay className='h-[160px] w-full ' >
-                            <source src='/homeGif/emmet.mp4' />
-                        </video>
-                        {/* <img src={emmet?.src} alt="" className='h-[200px] w-full max-w-xs' /> */}
-                    </div>
-                </div>
+
 
 
 
