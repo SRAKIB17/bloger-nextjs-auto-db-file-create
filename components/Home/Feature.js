@@ -86,24 +86,24 @@ const Feature = () => {
                     </div>
                 </div>
                 {/* ********FOR shortcut********** */}
-                <div className={' text-white h-[160px] overflow-hidden btn flex items-start flex-wrap  ' + badge[Math.floor(Math.random() * badge.length)]}>
+                <div className={' text-white h-[160px] overflow-hidden btn flex items-start  ' + badge[Math.floor(Math.random() * badge.length)]}>
                     <div>
                         <div>
                             <h1 className='text-xl underline font-bold'>Support Emoji</h1>
                         </div>
-                        <video loop autoPlay className='h-[160px] w-full ' >
+                        <video loop autoPlay className=' h-full pb-2 w-full '>
                             <source src='/homeGif/emoji.mp4' />
                         </video>
                         {/* <img src={emmet?.src} alt="" className='h-[200px] w-full max-w-xs' /> */}
                     </div>
                 </div>
                 {/* ********FOR shortcut********** */}
-                <div className={' text-white  h-[160px] overflow-hidden btn flex items-start flex-wrap  ' + badge[Math.floor(Math.random() * badge.length)]}>
+                <div className={' text-white  h-[160px]  btn flex items-start  ' + badge[Math.floor(Math.random() * badge.length)]}>
                     <div>
                         <div>
-                            <h1 className='text-xl underline font-bold'>Shortcut HTML Emmet</h1>
+                            <h1 className='text-[18px] underline font-bold pt-2 pb-2'>Shortcut HTML Emmet</h1>
                         </div>
-                        <video loop autoPlay className='h-[160px] w-full ' >
+                        <video loop autoPlay className='h-full w-full ' >
                             <source src='/homeGif/emmet.mp4' />
                         </video>
                         {/* <img src={emmet?.src} alt="" className='h-[200px] w-full max-w-xs' /> */}
