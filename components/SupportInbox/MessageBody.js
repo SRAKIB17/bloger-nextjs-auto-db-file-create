@@ -14,11 +14,12 @@ const MessageBody = ({ messageBody }) => {
     //     iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
     //     iframe.contentWindow.document.body.style.textAlign = 'justify'
     // }
-    const inboxUserInfo = useQuery(['inboxUserIdMessageBody', userID], () => axios.get(`/api/public_user_details/${userID}`,
+    const getProfileIcon = adminReply ? adminId : userID
+    const inboxUserInfo = useQuery(['inboxUserIdMessageBody', userID], () => axios.get(`/api/public_user_details/${getProfileIcon}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
-
+    console.log(messageBody)
     const user_details = inboxUserInfo?.data?.data?.user_details;
     const isLoading = inboxUserInfo.isLoading;
     return (

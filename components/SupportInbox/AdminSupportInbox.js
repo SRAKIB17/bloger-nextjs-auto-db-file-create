@@ -40,11 +40,13 @@ const AdminSupportInbox = ({ setInboxMessage: { setInboxMessage, inboxUserId, se
                         <LoadingSpin />
                     </div>
                 }
-                {
-                    uniqueUserId?.map((userID, index) =>
-                        <UserListComponent userID={userID} setInboxUserId={setInboxUserId} key={index} />
-                    )
-                }
+                <div className='flex gap-3 flex-wrap'>
+                    {
+                        uniqueUserId?.map((userID, index) =>
+                            <UserListComponent userID={userID} setInboxUserId={setInboxUserId} key={index} />
+                        )
+                    }
+                </div>
             </div>
         </div>
     );
@@ -60,7 +62,7 @@ const UserListComponent = ({ userID, setInboxUserId }) => {
     const user_details = inboxUserInfo?.data?.data?.user_details;
     const isLoading = inboxUserInfo.isLoading;
     return (
-        <div className='border-2 btn btn-sm w-fit p-0 pr-2' onClick={() =>setInboxUserId(userID)}>
+        <div className='border-2 btn btn-sm w-fit p-0 pr-2' onClick={() => setInboxUserId(userID)}>
             {
                 isLoading ?
                     <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
@@ -87,7 +89,7 @@ const UserListComponent = ({ userID, setInboxUserId }) => {
                         <div className='ml-1 w-full '>
                             <div
                                 className='break-words overflow-hidden text-sm cursor-pointer font-extralight '
-                                
+
                             >
                                 {
                                     user_details?.name || 'User'
