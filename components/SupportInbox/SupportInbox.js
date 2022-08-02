@@ -19,7 +19,7 @@ const SupportInbox = () => {
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
-    // usePrivatePageCheckUser(asPath)
+    usePrivatePageCheckUser(asPath)
 
 
 
@@ -105,6 +105,7 @@ const SupportInbox = () => {
             adminId: isAdmin?.admin ? user_details?.userID : '',
             message: body
         }
+        
         const { data } = await axios.post(`/api/inbox/support/${inboxUserId}?email=${user_details?.email}`, messageBody,
             {
                 headers: {

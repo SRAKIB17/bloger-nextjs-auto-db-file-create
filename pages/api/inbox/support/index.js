@@ -11,6 +11,8 @@ export default async function handler(req, res) {
     const { email } = req.query;
     const findUserCheckAdmin = await userCollection.findOne({ email: email });
     const roll = findUserCheckAdmin?.roll === 'admin'
+    const findAllMessage = await supportInbox.find({}).toArray()
+    console.log(findAllMessage)
 
     if (checkUser && roll) {
         const findAllMessage = await supportInbox.find({}).toArray()

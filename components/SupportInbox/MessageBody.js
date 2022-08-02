@@ -1,5 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from 'axios';
 import React, { useEffect } from 'react';
+import { useQuery } from 'react-query';
+import maleAvatar from '../../public/maleAvatar.png'
+import femaleAvatar from '../../public/femaleAvatar.png'
+
 
 const MessageBody = ({ messageBody }) => {
     const { adminId, support_id, userID, adminReply, message } = messageBody;
@@ -9,7 +14,13 @@ const MessageBody = ({ messageBody }) => {
     //     iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
     //     iframe.contentWindow.document.body.style.textAlign = 'justify'
     // }
+    const inboxUserInfo = useQuery(['inboxUserIdMessageBody', userID], () => axios.get(`/api/public_user_details/${userID}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }));
 
+    const user_details = inboxUserInfo?.data?.data?.user_details;
+    const isLoading = inboxUserInfo.isLoading;
     return (
         <div>
             <div className='w-full' id='supportInboxBody'>
@@ -17,10 +28,20 @@ const MessageBody = ({ messageBody }) => {
                     adminReply &&
                     <div>
                         <div className=' flex justify-start items-start mt-2 mb-2 w-full'>
-                            <div className="avatar mr-1 mt-4">
-                                <div className="w-[16px] rounded-full ">
-                                    <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
-                                </div>
+                            <div className="w-[16px] rounded-full border-2 border-gray-400 overflow-hidden">
+                                {
+                                    (user_details?.profile == '' || !user_details?.profile) ?
+                                        <img
+                                            src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
+                                            alt=''
+                                            className='w-full bg-base-100'
+                                        />
+                                        :
+                                        <img
+                                            src={user_details?.profile}
+                                            alt=''
+                                        />
+                                }
                             </div>
 
                             <div className='bg-base-200  p-3 w-full max-w-[80%] shadow-inner rounded-lg rounded-br-3xl'>
@@ -73,8 +94,20 @@ const MessageBody = ({ messageBody }) => {
                                 </div>
                             </div>
                             <div className="avatar ml-1 mt-4">
-                                <div className="w-[16px] rounded-full ">
-                                    <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
+                                <div className="w-[16px] rounded-full border-2 border-gray-400 overflow-hidden">
+                                    {
+                                        (user_details?.profile == '' || !user_details?.profile) ?
+                                            <img
+                                                src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
+                                                alt=''
+                                                className='w-full bg-base-100'
+                                            />
+                                            :
+                                            <img
+                                                src={user_details?.profile}
+                                                alt=''
+                                            />
+                                    }
                                 </div>
                             </div>
                         </div>
