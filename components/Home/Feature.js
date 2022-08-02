@@ -98,7 +98,7 @@ const Feature = () => {
                     </div>
                 </div>
                 {/* ********FOR shortcut********** */}
-                <div className={' text-white col-span-2  h-[160px] overflow-hidden btn flex items-start flex-wrap  ' + badge[Math.floor(Math.random() * badge.length)]}>
+                <div className={' text-white  h-[160px] overflow-hidden btn flex items-start flex-wrap  ' + badge[Math.floor(Math.random() * badge.length)]}>
                     <div>
                         <div>
                             <h1 className='text-xl underline font-bold'>Shortcut HTML Emmet</h1>
