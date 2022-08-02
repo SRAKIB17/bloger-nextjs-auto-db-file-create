@@ -54,9 +54,9 @@ export default function Index() {
 
             </div>
             {/* *************FOR MOBILE****************** */}
-            <div className='justify-end p-10 hidden md:flex'>
+            {/* <div className='justify-end p-10 hidden md:flex'>
               <Mobile />
-            </div>
+            </div> */}
           </div>
           <div className='clear-both '>
             <div>

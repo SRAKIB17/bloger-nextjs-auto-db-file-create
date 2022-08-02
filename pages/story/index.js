@@ -17,7 +17,7 @@ import PageTitle from '../../components/hooks/PageTitle';
 const Index = () => {
     const router = useRouter()
     const { cat, tag, page } = router.query;
-    const [shows, setShowPosts] = useState(10)
+    const [shows, setShowPosts] = useState(1)
     const [getPage, setGetPage] = useState(1)
 
     const pageHandle = () => {
@@ -75,11 +75,10 @@ const Index = () => {
 
                     {
                         // !isLoading || typeof getPost?.map === 'function'
-                        !isLoading
-                            ?
+            
                             getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
-                            :
-                            ''
+                            
+                            
                     }
 
                     {

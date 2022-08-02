@@ -69,11 +69,9 @@ const Index = () => {
 
                     {
                         // isLoading || typeof getPost?.map === 'function'
-                        !isLoading
-                            ?
-                            getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
-                            :
-                            ''
+                        // !isLoading
+                        //     ?
+                        getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
                     }
 
                     {

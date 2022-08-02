@@ -55,11 +55,11 @@ const Index = () => {
 
                 <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-5' id='storyScroll'>
                     {
-                        isLoading || typeof adminPost?.map === 'function'
-                            ?
-                            adminPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
-                            :
-                            ''
+                        // isLoading || typeof adminPost?.map === 'function'
+                        // ?
+                        adminPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
+                        // :
+                        // ''
                     }
 
                     {

@@ -251,11 +251,11 @@ const Profile = () => {
                 <div className='col-span-12 md:col-span-7 sticky' id='post'>
                     {
                         // isLoading || typeof getPost?.map === 'function'
-                        !isLoading
-                            ?
+                        // !isLoading
+                            // ?
                             getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
-                            :
-                            ''
+                            // :
+                            // ''
                     }
 
                     {
