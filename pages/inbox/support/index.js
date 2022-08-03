@@ -12,16 +12,17 @@ const Support = () => {
     usePrivatePageCheckUser(asPath)
     return (
         <div>
+
+            <Header />
             {
-                isLoading &&
-                <LoadingSpin />
-            }
-            {
-                user?.user &&
-                <div>
-                    <Header />
-                    <SupportInbox />
-                </div>
+                (user?.user && !isLoading) ?
+                    <div>
+                        <SupportInbox />
+                    </div>
+                    :
+                    <div>
+                        <LoadingSpin />
+                    </div>
             }
         </div>
     );
