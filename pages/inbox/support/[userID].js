@@ -18,12 +18,10 @@ const Support = () => {
 
 
     useEffect(() => {
-        if (!isAdmin.admin && !user?.user) {
-            navigate('/login?return_url=/inbox/support/' + userID)
-        }
-        else if (user?.user) {
+        if (!isAdmin.admin) {
             navigate('/')
         }
+    
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAdmin])
 
