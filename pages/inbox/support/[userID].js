@@ -11,9 +11,9 @@ const Support = () => {
     const router = useRouter()
     const asPath = router.asPath
     usePrivatePageCheckUser(asPath)
-    if (!isAdmin.admin) {
-        router.push('/login?return_url=' + asPath)
-    }
+    // if (!isAdmin.admin) {
+    //     router.push('/login?return_url=' + asPath)
+    // }
     return (
         <div>
             <Header />
