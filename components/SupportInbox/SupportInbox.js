@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useId, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import { MenuBar, MenuBarCircle, SendShare } from '../ReactRSIcon';
@@ -18,14 +18,14 @@ import styles from '../profile/NewPost/NewPost.module.css'
 const SupportInbox = () => {
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
-    const asPath = useRouter()?.asPath
-    usePrivatePageCheckUser(asPath)
+    // const asPath = useRouter()?.asPath
+    // usePrivatePageCheckUser(asPath)
+
+    const router = useRouter()
 
 
 
     const textareaRef = useRef();
-
-
     const onchangeInput = (e) => {
         heightAutoHandle(e)
         classTagShortcutInput(e, textareaRef)
@@ -63,9 +63,10 @@ const SupportInbox = () => {
 
     const [inboxMessage, setInboxMessage] = useState([]);
     const [inboxUserId, setInboxUserId] = useState(null);
+    const { userID } = router.query;
     useEffect(() => {
-        if (isAdmin?.admin) {
-            setInboxUserId('')
+        if (isAdmin?.admin && userID) {
+            setInboxUserId(userID)
         }
         else {
             setInboxUserId(user_details?.userID)
@@ -105,7 +106,7 @@ const SupportInbox = () => {
             adminId: isAdmin?.admin ? user_details?.userID : '',
             message: body
         }
-        
+
         const { data } = await axios.post(`/api/inbox/support/${inboxUserId}?email=${user_details?.email}`, messageBody,
             {
                 headers: {

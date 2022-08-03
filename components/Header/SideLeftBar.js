@@ -1,10 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useContext, useEffect, useId, useState } from 'react';
 import Category from '../Category/Category';
-import { Announcement, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import { AccessKey, Announcement, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 
 import { useRouter } from 'next/router'
 import NewPost from '../profile/NewPost/NewPost';
 import { UserFullInfoProvider } from '../../pages/_app';
+import maleAvatar from '../../public/maleAvatar.png'
+import AdminAccess from '../AdminAccess/AdminAccess';
 
 const SideLeftBar = () => {
     /** ------------------------------for dark mode state----------------------------- */
@@ -104,7 +107,7 @@ const SideLeftBar = () => {
 
     }, [])
 
-  
+
 
     //---------------------------for open new post ------------------------
     const [newPost, setNewPost] = useState(null)
@@ -145,11 +148,28 @@ const SideLeftBar = () => {
         document.cookie = `login=`
         location.reload()
     }
+
+    // FOR ADMIN ACCESS
+    const [showAdminAccess, setAdminAccess] = useState(false)
+    const AdminAccessShowHandle = () => {
+        setAdminAccess(true)
+        hiddenSideLeftBarHandle()
+    }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
 
             <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute lg:hidden right-[10px] hover:text-red-500'>X</button>
             <div className='flex flex-col  mt-4'>
+                {/* **************ADMIN ACCESS CONTROL************** */}
+                <button
+                    onClick={AdminAccessShowHandle}
+                    className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                >
+                    <AccessKey size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Admin Access
+                    </p>
+                </button>
 
                 {/* for support inbox */}
                 {
@@ -300,9 +320,10 @@ const SideLeftBar = () => {
                 }
 
             </div>
-
-
-
+            {
+                (showAdminAccess) &&
+                <AdminAccess setAdminAccess={setAdminAccess} />
+            }
             <Category />
 
             {

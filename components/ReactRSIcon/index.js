@@ -1,4 +1,6 @@
 
+export { default as AccessKey } from './icon/AccessKey/AccessKey'
+
 export { default as AlarmFill } from './icon/alarm-fill'
 export { default as Announcement } from './icon/Announcement/Announcement'
 

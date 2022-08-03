@@ -29,7 +29,7 @@ const MessageBody = ({ messageBody }) => {
                     adminReply &&
                     <div>
                         <div className=' flex justify-start items-start mt-2 mb-2 w-full'>
-                            <div className="w-[16px] rounded-full border-2 border-gray-400 overflow-hidden">
+                            <div className="w-[16px] h-[16px] rounded-full border-2 border-gray-400 overflow-hidden">
                                 {
                                     (user_details?.profile == '' || !user_details?.profile) ?
                                         <img
@@ -95,7 +95,7 @@ const MessageBody = ({ messageBody }) => {
                                 </div>
                             </div>
                             <div className="avatar ml-1 mt-4">
-                                <div className="w-[16px] rounded-full border-2 border-gray-400 overflow-hidden">
+                                <div className="w-[16px] h-[16px] rounded-full border-2 border-gray-400 overflow-hidden">
                                     {
                                         (user_details?.profile == '' || !user_details?.profile) ?
                                             <img
