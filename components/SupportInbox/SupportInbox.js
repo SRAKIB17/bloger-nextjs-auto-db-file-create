@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
-import React, { useContext, useEffect, useId, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
-import { MenuBar, MenuBarCircle, SendShare } from '../ReactRSIcon';
+import { MenuBarCircle, SendShare } from '../ReactRSIcon';
 import AdminSupportInbox from './AdminSupportInbox';
 import MessageBody from './MessageBody';
 import inbox from './SupportInbox.module.css'
@@ -155,7 +155,6 @@ const SupportInbox = () => {
     }
     return (
         <div>
-
             <div
                 id="SupportInbox"
                 style={{ overflow: 'hidden', paddingTop: '0px', width: '100%' }}
@@ -166,7 +165,7 @@ const SupportInbox = () => {
                 >
                     <div
                         className='w-full bg-base-100 z-20 border-b-2 ' id='topSupportInboxDIV'>
-                        <div className='flex justify-between items-center ml-[20px] mr-[20px] relative text-2xl pb-1 '>
+                        <div className='flex justify-between items-center ml-[20px] mr-[20px] relative pb-1 '>
                             <h1>
                                 Support Inbox
                             </h1>
@@ -180,7 +179,7 @@ const SupportInbox = () => {
                                 <div className='mr-20'>
                                     <button
                                         onClick={hideAllInboxMessageForAdmin}
-                                        className='font-bold btn btn-sm text-white btn-warning'
+                                        className='font-bold btn btn-xs btn-outline text-white btn-warning'
                                     >
                                         All Message
                                     </button>
