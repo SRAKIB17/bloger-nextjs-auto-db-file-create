@@ -171,7 +171,7 @@ const SideLeftBar = () => {
                         >
                             <AccessKey size='30' />
                             <p className='hidden' id='sideLeftBarTitle'>
-                                Admin Access
+                                Admin
                             </p>
                         </button>
                     </>
