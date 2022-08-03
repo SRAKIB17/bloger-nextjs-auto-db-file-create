@@ -34,7 +34,7 @@ const AllUser = () => {
 
     const pageHandle = () => {
         router.query.page = page + 1;
-        setGetPage(page + 1)
+        setPage(page + 1)
         router.push(router)
         router.prefetch(router);
     }

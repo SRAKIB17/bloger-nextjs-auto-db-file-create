@@ -1,18 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import { UserFullInfoProvider } from '../../pages/_app';
 import LoadingSpin from '../LoadingSpin';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
+import { Delete } from '../ReactRSIcon';
 
 
 const AdminSupportInbox = ({ setInboxMessage: { setInboxMessage, inboxUserId, setInboxUserId } }) => {
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
 
-    const { data, isLoading: adminInboxLoading } = useQuery(['SupportInboxAdmin', inboxUserId, user_details], () => axios.get(`/api/inbox/support/?email=${user_details?.email}`,
+    const { data, isLoading: adminInboxLoading, refetch } = useQuery(['SupportInboxAdmin', inboxUserId, user_details], () => axios.get(`/api/inbox/support/?email=${user_details?.email}`,
         {
             headers: {
                 access_token: sessionStorage.getItem('accessAutoG'),
@@ -40,10 +41,10 @@ const AdminSupportInbox = ({ setInboxMessage: { setInboxMessage, inboxUserId, se
                         <LoadingSpin />
                     </div>
                 }
-                <div className='flex gap-3 flex-wrap'>
+                <div className='flex gap-3 flex-col'>
                     {
                         uniqueUserId?.map((userID, index) =>
-                            <UserListComponent userID={userID} setInboxUserId={setInboxUserId} key={index} />
+                            <UserListComponent refetch={refetch} userID={userID} setInboxUserId={setInboxUserId} key={index} />
                         )
                     }
                 </div>
@@ -52,49 +53,93 @@ const AdminSupportInbox = ({ setInboxMessage: { setInboxMessage, inboxUserId, se
     );
 };
 
-const UserListComponent = ({ userID, setInboxUserId }) => {
+
+
+const UserListComponent = ({ userID, setInboxUserId, refetch }) => {
     // GET COMMENT USER DETAILS 
-    const inboxUserInfo = useQuery(['inboxUserId', userID], () => axios.get(`/api/public_user_details/${userID}`,
+    const inboxUserInfo = useQuery(['supportInboxMessageUserID', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
 
-    const user_details = inboxUserInfo?.data?.data?.user_details;
+    const inbox_user_details = inboxUserInfo?.data?.data?.user_details;
+    const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
+
     const isLoading = inboxUserInfo.isLoading;
+    const [deleteSupportInboxLoading, setDeleteSupportInboxLoading] = useState(false)
+    const deleteInboxSupportHandle = async (id) => {
+        setDeleteSupportInboxLoading(true)
+        const { data } = await axios.delete(`/api/inbox/support/?userID=${id}&email=${user_details?.email}`,
+            {
+                headers: {
+                    access_token: sessionStorage.getItem('accessAutoG'),
+                    token: localStorage.getItem('token')
+                }
+            }
+        )
+        if (data?.message === 'success') {
+            alert('success')
+            setDeleteSupportInboxLoading(false)
+            refetch()
+            if (data?.result?.acknowledged) {
+                refetch()
+            }
+        }
+        else if (data?.message === 'error') {
+            alert(data?.error)
+        }
+        setDeleteSupportInboxLoading(false)
+    }
     return (
-        <div className='border-2 btn btn-sm w-fit p-0 pr-2' onClick={() => setInboxUserId(userID)}>
+        <div className='' onClick={() => setInboxUserId(userID)}>
             {
                 isLoading ?
                     <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
                     </p>
                     :
-                    <div className='flex items-center'>
-                        <div className="avatar ml-2">
-                            <div className="w-[20px] rounded-full ">
-                                {
-                                    (user_details?.profile == '' || !user_details?.profile) ?
-                                        <img
-                                            src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
-                                            alt=''
-                                            className='w-full bg-base-100'
-                                        />
-                                        :
-                                        <img
-                                            src={user_details?.profile}
-                                            alt=''
-                                        />
-                                }
+                    <div className='flex items-center justify-between'>
+                        <div className='flex items-center'>
+                            <div className="avatar ml-2">
+                                <div className="w-[20px] rounded-full">
+                                    {
+                                        (inbox_user_details?.profile == '' || !inbox_user_details?.profile) ?
+                                            <img
+                                                src={inbox_user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
+                                                alt=''
+                                                className='w-full bg-base-100'
+                                            />
+                                            :
+                                            <img
+                                                src={inbox_user_details?.profile}
+                                                alt=''
+                                            />
+                                    }
+                                </div>
+                            </div>
+                            <div className='ml-1 w-full '>
+                                <div
+                                    className='break-words overflow-hidden text-sm cursor-pointer font-extralight '
+
+                                >
+                                    {
+                                        inbox_user_details?.name || 'User'
+                                    }
+                                </div>
                             </div>
                         </div>
-                        <div className='ml-1 w-full '>
-                            <div
-                                className='break-words overflow-hidden text-sm cursor-pointer font-extralight '
-
-                            >
-                                {
-                                    user_details?.name || 'User'
-                                }
-                            </div>
+                        <div>
+                            {
+                                deleteSupportInboxLoading ?
+                                    <button className='btn btn-warning btn-outline btn-xs'>
+                                        <Delete />
+                                        <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                        </p>
+                                    </button>
+                                    :
+                                    <button className='btn btn-warning btn-outline btn-xs' onClick={() => deleteInboxSupportHandle(userID)}>
+                                        <Delete />
+                                    </button>
+                            }
                         </div>
                     </div>
             }
@@ -103,28 +148,3 @@ const UserListComponent = ({ userID, setInboxUserId }) => {
     )
 }
 export default AdminSupportInbox;
-
-// adminId: ""
-// adminReply: false
-// emoji: null
-// message: "<code> </code> "
-// userID: "314a78fa90c2ab69e439eba5"
-// _id: "62e94cc7fac6fece28ba3f5f"
-// {/* <div
-//                             onClick={() => showInboxSpecific(k)}
-//                             key={index}
-//                             className='bg-base-200 flex p-3 shadow-inner relative rounded-3xl w-full justify-end mt-1 mb-1 items-center cursor-pointer'
-//                         >
-//                             <div className="avatar ml-1">
-//                                 <div className="w-[20px] rounded-full ">
-//                                     <img src="https://api.lorem.space/image/face?hash=3174" alt='' />
-//                                 </div>
-//                             </div>
-//                             <div className='ml-1 w-full '>
-//                                 <div className='break-words overflow-hidden text-lg font-bold'>
-//                                     {
-//                                         k
-//                                     }
-//                                 </div>
-//                             </div>
-//                         </div> */}
