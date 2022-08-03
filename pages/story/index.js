@@ -65,7 +65,7 @@ const Index = () => {
 
             <div className='grid grid-cols-12 gap-2'>
                 <div className='hidden md:block sm:col-span-4 md:col-span-4 lg:col-span-3 text-justify lg:ml-16 p-1 relative bg-base-100'>
-                    <div className=''>
+                    <div className='sticky top-16'>
                         {/* <div className='fixed h-[100vh] overflow-auto sm:w-[200px] md:w-full lg:max-w-[350px] lg:pr-[8rem] md:max-w-[300px] md:pr-[7rem]'> */}
                         <LeftSideLg />
                     </div>

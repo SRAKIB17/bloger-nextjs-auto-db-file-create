@@ -34,6 +34,7 @@ const RightSideLg = () => {
                     <a href="https://wap4dollar.com/ad/serve.php?id=aqrfshf5g1" className='text-xl text-blue-500 '> Download Now</a>
                     <code>
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam cupiditate quia adipisci voluptatem doloremque! Veniam asperiores odio, laborum voluptatum, hic libero nostrum ullam maxime corporis nesciunt reprehenderit. Est, ex cupiditate.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates laboriosam earum, voluptatem consectetur quo eum sint. Tempora numquam reprehenderit saepe adipisci animi, voluptate asperiores aspernatur optio nemo mollitia tenetur dolorem!
                     </code>
                 </div>
             </div>
