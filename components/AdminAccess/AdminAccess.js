@@ -1,17 +1,37 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import LoadingSpin from '../LoadingSpin';
 import styles from './adminAccess.module.css'
 import { MenuBarLeft } from '../ReactRSIcon';
 import AdminAccessDrawerContent from './AdminAccessDrawerContent';
 import AllUser from './all-user/AllUser';
+import { UserFullInfoProvider } from '../../pages/_app';
+import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 
 const AdminAccess = ({ setAdminAccess }) => {
     const closeCategoryModal = () => {
         setAdminAccess(null)
     }
     const [selectOptionAccess, setSelectOptionAccess] = useState('')
+
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    const router = useRouter()
+    const asPath = router?.asPath;
+    const { userID } = router.query;
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
+    }
+    useEffect(() => {
+        if (!isAdmin.admin) {
+            navigate('/login?return_url=/inbox/support/' + userID)
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isAdmin])
+
+    usePrivatePageCheckUser(asPath)
     return (
         <div>
             <div className={styles.AdminAccess + " bg-base-100 min-h-screen overflow-auto pt-14"}>

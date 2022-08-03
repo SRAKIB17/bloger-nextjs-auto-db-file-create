@@ -12,7 +12,7 @@ import AdminAccess from '../AdminAccess/AdminAccess';
 const SideLeftBar = () => {
     /** ------------------------------for dark mode state----------------------------- */
     const [dark, setDark] = useState(false);
-    const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider)
 
 
     /** -------------------------------- show side left bar mouseenter or mouseleave and  
@@ -160,17 +160,23 @@ const SideLeftBar = () => {
 
             <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute lg:hidden right-[10px] hover:text-red-500'>X</button>
             <div className='flex flex-col  mt-4'>
-                {/* **************ADMIN ACCESS CONTROL************** */}
-                <button
-                    onClick={AdminAccessShowHandle}
-                    className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
-                >
-                    <AccessKey size='30' />
-                    <p className='hidden' id='sideLeftBarTitle'>
-                        Admin Access
-                    </p>
-                </button>
 
+                {/* **************ADMIN ACCESS CONTROL************** */}
+
+                {isAdmin?.admin &&
+                    <>
+                        <button
+                            onClick={AdminAccessShowHandle}
+                            className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                        >
+                            <AccessKey size='30' />
+                            <p className='hidden' id='sideLeftBarTitle'>
+                                Admin Access
+                            </p>
+                        </button>
+                    </>
+
+                }
                 {/* for support inbox */}
                 {
                     user?.user &&
@@ -321,7 +327,7 @@ const SideLeftBar = () => {
 
             </div>
             {
-                (showAdminAccess) &&
+                (showAdminAccess && isAdmin?.admin) &&
                 <AdminAccess setAdminAccess={setAdminAccess} />
             }
             <Category />

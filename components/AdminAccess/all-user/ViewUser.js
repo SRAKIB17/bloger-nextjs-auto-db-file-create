@@ -4,9 +4,11 @@ import maleAvatar from '../../../public/maleAvatar.png'
 import femaleAvatar from '../../../public/femaleAvatar.png'
 import { useRouter } from "next/router";
 import style from './allUser.module.css'
-import { useId, useState } from "react";
+import { useContext, useId, useState } from "react";
+import axios from "axios";
+import { UserFullInfoProvider } from "../../../pages/_app";
 /* eslint-disable @next/next/no-img-element */
-const ViewUser = ({ user, isLoadingAbout }) => {
+const ViewUser = ({ user, isLoadingAbout, refetch }) => {
     const { cover, email, facebook, gender, instagram, linkedin, location, name, profile, quote, roll, school, twitter, userID, work, youtube } = user;
     const router = useRouter()
 
@@ -29,6 +31,34 @@ const ViewUser = ({ user, isLoadingAbout }) => {
         catch {
 
         }
+    }
+    const { user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+
+    const [deleteUserLoading, setUserDeleteLoading] = useState(null);
+    const deleteUserHandle = async (id) => {
+        setUserDeleteLoading(true)
+        const { data, isLoading: adminUserListLoading } = await axios.delete(`/api/admin/all-user/?userID=${id}&email=${user_details?.email}`,
+            {
+                headers: {
+                    access_token: sessionStorage.getItem('accessAutoG'),
+                    token: localStorage.getItem('token')
+                }
+            }
+        )
+        console.log(data)
+        if (data?.message === 'success') {
+            alert('success')
+            setUserDeleteLoading(false)
+            refetch()
+            if (data?.result?.acknowledged) {
+                refetch()
+            }
+        }
+        else if (data?.message === 'error') {
+            alert(data?.error)
+        }
+        setUserDeleteLoading(false)
+
     }
     return (
         <div>
@@ -71,11 +101,22 @@ const ViewUser = ({ user, isLoadingAbout }) => {
                             <Info />
                         </button>
                         <button className='btn btn-success btn-outline btn-xs' onClick={() => navigate('/inbox/support/' + userID)}>
-                            <MessageDotDotDot/>
+                            <MessageDotDotDot />
                         </button>
-                        <button className='btn btn-warning btn-outline btn-xs'>
-                            <Delete />
-                        </button>
+                        {
+                            deleteUserLoading ?
+                                <button className='btn btn-warning btn-outline btn-xs'>
+                                    <Delete />
+                                    <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    </p>
+                                </button>
+                                :
+                                <button className='btn btn-warning btn-outline btn-xs' onClick={() => deleteUserHandle(userID)}>
+                                    <Delete />
+                                </button>
+                        }
+
+
                     </div>
                 </div>
 
