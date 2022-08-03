@@ -153,7 +153,6 @@ const SideLeftBar = () => {
     const [showAdminAccess, setAdminAccess] = useState(false)
     const AdminAccessShowHandle = () => {
         setAdminAccess(true)
-        hiddenSideLeftBarHandle()
     }
     return (
         <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
@@ -211,13 +210,17 @@ const SideLeftBar = () => {
                             </p>
                         </button> */}
                         {/* for support inbox */}
+
                         <button
                             onClick={() => navigate('/inbox/support')}
-                            className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                            className='relative hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
                         >
                             <SupportInbox size='30' />
                             <p className='hidden' id='sideLeftBarTitle'>
                                 Support Inbox
+                            </p>
+                            <p className='h-3 w-3 rounded-full bg-[#c300ff] absolute top-1 right-1'>
+
                             </p>
                         </button>
 

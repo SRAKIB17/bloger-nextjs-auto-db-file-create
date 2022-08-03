@@ -225,6 +225,12 @@ const SupportInbox = () => {
                             {
                                 inboxMessage?.map((messageBody, index) => <MessageBody key={messageBody?.support_id} messageBody={messageBody} />)
                             }
+                            {
+                                inboxMessage?.length === 0 && 
+                                <div className='text-gray-500'>
+                                    No message
+                                </div>
+                            }
                         </div>
 
 

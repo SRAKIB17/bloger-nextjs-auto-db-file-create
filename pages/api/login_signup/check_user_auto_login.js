@@ -3,7 +3,7 @@ import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTo
 
 
 export default async function handler(req, res) {
-    
+
     try {
         const { client } = login_user_without_post_body();
         await client.connect();
@@ -24,11 +24,22 @@ export default async function handler(req, res) {
             // const userId = login_pass?.userId;
             const userCollection = client.db("users").collection("user_details");
             const findUser = await userCollection.findOne({ email: email })
-            const validate = (encryptedPassword, userEmail) => {
+            const validate = async (encryptedPassword, userEmail) => {
                 const hashedPass = findUser?.password?.split('##')[0];
                 if (hashedPass == encryptedPassword) {
                     delete findUser?.password;
 
+                    //WELCOME MESSAGE
+                    const messageBody = 'Welcome dear user 😊😊'
+                    const welcomeMessage = {
+                        emoji: '/_next/static/media/2.855c4f8b.png',
+                        userID: findUser?.userID,
+                        adminReply: true,
+                        adminId: '',
+                        message: messageBody
+                    }
+                    const supportInbox = client.db("Inboxes").collection("support");
+                    await supportInbox.insertOne(welcomeMessage);
                     res.status(200).json({ success: true, message: "welcome!", user_details: findUser })
                 }
                 else {
