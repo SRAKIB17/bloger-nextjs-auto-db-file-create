@@ -19,7 +19,7 @@ const SupportInbox = () => {
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
-    // usePrivatePageCheckUser(asPath)
+    usePrivatePageCheckUser(asPath)
 
 
 
