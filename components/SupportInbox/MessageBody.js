@@ -24,7 +24,7 @@ const MessageBody = ({ messageBody }) => {
     const isLoading = inboxUserInfo.isLoading;
     return (
         <div>
-            <div className='w-full' id='supportInboxBody'>
+            <div className='w-full text-sm' id='supportInboxBody'>
                 {
                     adminReply &&
                     <div>
@@ -52,7 +52,9 @@ const MessageBody = ({ messageBody }) => {
                                         <img src={messageBody?.emoji} alt="" />
                                     </div>
                                 }
-                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                                <div className='text-sm'>
+                                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                                </div>
                                 {/* <iframe
                                     data-supportibox='true'
                                     onLoad={() => onloadMessageSupport(userID + support_id)}
