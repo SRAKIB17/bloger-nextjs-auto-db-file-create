@@ -10,6 +10,7 @@ export default async function handler(req, res) {
 
     const { email } = req.query;
     const findUserCheckAdmin = await userCollection.findOne({ email: email });
+    //CHECK USER IF TRUE IT PASS
     const roll = findUserCheckAdmin?.roll === 'admin'
     const checkUser = await verifyUserAndAccessFeatureServer(req);
 
