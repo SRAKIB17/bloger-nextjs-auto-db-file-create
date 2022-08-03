@@ -28,8 +28,6 @@ export default async function handler(req, res) {
                 const hashedPass = findUser?.password?.split('##')[0];
                 if (hashedPass == encryptedPassword) {
                     delete findUser?.password;
-
-                   
                     res.status(200).json({ success: true, message: "welcome!", user_details: findUser })
                 }
                 else {
