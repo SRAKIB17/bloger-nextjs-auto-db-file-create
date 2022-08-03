@@ -1,5 +1,5 @@
 import About from "../../PublicProfile/About";
-import { Delete, Email, Info, MessageDotDotDot } from "../../ReactRSIcon";
+import { Delete, Email, Info, MessageDotDotDot, warningCircle, WarningTriangle } from "../../ReactRSIcon";
 import maleAvatar from '../../../public/maleAvatar.png'
 import femaleAvatar from '../../../public/femaleAvatar.png'
 import { useRouter } from "next/router";
@@ -37,7 +37,7 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
     const [deleteUserLoading, setUserDeleteLoading] = useState(null);
     const deleteUserHandle = async (id) => {
         setUserDeleteLoading(true)
-        const { data, isLoading: adminUserListLoading } = await axios.delete(`/api/admin/all-user/?userID=${id}&email=${user_details?.email}`,
+        const { data } = await axios.delete(`/api/admin/all-user/?userID=${id}&email=${user_details?.email}`,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -45,7 +45,6 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
                 }
             }
         )
-        console.log(data)
         if (data?.message === 'success') {
             alert('success')
             setUserDeleteLoading(false)
@@ -60,15 +59,44 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
         setUserDeleteLoading(false)
 
     }
+
+    //FOR WARNING USER UPDATE
+    const [warningLoading, setWarningUser] = useState(false)
+    const updateUserWarning = async (e, id) => {
+        const warnBody = {
+            warning: e.target.value
+        }
+        setWarningUser(true)
+        const { data } = await axios.put(`/api/admin/all-user/?userID=${id}&email=${user_details?.email}`, warnBody,
+            {
+                headers: {
+                    access_token: sessionStorage.getItem('accessAutoG'),
+                    token: localStorage.getItem('token')
+                }
+            }
+        )
+        if (data?.message === 'success') {
+            alert('success')
+            setWarningUser(false)
+            refetch()
+            if (data?.result?.acknowledged) {
+                refetch()
+            }
+        }
+        else if (data?.message === 'error') {
+            alert(data?.error)
+        }
+        setWarningUser(false)
+    }
     return (
         <div>
-            <div className='p-2'>
+            <div className='p-2 border-t border-b border-gray-500'>
                 <div className='flex  gap-2 items-center justify-between'>
                     {/* *****FOR PROFILE PICTURE************* */}
                     <div className='flex gap-2 items-center '>
                         <div
                             onClick={() => navigate(`/profile/${userID}`)}
-                            className="w-[22px] cursor-pointer h-[22px] overflow-hidden rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
+                            className="w-[16px] cursor-pointer h-[16px] overflow-hidden rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
                         >
                             {/* **********PROFILE AVATAR */}
                             {
@@ -86,9 +114,15 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
                             }
                         </div>
                         <div>
-                            <h1 onClick={() => navigate(`/profile/${userID}`)} className='cursor-pointer' >
+                            <h1 onClick={() => navigate(`/profile/${userID}`)} className='flex items-center cursor-pointer text-sm' >
                                 {
                                     name || 'User'
+                                }
+                                {
+                                    user?.warning &&
+                                    <div className="ml-[1px]">
+                                        <WarningTriangle size="10" color="red" />
+                                    </div>
                                 }
                             </h1>
                             <h1
@@ -97,12 +131,47 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
                         </div>
                     </div>
                     <div className='flex gap-1 relative'>
+                        {/* ALERT USER */}
+                        <div>
+                            {
+                                warningLoading ?
+                                    <div className="relative">
+                                        <select
+                                            name=""
+                                            id=""
+                                            className=" select-xs select-primary select text-xs"
+                                        >
+                                            <option value="false"> Status</option>
+                                            <option value="false">Unalert</option>
+                                            <option value="true">Warning</option>
+
+                                        </select>
+                                        <p className='absolute animate-spin border-b-2 border-red-500 border-r-2 w-4 h-4 rounded-[50%] top-[6px] left-[50%] '>
+                                        </p>
+                                    </div>
+                                    :
+                                    <select
+                                        onChange={(e) => updateUserWarning(e, userID)}
+                                        name=""
+                                        id=""
+                                        className="select-xs select-primary select text-xs"
+                                    >
+                                        <option value="false"> Status</option>
+                                        <option value="false">Unalert</option>
+                                        <option value="true">Warning</option>
+                                    </select>
+                            }
+
+                        </div>
+                        {/* INFORMATION */}
                         <button className={(showInfo ? ' text-white ' : 'btn-outline') + ' btn btn-info  btn-xs'} onClick={() => showInfoHandle(userID)}>
                             <Info />
                         </button>
+                        {/* Messaging */}
                         <button className='btn btn-success btn-outline btn-xs' onClick={() => navigate('/inbox/support/' + userID)}>
                             <MessageDotDotDot />
                         </button>
+                        {/* Delete User */}
                         {
                             deleteUserLoading ?
                                 <button className='btn btn-warning btn-outline btn-xs'>

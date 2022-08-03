@@ -47,14 +47,16 @@ const EmojiGifIndex = ({ props: { selectEmoji, setSelectEmoji, showEmojiGifSecti
                     <div className='pt-2'>
                         {
                             selectEmoji &&
-                            <div className='w-11 h-11 p-1 border-2 rounded-md relative overflow-hidden'>
+                            <div className='w-11 h-11 p-1 border-2 rounded-md relative'>
                                 <span
                                     onClick={closeSelectEmojiGifHandle}
                                     className='absolute text-2xs top-[-18px] right-[-10px] btn-primary btn btn-xs btn-outline bg-base-100'
                                 >
                                     x
                                 </span>
-                                <img src={selectEmoji} alt="" className='w-full h-auto' />
+                                <div className='overflow-hidden'>
+                                    <img src={selectEmoji} alt="" className='w-full h-auto' />
+                                </div>
                             </div>
                         }
                     </div>

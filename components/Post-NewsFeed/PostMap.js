@@ -10,7 +10,7 @@ import { useQuery } from 'react-query'
 import axios from 'axios';
 import TextPost from './TextPost';
 import VideoPost from './VideoPost'
-import { Announcement, ArrowsRight, Line } from '../ReactRSIcon';
+import { Announcement, ArrowsRight, Line, WarningTriangle } from '../ReactRSIcon';
 import AdsStory from '../Ads/AdsStory';
 import timeSince from './TimeSince';
 const PostMap = ({ post, refetch }) => {
@@ -89,6 +89,12 @@ const PostMap = ({ post, refetch }) => {
                             >
                                 {
                                     user_details?.name || 'User'
+                                }
+                                {
+                                    user_details?.warning &&
+                                    <div className="ml-[1px]">
+                                        <WarningTriangle size="10" color="red" />
+                                    </div>
                                 }
                                 {
                                     post?.postBy === 'admin' &&

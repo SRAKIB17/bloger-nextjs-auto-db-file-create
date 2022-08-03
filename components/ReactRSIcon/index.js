@@ -151,6 +151,9 @@ export { default as Unlike } from './icon/Like/Unlike'
 export { default as Video } from './icon/Video/Video'
 
 
+export { default as WarningTriangle } from './icon/Warning/WarningTriangle'
+export { default as WarningCircle } from './icon/Warning/WarningCircle'
+
 export { default as Worker } from './icon/Work/Worker'
 export { default as Writing } from './icon/Write/Writing'
 

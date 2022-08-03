@@ -19,7 +19,6 @@ const MessageBody = ({ messageBody }) => {
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
-    console.log(messageBody)
     const user_details = inboxUserInfo?.data?.data?.user_details;
     const isLoading = inboxUserInfo.isLoading;
     return (

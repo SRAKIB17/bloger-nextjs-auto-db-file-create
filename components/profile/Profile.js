@@ -7,7 +7,7 @@ import About from './About';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import UpdateProfilePicture from './UpdateProfilePicture';
-import { Camera } from '../ReactRSIcon';
+import { Camera, WarningTriangle } from '../ReactRSIcon';
 import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
@@ -200,7 +200,17 @@ const Profile = () => {
                 <div className='relative md:mt-[10px] md:left-[250px] md:border-b-2 md:mr-[260px] md:pb-[10px]'>
                     <div className='flex flex-col mt-[60px] md:mt-[20px]  items-center md:justify-between md:flex-row'>
                         <div className='text-center'>
-                            <h1 className='text-2xl sm:text-3xl'>{user_details?.name}</h1>
+                            <div className='flex items-center gap-1'>
+                                <h1 className='text-2xl sm:text-3xl'>
+                                    {user_details?.name}
+                                </h1>
+                                {
+                                    user_details?.warning &&
+                                    <div className="ml-[1px]">
+                                        <WarningTriangle size="10" color="red" />
+                                    </div>
+                                }
+                            </div>
                             <h1 className='text-orange-500'>Total Point: 300</h1>
                         </div>
                         <div className='flex flex-row justify-between gap-3 md:flex-col'>
@@ -252,10 +262,10 @@ const Profile = () => {
                     {
                         // isLoading || typeof getPost?.map === 'function'
                         // !isLoading
-                            // ?
-                            getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
-                            // :
-                            // ''
+                        // ?
+                        getPost?.map((post, index) => <PostMap key={post?._id} post={post} refetch={refetch} />)
+                        // :
+                        // ''
                     }
 
                     {

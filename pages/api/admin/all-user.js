@@ -4,6 +4,7 @@ import verifyUserAndAccessFeatureServer from "../../../components/hooks/api/veri
 
 export default async function handler(req, res) {
     const method = req.method;
+
     const { client } = login_user_without_post_body()
     const supportInbox = client.db("Inboxes").collection("support");
     await client.connect();
@@ -20,6 +21,39 @@ export default async function handler(req, res) {
         const findAllUser = await userCollection.find({}).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray()
         return res.status(200).json({ message: "success", result: findAllUser })
     }
+    else if (checkUser && roll && method === 'PUT') {
+        const { userID } = req.query
+        const filter = { userID: userID }
+        // D. UPDATE DOC
+        const warnBody = req.body
+        const updateDoc = {
+            $set: warnBody
+        }
+
+        // H. UPDATE POST BODY
+        const result = await userCollection.updateOne(filter, updateDoc);
+
+        // ALL OK 
+        if (result?.acknowledged) {
+            //WELCOME MESSAGE
+            const messageBody = `Warning You`
+            const welcomeMessage = {
+                emoji: '/_next/static/media/2.855c4f8b.png',
+                userID: userID,
+                adminReply: true,
+                adminId: 'null',
+                message: messageBody
+            }
+            const supportInbox = client.db("Inboxes").collection("support");
+            await supportInbox.insertOne(welcomeMessage);
+            return res.status(200).json({ message: "success", result: result })
+        }
+        else {
+            return res.status(200).json({ message: "error", error: "Something is wrong" })
+        }
+    }
+
+
     else if (method === "DELETE" && checkUser && roll) {
         const { userID } = req.query;
         const filter = { userID: userID }

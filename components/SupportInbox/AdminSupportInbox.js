@@ -13,7 +13,7 @@ const AdminSupportInbox = ({ setInboxMessage: { setInboxMessage, inboxUserId, se
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
 
-    const { data, isLoading: adminInboxLoading, refetch } = useQuery(['SupportInboxAdmin', inboxUserId, user_details], () => axios.get(`/api/inbox/support/?email=${user_details?.email}`,
+    const { data, isLoading: adminInboxLoading, refetch } = useQuery(['SupportInboxAdmin', user_details], () => axios.get(`/api/inbox/support/?email=${user_details?.email}`,
         {
             headers: {
                 access_token: sessionStorage.getItem('accessAutoG'),
@@ -56,13 +56,15 @@ const AdminSupportInbox = ({ setInboxMessage: { setInboxMessage, inboxUserId, se
 
 
 const UserListComponent = ({ userID, setInboxUserId, refetch }) => {
-    // GET COMMENT USER DETAILS 
+    // GET INBOX USER DETAILS 
     const inboxUserInfo = useQuery(['supportInboxMessageUserID', userID], () => axios.get(`/api/public_user_details/${userID}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
 
     const inbox_user_details = inboxUserInfo?.data?.data?.user_details;
+
+    //*********GET USER DETAILS  */
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
 
     const isLoading = inboxUserInfo.isLoading;
