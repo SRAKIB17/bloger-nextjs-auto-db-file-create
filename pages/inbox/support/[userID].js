@@ -16,13 +16,15 @@ const Support = () => {
         router.prefetch(path)
     }
 
-    
+
     useEffect(() => {
-        if (!isAdmin.admin) {
+        if (!isAdmin.admin && !user?.user) {
             navigate('/login?return_url=/inbox/support/' + userID)
         }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        else if (user?.user) {
+            navigate('/')
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAdmin])
 
     usePrivatePageCheckUser(asPath)
