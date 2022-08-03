@@ -16,7 +16,6 @@ const Support = () => {
     }
     return (
         <div>
-
             <Header />
             {
                 (isAdmin?.admin && !isLoading) ?
