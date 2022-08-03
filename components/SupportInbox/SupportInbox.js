@@ -19,7 +19,7 @@ const SupportInbox = () => {
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
-    usePrivatePageCheckUser(asPath)
+    // usePrivatePageCheckUser(asPath)
 
 
 
@@ -35,7 +35,7 @@ const SupportInbox = () => {
     const handleChatBoxHeight = () => {
         try {
             const sendMessageSupportInboxForm = document.getElementById('sendMessageSupportInboxForm');
-            document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 80) + 'px'
+            document.getElementById('supportMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageSupportInboxForm.offsetHeight + 100) + 'px'
         }
         catch {
 

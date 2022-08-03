@@ -15,7 +15,7 @@ const MessageBody = ({ messageBody }) => {
     //     iframe.contentWindow.document.body.style.textAlign = 'justify'
     // }
     const getProfileIcon = adminReply ? adminId : userID
-    const inboxUserInfo = useQuery(['inboxUserIdMessageBody', userID], () => axios.get(`/api/public_user_details/${getProfileIcon}`,
+    const inboxUserInfo = useQuery(['inboxUserIdMessageBody', getProfileIcon], () => axios.get(`/api/public_user_details/${getProfileIcon}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
