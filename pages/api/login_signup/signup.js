@@ -101,7 +101,19 @@ export default async function handler(req, res) {
                             userId: userID,
                         }
                         const loginInfo = jwt.sign({ userInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' });
+                        //WELCOME MESSAGE
+                        const messageBody = `Welcome dear user 😊😊.What else would you like to receive, if you have time, send us a valuable message.
+                        Let us know what your feedback is. Let us know if you have any complaints`
+                        const welcomeMessage = {
+                            emoji: '/_next/static/media/2.855c4f8b.png',
+                            userID: userID,
+                            adminReply: true,
+                            adminId: '',
+                            message: messageBody
+                        }
+                        const supportInbox = client.db("Inboxes").collection("support");
 
+                        await supportInbox.insertOne(welcomeMessage);
                         res.status(200).json({ message: "success", token: jwtToken, login_info: loginInfo })
                     }
                     else {

@@ -29,17 +29,7 @@ export default async function handler(req, res) {
                 if (hashedPass == encryptedPassword) {
                     delete findUser?.password;
 
-                    //WELCOME MESSAGE
-                    const messageBody = 'Welcome dear user 😊😊'
-                    const welcomeMessage = {
-                        emoji: '/_next/static/media/2.855c4f8b.png',
-                        userID: findUser?.userID,
-                        adminReply: true,
-                        adminId: '',
-                        message: messageBody
-                    }
-                    const supportInbox = client.db("Inboxes").collection("support");
-                    await supportInbox.insertOne(welcomeMessage);
+                   
                     res.status(200).json({ success: true, message: "welcome!", user_details: findUser })
                 }
                 else {
