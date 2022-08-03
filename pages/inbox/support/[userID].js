@@ -9,11 +9,12 @@ import { UserFullInfoProvider } from '../../_app';
 const Support = () => {
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const router = useRouter()
-    const asPath = router.asPath
+    const asPath = router?.asPath
+    if (!isAdmin.admin) {
+        router.push('/login?return_url=' + asPath)
+        router.prefetch('/login?return_url=' + asPath)
+    }
     usePrivatePageCheckUser(asPath)
-    // if (!isAdmin.admin) {
-    //     router.push('/login?return_url=' + asPath)
-    // }
     return (
         <div>
             <Header />

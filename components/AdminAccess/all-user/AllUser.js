@@ -13,7 +13,7 @@ import ViewUser from './ViewUser';
 const AllUser = () => {
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const [page, setPage] = useState(1)
-    const [limit, setLimit] = useState(5)
+    const [limit, setLimit] = useState(20)
     const { data, isLoading: adminUserListLoading } = useQuery(['adminALlUser', page, limit, user_details], () => axios.get(`/api/admin/all-user/?show=${page * limit}&email=${user_details?.email}`,
         {
             headers: {
