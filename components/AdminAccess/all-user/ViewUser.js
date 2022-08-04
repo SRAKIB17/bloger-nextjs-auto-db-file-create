@@ -79,7 +79,6 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
         e.preventDefault()
         let warnBody = {}
         if (showWarningReason) {
-            console.log(e.target)
             warnBody = {
                 reason: e.target.reason.value,
                 warning: "true",

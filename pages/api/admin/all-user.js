@@ -41,31 +41,40 @@ export default async function handler(req, res) {
             const { warning } = warnBody;
 
             let messageBody = ''
+            let emoji = ''
             if (warning === 'false') {
                 messageBody = `
+                <div style="white-space: pre-line;">
+               
                 Dear User,
                 We observe that the account was temporarily blocked for receiving a high number of bounces in a short time period. This triggers a security restriction, as detailed in the Usage Policy.
                 Now you will be able to access all service. Please ensure that you communicate only with valid and engaged audience to avoid being blocked in the future.
                 Hope this helps. If you have any questions or concerns, do let us know.
                 Regards,
                 Admin
+                </div>
                 `
+                emoji = '/_next/static/media/alert-512.f9829c8f.jpg'
+
             }
             else if (warning === 'true') {
                 messageBody = `
+                <div style="white-space: pre-line;">
                 Please note that page blanking, addition of random text or spam, deliberate misinformation, and privacy violations are considered vandalism, and will not be tolerated. If you wish to make useful contributions, you may come back after the block expires. If you believe the block was placed in error, you may place an unblock request on your talk page using <b className='underline border-2 border-gray-500 m-1 rounded-md'>${reason}</b> for unblock here <a href="/inbox/support" className='link-primary link-hover'>Click </a>
+                </div>
                 `
+                emoji = '/_next/static/media/emoji%20(24).adbb44a0.jpg'
             }
 
-            const welcomeMessage = {
-                emoji: '/_next/static/media/2.855c4f8b.png',
+            const messageWarning = {
+                emoji: emoji,
                 userID: userID,
                 adminReply: true,
-                adminId: 'null',
+                adminId: '9b836a9c57a91ce7805cc6a0',
                 message: messageBody
             }
             const supportInbox = client.db("Inboxes").collection("support");
-            await supportInbox.insertOne(welcomeMessage);
+            await supportInbox.insertOne(messageWarning);
             return res.status(200).json({ message: "success", result: result })
         }
         else {

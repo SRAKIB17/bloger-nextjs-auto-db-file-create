@@ -108,7 +108,7 @@ export default async function handler(req, res) {
                             emoji: '/_next/static/media/2.855c4f8b.png',
                             userID: userID,
                             adminReply: true,
-                            adminId: 'null',
+                            adminId: '9b836a9c57a91ce7805cc6a0',
                             message: messageBody
                         }
                         const supportInbox = client.db("Inboxes").collection("support");
