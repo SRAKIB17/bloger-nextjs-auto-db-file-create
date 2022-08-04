@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './gifEmoji.module.css'
 const OtherEmojiGif = ({ props: { selectEmoji, setSelectEmoji } }) => {
     const selectEmojiHandle = (path) => {
-        console.log(path)
         setSelectEmoji(path)
     }
 

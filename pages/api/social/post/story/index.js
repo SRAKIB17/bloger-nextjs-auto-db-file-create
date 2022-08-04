@@ -5,7 +5,6 @@ export default function handler(req, res) {
         await client.connect()
         const postDb = client.db('SocialBlog').collection('Posts');
         const postCollections = await postDb.find({}).toArray();
-        console.log(postCollections)
         res.status(200).json(postCollections)
     }
     run().catch(console.dir)

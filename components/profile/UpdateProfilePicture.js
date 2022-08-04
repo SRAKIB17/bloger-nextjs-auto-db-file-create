@@ -63,7 +63,6 @@ const UpdateProfilePicture = ({ props: { setUploadMethod, uploadMethod } }) => {
             setErrMsg(data?.error)
         }
 
-        console.log(pictureThumbnail)
     }
     return (
         <div>

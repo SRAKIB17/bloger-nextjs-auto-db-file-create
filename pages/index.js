@@ -16,7 +16,6 @@ import Feature from '../components/Home/Feature';
 export default function Index() {
   const router = useRouter()
   useEffect(() => {
-    console.log(router.query)
   }, [router.query])
   let a = 0
   const changeParam = () => {

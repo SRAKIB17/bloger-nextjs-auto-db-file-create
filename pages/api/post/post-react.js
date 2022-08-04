@@ -24,7 +24,6 @@ export default async function handler(req, res) {
         if (checkUser) {
             const filter = { post_id: post_id };
             const findPost = await postCollection.findOne(filter);
-            console.log(findPost)
             const findUserReact = await findPost?.react?.filter(react => react?.userID != userID);
             const reactUser = req.body;
 

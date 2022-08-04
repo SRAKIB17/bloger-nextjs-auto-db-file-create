@@ -50,7 +50,6 @@ export default async function handler(req, res) {
                         { tags: { $regex: query } }
                     ]
             }).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
-            console.log(getPosts)
             return res.status(200).json(getPosts)
         }
         //************************************************ */

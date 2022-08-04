@@ -14,7 +14,6 @@ export default async function handler(req, res) {
         const checkUser = await verifyUserAndAccessFeatureServer(req);
 
 
-        console.log(checkUser)
         if (checkUser) {
             const getAllPost = await postCollection.find({}).toArray();
             const getPostId = async () => {

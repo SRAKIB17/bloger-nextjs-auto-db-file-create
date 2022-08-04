@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../components/Header/Header';
-// import noteFound from '../public/404.mp4'
-// console.log(noteFound)
+
 import {useRouter} from 'next/router'
 
 const Index = () => {

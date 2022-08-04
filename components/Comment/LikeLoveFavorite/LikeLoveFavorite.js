@@ -84,7 +84,6 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                 post_id: post_id,
                 userID: user_details?.userID
             }
-            console.log(ratingPostId);
             const { data } = await axios.post(`/api/post/post-react?email=${user_details?.email}`, ratingPostId,
                 {
                     headers: {
@@ -97,7 +96,6 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
             if (data?.message === 'success') {
                 refetch()
                 // setErrMsg(<p className='text-green-600'>Success</p>)
-                console.log('534534543534534545345345345345345345')
                 if (data?.result?.acknowledged) {
                     setReactLoading(null)
                 }

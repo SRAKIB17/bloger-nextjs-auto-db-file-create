@@ -105,7 +105,6 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
                 setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             }
 
-            // console.log(data)
 
         }
         finally {
@@ -177,7 +176,7 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
                 <div>
                     <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm font-serif'>
 
-                        <p className='font-mono texhi'>
+                        <p className='font-mono'>
 
                             {
                                 quickVideoPost && <code>{` tips: .<vid or .<ifr or .<emb use for shortcut html tag.`}</code>

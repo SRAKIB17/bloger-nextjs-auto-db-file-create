@@ -92,7 +92,6 @@ const NewPost = ({ props: setNewPost }) => {
                 setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             }
 
-            // console.log(data)
 
         }
         finally {

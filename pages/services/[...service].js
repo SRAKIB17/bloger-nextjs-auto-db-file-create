@@ -7,10 +7,7 @@ import { useQuery } from 'react-query';
 const Service = () => {
     const { query } = useRouter()
     const { data } = useQuery('data', () => axios.get('/api/hello'));
-    // const aa = query?.service?.[0]
 
-    console.log(data?.data)    // console.log(aa)
-    // console.log()
 
     return (
         <div>

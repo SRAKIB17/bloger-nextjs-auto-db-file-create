@@ -21,7 +21,6 @@ export default async function handler(req, res) {
                 $set: req.body
             }
             const result = await postCollection.updateOne(filter, updateDoc);
-            console.log(result)
             if (result?.acknowledged) {
                 res.status(200).json({ message: "success", result: result })
             }

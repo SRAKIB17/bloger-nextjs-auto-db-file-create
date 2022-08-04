@@ -7,10 +7,8 @@ import { UserFullInfoProvider } from '../../pages/_app';
 
 const ContextMenu = () => {
     const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
-    // const [postShareId, setPostShareId] = useState(null);
     const router = useRouter();
-    // console.log(pathname.route = '/story')
-    // console.log(useRouter())
+  
     const navigate = (path) => {
         router.push(path)
         router.prefetch(path)
@@ -69,7 +67,6 @@ const ContextMenu = () => {
         const getValue = []
         document.documentElement.ontouchmove = (e) => {
             const x = e.touches[0].clientX;
-            console.log(x)
             const y = e.touches[0].clientY;
             getValue.push(x)
             const getX = getValue[0] - getValue[getValue.length - 2]

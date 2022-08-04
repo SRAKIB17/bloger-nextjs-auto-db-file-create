@@ -24,7 +24,6 @@ const Search = () => {
         try {
             const mobileSearchField = document.getElementById("mobileSearchField")
             mobileSearchField.value = query;
-            console.log(mobileSearchField)
         }
         catch {
 

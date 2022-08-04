@@ -22,7 +22,6 @@ export default async function handler(req, res) {
 
 
             else if (method === 'DELETE') {
-                console.log(4534534)
             }
 
         }

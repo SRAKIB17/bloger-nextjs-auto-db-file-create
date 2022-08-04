@@ -19,7 +19,6 @@ export default async function handler(req, res) {
         if (checkUser && method === "DELETE") {
             const { comment_id } = req.query;
             const { post_id } = req.query;
-            console.log(comment_id, post_id)
 
             
             // B. FIND POST

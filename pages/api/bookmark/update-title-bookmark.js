@@ -26,7 +26,6 @@ export default async function handler(req, res) {
                     $set: findBookmark
                 }
                 const result = await bookmarkCollection.updateOne(filter, updateDoc);
-                console.log(result)
                 if (result?.acknowledged) {
                     res.status(200).json({ message: "success", result: result })
                 }

@@ -4,7 +4,6 @@ import styles from './gifEmoji.module.css'
 const CatAnimal = ({ props: { selectEmoji, setSelectEmoji } }) => {
 
     const selectEmojiHandle = (path) => {
-        console.log(path)
         setSelectEmoji(path)
     }
 

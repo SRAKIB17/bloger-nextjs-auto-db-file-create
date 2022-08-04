@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './emoji.module.css'
 const Emoji2 = ({ props: { selectEmoji, setSelectEmoji } }) => {
     const selectEmojiHandle = (path) => {
-        console.log(path)
         setSelectEmoji(path)
     }
 

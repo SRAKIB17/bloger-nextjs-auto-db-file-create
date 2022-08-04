@@ -6,7 +6,6 @@ import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser'
 import { useRouter } from 'next/router'
 
 const DeletePost = ({ props: { deletePost, setDeletePost, refetch } }) => {
-    console.log(deletePost)
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
     usePrivatePageCheckUser(asPath)

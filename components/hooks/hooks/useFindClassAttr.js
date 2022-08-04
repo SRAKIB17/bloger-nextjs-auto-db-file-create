@@ -26,7 +26,6 @@ const classTagAutoEmmetFind = async (textareaRef,startPoint) => {
     const findAttr = AttribList.find(attr => Text.endsWith(attr.attEmmet, startPoint))
     if(findAttr){
         const getAttr = findAttr.attFull;
-        console.log(Text.lastIndexOf(findAttr.attEmmet))
         textareaRef.current.value = Text.substring(0, Text.lastIndexOf(findAttr.attEmmet)) + `${getAttr}=" "`+endsText
     }
 

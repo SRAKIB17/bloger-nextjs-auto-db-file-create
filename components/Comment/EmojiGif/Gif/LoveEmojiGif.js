@@ -4,7 +4,6 @@ import styles from './gifEmoji.module.css'
 const LoveEmojiGif = ({ props: { selectEmoji, setSelectEmoji } }) => {
 
     const selectEmojiHandle = (path) => {
-        console.log(path)
         setSelectEmoji(path)
     }
 

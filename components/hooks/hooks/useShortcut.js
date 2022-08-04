@@ -88,8 +88,7 @@ const useShortcutMainFunction = (textareaRef,setLiveView) => {
         }
 
         else if (exec === 'ul') {
-            console.log(Text.lastIndexOf('</ul>'))
-            console.log(Text.endsWith('</ul>'))
+           
             if (!Text.endsWith('</ul>')) {
                 textareaRef.current.value += '\n<ul>\n\t<li></li>\n</ul>'
             }
