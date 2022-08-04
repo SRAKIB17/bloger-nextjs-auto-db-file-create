@@ -62,11 +62,36 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
     }
 
     //FOR WARNING USER UPDATE
-    const [warningLoading, setWarningUser] = useState(false)
-    const updateUserWarning = async (e, id) => {
-        const warnBody = {
-            warning: e.target.value
+    const [warningLoading, setWarningUser] = useState(false);
+    const [showWarningReason, setWarningMessage] = useState(null);
+    const shwWarningReasonInputHandle = (e, id) => {
+        const check = e.target.value;
+
+        if (check === 'false') {
+            updateUserWarning(e, id)
         }
+        else if (check === 'true') {
+            setWarningMessage(id)
+        }
+
+    }
+    const updateUserWarning = async (e, id) => {
+        e.preventDefault()
+        let warnBody = {}
+        if (showWarningReason) {
+            console.log(e.target)
+            warnBody = {
+                reason: e.target.reason.value,
+                warning: "true",
+            }
+        }
+        else {
+            warnBody = {
+                reason: '',
+                warning: "false"
+            }
+        }
+
         setWarningUser(true)
         const { data } = await axios.put(`/api/admin/all-user/?userID=${id}&email=${user_details?.email}`, warnBody,
             {
@@ -78,15 +103,19 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
         )
         if (data?.message === 'success') {
             alert('success')
+            setWarningMessage(null)
             setWarningUser(false)
             refetch()
             if (data?.result?.acknowledged) {
                 refetch()
+                setWarningMessage(null)
             }
         }
         else if (data?.message === 'error') {
             alert(data?.error)
+            setWarningMessage(null)
         }
+        setWarningMessage(null)
         setWarningUser(false)
     }
     return (
@@ -128,7 +157,20 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
                     </div>
                     <div className='flex gap-1 relative'>
                         {/* ALERT USER */}
+                        {
+                            showWarningReason &&
+                            <div className="absolute right-0 bg-base-100 h-full">
+                                <form className="flex" onSubmit={(e) => updateUserWarning(e, userID)}>
+                                    <input type="text" name="reason" id="" className="input input-xs input-primary rounded-sm" />
+                                    <button className="btn btn-xs p-1 btn-secondary rounded-sm">
+                                        send
+                                    </button>
+                                </form>
+                            </div>
+                        }
                         <div>
+
+
                             {
                                 warningLoading ?
                                     <div className="relative">
@@ -148,7 +190,7 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
                                     </div>
                                     :
                                     <select
-                                        onChange={(e) => updateUserWarning(e, userID)}
+                                        onChange={(e) => shwWarningReasonInputHandle(e, userID)}
                                         name=""
                                         defaultValue={user?.warning}
                                         className="select-xs select-primary select text-xs"
@@ -158,7 +200,6 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
                                         <option value={true} disabled={user?.warning == 'true' ? true : false}>Warning</option>
                                     </select>
                             }
-
                         </div>
                         {/* INFORMATION */}
                         <button className={(showInfo ? ' text-white ' : 'btn-outline') + ' btn btn-info  btn-xs'} onClick={() => showInfoHandle(userID)}>

@@ -25,7 +25,11 @@ const AllUser = () => {
     ))
     const router = useRouter()
     const userList = data?.data?.result || []
-    const [getUsers, setUsers] = useState([]);
+    const [getUsers, setUsers] = useState([
+        {
+            userID: 545
+        }
+    ]);
     useEffect(() => {
         if (userList?.length > 0) {
             setUsers(userList)

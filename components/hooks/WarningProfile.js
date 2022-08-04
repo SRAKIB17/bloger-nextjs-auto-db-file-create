@@ -2,8 +2,6 @@ import React from 'react';
 import { WarningSquareFilled, WarningTriangleFilled } from '../ReactRSIcon';
 
 const WarningProfile = ({ user_details, size = 11 }) => {
-    console.log(size)
-
     return (
         <div>
             {
