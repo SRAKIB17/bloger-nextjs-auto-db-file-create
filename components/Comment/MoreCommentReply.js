@@ -109,7 +109,7 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_i
                                 (<div className='break-words overflow-hidden text-sm whitespace-pre-wrap font-extraligh font-sans'>
                                     {(replyComment?.emoji) &&
                                         <div>
-                                            <img src={replyComment?.emoji} alt="" />
+                                            <img src={replyComment?.emoji} alt="" className='h-auto max-w-[256px]' />
                                         </div>
                                     }
                                     {showFullReply}

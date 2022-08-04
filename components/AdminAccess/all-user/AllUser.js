@@ -39,7 +39,7 @@ const AllUser = () => {
         router.prefetch(router);
     }
     return (
-        <div>
+        <div className='overflow-auto min-h-screen'>
             <div>
                 <div>
                     {

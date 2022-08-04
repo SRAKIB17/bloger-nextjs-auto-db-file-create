@@ -42,7 +42,7 @@ const AdminAccess = ({ setAdminAccess }) => {
                     <div className="drawer drawer-mobile">
                         <input id="adminDrawer" type="checkbox" className="drawer-toggle" />
 
-                        <div className="drawer-content">
+                        <div className="drawer-content ">
                             {/* <!-- Page content here --> */}
                             <div className='flex justify-end sticky top-0 z-[100]'>
                                 <label
@@ -55,14 +55,14 @@ const AdminAccess = ({ setAdminAccess }) => {
 
 
                             {/* *********CONTENT********* */}
-                            <div>
+                            <div className='min-h-screen mb-16 overflow-auto'>
                                 {
                                     selectOptionAccess === 'allUser' &&
                                     <AllUser />
                                 }
                             </div>
                         </div>
-                        <div className="drawer-side">
+                        <div className="drawer-side border-r-2 min-h-screen overflow-auto border-gray-500">
                             <label htmlFor="adminDrawer" className="drawer-overlay"></label>
                             <AdminAccessDrawerContent props={{ selectOptionAccess, setSelectOptionAccess }} />
                         </div>

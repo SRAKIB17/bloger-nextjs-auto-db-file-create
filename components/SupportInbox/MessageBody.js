@@ -48,7 +48,7 @@ const MessageBody = ({ messageBody }) => {
                                 {
                                     messageBody?.emoji &&
                                     <div>
-                                        <img src={messageBody?.emoji} alt="" />
+                                        <img src={messageBody?.emoji} alt="" className='h-auto max-w-[256px]' />
                                     </div>
                                 }
                                 <div className='text-sm'>
@@ -89,7 +89,7 @@ const MessageBody = ({ messageBody }) => {
                                     {
                                         messageBody?.emoji &&
                                         <div className='pb-[2px]'>
-                                            <img src={messageBody?.emoji} alt="" />
+                                            <img src={messageBody?.emoji} alt="" className='h-auto max-w-[256px]' />
                                         </div>
                                     }
                                     {message}
