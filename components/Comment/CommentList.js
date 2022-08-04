@@ -7,6 +7,7 @@ import { UserFullInfoProvider } from '../../pages/_app';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 import timeSince from '../Post-NewsFeed/TimeSince';
+import WarningProfile from '../hooks/WarningProfile';
 
 
 const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch }) => {
@@ -113,7 +114,10 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>
-                        <h6 className='m-0'>{comment_user_details?.name || "User"}</h6>
+                        <div className='flex'>
+                            <h6 className='m-0'>{comment_user_details?.name || "User"}</h6>
+                            <WarningProfile user_details={comment_user_details} size='13'/>
+                        </div>
                         <p className='text-[8px] text-gray-500'>{getTimeSince}</p>
                     </div>
 

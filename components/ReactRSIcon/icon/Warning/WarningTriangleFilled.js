@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WarningTriangle = ({ color = 'currentColor', size = '1em', ...rest }) => {
+const WarningTriangleFilled = ({ color = 'currentColor', size = '1em', ...rest }) => {
     return (
         <svg
 
@@ -55,4 +55,4 @@ const WarningTriangle = ({ color = 'currentColor', size = '1em', ...rest }) => {
 };
 // https://github.com/SRAKIB17/ReactCustomIconsLibrary.git
 
-export default WarningTriangle;
+export default WarningTriangleFilled;

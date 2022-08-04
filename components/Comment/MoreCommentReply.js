@@ -6,6 +6,7 @@ import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 import { UserFullInfoProvider } from '../../pages/_app';
 import timeSince from '../Post-NewsFeed/TimeSince';
+import WarningProfile from '../hooks/WarningProfile';
 
 
 const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_id }) => {
@@ -91,7 +92,10 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_i
                         </div>
                     </div>
                     <div className='text-[14px] font-bold'>
-                        <h6 className='m-0'>{reply_user_details?.name || 'User'}</h6>
+                        <div className='flex'>
+                            <h6 className='m-0'>{reply_user_details?.name || "User"}</h6>
+                            <WarningProfile user_details={reply_user_details} size='13' />
+                        </div>
                         <p className='text-[8px] text-gray-500'>{getTimeSince}</p>
                     </div>
 

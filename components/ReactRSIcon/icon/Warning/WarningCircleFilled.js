@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WarningCircle = ({ color = 'currentColor', size = '1em', ...rest }) => {
+const WarningCircleFilled = ({ color = 'currentColor', size = '1em', ...rest }) => {
     return (
         <svg
 
@@ -54,4 +54,4 @@ const WarningCircle = ({ color = 'currentColor', size = '1em', ...rest }) => {
 };
 // https://github.com/SRAKIB17/ReactCustomIconsLibrary.git
 
-export default WarningCircle;
+export default WarningCircleFilled;

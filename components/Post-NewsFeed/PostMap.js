@@ -10,9 +10,10 @@ import { useQuery } from 'react-query'
 import axios from 'axios';
 import TextPost from './TextPost';
 import VideoPost from './VideoPost'
-import { Announcement, ArrowsRight, Line, WarningTriangle } from '../ReactRSIcon';
+import { Announcement, ArrowsRight, Line } from '../ReactRSIcon';
 import AdsStory from '../Ads/AdsStory';
 import timeSince from './TimeSince';
+import WarningProfile from '../hooks/WarningProfile';
 const PostMap = ({ post, refetch }) => {
     const { _id, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, thumbnail, time, userID } = post
 
@@ -64,7 +65,7 @@ const PostMap = ({ post, refetch }) => {
                             {/* --------------------------------------for profile avatar--------------------------------------- */}
                             <div
                                 onClick={() => profileNavigate(`/profile/${userID}`)}
-                                className="w-10 cursor-pointer h-10 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
+                                className="w-9 cursor-pointer h-9 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
                             >
                                 {/* **********PROFILE AVATAR */}
                                 {
@@ -85,20 +86,15 @@ const PostMap = ({ post, refetch }) => {
                         <div>
                             <h2
                                 onClick={() => profileNavigate(`/profile/${userID}`)}
-                                className="card-title cursor-pointer text-xl mb-1"
+                                className="card-title cursor-pointer text-xl mb-[2px] items-start gap-[1px]"
                             >
                                 {
                                     user_details?.name || 'User'
                                 }
-                                {
-                                    user_details?.warning &&
-                                    <div className="ml-[1px]">
-                                        <WarningTriangle size="10" color="red" />
-                                    </div>
-                                }
+                                <WarningProfile user_details={user_details} size='14'/>
                                 {
                                     post?.postBy === 'admin' &&
-                                    <Announcement size='16' className="badge h-4 text-white pl-2 pr-2 badge-secondary text-[10px] font-extralight" />
+                                    <Announcement size='13' className="badge h-[14px] p-0 text-white badge-secondary pl-[2px] pr-[2px] text-[10px] font-extralight" />
                                 }
 
                             </h2>

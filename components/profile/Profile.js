@@ -19,6 +19,7 @@ import LoadingFlowCircle from '../LoadingFlowCircle';
 import PostMap from '../Post-NewsFeed/PostMap';
 import Head from 'next/head';
 import PageTitle from '../hooks/PageTitle';
+import WarningProfile from '../hooks/WarningProfile';
 
 const Profile = () => {
     const { user, user_details } = useContext(UserFullInfoProvider)
@@ -200,16 +201,11 @@ const Profile = () => {
                 <div className='relative md:mt-[10px] md:left-[250px] md:border-b-2 md:mr-[260px] md:pb-[10px]'>
                     <div className='flex flex-col mt-[60px] md:mt-[20px]  items-center md:justify-between md:flex-row'>
                         <div className='text-center'>
-                            <div className='flex items-center gap-1'>
+                            <div className='flex items-center gap-[2px]'>
                                 <h1 className='text-2xl sm:text-3xl'>
                                     {user_details?.name}
                                 </h1>
-                                {
-                                    user_details?.warning &&
-                                    <div className="ml-[1px]">
-                                        <WarningTriangle size="10" color="red" />
-                                    </div>
-                                }
+                                <WarningProfile user_details={user_details} size="16"/>
                             </div>
                             <h1 className='text-orange-500'>Total Point: 300</h1>
                         </div>

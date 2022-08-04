@@ -151,8 +151,13 @@ export { default as Unlike } from './icon/Like/Unlike'
 export { default as Video } from './icon/Video/Video'
 
 
-export { default as WarningTriangle } from './icon/Warning/WarningTriangle'
-export { default as WarningCircle } from './icon/Warning/WarningCircle'
+export { default as WarningTriangleFilled } from './icon/Warning/WarningTriangleFilled'
+export { default as WarningTriangleOutline } from './icon/Warning/WarningTriangleOutline'
+export { default as WarningCircleFilled } from './icon/Warning/WarningCircleFilled'
+export { default as WarningCircleOutline } from './icon/Warning/WarningCircleOutline'
+export { default as WarningOctagonFilled } from './icon/Warning/WarningOctagonFilled'
+export { default as WarningSquareFilled } from './icon/Warning/WarningSquareFilled'
+export { default as WarningSquareOutline } from './icon/Warning/WarningSquareOutline'
 
 export { default as Worker } from './icon/Work/Worker'
 export { default as Writing } from './icon/Write/Writing'

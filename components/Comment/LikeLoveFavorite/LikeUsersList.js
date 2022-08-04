@@ -6,6 +6,7 @@ import { EmoticonLove, Like } from '../../ReactRSIcon/index'
 import maleAvatar from '../../../public/maleAvatar.png'
 import femaleAvatar from '../../../public/femaleAvatar.png'
 import { useRouter } from 'next/router';
+import WarningProfile from '../../hooks/WarningProfile';
 
 
 const LikeUsersList = ({ post }) => {
@@ -120,8 +121,9 @@ const GetUserNameAndLikeUnlike = ({ likeUnlike }) => {
                             }
                         </div>
                     </div>
-                    <div className='text-[14px] font-bold'>
+                    <div className='text-[14px] font-bold flex gap-[1px]'>
                         <h6 className='m-0'>{rating_user_info?.name || "User"}</h6>
+                        <WarningProfile user_details={rating_user_info} size="12" />
                     </div>
                 </div>
                 <div>

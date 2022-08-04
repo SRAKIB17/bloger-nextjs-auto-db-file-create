@@ -1,5 +1,5 @@
 import About from "../../PublicProfile/About";
-import { Delete, Email, Info, MessageDotDotDot, warningCircle, WarningTriangle } from "../../ReactRSIcon";
+import { Delete, Email, Info, MessageDotDotDot } from "../../ReactRSIcon";
 import maleAvatar from '../../../public/maleAvatar.png'
 import femaleAvatar from '../../../public/femaleAvatar.png'
 import { useRouter } from "next/router";
@@ -7,6 +7,7 @@ import style from './allUser.module.css'
 import { useContext, useId, useState } from "react";
 import axios from "axios";
 import { UserFullInfoProvider } from "../../../pages/_app";
+import WarningProfile from "../../hooks/WarningProfile";
 /* eslint-disable @next/next/no-img-element */
 const ViewUser = ({ user, isLoadingAbout, refetch }) => {
     const { cover, email, facebook, gender, instagram, linkedin, location, name, profile, quote, roll, school, twitter, userID, work, youtube } = user;
@@ -118,12 +119,7 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
                                 {
                                     name || 'User'
                                 }
-                                {
-                                    user?.warning &&
-                                    <div className="ml-[1px]">
-                                        <WarningTriangle size="10" color="red" />
-                                    </div>
-                                }
+                                <WarningProfile user_details={user} size="11" />
                             </h1>
                             <h1
                                 className='flex items-center gap-1 text-[9px]'> <Email />{email}
@@ -140,8 +136,9 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
                                             name=""
                                             id=""
                                             className=" select-xs select-primary select text-xs"
+                                            defaultValue={user?.warning}
                                         >
-                                            <option value="false"> Status</option>
+                                            <option value="false" disabled> Status</option>
                                             <option value="false">Unalert</option>
                                             <option value="true">Warning</option>
 
@@ -153,12 +150,12 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
                                     <select
                                         onChange={(e) => updateUserWarning(e, userID)}
                                         name=""
-                                        id=""
+                                        defaultValue={user?.warning}
                                         className="select-xs select-primary select text-xs"
                                     >
-                                        <option value="false"> Status</option>
-                                        <option value="false">Unalert</option>
-                                        <option value="true">Warning</option>
+                                        <option disabled> Status</option>
+                                        <option value={false} disabled={user?.warning == 'false' ? true : false}>Unalert</option>
+                                        <option value={true} disabled={user?.warning == 'true' ? true : false}>Warning</option>
                                     </select>
                             }
 
