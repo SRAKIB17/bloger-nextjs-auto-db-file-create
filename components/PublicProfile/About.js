@@ -4,9 +4,10 @@ import LoadingSpin from '../LoadingSpin';
 import { FacebookSquare, Github, Youtube, LinkedinNew, Instagram, Twitter, TwitterSquare, Quote, Gender, School, Location, Worker } from '../ReactRSIcon/index';
 
 
-const About = ({ props: { isLoadingAbout, user_details } }) => {
-
+const About = ({ props }) => {
+    const { isLoadingAbout, user_details } = props
     // const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
+  
 
     if (isLoadingAbout) {
         return (

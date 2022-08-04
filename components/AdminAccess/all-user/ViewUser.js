@@ -33,12 +33,12 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
 
         }
     }
-    const { user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    const { user_details: user_info, isLoading, isAdmin } = useContext(UserFullInfoProvider);
 
     const [deleteUserLoading, setUserDeleteLoading] = useState(null);
     const deleteUserHandle = async (id) => {
         setUserDeleteLoading(true)
-        const { data } = await axios.delete(`/api/admin/all-user/?userID=${id}&email=${user_details?.email}`,
+        const { data } = await axios.delete(`/api/admin/all-user/?userID=${id}&email=${user_info?.email}`,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -92,7 +92,7 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
         }
 
         setWarningUser(true)
-        const { data } = await axios.put(`/api/admin/all-user/?userID=${id}&email=${user_details?.email}`, warnBody,
+        const { data } = await axios.put(`/api/admin/all-user/?userID=${id}&email=${user_info?.email}`, warnBody,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -117,6 +117,7 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
         setWarningMessage(null)
         setWarningUser(false)
     }
+    const user_details = user
     return (
         <div>
             <div className='p-2 border-t border-b border-gray-500'>
@@ -228,7 +229,7 @@ const ViewUser = ({ user, isLoadingAbout, refetch }) => {
 
                 <div>
                     <div className={style.userDetails + ' overflow-hidden'} id={'aboutDetailsAdmin' + userID} >
-                        <About props={{ isLoadingAbout, user }} />
+                        <About props={{ isLoadingAbout, user_details }} />
                     </div>
                 </div>
 
