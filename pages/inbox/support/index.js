@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import Header from '../../../components/Header/Header';
 import usePrivatePageCheckUser from '../../../components/hooks/checkUser/privatePageCheckUser';
+import PageTitle from '../../../components/hooks/PageTitle';
 import LoadingSpin from '../../../components/LoadingSpin';
 import SupportInbox from '../../../components/SupportInbox/SupportInbox';
 import { UserFullInfoProvider } from '../../_app';

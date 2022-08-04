@@ -13,6 +13,7 @@ import TextAreaEdit from './TextAreaEdit';
 import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser';
 import Head from 'next/head';
 import PageTitle from '../../hooks/PageTitle';
+import { useQuery } from 'react-query';
 // import QuickPost from './QuickPost';
 
 const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
