@@ -56,7 +56,7 @@ const PublicProfile = () => {
 
     const { title } = PageTitle()
     return (
-        <div className='lg:ml-[200px] lg:mr-[200px]'>
+        <div className='lg:ml-[64px] lg:mr-[64px]'>
             <Head>
                 <title>
                     {title} 🡂 {user_details?.name}
