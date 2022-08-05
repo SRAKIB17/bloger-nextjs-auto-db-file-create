@@ -84,7 +84,7 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
         }
 
         try {
-            const { data } = await axios.put(`/api/post/update-post?email=${user_details?.email}&post_id=${post_id}`, post,
+            const { data } = await axios.put(`/api/post/update-post?email=${user_details?.email}&post_id=${post_id}&user_id=${userID}`, post,
                 {
                     headers: {
                         access_token: sessionStorage.getItem('accessAutoG'),
@@ -260,6 +260,7 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
                             id="category"
                             className='input input-primary form-control w-56 sm:w-80'
                             placeholder='Category'
+                            defaultValue={category}
                             // pattern={categoryPattern}
                             // title={'Must be ' + (data?.data?.map(i => i?.category))}
                             required

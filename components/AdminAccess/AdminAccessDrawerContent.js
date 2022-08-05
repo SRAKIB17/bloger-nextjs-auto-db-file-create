@@ -12,6 +12,11 @@ const AdminAccessDrawerContent = ({ props }) => {
                 <li className={selectOptionAccess == 'allUser' ? 'bg-secondary text-white rounded-md' : ''} onClick={() => setSelectOptionAccessHandle('allUser')}>
                     <a>All User</a>
                 </li>
+                <li
+                    className={selectOptionAccess == 'allPost' ? 'bg-secondary text-white rounded-md' : ''}
+                    onClick={() => setSelectOptionAccessHandle('allPost')}>
+                    <a>All Post</a>
+                </li>
 
                 {/* <li className={selectOptionAccess == 'allUser' ? 'bg-secondary text-white rounded-md' : ''} onClick={() => setSelectOptionAccessHandle('allUser')}>
                     <a>All User</a>

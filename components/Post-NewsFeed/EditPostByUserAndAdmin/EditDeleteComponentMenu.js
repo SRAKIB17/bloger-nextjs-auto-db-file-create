@@ -9,7 +9,7 @@ import CopyEdit from './CopyEdit.module.css'
 
 const EditDeleteComponentMenu = ({ post, refetch }) => {
     const router = useRouter()
-    const { post_id } = post
+    const { post_id, userID, post_title } = post
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const openEditPostFormTextArea = (id) => {
         try {
@@ -83,7 +83,7 @@ const EditDeleteComponentMenu = ({ post, refetch }) => {
                                     <Writing size='17' /> Edit Post
                                 </li>
 
-                                <li className=' btn btn-outline btn-primary text-left rounded-md btn-xs' onClick={() => setDeletePost(post_id)}>
+                                <li className=' btn btn-outline btn-primary text-left rounded-md btn-xs' onClick={() => setDeletePost({ post_id, userID, post_title })}>
                                     <Delete size='17' />Delete Post
                                 </li>
                             </>

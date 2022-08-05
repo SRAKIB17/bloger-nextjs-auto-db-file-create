@@ -8,12 +8,13 @@ import AdminAccessDrawerContent from './AdminAccessDrawerContent';
 import AllUser from './all-user/AllUser';
 import { UserFullInfoProvider } from '../../pages/_app';
 import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
+import AllPost from './all-post/AllPost';
 
 const AdminAccess = ({ setAdminAccess }) => {
     const closeCategoryModal = () => {
         setAdminAccess(null)
     }
-    const [selectOptionAccess, setSelectOptionAccess] = useState('')
+    const [selectOptionAccess, setSelectOptionAccess] = useState('allUser')
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const router = useRouter()
@@ -59,6 +60,11 @@ const AdminAccess = ({ setAdminAccess }) => {
                                 {
                                     selectOptionAccess === 'allUser' &&
                                     <AllUser />
+                                }
+                                {/* ****ALL POST*************** */}
+                                {
+                                    selectOptionAccess === 'allPost' &&
+                                    <AllPost />
                                 }
                             </div>
                         </div>
