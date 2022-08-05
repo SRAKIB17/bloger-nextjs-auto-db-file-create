@@ -111,10 +111,10 @@ export default async function handler(req, res) {
                     Please note that page blanking, addition of random text or spam, deliberate misinformation, and privacy violations are considered vandalism, and will not be tolerated. If you wish to make useful contributions, you may come back after the block expires. If you believe the block was placed in error, you may place an unblock request on your talk page using some rules broken for unblock here <a href="/inbox/support" className='link-primary link-hover'>Click </a>
                     </div>
                     `
-                    emoji = '/_next/static/media/emoji%20(24).adbb44a0.jpg'
+                    const emoji = '/_next/static/media/emoji%20(24).adbb44a0.jpg'
 
                     const welcomeMessage = {
-                        emoji: '/_next/static/media/2.855c4f8b.png',
+                        emoji: emoji,
                         userID: user_id,
                         adminReply: true,
                         adminId: '9b836a9c57a91ce7805cc6a0',

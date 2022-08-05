@@ -46,6 +46,7 @@ export default async function handler(req, res) {
                     `
                 //WELCOME MESSAGE
                 let messageBody = ''
+                let emoji = ''
                 if (findUserCheckAdmin?.userID !== user_id && roll) {
                     messageBody = `
                     <div style="white-space: pre-line;">
@@ -61,7 +62,7 @@ export default async function handler(req, res) {
                     `
                 }
                 const welcomeMessage = {
-                    emoji: '/_next/static/media/2.855c4f8b.png',
+                    emoji: emoji,
                     userID: user_id,
                     adminReply: true,
                     adminId: '9b836a9c57a91ce7805cc6a0',
