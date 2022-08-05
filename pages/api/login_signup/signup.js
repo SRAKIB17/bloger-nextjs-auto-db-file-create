@@ -24,7 +24,7 @@ export default async function handler(req, res) {
                 const body = req.body
                 //GET USER SPECIFIC ID;
                 const getUserId = async () => {
-                    const userId = crypto.randomBytes(Math.ceil(12))
+                    const userId = crypto.randomBytes(Math.ceil(9))
                         .toString("hex")
                     // (B1) GENERATE RANDOM SALT
                     const checkUserId = await userCollection.findOne({ userID: userId })

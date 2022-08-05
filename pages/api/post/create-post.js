@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         if (checkUser) {
             const getAllPost = await postCollection.find({}).toArray();
             const getPostId = async () => {
-                const postId = crypto.randomBytes(Math.ceil(12))
+                const postId = crypto.randomBytes(Math.ceil(9))
                     .toString("hex")
 
                 // (B1) GENERATE RANDOM SALT
