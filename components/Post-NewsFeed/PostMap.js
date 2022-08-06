@@ -91,7 +91,7 @@ const PostMap = ({ post, refetch }) => {
                                 {
                                     user_details?.name || 'User'
                                 }
-                                <WarningProfile user_details={user_details} size='14'/>
+                                <WarningProfile user_details={user_details} size='14' />
                                 {
                                     post?.postBy === 'admin' &&
                                     <Announcement size='13' className="badge h-[14px] p-0 text-white badge-secondary pl-[2px] pr-[2px] text-[10px] font-extralight" />
@@ -175,7 +175,14 @@ const PostMap = ({ post, refetch }) => {
                         </>
 
                     }
-
+                    <div>
+                        <button
+                            className='text-xs link-hover link-primary font-extrabold'
+                            onClick={() => navigate('/story/' + post_id)}
+                        >
+                            View post
+                        </button>
+                    </div>
                     <div className='relative bg-base-100'>
                         <AdsStory />
                         <Comment_textarea post={post} refetch={refetch} setShowComment={setShowComment} showCommentState={showCommentState} />

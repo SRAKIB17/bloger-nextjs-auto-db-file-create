@@ -33,7 +33,7 @@ const Index = () => {
 
                     {
                         isLoading ?
-                            <div className='relative flex flex-col justify-center items-center'>
+                            <div className='relative h-80 flex flex-col justify-center items-center'>
                                 <div className='absolute top-14 z-[10]'>
                                     <LoadingFlowCircle />
                                 </div>
