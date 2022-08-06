@@ -106,7 +106,7 @@ export default async function handler(req, res) {
                     </svg>
                 `
 
-                    messageBody = `
+                    const messageBody = `
                     <div style="white-space: pre-line;">
                     Please note that page blanking, addition of random text or spam, deliberate misinformation, and privacy violations are considered vandalism, and will not be tolerated. If you wish to make useful contributions, you may come back after the block expires. If you believe the block was placed in error, you may place an unblock request on your talk page using some rules broken for unblock here <a href="/inbox/support" className='link-primary link-hover'>Click </a>
                     </div>

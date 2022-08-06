@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useEffect, useId, useState } from 'react';
 import Category from '../Category/Category';
-import { AccessKey, Announcement, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import { AccessKey, Announcement, Bill, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 
 import { useRouter } from 'next/router'
 import NewPost from '../profile/NewPost/NewPost';
@@ -273,6 +273,16 @@ const SideLeftBar = () => {
                     <Announcement size='30' />
                     <p className='hidden' id='sideLeftBarTitle'>
                         Announce
+                    </p>
+                </button>
+                {/* for help menu*/}
+                <button
+                    // onClick={() => navigate('/admin')}
+                    className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                >
+                    <Bill size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Ads
                     </p>
                 </button>
                 {/* for announcement*/}

@@ -120,7 +120,7 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
     }
 
     // UPLOAD CODE //
-    const { code, codeUploaderHandle } = useUploadCode();
+    const { code, codeUploaderHandle, message } = useUploadCode();
     useEffect(() => {
         if (htmlEdit) {
             textareaRef.current.value = code
@@ -205,6 +205,11 @@ const TextAreaEdit = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef, pos
                                 </p>
                                 <p className='absolute bg-base-300 p-4 w-60 text-xs rounded-3xl hidden' id={'showCodeHints' + post_id}>
                                     File type: * html, * js, * css, * text
+                                </p>
+                            </div>
+                            <div>
+                                <p className='text-2xs'>
+                                    {message}
                                 </p>
                             </div>
                         </div>

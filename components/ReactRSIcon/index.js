@@ -11,6 +11,8 @@ export { default as ArrowsCheck } from './icon/Arrow/ArrowsCheck'
 export { default as ArrowsRight } from './icon/Arrow/ArrowsRight'
 export { default as ArrowsRightDouble } from './icon/Arrow/ArrowsRightDouble'
 
+export { default as Bill } from './icon/Bill/Bill'
+
 export { default as BookmarkStar } from './icon/Bookmark/BookmarkStar'
 
 export { default as BubbleCommentChat } from './icon/Comment/bubbleCommentChat'

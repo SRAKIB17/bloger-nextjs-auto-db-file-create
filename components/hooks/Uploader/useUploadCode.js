@@ -12,12 +12,13 @@ const useUploadCode = () => {
             const oReader = new FileReader();
             oReader.onload = (e) => {
                 const rFilter = /^(text\/plain|text\/javascript|text\/html|text\/css|image\/tiff)$/i;
-                setCode(e.target.result)
+
                 if (!rFilter.test(type)) {
                     setMessage(<span className='label-text-alt text-success mb-8'>You should select valid files / file only!</span>)
                 }
                 else {
                     const result = e.target.result;
+                    setCode(result)
                     setMessage(<span className='label-text-alt text-success mb-8'>Successfully uploaded</span>);
                 }
             }
@@ -27,7 +28,7 @@ const useUploadCode = () => {
 
         }
     }
-    return { code, codeUploaderHandle }
+    return { code, codeUploaderHandle, message }
 };
 
 export default useUploadCode;
