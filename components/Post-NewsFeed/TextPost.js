@@ -2,6 +2,7 @@
 import IframeLoading from '../../public/loading_iframe.gif'
 import React, { useEffect, useState } from 'react';
 import { Camera } from '../ReactRSIcon';
+import { useRouter } from 'next/router';
 
 const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_id, postRefMode, thumbnail, showCommentState, setShowComment }) => {
     //********************************************************************************* */
@@ -198,6 +199,17 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
             }
         }
     }, [])
+
+    const router = useRouter();
+
+    const path = router?.pathname?.split('/')
+    const pathname = path[path?.length - 1];
+    const pathCheck = pathname == '[post_id]';
+
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
+    }
     return (
         <div className='mx-auto' id={'textPost' + post_id}>
 
@@ -272,11 +284,24 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                                         See More
                                     </button>
                                 </div> */}
+            <div className={pathCheck ? '' : 'flex justify-between items-center mt-1'}>
+                {
+                    pathCheck ||
+                    <div>
+                        <button
+                            className='text-xs link-hover link-primary font-extrabold'
+                            onClick={() => navigate('/story/' + post_id)}
+                        >
+                            View post
+                        </button>
+                    </div>
+                }
 
-            <div className="card-actions justify-end">
-                <button className="link-primary font-semibold link-hover text-xs" onClick={() => showIframeDisplayHandle(post_id)}>
-                    See {fullIframeShow ? 'Less' : 'More'}
-                </button>
+                <div className="card-actions justify-end">
+                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => showIframeDisplayHandle(post_id)}>
+                        See {fullIframeShow ? 'Less' : 'More'}
+                    </button>
+                </div>
             </div>
 
 

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 const VideoPost = ({ short_description, postBody, post_id, showCommentState, setShowComment }) => {
@@ -62,6 +63,16 @@ const VideoPost = ({ short_description, postBody, post_id, showCommentState, set
 
         }
     }
+
+    const router = useRouter();
+    const path = router?.pathname?.split('/')
+    const pathname = path[path?.length - 1];
+    const pathCheck = pathname == '[post_id]';
+
+    const navigate = (path) => {
+        router.push(path)
+        router.prefetch(path)
+    }
     return (
         <div>
             <div className='text-justify mb-2'>
@@ -72,14 +83,29 @@ const VideoPost = ({ short_description, postBody, post_id, showCommentState, set
                     shortDescriptionVideo?.length <= 100 && <>.....</>
                 }
                 {/* -------------see more short description----------- */}
-                {
-                    short_description?.length >= 100 &&
-                    <div className="card-actions justify-end text-xs">
-                        <button className="link-primary font-semibold link-hover" onClick={() => moreShortDescriptionVideoHandle(post_id)}>
-                            See {seeMorePostShow ? 'Less' : 'More'}
-                        </button>
-                    </div>
-                }
+                <div className={pathCheck ? '' : 'flex justify-between items-center mt-1'}>
+
+                    {
+                        pathCheck ||
+                        <div>
+                            <button
+                                className='text-xs link-hover link-primary font-extrabold'
+                                onClick={() => navigate('/story/' + post_id)}
+                            >
+                                View post
+                            </button>
+                        </div>
+                    }
+                    {
+                        short_description?.length >= 100 &&
+                        <div className="card-actions justify-end text-xs">
+                            <button className="link-primary font-semibold link-hover" onClick={() => moreShortDescriptionVideoHandle(post_id)}>
+                                See {seeMorePostShow ? 'Less' : 'More'}
+                            </button>
+                        </div>
+                    }
+                </div>
+
             </div>
 
             {/*----------------------------- for video code --------------------- */}

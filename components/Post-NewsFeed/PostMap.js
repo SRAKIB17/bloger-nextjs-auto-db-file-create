@@ -23,7 +23,11 @@ const PostMap = ({ post, refetch }) => {
     const getTimeSince = timeSince(time)
 
     const router = useRouter();
+    const path = router?.pathname?.split('/')
+    const pathname = path[path?.length - 1];
+    const pathCheck = pathname == '[post_id]';
     const navigate = (path) => {
+
         router.push(path)
         router.prefetch(path)
         refetch()
@@ -32,7 +36,6 @@ const PostMap = ({ post, refetch }) => {
         router.push(path)
         router.prefetch(path)
     }
-
 
 
     useEffect(() => {
@@ -106,7 +109,17 @@ const PostMap = ({ post, refetch }) => {
                                 </div>
                                 <Line size='18' />
                                 <div className='flex items-center'>
-                                    <button className='link-primary link-hover ' onClick={() => navigate(`?cat=${category}`)}>
+                                    <button
+                                        className='link-primary link-hover '
+                                        onClick={() => {
+                                            if (pathCheck) {
+                                                navigate(`/story/?cat=${category}`)
+                                            }
+                                            else {
+                                                navigate(`?cat=${category}`)
+                                            }
+
+                                        }}>
                                         {
                                             category
                                         }
@@ -122,7 +135,19 @@ const PostMap = ({ post, refetch }) => {
                                                     {
                                                         index > 0 && <Line />
                                                     }
-                                                    <button key={index + tag + category} className='link-primary link-hover ' onClick={() => navigate(`?cat=${category}&tag=${tag}`)}>
+                                                    <button
+                                                        key={index + tag + category} className='link-primary link-hover '
+                                                        onClick={() => {
+                                                            if (pathCheck) {
+                                                                navigate(`/story/?cat=${category}&tag=${tag}`)
+
+                                                            }
+                                                            else {
+                                                                navigate(`?cat=${category}&tag=${tag}`)
+
+                                                            }
+                                                        }}
+                                                    >
                                                         {
                                                             tag
                                                         }
@@ -175,14 +200,7 @@ const PostMap = ({ post, refetch }) => {
                         </>
 
                     }
-                    <div>
-                        <button
-                            className='text-xs link-hover link-primary font-extrabold'
-                            onClick={() => navigate('/story/' + post_id)}
-                        >
-                            View post
-                        </button>
-                    </div>
+
                     <div>
                         <AdsStory />
                     </div>
