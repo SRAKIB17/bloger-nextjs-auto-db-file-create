@@ -183,8 +183,10 @@ const PostMap = ({ post, refetch }) => {
                             View post
                         </button>
                     </div>
-                    <div className='relative bg-base-100'>
+                    <div>
                         <AdsStory />
+                    </div>
+                    <div className='relative bg-base-100'>
                         <Comment_textarea post={post} refetch={refetch} setShowComment={setShowComment} showCommentState={showCommentState} />
                     </div>
                 </div>
