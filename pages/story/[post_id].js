@@ -27,7 +27,7 @@ const Index = () => {
         <div className='h-[100vh] '>
             <Header />
 
-            <div className='grid grid-cols-12'>
+            <div className='grid grid-cols-12 h-full'>
                 <div className='lg:ml-[70px] col-span-12 lg:col-span-10 lg:mr-1' id='storyScroll'>
 
                     {
