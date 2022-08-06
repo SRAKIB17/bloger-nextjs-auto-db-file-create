@@ -8,6 +8,7 @@ import Login from '../../components/Login/Login';
 import LoadingFlowCircle from '../../components/LoadingFlowCircle';
 import RightSideLg from '../../components/Post-NewsFeed/RightSideLg';
 import PostMap from '../../components/Post-NewsFeed/PostMap';
+import Footer from '../../components/Home/Footer';
 
 const Index = () => {
     const router = useRouter();
@@ -31,15 +32,17 @@ const Index = () => {
                 <div className='lg:ml-[70px] col-span-12 lg:col-span-10 lg:mr-1' id='storyScroll'>
 
                     {
-                        isLoading &&
-                        <div className='relative flex flex-col justify-center items-center'>
-                            <div className='absolute top-14 z-[10]'>
-                                <LoadingFlowCircle />
+                        isLoading ?
+                            <div className='relative flex flex-col justify-center items-center'>
+                                <div className='absolute top-14 z-[10]'>
+                                    <LoadingFlowCircle />
+                                </div>
                             </div>
-                        </div>
-                    }
-                    <PostMap key={post_id} post={post} />
+                            :
+                            <PostMap key={post_id} post={post} />
 
+                    }
+                    <Footer />
                 </div>
 
                 <div className='col-span-2 bg-base-100'>
