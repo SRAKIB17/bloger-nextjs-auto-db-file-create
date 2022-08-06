@@ -50,7 +50,7 @@ const Index = () => {
                                 </div>
                             </div>
                             :
-                            <PostMap key={post_id} post={post} />
+                            <PostMap key={post_id} post={post} refetch={refetch}/>
 
                     }
                     <Footer />
