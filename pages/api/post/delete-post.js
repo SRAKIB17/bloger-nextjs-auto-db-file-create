@@ -66,7 +66,8 @@ export default async function handler(req, res) {
                     userID: user_id,
                     adminReply: true,
                     adminId: '9b836a9c57a91ce7805cc6a0',
-                    message: messageBody
+                    message: messageBody,
+                    time: new Date()
                 }
                 const supportInbox = UserClient.db("Inboxes").collection("support");
                 await supportInbox.insertOne(welcomeMessage);

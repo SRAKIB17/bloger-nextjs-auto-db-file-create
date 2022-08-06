@@ -4,10 +4,13 @@ import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
+import timeSince from '../Post-NewsFeed/TimeSince';
 
 
 const MessageBody = ({ messageBody }) => {
-    const { adminId, support_id, userID, adminReply, message } = messageBody;
+    const { adminId, support_id, userID, adminReply, message, time } = messageBody;
+    const getTimeSince = timeSince(time)
+    console.log(getTimeSince)
 
     // const onloadMessageSupport = (id) => {
     //     const iframe = document.getElementById('supportInboxMsgBody' + id);
@@ -26,7 +29,7 @@ const MessageBody = ({ messageBody }) => {
             <div className='w-full text-sm' id='supportInboxBody'>
                 {
                     adminReply &&
-                    <div>
+                    <div className='flex flex-col'>
                         <div className=' flex justify-start items-start mt-2 mb-2 w-full'>
                             <div className="w-[16px] h-[16px] rounded-full border-2 border-gray-400 overflow-hidden">
                                 {
@@ -48,7 +51,7 @@ const MessageBody = ({ messageBody }) => {
                                 {
                                     messageBody?.emoji &&
                                     <div>
-                                        <img src={messageBody?.emoji} alt="" className='h-auto max-w-[256px]' />
+                                        <img src={messageBody?.emoji} alt="" className='h-auto max-w-[128px]' />
                                     </div>
                                 }
                                 <div className='text-sm'>
@@ -65,6 +68,13 @@ const MessageBody = ({ messageBody }) => {
                                     frameBorder="0"
                                 ></iframe> */}
                             </div>
+                        </div>
+                        <div className='pl-4'>
+                            <p className='text-[8px] '>
+                                {
+                                    time && getTimeSince
+                                }
+                            </p>
                         </div>
                     </div>
                 }
@@ -89,7 +99,7 @@ const MessageBody = ({ messageBody }) => {
                                     {
                                         messageBody?.emoji &&
                                         <div className='pb-[2px]'>
-                                            <img src={messageBody?.emoji} alt="" className='h-auto max-w-[256px]' />
+                                            <img src={messageBody?.emoji} alt="" className='h-auto max-w-[128px]' />
                                         </div>
                                     }
                                     {message}
@@ -112,6 +122,13 @@ const MessageBody = ({ messageBody }) => {
                                     }
                                 </div>
                             </div>
+                        </div>
+                        <div className='pl-4 text-right pr-4'>
+                            <p className='text-[8px] '>
+                                {
+                                    time && getTimeSince
+                                }
+                            </p>
                         </div>
                     </div>
 

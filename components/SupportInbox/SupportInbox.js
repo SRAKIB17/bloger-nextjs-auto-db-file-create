@@ -18,7 +18,7 @@ import styles from '../profile/NewPost/NewPost.module.css'
 const SupportInbox = () => {
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
-    
+
     // const asPath = useRouter()?.asPath
     // usePrivatePageCheckUser(asPath)
 
@@ -105,7 +105,8 @@ const SupportInbox = () => {
             userID: inboxUserId,
             adminReply: isAdmin?.admin,
             adminId: isAdmin?.admin ? user_details?.userID : '',
-            message: body
+            message: body,
+            time: new Date()
         }
 
         const { data } = await axios.post(`/api/inbox/support/${inboxUserId}?email=${user_details?.email}`, messageBody,
@@ -226,7 +227,7 @@ const SupportInbox = () => {
                                 inboxMessage?.map((messageBody, index) => <MessageBody key={messageBody?.support_id} messageBody={messageBody} />)
                             }
                             {
-                                inboxMessage?.length === 0 && 
+                                inboxMessage?.length === 0 &&
                                 <div className='text-gray-500'>
                                     No message
                                 </div>

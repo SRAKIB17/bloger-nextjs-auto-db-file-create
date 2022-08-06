@@ -131,7 +131,7 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
                             <div className='break-words overflow-hidden text-sm whitespace-pre-wrap font-extraligh font-sans'>
                                 {(commentBody?.emoji) &&
                                     <div>
-                                        <img src={commentBody?.emoji} alt="" className='h-auto max-w-[256px]' />
+                                        <img src={commentBody?.emoji} alt="" className='h-auto max-w-[128px]' />
                                     </div>
                                 }
                                 {showFullComment}

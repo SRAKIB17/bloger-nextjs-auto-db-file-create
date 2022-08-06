@@ -109,7 +109,8 @@ export default async function handler(req, res) {
                             userID: userID,
                             adminReply: true,
                             adminId: '9b836a9c57a91ce7805cc6a0',
-                            message: messageBody
+                            message: messageBody,
+                            time: new Date()
                         }
                         const supportInbox = client.db("Inboxes").collection("support");
 
