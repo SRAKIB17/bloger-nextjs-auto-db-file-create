@@ -27,14 +27,8 @@ const Index = () => {
         <div className='h-[100vh] '>
             <Header />
 
-            <div className='grid grid-cols-12 gap-2'>
-                <div className='hidden sm:block sm:col-span-4 md:col-span-4 text-justify lg:ml-16 p-1 relative bg-base-100'>
-                    <div className='fixed h-[100vh] overflow-auto sm:w-[200px] md:max-w-[300px] lg:max-w-[350px] md:w-full'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, cumque adipisci nisi possimus nostrum porro atque temporibus rerum repellat. Maxime, cupiditate! Fuga nobis velit animi voluptatem quam quo ea rerum!
-                    </div>
-                </div>
-
-                <div className='col-span-12 sm:mr-3 md:mr-0 sm:col-start-5 sm:col-end-[-1] md:col-span-8 lg:col-span-6' id='storyScroll'>
+            <div className='grid grid-cols-12'>
+                <div className='lg:ml-[70px] col-span-12 lg:col-span-10 lg:mr-1' id='storyScroll'>
 
                     {
                         isLoading &&
@@ -48,7 +42,7 @@ const Index = () => {
 
                 </div>
 
-                <div className=' col-span-2 hidden lg:block relative bg-base-100 p-3'>
+                <div className='col-span-2 bg-base-100'>
                     <div className='fixed h-full overflow-auto text-justify p-2'>
                         <RightSideLg />
                     </div>
