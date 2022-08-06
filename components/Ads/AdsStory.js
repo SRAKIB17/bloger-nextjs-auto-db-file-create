@@ -15,7 +15,10 @@ const AdsStory = () => {
                 >
                     <div className='w-full h-16  mb-1 rounded-md relative text-white'>
                         <div>
-                            <button className='absolute right-2 top-1 btn btn-xs w-[5px] h-[5px] btn-warning outline-primary  btn-outline' onClick={() => setHideAds(null)}>
+                            <button
+                                className='absolute right-2 top-1 btn btn-xs w-[5px] h-[5px] btn-warning outline-primary  btn-outline'
+                                onClick={() => setHideAds(null)}
+                            >
                                 X
                             </button>
                         </div>
