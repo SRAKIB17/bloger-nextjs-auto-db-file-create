@@ -88,12 +88,9 @@ const VideoPost = ({ short_description, postBody, post_id, showCommentState, set
                     {
                         pathCheck ||
                         <div>
-                            <button
-                                className='text-xs link-hover link-primary font-extrabold'
-                                onClick={() => navigate('/story/' + post_id)}
-                            >
+                            <a href={'/story/' + post_id} target="_blank" rel="noreferrer" className='text-xs link-hover link-primary font-extrabold'>
                                 View post
-                            </button>
+                            </a>
                         </div>
                     }
                     {
@@ -123,7 +120,7 @@ const VideoPost = ({ short_description, postBody, post_id, showCommentState, set
                 >
                 </iframe>
             </div>
-        </div>
+        </div >
     );
 };
 

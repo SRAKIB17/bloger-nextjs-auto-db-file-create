@@ -288,12 +288,9 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                 {
                     pathCheck ||
                     <div>
-                        <button
-                            className='text-xs link-hover link-primary font-extrabold'
-                            onClick={() => navigate('/story/' + post_id)}
-                        >
+                        <a href={'/story/' + post_id} target="_blank" rel="noreferrer" className='text-xs link-hover link-primary font-extrabold'>
                             View post
-                        </button>
+                        </a>
                     </div>
                 }
 

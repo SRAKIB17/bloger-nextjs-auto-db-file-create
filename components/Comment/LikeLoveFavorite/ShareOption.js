@@ -27,8 +27,8 @@ const ShareOption = ({ post_id }) => {
 
         }
         else if (url === 'print') {
-            const url = '/print/' + post_id
-            router.push(url)
+            const url =
+                router.push(url)
             router.prefetch(url)
 
         }
@@ -62,9 +62,9 @@ const ShareOption = ({ post_id }) => {
                         </button>
                     </div>
                     <div>
-                        <button onClick={() => pushShareUrlHandle('print', post_id)}>
+                        <a href={'/print/' + post_id} target="_blank" rel="noreferrer">
                             <Printer size='22' className="rounded-sm text-[#00ff33] hover:text-[#ff5555]" />
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div >
