@@ -156,9 +156,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
     const allReact = postReact?.filter((like, index, arr) => like.rating != '')?.length;
     return (
         <div className='relative'>
-
-
-            <div className='p-1  border-t flex items-center justify-between font-mono' >
+            <div className='p-1 flex items-center justify-between font-mono' >
                 <div className='flex relative cursor-pointer' onClick={() => showLikeUnlikeUser(post_id)} >
                     <button
                         className='bg-[#00ff00] p-1 rounded-[50%] btn-disabled relative w-5 h-5'
