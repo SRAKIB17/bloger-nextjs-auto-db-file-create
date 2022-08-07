@@ -45,7 +45,9 @@ const NewPost = ({ props: setNewPost }) => {
             postRefMode = 'video'
         }
 
-
+        const tags = event.target.tags.value.toLowerCase()?.split(',')?.map(tag => {
+            return tag?.trim()
+        }).join(',')
         const post = {
             userID: user_details?.userID,
             post_id: '',
@@ -55,7 +57,7 @@ const NewPost = ({ props: setNewPost }) => {
             time: new Date(),
             short_description: event.target.short_description.value,
             category: event.target.category.value?.toLowerCase(),
-            tags: event.target.tags.value.toLowerCase(),
+            tags: tags,
             postBody: textareaRef.current.value,
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,
@@ -78,7 +80,7 @@ const NewPost = ({ props: setNewPost }) => {
                         token: localStorage.getItem('token')
                     }
                 });
-          
+
             if (data?.message === 'success') {
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 setNewPost(null)

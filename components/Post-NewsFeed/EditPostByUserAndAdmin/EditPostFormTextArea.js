@@ -65,7 +65,9 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
         else if (quickVideoPost) {
             postRefMode = 'video'
         }
-
+        const tags = event.target.tags.value.toLowerCase()?.split(',')?.map(tag => {
+            return tag?.trim()
+        }).join(',')
         const post = {
             userID: userID,
             post_id: post_id,
@@ -74,7 +76,7 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
             image: '',
             short_description: event.target.short_description.value,
             category: event.target.category.value,
-            tags: event.target.tags.value.toLowerCase(),
+            tags: tags,
             postBody: textareaRef.current.value,
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,
