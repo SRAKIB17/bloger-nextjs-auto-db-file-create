@@ -50,13 +50,13 @@ const Index = () => {
                                 </div>
                             </div>
                             :
-                            <PostMap key={post_id} post={post} refetch={refetch}/>
+                            <PostMap key={post_id} post={post} refetch={refetch} />
 
                     }
                     <Footer />
                 </div>
 
-                <div className='col-span-2 bg-base-100'>
+                <div className='col-span-2 bg-base-100 hidden md:block'>
                     <div className='fixed h-full overflow-auto text-justify p-2'>
                         <RightSideLg />
                     </div>

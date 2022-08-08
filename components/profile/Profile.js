@@ -205,7 +205,7 @@ const Profile = () => {
                                 <h1 className='text-2xl sm:text-3xl'>
                                     {user_details?.name}
                                 </h1>
-                                <WarningProfile user_details={user_details} size="16"/>
+                                <WarningProfile user_details={user_details} size="16" />
                             </div>
                             <h1 className='text-orange-500'>Total Point: 300</h1>
                         </div>
@@ -263,7 +263,12 @@ const Profile = () => {
                         // :
                         // ''
                     }
-
+                    {
+                        (getPost?.length === 0 && !isLoading) &&
+                        <div className='text-center h-full bg-base-100 text-xl font-extrabold text-gray-500 pt-10'>
+                            No post found. Please Reload
+                        </div>
+                    }
                     {
                         isLoading ||
                         <div className=" p-4 mt-2 text-center w-full bg-base-100">
