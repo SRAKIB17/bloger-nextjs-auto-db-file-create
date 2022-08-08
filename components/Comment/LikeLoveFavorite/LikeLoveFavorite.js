@@ -10,8 +10,9 @@ import Login from '../../Login/Login';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import axios from 'axios';
 import BookmarkPost from '../BookmarkPost';
+import returnLikeLoveHook from './returnLikeLoveHook';
 
-const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refetch, setShowReactUser, setShowComment, showReactUserState } }) => {
+const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowReactUser, setShowComment, showReactUserState } }) => {
     const { post_id } = post;
 
     const { user, user_details } = useContext(UserFullInfoProvider)
@@ -154,6 +155,9 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
     // FOR ALL REACT LIST FILTERING
     const postReact = post?.react;
     const allReact = postReact?.filter((like, index, arr) => like.rating != '')?.length;
+
+    // FOR ALL REACT COUNT 
+    const { like, unlike, love, TotalComment } = returnLikeLoveHook(post)
     return (
         <div className='relative'>
             <div className='p-1 flex items-center justify-between font-mono' >
@@ -176,12 +180,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                     </button>
                     <h1 className='text-gray-500  text-[14px]'>{allReact || 0}</h1>
                 </div>
-                <div className='mr-3 text-[14px] text-gray-500 cursor-pointer' onClick={() => showCommentHandle(post_id)}>
-                    {
-                        (TotalComment + ' comment')
-                    }
 
-                </div>
             </div>
 
             {/* show like love unlike  user list  */}
@@ -204,16 +203,26 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                             !reactLoading ?
                                 <button
                                     onClick={() => LikeUnlikeLovePostHandle('like')}
-                                    className='btn relative btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                    className='btn relative btn-xs btn-primary ml-2 btn-outline'
                                 >
-                                    <Like size='18' color={likePost ? '#00ff00' : 'grey'} />
+                                    <span className='flex items-center gap-1'>
+                                        <Like size='14' color={likePost ? '#00ff00' : 'grey'} />
+                                        <p className=' text-[12px] font-extralight'>
+                                            {like?.length}
+                                        </p>
+                                    </span>
                                 </button>
                                 :
                                 <button
-                                    className='btn relative btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                    className='btn relative btn-xs btn-primary ml-2 btn-outline'
                                 >
-                                    <Like size='18' color={likePost ? '#00ff00' : 'grey'} />
-                                    <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    <span className='flex items-center gap-1'>
+                                        <Like size='14' color={likePost ? '#00ff00' : 'grey'} />
+                                        <p className=' text-[12px] font-extralight'>
+                                            {like?.length}
+                                        </p>
+                                    </span>
+                                    <p className='absolute border-gray-500 animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
                                     </p>
                                 </button>
 
@@ -223,16 +232,26 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                             !reactLoading ?
                                 <button
                                     onClick={() => LikeUnlikeLovePostHandle('unlike')}
-                                    className='btn btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                    className='btn btn-xs btn-primary ml-2 btn-outline'
                                 >
-                                    <Like size='18' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
+                                    <span className='flex items-center gap-1'>
+                                        <Like size='14' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
+                                        <p className=' text-[12px] font-extralight'>
+                                            {unlike?.length}
+                                        </p>
+                                    </span>
                                 </button>
                                 :
                                 <button
-                                    className='btn relative btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                    className='btn relative btn-xs btn-primary ml-2 btn-outline'
                                 >
-                                    <Like size='18' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
-                                    <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    <span className='flex items-center gap-1'>
+                                        <Like size='14' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
+                                        <p className=' text-[12px] font-extralight'>
+                                            {unlike?.length}
+                                        </p>
+                                    </span>
+                                    <p className='absolute border-gray-500 animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
                                     </p>
                                 </button>
 
@@ -242,16 +261,26 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                             !reactLoading ?
                                 <button
                                     onClick={() => LikeUnlikeLovePostHandle('love')}
-                                    className='btn btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                    className='btn btn-xs btn-primary ml-2 btn-outline'
                                 >
-                                    <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='19' />
+                                    <span className='flex items-center gap-1'>
+                                        <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='15' />
+                                        <p className=' text-[12px] font-extralight'>
+                                            {love?.length}
+                                        </p>
+                                    </span>
                                 </button>
                                 :
                                 <button
-                                    className='btn relative btn-xs btn-primary ml-2 btn-outline h-5 w-8'
+                                    className='btn relative btn-xs btn-primary ml-2 btn-outline '
                                 >
-                                    <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='19' />
-                                    <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                                    <span className='flex items-center gap-1'>
+                                        <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='15' />
+                                        <p className=' text-[12px] font-extralight'>
+                                            {love?.length}
+                                        </p>
+                                    </span>
+                                    <p className='absolute border-gray-500 animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
                                     </p>
                                 </button>
 
@@ -263,9 +292,14 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, TotalComment, post, refe
                             title='Comment'
                             onClick={() => showCommentHandle(post_id)}
                             id={'showCommentButton' + post_id}
-                            className='btn-primary btn-outline btn btn-xs  ml-2 h-5 w-8 '
+                            className='btn-primary btn-outline btn btn-xs  ml-2'
                         >
-                            <Comment size='18' color='currentColor' />
+                            <span className='flex items-center gap-1'>
+                                <Comment size='15' color='currentColor' />
+                                <p className=' text-[12px] font-extralight'>
+                                    {TotalComment}
+                                </p>
+                            </span>
                         </button>
                         {/* <BookmarkPost post={post} refetch={refetch}/> */}
                     </div>

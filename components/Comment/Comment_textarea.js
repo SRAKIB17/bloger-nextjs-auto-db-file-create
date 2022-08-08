@@ -19,9 +19,8 @@ const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) =
 
     // SET COMMENT BODY AND COUNT TOTAL COMMENT
     const commentBody = post?.comments;
-    //COUNT TOTAL REPLIES
-    const totalReplies = eval(commentBody?.map(reply => (reply?.replies?.length))?.join('+'))
-    const TotalComment = post?.comments?.length + totalReplies || 0;
+    
+
 
 
     // AUTO HEIGHT TEXTAREA FORM
@@ -190,7 +189,7 @@ const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) =
         <div>
             <div className='mb-1'>
                 {/* -------------------------------------like unlike and show user who like this post---------------------------- */}
-                <LikeLoveFavorite props={{ showCommentHandle, TotalComment, post, refetch, setShowReactUser, setShowComment, showReactUserState }} />
+                <LikeLoveFavorite props={{ showCommentHandle, post, refetch, setShowReactUser, setShowComment, showReactUserState }} />
             </div>
 
             {/* =--------------------------------------------for comment list and reply component---------------------------- */}
