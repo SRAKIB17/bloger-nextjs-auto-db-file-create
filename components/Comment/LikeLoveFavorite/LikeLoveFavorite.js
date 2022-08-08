@@ -207,7 +207,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
                                 >
                                     <span className='flex items-center gap-1'>
                                         <Like size='14' color={likePost ? '#00ff00' : 'grey'} />
-                                        <p className=' text-[12px] font-extralight'>
+                                        <p className=' text-[12px] '>
                                             {like?.length}
                                         </p>
                                     </span>
@@ -218,7 +218,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
                                 >
                                     <span className='flex items-center gap-1'>
                                         <Like size='14' color={likePost ? '#00ff00' : 'grey'} />
-                                        <p className=' text-[12px] font-extralight'>
+                                        <p className=' text-[12px] '>
                                             {like?.length}
                                         </p>
                                     </span>
@@ -236,7 +236,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
                                 >
                                     <span className='flex items-center gap-1'>
                                         <Like size='14' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
-                                        <p className=' text-[12px] font-extralight'>
+                                        <p className=' text-[12px] '>
                                             {unlike?.length}
                                         </p>
                                     </span>
@@ -247,7 +247,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
                                 >
                                     <span className='flex items-center gap-1'>
                                         <Like size='14' color={unLikePost ? '#ff2020' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
-                                        <p className=' text-[12px] font-extralight'>
+                                        <p className=' text-[12px] '>
                                             {unlike?.length}
                                         </p>
                                     </span>
@@ -265,7 +265,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
                                 >
                                     <span className='flex items-center gap-1'>
                                         <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='15' />
-                                        <p className=' text-[12px] font-extralight'>
+                                        <p className=' text-[12px] '>
                                             {love?.length}
                                         </p>
                                     </span>
@@ -276,7 +276,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
                                 >
                                     <span className='flex items-center gap-1'>
                                         <EmoticonLove color={lovePost ? '#ff00f2' : 'grey'} size='15' />
-                                        <p className=' text-[12px] font-extralight'>
+                                        <p className=' text-[12px] '>
                                             {love?.length}
                                         </p>
                                     </span>
@@ -296,7 +296,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
                         >
                             <span className='flex items-center gap-1'>
                                 <Comment size='15' color='currentColor' />
-                                <p className=' text-[12px] font-extralight'>
+                                <p className=' text-[12px] '>
                                     {TotalComment}
                                 </p>
                             </span>
