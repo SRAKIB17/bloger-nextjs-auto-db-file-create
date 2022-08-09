@@ -28,7 +28,7 @@ const UserCdnCode = () => {
                 token: localStorage.getItem('token')
             }
         }))
-    const codeBody = data?.data?.result || []
+    const codeBody = data?.data?.result
     const [getCODE, setCODE] = useState([]);
     useEffect(() => {
         if (codeBody?.length > 0) {

@@ -26,7 +26,7 @@ const PublicCdnCode = () => {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
     ))
-    const codeBody = data?.data?.result || []
+    const codeBody = data?.data?.result
     const [getCODE, setCODE] = useState([]);
     useEffect(() => {
         if (codeBody?.length > 0) {

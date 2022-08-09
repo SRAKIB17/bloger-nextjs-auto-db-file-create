@@ -202,10 +202,12 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                 <td className='pl-1 pr-1'>
                                     :
                                 </td>
-                                <td className='text-gray-500 break-words text-justify'>
-                                    {
-                                        code_des
-                                    }
+                                <td className='text-gray-500'>
+                                    <p className='whitespace-pre-wrap break-words'>
+                                        {
+                                            code_des
+                                        }
+                                    </p>
                                 </td>
                             </tr>
 
@@ -248,7 +250,7 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                 </div>
                                 <div>
                                     <a href={copyCodeLink} target='_blank' className='btn btn-sm btn-outline btn-info' rel="noreferrer">
-                                        Go
+                                        visit
                                     </a>
                                 </div>
                             </div>
@@ -286,7 +288,7 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                     }
                                 </div>
                                 <a href={copyCdnLink} target='_blank' className='btn btn-sm btn-outline btn-info' rel="noreferrer">
-                                    Go
+                                    visit
                                 </a>
                             </div>
                         </div>
