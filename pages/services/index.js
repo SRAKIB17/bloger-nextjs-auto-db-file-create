@@ -25,7 +25,7 @@ const Index = () => {
             <div className='lg:ml-16'>
                 <div className="drawer drawer-mobile">
                     <input id="servicesDrawer" type="checkbox" className="drawer-toggle" />
-                    <div className="drawer-content p-2">
+                    <div className="drawer-content p-1">
                         <div className='text-end pr-2 pt-1'>
                             <label
                                 htmlFor="servicesDrawer"
@@ -39,7 +39,9 @@ const Index = () => {
                             {
 
                                 selectServices === 'CONTENT DELIVERY NETWORK (CDN) CODE' &&
-                                <CdnCode />
+                                <div className='pl-1'>
+                                    <CdnCode />
+                                </div>
                             }
                         </div>
                     </div>
@@ -47,10 +49,11 @@ const Index = () => {
                         <label htmlFor="servicesDrawer" className="drawer-overlay"></label>
                         <ul className="menu p-4 overflow-y-auto w-56 bg-base-100 text-base-content">
                             {/* <!-- Sidebar content here --> */}
-                            <li onClick={() => setSelectServices('CONTENT DELIVERY NETWORK (CDN) CODE')} className='cursor-pointer'>
+                            <li
+                                className={(selectServices == 'CONTENT DELIVERY NETWORK (CDN) CODE' ? 'btn-primary rounded-md' : '') + ' cursor-pointer'}
+                                onClick={() => setSelectServices('CONTENT DELIVERY NETWORK (CDN) CODE')} >
                                 <a>CDN CODE</a>
                             </li>
-                            <li><a>Sidebar Item 2</a></li>
                         </ul>
 
                     </div>

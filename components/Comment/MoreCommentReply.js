@@ -7,6 +7,7 @@ import femaleAvatar from '../../public/femaleAvatar.png'
 import { UserFullInfoProvider } from '../../pages/_app';
 import timeSince from '../Post-NewsFeed/TimeSince';
 import WarningProfile from '../hooks/WarningProfile';
+import { useRouter } from 'next/router';
 
 
 const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_id }) => {
@@ -63,6 +64,10 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_i
         }
         setDeleteLoading(false)
     }
+    const router = useRouter()
+    const navigate = (path) => {
+        router.replace(path)
+    }
 
 
     return (
@@ -91,8 +96,11 @@ const MoreCommentReply = ({ replyComment, isLoading, refetch, post_id, comment_i
                             }
                         </div>
                     </div>
-                    <div className='text-[14px] font-bold'>
-                        <div className='flex'>
+                    <div className='text-[12px] font-bold'>
+                        <div
+                            className='flex cursor-pointer link-primary link-hover'
+                            onClick={() => navigate('/profile/' + reply_user_details?.userID)}
+                        >
                             <h6 className='m-0'>{reply_user_details?.name || "User"}</h6>
                             <WarningProfile user_details={reply_user_details} size='13' />
                         </div>

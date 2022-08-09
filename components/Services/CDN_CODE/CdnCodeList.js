@@ -1,13 +1,36 @@
-import React, { useState } from 'react';
+/* eslint-disable @next/next/no-img-element */
+import React, { useContext, useState } from 'react';
+import ShareOption from '../../Comment/LikeLoveFavorite/ShareOption';
 import timeSince from '../../Post-NewsFeed/TimeSince';
-import { Copy, Delete, Link, Writing } from '../../ReactRSIcon';
+import { Copy, Delete, Link, Share, Writing } from '../../ReactRSIcon';
 import DeleteCode from './DeleteCode';
 import EditCode from './EditCode';
+import styles from '../../Comment/LikeLoveFavorite/LikeTransition.module.css'
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import WarningProfile from '../../hooks/WarningProfile';
+import maleAvatar from '../../../public/maleAvatar.png'
+import femaleAvatar from '../../../public/femaleAvatar.png'
+import { useRouter } from 'next/router';
+import { UserFullInfoProvider } from '../../../pages/_app';
 
 const CdnCodeList = ({ cdn, index, refetch }) => {
+    const { user, isAdmin, user_details } = useContext(UserFullInfoProvider);
+
     const { code, code_id, userID, time, content_type, code_title, code_des } = cdn;
     const getTimeSince = timeSince(time)
+
+
     const copyLink = `${(typeof window !== 'undefined' && window.location.origin) ? window.location.origin : ''}/${userID}/cdn/${code_id}`.trim();
+
+
+    const codePublishUserInfo = useQuery(['public_profile', userID], () => axios.get(`/api/public_user_details/${userID}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }));
+    const code_Publish_User_details = codePublishUserInfo?.data?.data?.user_details;
+    const replyIsLoading = codePublishUserInfo?.isLoading;
+    const refetchReply = codePublishUserInfo?.refetch;
 
 
     const copyCodeHandle = (id) => {
@@ -15,11 +38,18 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
         codeLink.select()
         document.execCommand('copy')
     }
-    const [showCode, setShowCode] = useState(null);
 
+
+    const [showCode, setShowCode] = useState(null);
     const [deleteCode, setDeleteCode] = useState(null);
     const [editCode, setEditCode] = useState(null);
+    const [showShareCode, setShareCode] = useState(null)
 
+    const sharePath = `${userID}/cdn/${code_id}`
+    const router = useRouter()
+    const navigate = (path) => {
+        router.replace(path)
+    }
     return (
         <div className='border-b relative border-gray-500 p-2'>
             <div>
@@ -36,30 +66,33 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                             }
                         </p>
                     </div>
-                    <div className='flex items-center gap-1'>
-                        <button
+                    {
+                        (user_details?.userID === userID || isAdmin?.admin) &&
+                        <div className='flex items-center gap-1'>
+                            <button
 
-                            // className={(editPost ? ' text-white ' : 'btn-outline') + ' btn btn-info  btn-xs'}
-                            onClick={() => setEditCode(cdn)}
-                            className='btn btn-success btn-outline btn-xs p-1'
-                        >
+                                // className={(editPost ? ' text-white ' : 'btn-outline') + ' btn btn-info  btn-xs'}
+                                onClick={() => setEditCode(cdn)}
+                                className='btn btn-success btn-outline btn-xs p-1'
+                            >
 
-                            <Writing />
-                        </button>
-                        {/* Delete User */}
+                                <Writing />
+                            </button>
+                            {/* Delete User */}
 
-                        <button
-                            className='btn btn-warning btn-outline btn-xs p-1'
-                            onClick={() => setDeleteCode(cdn)}
-                        >
-                            <Delete />
-                            {/* <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
-                            </p> */}
-                        </button>
-                        {/* <button className='btn btn-warning btn-outline btn-xs' onClick={() => setDeletePost({ post_id, userID, post_title })}>
-                            <Delete />
-                        </button> */}
-                    </div>
+                            <button
+                                className='btn btn-warning btn-outline btn-xs p-1'
+                                onClick={() => setDeleteCode(cdn)}
+                            >
+                                <Delete />
+                                {/* <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
+                        </p> */}
+                            </button>
+                            {/* <button className='btn btn-warning btn-outline btn-xs' onClick={() => setDeletePost({ post_id, userID, post_title })}>
+                        <Delete />
+                    </button> */}
+                        </div>
+                    }
                 </div>
                 <div>
                     <table className='text-xs text-left text-[#2f2f2f] table table-zebra'>
@@ -141,6 +174,25 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                             <tr>
                                 <td>
                                     <b>
+                                        Publisher
+                                    </b>
+                                </td>
+                                <td className='pl-1 pr-1'>
+                                    :
+                                </td>
+                                <td className='text-gray-500'>
+                                    <div
+                                        className='flex cursor-pointer link-primary link-hover'
+                                        onClick={() => navigate('/profile/' + code_Publish_User_details?.userID)}
+                                        S>
+                                        <h6 className='m-0'>{code_Publish_User_details?.name || "User"}</h6>
+                                        <WarningProfile user_details={code_Publish_User_details} size='13' />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>
                                         Description
                                     </b>
                                 </td>
@@ -173,6 +225,19 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                             >
                                 <Copy />
                             </button>
+                            <div onMouseEnter={() => setShareCode(!showShareCode)} onMouseLeave={() => setShareCode(!showShareCode)} className='relative'>
+                                <button
+                                    className='btn btn-primary btn-sm btn-outline '
+                                >
+                                    <Share />
+                                </button>
+                                {
+                                    showShareCode &&
+                                    <div className={styles.shareOption}>
+                                        <ShareOption sharePath={sharePath} id={code_id} />
+                                    </div>
+                                }
+                            </div>
                         </div>
 
                         <div className='flex gap-1'>
@@ -215,16 +280,21 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
             </div>
             <div>
                 {
-                    deleteCode &&
-                    <div>
-                        <DeleteCode props={{ deleteCode, refetch, setDeleteCode }} />
-                    </div>
-                }
-                {
-                    editCode &&
-                    <div className='absolute top-0 overflow-auto h-full w-full'>
-                        <EditCode editCode={editCode} setEditCode={setEditCode} refetch={refetch} />
-                    </div>
+                    user?.user &&
+                    <>
+                        {
+                            deleteCode &&
+                            <div>
+                                <DeleteCode props={{ deleteCode, refetch, setDeleteCode }} />
+                            </div>
+                        }
+                        {
+                            editCode &&
+                            <div className='absolute top-0 overflow-auto h-full w-full'>
+                                <EditCode editCode={editCode} setEditCode={setEditCode} refetch={refetch} />
+                            </div>
+                        }
+                    </>
                 }
             </div>
         </div>

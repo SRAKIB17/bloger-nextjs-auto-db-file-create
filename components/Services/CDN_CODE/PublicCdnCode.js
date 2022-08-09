@@ -8,7 +8,7 @@ import LoadingFlowCircle from '../../LoadingFlowCircle';
 import LoadingSpin from '../../LoadingSpin';
 import CdnCodeList from './CdnCodeList';
 
-const UserCdnCode = () => {
+const PublicCdnCode = () => {
     const { user, user_details } = useContext(UserFullInfoProvider);
     const router = useRouter()
 
@@ -21,13 +21,11 @@ const UserCdnCode = () => {
         router.push(router)
         router.prefetch(router);
     }
-    const { data, isLoading, refetch } = useQuery(['USER_CDN_CODE', shows, getPage, user_details], () => axios.get(`/api/services/cdn/cdn?email=${user_details?.email}&show=${shows * getPage}&user_id=${user_details?.userID}`,
+    const { data, isLoading, refetch } = useQuery(['CDN_CODE', shows, getPage], () => axios.get(`/api/services/cdn/cdn?email=${user_details?.email}&show=${shows * getPage}`,
         {
-            headers: {
-                access_token: sessionStorage.getItem('accessAutoG'),
-                token: localStorage.getItem('token')
-            }
-        }))
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }
+    ))
     const codeBody = data?.data?.result || []
     const [getCODE, setCODE] = useState([]);
     useEffect(() => {
@@ -96,4 +94,5 @@ const UserCdnCode = () => {
     );
 };
 
-export default UserCdnCode;
+
+export default PublicCdnCode;

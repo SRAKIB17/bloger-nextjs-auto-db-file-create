@@ -158,6 +158,8 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
 
     // FOR ALL REACT COUNT 
     const { like, unlike, love, TotalComment } = returnLikeLoveHook(post)
+    // SHARE LINK 
+    const sharePath = `story/${post_id}`
     return (
         <div className='relative'>
             <div className='p-1 flex items-center justify-between font-mono' >
@@ -312,7 +314,7 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
                         {
                             showShareOption &&
                             <div className={styles.shareOption}>
-                                <ShareOption post_id={post_id} />
+                                <ShareOption sharePath={sharePath} id={post_id} />
                             </div>
                         }
                     </div>

@@ -8,6 +8,7 @@ import maleAvatar from '../../public/maleAvatar.png'
 import femaleAvatar from '../../public/femaleAvatar.png'
 import timeSince from '../Post-NewsFeed/TimeSince';
 import WarningProfile from '../hooks/WarningProfile';
+import { useRouter } from 'next/router';
 
 
 const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch }) => {
@@ -82,7 +83,10 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
         }
         setDeleteLoading(false)
     }
-
+    const router = useRouter()
+    const navigate = (path) => {
+        router.replace(path)
+    }
 
     return (
         <div>
@@ -113,10 +117,13 @@ const CommentList = ({ comment: commentBody, replySetHandle, post_id, refetch })
 
                         </div>
                     </div>
-                    <div className='text-[14px] font-bold'>
-                        <div className='flex'>
+                    <div className='text-[12px] font-bold'>
+                        <div
+                            className='flex cursor-pointer link-primary link-hover'
+                            onClick={() => navigate('/profile/' + comment_user_details?.userID)}
+                        >
                             <h6 className='m-0'>{comment_user_details?.name || "User"}</h6>
-                            <WarningProfile user_details={comment_user_details} size='13'/>
+                            <WarningProfile user_details={comment_user_details} size='13' />
                         </div>
                         <p className='text-[8px] text-gray-500'>{getTimeSince}</p>
                     </div>
