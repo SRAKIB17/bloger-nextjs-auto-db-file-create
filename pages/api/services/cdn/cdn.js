@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         const allCode = await CdnCollection.find({}).toArray();
         const codeBody = req.body;
         const getCdnCodeID = async () => {
-            const codeID = crypto.randomBytes(Math.ceil(2)).toString("hex")
+            const codeID = crypto.randomBytes(Math.ceil(3)).toString("hex")
 
             // (B1) GENERATE RANDOM SALT
             const checkCodeID = allCode.find(code => code?.code_id === codeID)

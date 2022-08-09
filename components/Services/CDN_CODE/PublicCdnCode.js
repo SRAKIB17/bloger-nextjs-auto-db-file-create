@@ -37,11 +37,6 @@ const PublicCdnCode = () => {
     return (
         <div>
             <div>
-                <div>
-                    <h1 className='font-extrabold text-center text-xl md:text-2xl text-primary underline'>
-                        CONTENT DELIVERY NETWORK (CDN) CODE:
-                    </h1>
-                </div>
                 <div className='p-1'>
                     <div>
                         {

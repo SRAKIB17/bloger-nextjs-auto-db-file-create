@@ -13,30 +13,37 @@ const CdnCode = () => {
 
             <div>
                 <div>
-                    <div className='flex gap-2 items-center'>
-                        <button
-                            className={(cdn == 'All' ? 'btn-disabled bg-success text-white' : 'btn-outline') + ' btn btn-xs font-extralight btn-primary'}
-                            onClick={() => setCdn('All')}
-                        >
-                            All
-                        </button>
-                        {
-                            user?.user &&
-                            <>
-                                <button
-                                    className={(cdn == 'list' ? 'btn-disabled bg-success text-white' : 'btn-outline') + ' btn btn-xs font-extralight btn-primary'}
-                                    onClick={() => setCdn('list')}
-                                >
-                                    My Code
-                                </button>
-                                <button
-                                    className={(cdn == 'new' ? 'btn-disabled bg-success text-white' : 'btn-outline') + ' btn btn-xs font-extralight btn-primary'}
-                                    onClick={() => setCdn('new')}
-                                >
-                                    New
-                                </button>
-                            </>
-                        }
+                    <div className='flex gap-2  flex-col items-center'>
+                        <div>
+                            <h1 className='font-extrabold text-center text-[18px] text-primary underline'>
+                                CONTENT DELIVERY NETWORK (CDN) CODE:
+                            </h1>
+                        </div>
+                        <div className='flex gap-2 items-center'>
+                            <button
+                                className={(cdn == 'All' ? 'btn-disabled bg-success text-white' : 'btn-outline') + ' btn btn-xs font-extralight btn-primary'}
+                                onClick={() => setCdn('All')}
+                            >
+                                All
+                            </button>
+                            {
+                                user?.user &&
+                                <>
+                                    <button
+                                        className={(cdn == 'list' ? 'btn-disabled bg-success text-white' : 'btn-outline') + ' btn btn-xs font-extralight btn-primary'}
+                                        onClick={() => setCdn('list')}
+                                    >
+                                        My Code
+                                    </button>
+                                    <button
+                                        className={(cdn == 'new' ? 'btn-disabled bg-success text-white' : 'btn-outline') + ' btn btn-xs font-extralight btn-primary'}
+                                        onClick={() => setCdn('new')}
+                                    >
+                                        New
+                                    </button>
+                                </>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className='pt-4'>

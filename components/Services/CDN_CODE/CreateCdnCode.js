@@ -100,11 +100,7 @@ const CreateCdnCode = ({ props: setCdn }) => {
     return (
         <div className='min-h-screen bg-base-100'>
             <div className='p-4'>
-                <div>
-                    <h1 className='font-extrabold text-center text-xl md:text-2xl text-primary underline'>
-                        CONTENT DELIVERY NETWORK (CDN) CODE:
-                    </h1>
-                </div>
+               
                 <form onSubmit={submitCodeHandle} className="flex flex-col gap-1 pt-3">
                     <div>
                         <p className='text-gray-500 text-sm'>
