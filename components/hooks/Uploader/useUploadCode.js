@@ -11,7 +11,7 @@ const useUploadCode = () => {
 
             const oReader = new FileReader();
             oReader.onload = (e) => {
-                const rFilter = /^(text\/plain|text\/javascript|text\/html|text\/css|image\/tiff)$/i;
+                const rFilter = /^(text\/plain|text\/javascript|text\/html|text\/css|application\/xml|application\/json)$/i;
 
                 if (!rFilter.test(type)) {
                     setMessage(<span className='label-text-alt text-success mb-8'>You should select valid files / file only!</span>)

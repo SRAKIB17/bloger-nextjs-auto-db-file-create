@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useEffect, useId, useState } from 'react';
 import Category from '../Category/Category';
-import { AccessKey, Announcement, Bill, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
+import { AccessKey, Announcement, Bill, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Services, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 
 import { useRouter } from 'next/router'
 import NewPost from '../profile/NewPost/NewPost';
@@ -32,7 +32,7 @@ const SideLeftBar = () => {
             const sideLeftBarTitle = document.querySelectorAll('#sideLeftBarTitle')
 
             if (e.type === 'mouseenter') {
-                sideLeftBar.style.width = '200px'
+                sideLeftBar.style.width = '230px'
                 setTimeout(() => {
                     sideLeftBarTitle.forEach(title => {
                         if (title.style.display === 'flex') {
@@ -155,10 +155,10 @@ const SideLeftBar = () => {
         setAdminAccess(true)
     }
     return (
-        <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16' >
+        <div id='sideLeftBar' onMouseLeave={mouseShowOverHandle} onMouseEnter={mouseShowOverHandle} className='sideLeftBarHiddenText border-r-2 h-full top-[60px] fixed bg-base-100 w-[200px] left-[-200px] lg:left-0  lg:w-16 overflow-auto hideScrollBar pb-[70px]' >
 
             <button onClick={hiddenSideLeftBarHandle} className='btn btn-outline btn-warning btn-xs absolute lg:hidden right-[10px] hover:text-red-500'>X</button>
-            <div className='flex flex-col  mt-4'>
+            <div className='flex flex-col'>
 
                 {/* **************ADMIN ACCESS CONTROL************** */}
 
@@ -236,7 +236,6 @@ const SideLeftBar = () => {
                                 Forum
                             </p>
                         </button>
-
                     </>
                 }
                 {
@@ -265,6 +264,16 @@ const SideLeftBar = () => {
                     </p>
                 </button>
 
+                {/* for Services menu*/}
+                <button
+                    onClick={() => navigate('/services')}
+                    className='hover:bg-base-200 p-3  rounded-lg active:bg-base-300 flex  items-center gap-1 md:text-xl'
+                >
+                    <Services size='30' />
+                    <p className='hidden' id='sideLeftBarTitle'>
+                        Services
+                    </p>
+                </button>
                 {/* for help menu*/}
                 <button
                     onClick={() => navigate('/admin')}

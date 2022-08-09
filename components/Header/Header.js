@@ -20,6 +20,7 @@ const Header = () => {
     autoJwtTokenGenerateForUserOrGuest()
 
     const router = useRouter();
+    
     // console.log(pathname.route = '/story')
 
     /*------------------------------------------for header indicator----------------------------------*/
