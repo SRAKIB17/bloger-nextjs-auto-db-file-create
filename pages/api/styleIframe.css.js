@@ -34,116 +34,46 @@ export default async function handler(req, res) {
         word-wrap: break-word !important;
         white-space: pre-line !important;
       }
-      :root {
+    :root {
         --bg-color: rgb(27, 27, 27);
         /* --bg-color: rgb(65 65 65); */
+        --copyBtnBg: #0D376D;
     }
 
     .codeParent {
-        position: relative;
-        overflow: hidden;
-        overflow-x: hidden;
-        max-width: 100%;
-        padding: 20px 15px;
-        background-color: var(--bg-color);
-        border-radius: 10px;
+        padding: 0 4px;
+    }
+
+    .codePreview {}
+
+    .copyBtn {
         color: white;
-        border: 20px solid silver;
-        height: 250px;
+        border-radius: 5px;
+        margin-bottom: 4px;
+        background-color: var(--copyBtnBg);
     }
 
-    .codeParent::-webkit-scrollbar {
-        display: none;
+    .textCode {
+        min-height: 200px;
+        resize: vertical !important;
+        border-radius: 5px;
+        border: 2px solid #00DBDF;
+        width: 100%;
     }
 
-    .codeParent * {
-        overflow: auto;
-    }
-
-    .codePreview {
-        display: flex;
-        height: 100%;
-        overflow: auto !important;
-    }
-    .codePreview::-webkit-scrollbar {
-        display: none;
-    }
-
-    .codeParent textarea {
-        font-weight: lighter;
-        font-size: 15px;
-        line-height: 25px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        border: none;
-        border-left: 1px solid white;
-        background-color: var(--bg-color);
+    .textCode::selection {
+        font-weight: 800;
+        background-color: #00DBDF;
         color: white;
-        width: 150% !important;
-        overflow: auto !important;
-        outline: none;
     }
 
-
-    .codeParent textarea::selection {
-        background-color: aliceblue;
-        color: rgb(255, 0, 0);
+    .textCode:focus {
+        outline: 2px solid var(--copyBtnBg);
     }
 
-    .codeParent textarea::-webkit-scrollbar {
-        display: none;
-    }
-
-    .codeHeader {
-        border-bottom: 2px solid silver;
-        margin-bottom: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 5px 10px 5px;
-    }
-
-    .codeHeader>div>button {
-        background-color: transparent;
-        color: white;
-        border: 2px solid grey;
-        border-radius: 10px;
-    }
-
-    .codeHeader>div>button>p {
-        margin: 0;
-    }
-
-    .codeHeader>div>button:active {
-        font-size: 12px;
-        border: 2px solid rgb(183, 183, 183);
-    }
-
-    .codeHeader>div>button:hover {
-        background-color: rgb(48, 48, 48);
-    }
-
-    .codeDot {
-        display: flex;
-        gap: 8px;
-    }
-
-    .codeDot div {
-        border-radius: 50%;
-        background-color: white;
-        width: 12px;
-        height: 12px;
-    }
-
-    .codeDot div:nth-child(1) {
-        background-color: rgb(243, 20, 255);
-    }
-
-    .codeDot div:nth-child(2) {
-        background-color: rgb(255, 173, 20);
-    }
-
-    .codeDot div:nth-child(3) {
-        background-color: rgb(75, 255, 20);
+    .textCode::-webkit-scrollbar {
+        width: 4px;
+        resize: both;
     }
     `
     const darkStyle = `
