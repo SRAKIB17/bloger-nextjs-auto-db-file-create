@@ -221,7 +221,7 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                 <div className="p-1" >
                                     <Link size='18' />
                                 </div>
-                                <div className='flex items-center'>
+                                <div className='flex items-center flex-wrap gap-[2px]'>
                                     <input
                                         readOnly='true'
                                         id={'codeLink' + code_id}
@@ -260,12 +260,12 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                             </div>
 
                             {/* *********FOR CDN LINK *******************/}
-                            <div className='text-gray-500 pt-4'>
+                            <div className='text-gray-500 pt-2'>
 
                                 <div className="p-1" >
                                     <CDN size='22' />
                                 </div>
-                                <div className='flex items-center'>
+                                <div className='flex items-center flex-wrap gap-[2px]'>
                                     <input
                                         readOnly='true'
                                         id={'cdnLink' + code_id}

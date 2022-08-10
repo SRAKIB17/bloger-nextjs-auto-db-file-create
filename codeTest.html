@@ -13,7 +13,7 @@
         }
 
         .codeParent {
-            padding: 0 4px;
+            padding: 4px 4px;
         }
 
         .codePreview {}
@@ -52,12 +52,16 @@
 
 <body>
 
-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, rerum impedit. Pariatur nihil, officia quod
+    excepturi exercitationem eius odio commodi tenetur ipsum aspernatur perspiciatis temporibus accusamus animi
+    necessitatibus illum voluptatum?
     <code className='' style=""> fslf
         sflsfj
         fsdlf
 
     </code>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit odio ipsum beatae eveniet quasi, iure natus
+    fuga incidunt! Labore impedit temporibus ullam. Ad alias explicabo, repellat temporibus debitis animi quod.
     <!-- </div> -->
     <script>
         const codes = document.getElementsByTagName('code');
@@ -66,8 +70,8 @@
             const div = document.createElement('div');
             const codeDiv = "<div class='codeParent'><button onclick='copyCodeHandle()' class='copyBtn'>Copy</button><div class='codePreview'><textarea class='textCode' style='line-height: 25px;white-space: pre-wrap;' readonly>" + code.innerHTML + "</textarea></div></div>"
             div.innerHTML = codeDiv;
-            code.style.display = 'none';
-            code.parentElement.appendChild(div);
+            code.textContent = '';
+            code.appendChild(div);
         }
         const copyCodeHandle = () => {
             const getCode = event.target.parentElement.querySelector('textarea')
