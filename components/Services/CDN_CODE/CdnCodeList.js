@@ -217,79 +217,88 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                     <div className='pl-2'>
                         {/* *******FOR CODE VIEW LINK************* */}
                         <div>
-                            <div className='text-gray-500 flex items-center gap-1 pt-4'>
-                                <Link size='20' />
-                                <input
-                                    readOnly='true'
-                                    id={'codeLink' + code_id}
-                                    type="text"
-                                    className='input input-success font-mono input-sm w-fit'
-                                    defaultValue={copyCodeLink}
-                                />
-                                <button
-                                    onClick={() => copyCodeHandle('codeLink' + code_id)}
-                                    className='btn btn-sm btn-outline btn-secondary'
-                                >
-                                    <Copy />
-                                </button>
-                                <div
-                                    onMouseEnter={() => setShareCode(!showShareCode)}
-                                    onMouseLeave={() => setShareCode(!showShareCode)} className='relative'
-                                >
-                                    <button
-                                        className='btn btn-primary btn-sm btn-outline '
-                                    >
-                                        <Share />
-                                    </button>
-                                    {
-                                        showShareCode &&
-                                        <div className={styles.shareOption}>
-                                            <ShareOption sharePath={sharePath} id={code_id} />
-                                        </div>
-                                    }
+                            <div className='text-gray-500 pt-4'>
+                                <div className="p-1" >
+                                    <Link size='18' />
                                 </div>
-                                <div>
-                                    <a href={copyCodeLink} target='_blank' className='btn btn-sm btn-outline btn-info' rel="noreferrer">
-                                        visit
-                                    </a>
+                                <div className='flex items-center'>
+                                    <input
+                                        readOnly='true'
+                                        id={'codeLink' + code_id}
+                                        type="text"
+                                        className='input input-success font-mono input-sm w-fit'
+                                        defaultValue={copyCodeLink}
+                                    />
+                                    <button
+                                        onClick={() => copyCodeHandle('codeLink' + code_id)}
+                                        className='btn btn-sm btn-outline btn-secondary'
+                                    >
+                                        <Copy />
+                                    </button>
+                                    <div
+                                        onMouseEnter={() => setShareCode(!showShareCode)}
+                                        onMouseLeave={() => setShareCode(!showShareCode)} className='relative'
+                                    >
+                                        <button
+                                            className='btn btn-primary btn-sm btn-outline '
+                                        >
+                                            <Share />
+                                        </button>
+                                        {
+                                            showShareCode &&
+                                            <div className={styles.shareOption}>
+                                                <ShareOption sharePath={sharePath} id={code_id} />
+                                            </div>
+                                        }
+                                    </div>
+                                    <div>
+                                        <a href={copyCodeLink} target='_blank' className='btn btn-sm btn-outline btn-info' rel="noreferrer">
+                                            visit
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
                             {/* *********FOR CDN LINK *******************/}
-                            <div className='text-gray-500 flex items-center gap-1 pt-4'>
-                                <CDN size='25' />
-                                <input
-                                    readOnly='true'
-                                    id={'cdnLink' + code_id}
-                                    type="text"
-                                    className='input input-success font-mono input-sm w-fit'
-                                    defaultValue={copyCdnLink}
-                                />
-                                <button
-                                    onClick={() => copyCodeHandle('cdnLink' + code_id)}
-                                    className='btn btn-sm btn-outline btn-secondary'
-                                >
-                                    <Copy />
-                                </button>
-                                <div
-                                    onMouseEnter={() => setShareCDN(!showShareCDN)}
-                                    onMouseLeave={() => setShareCDN(!showShareCDN)} className='relative'
-                                >
-                                    <button
-                                        className='btn btn-primary btn-sm btn-outline '
-                                    >
-                                        <Share />
-                                    </button>
-                                    {
-                                        showShareCDN &&
-                                        <div className={styles.shareOption}>
-                                            <ShareOption sharePath={sharePath} id={code_id} />
-                                        </div>
-                                    }
+                            <div className='text-gray-500 pt-4'>
+
+                                <div className="p-1" >
+                                    <CDN size='22' />
                                 </div>
-                                <a href={copyCdnLink} target='_blank' className='btn btn-sm btn-outline btn-info' rel="noreferrer">
-                                    visit
-                                </a>
+                                <div className='flex items-center'>
+                                    <input
+                                        readOnly='true'
+                                        id={'cdnLink' + code_id}
+                                        type="text"
+                                        className='input input-success font-mono input-sm w-fit'
+                                        defaultValue={copyCdnLink}
+                                    />
+                                    <button
+                                        onClick={() => copyCodeHandle('cdnLink' + code_id)}
+                                        className='btn btn-sm btn-outline btn-secondary'
+                                    >
+                                        <Copy />
+                                    </button>
+                                    <div
+                                        onMouseEnter={() => setShareCDN(!showShareCDN)}
+                                        onMouseLeave={() => setShareCDN(!showShareCDN)} className='relative'
+                                    >
+                                        <button
+                                            className='btn btn-primary btn-sm btn-outline '
+                                        >
+                                            <Share />
+                                        </button>
+                                        {
+                                            showShareCDN &&
+                                            <div className={styles.shareOption}>
+                                                <ShareOption sharePath={sharePath} id={code_id} />
+                                            </div>
+                                        }
+                                    </div>
+                                    <a href={copyCdnLink} target='_blank' className='btn btn-sm btn-outline btn-info' rel="noreferrer">
+                                        visit
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
