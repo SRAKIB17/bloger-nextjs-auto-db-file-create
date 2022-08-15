@@ -29,6 +29,7 @@ export { default as CloseCross } from './icon/CloseCross/CloseCross'
 export { default as Category1 } from './icon/Category/Category1'
 export { default as CSS3 } from './icon/WebDevelopment/Css3'
 export { default as Delete } from './icon/Delete/Delete'
+export { default as Download } from './icon/Download/Download'
 export { default as Email } from './icon/Email/Email'
 
 export { default as Emoji } from './icon/Emoji/Emoji'

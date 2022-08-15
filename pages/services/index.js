@@ -47,12 +47,36 @@ const Index = () => {
                     </div>
                     <div className="drawer-side border-r-[1px] border-gray-500">
                         <label htmlFor="servicesDrawer" className="drawer-overlay"></label>
-                        <ul className="menu p-4 overflow-y-auto w-56 bg-base-100 text-base-content">
+                        <ul className="menu p-4 overflow-y-auto w-56 bg-base-100 text-base-content gap-1">
                             {/* <!-- Sidebar content here --> */}
                             <li
                                 className={(selectServices == 'CONTENT DELIVERY NETWORK (CDN) CODE' ? 'btn-primary rounded-md' : '') + ' cursor-pointer'}
                                 onClick={() => setSelectServices('CONTENT DELIVERY NETWORK (CDN) CODE')} >
                                 <a>CDN CODE</a>
+                            </li>
+                            <li
+                                className={(selectServices == 'CONTENT DELIVERY NETWORK (CDN) CODE' ? 'btn-primary rounded-md' : '') + ' cursor-pointer'}
+                                onClick={() => setSelectServices('CONTENT DELIVERY NETWORK (CDN) CODE')} >
+                                <a
+                                    className=''
+                                    href='https://svg-pro.vercel.app/svg/1'
+                                    target='_blank'
+                                    rel="noreferrer"
+                                >
+                                    Free SVG ICON
+                                </a>
+                            </li>
+                            <li
+                                className={(selectServices == 'CONTENT DELIVERY NETWORK (CDN) CODE' ? 'btn-primary rounded-md' : '') + ' cursor-pointer'}
+                                onClick={() => setSelectServices('CONTENT DELIVERY NETWORK (CDN) CODE')} >
+                                <a
+                                    className=''
+                                    href='https://svg-pro.vercel.app/svg/1'
+                                    target='_blank'
+                                    rel="noreferrer"
+                                >
+                                    SVG REACT Component
+                                </a>
                             </li>
                         </ul>
 

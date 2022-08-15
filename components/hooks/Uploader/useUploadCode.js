@@ -14,12 +14,12 @@ const useUploadCode = () => {
                 const rFilter = /^(text\/plain|text\/javascript|text\/html|text\/css|application\/xml|application\/json)$/i;
 
                 if (!rFilter.test(type)) {
-                    setMessage(<span className='label-text-alt text-success mb-8'>You should select valid files / file only!</span>)
+                    setMessage(<span className='label-text-alt text-red-700 mb-8'>You should select valid files / file only!</span>)
                 }
                 else {
                     const result = e.target.result;
                     setCode(result)
-                    setMessage(<span className='label-text-alt text-success mb-8'>Successfully uploaded</span>);
+                    setMessage(<span className='label-text-alt text-green-700 mb-8'>Successfully uploaded</span>);
                 }
             }
             oReader.readAsText(file);
