@@ -30,7 +30,8 @@
             resize: vertical !important;
             border-radius: 5px;
             border: 2px solid #00DBDF;
-            width: 100%;
+            width: -moz-available;
+            width: -webkit-fill-available;;
         }
 
         .textCode::selection {
@@ -70,7 +71,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ipsum corporis 
         for (const code of codes) {
             code.style.width = '100%';
             const div = document.createElement('div');
-            const codeDiv = "<div class='codeParent'><button onclick='copyCodeHandle()' class='copyBtn'>Copy</button><div class='codePreview'><textarea class='textCode' style='line-height: 25px;white-space: pre;' readonly>" + code.innerHTML + "</textarea></div></div>"
+            const codeDiv = "<div class='codeParent'><button onclick='copyCodeHandle()' class='copyBtn'>Copy</button><div class='codePreview'><textarea class='textCode' style='white-space: pre;' readonly>" + code.innerHTML + "</textarea></div></div>"
             div.innerHTML = codeDiv;
             code.textContent = '';
             code.appendChild(div);

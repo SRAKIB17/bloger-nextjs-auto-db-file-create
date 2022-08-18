@@ -34,14 +34,14 @@ export default async function handler(req, res) {
         word-wrap: break-word !important;
         white-space: pre-line !important;
       }
-    :root {
+      :root {
         --bg-color: rgb(27, 27, 27);
         /* --bg-color: rgb(65 65 65); */
         --copyBtnBg: #0D376D;
     }
 
     .codeParent {
-        padding: 0 4px;
+        padding: 4px 4px;
     }
 
     .codePreview {}
@@ -58,7 +58,8 @@ export default async function handler(req, res) {
         resize: vertical !important;
         border-radius: 5px;
         border: 2px solid #00DBDF;
-        width: 100%;
+        width: -moz-available;
+        width: -webkit-fill-available;;
     }
 
     .textCode::selection {
