@@ -100,9 +100,11 @@ const EditDeleteComponentMenu = ({ post, refetch }) => {
                                 <input type="text" value={copyLink} className="fixed top-[-100000px]" />
                             </li>
 
-                            <li onClick={(e) => CopyUrlHandle(post_id, e)} className={CopyEdit.tooltip + ' text-left btn btn-outline btn-primary rounded-md btn-xs'}>
+                            <li onClick={(e) => CopyUrlHandle(post_id, e)} className={CopyEdit.tooltip + ' flex text-left btn btn-outline btn-primary rounded-md btn-xs'}>
                                 <Copy size='17' className="pr-1" />
-                                Copy Api Code
+                                <p>
+                                    Api Code
+                                </p>
                                 <p className={CopyEdit.tooltiptext + ' hidden'}>
                                     Copied
                                 </p>
