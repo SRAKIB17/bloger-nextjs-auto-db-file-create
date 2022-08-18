@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     for (const code of codes) {
         code.style.width = '100%';
         const div = document.createElement('div');
-        const codeDiv = "<div class='codeParent'><button onclick='copyCodeHandle()' class='copyBtn'>Copy</button><div class='codePreview'><textarea class='textCode' style='line-height: 25px;white-space: pre;' readonly>" + code.innerHTML + "</textarea></div></div>"
+        const codeDiv = "<div class='codeParent'><button onclick='copyCodeHandle()' class='copyBtn'>Copy</button><div class='codePreview'><textarea class='textCode' style='white-space: pre;' readonly>" + code.innerHTML + "</textarea></div></div>"
         div.innerHTML = codeDiv;
         code.textContent = '';
         code.appendChild(div);
