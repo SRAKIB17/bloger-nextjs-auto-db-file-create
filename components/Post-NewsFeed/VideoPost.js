@@ -65,9 +65,6 @@ const VideoPost = ({ short_description, postBody, post_id, showCommentState, set
     }
 
     const router = useRouter();
-    const path = router?.pathname?.split('/')
-    const pathname = path[path?.length - 1];
-    const pathCheck = pathname == '[post_id]';
 
     const navigate = (path) => {
         router.push(path)
@@ -83,26 +80,16 @@ const VideoPost = ({ short_description, postBody, post_id, showCommentState, set
                     shortDescriptionVideo?.length <= 100 && <>.....</>
                 }
                 {/* -------------see more short description----------- */}
-                <div className={pathCheck ? '' : 'flex justify-between items-center mt-1'}>
 
-                    {
-                        pathCheck ||
-                        <div>
-                            <a href={'/story/' + post_id} target="_blank" rel="noreferrer" className='text-xs link-hover link-primary font-extrabold'>
-                                View post
-                            </a>
-                        </div>
-                    }
-                    {
-                        short_description?.length >= 100 &&
-                        <div className="card-actions justify-end text-xs">
-                            <button className="link-primary font-semibold link-hover" onClick={() => moreShortDescriptionVideoHandle(post_id)}>
-                                See {seeMorePostShow ? 'Less' : 'More'}
-                            </button>
-                        </div>
-                    }
-                </div>
 
+                {
+                    short_description?.length >= 100 &&
+                    <div className="card-actions justify-end text-xs">
+                        <button className="link-primary font-semibold link-hover" onClick={() => moreShortDescriptionVideoHandle(post_id)}>
+                            See {seeMorePostShow ? 'Less' : 'More'}
+                        </button>
+                    </div>
+                }
             </div>
 
             {/*----------------------------- for video code --------------------- */}

@@ -77,6 +77,7 @@ const EditPostFormTextArea = ({ post, setEditPost, refetch }) => {
             short_description: event.target.short_description.value,
             category: event.target.category.value,
             tags: tags,
+            time: new Date(),
             postBody: textareaRef.current.value,
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,

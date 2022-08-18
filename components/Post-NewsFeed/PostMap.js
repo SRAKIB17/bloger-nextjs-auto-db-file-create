@@ -62,104 +62,101 @@ const PostMap = ({ post, refetch }) => {
         <div>
             <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" id={'postMap' + post_id}>
                 {/* -------------------------------------- for user configure --------------------------------------------- */}
+
                 <div className='flex justify-between  border-b-[1px] m-3 items-center'>
-                    <div className='flex gap-2 justify-start items-center '>
-                        <div className='avatar p-2 mb-1'>
-                            {/* --------------------------------------for profile avatar--------------------------------------- */}
-                            <div
-                                onClick={() => profileNavigate(`/profile/${userID}`)}
-                                className="w-9 cursor-pointer h-9 rounded-full ring ring-inherit ring-offset-base-100 ring-offset-1"
-                            >
-                                {/* **********PROFILE AVATAR */}
-                                {
-                                    (user_details?.profile == '' || !user_details?.profile) ?
-                                        <img
-                                            src={user_details?.gender == 'Female' ? femaleAvatar.src : maleAvatar?.src}
-                                            alt=''
-                                            className='w-full bg-base-100'
-                                        />
-                                        :
-                                        <img
-                                            src={user_details?.profile}
-                                            alt=''
-                                        />
-                                }
-                            </div>
-                        </div>
+
+                    <div>
                         <div>
-                            <h2
-                                onClick={() => profileNavigate(`/profile/${userID}`)}
-                                className="card-title cursor-pointer text-xl mb-[2px] items-start gap-[1px]"
-                            >
-                                {
-                                    user_details?.name || 'User'
-                                }
-                                <WarningProfile user_details={user_details} size='14' />
+                            <h1 className='text-xl font-extrabold text-gray-600'>
+                                <a
+                                    href={'/story/' + post_id}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    {post_title}
+                                </a>
                                 {
                                     post?.postBy === 'admin' &&
-                                    <Announcement size='13' className="badge h-[14px] p-0 text-white badge-secondary pl-[2px] pr-[2px] text-[10px] font-extralight" />
+                                    <Announcement size='13' className="badge h-[14px] p-0 ml-1 text-white badge-secondary pl-[2px] pr-[2px] text-[10px] font-extralight" />
                                 }
-
-                            </h2>
-                            <h1 className='flex mr-[2px] items-center flex-wrap text-[11px]'>
-                                <div className='text-[10px] text-gray-500'>
-                                    {
-                                        getTimeSince
-                                    }
-                                </div>
-                                <Line size='18' />
-                                <div className='flex items-center'>
-                                    <button
-                                        className='link-primary link-hover '
-                                        onClick={() => {
-                                            if (pathCheck) {
-                                                navigate(`/story/?cat=${category}`)
-                                            }
-                                            else {
-                                                navigate(`?cat=${category}`)
-                                            }
-
-                                        }}>
-                                        {
-                                            category
-                                        }
-                                    </button>
-                                    {/* ***************FOR TAG SERIAL************ */}
-                                    <ArrowsRight size='17' className='font-extrabold' />
-                                    <div className='flex flex-wrap'>
-                                        {
-                                            (typeof post?.tags?.split === 'function') &&
-
-                                            post?.tags?.split(',')?.map((tag, index) =>
-                                                <>
-                                                    {
-                                                        index > 0 && <Line />
-                                                    }
-                                                    <button
-                                                        key={index + tag + category} className='link-primary link-hover '
-                                                        onClick={() => {
-                                                            if (pathCheck) {
-                                                                navigate(`/story/?cat=${category}&tag=${tag}`)
-
-                                                            }
-                                                            else {
-                                                                navigate(`?cat=${category}&tag=${tag}`)
-
-                                                            }
-                                                        }}
-                                                    >
-                                                        {
-                                                            tag
-                                                        }
-                                                    </button>
-                                                </>
-                                            )
-                                        }
-                                    </div>
-                                </div>
                             </h1>
+
                         </div>
+                        {/* ***************PROFILE NAME ******** */}
+                        <div className='flex flex-col gap-1'>
+                            <span className='flex items-center text-2xs'>
+                                <button
+                                    className='link-primary link-hover '
+                                    onClick={() => {
+                                        if (pathCheck) {
+                                            navigate(`/story/?cat=${category}`)
+                                        }
+                                        else {
+                                            navigate(`?cat=${category}`)
+                                        }
+
+                                    }}>
+                                    {
+                                        category
+                                    }
+                                </button>
+                                {/* ***************FOR TAG SERIAL************ */}
+                                <ArrowsRight size='14' className='font-extrabold' />
+                                <span className='flex flex-wrap text-2xs'>
+                                    {
+                                        (typeof post?.tags?.split === 'function') &&
+
+                                        post?.tags?.split(',')?.map((tag, index) =>
+                                            <>
+                                                {
+                                                    index > 0 && <Line />
+                                                }
+                                                <button
+                                                    key={index + tag + category}
+                                                    className='link-primary link-hover '
+                                                    onClick={() => {
+                                                        if (pathCheck) {
+                                                            navigate(`/story/?cat=${category}&tag=${tag}`)
+
+                                                        }
+                                                        else {
+                                                            navigate(`?cat=${category}&tag=${tag}`)
+
+                                                        }
+                                                    }}
+                                                >
+                                                    {
+                                                        tag
+                                                    }
+                                                </button>
+                                            </>
+                                        )
+                                    }
+                                </span>
+                            </span>
+                            <span className='flex gap-1'>
+                                <p
+                                    onClick={() => profileNavigate(`/profile/${userID}`)}
+                                    className="flex text-[10px] mb-[2px] items-start gap-[1px] cursor-pointer  "
+                                >
+
+                                    <span className='link-primary'>
+                                        by 
+                                        {" "}
+                                        {
+                                            ( user_details?.name) || 'User'
+                                        }
+                                    </span>
+                                    <WarningProfile user_details={user_details} size='12' />
+                                </p>
+                                <span className='text-[10px] font-extralight text-gray-500'>
+                                    Last Updated : {getTimeSince}
+                                </span>
+                            </span>
+                        </div>
+
                     </div>
+
 
                     {
                         <EditDeleteComponentMenu post={post} refetch={refetch} />
@@ -167,7 +164,6 @@ const PostMap = ({ post, refetch }) => {
                 </div>
                 {/* --------------------------------------------------------------------------------------------------- */}
                 <div className='card-body pb-2 pt-3 p-5' id={'postBodyCode' + post_id}>
-                    <h2 className="card-title">{post_title}</h2>
 
 
                     {

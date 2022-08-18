@@ -202,9 +202,7 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
 
     const router = useRouter();
 
-    const path = router?.pathname?.split('/')
-    const pathname = path[path?.length - 1];
-    const pathCheck = pathname == '[post_id]';
+
 
     const navigate = (path) => {
         router.push(path)
@@ -284,21 +282,11 @@ const TextPost = ({ short_description, postBody, postBodyJs, postBodyCss, post_i
                                         See More
                                     </button>
                                 </div> */}
-            <div className={pathCheck ? '' : 'flex justify-between items-center mt-1'}>
-                {
-                    pathCheck ||
-                    <div>
-                        <a href={'/story/' + post_id} target="_blank" rel="noreferrer" className='text-xs link-hover link-primary font-extrabold'>
-                            View post
-                        </a>
-                    </div>
-                }
 
-                <div className="card-actions justify-end">
-                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => showIframeDisplayHandle(post_id)}>
-                        See {fullIframeShow ? 'Less' : 'More'}
-                    </button>
-                </div>
+            <div className="card-actions justify-end">
+                <button className="link-primary font-semibold link-hover text-xs" onClick={() => showIframeDisplayHandle(post_id)}>
+                    See {fullIframeShow ? 'Less' : 'More'}
+                </button>
             </div>
 
 
