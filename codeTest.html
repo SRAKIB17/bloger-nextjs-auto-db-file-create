@@ -58,7 +58,9 @@
     <code className='' style=""> fslf
         sflsfj
         fsdlf
+        const codeDiv = "<div class='codeParent'><button onclick='copyCodeHandle()' class='copyBtn'>Copy</button><div class='codePreview'><textarea class='textCode' style='line-height: 25px;white-space: pre-wrap;' readonly>" + code.innerHTML + "</textarea></div></div>"
 
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ipsum corporis laborum repudiandae delectus, velit adipisci deserunt fugit architecto quas ea quos perspiciatis nulla nemo officiis, possimus voluptates, fugiat cupiditate!
     </code>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit odio ipsum beatae eveniet quasi, iure natus
     fuga incidunt! Labore impedit temporibus ullam. Ad alias explicabo, repellat temporibus debitis animi quod.
@@ -68,7 +70,7 @@
         for (const code of codes) {
             code.style.width = '100%';
             const div = document.createElement('div');
-            const codeDiv = "<div class='codeParent'><button onclick='copyCodeHandle()' class='copyBtn'>Copy</button><div class='codePreview'><textarea class='textCode' style='line-height: 25px;white-space: pre-wrap;' readonly>" + code.innerHTML + "</textarea></div></div>"
+            const codeDiv = "<div class='codeParent'><button onclick='copyCodeHandle()' class='copyBtn'>Copy</button><div class='codePreview'><textarea class='textCode' style='line-height: 25px;white-space: pre;' readonly>" + code.innerHTML + "</textarea></div></div>"
             div.innerHTML = codeDiv;
             code.textContent = '';
             code.appendChild(div);

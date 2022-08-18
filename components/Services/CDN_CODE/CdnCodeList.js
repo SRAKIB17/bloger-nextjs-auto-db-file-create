@@ -322,7 +322,7 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                         <Copy />
                                     </button>
                                     <textarea
-                                        className='textarea textarea-primary mt-2 w-full whitespace-pre-line'
+                                        className='textarea textarea-primary mt-2 w-full whitespace-pre'
                                         name=""
                                         defaultValue={code}
                                         id={"codeView" + code_id}
