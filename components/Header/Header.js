@@ -77,7 +77,7 @@ const Header = () => {
                 <div className='flex items-center md:justify-center pt-1'>
                     <div className="flex justify-between md:justify-center ml-2 mr-2">
                         <ul className="menu menu-horizontal p-0">
-                            <li className='lg:hidden'> <button id='showSideBarMobileTab' onClick={() => showSideLeftBarHandle()}><MenuBarCircle color='grey' size='25' /></button></li>
+                            <li className='md:hidden'> <button id='showSideBarMobileTab' onClick={() => showSideLeftBarHandle()}><MenuBarCircle color='grey' size='25' /></button></li>
                             <li> <button id='home' onClick={() => navigate('/')}><Home color='grey' size='25' /></button></li>
                             <li> <button id='story' onClick={() => navigate('/story')}><NewsFeed color='grey' size='25' /></button></li>
                             <li> <button id='videos' onClick={() => navigate('/videos')}><Video color='grey' size='25' /></button></li>

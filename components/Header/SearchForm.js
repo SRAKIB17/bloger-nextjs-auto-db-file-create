@@ -91,7 +91,7 @@ const SearchForm = () => {
             }
             <div className='hidden md:block fixed left-[30px] top-[15px] border rounded-lg' >
                 <form onSubmit={searchHandle}>
-                    <input type="search" name="search" placeholder='🔍' className='input h-[30px] pl-1 input-ghost bg-base-300 ' id="laptopSearchField" onKeyUp={focusSearchBoxHandle} />
+                    <input type="search" name="search" placeholder='🔍' className='input h-[30px] pl-1 input-ghost bg-base-300 w-40' id="laptopSearchField" onKeyUp={focusSearchBoxHandle} />
                 </form>
             </div>
         </div>
