@@ -9,14 +9,19 @@ module.exports = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    styled: true,
-    // themes: ['dracula'],
-    base: true,
-    utils: true,
-    logs: true,
-    rtl: false,
-    prefix: "",
-    darkTheme: "dark",
+    themes: [
+      {
+        mytheme: {
+          primary: "#0081FE",
+          secondary: "#FE3C71",
+          accent: "#2BD566",
+          neutral: "#DDDDDD",
+          "base-100": "#ffffff",
+        },
+      },
+      // "dark",
+      // "cupcake",
+    ],
   },
 }
 //  "dracula""business",

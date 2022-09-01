@@ -14,18 +14,21 @@ font-family: 'Poppins', sans-serif; */
 
 html,
 body {
-
   padding: 0;
   margin: 0;
   background-color: #F0F2F5;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   font-family: 'Poppins', sans-serif;
   /* font-weight: 300; */
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
 
-
+.stickyPro{
+  position: sticky;
+  top: auto;
+  position: -webkit-sticky;
+}
 
 .bodyNotHeader {
   position: relative;
@@ -98,9 +101,6 @@ a {
   width: 100% !important;
 }
 
-.hideScrollBar::-webkit-scrollbar {
-  display: none;
-}
 
 body::-webkit-scrollbar {
   display: none;
@@ -136,4 +136,25 @@ body::-webkit-scrollbar {
 .plainText {
   word-wrap: break-word !important;
   white-space: pre-line !important;
+}
+
+
+
+
+
+
+
+
+
+/* NEW BLOG UI */
+
+
+.shadowEachPost {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
+}
+
+.hideScrollBar::-webkit-scrollbar {
+  display: none;
 }

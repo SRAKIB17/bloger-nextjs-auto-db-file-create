@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
 
-const returnLikeLoveHook = (post) => {
+const returnLikeLoveCommentHook = (post) => {
     const { post_id } = post
     const postReact = post?.react;
 
@@ -24,4 +24,4 @@ const returnLikeLoveHook = (post) => {
     return { like, unlike, love, TotalComment, allReact, userList, setUserList }
 };
 
-export default returnLikeLoveHook;
+export default returnLikeLoveCommentHook;

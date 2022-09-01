@@ -58,6 +58,7 @@ const PostMap = ({ post, refetch }) => {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
     const user_details = userInfo?.data?.data?.user_details;
+    console.log(user_details)
     return (
         <div>
             <div className=" card w-full bg-base-100 shadow-md md:rounded-md mt-2 rounded-none" id={'postMap' + post_id}>

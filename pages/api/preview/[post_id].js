@@ -7,6 +7,7 @@ export default async function handler(req, res) {
   const { client } = SocialPostBlog();
   await client.connect();
   const postCollection = client.db("postBlogs").collection("postBlog");
+  // <link href="/api/styleIframe.css?dark=false" rel="stylesheet" type="text/css">
 
 
   const run = async () => {
@@ -20,7 +21,6 @@ export default async function handler(req, res) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="/api/styleIframe.css" rel="stylesheet" type="text/css">
         <link href="/api/styleIframe.css?video=video" rel="stylesheet" type="text/css">
-        <link href="/api/styleIframe.css?dark=false" rel="stylesheet" type="text/css">
         <title>${findPost?.post_title}</title>
         <style>
         ${findPost?.postBodyCss} 

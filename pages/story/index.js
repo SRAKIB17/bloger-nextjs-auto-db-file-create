@@ -33,7 +33,7 @@ const Index = () => {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
     ))
-
+console.log(data?.data)
     // const posts = data?.data?.result
     const posts = data?.data || []
     const [getPost, setPost] = useState([]);
