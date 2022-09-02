@@ -151,7 +151,7 @@ const Index = () => {
             <option value="twilight.css">TWILIGHT</option>
             <option value="zenburnesque.css">ZENBURNESQUE</option>
           </select>
-          <iframe srcDoc={docs} frameborder="0" className='w-full h-screen'></iframe>
+          {/* <iframe srcDoc={docs} frameborder="0" className='w-full h-screen'></iframe> */}
           <UserPost user_id={user_id} />
         </div>
       </div>
