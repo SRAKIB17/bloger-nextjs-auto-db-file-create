@@ -14,9 +14,10 @@ const Index = () => {
                 <div className='col-span-12 md:col-span-4  shadowEachPost '>
                     <ProfileInfoSection user_id={user_id} />
                 </div>
-                <div className=' col-span-12 ml-4 md:col-span-8 overflow-auto hideScrollBar md:h-screen'>
+                <div className=' col-span-12 md:ml-4 md:col-span-8 overflow-auto hideScrollBar md:h-screen'>
                     <UserPost user_id={user_id} />
                 </div>
+
             </div>
         </div>
     );

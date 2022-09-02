@@ -61,7 +61,7 @@ export default async function handler(req, res) {
     else {
         return res.status(200).json({ message: 'error', error: "Can't access " })
     }
-
+    return res.status(200).json({ message: 'error', error: "Can't access " })
 }
 // const cursor = ItemCollection.find({
 //     "$and":

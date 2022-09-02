@@ -36,7 +36,7 @@ const ProfileInfoSection = ({ user_id }) => {
                                 <div
                                     className="w-24 sm:w-28 rounded-full md:w-24 xl:w-32 ring ring-gray-300 ring-offset-base-100 "
                                 >
-                                    <img src={user_details?.profile?user_details?.profile:'/maleAvatar.png'} alt="profile" className='w-full h-auto' />
+                                    <img src={user_details?.profile?user_details?.profile:'/maleAvatar.png'} alt="profile" className='w-full h-auto bg-base-100' />
                                 </div>
                             </div>
                         </div>

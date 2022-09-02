@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
           <div>
             <HeaderBlog />
           </div>
-          <div className='p-4 md:pr-4 md:pl-4 xl:pr-28 xl:pl-28'>
+          <div className='sm:p-4 md:pr-4 md:pl-4 xl:pr-28 xl:pl-28'>
             <Component {...pageProps} />
           </div>
 

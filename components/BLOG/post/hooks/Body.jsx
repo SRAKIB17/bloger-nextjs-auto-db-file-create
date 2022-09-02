@@ -105,6 +105,28 @@ const Body = ({ post }) => {
         <style>
         ${postBodyCss}
         </style>
+
+        <link href="/code_viewer_jquery/themes/css/blackboard.css" rel="stylesheet" type="text/css" media="screen">
+        <style>
+            *::-webkit-scrollbar {
+              width: 5px;
+              height: 5px;
+            }
+            pre{
+              overflow: scroll;
+              width: 100%;
+              height: 100%;
+            }
+            *::-webkit-scrollbar-thumb {
+              background-color: rgb(183, 183, 183);
+              border-radius: 10px;
+            }
+            
+            *::-webkit-scrollbar-button {
+              height: 70px;
+              visibility: hidden;
+            }
+        </style>
     </head>
     <body>
         ${postBody}
@@ -112,6 +134,60 @@ const Body = ({ post }) => {
             ${postBodyJs}
         </script>
         <script src="/api/styleIframe.js?js=code-copy"></script>
+
+    <script src="/code_viewer_jquery/dist/rainbow.js"></script>
+    <script src="/code_viewer_jquery/src/language/generic.js"></script>
+
+    <!-- FOR C LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/c.js"></script>
+
+    <!-- FOR CoffeeScript LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/coffeescript.js"></script>
+
+    <!-- FOR C Sharp LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/csharp.js"></script>
+
+    <!-- FOR CSS LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/css.js"></script>
+
+    <!-- FOR D LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/d.js"></script>
+
+    <!-- FOR GO LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/go.js"></script>
+
+    <!-- FOR Haskell LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/haskell.js"></script>
+
+    <!-- FOR Html LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/html.js"></script>
+
+    <!-- FOR JAVASCRIPT LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/javascript.js"></script>
+
+    <!-- FOR JSON LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/json.js"></script>
+
+    <!-- FOR Lua LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/lua.js"></script>
+
+    <!-- FOR PHP LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/php.js"></script>
+
+    <!-- FOR Python LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/python.js"></script>
+
+    <!-- FOR R LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/r.js"></script>
+
+    <!-- FOR RUBY LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/ruby.js"></script>
+
+    <!-- FOR RUBY LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/scheme.js"></script>
+
+    <!-- FOR RUBY LANGUAGE -->
+    <script src="/code_viewer_jquery/src/language/shell.js"></script>
     </body>
     </html>
     `
