@@ -92,29 +92,35 @@ const Body = ({ post }) => {
     }
 
 
+    
+    const [theme, setTheme] = useState('');
+    useEffect(() => {
+        setTheme(localStorage.getItem('heighLightTheme'))
+    }, [fullIframeShow])
 
     const iframePostFullBody = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <link href="/code_viewer_jquery/copy-code.css" rel="stylesheet" type="text/css"/>
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="/api/styleIframe.css" rel="stylesheet" type="text/css">
+        <link href="/api/styleIframe.css" rel="stylesheet" type="text/css"/>
         <link href="/api/styleIframe.css?video=video" rel="stylesheet" type="text/css">
         <style>
         ${postBodyCss}
         </style>
 
-        <link href="/code_viewer_jquery/themes/css/blackboard.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="/code_viewer_jquery/themes/css/${theme ? theme : 'blackboard.css'}" rel="stylesheet" type="text/css" media="screen">
         <style>
-            *::-webkit-scrollbar {
+            pre::-webkit-scrollbar {
               width: 5px;
-              height: 5px;
+              height: 10px;
             }
             pre{
               overflow: scroll;
-              width: 100%;
               height: 100%;
             }
             *::-webkit-scrollbar-thumb {
@@ -126,14 +132,49 @@ const Body = ({ post }) => {
               height: 70px;
               visibility: hidden;
             }
+            .copyCodeButton {
+                border: 1px solid #dbdbdb;
+                border-radius: .375em;
+                box-shadow: none;
+                box-sizing: border-box;
+                cursor: pointer;
+                padding: calc(.5em - 1px) 1em;
+                text-align: center;
+                touch-action: manipulation;
+                margin: 3px;
+                background-color: #0080ff;
+                color: white;
+                font-size: 12px;
+            
+            }
+            
+            .copyCodeButton:active {
+                background-color: #3096fc;
+                border-color: #4a4a4a;
+                outline: 1px #F90143 solid;
+            }
+            
+            .copyCodeButton:focus {
+                border-color: #485fc7;
+            }
+            
+            .copyCodeButton:hover {
+                border-color: #b5b5b5;
+            }
+            
+            .copyCodeButton:focus:not(:active) {
+                box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
+            }
         </style>
+      
     </head>
     <body>
         ${postBody}
         <script>
             ${postBodyJs}
         </script>
-        <script src="/api/styleIframe.js?js=code-copy"></script>
+
+       
 
     <script src="/code_viewer_jquery/dist/rainbow.js"></script>
     <script src="/code_viewer_jquery/src/language/generic.js"></script>
@@ -188,6 +229,42 @@ const Body = ({ post }) => {
 
     <!-- FOR RUBY LANGUAGE -->
     <script src="/code_viewer_jquery/src/language/shell.js"></script>
+
+    <script>
+       // const getPre = document.getElementsByTagName("pre")
+       // for (const pre of getPre) {
+       //     const button = document.createElement('button');
+       // 
+       //     const textarea = document.createElement('textarea');
+       //     
+       //     if (!(pre.parentElement == document.body)) {
+       //         const parentElement = pre.parentElement
+       //         parentElement.style.display = 'flex';
+       //         button.style.width = 'fit-content'
+       //     
+       //     console.log(parentElement)
+       //         parentElement.style.flexDirection = 'column-reverse'
+       //     
+       //         button.innerText = 'copy'
+       //         button.addEventListener('click', (event) => {
+       //             const buttonParent = event.target.parentElement
+       //             const textareaCode = buttonParent.querySelector('textarea')
+       //             textareaCode.select()
+       //             document.execCommand('copy')
+       //         })
+       //         textarea.innerHTML = pre.innerText;
+       //         textarea.style.position = 'absolute'
+       //         textarea.style.left = '-10000000000000000px'
+       //         textarea.cp
+       //         button.classList.add('copyCodeButton')
+       //         parentElement.append(textarea)
+       //         parentElement.append(button)
+       //     
+       //     }
+       // 
+       // }
+    </script>
+
     </body>
     </html>
     `

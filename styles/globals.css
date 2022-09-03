@@ -24,7 +24,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
 
-.stickyPro{
+.stickyPro {
   position: sticky;
   top: auto;
   position: -webkit-sticky;
@@ -157,4 +157,21 @@ body::-webkit-scrollbar {
 
 .hideScrollBar::-webkit-scrollbar {
   display: none;
+}
+
+/* ********SPIN BUTTON ICON********** */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+ 
+}
+
+.spin_icon {}
+
+.buttonSpin {}
+
+.buttonSpin:hover :first-child{
+  animation: spin 1s both infinite;
 }

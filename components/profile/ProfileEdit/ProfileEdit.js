@@ -6,6 +6,7 @@ import LoadingFlowCircle from '../../LoadingFlowCircle';
 import private_access_token_client from '../../hooks/api/verifyUser/private_access_token_client';
 import LoadingSpin from '../../LoadingSpin';
 import { UserFullInfoProvider } from '../../../pages/_app';
+import Web from '../../BLOG/Profile/SvgComponent/Web';
 
 const ProfileEdit = ({ props }) => {
     const setEditProfile = props
@@ -29,6 +30,7 @@ const ProfileEdit = ({ props }) => {
                 work: event.target.work.value,
                 location: event.target.address.value,
                 school: event.target.study.value,
+                portfolio: event.target.portfolio.value,
                 github: event.target.github.value,
                 youtube: event.target.youtube.value,
                 facebook: event.target.facebook.value,
@@ -122,6 +124,19 @@ const ProfileEdit = ({ props }) => {
                                                 id="study"
                                                 className='input input-sm input-primary form-control w-56 sm:w-80'
                                                 placeholder='Study'
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className='flex items-center gap-1'>
+                                            <Web size='1rem' />
+                                            <input
+                                                defaultValue={user_details?.portfolio}
+                                                type="text"
+                                                name="portfolio"
+                                                id="portfolio"
+                                                className='input input-sm input-primary form-control w-56 sm:w-80'
+                                                placeholder='Portfolio'
                                             />
                                         </td>
                                     </tr>

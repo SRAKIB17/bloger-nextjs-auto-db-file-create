@@ -8,6 +8,7 @@ export default async function handler(req, res) {
       @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Open+Sans:wght@300;500&family=Orbitron&family=Poppins:wght@500&display=swap');
       html,
       body {
+        color:black !important;
         overflow-y: auto !important;
         overflow-x: hidden !important;
         font-family: 'Poppins', sans-serif;
@@ -23,59 +24,37 @@ export default async function handler(req, res) {
         overflow-x: auto !important;
         overflow:auto !important;
       }
-      body::-webkit-scrollbar {
-        display: none;
+      
+      body::-webkit-scrollbar:not(pre)  {
+        display: none !important;
       }
-      * ::-webkit-scrollbar {
-        display: none;
+
+
+      body * ::-webkit-scrollbar {
+        width: 5px !important;
+        height: 10px !important;
       }
+
+      *::-webkit-scrollbar-thumb {
+        background-color: rgb(183, 183, 183) !important;
+        border-radius: 10px !important;
+      }
+      
+
 
       .plaintext {
         word-wrap: break-word !important;
         white-space: pre-line !important;
       }
-      :root {
-        --bg-color: rgb(27, 27, 27);
-        /* --bg-color: rgb(65 65 65); */
-        --copyBtnBg: #0D376D;
-    }
-
-    .codeParent {
-        padding: 4px 4px;
-    }
-
-    .codePreview {}
-
-    .copyBtn {
-        color: white;
-        border-radius: 5px;
-        margin-bottom: 4px;
-        background-color: var(--copyBtnBg);
-    }
-
-    .textCode {
-        min-height: 200px;
-        resize: vertical !important;
-        border-radius: 5px;
-        border: 2px solid #00DBDF;
-        width: -moz-available;
-        width: -webkit-fill-available;;
-    }
-
-    .textCode::selection {
-        font-weight: 800;
-        background-color: #00DBDF;
-        color: white;
-    }
-
-    .textCode:focus {
-        outline: 2px solid var(--copyBtnBg);
-    }
-
-    .textCode::-webkit-scrollbar {
-        width: 4px;
-        resize: both;
-    }
+      
+      *::-webkit-scrollbar-thumb  {
+        background-color: rgb(183, 183, 183) !important;
+        border-radius: 10px !important;
+      }
+      
+      *::-webkit-scrollbar-button {
+        visibility: hidden;
+      }
     `
     const darkStyle = `
     html,
