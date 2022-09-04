@@ -66,7 +66,7 @@ const MenuHeader = () => {
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => navigate('/')}>
+                                <button onClick={() => navigate('/docs')}>
                                     Docs
                                 </button>
                             </li>
@@ -112,7 +112,7 @@ const MenuHeader = () => {
                             </button>
                         </li>
                         <li>
-                            <button onClick={() => navigate('/')}>
+                            <button onClick={() => navigate('/docs')}>
                                 Docs
                             </button>
                         </li>

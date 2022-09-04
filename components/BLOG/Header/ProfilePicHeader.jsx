@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Setting } from '../../ReactRSIcon';
+import { Announcement, Setting, SupportInbox, Writing } from '../../ReactRSIcon';
 
 const ProfilePicHeader = () => {
     const router = useRouter()
@@ -9,7 +10,7 @@ const ProfilePicHeader = () => {
         router.replace(path)
     }
 
-    
+
     return (
         <div>
             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
@@ -34,11 +35,11 @@ const ProfilePicHeader = () => {
 
                 <li>
                     <button
-                        className='buttonSpin flex gap-2 '
+                        className=' flex gap-2 '
                         onClick={() => navigate('settings')}
                     >
                         <span>
-                            <img src="/svg/setting_interface_gear.svg" alt="" className='w-4' />
+                            <SupportInbox />
                         </span>
                         <span>
                             Support Inbox
@@ -47,11 +48,11 @@ const ProfilePicHeader = () => {
                 </li>
                 <li>
                     <button
-                        className='buttonSpin flex gap-2 '
+                        className=' flex gap-2 '
                         onClick={() => navigate('settings')}
                     >
                         <span>
-                            <img src="/svg/setting_interface_gear.svg" alt="" className='w-4' />
+                            <Writing size='17' />
                         </span>
                         <span>
                             New Post
@@ -60,11 +61,11 @@ const ProfilePicHeader = () => {
                 </li>
                 <li>
                     <button
-                        className='buttonSpin flex gap-2 '
+                        className=' flex gap-2 '
                         onClick={() => navigate('settings')}
                     >
                         <span>
-                            <img src="/svg/setting_interface_gear.svg" alt="" className='w-4' />
+                            <Announcement size='16.5'/>
                         </span>
                         <span>
                             Announcement
@@ -74,7 +75,7 @@ const ProfilePicHeader = () => {
                 <li>
                     <button
                         className='buttonSpin flex gap-2 '
-                        onClick={() => navigate('settings')}
+                        onClick={() => navigate('/settings')}
                     >
                         <span>
                             <img src="/svg/setting_interface_gear.svg" alt="" className='w-4' />

@@ -17,7 +17,6 @@ const ProfileInfoSection = ({ user_id }) => {
         }));
     const user_details = userInfo?.data?.data?.user_details;
     const isLoadingAbout = userInfo?.isLoading;
-    console.log(user_details)
     return (
         <div className='p-4'>
             <div>
