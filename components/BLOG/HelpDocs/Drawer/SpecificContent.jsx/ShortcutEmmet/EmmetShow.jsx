@@ -62,7 +62,7 @@ const EmmetShow = ({ emmet, code, des, index, language }) => {
     }
 
     return (
-        <div className='md:ml-4 p-2'>
+        <div className='md:ml-4 p-2 z-0'>
             <div className='m-4'>
                 <div className='flex items-center font-mono'>
                     <h1 className='mr-1'>

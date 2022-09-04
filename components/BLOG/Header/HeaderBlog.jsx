@@ -9,11 +9,11 @@ const HeaderBlog = () => {
         <div>
             <div className="navbar bg-primary h-10 xl:pl-10 xl:pr-2">
 
-                <div className="flex-1">
+                <div className="flex-1 z-50">
                     <MenuHeader />
                 </div>
 
-                <div className="flex-none">
+                <div className="flex-none ">
                     <div className="dropdown dropdown-end">
                         {/* <label tabIndex="0" className="btn btn-ghost btn-circle">
                             <div className="indicator">

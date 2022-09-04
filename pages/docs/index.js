@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DrawerMenu from '../../components/BLOG/HelpDocs/Drawer/DrawerMenuDocs';
 import DrawerSpecificContentShow from '../../components/BLOG/HelpDocs/Drawer/DrawerSpecificContentShow';
 import Right_arrow from '../../components/BLOG/Settings/SvgComponent/Right_arrow';
@@ -6,6 +6,7 @@ import Right_arrow from '../../components/BLOG/Settings/SvgComponent/Right_arrow
 const Index = () => {
 
     const [content, setContent] = useState('HTML Tags shortcut emmet');
+
     return (
         <div>
             <div className="drawer drawer-mobile">
