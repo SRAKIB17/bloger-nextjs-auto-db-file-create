@@ -8,14 +8,14 @@ const LoveReact = ({ reactLoading, love, lovePostColor, LikeUnlikeLovePostHandle
                 !reactLoading ?
                     <button
                         onClick={() => LikeUnlikeLovePostHandle('love')}
-                        className='btn relative btn-xs  sm:btn-sm bg-[#DDDDDD] rounded-3xl text-[16px] sm:text-xl'
+                        className='btn relative btn-xs   bg-[#DDDDDD] rounded-3xl text-[16px] sm:text-xl'
                     >
                         <span
                             className='flex items-center gap-1'
                         >
                             <EmoticonLove
                                 color={lovePostColor ? 'red' : 'grey'}
-
+                                size='16'
                             />
                             <p className='font-extralight text-sm'>
                                 {love?.length}
@@ -24,10 +24,10 @@ const LoveReact = ({ reactLoading, love, lovePostColor, LikeUnlikeLovePostHandle
                     </button>
                     :
                     <button
-                        className='btn relative btn-xs  sm:btn-sm bg-[#DDDDDD] rounded-3xl text-[16px]  sm:text-xl'
+                        className='btn relative btn-xs   bg-[#DDDDDD] rounded-3xl text-[16px]  sm:text-xl'
                     >
                         <span className='flex items-center gap-1'>
-                            <EmoticonLove color={lovePostColor ? 'red' : 'grey'} />
+                            <EmoticonLove color={lovePostColor ? 'red' : 'grey'} size='16' />
                             <p className='font-extralight text-sm'>
                                 {love?.length}
                             </p>

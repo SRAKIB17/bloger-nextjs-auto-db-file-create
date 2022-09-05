@@ -30,7 +30,7 @@ const PostBody = ({ post, refetch }) => {
 
     return (
         <div className=' shadowEachPost rounded-sm p-4 sm:p-5 bg-gray-50' >
-            <div className='flex flex-col md:flex-row  gap-4'>
+            <div className='flex flex-col md:flex-row gap-4'>
                 <img
                     src={Boolean(thumbnail) ? thumbnail : '/blogThumbnailDefault.svg'}
                     alt=""

@@ -24,24 +24,25 @@ const TitleCat = ({ post }) => {
     const commentUserLoading = userInfo?.isLoading;
 
     return (
-        <div className='flex flex-col justify-start items-start md:green'>
+        <div className='flex flex-col justify-start items-start md:green '>
             <div className='flex items-center gap-[2px] sm:gap-1 flex-wrap pl-1 text-secondary'>
-                <button className='btn btn-ghost btn-xs font-extralight link-hover   '>
+                <button className='btn btn-ghost btn-xs  link-hover   '>
                     {category}
                 </button>
 
-                <p className='font-extrabold'>
-                    .
-                </p>
+
                 <span className='flex flex-wrap text-xs gap-1'>
                     {
                         (typeof post?.tags?.split === 'function') &&
 
                         post?.tags?.split(',')?.map((tag, index) =>
                             <>
+                                <p className='font-extrabold font-extrabold'>
+                                    .
+                                </p>
                                 <button
                                     key={index + tag + category}
-                                    className=' btn btn-ghost btn-xs font-extralight  link-hover  '
+                                    className=' btn btn-ghost btn-xs   link-hover  '
                                     onClick={() => {
                                         if ("pathCheck") {
                                             navigate(`/story/?cat=${category}&tag=${tag}`)
@@ -56,9 +57,6 @@ const TitleCat = ({ post }) => {
                                         tag
                                     }
                                 </button>
-                                <p className='font-bold'>
-                                    .
-                                </p>
                             </>
                         )
                     }

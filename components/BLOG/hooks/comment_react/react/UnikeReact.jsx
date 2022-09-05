@@ -8,10 +8,10 @@ const UnlikeReact = ({ reactLoading, unlike, unLikePostColor, LikeUnlikeLovePost
                 !reactLoading ?
                     <button
                         onClick={() => LikeUnlikeLovePostHandle('unlike')}
-                        className='btn relative btn-xs  sm:btn-sm bg-[#DDDDDD] rounded-3xl text-sm sm:text-[18px]'
+                        className='btn relative btn-xs bg-[#DDDDDD] rounded-3xl text-sm sm:text-[18px]'
                     >
                         <span className='flex items-center gap-1'>
-                            <Like color={unLikePostColor ? '#FE3C71' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
+                            <Like color={unLikePostColor ? '#FE3C71' : 'grey'} size='14' style={{ transform: 'rotate(180deg)' }} />
                             <p className='font-extralight text-sm'>
                                 {unlike?.length}
                             </p>
@@ -19,10 +19,10 @@ const UnlikeReact = ({ reactLoading, unlike, unLikePostColor, LikeUnlikeLovePost
                     </button>
                     :
                     <button
-                        className='btn relative btn-xs  sm:btn-sm bg-[#DDDDDD] rounded-3xl text-sm sm:text-[18px]'
+                        className='btn relative btn-xs  bg-[#DDDDDD] rounded-3xl text-sm sm:text-[18px]'
                     >
                         <span className='flex items-center gap-1'>
-                            <Like  color={unLikePostColor ? '#FE3C71' : 'grey'} style={{ transform: 'rotate(180deg)' }} />
+                            <Like color={unLikePostColor ? '#FE3C71' : 'grey'} style={{ transform: 'rotate(180deg)' }} size='14'/>
                             <p className='font-extralight text-sm'>
                                 {unlike?.length}
                             </p>

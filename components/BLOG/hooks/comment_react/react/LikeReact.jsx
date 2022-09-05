@@ -8,10 +8,10 @@ const LikeReact = ({ reactLoading, like, likePostColor, LikeUnlikeLovePostHandle
                 !reactLoading ?
                     <button
                         onClick={() => LikeUnlikeLovePostHandle('like')}
-                        className='btn relative btn-xs  sm:btn-sm bg-[#DDDDDD] rounded-3xl text-sm sm:text-[18px]'
+                        className='btn relative btn-xs bg-[#DDDDDD] rounded-3xl text-sm sm:text-[18px]'
                     >
                         <span className='flex items-center gap-1 '>
-                            <Like color={likePostColor ? '#0081FE' : 'grey'} />
+                            <Like color={likePostColor ? '#0081FE' : 'grey'} size='14' />
                             <p className='font-extralight text-sm'>
                                 {like?.length}
                             </p>
@@ -19,7 +19,7 @@ const LikeReact = ({ reactLoading, like, likePostColor, LikeUnlikeLovePostHandle
                     </button>
                     :
                     <button
-                        className='btn relative btn-xs  sm:btn-sm bg-[#DDDDDD] rounded-3xl text-sm sm:text-[18px]'
+                        className='btn relative btn-xs bg-[#DDDDDD] rounded-3xl text-sm sm:text-[18px]'
                     >
                         <span className='flex items-center gap-1'>
                             <Like size='14' color={likePostColor ? '#0081FE' : 'grey'} />

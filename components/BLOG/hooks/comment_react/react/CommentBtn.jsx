@@ -14,11 +14,11 @@ const CommentBtn = ({ post_id, TotalComment, showCommentHandle }) => {
                     title='Comment'
                     onClick={() => showCommentHandle(post_id)}
                     id={'showCommentButton' + post_id}
-                    className='btn relative btn-xs  sm:btn-sm bg-[#DDDDDD] rounded-3xl text-[16px]  sm:text-xl'
+                    className='btn relative btn-xs bg-[#DDDDDD] rounded-3xl text-[16px]  sm:text-xl'
                     rel="noreferrer"
                 >
                     <span className='flex items-center gap-1'>
-                        <Comment color='currentColor' />
+                        <Comment color='currentColor' size='16'/>
                         <p className='font-extralight text-sm'>
                             {TotalComment}
                         </p>
