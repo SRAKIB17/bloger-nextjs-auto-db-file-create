@@ -188,8 +188,9 @@ const ReactBtnList = ({ post, refetch }) => {
                             :
                             <div>
                                 <div className='flex items-center'>
-                                    <button
-                                        onClick={() => navigate(`/blog/post/${post_id}`)}
+                                    <a
+                                        href={`/blog/post/${post_id}`}
+                                        target='_blank'
                                         title='Comment'
                                         id={'showCommentButton' + post?.post_id}
                                         className='btn relative btn-xs  sm:btn-sm bg-[#DDDDDD] rounded-3xl text-[16px]  sm:text-xl'
@@ -201,7 +202,7 @@ const ReactBtnList = ({ post, refetch }) => {
                                                 {TotalComment}
                                             </p>
                                         </span>
-                                    </button>
+                                    </a>
                                     {/* <BookmarkPost post={post} refetch={refetch}/> */}
                                 </div>
                             </div>

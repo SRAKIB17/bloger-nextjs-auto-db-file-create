@@ -24,16 +24,14 @@ const TitleCat = ({ post }) => {
     const commentUserLoading = userInfo?.isLoading;
 
     return (
-        <div className='flex flex-col justify-start items-start md:green'>
-            <div className='flex items-center gap-[2px] sm:gap-1 flex-wrap pl-1 text-secondary'>
-                <button className='btn btn-ghost btn-xs font-extralight link-hover   '>
+        <div>
+            <div className='flex items-center gap-1 flex-wrap pl-1'>
+                <button className='btn btn-secondary text-white  btn-sm font-extralight '>
                     {category}
                 </button>
 
-                <p className='font-extrabold'>
-                    .
-                </p>
-                <span className='flex flex-wrap text-xs gap-1'>
+
+                <span className='flex flex-wrap text-2xs gap-1'>
                     {
                         (typeof post?.tags?.split === 'function') &&
 
@@ -41,7 +39,11 @@ const TitleCat = ({ post }) => {
                             <>
                                 <button
                                     key={index + tag + category}
-                                    className=' btn btn-ghost btn-xs font-extralight  link-hover  '
+                                    className=
+                                    {'btn text-white  btn-sm font-extralight '
+                                        +
+                                        badge[Math.floor(Math.random() * badge.length)]
+                                    }
                                     onClick={() => {
                                         if ("pathCheck") {
                                             navigate(`/story/?cat=${category}&tag=${tag}`)
@@ -56,9 +58,6 @@ const TitleCat = ({ post }) => {
                                         tag
                                     }
                                 </button>
-                                <p className='font-bold'>
-                                    .
-                                </p>
                             </>
                         )
                     }
@@ -66,21 +65,19 @@ const TitleCat = ({ post }) => {
             </div>
             <div>
                 <div className='p-2'>
-                    <a
-                        href={`/blog/post/${post_id}`}
-                        target='_blank'
-                        className='sm:text-lg xl:text-xl text-left link-hover text-blue-600' rel="noreferrer"
-                    >
-                        {post_title}
-                    </a>
-                    <div className='mt-1 opacity-80 text-2xs sm:text-sm flex items-center gap-2 pl-2'>
+                    <h1 className='text-gray-700 sm:text-xl text-left'>
+                        <button onClick={() => navigate(`/blog/post/${post_id}`)}>
+                            {post_title}
+                        </button>
+                    </h1>
+                    <div className=' opacity-80 text-2xs sm:text-sm flex items-center gap-2 pl-2'>
                         <span>
                             {timeAgo}
                         </span>
                         <b className='font-extrabold'>.</b>
                         <span className='flex items-center'>
                             posted by
-                            <p className='ml-1 link-primary link-hover text-blue-800'>
+                            <p className='ml-1 link-primary link-hover'>
                                 <button onClick={() => navigate('/profile/' + comment_user_details?.userID)}>
                                     {comment_user_details?.name ? comment_user_details?.name : 'User'}
                                 </button>

@@ -57,7 +57,7 @@ const Index = () => {
     }
     return (
         <div className='grid grid-cols-12'>
-            <div className='col-span-12  lg:col-span-7  2xl:col-span-8 mb-20'>
+            <div className='col-span-12  lg:col-span-8  2xl:col-span-8 mb-20'>
                 <div className='flex flex-col gap-4'>
 
                     {
@@ -104,7 +104,7 @@ const Index = () => {
 
                 </div>
             </div>
-            <div className='hidden ml-2 pl-4 shadow-md lg:block col-span-12 lg:col-span-5  2xl:col-span-4 text-justify'>
+            <div className='hidden ml-2 pl-4 shadow-md lg:block col-span-12 lg:col-span-4  2xl:col-span-4 text-justify'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quidem neque numquam eaque magnam cupiditate labore corporis quo totam, temporibus quibusdam eligendi cum possimus laudantium illum laborum. Est, aperiam sed.
                 Provident itaque repellat quas reprehenderit quae est doloribus optio expedita, vitae, odio eos error, deserunt at cumque explicabo. Consequuntur vel quas repudiandae dignissimos nostrum officiis laboriosam debitis eos labore. Aspernatur?
                 Quasi eum ipsum ut earum totam ullam, quisquam consectetur illo. Pariatur amet commodi eos fuga porro ipsa tenetur consequatur dignissimos, distinctio id debitis, optio explicabo corporis voluptates provident saepe accusamus.

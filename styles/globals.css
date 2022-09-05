@@ -150,7 +150,6 @@ body::-webkit-scrollbar {
 
 
 .shadowEachPost {
-  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
 }
@@ -165,13 +164,73 @@ body::-webkit-scrollbar {
   to {
     transform: rotate(360deg);
   }
- 
+
 }
 
 .spin_icon {}
 
 .buttonSpin {}
 
-.buttonSpin:hover :first-child{
+.buttonSpin:hover :first-child {
   animation: spin 1s both infinite;
+}
+
+
+/* ************FOR POST BODY***************** */
+.postBodyThumbnail {
+  overflow: hidden;
+  height: 200px;
+  width: 100%;
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+
+}
+
+.postDescription {
+  width: 100%;
+}
+
+/* ******* MD *********** */
+@media (min-width: 640px) {
+  .postBodyThumbnail {
+    width: 250px;
+  }
+
+  .postDescription {
+    width: calc(100% - 250px);
+  }
+}
+
+/* ******* MD *********** */
+@media (min-width: 1024px) {
+  .postBodyThumbnail {
+    width: 250px;
+    height: 180px;
+  }
+
+  .postDescription {
+    width: calc(100% - 250px);
+  }
+}
+
+/* ******* XL *********** */
+@media (min-width: 1280px) {
+  .postBodyThumbnail {
+    width: 260px;
+  }
+
+  .postDescription {
+    width: calc(100% - 260px);
+  }
+}
+/* ******* 2XL *********** */
+@media (min-width: 1536px) {
+  .postBodyThumbnail {
+    width: 260px;
+  }
+
+  .postDescription {
+    width: calc(100% - 260px);
+  }
 }
