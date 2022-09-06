@@ -1,5 +1,6 @@
 import React from 'react';
 import CodeHighLight from './SpecificContent/Common/CodeHighLight';
+import PostCodeTemplate from './SpecificContent/Post/PostCodeTemplate';
 import PostTheme from './SpecificContent/Post/PostTheme';
 
 const DrawerContentList = ({ content }) => {
@@ -20,6 +21,10 @@ const DrawerContentList = ({ content }) => {
                 {
                     content == 'Post Theme' &&
                     <PostTheme />
+                }
+                {
+                    content == 'Post Code Template' &&
+                    <PostCodeTemplate/>
                 }
             </div>
         </div>

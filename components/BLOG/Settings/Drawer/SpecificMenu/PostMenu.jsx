@@ -17,6 +17,12 @@ const PostMenu = ({ setContent }) => {
                                 Post Theme
                             </button>
                         </li>
+                        <li>
+                            <button onClick={() => setContent('Post Code Template')}>
+                                <Right_arrow />
+                                Code Template
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 
-const PostTheme = () => {
+const PostCodeTemplate = () => {
     const [postTheme, setPostTheme] = useState('')
     useEffect(() => {
         const postTheme = localStorage.getItem('postTheme')
@@ -11,24 +11,30 @@ const PostTheme = () => {
 
     const savePostThemeHandle = (e) => {
         e.preventDefault()
-        localStorage.setItem('postTheme', e.target.postTheme.value)
+        localStorage.setItem('postCodeTemplate', e.target.postCodeTemplate.value)
         alert('save change')
     }
     return (
         <div>
             <form onSubmit={savePostThemeHandle}>
 
-                <div className=" m-6 flex flex-col gap-4">
+                <div className=" m-6 flex flex-col gap-10">
 
                     <div className='flex gap-3 flex-col'>
                         <div className='flex items-center gap-2'>
-                            <input type="radio" name="postTheme" id='default' className="radio radio-secondary" checked value='default' />
+                            <input
+                                type="radio"
+                                name="postCodeTemplate"
+                                id='default'
+                                className="radio radio-secondary" checked
+                                value='default'
+                            />
                             <label htmlFor="default">
                                 Default
                             </label>
                         </div>
                         <div className='ml-4'>
-                            <img src='/settings/post/theme/default.png' alt="" className='w-full md:max-w-md border rounded-sm h-full' />
+                            <img src='/settings/post/code_template/default.png' alt="" className='w-full md:max-w-md border rounded-sm h-full' />
                         </div>
                     </div>
 
@@ -37,13 +43,20 @@ const PostTheme = () => {
 
                     <div className='flex gap-3 flex-col'>
                         <div className='flex items-center gap-2'>
-                            <input type="radio" name="postTheme" id='Post with body' className="radio radio-secondary" checked value='post_with_body' />
-                            <label htmlFor="Post with body">
-                                Post with body
+                            <input
+                                type="radio"
+                                name="postCodeTemplate"
+                                id='Colorful Template'
+                                className="radio radio-secondary"
+                                checked
+                                value="Colorful Template"
+                            />
+                            <label htmlFor="Colorful Template">
+                                Colorful Template
                             </label>
                         </div>
                         <div className='ml-4'>
-                            <img src='/settings/post/theme/post with body.png' alt="" className='w-full md:max-w-md border rounded-sm h-full' />
+                            <img src='/settings/post/code_template/Colorful Template.png' alt="" className='w-full md:max-w-md border rounded-sm h-full' />
                         </div>
                     </div>
 
@@ -58,4 +71,4 @@ const PostTheme = () => {
     );
 };
 
-export default PostTheme;
+export default PostCodeTemplate;
