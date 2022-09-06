@@ -327,7 +327,7 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
     else {
       setIframePostFullBody(defaultTemplate)
     }
-  }, [colorFullTemplate, defaultTemplate])
+  }, [post])
 
   return { iframePostFullBody }
 };

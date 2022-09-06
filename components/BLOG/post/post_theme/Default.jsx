@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ReactBtnList from '../../hooks/comment_react/react/ReactBtnList';
+import IframeImportDefault from '../hooks/IframeImportDefault';
 import TitleCat from '../hooks/TitleCat';
 
 const Default = ({ post, refetch }) => {
@@ -27,17 +28,59 @@ const Default = ({ post, refetch }) => {
         setDescription(showDescription?.length <= 120 ? short_description : short_description?.slice(0, 120))
     }
 
-    const router = useRouter()
+    const router = useRouter();
+
+    const { iframePostFullBody } = IframeImportDefault({ post: post })
+
+    // *****************FOR IFRAME *************
+    const onloadIframeHeightStylesHandle = (e) => {
+        let count = 0
+        const iframe = e.target
+
+
+        const iframeAutoHeight = () => {
+            const iframes = document.getElementsByTagName('iframe');
+            for (const iframe of iframes) {
+                iframe.style.height = iframe?.contentWindow?.document?.documentElement?.scrollHeight + 'px'
+            }
+        }
+        iframe.contentWindow.onmousemove = () => {
+            iframeAutoHeight()
+        }
+        iframe.contentWindow.onresize = () => {
+            iframeAutoHeight()
+        }
+        iframe.contentWindow.onclick = (e) => {
+            iframeAutoHeight()
+        }
+        const showIframe = setInterval(() => {
+            if (count === 6) {
+                try {
+                    // e.target.width = document.getElementById('postBodyCode' + e.target.id?.slice(19)).offsetWidth - 30;
+                    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                    iframe.style.display = 'none'
+                }
+                catch {
+
+                }
+                clearInterval(showIframe)
+            }
+            count++
+        }, 100);
+    }
     return (
         <div className=' shadowEachPost rounded-sm p-4 sm:p-5 bg-gray-50' >
 
             <div className='flex flex-col md:flex-row gap-4 items-center'>
+                {/* thumbnail */}
+
                 <img
                     src={Boolean(thumbnail) ? thumbnail : '/blogThumbnailDefault.svg'}
                     alt=""
                     className=' postBodyThumbnail'
                 />
 
+                {/* **** Title And Description ************** */}
                 <div className='postDescription'>
                     <TitleCat
                         post={post}
@@ -45,7 +88,7 @@ const Default = ({ post, refetch }) => {
                     <div className='text-justify  ml-3'>
                         <div>
                             {showDescription}
-                            {(showDescription?.length > 120) && 
+                            {(showDescription?.length > 120) &&
 
                                 <div>
                                     <button
@@ -69,6 +112,20 @@ const Default = ({ post, refetch }) => {
                     <div className='mt-2'>
                         <ReactBtnList post={post} refetch={refetch} />
                     </div>
+                </div>
+                <div>
+                    <iframe
+                        srcDoc={iframePostFullBody}
+                        onLoad={onloadIframeHeightStylesHandle}
+                        src={'/api/preview/' + post_id}
+                        id={'iframePostPreview' + post_id}
+                        frameBorder="0"
+                        scrolling="no"
+                        height='0'
+                        className='w-full'
+
+                    >
+                    </iframe>
                 </div>
             </div >
         </div >

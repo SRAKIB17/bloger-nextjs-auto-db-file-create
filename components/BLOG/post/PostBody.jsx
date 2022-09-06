@@ -8,7 +8,7 @@ const PostBody = ({ post, refetch }) => {
     useEffect(() => {
         const theme = localStorage.getItem("postTheme")
         setThemePost(theme)
-    }, [])
+    }, []);
     return (
         <>
             {
