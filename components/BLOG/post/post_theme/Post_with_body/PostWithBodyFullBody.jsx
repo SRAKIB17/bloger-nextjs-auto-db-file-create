@@ -45,7 +45,7 @@ const PostWithBodyFullBody = ({ post }) => {
         const iframeAutoHeight = () => {
             const iframes = document.getElementsByTagName('iframe');
             for (const iframe of iframes) {
-                iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px'
+                iframe.style.height = iframe?.contentWindow?.document?.documentElement?.scrollHeight + 'px'
             }
         }
         iframe.contentWindow.onmousemove = () => {
