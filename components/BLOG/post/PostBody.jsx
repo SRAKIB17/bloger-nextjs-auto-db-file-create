@@ -12,7 +12,7 @@ const PostBody = ({ post, refetch }) => {
     return (
         <>
             {
-                themePost == 'default' &&
+                (themePost == 'default' || !themePost) &&
                 <Default post={post} refetch={refetch} />
             }
             {
