@@ -9,21 +9,15 @@ const PostWithBodyShortDescription = ({ postRefMode, thumbnail, short_descriptio
                 <div className='sm:float-left'>
                     {/* ----thumbnail------------ */}
                     {
-                        (postRefMode === 'text') ?
-                            <div className='sm:mr-4'>
-                                <figure>
-                                    <img
-                                        src={Boolean(thumbnail) ? thumbnail : '/blogThumbnailDefault.svg'}
-                                        alt=""
-                                        className='postBodyThumbnail'
-                                    />
-                                </figure>
-                            </div>
-                            :
-                            <div className='videoPost mr-4' dangerouslySetInnerHTML={{
-                                __html: postBody
-                            }}>
-                            </div>
+                        <div className='sm:mr-4'>
+                            <figure>
+                                <img
+                                    src={Boolean(thumbnail) ? thumbnail : '/blogThumbnailDefault.svg'}
+                                    alt=""
+                                    className='postBodyThumbnail'
+                                />
+                            </figure>
+                        </div>
                     }
                 </div>
                 {/* style={{ width: '100%', wordWrap: "break-word", whiteSpace: 'pre-line' }} */}

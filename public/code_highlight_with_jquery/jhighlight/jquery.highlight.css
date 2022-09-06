@@ -3,11 +3,12 @@ div.highlight {
 	background:#FFFFFF;
 	border:1px solid #e4e4e4;
 	overflow: hidden;
+	width: 100%;
 	margin: 0 0 1.5em;
 }
 div.highlight pre{
 	width: 100%;
-	overflow: auto;
+	overflow: scroll;
 	padding:0;
 	margin:0;
 	font-size:13px;
@@ -56,6 +57,7 @@ div.highlight pre.code ul li {
 	padding:0 0 0 20px;
 	border-left:1px solid #e4e4e4;
 	background:#F8F8F8;
+	
 }
 div.highlight pre.code ul li {
 	border-left:none;
@@ -64,6 +66,7 @@ div.highlight pre.code ul li {
 div.highlight pre.code ol li.even,
 div.highlight pre.code ul li.even {
 	background-color:#FFFFFF;
+	width: 100%;
 }
 div.highlight pre.source {
 	display: none;

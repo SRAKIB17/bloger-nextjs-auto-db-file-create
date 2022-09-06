@@ -67,7 +67,7 @@ const MenuHeader = () => {
                             </li>
                             <li>
                                 <button onClick={() => navigate('/docs')}>
-                                    Docs
+                                    How?
                                 </button>
                             </li>
                         </ul>
@@ -113,7 +113,7 @@ const MenuHeader = () => {
                         </li>
                         <li>
                             <button onClick={() => navigate('/docs')}>
-                                Docs
+                                How?
                             </button>
                         </li>
                     </ul>
