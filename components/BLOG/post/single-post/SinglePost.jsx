@@ -1,7 +1,8 @@
 import React from 'react';
 import SinglePostReactBtnListCommentForm from '../../hooks/comment_react/SinglePostReactBtnListCommentForm';
 import TitleCat from '../hooks/TitleCat';
-import ThemeOneShortDescription from '../post_theme/ThemeOne/ThemeOneShortDescription';
+import PostWithBodyShortDescription from '../post_theme/Post_with_body/PostWithBodyShortDescription';
+
 import SinglePostBody from './SinglePostBody';
 
 
@@ -19,7 +20,7 @@ const SinglePost = ({ post, refetch }) => {
                     />
                 </div>
                 <div>
-                    <ThemeOneShortDescription
+                    <PostWithBodyShortDescription
                         postRefMode={postRefMode}
                         short_description={short_description}
                         thumbnail={thumbnail}
