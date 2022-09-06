@@ -42,6 +42,21 @@ const PostWithBodyFullBody = ({ post }) => {
         const iframe = e.target
 
 
+        const iframeAutoHeight = () => {
+            const iframes = document.getElementsByTagName('iframe');
+            for (const iframe of iframes) {
+                iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px'
+            }
+        }
+        iframe.contentWindow.onmousemove = () => {
+            iframeAutoHeight()
+        }
+        iframe.contentWindow.onresize = () => {
+            iframeAutoHeight()
+        }
+        iframe.contentWindow.onclick = (e) => {
+            iframeAutoHeight()
+        }
         const showIframe = setInterval(() => {
             if (count === 6) {
                 try {
