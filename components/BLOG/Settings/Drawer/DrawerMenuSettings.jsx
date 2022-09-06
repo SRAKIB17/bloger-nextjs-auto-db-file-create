@@ -1,5 +1,6 @@
 import React from 'react';
 import CommonMenu from './SpecificMenu/CommonMenu';
+import PostMenu from './SpecificMenu/PostMenu';
 // import ShortcutEmmet from './DrawerDocsSpecific/ShortcutEmmetContentMenu';
 
 const DrawerMenuSettings = ({ setContent }) => {
@@ -13,6 +14,10 @@ const DrawerMenuSettings = ({ setContent }) => {
                 className="menu p-4 overflow-y-auto w-64 rounded-md shadow-md  bg-[#201B4E] gap-1"
             >
                 <CommonMenu setContent={setContent} />
+
+                {/* *********for post menu***** */}
+
+                <PostMenu setContent={setContent}/>
             </ul>
 
         </div>

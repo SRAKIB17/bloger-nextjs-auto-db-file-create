@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import ReactBtnList from '../hooks/comment_react/react/ReactBtnList';
-import Body from './hooks/Body';
-import ShortDescription from './hooks/ShortDescription';
-import TitleCat from './hooks/TitleCat';
+import ReactBtnList from '../../hooks/comment_react/react/ReactBtnList';
+import TitleCat from '../hooks/TitleCat';
+import PostWithBodyFullBody from './Post_with_body/PostWithBodyFullBody';
+import PostWithBodyShortDescription from './Post_with_body/PostWithBodyShortDescription';
 
-const PostBody = ({ post, refetch }) => {
+
+const PostWithBody = ({ post, refetch }) => {
 
     const { _id, comments, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, thumbnail, time, userID } = post
 
@@ -22,23 +23,24 @@ const PostBody = ({ post, refetch }) => {
             }
         }
     }, [])
-    
+
     return (
         <div className=' shadowEachPost p-4 sm:p-5 bg-gray-50' >
-            <div>
+            <div className='ml-2'>
                 <TitleCat
                     post={post}
                 />
             </div>
             <div>
-                <ShortDescription
+                <PostWithBodyShortDescription
                     postRefMode={postRefMode}
                     short_description={short_description}
                     thumbnail={thumbnail}
+                    postBody={postBody}
                 />
             </div>
             <div>
-                <Body post={post} />
+                <PostWithBodyFullBody post={post} />
             </div>
             <div>
                 <ReactBtnList post={post} refetch={refetch} />
@@ -47,4 +49,4 @@ const PostBody = ({ post, refetch }) => {
     );
 };
 
-export default PostBody;
+export default PostWithBody;

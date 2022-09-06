@@ -238,3 +238,9 @@ body::-webkit-scrollbar {
     width: calc(100% - 260px);
   }
 }
+
+/* ************ FOR VIDEO POST********** */
+.videoPost video, iframe, embed{
+  width: 100% !important;
+  height: auto;
+}

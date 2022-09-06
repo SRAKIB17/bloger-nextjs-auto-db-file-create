@@ -107,6 +107,7 @@ const SinglePostBody = ({ post }) => {
               height: 10px;
             }
             pre{
+              font-size:16px;
               overflow: scroll;
               height: 100%;
             }

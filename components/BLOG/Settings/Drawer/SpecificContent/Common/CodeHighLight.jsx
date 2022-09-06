@@ -11,6 +11,7 @@ const CodeHighLight = () => {
     const saveChangeTheme = (e) => {
         e.preventDefault()
         window.localStorage.setItem('heighLightTheme', theme)
+        alert('save change')
     }
     const docs =
         `

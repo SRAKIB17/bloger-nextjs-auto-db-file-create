@@ -70,7 +70,7 @@ const Index = () => {
                                 {
                                     getPost?.map((post, index) => <PostBody post={post} key={index} />)
                                 }
-                                <div className={((isLoading && getPost?.length == 0) ? " " : ' shadow-md  ') + ' rounded-md     p-4'}>
+                                <div className={((isLoading && getPost?.length == 0) ? " " : ' shadowEachPost ') + ' rounded-sm     p-4'}>
 
                                     {/* ********** NOT FOUND ************ */}
                                     {

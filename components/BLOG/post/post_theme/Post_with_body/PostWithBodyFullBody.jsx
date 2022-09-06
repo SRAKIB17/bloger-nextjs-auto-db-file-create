@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-const Body = ({ post }) => {
+const PostWithBodyFullBody = ({ post }) => {
     const { _id, comments, category, image, postBodyCss, postBodyJs, postBody, postRefMode, post_id, post_title, short_description, thumbnail, time, userID } = post
 
 
@@ -40,27 +40,7 @@ const Body = ({ post }) => {
     const onloadIframeHeightStylesHandle = (e) => {
         let count = 0
         const iframe = e.target
-        try {
-            const iframeAutoHeight = () => {
-                const iframes = document.getElementsByTagName('iframe');
-                for (const iframe of iframes) {
-                    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px'
-                }
-            }
-            iframe.contentWindow.onmousemove = () => {
-                iframeAutoHeight()
-            }
-            iframe.contentWindow.onresize = () => {
-                iframeAutoHeight()
-            }
-            iframe.contentWindow.onclick = (e) => {
-                iframeAutoHeight()
-            }
 
-        }
-        catch {
-
-        }
 
         const showIframe = setInterval(() => {
             if (count === 6) {
@@ -79,20 +59,23 @@ const Body = ({ post }) => {
     }
     // ******************************************* TOGGLE BUTTON AND SHOW OR HIDE IFRAME POST ************
     const showIframeDisplayHandle = (id) => {
-        const iframe = document.getElementById('iframePostPreview' + id);
-        autoHeightHandle(id)
-
         setFullIframeShow(!fullIframeShow)
-        if (fullIframeShow) {
-            iframe.style.display = 'none';
+        if (postRefMode == 'text') {
+            const iframe = document.getElementById('iframePostPreview' + id);
+            autoHeightHandle(id);
+            if (fullIframeShow) {
+                iframe.style.display = 'none';
+            }
+            else {
+                iframe.style.display = 'block';
+            }
         }
-        else {
-            iframe.style.display = 'block';
-        }
+
+
     }
 
 
-    
+
     const [theme, setTheme] = useState('');
     useEffect(() => {
         setTheme(localStorage.getItem('heighLightTheme'))
@@ -122,6 +105,7 @@ const Body = ({ post }) => {
             pre{
               overflow: scroll;
               height: 100%;
+              font-size:16px;
             }
             *::-webkit-scrollbar-thumb {
               background-color: rgb(183, 183, 183);
@@ -299,23 +283,33 @@ const Body = ({ post }) => {
                         </div>
                     }
 
-                    <iframe
-                        srcDoc={iframePostFullBody}
-                        onLoad={onloadIframeHeightStylesHandle}
-                        src={'/api/preview/' + post_id}
-                        id={'iframePostPreview' + post_id}
-                        frameBorder="0"
-                        scrolling="no"
-                        height='0'
-                        className='w-full'
-                    >
-                    </iframe>
+                    {
+                        postRefMode == 'text' ?
+                            <iframe
+                                srcDoc={iframePostFullBody}
+                                onLoad={onloadIframeHeightStylesHandle}
+                                src={'/api/preview/' + post_id}
+                                id={'iframePostPreview' + post_id}
+                                frameBorder="0"
+                                scrolling="no"
+                                height='0'
+                                className='w-full'
+                            >
+                            </iframe>
+                            :
+                            <div className={((fullIframeShow) ? 'block' : 'hidden') + ' videoPost mt-4'}
+                                dangerouslySetInnerHTML={{
+                                    __html:
+                                        post?.postBody
+                                }}>
+                            </div>
+                    }
                 </div>
             </div>
             <div>
 
                 <div className="card-actions justify-end">
-                    <button className="link-primary font-semibold link-hover text-xs" onClick={() => showIframeDisplayHandle(post_id)}>
+                    <button className="link-primary font-semibold link-hover text-xs mt-4" onClick={() => showIframeDisplayHandle(post_id)}>
                         See {fullIframeShow ? 'Less' : 'More'}
                     </button>
                 </div>
@@ -324,4 +318,4 @@ const Body = ({ post }) => {
     );
 };
 
-export default Body;
+export default PostWithBodyFullBody;
