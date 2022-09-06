@@ -22,7 +22,12 @@ const PostTheme = () => {
 
                     <div className='flex gap-3 flex-col'>
                         <div className='flex items-center gap-2'>
-                            <input type="radio" name="postTheme" id='default' className="radio radio-secondary" checked value='default' />
+                            <input
+                                type="radio"
+                                name="postTheme"
+                                id='default'
+                                className="radio radio-accent"
+                                checked value='default' />
                             <label htmlFor="default">
                                 Default
                             </label>
@@ -37,7 +42,13 @@ const PostTheme = () => {
 
                     <div className='flex gap-3 flex-col'>
                         <div className='flex items-center gap-2'>
-                            <input type="radio" name="postTheme" id='Post with body' className="radio radio-secondary" checked value='post_with_body' />
+                            <input
+                                type="radio"
+                                name="postTheme"
+                                id='Post with body'
+                                className="radio radio-accent"
+                                checked value='post_with_body'
+                            />
                             <label htmlFor="Post with body">
                                 Post with body
                             </label>

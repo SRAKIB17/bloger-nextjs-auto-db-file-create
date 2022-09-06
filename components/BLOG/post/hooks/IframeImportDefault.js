@@ -266,15 +266,7 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
             text-align: justify;
             background-color: transparent;
           }
-          body:first-child {
-            /*  word-wrap: break-word;
-            white-space: pre-line !important; */
-          }
-          body *{
-            overflow-y: auto !important;
-            overflow-x: auto !important;
-            overflow:auto !important;
-          }
+       
 
           body::-webkit-scrollbar:not(pre)  {
             display: none !important;
@@ -298,15 +290,7 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
             white-space: pre-line !important;
           }
 
-          *::-webkit-scrollbar-thumb  {
-            background-color: rgb(183, 183, 183) !important;
-            border-radius: 10px !important;
-          }
-
-          *::-webkit-scrollbar-button {
-            visibility: hidden;
-          }
-
+         
           
           /* ************ FOR VIDEO POST********** */
 
@@ -322,86 +306,6 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
     <style>
          ${postBodyCss}
     </style>
-        <style>
-            pre::-webkit-scrollbar {
-              width: 5px;
-              height: 10px;
-            }
-            pre{
-              overflow: scroll;
-              height: 100%;
-              font-size:16px;
-            }
-            *::-webkit-scrollbar-thumb {
-              background-color: rgb(183, 183, 183);
-              border-radius: 10px;
-            }
-            
-            *::-webkit-scrollbar-button {
-              height: 70px;
-              visibility: hidden;
-            }
-            .copyCodeButton {
-                border: 1px solid #dbdbdb;
-                border-radius: .375em;
-                box-shadow: none;
-                box-sizing: border-box;
-                cursor: pointer;
-                padding: calc(.5em - 1px) 1em;
-                text-align: center;
-                touch-action: manipulation;
-                margin: 3px;
-                background-color: #0080ff;
-                color: white;
-                font-size: 12px;
-            
-            }
-            
-            .copyCodeButton:active {
-                background-color: #3096fc;
-                border-color: #4a4a4a;
-                outline: 1px #F90143 solid;
-            }
-            
-            .copyCodeButton:focus {
-                border-color: #485fc7;
-            }
-            
-            .copyCodeButton:hover {
-                border-color: #b5b5b5;
-            }
-            
-            .copyCodeButton:focus:not(:active) {
-                box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
-            }
-        </style>
-                
-        <style>
-        *{
-            font-size: 1rem;
-        }
-        *::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-
-        pre {
-            color: black;
-            overflow: scroll;
-            width: 100%;
-            height: 100%;
-        }
-
-        *::-webkit-scrollbar-thumb {
-            background-color: rgb(183, 183, 183);
-            border-radius: 10px;
-        }
-
-        *::-webkit-scrollbar-button {
-            height: 70px;
-            visibility: hidden;
-        }
-        </style>
 </head>
 <body>
     ${postBody}

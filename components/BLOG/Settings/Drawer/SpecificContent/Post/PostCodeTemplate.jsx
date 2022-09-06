@@ -26,7 +26,7 @@ const PostCodeTemplate = () => {
                                 type="radio"
                                 name="postCodeTemplate"
                                 id='default'
-                                className="radio radio-secondary" checked
+                                className="radio radio-accent" checked
                                 value='default'
                             />
                             <label htmlFor="default">
@@ -47,7 +47,7 @@ const PostCodeTemplate = () => {
                                 type="radio"
                                 name="postCodeTemplate"
                                 id='Colorful Template'
-                                className="radio radio-secondary"
+                                className="radio radio-accent"
                                 checked
                                 value="Colorful Template"
                             />
