@@ -45,7 +45,7 @@ const Default = ({ post, refetch }) => {
                     <div className='text-justify  ml-3'>
                         <div>
                             {showDescription}
-                            {(showDescription?.length > 120) &&
+                            {(showDescription?.length > 120) && 
 
                                 <div>
                                     <button
