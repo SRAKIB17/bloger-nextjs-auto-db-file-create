@@ -120,22 +120,20 @@ const Default = ({ post, refetch }) => {
                     <TitleCat
                         post={post}
                     />
-                    <div className='text-justify  ml-3'>
+                    <div className='text-justify  lg:ml-3'>
                         <div>
                             {showDescription}
                             {(showDescription?.length > 120) &&
 
                                 <div>
                                     <button
-                                        className='relative z-10 overflow-hidden w-full btn-lg bg-primary bg-opacity-10 rounded-md'
+                                        className='btn-xs btn btn-accent mt-2 mb-2 text-white'
                                         onClick={() => autoHeightHandle(post_id)}
                                     >
                                         {
                                             !showFullFrame ? ' Continue Reading ' : "Finish"
                                         }
-                                        <p className='absolute top-0 opacity-10 text-justify overflow-hidden whitespace-pre-line'>
-                                            {showDescription}
-                                        </p>
+                               
                                     </button>
                                 </div>
                             }
