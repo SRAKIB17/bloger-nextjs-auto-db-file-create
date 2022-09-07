@@ -74,14 +74,15 @@ const Default = ({ post, refetch }) => {
     const [showFullFrame, setShowFullFrame] = useState(false)
     const autoHeightHandle = async (id) => {
 
-        setShowFullFrame(!showFullFrame);
         setIframeLoading(true)
         try {
             const iframe = document.getElementById('iframePostPreview' + id);
             if (iframe.style.display == 'none') {
+                setShowFullFrame(true);
                 iframe.style.display = 'block'
             }
             else {
+                setShowFullFrame(false)
                 iframe.style.display = 'none'
             }
             let count = 0
