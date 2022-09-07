@@ -12,12 +12,6 @@ const PostMenu = ({ setContent }) => {
                 <div className="collapse-content bg-primary text-primary-content  peer-checked:bg-base-100 peer-checked:text-base-content">
                     <ul className="menu bg-base-100 w-full">
                         <li>
-                            <button onClick={() => setContent('Post Theme')}>
-                                <Right_arrow />
-                                Post Theme
-                            </button>
-                        </li>
-                        <li>
                             <button onClick={() => setContent('Post Code Template')}>
                                 <Right_arrow />
                                 Code Template

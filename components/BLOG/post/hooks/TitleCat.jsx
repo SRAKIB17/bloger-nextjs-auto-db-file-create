@@ -71,7 +71,7 @@ const TitleCat = ({ post }) => {
                     >
                         {post_title}
                     </a>
-                    <div className='mt-1 opacity-80 text-2xs sm:text-sm flex items-center gap-2 pl-2'>
+                    <div className='mt-1 opacity-80 text-2xs sm:text-sm flex items-center gap-2'>
                         <span>
                             {timeAgo}
                         </span>

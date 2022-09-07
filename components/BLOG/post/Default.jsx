@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import ReactBtnList from '../../hooks/comment_react/react/ReactBtnList';
-import IframeImportDefault from '../hooks/IframeImportDefault';
-import TitleCat from '../hooks/TitleCat';
+import ReactBtnList from '../hooks/comment_react/react/ReactBtnList';
+import IframeImportDefault from './hooks/IframeImportDefault';
+import TitleCat from './hooks/TitleCat';
+
 
 const Default = ({ post, refetch }) => {
 
@@ -31,12 +32,10 @@ const Default = ({ post, refetch }) => {
     const router = useRouter();
 
     const { iframePostFullBody } = IframeImportDefault({ post: post })
-
     // *****************FOR IFRAME *************
     const onloadIframeHeightStylesHandle = (e) => {
         let count = 0
         const iframe = e.target
-
 
         const iframeAutoHeight = () => {
             const iframes = document.getElementsByTagName('iframe');
@@ -56,7 +55,7 @@ const Default = ({ post, refetch }) => {
         const showIframe = setInterval(() => {
             if (count === 6) {
                 try {
-                    // e.target.width = document.getElementById('postBodyCode' + e.target.id?.slice(19)).offsetWidth - 30;
+
                     iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
                     iframe.style.display = 'none'
                 }
@@ -67,6 +66,41 @@ const Default = ({ post, refetch }) => {
             }
             count++
         }, 100);
+    }
+
+
+    // *****************FOR IFRAME READ CONTINUE *****************;
+    const [iframeLoading, setIframeLoading] = useState(false);
+    const [showFullFrame, setShowFullFrame] = useState(false)
+    const autoHeightHandle = async (id) => {
+
+        setShowFullFrame(!showFullFrame);
+        setIframeLoading(true)
+        try {
+            const iframe = document.getElementById('iframePostPreview' + id);
+            if (iframe.style.display == 'none') {
+                iframe.style.display = 'block'
+            }
+            else {
+                iframe.style.display = 'none'
+            }
+            let count = 0
+            const showIframe = setInterval(() => {
+                iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+
+                if (count === 6) {
+                    clearInterval(showIframe)
+                }
+                count++
+            }, 100);
+
+
+            setIframeLoading(false)
+        }
+        catch {
+            setIframeLoading(false)
+        }
+
     }
     return (
         <div className=' shadowEachPost rounded-sm p-4 sm:p-5 bg-gray-50' >
@@ -92,17 +126,24 @@ const Default = ({ post, refetch }) => {
 
                                 <div>
                                     <button
-                                        className='relative overflow-hidden w-full btn-lg bg-[#ebebeb] rounded-sm'
-                                        onClick={() => router.replace(`/blog/post/${post_id}`)}
+                                        className='relative z-10 overflow-hidden w-full btn-lg bg-primary bg-opacity-10 rounded-md'
+                                        onClick={() => autoHeightHandle(post_id)}
                                     >
-                                        Continue Reading
+                                        {
+                                            !showFullFrame ? ' Continue Reading ' : "Finish"
+                                        }
                                         <p className='absolute top-0 opacity-10 text-justify overflow-hidden whitespace-pre-line'>
                                             {showDescription}
                                         </p>
                                     </button>
                                 </div>
                             }
-                            <button onClick={showFullDescriptionHandle} className='text-blue-500 link-hover text-sm'>
+                            <button onClick={() => {
+                                showFullDescriptionHandle();
+                                const iframe = document.getElementById('iframePostPreview' + post_id);
+                                iframe.style.display = 'none'
+
+                            }} className='text-blue-500 link-hover text-sm'>
                                 &nbsp;  show {' ' + ((showDescription?.length <= 120) ? ' more' : 'less')}
                             </button>
 
@@ -113,21 +154,30 @@ const Default = ({ post, refetch }) => {
                         <ReactBtnList post={post} refetch={refetch} />
                     </div>
                 </div>
-                <div>
-                    <iframe
-                        srcDoc={iframePostFullBody}
-                        onLoad={onloadIframeHeightStylesHandle}
-                        src={'/api/preview/' + post_id}
-                        id={'iframePostPreview' + post_id}
-                        frameBorder="0"
-                        scrolling="no"
-                        height='0'
-                        className='w-full'
+            </div>
+            <div className='w-full'>
+                <iframe
+                    srcDoc={iframePostFullBody}
+                    src={'/api/preview/' + post_id}
+                    width="320"
+                    height="240"
+                    id={'iframePostPreview' + post_id}
+                    onLoad={onloadIframeHeightStylesHandle}
+                >
+                </iframe>
 
-                    >
-                    </iframe>
-                </div>
-            </div >
+                {/* <iframe
+                    srcDoc={iframePostFullBody}
+                    onLoad={onloadIframeHeightStylesHandle}
+                    src={'/api/preview/' + post_id}
+                    id={'iframePostPreview' + post_id}
+                    frameBorder="0"
+                    scrolling="no"
+                    className='w-full'
+
+                >
+                </iframe> */}
+            </div>
         </div >
     );
 };

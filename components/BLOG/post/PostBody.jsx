@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
-import Default from './post_theme/Default';
-import PostWithBody from './post_theme/PostWithBody';
+import Default from './Default';
 
 const PostBody = ({ post, refetch }) => {
     const [themePost, setThemePost] = useState("")
@@ -14,10 +13,6 @@ const PostBody = ({ post, refetch }) => {
             {
                 (themePost == 'default' || !themePost) &&
                 <Default post={post} refetch={refetch} />
-            }
-            {
-                themePost == 'post_with_body' &&
-                <PostWithBody post={post} refetch={refetch} />
             }
         </>
     );

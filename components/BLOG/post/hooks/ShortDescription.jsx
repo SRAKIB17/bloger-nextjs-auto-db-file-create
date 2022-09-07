@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import { Camera } from '../../../../ReactRSIcon';
+import { Camera } from '../../../ReactRSIcon';
 
-const PostWithBodyShortDescription = ({ postRefMode, thumbnail, short_description, postBody }) => {
+const ShortDescription = ({ postRefMode, thumbnail, short_description, postBody }) => {
     return (
         <div className='p-5 text-justify'>
             <div className='w-full'>
@@ -34,4 +34,4 @@ const PostWithBodyShortDescription = ({ postRefMode, thumbnail, short_descriptio
     );
 };
 
-export default PostWithBodyShortDescription;
+export default ShortDescription;
