@@ -11,7 +11,6 @@ const Index = () => {
   const { user_id } = router.query
   // usePrivatePageCheckUser('/profile')
 
-  const [theme, setTheme] = useState('')
  
   return (
     <div>

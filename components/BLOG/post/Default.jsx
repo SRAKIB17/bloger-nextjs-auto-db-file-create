@@ -133,7 +133,7 @@ const Default = ({ post, refetch }) => {
                                         {
                                             !showFullFrame ? ' Continue Reading ' : "Finish"
                                         }
-                               
+
                                     </button>
                                 </div>
                             }
@@ -165,17 +165,6 @@ const Default = ({ post, refetch }) => {
                 >
                 </iframe>
 
-                {/* <iframe
-                    srcDoc={iframePostFullBody}
-                    onLoad={onloadIframeHeightStylesHandle}
-                    src={'/api/preview/' + post_id}
-                    id={'iframePostPreview' + post_id}
-                    frameBorder="0"
-                    scrolling="no"
-                    className='w-full'
-
-                >
-                </iframe> */}
             </div>
         </div >
     );

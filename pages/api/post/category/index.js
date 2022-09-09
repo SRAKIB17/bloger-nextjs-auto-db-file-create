@@ -1,5 +1,5 @@
-import SocialPostBlog from "../../../components/hooks/api/social/post_blog_videos_post";
-import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTokenVerifyServer";
+import SocialPostBlog from "../../../../components/hooks/api/social/post_blog_videos_post";
+import jwtTokenVerifyServer from "../../../../components/hooks/api/verifyUser/jwtTokenVerifyServer";
 
 
 export default async function handler(req, res) {

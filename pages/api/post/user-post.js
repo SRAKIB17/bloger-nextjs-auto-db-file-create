@@ -21,23 +21,24 @@ export default async function handler(req, res) {
         const { page } = req.query;
         const { userID } = req.query
         // DEFAULT
+
         const nextPage = eval(page * show);
         const prevPage = eval((page - 1) * show);
         if (cat === 'undefined' || !cat) {
-            const getPosts = await postCollection.find({ userID: userID }).sort({ _id: -1 }).skip(prevPage).limit(nextPage).toArray();
+            const getPosts = await postCollection.find({}).sort({ _id: -1 }).skip(prevPage).limit(nextPage).toArray();
             const count = await postCollection.countDocuments({})
             return res.status(200).json({ posts: getPosts, count: count })
         }
 
         //************************************************ */
         else if (cat != 'undefined' && tag === 'undefined') {
+
             const catQuery = new RegExp(cat, 'i');
             const filter = {
                 "$and":
                     [
                         { userID: userID },
                         { category: { $regex: catQuery } },
-                        { tags: { $regex: query } }
                     ]
             }
 
@@ -61,6 +62,7 @@ export default async function handler(req, res) {
                     ]
             }
             const getPosts = await postCollection.find(filter).sort({ _id: -1 }).skip(prevPage).limit(nextPage).toArray();
+            const count = await postCollection.countDocuments(filter)
 
             return res.status(200).json({ posts: getPosts, count: count })
 

@@ -9,23 +9,19 @@ import styles from './NewPost.module.css'
 import QuickPost from './QuickPost';
 import { useQuery } from 'react-query';
 import { useRouter } from 'next/router'
-import { UserFullInfoProvider } from '../../../pages/_app';
-import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser';
+// import { UserFullInfoProvider } from '../../../pages/_app';
+// import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser';
+import TextAreaCode from './TextAreaCode';
 
 
-const NewPost = ({ props: setNewPost }) => {
-    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+const CreateNewPost = ({ props: setNewPost }) => {
+    // const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
-    usePrivatePageCheckUser(asPath)
-    const [quickVideoPost, setQuickVideoPost] = useState(false);
-    const [quickTextPost, setQuickTextPost] = useState(true);
+    // usePrivatePageCheckUser(asPath)
+
     const textareaRef = useRef();
     const jsTextareaRef = useRef()
     const cssTextareaRef = useRef()
-    function closeNewPost() {
-        // document.getElementById("newPostClose").style.width = "0";
-        setNewPost(null)
-    }
 
 
     // ---------------------------------------------JSON object sent backend-----------------------------------------
@@ -36,13 +32,7 @@ const NewPost = ({ props: setNewPost }) => {
     const postHandle = async (event) => {
         setNewPostLoading(true)
         event.preventDefault();
-        let postRefMode = '';
-        if (quickTextPost) {
-            postRefMode = 'text'
-        }
-        else if (quickVideoPost) {
-            postRefMode = 'video'
-        }
+
 
         const tags = event.target.tags.value.toLowerCase()?.split(',')?.map(tag => {
             return tag?.trim()
@@ -61,14 +51,10 @@ const NewPost = ({ props: setNewPost }) => {
             postBodyCss: cssTextareaRef.current.value,
             postBodyJs: jsTextareaRef.current.value,
             postBy: event?.target?.postBy?.value || 'user',
-            // tags: event.target.tags.value.split(','),
-            postRefMode: postRefMode,
-            //for comment react replies
             comments: [],
             react: [],
             bookmarkUserID: []
         }
-
 
 
         try {
@@ -92,8 +78,6 @@ const NewPost = ({ props: setNewPost }) => {
             else if (data?.message === 'error') {
                 setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             }
-
-
         }
         finally {
             setNewPostLoading(false)
@@ -161,8 +145,7 @@ const NewPost = ({ props: setNewPost }) => {
 
     return (
         <div>
-
-            <div id="newPostClose" className={styles.NewPostNav + ' bg-base-100'} style={{ width: '100%' }}>
+            <div id="newPostClose" className=' bg-base-100'  >
                 {
                     NewPostLoading &&
                     <div className=' w-60 mx-auto '>
@@ -173,30 +156,17 @@ const NewPost = ({ props: setNewPost }) => {
                         </div>
                     </div>
                 }
-                <a href="#" className={styles.closebtn} onClick={closeNewPost}>&times;</a>
 
                 <div>
-                    <QuickPost props={{ quickVideoPost, setQuickVideoPost, quickTextPost, setQuickTextPost, textareaRef }} />
-                </div>
-                <div>
-                    <div className='m-6 bg-info text-white p-3 rounded-md max-w-sm font-serif'>
 
-                        <p className='font-mono'>
-
-                            {
-                                quickVideoPost && <code>{` tips: .<vid or .<ifr or .<emb use for shortcut html tag.`}</code>
-
-                            }
-
-                        </p>
-                        <p>
-                            Support html and css
-
-                        </p>
-                        <p>
-                            Note: See Documentation. Help {'>'} Documentation
-                        </p>
+                    <div className='bg-info text-white text-xs  p-2 w-fit rounded-sm'>
+                        Note: See Documentation.
+                        <a href='/docs' target='_blank' className='text-primary ml-2 link-hover'>
+                            Documentation
+                        </a>
                     </div>
+
+
                     <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
                         <p className='text-red-600'>
                             {
@@ -204,7 +174,7 @@ const NewPost = ({ props: setNewPost }) => {
                             }
                         </p>
                         {
-                            isAdmin?.admin &&
+                            // isAdmin?.admin &&
                             <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs" defaultValue=''>
                                 <option value="admin">Admin</option>
                                 <option value="user" selected>User</option>
@@ -230,7 +200,7 @@ const NewPost = ({ props: setNewPost }) => {
                                 minLength='150'
                                 size='500'
                                 placeholder='Short description'
-                                className='input input-success form-control w-56 sm:w-80'
+                                className='input input-primary form-control w-56 sm:w-80'
                                 onBlur={onchangeInput}
                                 onKeyUp={(e) => disabledBtnLength(e)}
                                 onChange={onchangeInput}
@@ -244,17 +214,11 @@ const NewPost = ({ props: setNewPost }) => {
                             </textarea>
                         </div>
                         <div>
-                            {
-                                quickVideoPost ||
-                                <>
-                                    <ImageUpload props={{ setThumbnail, setThumbnailData }} />
+                            <ImageUpload props={{ setThumbnail, setThumbnailData }} />
 
-                                    <div className='shadow-md w-fit p-2'>
-                                        <img src={thumbnail} className='max-w-xs max-h-[100px] rounded-md' alt="" />
-                                    </div>
-                                </>
-                            }
-
+                            <div className='shadow-md w-fit p-2'>
+                                <img src={thumbnail} className='max-w-xs max-h-[100px] rounded-md' alt="" />
+                            </div>
                         </div>
                         <input
                             list='categories'
@@ -291,15 +255,15 @@ const NewPost = ({ props: setNewPost }) => {
                                 <kbd className="kbd">s</kbd>
                             </p> */}
                         </div>
-                        {/* <TextArea props={{ cssTextareaRef, jsTextareaRef, textareaRef }} /> */}
+                        <TextAreaCode props={{ cssTextareaRef, jsTextareaRef, textareaRef }} />
                         <input type="submit" value="Post" className='btn rounded-3xl btn-sm btn-primary text-white w-fit' disabled={disableBtn} />
                     </form>
 
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 };
 
-export default NewPost;
+export default CreateNewPost;

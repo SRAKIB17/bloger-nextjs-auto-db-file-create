@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { PreviewOff, PreviewOn } from '../ReactRSIcon';
-import classTagShortcutInput from './hooks/useFindClassAttr';
+import { PreviewOff, PreviewOn } from '../../../ReactRSIcon';
+import shortcutEmmetHtmlTagsAttr from '../../hooks/Emmet/shortcutEmmetHtmlTagsAttr';
 import styles from './TextArea.module.css';
-import useUploadCode from './Uploader/useUploadCode';
-const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => {
-
+import useUploadCodePost from '../../hooks/uploader/useUploadCodePost'
+import IframeImportDefault from '../hooks/IframeImportDefault';
+const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => {
 
     const shortcutKeyboard = (e) => {
         // setLiveView(e.target.value)
@@ -14,7 +14,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
         // setLiveView(e.target.value);
         // liveSettingAddScriptHandler()
         heightAutoHandle(e)
-        classTagShortcutInput(e, textareaRef)
+        shortcutEmmetHtmlTagsAttr(e, textareaRef)
     }
 
     const [liveOff, setLiveOff] = useState(false)
@@ -26,6 +26,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
     const [liveView, setLiveView] = useState('');
     let saveData = ''
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         saveData = JSON.parse(window.localStorage.getItem('saveBody'));
         setWindowHeight(window.innerHeight);
         setLayoutForm(window.innerWidth / 2);
@@ -158,7 +159,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
     }
 
     // UPLOAD CODE //
-    const { code, codeUploaderHandle, message } = useUploadCode();
+    const { code, codeUploaderHandle, message } = useUploadCodePost();
     useEffect(() => {
         if (htmlEdit) {
             textareaRef.current.value = code
@@ -175,7 +176,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
     const showHintUploadCodeHandler = () => {
         const getHints = document.getElementById('showCodeHints')
         if (getHints.style.display == 'block') {
-            getHints.style.display = 'none'
+            getHints.style.display = 'none';
         }
         else if (getHints.style.display == 'none' || !getHints.style.display) {
             getHints.style.display = 'block'
@@ -187,14 +188,17 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
 
 
     const liveSettingAddScriptHandler = () => {
-        const liveDocs = `
-        <style>${cssTextareaRef.current.value}</style>
-        ${textareaRef.current.value}        
-        <script>${jsTextareaRef.current.value}</script>
-        <script src="/api/styleIframe.js?js=code-copy"></script>
-        `
-        setLiveView(liveDocs)
+        const post = {
+            postBody: textareaRef.current.value,
+            postBodyCss: cssTextareaRef.current.value,
+            postBodyJs: jsTextareaRef.current.value,
+        }
+
+        const { iframePostFullBody } = IframeImportDefault({ post: post })
+
+        setLiveView(iframePostFullBody)
     }
+    
     useEffect(() => {
         textareaRef.current.value = `
 <div class="plaintext">
@@ -217,7 +221,6 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
             }
         }
     }, [])
-
 
 
 
@@ -246,14 +249,14 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                         </p>
                     </div>
                     <div className='flex gap-3 p-2 items-center'>
-                        <div className={(htmlEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-info'} onClick={() => handleCssJsHtmlEditor('html')}>
+                        <div className={(htmlEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-secondary'} onClick={() => handleCssJsHtmlEditor('html')}>
                             html
                         </div>
 
-                        <div className={(CssEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-info'} onClick={() => handleCssJsHtmlEditor('css')}>
+                        <div className={(CssEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-secondary'} onClick={() => handleCssJsHtmlEditor('css')}>
                             css
                         </div>
-                        <div className={(jsEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-info'} onClick={() => handleCssJsHtmlEditor('js')}>
+                        <div className={(jsEdit ? 'text-white disabled' : ' btn-outline  ') + ' btn btn-xs btn-secondary'} onClick={() => handleCssJsHtmlEditor('js')}>
                             js
                         </div>
                         <div className='flex items-center'>
@@ -271,7 +274,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                     </div>
                     {/* ********************UPLOAD A CODE ****************************** */}
                     <div className='flex items-center gap-3 relative'>
-                        <label className="  btn btn-primary btn-sm text-white mb-2">
+                        <label className="  btn btn-primary btn-xs font-light text-white m-2">
                             <input type="file" name="image_file" id="uploader" className='form-control absolute top-[-10000px] p-3' onChange={(e) => codeUploaderHandle(e)} />
                             <span>Select a file</span>
                         </label>
@@ -292,13 +295,13 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                     </div>
                 </div>
 
-                <div className={'flex flex-col ' + (rotate ? 'sm:flex-col' : 'sm:flex-row ')}>
+                <div className={'flex flex-col ' + (rotate ? 'sm:flex-col ' : 'sm:flex-row ')}>
                     <div
                         className={
                             styles.textareaForm + ' ' +
                             (liveOff ? styles.liveOffTextForm : '')
                         }
-                        style={{ width: `${dragging[dragging.length - 2] || layoutForm}px` }}>
+                        style={{ maxWidth: `${dragging[dragging.length - 2] || layoutForm}px`, width: '100%' }}>
 
 
                         <div id='htmlEdit'>
@@ -314,7 +317,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                                 onPaste={heightAutoHandle}
                                 onDrop={heightAutoHandle}
                                 onKeyDown={heightAutoHandle}
-                                defaultValue={saveData}
+                            // defaultValue={saveData}
                             >
 
                             </textarea>
@@ -332,7 +335,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                                 onPaste={heightAutoHandle}
                                 onDrop={heightAutoHandle}
                                 onKeyDown={heightAutoHandle}
-                                defaultValue={saveData}
+                            // defaultValue={saveData}
                             >
 
                             </textarea>
@@ -377,7 +380,7 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
                             + (liveOff ? styles.liveOff : ' ')
                         }
 
-                        style={{ width: (rotate ? (windowWidth - 200) : `${windowWidth - dragging[dragging.length - 2] || layoutForm}px`) }}
+                        style={{ maxWidth: (rotate ? (windowWidth - 200) : `${(windowWidth - dragging[dragging.length - 2] || layoutForm)}px`), width: '100%' }}
                     >
                         <iframe
                             allow="fullscreen"
@@ -395,4 +398,4 @@ const TextArea = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => 
     );
 };
 
-export default TextArea;
+export default TextAreaCode;

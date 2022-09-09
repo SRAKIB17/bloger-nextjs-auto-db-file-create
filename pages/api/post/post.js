@@ -46,6 +46,7 @@ export default async function handler(req, res) {
             const filter = {
                 "$and":
                     [
+                        
                         { category: { $regex: catQuery } },
                         { tags: { $regex: query } }
                     ]

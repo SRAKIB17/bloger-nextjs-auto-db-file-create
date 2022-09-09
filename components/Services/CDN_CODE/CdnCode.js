@@ -8,12 +8,13 @@ const CdnCode = () => {
     const [cdn, setCdn] = useState('All');
     const { user, user_details } = useContext(UserFullInfoProvider)
     // usePrivatePageCheckUser('/profile');
+  
     return (
         <div className='pt-2'>
 
             <div>
                 <div>
-                    <div className='flex gap-2  flex-col items-center'>
+                    <div className='flex gap-2  flex-col items-center '>
                         <div>
                             <h1 className='font-extrabold text-center text-[18px] text-primary underline'>
                                 CONTENT DELIVERY NETWORK (CDN) CODE:

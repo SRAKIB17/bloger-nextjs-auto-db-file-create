@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const IframeImportDefault = ({ post, fullIframeShow = false }) => {
-
-  const [theme, setTheme] = useState('');
+  const [theme, setTheme] = useState(null)
+  
   useEffect(() => {
-    setTheme(localStorage.getItem('heighLightTheme'))
-  }, [fullIframeShow])
+    // setTheme(localStorage.getItem('heighLightTheme'))
+  }, [])
 
 
   const { postBody, postBodyCss, postBodyJs } = post

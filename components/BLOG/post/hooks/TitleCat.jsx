@@ -4,6 +4,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { Line } from '../../../ReactRSIcon';
 import timeAgoSince from '../../hooks/function/timeAgoSince';
+import OptionList from './Option/OptionList';
 
 const TitleCat = ({ post }) => {
     const router = useRouter()
@@ -62,7 +63,7 @@ const TitleCat = ({ post }) => {
                     }
                 </span>
             </div>
-            <div>
+            <div className='flex justify-between items-center w-full'>
                 <div className='p-2'>
                     <a
                         href={`/blog/post/${post_id}`}
@@ -85,6 +86,10 @@ const TitleCat = ({ post }) => {
                             </p>
                         </span>
                     </div>
+                </div>
+
+                <div>
+                    <OptionList post={post} />
                 </div>
             </div>
         </div >

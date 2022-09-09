@@ -16,38 +16,51 @@ export default async function handler(req, res) {
         const { cat } = await req.query;
         const { show } = req.query;
         const { tag } = req.query;
+        const { page } = req.query;
+
+        const nextPage = eval(page * show);
+        const prevPage = eval((page - 1) * show);
 
         if (cat === 'undefined' || !cat) {
-            const getPosts = await postCollection.find({ postBy: "admin" }).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
-            return res.status(200).json(getPosts)
+            const getPosts = await postCollection.find({ postBy: "admin" }).sort({ _id: -1 }).skip(prevPage).limit(nextPage).toArray();
+            const count = await postCollection.countDocuments({ postBy: "admin" })
+            return res.status(200).json({ posts: getPosts, count: count })
         }
         //************************************************ */
 
         // ONLY CATEGORY
         else if (cat != 'undefined' && tag === 'undefined') {
-            const getPosts = await postCollection.find({
+            const catQuery = new RegExp(cat, 'i');
+            const filter = {
                 "$and":
                     [
-                        { category: cat },
+                        { category: { $regex: catQuery } },
                         { postBy: 'admin' }
                     ]
-            }).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
-            return res.status(200).json(getPosts)
+            }
+            const getPosts = await postCollection.find(filter).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
+            const count = await postCollection.countDocuments(filter)
+            return res.status(200).json({ posts: getPosts, count: count })
+
         }
         //************************************************ */
-        
+
         // CATEGORY AND ADMIN POST AND TAGS
         else if (cat != 'undefined' && tag != 'undefined') {
+            const catQuery = new RegExp(cat, 'i');
             const query = new RegExp(tag, 'i');
-            const getPosts = await postCollection.find({
+            const filter = {
                 "$and":
                     [
-                        { category: cat },
+                        { category: { $regex: catQuery } },
                         { tags: { $regex: query } },
                         { postBy: 'admin' }
                     ]
-            }).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
-            return res.status(200).json(getPosts)
+            }
+            const getPosts = await postCollection.find(filter).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray();
+            const count = await postCollection.countDocuments(filter)
+            return res.status(200).json({ posts: getPosts, count: count })
+
         }
         //************************************************ */
 
