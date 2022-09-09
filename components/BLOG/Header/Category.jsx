@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useQuery } from 'react-query';
 import LoadingSpin from '../../LoadingSpin';
@@ -11,24 +12,19 @@ const Category = () => {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
     ))
-    const badge = [' btn-primary', ' btn-secondary', ' btn-accent', ' btn-info', ' btn-warning', ' btn-accent', ' btn-success'];
 
-    const showTagsHandleMouseEnter = (id, event) => {
-        try {
-            if (event.type === 'mouseenter') {
-                document.getElementById('category' + id).style.height = '100%'
-            }
-            else if (event.type === 'mouseleave') {
-                document.getElementById('category' + id).style.height = '0px'
-            }
-        }
-        catch {
+    const router = useRouter()
 
-        }
+    const navigate = path => {
+        router.replace(path)
     }
+    const { cat, tag, page } = router.query;
+
+
+
     return (
         <>
-            <ul className="menu  flex-col gap-1 bg-base-100 p-4">
+            <ul className="menu  gap-1 bg-primary p-4">
 
                 {
                     isLoading ?
@@ -38,8 +34,9 @@ const Category = () => {
                         :
                         data?.data?.map((i, index) =>
 
+
                             <div key={i} >
-                                <div className="collapse collapse-arrow bg-base-100  rounded-sm">
+                                <div className="collapse collapse-arrow bg-base-100  rounded-sm w-56">
                                     <input
                                         type="checkbox"
                                         className='peer' />
@@ -52,21 +49,31 @@ const Category = () => {
                                         className="collapse-content bg-primary text-primary-content  peer-checked:bg-base-100 peer-checked:text-base-content"
                                     >
                                         <ul
-                                            className="menu bg-base-100 w-full"
+                                            className="menu w-full "
                                         >
-                                            <li className='flex flex-wrap gap-2 ml-6 p-2'>
-                                                {
-                                                    i?.tags?.map(tag =>
+                                            <li>
+                                                <button
+                                                    onClick={() => navigate(`/blog/post?cat=${i?.category}`)}
+                                                >
+                                                    {
+                                                        i.category
+                                                    }
+                                                </button>
+                                            </li>
+                                            {
+                                                i?.tags?.map(tag =>
+                                                    <li
+                                                        key={tag}
+                                                    >
                                                         <a
-                                                            onClick={() => navigate(`/story?cat=${i?.category}&tag=${tag}`)}
-                                                            key={tag}
-                                                            className={"btn btn-xs btn-outline cursor-pointer " + badge[Math.floor(Math.random() * badge.length)]}
+                                                            onClick={() => navigate(`/ blog / post ? cat = ${i?.category}&tag=${tag}`)}
+                                                            className={" cursor-pointer btn-ghost "}
                                                         >
                                                             {tag}
                                                         </a>
-                                                    )
-                                                }
-                                            </li>
+                                                    </li>
+                                                )
+                                            }
                                         </ul>
                                     </div>
                                 </div>
