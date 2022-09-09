@@ -203,11 +203,11 @@ const Comment_textarea = ({ post, refetch, showCommentState, setShowComment }) =
                         </div>
                     }
                     <div className='pl-1'>
-                        {
+                        {/* {
                             (!user?.user && showCommentState) &&
                             <Login />
                             // <GuestCommentLikeLogin />
-                        }
+                        } */}
                     </div>
                 </div>
             </div>

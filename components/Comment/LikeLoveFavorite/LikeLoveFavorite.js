@@ -189,10 +189,10 @@ const LikeLoveFavorite = ({ props: { showCommentHandle, post, refetch, setShowRe
                     (user?.user && showReactUserState) &&
                     <LikeUserList post={post} />
                 }
-                {
+                {/* {
                     (!user?.user && showReactUserState) &&
                     <Login />
-                }
+                } */}
             </div>
 
             <div className='relative border-b p-2 border-t z-50 bg-base-100'>
