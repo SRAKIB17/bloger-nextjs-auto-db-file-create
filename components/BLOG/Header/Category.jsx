@@ -66,7 +66,7 @@ const Category = () => {
                                                         key={tag}
                                                     >
                                                         <a
-                                                            onClick={() => navigate(`/ blog / post ? cat = ${i?.category}&tag=${tag}`)}
+                                                            onClick={() => navigate(`/blog/post?cat=${i?.category}&tag=${tag}`)}
                                                             className={" cursor-pointer btn-ghost "}
                                                         >
                                                             {tag}
