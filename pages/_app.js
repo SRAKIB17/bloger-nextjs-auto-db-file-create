@@ -9,6 +9,7 @@ const queryClient = new QueryClient();
 import { useState, createContext } from 'react'
 import useUserCheck from '../components/hooks/checkUser/useUserCheck';
 import HeaderBlog from '../components/BLOG/Header/HeaderBlog';
+import Footer from '../components/BLOG/Footer/Footer';
 
 export const UserFullInfoProvider = createContext()
 function MyApp({ Component, pageProps }) {
@@ -24,7 +25,9 @@ function MyApp({ Component, pageProps }) {
           <div className='sm:p-4 md:pr-4 md:pl-4 xl:pr-28 xl:pl-28'>
             <Component {...pageProps} />
           </div>
-
+          <div>
+            <Footer />
+          </div>
         </div>
       </QueryClientProvider>
     </UserFullInfoProvider.Provider>

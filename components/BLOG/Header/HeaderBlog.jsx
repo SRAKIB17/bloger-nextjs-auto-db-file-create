@@ -4,7 +4,7 @@ import MenuHeader from './MenuHeader';
 import ProfilePicHeader from './ProfilePicHeader';
 
 const HeaderBlog = () => {
-    autoJwtTokenGenerateForUserOrGuest()
+    autoJwtTokenGenerateForUserOrGuest();
     return (
         <div>
             <div className="navbar bg-primary h-10 xl:pl-10 xl:pr-2">

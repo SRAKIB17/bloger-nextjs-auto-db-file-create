@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useContext } from 'react';
 import Header from '../../components/Header/Header';
-import Login from '../../components/Login/Login';
 import { useRouter } from 'next/router';
 import LoadingSpin from '../../components/LoadingSpin';
 import { UserFullInfoProvider } from '../_app';
+import RegisterFormFixed from '../../components/BLOG/Login/RegisterFormFixed';
 
 const index = () => {
     const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
@@ -32,11 +32,10 @@ const index = () => {
         navigate('/')
     }
     return (
-        <div className='w-full h-full bg-base-100'>
-            <Header />
+        <div className='w-full h-full bg-base-100 m-4'>
             {
                 user?.user ||
-                <Login />
+                <RegisterFormFixed />
             }
 
         </div>

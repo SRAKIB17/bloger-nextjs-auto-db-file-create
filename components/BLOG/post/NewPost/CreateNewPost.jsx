@@ -8,16 +8,20 @@ import ImageUpload from './ImageUpload';
 import styles from './NewPost.module.css'
 import QuickPost from './QuickPost';
 import { useQuery } from 'react-query';
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 // import { UserFullInfoProvider } from '../../../pages/_app';
 // import usePrivatePageCheckUser from '../../hooks/checkUser/privatePageCheckUser';
 import TextAreaCode from './TextAreaCode';
+import { UserFullInfoProvider } from '../../../../pages/_app';
+import usePrivatePageCheckUser from '../../../hooks/checkUser/privatePageCheckUser';
+import LoadingSpin from '../../../LoadingSpin';
 
 
 const CreateNewPost = ({ props: setNewPost }) => {
-    // const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    const router = useRouter()
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
-    // usePrivatePageCheckUser(asPath)
+    usePrivatePageCheckUser(asPath)
 
     const textareaRef = useRef();
     const jsTextareaRef = useRef()
@@ -71,6 +75,7 @@ const CreateNewPost = ({ props: setNewPost }) => {
                 setNewPost(null)
                 if (data?.result?.acknowledged) {
                     event.target.reset()
+                    router.replace('/blog/post/')
                     setThumbnail('')
                     setNewPost(null)
                 }
@@ -136,15 +141,18 @@ const CreateNewPost = ({ props: setNewPost }) => {
 
     // ***************************************for category **********************
 
-    const { data } = useQuery(['categoryAll'], () => axios.get(`/api/category`,
+    const { data } = useQuery(['categoryAll'], () => axios.get(`/api/post/category`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
     ))
     const categoryPattern = data?.data?.map(i => i?.category).join('|')
+    if (!user?.user) {
+        return <LoadingSpin />
+    }
 
     return (
-        <div>
+        <div className='m-6'>
             <div id="newPostClose" className=' bg-base-100'  >
                 {
                     NewPostLoading &&
@@ -167,7 +175,7 @@ const CreateNewPost = ({ props: setNewPost }) => {
                     </div>
 
 
-                    <form action="" onSubmit={postHandle} className='flex flex-col gap-2 m-10'>
+                    <form action="" onSubmit={postHandle} className='flex flex-col gap-4'>
                         <p className='text-red-600'>
                             {
                                 errMsg
@@ -175,7 +183,7 @@ const CreateNewPost = ({ props: setNewPost }) => {
                         </p>
                         {
                             // isAdmin?.admin &&
-                            <select name="postBy" id="selectPostBy" className="select select-primary w-full max-w-xs" defaultValue=''>
+                            <select name="postBy" id="selectPostBy" className="select border-primary w-full max-w-xs" defaultValue=''>
                                 <option value="admin">Admin</option>
                                 <option value="user" selected>User</option>
                             </select>
@@ -185,7 +193,7 @@ const CreateNewPost = ({ props: setNewPost }) => {
                             type="text"
                             name="title"
                             id="PostTitle"
-                            className='input input-primary form-control w-56 sm:w-80'
+                            className='input border-primary form-control w-56 sm:w-80'
                             placeholder='Title'
                             required
                         />
@@ -200,7 +208,7 @@ const CreateNewPost = ({ props: setNewPost }) => {
                                 minLength='150'
                                 size='500'
                                 placeholder='Short description'
-                                className='input input-primary form-control w-56 sm:w-80'
+                                className='input border-primary form-control w-56 sm:w-80'
                                 onBlur={onchangeInput}
                                 onKeyUp={(e) => disabledBtnLength(e)}
                                 onChange={onchangeInput}
@@ -225,7 +233,7 @@ const CreateNewPost = ({ props: setNewPost }) => {
                             type="text"
                             name="category"
                             id="category"
-                            className='input input-primary form-control w-56 sm:w-80'
+                            className='input border-primary form-control w-56 sm:w-80'
                             placeholder='Category'
                             // pattern={categoryPattern}
                             // title={'Must be ' + (data?.data?.map(i => i?.category))}
@@ -244,7 +252,7 @@ const CreateNewPost = ({ props: setNewPost }) => {
                                 type="text"
                                 name="tags"
                                 id="tags"
-                                className='input input-primary form-control w-56 sm:w-80'
+                                className='input border-primary form-control w-56 sm:w-80'
                                 placeholder='Tags (separate with comma)'
                                 required
                             />

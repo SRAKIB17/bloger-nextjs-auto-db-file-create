@@ -11,7 +11,7 @@ import ProfilePicture from './ProfilePicture';
 import DownloadApk from './DownloadApk';
 import useCommonWindowResizeHeaderComponent from './CommonWindowResizeHeaderComponent';
 
-import LoginAutoShow from '../Login/LoginAutoShow';
+import LoginAutoShow from '../BLOG/Login/LoginAutoShow';
 import autoJwtTokenGenerateForUserOrGuest from '../hooks/autoJwtTokenGenerateForUserOrGuest';
 import { UserFullInfoProvider } from '../../pages/_app';
 const Header = () => {

@@ -46,13 +46,13 @@ export default async function handler(req, res) {
             const filter = {
                 "$and":
                     [
-                        
+
                         { category: { $regex: catQuery } },
                         { tags: { $regex: query } }
                     ]
             }
             const getPosts = await postCollection.find(filter).sort({ _id: -1 }).skip(prevPage).limit(nextPage).toArray();
-
+            const count = await postCollection.countDocuments(filter)
             return res.status(200).json({ posts: getPosts, count: count })
 
         }

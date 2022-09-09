@@ -307,7 +307,7 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
                         <div id='htmlEdit'>
                             <textarea ref={textareaRef}
                                 id='textForm'
-                                className='input input-primary w-full font-mono'
+                                className='input border-primary w-full font-mono'
                                 name="postBody"
                                 onBlur={onchangeInput}
                                 onKeyUp={(e) => shortcutKeyboard(e)}
@@ -325,7 +325,7 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
                         <div id='cssEdit' className='hidden'>
                             <textarea ref={cssTextareaRef}
                                 id='textForm'
-                                className='input input-primary w-full font-mono'
+                                className='input border-primary w-full font-mono'
                                 name="postBody"
                                 onBlur={onchangeInput}
                                 onKeyUp={(e) => shortcutKeyboard(e)}
@@ -343,7 +343,7 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
                         <div id='jsEdit' className='hidden'>
                             <textarea ref={jsTextareaRef}
                                 id='textForm'
-                                className='input input-primary w-full font-mono'
+                                className='input border-primary w-full font-mono'
                                 name="postBody"
                                 onBlur={onchangeInput}
                                 onKeyUp={(e) => shortcutKeyboard(e)}

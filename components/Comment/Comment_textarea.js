@@ -4,8 +4,6 @@ import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 import styles from './Comment.module.css'
 import LikeLoveFavorite from './LikeLoveFavorite/LikeLoveFavorite';
 import CommentList from './CommentList';
-import GuestCommentLikeLogin from '../Login/GuestCommentLikeLogin';
-import Login from '../Login/Login'
 import { UserFullInfoProvider } from '../../pages/_app';
 import axios from 'axios';
 import EmojiGifIndex from './EmojiGif/EmojiGifIndex';

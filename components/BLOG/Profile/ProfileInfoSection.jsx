@@ -17,6 +17,7 @@ const ProfileInfoSection = ({ user_id }) => {
         }));
     const user_details = userInfo?.data?.data?.user_details;
     const isLoadingAbout = userInfo?.isLoading;
+    console.log(user_id)
     return (
         <div className='p-4'>
             <div>
@@ -109,11 +110,11 @@ const ProfileInfoSection = ({ user_id }) => {
                                     {
                                         Boolean(user_details?.instagram) &&
                                         <a href={user_details?.instagram} target="_blank" rel="noreferrer">
-                                            <img src="/svg/Instagram.svg" alt="" className='w-4 h-4'/>
+                                            <img src="/svg/Instagram.svg" alt="" className='w-4 h-4' />
                                         </a>
                                     }
 
-                                 
+
                                 </div>
 
                                 <div>

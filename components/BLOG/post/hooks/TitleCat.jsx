@@ -23,11 +23,23 @@ const TitleCat = ({ post }) => {
         }));
     const comment_user_details = userInfo?.data?.data?.user_details;
     const commentUserLoading = userInfo?.isLoading;
+    const path = router?.asPath?.split('/')
+    const pathCheck = (path?.length == 4 && path[2] == 'post')
 
     return (
-        <div className='flex flex-col justify-start items-start md:green '>
+        <div className='flex flex-col justify-start items-start md:green'>
             <div className='flex items-center gap-[2px] sm:gap-1 flex-wrap pl-1 text-secondary'>
-                <button className='btn btn-ghost btn-xs  link-hover   '>
+                <button className='btn btn-ghost btn-xs  link-hover   '
+                    onClick={() => {
+                        if (pathCheck) {
+                            navigate(`/blog/post/?cat=${category}`)
+
+                        }
+                        else {
+                            navigate(`?cat=${category}`)
+                        }
+                    }}
+                >
                     {category}
                 </button>
 
@@ -45,8 +57,8 @@ const TitleCat = ({ post }) => {
                                     key={index + tag + category}
                                     className=' btn btn-ghost btn-xs   link-hover  '
                                     onClick={() => {
-                                        if ("pathCheck") {
-                                            navigate(`/story/?cat=${category}&tag=${tag}`)
+                                        if (pathCheck) {
+                                            navigate(`/blog/post/?cat=${category}&tag=${tag}`)
 
                                         }
                                         else {

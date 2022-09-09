@@ -4,9 +4,7 @@ import ShareOption from './ShareOption';
 import { useRouter } from 'next/router';
 import styles from './LikeTransition.module.css'
 import LikeUserList from './LikeUsersList';
-import GuestCommentLikeLogin from '../../Login/GuestCommentLikeLogin';
 
-import Login from '../../Login/Login';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import axios from 'axios';
 import BookmarkPost from '../BookmarkPost';

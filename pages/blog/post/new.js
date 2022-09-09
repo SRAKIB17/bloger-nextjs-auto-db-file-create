@@ -3,7 +3,7 @@ import CreateNewPost from '../../../components/BLOG/post/NewPost/CreateNewPost';
 
 const Index = () => {
     return (
-        <div>
+        <div className='mt-4'>
             <CreateNewPost/>
         </div>
     );

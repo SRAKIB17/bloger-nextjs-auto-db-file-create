@@ -22,9 +22,10 @@ const ProfilePicHeader = () => {
     return (
         <div>
             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-                {/* <div className="w-10 rounded-full">
-                    {
-                        user?.user ||
+                {
+                    user?.user ||
+                    <div className="w-10 rounded-full">
+
                         <button onClick={() => navigate('/login?return_url=' + router.asPath)}>
                             <img
                                 src='/maleAvatar.png'
@@ -32,10 +33,10 @@ const ProfilePicHeader = () => {
                                 className='w-full bg-base-100'
                             />
                         </button>
-                    }
-                </div> */}
+                    </div>
+                }
                 {
-                    // user?.user &&
+                    user?.user &&
                     <div className="w-10 rounded-full">
                         {
                             (user_details?.profile == '') ?
@@ -54,7 +55,7 @@ const ProfilePicHeader = () => {
                 }
             </label>
             {
-                // user?.user &&
+                user?.user &&
                 <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li>
                         <button
@@ -96,7 +97,7 @@ const ProfilePicHeader = () => {
                             </span>
                         </button>
                     </li>
-                    
+
                     <li>
                         <button
                             className=' flex gap-2 '

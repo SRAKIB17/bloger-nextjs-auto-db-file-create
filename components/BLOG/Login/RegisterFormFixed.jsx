@@ -1,12 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useContext, useState } from 'react';
-import bgLogin from '../../public/loginBg.jpg'
 import axios from 'axios'
 import { useRouter } from 'next/router';
-import LoadingFlowCircle from '../LoadingFlowCircle';
 
-import private_access_token_client from '../hooks/api/verifyUser/private_access_token_client';
-import { PreviewOff, PreviewOn } from '../ReactRSIcon';
-import { UserFullInfoProvider } from '../../pages/_app';
+
+import { PreviewOff, PreviewOn } from '../../ReactRSIcon';
+import { UserFullInfoProvider } from '../../../pages/_app';
+import LoadingFlowCircle from '../../LoadingFlowCircle';
+import Email from './Email';
+import Password from './Password';
+import NameGender from './NameGender';
+
 
 const RegisterFormFixed = () => {
     const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
@@ -35,7 +39,7 @@ const RegisterFormFixed = () => {
         }
         else {
             setCheckingEmail(true)
-            e.target.className = 'input rounded-3xl input-bordered input-warning w-full text-warning'
+            e.target.className = 'input rounded-3xl input-bordered input-secondary w-full text-secondary'
         }
 
     }
@@ -51,7 +55,7 @@ const RegisterFormFixed = () => {
         }
         else {
             setCheckingPassWord(true)
-            e.target.className = 'input rounded-3xl input-bordered input-warning w-full text-warning'
+            e.target.className = 'input rounded-3xl input-bordered input-secondary w-full text-secondary'
         }
 
     }
@@ -65,7 +69,6 @@ const RegisterFormFixed = () => {
     const loginOrRegisterHandler = async (e) => {
         setLoginLoading(true)
         e.preventDefault()
-        const { login_api_token } = private_access_token_client()
         const email = e.target.email.value.toLowerCase();
         const password = e.target.password.value;
         let data = undefined;
@@ -114,17 +117,14 @@ const RegisterFormFixed = () => {
     }
 
 
-    // FOR SHOW PASSWORD HANDLER USESTATE;
-    const [showPass, setShowPass] = useState(false)
-    const showPasswordHandler = () => {
-        setShowPass(!showPass)
-    }
+
     return (
-        <div>
-            <div id="loginFixedForm"
-                style={{ backgroundImage: `url(${bgLogin?.src})`, backgroundSize: 'cover' }}
-            >
-                <div className='max-w-xl mx-auto shadow-2xl p-4 ' >
+        <div className='flex items-center '>
+            <div className='hidden md:block md:w-[50%]'>
+                <img src={register ? "/login/sign_in.svg" : '/login/sign_up.svg'} alt="" className='w-full' />
+            </div>
+            <div id="loginFixedForm" className='w-full mt-4 md:w-[50%] '>
+                <div>
                     {/* FOR LOADING FOR LOGIN */}
                     {
                         loginLoading &&
@@ -136,13 +136,13 @@ const RegisterFormFixed = () => {
                     }
                     <div>
                         <div className="w-full max-w-[400px] mx-auto h-[100vh] lg:max-w-xl">
-                            <h1 className='text-center text-2xl font-bold text-white'>
+                            <h1 className='text-center text-2xl font-bold text-primary'>
                                 {
-                                    register ? 'Login' : 'Register'
+                                    register ? 'Sign In' : 'Register'
                                 }
                             </h1>
                             <div className='p-8'>
-                                <form className=" flex gap-2 flex-col " onSubmit={loginOrRegisterHandler}>
+                                <form className=" flex gap-4 flex-col " onSubmit={loginOrRegisterHandler}>
                                     <p className='text-red-300'>
                                         {
                                             errMsg
@@ -151,55 +151,15 @@ const RegisterFormFixed = () => {
                                     {
                                         register ||
                                         <>
-
-                                            <div>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Name"
-                                                    id='name'
-                                                    className="input rounded-3xl input-bordered input-primary w-full"
-                                                    required
-                                                />
-                                            </div>
-                                            <div className='flex gap-1 items-center'>
-                                                <select id='Gender' name='gender' className="rounded-3xl select select-primary select-bordered select-md w-full" required>
-                                                    <option value='Male'>Male</option>
-                                                    <option value='Female'>Female</option>
-                                                </select>
-                                            </div>
+                                            <NameGender />
                                         </>
                                     }
-                                    <div>
-                                        <input
-                                            type="email"
-                                            placeholder="email"
-                                            id='email'
-                                            onKeyUp={emailCheckHandler}
-                                            className="input rounded-3xl input-bordered input-primary w-full"
-                                            required
-                                        />
-                                    </div>
-                                    <div className='relative'>
-                                        <input
-                                            onKeyUp={PasswordCheckHandler}
-                                            type={showPass ? 'text' : "password"}
-                                            id='password'
-                                            placeholder="password"
-                                            className="input rounded-3xl input-bordered input-primary w-full"
-                                            required
-                                        />
-                                        <div className='absolute top-[30%] right-0 mr-5'>
-                                            <div className='cursor-pointer' onClick={showPasswordHandler}>
-                                                {
 
-                                                    showPass ? <PreviewOff size='20' /> : <PreviewOn size='20' />
-                                                }
-                                            </div>
-                                        </div>
+                                    <Email emailCheckHandler={emailCheckHandler} />
+                                    <Password PasswordCheckHandler={PasswordCheckHandler} />
 
-                                    </div>
                                     <div className="flex flex-col">
-                                        <button className="btn btn-primary rounded-3xl font-light text-lg text-white" disabled={checkingEmail || checkingPassword}>
+                                        <button className={((checkingEmail || checkingPassword) ? 'btn-disabled bg-gray-600' : "") + " btn btn-primary rounded-3xl text-lg text-white font-light"} >
                                             {
                                                 register ? 'Login' : 'Register'
                                             }
@@ -209,14 +169,14 @@ const RegisterFormFixed = () => {
                                 {
                                     register &&
                                     <label className="label">
-                                        <button className="text-sm label-text-alt link-hover text-white font-light">
+                                        <button className="text-sm label-text-alt link-hover text-primary font-light">
                                             Forgot password? (this is coming soon)
                                         </button>
                                     </label>
                                 }
                                 <label className="label">
 
-                                    <button onClick={registerHandleButton} className="text-sm label-text-alt link-hover text-white font-light">
+                                    <button onClick={registerHandleButton} className="text-sm label-text-alt link-hover text-primary font-light">
                                         {
                                             !register ? "Already have an account →" : " Create a account →"
                                         }
@@ -229,7 +189,6 @@ const RegisterFormFixed = () => {
                 </div>
 
             </div>
-
         </div>
     );
 };
