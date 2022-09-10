@@ -13,17 +13,17 @@ const UpdateProfilePicture = ({ setShowPage }) => {
     const [profileThumbnail, setProfileThumbnail] = useState('')
 
 
-    const [errMsg, setErrMsg] = useState('')
+    const [errMsg, setErrMsg] = useState('');
+    const [uploading, setUploading] = useState(true)
     const uploadCoverProfilePicHandler = async (e) => {
         e.preventDefault()
-
+        setUploading(true)
 
         const updateForm = {
             userID: user_details?.userID,
             cover: coverThumbnail || user_details?.cover,
             profile: profileThumbnail || user_details?.profile
         }
-        console.log(updateForm)
 
         // PUT SERVER AND SAVE USER COVER AND PROFILE PICTURE//
         const { data } = await axios.put('/api/profile/update_profile', updateForm, {
@@ -32,18 +32,18 @@ const UpdateProfilePicture = ({ setShowPage }) => {
 
         if (data?.message === 'success') {
             setErrMsg('')
-            setUploadMethod(null)
-            location.reload()
+            setShowPage('post')
         }
         if (data?.message === 'error') {
             setErrMsg(data?.error)
         }
-
+        setUploading(false)
     }
     return (
         <div>
 
-            <div>
+            <div className='relative'>
+
 
                 <div className="mt-10">
                     <h1 className='text-primary text-xl font-bold text-center mb-1'>
@@ -59,7 +59,15 @@ const UpdateProfilePicture = ({ setShowPage }) => {
                         <button className='btn btn-sm m-4 btn-primary text-white'>Save</button>
                     </form>
                 </div>
-
+                {
+                    uploading &&
+                    <div>
+                        <div className='flex justify-center pt-8 mb-8 overflow-hidden'>
+                            <div className='animate-spin text-center absolute top-60 border-l-4 w-28 h-28 rounded-[50%] border-primary'>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     );
