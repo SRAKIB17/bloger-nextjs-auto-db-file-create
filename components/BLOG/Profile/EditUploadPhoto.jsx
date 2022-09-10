@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import CoverPhoto from './profilePicUpload/CoverPhoto';
@@ -6,7 +7,7 @@ import ProfilePic from './profilePicUpload/ProfilePic';
 
 const UpdateProfilePicture = ({ setShowPage }) => {
     const { user, user_details, isLoading } = useContext(UserFullInfoProvider);
-
+    const router = useRouter()
     const [ThumbnailData, setThumbnailData] = useState('');
 
     const [coverThumbnail, setCoverThumbnail] = useState('')
@@ -14,7 +15,7 @@ const UpdateProfilePicture = ({ setShowPage }) => {
 
 
     const [errMsg, setErrMsg] = useState('');
-    const [uploading, setUploading] = useState(true)
+    const [uploading, setUploading] = useState(false)
     const uploadCoverProfilePicHandler = async (e) => {
         e.preventDefault()
         setUploading(true)
@@ -32,7 +33,8 @@ const UpdateProfilePicture = ({ setShowPage }) => {
 
         if (data?.message === 'success') {
             setErrMsg('')
-            setShowPage('post')
+            setShowPage('post');
+            router.reload()
         }
         if (data?.message === 'error') {
             setErrMsg(data?.error)
