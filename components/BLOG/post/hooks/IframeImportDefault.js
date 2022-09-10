@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 
 const IframeImportDefault = ({ post, fullIframeShow = false }) => {
   const [theme, setTheme] = useState(null)
-  
+
   useEffect(() => {
     // setTheme(localStorage.getItem('heighLightTheme'))
   }, [])
@@ -268,6 +268,11 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
           }
        
 
+          body * :not(pre *){
+            overflow-y: auto !important;
+            overflow-x: auto !important;
+            overflow: auto !important;
+          }
           body::-webkit-scrollbar:not(pre)  {
             display: none !important;
           }

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserFullInfoProvider } from '../../../../../pages/_app';
@@ -83,6 +84,7 @@ const ReactBtnList = ({ post, refetch }) => {
                 post_id: post_id,
                 userID: user_details?.userID
             }
+
             const { data } = await axios.post(`/api/post/post-react?email=${user_details?.email}`, ratingPostId,
                 {
                     headers: {
@@ -188,21 +190,20 @@ const ReactBtnList = ({ post, refetch }) => {
                             :
                             <div>
                                 <div className='flex items-center'>
-                                    <a
-                                        href={`/blog/post/${post_id}`}
-                                        target='_blank'
+                                    <button
+                                        onClick={() => navigate(`/blog/post/${post_id}`)}
                                         title='Comment'
                                         id={'showCommentButton' + post?.post_id}
                                         className='btn relative btn-xs bg-[#DDDDDD] rounded-3xl text-[16px]  sm:text-xl'
                                         rel="noreferrer"
                                     >
                                         <span className='flex items-center gap-1'>
-                                            <Comment color='currentColor' size='16'/>
+                                            <Comment color='currentColor' size='16' />
                                             <p className='font-extralight text-sm'>
                                                 {TotalComment}
                                             </p>
                                         </span>
-                                    </a>
+                                    </button>
                                     {/* <BookmarkPost post={post} refetch={refetch}/> */}
                                 </div>
                             </div>

@@ -77,13 +77,13 @@ const TitleCat = ({ post }) => {
             </div>
             <div className='flex justify-between items-center w-full'>
                 <div className='p-2'>
-                    <a
-                        href={`/blog/post/${post_id}`}
+                    <button
+                        onClick={() => navigate(`/blog/post/${post_id}`)}
                         target='_blank'
                         className='sm:text-lg xl:text-xl text-left link-hover text-blue-600' rel="noreferrer"
                     >
                         {post_title}
-                    </a>
+                    </button>
                     <div className='mt-1 opacity-80 text-2xs sm:text-sm flex items-center gap-2'>
                         <span>
                             {timeAgo}
