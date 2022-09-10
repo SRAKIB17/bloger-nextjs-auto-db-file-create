@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useContext } from 'react';
-import Header from '../../components/Header/Header';
 import { useRouter } from 'next/router';
 import LoadingSpin from '../../components/LoadingSpin';
 import { UserFullInfoProvider } from '../_app';
