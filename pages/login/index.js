@@ -8,7 +8,7 @@ import RegisterFormFixed from '../../components/BLOG/Login/RegisterFormFixed';
 
 const index = () => {
     const { user, user_details, isLoading } = useContext(UserFullInfoProvider)
-    
+
     const router = useRouter();
     const { return_url } = router.query
     const navigate = (path) => {
@@ -18,7 +18,6 @@ const index = () => {
     if (isLoading) {
         return (
             <div className='bg-base-100 h-[100vh] w-full'>
-                <Header />
                 <div className='mt-40'>
                     <LoadingSpin />
                 </div>
