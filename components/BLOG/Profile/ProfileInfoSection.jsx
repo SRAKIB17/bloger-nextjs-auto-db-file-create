@@ -4,20 +4,21 @@ import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query';
 import LoadingSpin from '../../LoadingSpin';
-import { FacebookSquare, GithubSquare, LinkedinSquare } from '../../ReactRSIcon';
+import { Camera, FacebookSquare, GithubSquare, LinkedinSquare, Writing } from '../../ReactRSIcon';
 import AboutUser from './AboutUser';
+import PostSvg from './SvgComponent/PostSvg';
 import Twitter_shadow_social_tweet_media_square_blue from './SvgComponent/Twitter_shadow_social_tweet_media_square_blue';
 import Web from './SvgComponent/Web';
 import Youtube from './SvgComponent/Youtube';
 
-const ProfileInfoSection = ({ user_id }) => {
+const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) => {
+
     const userInfo = useQuery(['ProfileUser', user_id], () => axios.get(`/api/public_user_details/${user_id}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
     const user_details = userInfo?.data?.data?.user_details;
     const isLoadingAbout = userInfo?.isLoading;
-    console.log(user_id)
     return (
         <div className='p-4'>
             <div>
@@ -39,6 +40,16 @@ const ProfileInfoSection = ({ user_id }) => {
                                     <img src={user_details?.profile ? user_details?.profile : '/maleAvatar.png'} alt="profile" className='w-full h-auto bg-base-100' />
                                 </div>
                             </div>
+                            {
+                                user &&
+                                <div className='relative right-0 '>
+                                    <button className='absolute top-[-55px] right-[-10px] 2xl:top-[-64px] bg-gray-500 rounded-full w-6 h-6 text-white pl-1 p-[2px]  ring-primary '
+                                        onClick={() => setShowPage('uploadPhoto')}
+                                    >
+                                        <Camera />
+                                    </button>
+                                </div>
+                            }
                         </div>
 
                         {/* <div className="avatar offline">
@@ -54,9 +65,32 @@ const ProfileInfoSection = ({ user_id }) => {
                             <div className='ml-2'>
                                 <div>
                                     <h1 className='text-xl mb-6 font-extralight ml-4 mt-4'>{user_details?.name}</h1>
+
                                 </div>
+                                {
+                                    user &&
+                                    <div className='flex items-center gap-2 m-2'>
+                                        {
+                                            <>
+                                                <button
+                                                    onClick={() => { setShowPage('editProfile') }}
+                                                    className='btn btn-ghost'
+
+                                                >
+                                                    <Writing size='30' />
+                                                </button>
+                                                <button
+                                                    onClick={() => { setShowPage('post') }}
+                                                    className='btn btn-ghost'
+                                                >
+                                                    <PostSvg size='28' />
+                                                </button>
+                                            </>
+                                        }
+                                    </div>
+                                }
                                 {/* SOCIAL LINK */}
-                                <div className='flex gap-2 items-center ml-10'>
+                                <div className='flex gap-2 items-center m-4'>
                                     {
                                         Boolean(user_details?.facebook) &&
                                         <a href={user_details?.facebook} target="_blank" rel="noreferrer">

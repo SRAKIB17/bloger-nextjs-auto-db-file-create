@@ -159,6 +159,7 @@ const Default = ({ post, refetch }) => {
                     srcDoc={iframePostFullBody}
                     src={'/api/preview/' + post_id}
                     width="320"
+                    className='hidden'
                     height="240"
                     id={'iframePostPreview' + post_id}
                     onLoad={onloadIframeHeightStylesHandle}

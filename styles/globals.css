@@ -108,7 +108,8 @@ body::-webkit-scrollbar {
 
 
 #uploaderFile,
-#uploaderCoverProfileFile {
+#uploaderProfileFile,
+#uploaderCoverPhotoFile {
   border: 2px dashed #ccc;
   border-radius: 20px;
   max-width: 320px;
@@ -119,7 +120,8 @@ body::-webkit-scrollbar {
 
 
 #uploaderManually,
-#uploaderManuallyProfileCover {
+#uploaderProfileFile,
+#uploaderCoverPhotoFile {
   border: 2px dashed #ccc;
   border-radius: 20px;
   max-width: 320px;
@@ -129,7 +131,8 @@ body::-webkit-scrollbar {
 }
 
 #uploaderFile.highlight,
-#uploaderCoverProfileFile.highlight {
+#uploaderProfileFile.highlight,
+#uploaderCoverPhotoFile.highlight {
   border-color: purple;
 }
 

@@ -17,7 +17,7 @@ import usePrivatePageCheckUser from '../../../hooks/checkUser/privatePageCheckUs
 import LoadingSpin from '../../../LoadingSpin';
 
 
-const CreateNewPost = ({ props: setNewPost }) => {
+const CreateNewPost = () => {
     const router = useRouter()
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
@@ -72,12 +72,10 @@ const CreateNewPost = ({ props: setNewPost }) => {
 
             if (data?.message === 'success') {
                 setErrMsg(<p className='text-green-600'>Success</p>)
-                setNewPost(null)
                 if (data?.result?.acknowledged) {
                     event.target.reset()
                     router.replace('/blog/post/')
                     setThumbnail('')
-                    setNewPost(null)
                 }
             }
             else if (data?.message === 'error') {
@@ -148,7 +146,9 @@ const CreateNewPost = ({ props: setNewPost }) => {
     ))
     const categoryPattern = data?.data?.map(i => i?.category).join('|')
     if (!user?.user) {
-        return <LoadingSpin />
+        return <div className='min-h-screen'>
+            <LoadingSpin />
+        </div>
     }
 
     return (

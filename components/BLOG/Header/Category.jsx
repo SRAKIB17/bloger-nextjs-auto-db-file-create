@@ -28,8 +28,11 @@ const Category = () => {
 
                 {
                     isLoading ?
-                        <div className='bg-base-100'>
-                            <LoadingSpin />
+                        <div>
+                            <div className='flex justify-center pt-8 mb-8 overflow-hidden'>
+                                <div className='animate-spin text-center  border-l-4 w-28 h-28 rounded-[50%] border-secondary'>
+                                </div>
+                            </div>
                         </div>
                         :
                         data?.data?.map((i, index) =>
