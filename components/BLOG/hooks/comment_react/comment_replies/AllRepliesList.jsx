@@ -6,7 +6,7 @@ import timeAgoSince from '../../function/timeAgoSince';
 import CommentBodyReplies from './CommentBodyReplies';
 import Profile from './Profile';
 
-const AllRepliesList = ({ replyBody, comment_id, post_id }) => {
+const AllRepliesList = ({ replyBody, comment_id, post_id, refetch }) => {
     const { userID, time, reply, reply_id } = replyBody;
     const timeAgo = timeAgoSince(time);
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
@@ -17,7 +17,6 @@ const AllRepliesList = ({ replyBody, comment_id, post_id }) => {
     const deleteCommentHandle = async (id, comment_id, post_id) => {
         setDeleteLoading(true)
         refetch()
-        refetchReply()
         const { data } = await axios.delete(`/api/post/comments-reply-delete?email=${user_details?.email}&reply_id=${reply_id}&comment_id=${comment_id}&post_id=${post_id}`,
             {
                 headers: {
@@ -28,7 +27,6 @@ const AllRepliesList = ({ replyBody, comment_id, post_id }) => {
         );
         if (data?.message === 'success') {
             refetch()
-            refetchReply()
             // setErrMsg(<p className='text-green-600'>Success</p>)
             if (data?.result?.acknowledged) {
                 refetch()

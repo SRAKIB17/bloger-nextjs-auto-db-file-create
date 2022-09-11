@@ -73,6 +73,7 @@ const AllCommentList = ({ comment: commentBody, replySetHandle, post_id, refetch
                 }
             }
         );
+        console.log(data)
         if (data?.message === 'success') {
             refetch()
             if (data?.result?.acknowledged) {
