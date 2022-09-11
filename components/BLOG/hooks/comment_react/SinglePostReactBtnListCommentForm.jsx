@@ -53,7 +53,7 @@ const SinglePostReactBtnListCommentForm = ({ post, refetch }) => {
                 <ReactBtnList post={post} refetch={refetch} />
             </div>
 
-            <div id={'comment_replies' + post?.post_id} className='h-0 hideScrollBar border-t overflow-hidden relative'>
+            <div id={'comment_replies' + post?.post_id} className='h-0 overflow-hidden hideScrollBar border-t'>
                 {/**
                  * For comment 
                  * for react 
@@ -83,7 +83,7 @@ const SinglePostReactBtnListCommentForm = ({ post, refetch }) => {
                 user?.user ?
                     <div className='relative'>
                         <div className=''>
-                            {hideComment || <CommentHandler post_id={post?.post_id} replyNow={replyNow} setReplyNow={setReplyNow} />}
+                            {hideComment || <CommentHandler post_id={post?.post_id} replyNow={replyNow} setReplyNow={setReplyNow} refetch={refetch} />}
                         </div>
                     </div>
                     :

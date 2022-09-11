@@ -13,7 +13,7 @@ import UnlikeReact from './UnikeReact';
 const ReactBtnList = ({ post, refetch }) => {
     const { post_id } = post;
 
-    
+
     const { user, user_details } = useContext(UserFullInfoProvider)
 
     const [showShareOption, setShowShareOption] = useState(false)
@@ -134,13 +134,17 @@ const ReactBtnList = ({ post, refetch }) => {
     const pathCheck = router?.asPath?.split('/')
 
     const showCommentHandle = (id) => {
+
         const comment_replies = document.getElementById('comment_replies' + id);
-        if (comment_replies?.offsetHeight == 0) {
-            comment_replies.classList = 'h-[500px] overflow-auto'
+        if (comment_replies?.offsetHeight > 1) {
+            console.log(comment_replies?.offsetHeight)
+            comment_replies.style.height = '0px'
+            comment_replies.style.overflow = 'hidden'
 
         }
         else {
-            comment_replies.classList = 'h-0 overflow-hidden'
+            comment_replies.style.height = '100%'
+            comment_replies.style.overflow = 'hidden'
         }
 
         // showComment.style.height = '0px'

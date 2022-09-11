@@ -3,6 +3,7 @@ import SinglePostReactBtnListCommentForm from '../../hooks/comment_react/SingleP
 import TitleCat from '../hooks/TitleCat';
 import ShortDescription from '../hooks/ShortDescription';
 import SinglePostBody from './SinglePostBody';
+import Head from 'next/head';
 
 
 
@@ -13,7 +14,8 @@ const SinglePost = ({ post, refetch }) => {
 
     return (
         <div>
-            <div className=' shadowEachPost p-4 sm:p-5 bg-gray-50' >
+            <div className=' shadowEachPost p-4 sm:p-5 bg-gray-50'>
+        
                 <div>
                     <TitleCat
                         post={post}

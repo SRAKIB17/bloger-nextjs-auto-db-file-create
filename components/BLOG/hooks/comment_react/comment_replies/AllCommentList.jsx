@@ -102,13 +102,13 @@ const AllCommentList = ({ comment: commentBody, replySetHandle, post_id, refetch
                 <CommentBodyReplies comment={comment} commentBody={commentBody} />
 
                 {/*--------------- for reply count and handle show more  reply  -------------------*/}
-                <div className='flex items-center gap-1 ml-11 pb-1'>
+                <div className='flex items-center ml-11 p-1'>
                     {
                         repliesCount > 0 &&
                         <>
 
                             < button
-                                className='link link-hover link-primary flex items-center gap-1 rounded-3xl  text-secondary'
+                                className='link link-hover link-primary flex items-center gap-1 rounded-3xl btn btn-ghost btn-sm  text-secondary'
                                 onClick={() => setShowReply(!showReply)}
                             >
                                 {repliesCount + ' '}  <Comments_reply size='19' strokeWidth='1.2' />
@@ -118,19 +118,24 @@ const AllCommentList = ({ comment: commentBody, replySetHandle, post_id, refetch
 
                         </>
                     }
-                    < button
-                        className='link link-hover link-primary text-xs'
+
+                    {/* **********REPLY ********** */}
+                    <button
+                        className='link link-hover link-primary text-xs btn btn-sm btn-ghost rounded-3xl'
                         onClick={() => replyComment(post_id, comment_id, comment_user_details?.name)}
                     >
                         <Reply size='20' color='#2BD566' />
                     </button>
+
+                    {/* ***************************FOR DELETE COMMENT ************************ */}
+
                     {
                         ((userID == user_details?.userID && user?.user) || (isAdmin?.admin || user_details?.userID === post_id?.split('-')?.[1])) &&
                         <>
                             <b className='font-extrabold p-1'>.</b>
                             {deleteLoading ||
-                                < button
-                                    className='link link-hover link-primary text-xs'
+                                <button
+                                    className='link btn btn-sm btn-ghost rounded-3xl link-hover link-primary text-xs'
                                     onClick={() => deleteCommentHandle(comment_id, post_id)}
                                 >
                                     <Delete size='18' color='red' />

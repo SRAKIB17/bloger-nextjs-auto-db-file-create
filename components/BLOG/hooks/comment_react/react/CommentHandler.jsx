@@ -1,8 +1,9 @@
+import axios from 'axios';
 import React, { useContext, useRef, useState } from 'react';
 import { UserFullInfoProvider } from '../../../../../pages/_app';
 import CommentForm from '../comment_replies/CommentForm';
 
-const CommentHandler = ({ post_id, replyNow, setReplyNow }) => {
+const CommentHandler = ({ post_id, replyNow, refetch, setReplyNow }) => {
     const CommentTextareaRef = useRef();
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
 
