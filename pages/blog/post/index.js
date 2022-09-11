@@ -58,7 +58,7 @@ const Index = () => {
     return (
         <div className='grid grid-cols-12'>
             <div className='col-span-12  lg:col-span-8  2xl:col-span-8 mb-20'>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-4 min-h-screen'>
 
                     {
                         (isLoading && posts?.length > 0) ?

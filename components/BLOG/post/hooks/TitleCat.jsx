@@ -6,7 +6,7 @@ import { Line } from '../../../ReactRSIcon';
 import timeAgoSince from '../../hooks/function/timeAgoSince';
 import OptionList from './Option/OptionList';
 
-const TitleCat = ({ post }) => {
+const TitleCat = ({ post, refetch }) => {
     const router = useRouter()
     const { post_title, category, time, userID, post_id } = post
     const timeAgo = timeAgoSince(time)
@@ -101,7 +101,7 @@ const TitleCat = ({ post }) => {
                 </div>
 
                 <div>
-                    <OptionList post={post} />
+                    <OptionList post={post} refetch={refetch} />
                 </div>
             </div>
         </div >

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Delete, Writing } from '../../../../ReactRSIcon';
+import DeleteModal from './DeleteModal';
 
-const ForUserAdminOption = () => {
+const ForUserAdminOption = ({ setDeletePost, post }) => {
+    const { post_id, userID, post_title } = post
+
     return (
         <>
             {
@@ -10,17 +13,21 @@ const ForUserAdminOption = () => {
                     <li
                     // onClick={() => setEditPost(post_id)}
                     >
-                        <a>
+                        <button>
                             <Writing size='20' /> Edit Post
-                        </a>
+                        </button>
+
                     </li>
 
                     <li
                     // onClick={() => setDeletePost({ post_id, userID, post_title })}
                     >
-                        <a>
+                        <label
+                            htmlFor="DeleteModal"
+                            onClick={() => setDeletePost({ post_id, userID, post_title })}
+                        >
                             <Delete size='20' />Delete Post
-                        </a>
+                        </label>
                     </li>
                 </>
             }

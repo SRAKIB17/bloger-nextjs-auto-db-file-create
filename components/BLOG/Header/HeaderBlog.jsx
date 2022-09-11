@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import autoJwtTokenGenerateForUserOrGuest from '../../hooks/autoJwtTokenGenerateForUserOrGuest';
 import MenuHeader from './MenuHeader';
 import ProfilePicHeader from './ProfilePicHeader';
 
 const HeaderBlog = () => {
     autoJwtTokenGenerateForUserOrGuest();
+
+    useEffect(() => {
+        //**--------------------------------disabled zoom and ctrl key with F12 ------------------------------------------- */
+        window.onkeyup = (e) => {
+            if (e.key === 'F12') {
+                e.preventDefault()
+                return false
+            }
+        }
+        window.onkeydown = (e) => {
+            if (e.key === 'F12') {
+                e.preventDefault()
+                return false
+            }
+            if (e.ctrlKey == true && (e.which == '61' || e.which == '107' || e.which == '173' || e.which == '109' || e.which == '187' || e.which == '189')) {
+                e.preventDefault()
+                return false
+            }
+        }
+        window.onkeypress = (e) => {
+            if (e.key === 'F12') {
+                e.preventDefault()
+                return false
+            }
+        }
+
+        // for disabled mouse wheel
+        document.addEventListener('wheel', (event) => {
+            if (event.ctrlKey == true) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+    }, [])
     return (
         <div>
             <div className="navbar bg-primary h-10 xl:pl-10 xl:pr-2">

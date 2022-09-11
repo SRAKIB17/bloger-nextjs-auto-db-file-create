@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="footer p-10 bg-[#1F2937] text-white">
             <div>
-               <img src="/proglearn_logo.png" alt="" className='max-w-[200px] sm:max-w-xs w-full'/>
+               <img src="/proglearn_logo.png" alt="" className='max-w-[150px] sm:max-w-[200px] w-full'/>
                 <p>ProgLearn</p>
             </div>
             <div>

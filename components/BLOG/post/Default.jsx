@@ -118,6 +118,7 @@ const Default = ({ post, refetch }) => {
                 {/* **** Title And Description ************** */}
                 <div className='postDescription'>
                     <TitleCat
+                        refetch={refetch}
                         post={post}
                     />
                     <div className='text-justify  lg:ml-3'>

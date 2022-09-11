@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { UserFullInfoProvider } from '../../../../../pages/_app';
 import { Copy, Delete, Writing } from '../../../../ReactRSIcon';
+import DeleteModal from './DeleteModal';
 import ForUserAdminOption from './ForUserAdminOption';
 import GuestOption from './GuestOption';
 import Three_dots_vertical from './Three_dots_vertical';
 
-const OptionList = ({ post }) => {
+const OptionList = ({ post, refetch }) => {
+    const [deletePost, setDeletePost] = useState(null)
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+
     return (
         <div>
             <div className="dropdown dropdown-end ">
@@ -18,9 +23,20 @@ const OptionList = ({ post }) => {
                     />
                 </label>
                 <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-sm w-52">
-                    <ForUserAdminOption />
+                    <ForUserAdminOption
+                        setDeletePost={setDeletePost}
+                        post={post}
+                    />
                     <GuestOption post={post} />
                 </ul>
+
+                {/* **********FOR DELETE ***************** */}
+                {
+                    ((isAdmin?.admin || user?.user) && deletePost) &&
+                    <div className=''>
+                        <DeleteModal deletePost={deletePost} refetch={refetch} setDeletePost={setDeletePost} />
+                    </div>
+                }
             </div>
 
         </div>

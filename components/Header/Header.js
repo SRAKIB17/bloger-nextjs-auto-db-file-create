@@ -85,7 +85,7 @@ const Header = () => {
                     </div>
                     <div className="flex absolute right-0 top-2px md:static items-center ml-2 mr-2">
                         <SearchForm />
-                        < ProfilePicture />
+                        <ProfilePicture />
                     </div>
                 </div>
 

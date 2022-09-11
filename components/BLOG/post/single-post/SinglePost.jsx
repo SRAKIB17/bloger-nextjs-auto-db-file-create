@@ -19,6 +19,7 @@ const SinglePost = ({ post, refetch }) => {
                 <div>
                     <TitleCat
                         post={post}
+                        refetch={refetch}
                     />
                 </div>
                 <div>
