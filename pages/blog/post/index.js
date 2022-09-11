@@ -68,7 +68,7 @@ const Index = () => {
                             :
                             <>
                                 {
-                                    getPost?.map((post, index) => <PostBody post={post} key={index} />)
+                                    getPost?.map((post, index) => <PostBody post={post} key={index} refetch={refetch} />)
                                 }
                                 <div className={((isLoading && getPost?.length == 0) ? " " : ' shadowEachPost ') + ' rounded-sm     p-4'}>
 

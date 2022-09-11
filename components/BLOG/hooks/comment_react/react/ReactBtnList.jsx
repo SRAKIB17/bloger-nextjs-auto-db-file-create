@@ -13,6 +13,7 @@ import UnlikeReact from './UnikeReact';
 const ReactBtnList = ({ post, refetch }) => {
     const { post_id } = post;
 
+    
     const { user, user_details } = useContext(UserFullInfoProvider)
 
     const [showShareOption, setShowShareOption] = useState(false)
@@ -93,7 +94,6 @@ const ReactBtnList = ({ post, refetch }) => {
                     }
                 }
             );
-
             if (data?.message === 'success') {
                 refetch()
                 // setErrMsg(<p className='text-green-600'>Success</p>)
@@ -135,7 +135,6 @@ const ReactBtnList = ({ post, refetch }) => {
 
     const showCommentHandle = (id) => {
         const comment_replies = document.getElementById('comment_replies' + id);
-        console.log(comment_replies)
         if (comment_replies?.offsetHeight == 0) {
             comment_replies.classList = 'h-[500px] overflow-auto'
 

@@ -67,13 +67,15 @@ const MenuHeader = () => {
                             </li>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <a className="btn btn-ghost normal-case text-xl">
+                        <img src="/proglearn_logo.png" alt="" className='w-full h-full pt-1 pb-1' />
+                    </a>
                 </div>
 
 
                 <div className="navbar-center hidden lg:flex text-white">
 
-                    <ul className="menu menu-horizontal p-0">
+                    <ul className="menu menu-horizontal p-0 ml-20">
                         <li>
                             <button onClick={() => navigate('/')}>
                                 Home

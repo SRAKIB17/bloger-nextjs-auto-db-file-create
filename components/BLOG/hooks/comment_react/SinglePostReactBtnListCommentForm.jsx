@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useContext, useState } from 'react';
+import { UserFullInfoProvider } from '../../../../pages/_app';
 import autoJwtTokenGenerateForUserOrGuest from '../../../hooks/autoJwtTokenGenerateForUserOrGuest';
 import { Comment } from '../../../ReactRSIcon';
 import AllCommentList from './comment_replies/AllCommentList';
@@ -17,6 +19,7 @@ const SinglePostReactBtnListCommentForm = ({ post, refetch }) => {
 
     const { like, unlike, love, TotalComment, allReact, userList, setUserList } = returnLikeLoveCommentHook(post);
     const reactLoading = false;
+    const { user, user_details } = useContext(UserFullInfoProvider)
 
 
     // SET COMMENT BODY AND COUNT TOTAL COMMENT
@@ -33,6 +36,10 @@ const SinglePostReactBtnListCommentForm = ({ post, refetch }) => {
     }
 
     const [replyNow, setReplyNow] = useState(null);
+    const router = useRouter()
+    const navigate = (path) => {
+        router.replace(path)
+    }
     return (
         <div className='mb-10'>
             {/**
@@ -53,23 +60,46 @@ const SinglePostReactBtnListCommentForm = ({ post, refetch }) => {
                  * for comment box
                  * for replies
                  */}
-                {hideComment || <div className='mt-1'>
-                    {
-                        commentBody?.map((comment) => <AllCommentList
-                            key={comment?.comment_id}
-                            comment={comment}
-                            post_id={post?.post_id}
-                            refetch={refetch}
-                            replySetHandle={setReplyNow}
-                        />)
-                    }
-                </div>}
+                {
+                    user?.user &&
+                    <div>
+                        {hideComment ||
+                            <div className='mt-1'>
+                                {
+                                    commentBody?.map((comment) => <AllCommentList
+                                        key={comment?.comment_id}
+                                        comment={comment}
+                                        post_id={post?.post_id}
+                                        refetch={refetch}
+                                        replySetHandle={setReplyNow}
+                                    />)
+                                }
+                            </div>
+                        }
+                    </div>
+                }
             </div>
-            <div className='relative'>
-                <div className=''>
-                    {hideComment || <CommentHandler post_id={post?.post_id} replyNow={replyNow} setReplyNow={setReplyNow} />}
-                </div>
-            </div>
+            {
+                user?.user ?
+                    <div className='relative'>
+                        <div className=''>
+                            {hideComment || <CommentHandler post_id={post?.post_id} replyNow={replyNow} setReplyNow={setReplyNow} />}
+                        </div>
+                    </div>
+                    :
+                    <div className='relative p-10 '>
+                        <span className='text-red-600'>
+                            Show Comment and Access All. Please
+                        </span>
+                        <button
+                            className='btn btn-sm ml-1 btn-ghost font-light text-primary link-hover '
+                            onClick={() => navigate('/login?return_url=' + router.asPath)}
+                        >
+                            Login
+                        </button>
+                    </div>
+            }
+
         </div>
     );
 };

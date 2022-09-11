@@ -68,7 +68,7 @@ const UserPost = ({ user_id }) => {
                         :
                         <>
                             {
-                                getPost?.map((post, index) => <PostBody post={post} key={index} />)
+                                getPost?.map((post, index) => <PostBody post={post} key={index} refetch={refetch}/>)
                             }
                             <div className={((isLoading && getPost?.length == 0) ? " " : ' shadow-md  ') + ' rounded-md     p-4'}>
 
