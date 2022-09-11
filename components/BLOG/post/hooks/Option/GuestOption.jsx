@@ -43,7 +43,7 @@ const GuestOption = ({ post }) => {
                     <input
                         type="text"
                         value={copyLink}
-                        className="fixed top-[-100000px]"
+                        className="absolute top-[-100000px] left-0"
                     />
                 </a>
             </li>
@@ -62,7 +62,7 @@ const GuestOption = ({ post }) => {
                     <input
                         type="text"
                         value={apiCodeCopy}
-                        className="fixed top-[-100000px]"
+                        className="absolute top-[-100000px] left-0"
                     />
                 </a>
             </li>
