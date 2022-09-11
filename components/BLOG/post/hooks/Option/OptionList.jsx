@@ -23,10 +23,13 @@ const OptionList = ({ post, refetch }) => {
                     />
                 </label>
                 <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-sm w-52">
-                    <ForUserAdminOption
-                        setDeletePost={setDeletePost}
-                        post={post}
-                    />
+                    {
+                        (isAdmin?.admin || user?.user) &&
+                        <ForUserAdminOption
+                            setDeletePost={setDeletePost}
+                            post={post}
+                        />
+                    }
                     <GuestOption post={post} />
                 </ul>
 

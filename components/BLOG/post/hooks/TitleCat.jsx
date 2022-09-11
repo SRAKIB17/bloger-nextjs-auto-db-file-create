@@ -32,11 +32,11 @@ const TitleCat = ({ post, refetch }) => {
                 <button className='btn btn-ghost btn-xs  link-hover   '
                     onClick={() => {
                         if (pathCheck) {
-                            navigate(`/blog/post/?cat=${category}`)
+                            navigate(`/blog/post/?cat=${category}`);
 
                         }
                         else {
-                            navigate(`?cat=${category}`)
+                            navigate(`?cat=${category}`);
                         }
                     }}
                 >
