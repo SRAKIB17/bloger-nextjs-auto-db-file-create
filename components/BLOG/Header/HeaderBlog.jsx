@@ -41,7 +41,7 @@ const HeaderBlog = () => {
     }, [])
     return (
         <div>
-            <div className="navbar bg-primary h-10 xl:pl-10 xl:pr-2">
+            <div className="navbar bg-primary h-10 xl:pl-10 xl:pr-2 ">
 
                 <div className="flex-1 z-50">
                     <MenuHeader />
