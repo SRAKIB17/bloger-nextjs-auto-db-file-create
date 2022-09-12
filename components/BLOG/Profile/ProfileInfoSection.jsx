@@ -33,7 +33,7 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
                     </div>
                     <div className='relative  xl:h-20 w-24 sm:h-16 h-10'>
                         <div className='absolute top-[-60px] left-[36px] 2xl:top-[-64px] '>
-                            <div className="avatar online ">
+                            <div className="avatar ">
                                 <div
                                     className="w-24 sm:w-28 rounded-full md:w-24 xl:w-32 ring ring-gray-300 ring-offset-base-100 "
                                 >
