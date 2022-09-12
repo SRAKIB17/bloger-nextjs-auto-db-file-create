@@ -12,10 +12,24 @@ export default async function handler(req, res) {
     const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
     const accessToken = tokenDetails?.token;
     const roll = tokenDetails?.roll;
+
+
+
+
     if (accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN || accessToken === process.env.USER_CHECK_ACCESS_FEATURE) {
-        const { query } = await req.query;
+
+        const { page } = req.query;
         const { show } = req.query;
+
+        const nextPage = eval(page * show);
+        const prevPage = eval((page - 1) * show);
+        
+        const { query } = await req.query;
+
+
         const regExpQuery = new RegExp(query, 'i');
+
+
         const filter =
         {
             "$or":
@@ -32,8 +46,9 @@ export default async function handler(req, res) {
                 ]
         }
 
-        const getPosts = await postCollection.find(filter).sort({ _id: -1 }).skip(0).limit(parseInt(show)).toArray()
-        return res.status(200).json(getPosts)
+        const getPosts = await postCollection.find(filter).sort({ _id: -1 }).skip(prevPage).limit(nextPage).toArray();
+        const count = await postCollection.countDocuments(filter)
+        return res.status(200).json({ posts: getPosts, count: count })
 
         //************************************************ */
 

@@ -67,9 +67,9 @@ const MenuHeader = () => {
                             </li>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">
+                    <button  onClick={()=>navigate('/')} className="btn btn-ghost normal-case text-xl">
                         <img src="/proglearn_logo.png" alt="" className='w-full h-full pt-1 pb-1' />
-                    </a>
+                    </button>
                 </div>
 
 
