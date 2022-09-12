@@ -96,7 +96,7 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
             pre{
               overflow: scroll;
               height: 100%;
-              font-size:16px;
+            	line-height: 20px;
             }
             *::-webkit-scrollbar-thumb {
               background-color: rgb(183, 183, 183);

@@ -4,6 +4,7 @@ import { Copy, Delete, Writing } from '../../../../ReactRSIcon';
 import DeleteModal from './DeleteModal';
 import ForUserAdminOption from './ForUserAdminOption';
 import GuestOption from './GuestOption';
+import ShareOption from './ShareOption';
 import Three_dots_vertical from './Three_dots_vertical';
 
 const OptionList = ({ post, refetch }) => {
@@ -31,6 +32,7 @@ const OptionList = ({ post, refetch }) => {
                         />
                     }
                     <GuestOption post={post} />
+                    <ShareOption/>
                 </ul>
 
                 {/* **********FOR DELETE ***************** */}

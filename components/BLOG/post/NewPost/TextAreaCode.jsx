@@ -3,7 +3,7 @@ import { PreviewOff, PreviewOn } from '../../../ReactRSIcon';
 import shortcutEmmetHtmlTagsAttr from '../../hooks/Emmet/shortcutEmmetHtmlTagsAttr';
 import styles from './TextArea.module.css';
 import useUploadCodePost from '../../hooks/uploader/useUploadCodePost'
-import IframeImportDefault from '../hooks/IframeImportDefault';
+
 const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => {
 
     const shortcutKeyboard = (e) => {
@@ -188,17 +188,93 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
 
 
     const liveSettingAddScriptHandler = () => {
-        const post = {
-            postBody: textareaRef.current.value,
-            postBodyCss: cssTextareaRef.current.value,
-            postBodyJs: jsTextareaRef.current.value,
-        }
+        const
+            postBody = textareaRef.current.value,
+            postBodyCss = cssTextareaRef.current.value,
+            postBodyJs = jsTextareaRef.current.value
 
-        const { iframePostFullBody } = IframeImportDefault({ post: post })
+        const defaultTemplate =
+            `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/api/styleIframe.css?video=video" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/code_highlight_with_jquery/jhighlight/jquery.highlight.css">\
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Open+Sans:wght@300;500&family=Orbitron&family=Poppins:wght@500&display=swap');
+          html,
+          body {
+            color:black !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            font-family: 'Poppins', sans-serif;
+            text-align: justify;
+            background-color: transparent;
+          }
+       
 
-        setLiveView(iframePostFullBody)
+          body * :not(pre *){
+            overflow-y: auto !important;
+            overflow-x: auto !important;
+            overflow: auto !important;
+          }
+          body::-webkit-scrollbar:not(pre)  {
+            display: none !important;
+          }
+
+
+          body * ::-webkit-scrollbar {
+            width: 5px !important;
+            height: 10px !important;
+          }
+
+          *::-webkit-scrollbar-thumb {
+            background-color: rgb(183, 183, 183) !important;
+            border-radius: 10px !important;
+          }
+
+
+
+          .plaintext {
+            word-wrap: break-word !important;
+            white-space: pre-line !important;
+          }
+
+         
+          
+          /* ************ FOR VIDEO POST********** */
+
+          iframe,
+          video,
+          embed,
+          object {
+             width: 100% !important;
+             margin-bottom: 2px;
+             height: auto !important;
+          }
+    </style>
+    <style>
+         ${postBodyCss}
+    </style>
+</head>
+<body>
+    ${postBody}
+    <script>
+        ${postBodyJs}
+    </script>
+    <script type="text/javascript" src="/code_highlight_with_jquery/universal/jquery.js"></script>
+    <script src="/code_highlight_with_jquery/jhighlight//jquery.highlight.js"></script>
+    <script src="/code_highlight_with_jquery/index.js"></script>
+</body>
+</html>
+`
+
+        setLiveView(defaultTemplate)
     }
-    
+
     useEffect(() => {
         textareaRef.current.value = `
 <div class="plaintext">
