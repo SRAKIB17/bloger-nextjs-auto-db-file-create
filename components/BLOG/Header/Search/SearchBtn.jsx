@@ -15,7 +15,7 @@ const SearchBtn = () => {
         const getLocalSearchObj = await localStorage.getItem('search')
         if (getLocalSearchObj) {
             const searchParch = JSON.parse(getLocalSearchObj)
-            const check = await searchParch?.search?.includes(searchValue);
+            const check = await searchParch?.seacrh?.includes(searchValue);
             if (!check) {
                 searchParch?.search?.push(searchValue);
                 localStorage.setItem('search', JSON.stringify(searchParch))
