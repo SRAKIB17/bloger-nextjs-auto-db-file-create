@@ -18,7 +18,7 @@ body {
   margin: 0;
   background-color: #F0F2F5;
   overflow-x: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   /* font-weight: 300; */
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
@@ -290,3 +290,5 @@ embed {
   visibility: visible;
   opacity: 1;
 }
+
+/* ************* Not Found********** */

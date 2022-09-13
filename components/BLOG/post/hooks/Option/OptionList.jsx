@@ -25,14 +25,13 @@ const OptionList = ({ post, refetch }) => {
                 </label>
                 <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-sm w-52">
                     {
-                        (isAdmin?.admin || user?.user) &&
+                        (isAdmin?.admin || (user?.user && user_details?.userID === post?.post_id?.split('-')?.[1])) &&
                         <ForUserAdminOption
                             setDeletePost={setDeletePost}
-                            post={post}
                         />
                     }
                     <GuestOption post={post} />
-                    <ShareOption/>
+                    <ShareOption />
                 </ul>
 
                 {/* **********FOR DELETE ***************** */}

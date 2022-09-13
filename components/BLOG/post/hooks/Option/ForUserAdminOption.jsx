@@ -1,19 +1,24 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import { Delete, Writing } from '../../../../ReactRSIcon';
 import DeleteModal from './DeleteModal';
 
 const ForUserAdminOption = ({ setDeletePost, post }) => {
     const { post_id, userID, post_title } = post
+    const router = useRouter()
+    const navigate = (path) => {
+        router.replace(path)
+    }
 
     return (
         <>
             {
-                // (isAdmin?.admin || (user?.user && user_details?.userID === post_id?.split('-')?.[1])) &&
+
                 <>
                     <li
                     // onClick={() => setEditPost(post_id)}
                     >
-                        <button>
+                        <button onClick={() => navigate('/blog/post/edit/' + post?.post_id)}>
                             <Writing size='20' /> Edit Post
                         </button>
 

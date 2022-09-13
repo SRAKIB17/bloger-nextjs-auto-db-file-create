@@ -60,7 +60,7 @@ const DeleteModal = ({ deletePost, setDeletePost, refetch }) => {
                             errMsg
                         }
                     </p>
-                    <div className='flex gap-4 mt-9'>
+                    <div className='flex gap-4 mt-9 justify-center'>
                         {
                             deleteLoading ?
                                 <>
