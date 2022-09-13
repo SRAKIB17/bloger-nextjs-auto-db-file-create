@@ -102,20 +102,18 @@ const EditPost = ({ post }) => {
 
 
         try {
-            const { data } = await axios.post(`/api/post/create-post?email=${user_details?.email}`, post,
+            const { data } = await axios.put(`/api/post/update-post?email=${user_details?.email}&post_id=${post_id}&user_id=${userID}`, post,
                 {
                     headers: {
                         access_token: sessionStorage.getItem('accessAutoG'),
                         token: localStorage.getItem('token')
                     }
                 });
-
             if (data?.message === 'success') {
                 setErrMsg(<p className='text-green-600'>Success</p>)
                 if (data?.result?.acknowledged) {
                     event.target.reset()
-                    router.replace('/blog/post/')
-                    setThumbnail('')
+                    router.replace('/profile')
                 }
             }
             else if (data?.message === 'error') {
