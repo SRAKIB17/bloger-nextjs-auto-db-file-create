@@ -11,7 +11,7 @@ const SearchBtn = () => {
     const searchHandle = async (e) => {
         e.preventDefault()
         const searchValue = e.target.search.value.trim()
-
+        setShowFormMobile(false)
         const getLocalSearchObj = await localStorage.getItem('search')
         if (getLocalSearchObj) {
             const searchParch = JSON.parse(getLocalSearchObj)
