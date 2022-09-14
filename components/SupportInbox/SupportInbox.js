@@ -13,7 +13,6 @@ import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 import { useRouter } from 'next/router'
 import EmojiGifIndex from '../Comment/EmojiGif/EmojiGifIndex';
 import LoadingSpin from '../LoadingSpin';
-import styles from '../profile/NewPost/NewPost.module.css'
 
 const SupportInbox = () => {
 
