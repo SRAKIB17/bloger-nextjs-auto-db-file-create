@@ -28,6 +28,7 @@ const OptionList = ({ post, refetch }) => {
                         (isAdmin?.admin || (user?.user && user_details?.userID === post?.post_id?.split('-')?.[1])) &&
                         <ForUserAdminOption
                             setDeletePost={setDeletePost}
+                            post={post}
                         />
                     }
                     <GuestOption post={post} />
