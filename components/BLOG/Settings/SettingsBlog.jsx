@@ -10,7 +10,6 @@ const Index = () => {
         // document.getElementById('sfs').
     }
     const [content, setContent] = useState('');
-    console.log(content)
     return (
         <div>
             <div className="drawer drawer-mobile">

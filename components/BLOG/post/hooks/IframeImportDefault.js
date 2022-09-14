@@ -47,7 +47,7 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
     
               body * ::-webkit-scrollbar {
                 width: 5px !important;
-                height: 10px !important;
+                height: 5x !important;
               }
     
               *::-webkit-scrollbar-thumb {
@@ -91,7 +91,7 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
         <style>
             pre::-webkit-scrollbar {
               width: 5px;
-              height: 10px;
+              height: 5px;
             }
             pre{
               overflow: scroll;
@@ -280,7 +280,7 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
 
           body * ::-webkit-scrollbar {
             width: 5px !important;
-            height: 10px !important;
+            height: 5px !important;
           }
 
           *::-webkit-scrollbar-thumb {

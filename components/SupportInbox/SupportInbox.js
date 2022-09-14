@@ -48,6 +48,7 @@ const SupportInbox = () => {
             handleChatBoxHeight()
         }
     }, [])
+
     //***(*************************************************************** auto matic high increase for inbox ***************************) */
     const heightAutoHandle = (e) => {
         handleChatBoxHeight()
@@ -84,6 +85,7 @@ const SupportInbox = () => {
         }
     ))
     const message = data?.data?.result;
+    console.log(message)
     useEffect(() => {
         setInboxMessage(message)
     }, [message])
