@@ -29,7 +29,6 @@ const Index = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className='h-full bg-base-100 pb-10'>
-                <Header />
                 <div className='lg:pl-20'>
                     {
                         <CdnCodeList cdn={codeBody} index={0} refetch={refetch} />

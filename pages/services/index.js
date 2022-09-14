@@ -10,8 +10,9 @@ const Index = () => {
     const { title } = PageTitle()
     const [selectServices, setSelectServices] = useState('CONTENT DELIVERY NETWORK (CDN) CODE')
     return (
-        <div className='h-full bg-base-100 '>
+        <div className='h-full bg-base-100 relative '>
             <Head>
+                {/* */}
                 <title>
                     {title} 🡂 Service
                     {
@@ -22,7 +23,7 @@ const Index = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div>
-                <div className="drawer drawer-mobile">
+                <div className="drawer drawer-mobile m-0">
                     <input id="servicesDrawer" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content p-1">
                         <div className='text-end pr-2 pt-1'>
