@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
@@ -8,6 +9,7 @@ import { UserFullInfoProvider } from '../../../pages/_app';
 import LoadingSpin from '../../LoadingSpin';
 import { Camera, FacebookSquare, GithubSquare, LinkedinSquare, Writing } from '../../ReactRSIcon';
 import Message_Filled from '../Header/SVG/Message_Filled';
+import PageDetailsSEO from '../hooks/PageDetailsSEO';
 import AboutUser from './AboutUser';
 import PostSvg from './SvgComponent/PostSvg';
 import Twitter_shadow_social_tweet_media_square_blue from './SvgComponent/Twitter_shadow_social_tweet_media_square_blue';
@@ -25,9 +27,21 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
     const router = useRouter()
 
     const { user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
-
+    const { title } = PageDetailsSEO()
     return (
         <div className='p-4'>
+            <Head>
+                <title>
+                    {
+                        title
+                    }
+                    &nbsp;||&nbsp;
+                    {
+                        userInfo?.name || "User"
+                    }
+
+                </title>
+            </Head>
             <div>
                 <div>
                     {/* Profile Cover */}

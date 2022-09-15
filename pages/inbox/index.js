@@ -1,4 +1,6 @@
+import Head from 'next/head';
 import React, { useContext, useEffect, useState } from 'react';
+import PageDetailsSEO from '../../components/BLOG/hooks/PageDetailsSEO';
 import InboxBody from '../../components/BLOG/Inbox/InboxBody';
 import InboxUserList from '../../components/BLOG/Inbox/InboxUserList';
 import NotFound from '../../components/BLOG/NotFound';
@@ -19,8 +21,18 @@ const Index = () => {
     if (!(isAdmin?.admin || (user?.user))) {
         return <NotFound />
     }
+    const { title } = PageDetailsSEO()
     return (
         <div>
+            <Head>
+                <title>
+                    {
+                        title
+                    }
+                    &nbsp;Inbox ||&nbsp;
+                    
+                </title>
+            </Head>
             <div>
                 <div className="drawer drawer-mobile">
                     <input id="settingsMenuContent" type="checkbox" className="drawer-toggle" />

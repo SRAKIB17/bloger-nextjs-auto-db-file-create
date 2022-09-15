@@ -1,5 +1,9 @@
+import axios from 'axios';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import PageDetailsSEO from '../../components/BLOG/hooks/PageDetailsSEO';
 import InboxBody from '../../components/BLOG/Inbox/InboxBody';
 import InboxUserList from '../../components/BLOG/Inbox/InboxUserList';
 import NotFound from '../../components/BLOG/NotFound';
@@ -24,13 +28,33 @@ const Index = () => {
         setSpecificId(inbox)
     }, [inbox])
 
+    //for specific user//
+    const { data: userSpecific } = useQuery(['public_profile', specificId], () => axios.get(`/api/public_user_details/${specificId}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }));
+
+    const userInfo = (userSpecific?.data?.user_details);
     // usePrivatePageCheckUser('/inbox')
     // if (!(isAdmin?.admin || (user?.user))) {
     //     return <NotFound />
     // }
+    const { title } = PageDetailsSEO()
     return (
         <div>
             <div>
+                <Head>
+                    <title>
+                        {
+                            title
+                        }
+                      &nbsp;||&nbsp;Inbox ||&nbsp;
+                        {
+                            userInfo?.name || "User"
+                        }
+
+                    </title>
+                </Head>
                 <div className="drawer drawer-mobile">
                     <input id="settingsMenuContent" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content flex flex-col hideScrollBar ">

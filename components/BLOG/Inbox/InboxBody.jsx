@@ -75,7 +75,6 @@ const InboxBody = ({ setUserList, specificId }) => {
 
         }
     }
-    console.log(showSpecificUserMessage)
     const [messageLoading, setMessageLoading] = useState(null)
     const messagePostHandle = async (event) => {
         setMessageLoading(true)
@@ -150,7 +149,6 @@ const InboxBody = ({ setUserList, specificId }) => {
     const router = useRouter()
     const newUserCheck = checkUserFromList?.includes(specificId);
     const pathCheck = router.asPath.split('/')?.length == 3;
-
     return (
         <div>
             <div

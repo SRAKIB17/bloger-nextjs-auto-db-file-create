@@ -9,26 +9,26 @@ import EachReplyUser from './EachReplyUser';
 
 const EachMessageBody = ({ messageBody, specificId }) => {
 
+
     const { emoji, user_one, user_two, message, time } = messageBody;
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
-   
+    console.log(specificId)
+    console.log(((user_one == user_details?.userID || user_two == user_details?.userID)))
     return (
         <div>
             <div className='w-full text-sm' id='supportInboxBody'>
                 {
-                    (user_one == specificId || user_two == specificId) &&
-                    <div className='flex flex-col'>
-                        <EachReplyUser messageBody={messageBody} specificId={specificId} />
-                    </div>
-                }
-                {
-                    (user_one == user_details?.userID || user_two == user_details?.userID) &&
-                    <div>
-                        <EachReplyOwner
-                            messageBody={messageBody}
-                        />
-                    </div>
+                    (user_one == specificId || user_two == specificId) ?
+                        <div className='flex flex-col'>
+                            <EachReplyUser messageBody={messageBody} specificId={specificId} />
+                        </div>
+                        :
+                        <div>
+                            <EachReplyOwner
+                                messageBody={messageBody}
+                            />
+                        </div>
 
                 }
             </div>
