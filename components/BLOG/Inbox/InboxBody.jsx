@@ -3,22 +3,78 @@ import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 // import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
-import classTagShortcutInput from '../hooks/Emmet/shortcutEmmetHtmlTagsAttr.js'
-import { MenuBarCircle, SendShare } from '../../ReactRSIcon';
+
 // import AdminSupportInbox from './AdminSupportInbox';
 
 // import inbox from './SupportInbox.module.css'
 // import style from './Admin.module.css'
 // import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 import { useRouter } from 'next/router'
-import EmojiGifIndex from '../../Comment/EmojiGif/EmojiGifIndex';
-import LoadingSpin from '../../LoadingSpin';
+
 import { UserFullInfoProvider } from '../../../pages/_app';
 import EachMessageBody from './EachMessageBody';
 import MessageSentForm from './MessageSentForm.jsx';
+import LoadingSpin from '../../LoadingSpin';
 
-const InboxBody = ({ inbox_body }) => {
-    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+const InboxBody = ({ setUserList, specificId }) => {
+    const { user, user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
+    const message = [
+        {
+            user_one: "1",
+            emoji: "",
+            message: "\n                    Successfully delete your post.. \n                    ",
+            time: "2022-09-11T17:41:48.996Z",
+            user_two: "2",
+            _id: "631e1ddc9a0f58eae414598b"
+        }
+    ]
+
+
+
+    const { data, refetch, isLoading } = useQuery(['Inbox', user_details], () => axios.get(`/api/inbox?user_id=${user_details?.userID}&email=${user_details?.email}`,
+        {
+            headers: {
+                access_token: sessionStorage.getItem('accessAutoG'),
+                token: localStorage.getItem('token')
+            }
+        }
+    ))
+    const messages = data?.data;
+
+
+
+    // console.log(message)
+    //**************************************************************************** */
+    const userList = [];
+    // let count = 
+
+
+    useEffect(() => {
+        messages?.forEach(message => {
+            if (message?.user_one == user_details?.userID && !userList?.includes(message?.user_two)) {
+                userList?.push(message?.user_two)
+            }
+            else if (message?.user_two == user_details?.userID && !userList?.includes(message?.user_one)) {
+                userList?.push(message?.user_one)
+            }
+
+        })
+
+        setUserList(userList)
+    }, [messages])
+
+
+
+    const [showSpecificUserMessage, setShowSpecificUserMessage] = useState([])
+
+    useEffect(() => {
+        const getMessages = messages?.filter(message => message?.user_one == specificId || message?.user_two == specificId);
+        setShowSpecificUserMessage(getMessages);
+    }, [specificId]);
+
+    //***************************************************************************** */
+
+
 
     // const asPath = useRouter()?.asPath
     // usePrivatePageCheckUser(asPath)
@@ -29,17 +85,13 @@ const InboxBody = ({ inbox_body }) => {
 
     const textareaRef = useRef();
 
-
-
-
-
-
     const [inboxMessage, setInboxMessage] = useState([]);
     useEffect(() => {
-        setInboxMessage(inbox_body)
+        setInboxMessage(messages)
     }, [])
+
     const [inboxUserId, setInboxUserId] = useState(null);
-    const { userID } = router.query;
+
     // useEffect(() => {
     //     if (isAdmin?.admin && userID) {
     //         setInboxUserId(userID)
@@ -48,7 +100,6 @@ const InboxBody = ({ inbox_body }) => {
     //         setInboxUserId(user_details?.userID)
     //     }
     // }, [user_details])
-
 
     // const { data, refetch, isLoading: InboxLoading } = useQuery(['SupportInbox', inboxUserId, user_details], () => axios.get(`/api/inbox/support/${inboxUserId}?email=${user_details?.email}`,
     //     {
@@ -92,6 +143,7 @@ const InboxBody = ({ inbox_body }) => {
                     token: localStorage.getItem('token')
                 }
             });
+
         if (data?.message === 'success') {
             // setErrMsg(<p className='text-green-600'>Success</p>)
             setMessageLoading(false)
@@ -128,15 +180,16 @@ const InboxBody = ({ inbox_body }) => {
 
     const showMenuEmojiHandle = () => {
         setShowMenuEmoji(!showMenuEmoji)
-        setSelectEmoji(null)
+        setSelectEmoji(null);
         setShowEmojiGifSection(null)
     }
+
     return (
         <div>
             <div
                 id="SupportInbox"
                 style={{ overflow: 'hidden', paddingTop: '0px', width: '100%' }}
-                className="bg-base-100 h-[100vh]"
+                className="bg-base-100 h-[100vh] "
             >
                 <div
                     className=' p-4'
@@ -174,22 +227,6 @@ const InboxBody = ({ inbox_body }) => {
                              2. setInboxUserId  = admin click a userId and see message specific userId
                     ****************************************************************************** */}
 
-                        {/* {
-                            (isAdmin?.admin && showMessageList) &&
-                            <div className={' overflow-auto  border-b-primary sticky top-[-16px] w-full  z-40 bg-base-100'}
-                                id='adminAllInboxMessage'
-                            >
-                                <div className=' absolute right-0 z-[30] top-[2px]'>
-                                    <button className='btn btn-sm btn-secondary btn-outline text-right' onClick={hideAllInboxMessageForAdmin}>
-                                        X
-                                    </button>
-                                </div>
-                                <div className='rounded-lg border-b overflow-auto h-56 hideScrollBar mt-4'>
-                                    <AdminSupportInbox setInboxMessage={{ setInboxMessage, inboxUserId, setInboxUserId }} />
-                                </div>
-                            </div>
-
-                        } */}
 
                         <div className='relative'>
 
@@ -197,12 +234,16 @@ const InboxBody = ({ inbox_body }) => {
                                 // InboxLoading && <LoadingSpin />
                             }
                             {
-                                inboxMessage?.map((messageBody, index) => <EachMessageBody
-                                    key={index} messageBody={messageBody} />)
+                                isLoading ?
+                                    <LoadingSpin />
+                                    :
+                                    showSpecificUserMessage?.map((messageBody, index) => <EachMessageBody
+                                        specificId={specificId}
+                                        key={index} messageBody={messageBody} />)
                             }
                             {
-                                inboxMessage?.length === 0 &&
-                                <div className='text-gray-500'>
+                                (!showSpecificUserMessage && !isLoading) &&
+                                <div className='text-gray-500 text-center text-xl'>
                                     No message
                                 </div>
                             }

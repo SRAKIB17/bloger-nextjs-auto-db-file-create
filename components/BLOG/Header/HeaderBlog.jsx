@@ -51,6 +51,7 @@ const HeaderBlog = () => {
                     <div className="dropdown dropdown-end">
                         <SearchBtn />
                     </div>
+               
                     <div className="dropdown dropdown-end">
 
                         {/* <label tabIndex="0" className="btn btn-ghost btn-circle">

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import { Announcement, Setting, SupportInbox, Writing } from '../../ReactRSIcon';
+import Message_Filled from './svg/Message_Filled';
 
 const ProfilePicHeader = () => {
     const router = useRouter()
@@ -73,14 +74,14 @@ const ProfilePicHeader = () => {
 
                     <li>
                         <button
-                            className=' flex gap-2 '
-                            onClick={() => navigate('settings')}
+                            className=' flex gap-2'
+                            onClick={() => navigate('/inbox')}
                         >
                             <span>
-                                <SupportInbox />
+                                <Message_Filled size='15' color='currentColor' />
                             </span>
                             <span>
-                                Support Inbox
+                                Inbox (1)
                             </span>
                         </button>
                     </li>

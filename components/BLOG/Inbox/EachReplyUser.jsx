@@ -1,12 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import axios from 'axios';
+import React, { useContext } from 'react';
+import { useQuery } from 'react-query';
+import { UserFullInfoProvider } from '../../../pages/_app';
 import timeAgoSince from '../hooks/function/timeAgoSince';
 
-const EachReplyUser = ({ messageBody, user_details }) => {
-    const { adminId, support_id, userID, adminReply, message, time } = messageBody;
+const EachReplyUser = ({ messageBody, specificId }) => {
+    const { emoji, user_one, user_two, message, time } = messageBody;   
 
     const getTimeSince = timeAgoSince(time);
+    const { data } = useQuery(['public_profile', specificId], () => axios.get(`/api/public_user_details/${specificId}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }));
 
+    const user_details = (data?.data?.user_details);
     return (
         <div>
             <div className=' flex justify-start items-start mt-2 mb-2 w-full'>

@@ -1,41 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useQuery } from 'react-query';
+import { UserFullInfoProvider } from '../../../pages/_app';
 import EachReplyOwner from './EachReplyOwner';
 import EachReplyUser from './EachReplyUser';
 
 
-const EachMessageBody = ({ messageBody }) => {
-    const { adminId, support_id, userID, adminReply, message, time } = messageBody;
+const EachMessageBody = ({ messageBody, specificId }) => {
 
-    // const onloadMessageSupport = (id) => {
-    //     const iframe = document.getElementById('supportInboxMsgBody' + id);
-    //     iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
-    //     iframe.contentWindow.document.body.style.textAlign = 'justify'
-    // }
-    const getProfileIcon = adminReply ? adminId : userID
-    const inboxUserInfo = useQuery(['inboxUserIdMessageBody', getProfileIcon], () => axios.get(`/api/public_user_details/${getProfileIcon}`,
-        {
-            headers: { access_token: sessionStorage.getItem('accessAutoG') }
-        }));
-    const user_details = inboxUserInfo?.data?.data?.user_details;
-    const isLoading = inboxUserInfo.isLoading;
+    const { emoji, user_one, user_two, message, time } = messageBody;
+
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+   
     return (
         <div>
             <div className='w-full text-sm' id='supportInboxBody'>
                 {
-                    // adminReply &&
+                    (user_one == specificId || user_two == specificId) &&
                     <div className='flex flex-col'>
-                        <EachReplyUser messageBody={messageBody} user_details={user_details} />
+                        <EachReplyUser messageBody={messageBody} specificId={specificId} />
                     </div>
                 }
                 {
-                    // adminReply ||
+                    (user_one == user_details?.userID || user_two == user_details?.userID) &&
                     <div>
                         <EachReplyOwner
                             messageBody={messageBody}
-                            user_details={user_details} />
+                        />
                     </div>
 
                 }

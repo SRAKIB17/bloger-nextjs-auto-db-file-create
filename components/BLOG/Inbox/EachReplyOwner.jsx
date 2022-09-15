@@ -3,7 +3,7 @@ import React from 'react';
 import timeAgoSince from '../hooks/function/timeAgoSince';
 
 const EachReplyOwner = ({ messageBody, user_details }) => {
-    const { adminId, support_id, userID, adminReply, message, time } = messageBody;
+    const { emoji, user_one, user_two, message, time } = messageBody;
     const getTimeSince = timeAgoSince(time)
     return (
         <div>
@@ -20,14 +20,16 @@ const EachReplyOwner = ({ messageBody, user_details }) => {
             frameBorder="0"
         ></iframe> */}
                         {/* <div dangerouslySetInnerHTML={{ __html: message }}></div> */}
-                        <div className='break-words overflow-hidden text-sm'>
+                        <div className='break-words overflow-hidden mx-auto'>
                             {
                                 messageBody?.emoji &&
-                                <div className='pb-[2px]'>
+                                <div className='pb-[2px] flex justify-end mr-2'>
                                     <img src={messageBody?.emoji} alt="" className='h-auto max-w-[128px]' />
                                 </div>
                             }
-                            {message}
+                            <span className='text-right'>
+                                {message}
+                            </span>
                         </div>
                     </div>
                     <div className="avatar ml-1 mt-4">

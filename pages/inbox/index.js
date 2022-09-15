@@ -1,97 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import InboxBody from '../../components/BLOG/Inbox/InboxBody';
 import InboxUserList from '../../components/BLOG/Inbox/InboxUserList';
+import NotFound from '../../components/BLOG/NotFound';
 import Right_arrow from '../../components/BLOG/Settings/SvgComponent/Right_arrow';
+import usePrivatePageCheckUser from '../../components/hooks/checkUser/privatePageCheckUser';
+import { UserFullInfoProvider } from '../_app';
 
 const Index = () => {
-    const messages = [
-        {
-            user_one: "1",
-            emoji: "",
-            message: "\n                    Successfully delete your post.. \n                    ",
-            time: "2022-09-11T17:41:48.996Z",
-            user_two: "2",
-            _id: "631e1ddc9a0f58eae414598b"
-        }
-        ,
-        {
-            user_one: "5",
-            emoji: "",
-            message: "\n                    Successfully delete your post.. \n                    ",
-            time: "2022-09-11T17:41:48.996Z",
-            user_two: "1",
-            _id: "631e1ddc9a0f58eae414598b"
-        }
-        , {
-            user_one: "1",
-            emoji: "",
-            message: "\n                    Successfully delete your post.. \n                    ",
-            time: "2022-09-11T17:41:48.996Z",
-            user_two: "2",
-            _id: "631e1ddc9a0f58eae414598b"
-        }
-        , {
-            user_one: "1",
-            emoji: "",
-            message: "\n                    Successfully delete your post.. \n                    ",
-            time: "2022-09-11T17:41:48.996Z",
-            user_two: "2",
-            _id: "631e1ddc9a0f58eae414598b"
-        }
-        , {
-            user_one: "2",
-            emoji: "",
-            message: "\n                    Successfully delete your post.. \n                    ",
-            time: "2022-09-11T17:41:48.996Z",
-            user_two: "1",
-            _id: "631e1ddc9a0f58eae414598b"
-        }
-        , {
-            user_one: "1",
-            emoji: "",
-            message: "\n                    Successfully delete your post.. \n                    ",
-            time: "2022-09-11T17:41:48.996Z",
-            user_two: "4",
-            _id: "631e1ddc9a0f58eae414598b"
-        }
-        , {
-            user_one: "3",
-            emoji: "",
-            message: "\n                    Successfully delete your post.. \n                    ",
-            time: "2022-09-11T17:41:48.996Z",
-            user_two: "1",
-            _id: "631e1ddc9a0f58eae414598b"
-        }
-        ,
-    ]
+    const [userList, setUserList] = useState([])
+    const { user, user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
 
-    const userList = []
-    messages?.forEach(message => {
-        if (message?.user_one == 1 && !userList?.includes(message?.user_two)) {
-            userList?.push(message?.user_two)
-        }
-        else if (message?.user_two == 1 && !userList?.includes(message?.user_one)) {
-            userList?.push(message?.user_one)
-        }
-    })
-
-    const [showSpecificUserMessage, setShowSpecificUserMessage] = useState([])
-    const [specificId, setSpecificId] = useState('')
+    const [specificId, setSpecificId] = useState("9b836a9c57a91ce7805cc6a0")
     const showSpecificUserMessageHandle = (id) => {
         setSpecificId(id)
     }
 
-    useEffect(() => {
-        const getMessages = messages?.filter(message => message?.user_one == specificId || message?.user_two == specificId);
-        setShowSpecificUserMessage(getMessages);
-    }, [specificId])
-
+    usePrivatePageCheckUser('/inbox')
+    if (!(isAdmin?.admin || (user?.user))) {
+        return <NotFound />
+    }
     return (
         <div>
             <div>
                 <div className="drawer drawer-mobile">
                     <input id="settingsMenuContent" type="checkbox" className="drawer-toggle" />
-                    <div className="drawer-content flex flex-col ">
+                    <div className="drawer-content flex flex-col hideScrollBar ">
                         {/* <!-- Page content here --> */}
                         <div>
                             <label
@@ -102,7 +35,7 @@ const Index = () => {
                             </label>
                         </div>
                         <div>
-                            <InboxBody inbox_body={showSpecificUserMessage} />
+                            <InboxBody specificId={specificId} setUserList={setUserList} />
                         </div>
                     </div>
                     {/* ************** DRAWER MENU****************** */}
