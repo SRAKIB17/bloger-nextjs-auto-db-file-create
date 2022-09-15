@@ -17,18 +17,19 @@ export default async function handler(req, res) {
     const roll = findUserCheckAdmin?.roll === 'admin'
 
 
-    if (checkUser && method === 'GET') {
-        const { user_id } = (req.query);
-        const filter =
-        {
-            "$or":
-                [
-                    { user_one: user_id },
-                    { user_two: user_id },
-                ]
+
+    if (checkUser && method === 'POST') {
+        const message = req.body;
+      
+        const result = await Inbox.insertOne(message);
+
+        if (result?.acknowledged) {
+            return res.status(200).json({ message: "success", result: result })
         }
-        const messages = await Inbox.find(filter).toArray();
-        return res.send(messages)
+        else {
+            return res.status(200).json({ message: "error", error: "Something is wrong" })
+        }
+
     }
 
     else {

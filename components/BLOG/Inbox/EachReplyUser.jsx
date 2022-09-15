@@ -6,8 +6,8 @@ import { UserFullInfoProvider } from '../../../pages/_app';
 import timeAgoSince from '../hooks/function/timeAgoSince';
 
 const EachReplyUser = ({ messageBody, specificId }) => {
-    const { emoji, user_one, user_two, message, time } = messageBody;   
-
+    const { emoji, user_one, user_two, message, time } = messageBody;
+    console.log(messageBody)
     const getTimeSince = timeAgoSince(time);
     const { data } = useQuery(['public_profile', specificId], () => axios.get(`/api/public_user_details/${specificId}`,
         {
@@ -42,9 +42,16 @@ const EachReplyUser = ({ messageBody, specificId }) => {
                             <img src={messageBody?.emoji} alt="" className='h-auto max-w-[128px]' />
                         </div>
                     }
-                    <div className='text-sm'>
-                        <div dangerouslySetInnerHTML={{ __html: message }}></div>
-                    </div>
+                    {
+                        messageBody?.adminReply ?
+                            <div className='text-sm'>
+                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                            </div>
+                            :
+                            <div>
+                                {message}
+                            </div>
+                    }
                     {/* <iframe
                                     data-supportibox='true'
                                     onLoad={() => onloadMessageSupport(userID + support_id)}

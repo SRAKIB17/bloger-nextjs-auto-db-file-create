@@ -65,7 +65,7 @@ const ShowUser = ({ showSpecificUserMessageHandle, id }) => {
                     </span>
                 </span>
                 <span>
-                    {userInfo?.name}
+                    {userInfo?.name || "User"}
                 </span>
             </button>
         </li>

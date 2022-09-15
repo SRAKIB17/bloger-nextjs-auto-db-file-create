@@ -20,16 +20,25 @@ const EachReplyOwner = ({ messageBody, user_details }) => {
             frameBorder="0"
         ></iframe> */}
                         {/* <div dangerouslySetInnerHTML={{ __html: message }}></div> */}
-                        <div className='break-words overflow-hidden mx-auto'>
-                            {
-                                messageBody?.emoji &&
-                                <div className='pb-[2px] flex justify-end mr-2'>
-                                    <img src={messageBody?.emoji} alt="" className='h-auto max-w-[128px]' />
-                                </div>
-                            }
-                            <span className='text-right'>
-                                {message}
-                            </span>
+                        <div className='flex justify-end w-full text-right'>
+                            <div className='break-words overflow-hidden'>
+                                {
+                                    messageBody?.emoji &&
+                                    <div className='pb-[2px] flex justify-end mr-2'>
+                                        <img src={messageBody?.emoji} alt="" className='h-auto max-w-[128px]' />
+                                    </div>
+                                }
+                                {
+                                    messageBody?.adminReply ?
+                                        <div className='text-sm text-right'>
+                                            <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                                        </div>
+                                        :
+                                        <div className='text-sm'>
+                                            {message}
+                                        </div>
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className="avatar ml-1 mt-4">

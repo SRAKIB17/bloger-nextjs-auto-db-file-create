@@ -75,12 +75,14 @@ const MessageSentForm = ({ textareaRef, messagePostHandle, showMenuEmoji, showEm
                         {
                             messageLoading ?
                                 <span className='btn btn-sm btn-primary text-xs relative'>
-                                    <SendShare size='25' />
+                                    <SendShare size='25' color='white' />
                                     <p className='absolute animate-spin border-b-2 border-r-2 w-4 h-4 rounded-[50%]'>
                                     </p>
                                 </span>
                                 :
-                                <button className='btn btn-sm btn-primary text-xs'><SendShare size='25' /></button>
+                                <button className='btn btn-sm btn-primary text-xs'>
+                                    <SendShare size='25' color='white' />
+                                </button>
                         }
 
 

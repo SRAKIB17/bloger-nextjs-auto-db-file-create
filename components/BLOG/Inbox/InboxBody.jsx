@@ -12,16 +12,6 @@ import LoadingSpin from '../../LoadingSpin';
 
 const InboxBody = ({ setUserList, specificId }) => {
     const { user, user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
-    const message = [
-        {
-            user_one: "1",
-            emoji: "",
-            message: "\n                    Successfully delete your post.. \n                    ",
-            time: "2022-09-11T17:41:48.996Z",
-            user_two: "2",
-            _id: "631e1ddc9a0f58eae414598b"
-        }
-    ]
 
 
 
@@ -75,12 +65,6 @@ const InboxBody = ({ setUserList, specificId }) => {
 
     const textareaRef = useRef();
 
-    const [inboxMessage, setInboxMessage] = useState([]);
-    useEffect(() => {
-        setInboxMessage(messages)
-    }, [])
-
-    const [inboxUserId, setInboxUserId] = useState(null);
 
 
     // FOR EMOJI GIF AND OTHER //
@@ -100,7 +84,7 @@ const InboxBody = ({ setUserList, specificId }) => {
 
     const [messageLoading, setMessageLoading] = useState(null)
     const messagePostHandle = async (event) => {
-        // setMessageLoading(true)
+        setMessageLoading(true)
         event.preventDefault();
         handleChatBoxHeight()
         const body = event.target.supportMessage.value;
@@ -113,9 +97,8 @@ const InboxBody = ({ setUserList, specificId }) => {
             user_two: specificId,
             time: new Date()
         }
-       
 
-        const { data } = await axios.post(`/api/inbox/?user_id${user_details?.userID}?email=${user_details?.email}`, messageBody,
+        const { data } = await axios.post(`/api/inbox/new?user_id${user_details?.userID}&email=${user_details?.email}`, messageBody,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -123,32 +106,30 @@ const InboxBody = ({ setUserList, specificId }) => {
                 }
             });
 
-        // if (data?.message === 'success') {
-        //     // setErrMsg(<p className='text-green-600'>Success</p>)
-        //     setMessageLoading(false)
-        //     refetch()
-        //     setSelectEmoji(null)
-        //     setShowMenuEmoji(null)
-        //     setShowEmojiGifSection(null)
-        //     if (data?.result?.acknowledged) {
-        //         refetch()
-        //         event.target.reset()
-        //         setMessageLoading(false)
-        //     }
-        // }
-        // else if (data?.message === 'error') {
-        //     refetch()
-        //     alert('something is wrong')
-        //     // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
-        //     setMessageLoading(false)
-        // }
-        // event.target.reset()
-        // setMessageLoading(false)
-        // setInboxMessage([...inboxMessage, messageBody])
-
-        // const myDiv = document.getElementById("inboxMessageBody");
-        // myDiv.scrollTop = myDiv.scrollHeight;
-        // refetch()
+        if (data?.message === 'success') {
+            // setErrMsg(<p className='text-green-600'>Success</p>)
+            setMessageLoading(false)
+            refetch()
+            setSelectEmoji(null)
+            setShowMenuEmoji(null)
+            setShowEmojiGifSection(null)
+            if (data?.result?.acknowledged) {
+                refetch()
+                event.target.reset()
+                setMessageLoading(false)
+            }
+        }
+        else if (data?.message === 'error') {
+            refetch()
+            alert('something is wrong')
+            // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
+            setMessageLoading(false)
+        }
+        event.target.reset()
+        setMessageLoading(false)
+        const myDiv = document.getElementById("inboxMessageBody");
+        myDiv.scrollTop = myDiv.scrollHeight;
+        refetch()
     }
     //************************************************ hide or show all inbox message********************************************** */
     const [showMessageList, setShowMessageList] = useState(true)

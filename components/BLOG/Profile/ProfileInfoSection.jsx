@@ -24,7 +24,7 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
     const isLoadingAbout = userInfo?.isLoading;
     const router = useRouter()
 
-    const { user, user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
+    const { user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
 
     return (
         <div className='p-4'>
