@@ -32,7 +32,7 @@ export default async function handler(req, res) {
     }
 
     else {
-        res.status(200).json({ message: "error", error: 'Could not match header file' })
+        return res.status(200).json([])
     }
     // if (checkUser && roll && method === 'DELETE') {
     //     const { userID } = req.query;

@@ -7,7 +7,6 @@ import timeAgoSince from '../hooks/function/timeAgoSince';
 
 const EachReplyUser = ({ messageBody, specificId }) => {
     const { emoji, user_one, user_two, message, time } = messageBody;
-    console.log(messageBody)
     const getTimeSince = timeAgoSince(time);
     const { data } = useQuery(['public_profile', specificId], () => axios.get(`/api/public_user_details/${specificId}`,
         {
@@ -22,7 +21,7 @@ const EachReplyUser = ({ messageBody, specificId }) => {
                     {
                         (user_details?.profile == '' || !user_details?.profile) ?
                             <img
-                                src={user_details?.gender == 'Female' ? 'femaleAvatar.png' : "maleAvatar.png"}
+                                src={user_details?.gender == 'Female' ? '/femaleAvatar.png' : "/maleAvatar.png"}
                                 alt=''
                                 className='w-full bg-base-100 rounded-full border-2'
                             />

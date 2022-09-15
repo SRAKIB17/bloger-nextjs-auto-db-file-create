@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import InboxBody from '../../components/BLOG/Inbox/InboxBody';
 import InboxUserList from '../../components/BLOG/Inbox/InboxUserList';
@@ -9,12 +10,19 @@ import { UserFullInfoProvider } from '../_app';
 const Index = () => {
     const [userList, setUserList] = useState([])
     const { user, user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
-    
 
-    const [specificId, setSpecificId] = useState("9b836a9c57a91ce7805cc6a0")
+    const [specificId, setSpecificId] = useState("")
+
     const showSpecificUserMessageHandle = (id) => {
         setSpecificId(id)
     }
+
+    const router = useRouter()
+    const { inbox } = router?.query;
+
+    useEffect(() => {
+        setSpecificId(inbox)
+    }, [inbox])
 
     // usePrivatePageCheckUser('/inbox')
     // if (!(isAdmin?.admin || (user?.user))) {

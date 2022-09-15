@@ -24,16 +24,14 @@ const InboxBody = ({ setUserList, specificId }) => {
             }
         }
     ))
-    const messages = data?.data;
-
-
+    const messages = data?.data
 
     // console.log(message)
     //**************************************************************************** */
     const userList = [];
     // let count = 
 
-
+    const [checkUserFromList, setCheckUserFromList] = useState([])
     useEffect(() => {
         messages?.forEach(message => {
             if (message?.user_one == user_details?.userID && !userList?.includes(message?.user_two)) {
@@ -45,7 +43,8 @@ const InboxBody = ({ setUserList, specificId }) => {
 
         })
 
-        setUserList(userList)
+        setUserList(userList);
+        setCheckUserFromList(userList)
     }, [messages])
 
 
@@ -55,15 +54,9 @@ const InboxBody = ({ setUserList, specificId }) => {
     useEffect(() => {
         const getMessages = messages?.filter(message => message?.user_one == specificId || message?.user_two == specificId);
         setShowSpecificUserMessage(getMessages);
-    }, [specificId]);
+    }, [specificId, messages]);
 
     //***************************************************************************** */
-
-
-    const router = useRouter()
-
-
-
     const textareaRef = useRef();
 
 
@@ -82,7 +75,6 @@ const InboxBody = ({ setUserList, specificId }) => {
 
         }
     }
-
     const [messageLoading, setMessageLoading] = useState(null)
     const messagePostHandle = async (event) => {
         setMessageLoading(true)
@@ -93,12 +85,10 @@ const InboxBody = ({ setUserList, specificId }) => {
             emoji: selectEmoji,
             user_one: user_details?.userID,
             adminReply: isAdmin?.admin,
-            adminId: isAdmin?.admin ? user_details?.userID : '',
             message: body,
             user_two: specificId,
             time: new Date()
         }
-
         const { data } = await axios.post(`/api/inbox/new?user_id${user_details?.userID}&email=${user_details?.email}`, messageBody,
             {
                 headers: {
@@ -121,7 +111,7 @@ const InboxBody = ({ setUserList, specificId }) => {
             }
         }
         else if (data?.message === 'error') {
-            refetch()
+            refetch();
             alert('something is wrong')
             // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             setMessageLoading(false)
@@ -152,6 +142,12 @@ const InboxBody = ({ setUserList, specificId }) => {
         }));
 
     const userInfo = (userSpecific?.data?.user_details);
+
+
+    const router = useRouter()
+    const newUserCheck = checkUserFromList?.includes(specificId);
+    const pathCheck = router.asPath.split('/')?.length == 3;
+
     return (
         <div>
             <div
@@ -219,7 +215,13 @@ const InboxBody = ({ setUserList, specificId }) => {
                         <div className='relative'>
 
                             {
-                                // InboxLoading && <LoadingSpin />
+                                (pathCheck && !newUserCheck) &&
+                                <span className='text-center badge btn-primary text-white relative'>
+                                    {userInfo?.name || "User"}
+                                    <button className=' -top-4 -right-4 absolute text-primary btn btn-xs btn-ghost z-50' onClick={() => router.replace('/inbox')}>
+                                        x
+                                    </button>
+                                </span>
                             }
                             {
                                 isLoading ?
