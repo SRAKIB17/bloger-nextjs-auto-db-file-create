@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -144,6 +145,13 @@ const InboxBody = ({ setUserList, specificId }) => {
         setShowEmojiGifSection(null)
     }
 
+    //for specific user//
+    const { data: userSpecific } = useQuery(['public_profile', specificId], () => axios.get(`/api/public_user_details/${specificId}`,
+        {
+            headers: { access_token: sessionStorage.getItem('accessAutoG') }
+        }));
+
+    const userInfo = (userSpecific?.data?.user_details);
     return (
         <div>
             <div
@@ -166,11 +174,31 @@ const InboxBody = ({ setUserList, specificId }) => {
                              hight 0 to 224px
                             *************************************************************************** */}
 
-                            <div className='mr-20'>
+                            <div className='mr-20 flex items-center gap-2'>
+                                <span
+                                    className="avatar"
+                                    title='Upload Profile picture'
+                                >
+                                    <span className="w-5 h-5 overflow-hidden rounded-full ring ring-inherit ring-offset-base-100 ring-offset-0" >
+                                        {
+                                            userInfo?.profile == '' ?
+                                                <img
+                                                    src={userInfo?.gender == 'Female' ? '/femaleAvatar.png' : '/maleAvatar.png'}
+                                                    alt=''
+                                                    className='w-full bg-base-100'
+                                                />
+                                                :
+                                                <img
+                                                    src={userInfo?.profile}
+                                                    alt=''
+                                                />
+                                        }
+                                    </span>
+                                </span>
                                 <h1
                                     className='font-bold text-primary'
                                 >
-                                    All Message
+                                    {userInfo?.name || "User"}
                                 </h1>
                             </div>
                         </div>
