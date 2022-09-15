@@ -30,7 +30,7 @@ const EachReplyOwner = ({ messageBody, user_details }) => {
                                 }
                                 {
                                     messageBody?.adminReply ?
-                                        <div className='text-sm text-right'>
+                                        <div className='text-sm'>
                                             <div dangerouslySetInnerHTML={{ __html: message }}></div>
                                         </div>
                                         :

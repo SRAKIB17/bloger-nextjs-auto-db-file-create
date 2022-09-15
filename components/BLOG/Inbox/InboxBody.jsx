@@ -75,6 +75,7 @@ const InboxBody = ({ setUserList, specificId }) => {
 
         }
     }
+    console.log(showSpecificUserMessage)
     const [messageLoading, setMessageLoading] = useState(null)
     const messagePostHandle = async (event) => {
         setMessageLoading(true)
@@ -89,6 +90,7 @@ const InboxBody = ({ setUserList, specificId }) => {
             user_two: specificId,
             time: new Date()
         }
+        setShowSpecificUserMessage([...showSpecificUserMessage, messageBody])
         const { data } = await axios.post(`/api/inbox/new?user_id${user_details?.userID}&email=${user_details?.email}`, messageBody,
             {
                 headers: {
@@ -112,11 +114,12 @@ const InboxBody = ({ setUserList, specificId }) => {
         }
         else if (data?.message === 'error') {
             refetch();
-            alert('something is wrong')
+            alert('Could not send message')
+            setShowSpecificUserMessage(showSpecificUserMessage?.slice(0, showSpecificUserMessage?.length - 1))
             // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             setMessageLoading(false)
         }
-        event.target.reset()
+        event.target.reset();
         setMessageLoading(false)
         const myDiv = document.getElementById("inboxMessageBody");
         myDiv.scrollTop = myDiv.scrollHeight;
