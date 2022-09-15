@@ -2,13 +2,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
-// import classTagShortcutInput from '../hooks/hooks/useFindClassAttr';
 
-// import AdminSupportInbox from './AdminSupportInbox';
-
-// import inbox from './SupportInbox.module.css'
-// import style from './Admin.module.css'
-// import usePrivatePageCheckUser from '../hooks/checkUser/privatePageCheckUser';
 import { useRouter } from 'next/router'
 
 import { UserFullInfoProvider } from '../../../pages/_app';
@@ -75,10 +69,6 @@ const InboxBody = ({ setUserList, specificId }) => {
     //***************************************************************************** */
 
 
-
-    // const asPath = useRouter()?.asPath
-    // usePrivatePageCheckUser(asPath)
-
     const router = useRouter()
 
 
@@ -92,51 +82,40 @@ const InboxBody = ({ setUserList, specificId }) => {
 
     const [inboxUserId, setInboxUserId] = useState(null);
 
-    // useEffect(() => {
-    //     if (isAdmin?.admin && userID) {
-    //         setInboxUserId(userID)
-    //     }
-    //     else {
-    //         setInboxUserId(user_details?.userID)
-    //     }
-    // }, [user_details])
-
-    // const { data, refetch, isLoading: InboxLoading } = useQuery(['SupportInbox', inboxUserId, user_details], () => axios.get(`/api/inbox/support/${inboxUserId}?email=${user_details?.email}`,
-    //     {
-    //         headers: {
-    //             access_token: sessionStorage.getItem('accessAutoG'),
-    //             token: localStorage.getItem('token')
-    //         }
-    //     }
-    // ))
-    // const message = data?.data?.result;
-    // console.log(message)
-    // useEffect(() => {
-    //     setInboxMessage(message)
-    // }, [message])
-
 
     // FOR EMOJI GIF AND OTHER //
     const [selectEmoji, setSelectEmoji] = useState(null)
     const [showEmojiGifSection, setShowEmojiGifSection] = useState(null);
     const [showMenuEmoji, setShowMenuEmoji] = useState(null);
 
+    const handleChatBoxHeight = () => {
+        try {
+            const sendMessageInboxForm = document.getElementById('sendMessageInboxForm');
+            document.getElementById('inboxMessageBody').style.height = document.getElementById('SupportInbox').offsetHeight - (sendMessageInboxForm.offsetHeight + 60) + 'px'
+        }
+        catch {
+
+        }
+    }
+
     const [messageLoading, setMessageLoading] = useState(null)
     const messagePostHandle = async (event) => {
-        setMessageLoading(true)
+        // setMessageLoading(true)
         event.preventDefault();
         handleChatBoxHeight()
         const body = event.target.supportMessage.value;
         const messageBody = {
             emoji: selectEmoji,
-            userID: inboxUserId,
+            user_one: user_details?.userID,
             adminReply: isAdmin?.admin,
             adminId: isAdmin?.admin ? user_details?.userID : '',
             message: body,
+            user_two: specificId,
             time: new Date()
         }
+       
 
-        const { data } = await axios.post(`/api/inbox/support/${inboxUserId}?email=${user_details?.email}`, messageBody,
+        const { data } = await axios.post(`/api/inbox/?user_id${user_details?.userID}?email=${user_details?.email}`, messageBody,
             {
                 headers: {
                     access_token: sessionStorage.getItem('accessAutoG'),
@@ -144,32 +123,32 @@ const InboxBody = ({ setUserList, specificId }) => {
                 }
             });
 
-        if (data?.message === 'success') {
-            // setErrMsg(<p className='text-green-600'>Success</p>)
-            setMessageLoading(false)
-            refetch()
-            setSelectEmoji(null)
-            setShowMenuEmoji(null)
-            setShowEmojiGifSection(null)
-            if (data?.result?.acknowledged) {
-                refetch()
-                event.target.reset()
-                setMessageLoading(false)
-            }
-        }
-        else if (data?.message === 'error') {
-            refetch()
-            alert('something is wrong')
-            // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
-            setMessageLoading(false)
-        }
-        event.target.reset()
-        setMessageLoading(false)
-        setInboxMessage([...inboxMessage, messageBody])
+        // if (data?.message === 'success') {
+        //     // setErrMsg(<p className='text-green-600'>Success</p>)
+        //     setMessageLoading(false)
+        //     refetch()
+        //     setSelectEmoji(null)
+        //     setShowMenuEmoji(null)
+        //     setShowEmojiGifSection(null)
+        //     if (data?.result?.acknowledged) {
+        //         refetch()
+        //         event.target.reset()
+        //         setMessageLoading(false)
+        //     }
+        // }
+        // else if (data?.message === 'error') {
+        //     refetch()
+        //     alert('something is wrong')
+        //     // setErrMsg(<p className='text-red-600'>{data?.error}</p>)
+        //     setMessageLoading(false)
+        // }
+        // event.target.reset()
+        // setMessageLoading(false)
+        // setInboxMessage([...inboxMessage, messageBody])
 
-        const myDiv = document.getElementById("inboxMessageBody");
-        myDiv.scrollTop = myDiv.scrollHeight;
-        refetch()
+        // const myDiv = document.getElementById("inboxMessageBody");
+        // myDiv.scrollTop = myDiv.scrollHeight;
+        // refetch()
     }
     //************************************************ hide or show all inbox message********************************************** */
     const [showMessageList, setShowMessageList] = useState(true)

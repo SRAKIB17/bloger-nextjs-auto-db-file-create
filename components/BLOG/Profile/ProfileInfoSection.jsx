@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
+import { UserFullInfoProvider } from '../../../pages/_app';
 import LoadingSpin from '../../LoadingSpin';
 import { Camera, FacebookSquare, GithubSquare, LinkedinSquare, Writing } from '../../ReactRSIcon';
+import Message_Filled from '../Header/svg/Message_Filled';
 import AboutUser from './AboutUser';
 import PostSvg from './SvgComponent/PostSvg';
 import Twitter_shadow_social_tweet_media_square_blue from './SvgComponent/Twitter_shadow_social_tweet_media_square_blue';
@@ -17,8 +20,12 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
-    const user_details = userInfo?.data?.data?.user_details;
+    const user_info = userInfo?.data?.data?.user_details;
     const isLoadingAbout = userInfo?.isLoading;
+    const router = useRouter()
+
+    const { user, user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
+
     return (
         <div className='p-4'>
             <div>
@@ -26,7 +33,7 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
                     {/* Profile Cover */}
                     <div>
                         <figure >
-                            <img src={user_details?.cover ? user_details?.cover : '/cover.png'}
+                            <img src={user_info?.cover ? user_info?.cover : '/cover.png'}
                                 alt=""
                                 className='rounded-md sm:h-48 w-full h-40 md:h-36 2xl:h-44 shadow-md' />
                         </figure>
@@ -37,7 +44,7 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
                                 <div
                                     className="w-24 sm:w-28 rounded-full md:w-24 xl:w-32 ring ring-gray-300 ring-offset-base-100 "
                                 >
-                                    <img src={user_details?.profile ? user_details?.profile : '/maleAvatar.png'} alt="profile" className='w-full h-auto bg-base-100' />
+                                    <img src={user_info?.profile ? user_info?.profile : '/maleAvatar.png'} alt="profile" className='w-full h-auto bg-base-100' />
                                 </div>
                             </div>
                             {
@@ -64,7 +71,7 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
                             :
                             <div className='ml-2'>
                                 <div>
-                                    <h1 className='text-xl mb-6 font-extralight ml-4 mt-4'>{user_details?.name}</h1>
+                                    <h1 className='text-xl mb-6 font-extralight ml-4 mt-4'>{user_info?.name}</h1>
 
                                 </div>
                                 {
@@ -90,26 +97,40 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
                                     </div>
                                 }
                                 {/* SOCIAL LINK */}
+                                {
+                                    user_details?.userID !== user_id &&
+                                    <div>
+                                        <button
+                                            onClick={() => router.replace('/inbox/' + user_id)}
+                                            className='flex items-center gap-2 btn btn-primary btn-sm text-white  '
+                                        >
+                                            <Message_Filled size='20' color='currentColor' />
+                                            <span>
+                                                Send Message
+                                            </span>
+                                        </button>
+                                    </div>
+                                }
                                 <div className='flex gap-2 items-center m-4'>
                                     {
-                                        Boolean(user_details?.facebook) &&
-                                        <a href={user_details?.facebook} target="_blank" rel="noreferrer">
+                                        Boolean(user_info?.facebook) &&
+                                        <a href={user_info?.facebook} target="_blank" rel="noreferrer">
                                             <FacebookSquare color='#0674E1' size='16' className="rounded-sm" />
                                         </a>
                                     }
 
                                     {/* **********LINKEDIN******* */}
                                     {
-                                        Boolean(user_details?.linkedin) &&
-                                        <a href={user_details?.linkedin} target="_blank" rel="noreferrer">
+                                        Boolean(user_info?.linkedin) &&
+                                        <a href={user_info?.linkedin} target="_blank" rel="noreferrer">
                                             <LinkedinSquare color='#0674E1' size='16' className="rounded-sm" />
                                         </a>
                                     }
 
                                     {/* **********github******* */}
                                     {
-                                        Boolean(user_details?.github) &&
-                                        <a href={user_details?.github} target="_blank" rel="noreferrer">
+                                        Boolean(user_info?.github) &&
+                                        <a href={user_info?.github} target="_blank" rel="noreferrer">
                                             <GithubSquare color='currentColor' size='16' />
                                         </a>
                                     }
@@ -118,8 +139,8 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
 
                                     {/* **********twitter******* */}
                                     {
-                                        Boolean(user_details?.twitter) &&
-                                        <a href={user_details?.twitter} target="_blank" rel="noreferrer">
+                                        Boolean(user_info?.twitter) &&
+                                        <a href={user_info?.twitter} target="_blank" rel="noreferrer">
                                             <Twitter_shadow_social_tweet_media_square_blue size='16' className="rounded-sm" />
                                         </a>
                                     }
@@ -127,23 +148,23 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
 
                                     {/* **********youtube******* */}
                                     {
-                                        Boolean(user_details?.youtube) &&
-                                        <a href={user_details?.youtube} target="_blank" rel="noreferrer">
+                                        Boolean(user_info?.youtube) &&
+                                        <a href={user_info?.youtube} target="_blank" rel="noreferrer">
                                             <Youtube size='21' />
                                         </a>
                                     }
 
                                     {/* **********portfolio******* */}
                                     {
-                                        Boolean(user_details?.portfolio) &&
-                                        <a href={user_details?.portfolio} target="_blank" rel="noreferrer">
+                                        Boolean(user_info?.portfolio) &&
+                                        <a href={user_info?.portfolio} target="_blank" rel="noreferrer">
                                             <Web size='17' color='gray' />
                                         </a>
                                     }
                                     {/* **********instagram******* */}
                                     {
-                                        Boolean(user_details?.instagram) &&
-                                        <a href={user_details?.instagram} target="_blank" rel="noreferrer">
+                                        Boolean(user_info?.instagram) &&
+                                        <a href={user_info?.instagram} target="_blank" rel="noreferrer">
                                             <img src="/svg/Instagram.svg" alt="" className='w-4 h-4' />
                                         </a>
                                     }
@@ -152,7 +173,7 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
                                 </div>
 
                                 <div>
-                                    <AboutUser user_details={user_details} />
+                                    <AboutUser user_details={user_info} />
                                 </div>
                             </div>
                     }

@@ -30,6 +30,10 @@ export default async function handler(req, res) {
         const messages = await Inbox.find(filter).toArray();
         return res.send(messages)
     }
+    else if (method === "POST") {
+        const messageBody = req.body;
+        console.log(messageBody)
+    }
     if (checkUser && roll && method === 'DELETE') {
         const { userID } = req.query;
         const filter = { userID: userID }
