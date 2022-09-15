@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import LoadingSpin from '../../LoadingSpin';
 import { Camera, FacebookSquare, GithubSquare, LinkedinSquare, Writing } from '../../ReactRSIcon';
-import Message_Filled from '../Header/svg/Message_Filled';
+import Message_Filled from '../Header/SVG/Message_Filled';
 import AboutUser from './AboutUser';
 import PostSvg from './SvgComponent/PostSvg';
 import Twitter_shadow_social_tweet_media_square_blue from './SvgComponent/Twitter_shadow_social_tweet_media_square_blue';

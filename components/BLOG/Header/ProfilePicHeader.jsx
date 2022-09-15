@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import { Announcement, Setting, SupportInbox, Writing } from '../../ReactRSIcon';
-import Message_Filled from './svg/Message_Filled';
+import Message_Filled from './SVG/Message_Filled';
 
 const ProfilePicHeader = () => {
     const router = useRouter()
