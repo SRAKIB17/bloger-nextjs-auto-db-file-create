@@ -23,7 +23,7 @@ const UserPost = ({ user_id }) => {
 
     // const { data, refetch, isLoading } = useQuery(['userPost_id', cpage], () => axios.get(`/api/test?cat=${cat}&show=${shows}`))
 
-    const { data, refetch, isLoading } = useQuery(['userPostSpecific', user_id, cat, shows, tag, getPage, page], () => axios.get(`/api/post/user-post?cat=${cat}&show=${shows}&tag=${tag}&page=${getPage}&userID=${user_id}`,
+    const { data, refetch, isLoading } = useQuery(['userPostSpecific', user_id, cat, shows, tag, getPage, page], () => axios.get(`/api/post/user-post?cat=${cat}&show=${shows}&tag=${tag}&page=${getPage}&user_id=${user_id}`,
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }
@@ -68,7 +68,7 @@ const UserPost = ({ user_id }) => {
                         :
                         <>
                             {
-                                getPost?.map((post, index) => <PostBody post={post} key={index} refetch={refetch}/>)
+                                getPost?.map((post, index) => <PostBody post={post} key={index} refetch={refetch} />)
                             }
                             <div className={((isLoading && getPost?.length == 0) ? " " : ' shadow-md  ') + ' rounded-md     p-4'}>
 

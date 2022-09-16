@@ -68,9 +68,9 @@ export default async function handler(req, res) {
 
             const messageWarning = {
                 emoji: emoji,
-                userID: userID,
+                userID: findUserCheckAdmin?.userID,
                 adminReply: true,
-                adminId: findUserCheckAdmin?.userID,
+                replyID: userID,
                 message: messageBody,
                 time: new Date()
             }

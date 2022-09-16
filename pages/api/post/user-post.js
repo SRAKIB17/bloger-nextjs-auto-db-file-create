@@ -19,14 +19,15 @@ export default async function handler(req, res) {
         const { show } = req.query;
         const { tag } = req.query;
         const { page } = req.query;
-        const { userID } = req.query
+        const { user_id } = req.query
         // DEFAULT
 
         const nextPage = eval(page * show);
         const prevPage = eval((page - 1) * show);
         if (cat === 'undefined' || !cat) {
-            const getPosts = await postCollection.find({}).sort({ _id: -1 }).skip(prevPage).limit(nextPage).toArray();
-            const count = await postCollection.countDocuments({})
+
+            const getPosts = await postCollection.find({ userID: user_id }).sort({ _id: -1 }).skip(prevPage).limit(nextPage).toArray();
+            const count = await postCollection.countDocuments({ userID: user_id })
             return res.status(200).json({ posts: getPosts, count: count })
         }
 
@@ -37,12 +38,13 @@ export default async function handler(req, res) {
             const filter = {
                 "$and":
                     [
-                        { userID: userID },
+                        { userID: user_id },
                         { category: { $regex: catQuery } },
                     ]
             }
 
             const getPosts = await postCollection.find(filter).sort({ _id: -1 }).skip(prevPage).limit(nextPage).toArray();
+
             const count = await postCollection.countDocuments(filter)
 
             return res.status(200).json({ posts: getPosts, count: count })
@@ -56,7 +58,7 @@ export default async function handler(req, res) {
             const filter = {
                 "$and":
                     [
-                        { userID: userID },
+                        { userID: user_id },
                         { category: { $regex: catQuery } },
                         { tags: { $regex: query } }
                     ]

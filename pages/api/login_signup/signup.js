@@ -103,7 +103,8 @@ export default async function handler(req, res) {
                         const loginInfo = jwt.sign({ userInfo }, process.env.LOGIN_SIGNUP_ACCESS_API, { expiresIn: '1d' });
                         //WELCOME MESSAGE
                         const messageBody = `Welcome dear user 😊😊.What else would you like to receive, if you have time, send us a valuable message.
-                        Let us know what your feedback is. Let us know if you have any complaints`
+                        Let us know what your feedback is. Let us know if you have any complaints`;
+
                         const welcomeMessage = {
                             emoji: '/_next/static/media/2.855c4f8b.png',
                             replyID: userID,

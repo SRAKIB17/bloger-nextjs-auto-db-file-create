@@ -63,9 +63,9 @@ export default async function handler(req, res) {
                 }
                 const welcomeMessage = {
                     emoji: emoji,
-                    replyID: user_id,
-                    adminReply: true,
                     userID: findUserCheckAdmin?.userID,
+                    adminReply: true,
+                    replyID: user_id,
                     message: messageBody,
                     time: new Date()
                 }

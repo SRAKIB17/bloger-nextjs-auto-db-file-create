@@ -8,7 +8,7 @@ import EachReplyUser from './EachReplyUser';
 
 
 const EachMessageBody = ({ messageBody, specificId }) => {
-
+    console.log(messageBody)
     const { emoji, userID, replyID, message, time } = messageBody;
 
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
