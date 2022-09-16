@@ -1,16 +1,10 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect } from 'react'
-import styles from '../styles/Home.module.css'
-import Header from '../components/Header/Header';
-import Link from 'next/link';
-import Home from '../components/Home/Home';
-import Notice from '../components/Home/Notice';
-import RightSideLg from '../components/Post-NewsFeed/RightSideLg';
-import Mobile from '../components/Home/Mobile';
-import { useRouter } from 'next/router'
-import PageTitle from '../components/hooks/PageTitle';
-import Feature from '../components/Home/Feature';
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
+import Footer from "../components/BLOG/Footer/Footer"
+import Home from "../components/BLOG/Home/Home"
+import PageDetailsSEO from "../components/BLOG/hooks/PageDetailsSEO"
+
 
 export default function Index() {
   const router = useRouter()
@@ -24,7 +18,7 @@ export default function Index() {
   }
 
 
-  const { title } = PageTitle()
+  const { title } = PageDetailsSEO()
   return (
     <div data-scroll='[green, ,]'>
       <Head>
@@ -38,10 +32,7 @@ export default function Index() {
         <div>
 
           {/* ***************************FOR ADMIN NOTICE *********************** */}
-          <div className='min-h-[450px] bg-base-100'>
-            <Notice />
-          </div>
-
+        
           {/* ************** WITH OUT NOTICE HOME PAGE */}
           <div className=''>
             <Home />
@@ -57,7 +48,7 @@ export default function Index() {
           </div>
           <div className='clear-both '>
             <div>
-              <Feature />
+              <Footer/>
             </div>
           </div>
         </div>

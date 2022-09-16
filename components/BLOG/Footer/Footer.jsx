@@ -5,7 +5,7 @@ import Youtube from './Youtube';
 
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-[#1F2937] text-white">
+        <footer className="footer p-10">
             <div>
                 <img src="/proglearn_logo.png" alt="" className='max-w-[150px] sm:max-w-[200px] w-full' />
                 <p>ProgLearn</p>
@@ -13,10 +13,10 @@ const Footer = () => {
             <div>
                 <span className="footer-title">Social</span>
                 <div className="grid grid-flow-col gap-4">
-                    <button className='text-white hover:text-[#1195F5]'>
+                    <button className=' hover:text-[#1195F5]'>
                         <Facebook size='25' />
                     </button>
-                    <button className='text-white hover:text-[red]'>
+                    <button className=' hover:text-[red]'>
                         <Youtube size='41'/>
                     </button>
 
