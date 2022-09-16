@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     const { email } = req.query;
     const findUserCheckAdmin = await userCollection.findOne({ email: email });
     const roll = findUserCheckAdmin?.roll === 'admin'
-  5
+
     if (checkUser && method === 'GET') {
         const { user_id } = (req.query);
         const filter =
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
                     { userID: user_id },
                 ]
         }
-        const messages = await Inbox.find({}).toArray();
+        const messages = await Inbox.find(filter).toArray();
 
         return res.send(messages)
     }
