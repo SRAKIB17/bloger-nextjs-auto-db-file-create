@@ -35,10 +35,10 @@ const Index = () => {
         }));
 
     const userInfo = (userSpecific?.data?.user_details);
-    // usePrivatePageCheckUser('/inbox')
-    // if (!(isAdmin?.admin || (user?.user))) {
-    //     return <NotFound />
-    // }
+    usePrivatePageCheckUser('/inbox')
+    if (!(isAdmin?.admin || (user?.user))) {
+        return <NotFound />
+    }
     const { title } = PageDetailsSEO()
     return (
         <div>
@@ -48,7 +48,7 @@ const Index = () => {
                         {
                             title
                         }
-                      &nbsp;||&nbsp;Inbox ||&nbsp;
+                        &nbsp;||&nbsp;Inbox ||&nbsp;
                         {
                             userInfo?.name || "User"
                         }

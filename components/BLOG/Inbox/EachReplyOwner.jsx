@@ -1,10 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import axios from 'axios';
+import React, { useContext } from 'react';
+import { useQuery } from 'react-query';
+import { UserFullInfoProvider } from '../../../pages/_app';
 import timeAgoSince from '../hooks/function/timeAgoSince';
 
-const EachReplyOwner = ({ messageBody, user_details }) => {
-    const { emoji, user_one, user_two, message, time } = messageBody;
+const EachReplyOwner = ({ messageBody }) => {
+    const { emoji, replyID, userID, message, time } = messageBody;
     const getTimeSince = timeAgoSince(time)
+
+
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+
     return (
         <div>
             <div>

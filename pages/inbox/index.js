@@ -6,11 +6,12 @@ import InboxUserList from '../../components/BLOG/Inbox/InboxUserList';
 import NotFound from '../../components/BLOG/NotFound';
 import Right_arrow from '../../components/BLOG/Settings/SvgComponent/Right_arrow';
 import usePrivatePageCheckUser from '../../components/hooks/checkUser/privatePageCheckUser';
+import LoadingSpin from '../../components/LoadingSpin';
 import { UserFullInfoProvider } from '../_app';
 
 const Index = () => {
     const [userList, setUserList] = useState([])
-    const { user, user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
 
     const [specificId, setSpecificId] = useState("9b836a9c57a91ce7805cc6a0")
     const showSpecificUserMessageHandle = (id) => {
@@ -18,7 +19,10 @@ const Index = () => {
     }
 
     usePrivatePageCheckUser('/inbox')
-    if (!(isAdmin?.admin || (user?.user))) {
+    if (isLoading) {
+        return <LoadingSpin />
+    }
+    if (!user?.user) {
         return <NotFound />
     }
     const { title } = PageDetailsSEO()
@@ -29,8 +33,8 @@ const Index = () => {
                     {
                         title
                     }
-                    &nbsp;Inbox ||&nbsp;
-                    
+                    &nbsp; || Inbox 
+
                 </title>
             </Head>
             <div>

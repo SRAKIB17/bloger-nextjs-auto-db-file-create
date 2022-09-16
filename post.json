@@ -1,1 +1,96 @@
-[{"userID":"54fsdlj53","post_id":"534fsdfjo345","post_title":"Song Meshup","thumbnail":"https://api.lorem.space/image/shoes?w=400&h=225","image":"","time":"dec 15, 2021","short_description":"গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন করেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম।  আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।","category":"song","postBody":"<iframe  height=\"315\" src=\"https://www.youtube.com/embed/ANSWToElgjM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n","sort":"5345345345","tags":["song"],"postRefMode":"video"},{"userID":"54fsdlj53","post_id":"534fsdfjo345","post_title":"StackOverFlow","thumbnail":"https://api.lorem.space/image/shoes?w=400&h=225","image":"","time":"dec 15, 2021","short_description":"গিয়েছিলাম খিচুড়ি নিয়ে, সবাই আনন্দ করে খাইলো কিন্তু ৫০ টির মতো হিন্দু ধর্মাবলম্বী পরিবার খিচুড়ি গ্রহন করেনি। কারণ তাদের ধর্মের বিধানানুযায়ী আজকের জন্য তা গ্রহন করতে নিষেধ করা হয়েছে। তাই তড়িঘড়ি করে এ ৫০ টি পরিবারের জন্য ফল-ফ্রুটসের ব্যবস্থা করলাম।  আহা তাদের খুশি কে দেখে! কিছু কিছু সময় নিজেকে বিলিয়ে দিতে ইচ্ছে করে।","category":"Vegetables","postBody":"So, as has been mentioned, that really isn't possible. However, there are some ways you can still be smart about it.\n\nThree of the five major browsers all allow you to see the zoom level of the browser, furthermore, should the browser be zoomed a window.onresize event is fired.\n\nIE:      event.view.devicePixelRatio           OR window.view.devicePixelRatio\nChrome:  event.currentTarget.devicePixelRatio  OR window.devicePixelRatio\nFirefox: event.originalTarget.devicePixelRatio OR window.devicePixelRatio\nSafari:  /* Not possible */\nOpera:   /* Not possible */\nI think the stuff after OR works based on something I noticed as I was messing around. The first ones I know work in at least the latest version of each one. Note that Safari and Opera both have the devicePixelRatio, however both never change. It's always just 1.\n\nThe above is your easy way if you don't care that much. If you do, then you could try out the detect-zoom script, which I came across while looking for solutions to Safari and Opera.\n\nSo what you can now do is get the zoom level, and then offset your zoom to where it doesn't do anything. So if I force my browser to 50% zoom, you just go to 200%. Thus, no change. Of course it will be a bit more complicated, you'll have to store the last browser zoom, the new browser zoom, and do some slightly more complicated math, but based on what you already have, that should be a breeze.\n\nAnother idea might be to just listen for a resize event, and calculate based off the new visible size, but that might cause issues if the window is just resized. I think the above is going to be your best option, with perhaps a fallback alert to warn the user not to zoom if necessary.","sort":"5345345345","tags":["html"],"postRefMode":"text"},{"userID":"54fsdlj53","post_id":"534fsdfjo345","post_title":"Bangladesh","thumbnail":"https://api.lorem.space/image/shoes?w=400&h=225","image":"","time":"dec 15, 2021","short_description":"Bangladesh (/ˌbæŋɡləˈdɛʃ, ˌbɑːŋ-/;[14] Bengali: বাংলাদেশ, pronounced [ˈbaŋlaˌdeʃ] (listen)), officially the People's Republic of Bangladesh, is a country in South Asia. It is the eighth-most populous country in the world, with a population exceeding 163 million people in an area of either 148,460 square kilometres (57,320 sq mi) or 147,570 square kilometres (56,980 sq mi),[7][15] making it one of the most densely populated countries in the world. Bangladesh shares land borders with India to the west, north, and east, and Myanmar to the southeast; to the south it has a coastline along the Bay of Bengal. It is narrowly separated from Bhutan and Nepal by the Siliguri Corridor; and from China by 100 km of the Indian state of Sikkim in the north.[16] Dhaka, the capital and largest city, is the nation's economic, political, and cultural hub. Chittagong, the largest seaport, is the second-largest city. The official language is Bengali, one of the easternmost branches of the Indo-European language family.","category":"Canned Goods","postBody":"\n        <video width=\"320\" height=\"240\"  preload=\"auto\" controls muted poster=\"http://rakib17.hexat.com/icon/busy.gif\" loop autoplay>\n            <source src=\"https://www.w3schools.com/html/mov_bbb.mp4\" type=\"video/mp4\">\n            <source src=\"movie.ogg\" type=\"video/ogg\">\n            Your browser does not support the video tag.\n        </video>\n\n        ","sort":"5345345345","tags":["song"],"postRefMode":"text"},{"userID":"54fsdlj53","post_id":"534fsdfjo345","post_title":"","thumbnail":"https://api.lorem.space/image/shoes?w=400&h=225","image":"","time":"dec 15, 2021","short_description":"Bangladesh (/ˌbæŋɡləˈdɛʃ, ˌbɑːŋ-/;[14] Bengali: বাংলাদেশ, pronounced [ˈbaŋlaˌdeʃ] (listen)), officially the People's Republic of Bangladesh, is a country in South Asia. It is the eighth-most populous country in the world, with a population exceeding 163 million people in an area of either 148,460 square kilometres (57,320 sq mi) or 147,570 square kilometres (56,980 sq mi),[7][15] making it one of the most densely populated countries in the world. Bangladesh shares land borders with India to the west, north, and east, and Myanmar to the southeast; to the south it has a coastline along the Bay of Bengal. It is narrowly separated from Bhutan and Nepal by the Siliguri Corridor; and from China by 100 km of the Indian state of Sikkim in the north.[16] Dhaka, the capital and largest city, is the nation's economic, political, and cultural hub. Chittagong, the largest seaport, is the second-largest city. The official language is Bengali, one of the easternmost branches of the Indo-European lang","category":"","postBody":"","sort":"5345345345","tags":[""],"postRefMode":"text"},{"userID":"54fsdlj53","post_id":"534fsdfjo345","post_title":"","thumbnail":"https://api.lorem.space/image/shoes?w=400&h=225","image":"","time":"dec 15, 2021","short_description":" Page semi-protected Bangladesh From Wikipedia, the free encyclopedia Jump to navigationJump to search For other uses, see Bangladesh (disambiguation). Coordinates: 24°N 90°E  People's Republic of Bangladesh গণপ্রজাতন্ত্রী বাংলাদেশ  (Bengali) Gônoprojatontrī Bangladesh Flag of Bangladesh Flag Emblem of Bangladesh Emblem Anthem: \"Amar Sonar Bangla\" (Bengali) \"My Golden Bengal\" 2:15 March: \"Notuner Gaan\" \"The Song of Youth\"[1] National Slogan: \"Joy Bangla\" \"Victory to Bengal\"[2][3] Official Seal of the Government of Bangladesh Seal of the Government of Bangladesh Bangladesh (orthographic projection).svg Capital and largest city Dhaka 23°45′50″N 90°23′20″E Official language and national language\tBengali[4] Ethnic groups (2011[5])\t 98% Bengalis 2% minorities Religion (2020 by Pew Research Center[6])\t 90.9% Islam (official) 8% Hinduism 0.6% Buddhism 0.4% Christianity 0.1% Others Demonym(s)\tBangladeshi Government\tUnitary dominant-party parliamentary republic • President Abdul Hamid • Prime M","category":"","postBody":"","sort":"5345345345","tags":[""],"postRefMode":"text"}]
+[
+    {
+        "_id": "632216d7bddfbd133489e394",
+        "emoji": "/_next/static/media/emoji%20(24).adbb44a0.jpg",
+        "userID": "ad3d7ff5fdc207c6550628f9",
+        "replyID": "9b836a9c57a91ce7805cc6a0",
+        "message": "\n                <div style=\"white-space: pre-line;\">\n                Please note that page blanking, addition of random text or spam, deliberate misinformation, and privacy violations are considered vandalism, and will not be tolerated. If you wish to make useful contributions, you may come back after the block expires. If you believe the block was placed in error, you may place an unblock request on your talk page using <b className='underline border-2 border-gray-500 m-1 rounded-md'>😒😒😒😒😒😒😨</b> for unblock here <a href=\"/inbox/support\" className='link-primary link-hover'>Click </a>\n                </div>\n                ",
+        "time": "2022-08-19T09:01:18.193Z"
+    },
+    {
+        "_id": "632216d7bddfbd133489e395",
+        "emoji": "/_next/static/media/2.855c4f8b.png",
+        "userID": "b901582f972f96d8a6",
+        "replyID": "9b836a9c57a91ce7805cc6a0",
+        "message": "Welcome dear user 😊😊.What else would you like to receive, if you have time, send us a valuable message.\n                        Let us know what your feedback is. Let us know if you have any complaints",
+        "time": "2022-08-24T07:15:37.730Z"
+    },
+    {
+        "_id": "632216d7bddfbd133489e396",
+        "emoji": "/_next/static/media/2.855c4f8b.png",
+        "userID": "416a70344c503caf0f",
+        "replyID": "9b836a9c57a91ce7805cc6a0",
+        "message": "Welcome dear user 😊😊.What else would you like to receive, if you have time, send us a valuable message.\n                        Let us know what your feedback is. Let us know if you have any complaints",
+        "time": "2022-08-29T11:55:28.922Z"
+    },
+    {
+        "_id": "632216d7bddfbd133489e397",
+        "emoji": "/_next/static/media/emoji%20(24).adbb44a0.jpg",
+        "userID": "416a70344c503caf0f",
+        "replyID": "9b836a9c57a91ce7805cc6a0",
+        "message": "\n                <div style=\"white-space: pre-line;\">\n                Please note that page blanking, addition of random text or spam, deliberate misinformation, and privacy violations are considered vandalism, and will not be tolerated. If you wish to make useful contributions, you may come back after the block expires. If you believe the block was placed in error, you may place an unblock request on your talk page using <b className='underline border-2 border-gray-500 m-1 rounded-md'>email not valid</b> for unblock here <a href=\"/inbox/support\" className='link-primary link-hover'>Click </a>\n                </div>\n                ",
+        "time": "2022-08-30T17:36:30.760Z"
+    },
+    {
+        "_id": "632216d7bddfbd133489e398",
+        "emoji": "/_next/static/media/0.f5ccf354.gif",
+        "userID": "314a78fa90c2ab69e439eba5",
+        "replyID": "",
+        "message": "hello\n\n\n\n\n",
+        "time": "2022-08-30T17:38:25.285Z"
+    },
+    {
+        "_id": "632216d7bddfbd133489e399",
+        "emoji": "/_next/static/media/alert-512.f9829c8f.jpg",
+        "userID": "416a70344c503caf0f",
+        "replyID": "9b836a9c57a91ce7805cc6a0",
+        "message": "\n                <div style=\"white-space: pre-line;\">\n               \n                Dear User,\n                We observe that the account was temporarily blocked for receiving a high number of bounces in a short time period. This triggers a security restriction, as detailed in the Usage Policy.\n                Now you will be able to access all service. Please ensure that you communicate only with valid and engaged audience to avoid being blocked in the future.\n                Hope this helps. If you have any questions or concerns, do let us know.\n                Regards,\n                Admin\n                </div>\n                ",
+        "time": "2022-08-30T17:39:31.310Z"
+    },
+    {
+        "_id": "6323295052c0d8e39990639b",
+        "emoji": "/_next/static/media/23.d54c187f.gif",
+        "userID": "9b836a9c57a91ce7805cc6a0",
+        "adminReply": true,
+        "adminId": "9b836a9c57a91ce7805cc6a0",
+        "message": "\n<video width=\"320\" height=\"240\"  preload=\"auto\" controls muted poster=\"http://rakib17.hexat.com/icon/busy.gif\" loop autoplay>\n    <source src=\"https://www.w3schools.com/html/mov_bbb.mp4\" type=\"video/mp4\">\n    <source src=\"movie.ogg\" type=\"video/ogg\">\n    Your browser does not support the video tag.\n</video>\n\n        ",
+        "replyID": "b901582f972f96d8a6",
+        "time": "2022-09-15T13:31:44.283Z"
+    },
+    {
+        "_id": "63233fc7072f75d951194f8d",
+        "emoji": null,
+        "userID": "9b836a9c57a91ce7805cc6a0",
+        "adminReply": true,
+        "message": "\n<video width=\"320\" height=\"240\"  preload=\"auto\" controls muted poster=\"http://rakib17.hexat.com/icon/busy.gif\" loop autoplay>\n    <source src=\"https://www.w3schools.com/html/mov_bbb.mp4\" type=\"video/mp4\">\n    <source src=\"movie.ogg\" type=\"video/ogg\">\n    Your browser does not support the video tag.\n</video>\n\n        ",
+        "replyID": "d8ccee632a0f5eb398d20dcb",
+        "time": "2022-09-15T15:07:40.631Z"
+    },
+    {
+        "_id": "632340d7306b372242b07d8e",
+        "emoji": "/_next/static/media/0.f5ccf354.gif",
+        "userID": "54ef50bd7ceb58a5993c6ccc",
+        "adminReply": false,
+        "message": "",
+        "replyID": "9b836a9c57a91ce7805cc6a0",
+        "time": "2022-09-15T15:12:21.387Z"
+    },
+    {
+        "_id": "6323412dd761749ad5872bea",
+        "emoji": "/_next/static/media/1.49423bd3.gif",
+        "userID": "9b836a9c57a91ce7805cc6a0",
+        "adminReply": true,
+        "message": "",
+        "replyID": "b901582f972f96d8a6",
+        "time": "2022-09-15T15:13:48.303Z"
+    },
+    {
+        "_id": "63234ab99dbd6c5c4a4325ea",
+        "emoji": "/_next/static/media/emoji (13).430e4413.gif",
+        "userID": "9b836a9c57a91ce7805cc6a0",
+        "adminReply": true,
+        "message": "",
+        "replyID": "54ef50bd7ceb58a5993c6ccc",
+        "time": "2022-09-15T15:54:31.334Z"
+    }
+]

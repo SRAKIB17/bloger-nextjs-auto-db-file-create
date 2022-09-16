@@ -15,19 +15,19 @@ export default async function handler(req, res) {
     const { email } = req.query;
     const findUserCheckAdmin = await userCollection.findOne({ email: email });
     const roll = findUserCheckAdmin?.roll === 'admin'
-
-
+  5
     if (checkUser && method === 'GET') {
         const { user_id } = (req.query);
         const filter =
         {
             "$or":
                 [
-                    { user_one: user_id },
-                    { user_two: user_id },
+                    { replyID: user_id },
+                    { userID: user_id },
                 ]
         }
-        const messages = await Inbox.find(filter).toArray();
+        const messages = await Inbox.find({}).toArray();
+
         return res.send(messages)
     }
 

@@ -24,7 +24,7 @@ const InboxBody = ({ setUserList, specificId }) => {
             }
         }
     ))
-    const messages = data?.data
+    const messages = data?.data;
 
     // console.log(message)
     //**************************************************************************** */
@@ -34,11 +34,11 @@ const InboxBody = ({ setUserList, specificId }) => {
     const [checkUserFromList, setCheckUserFromList] = useState([])
     useEffect(() => {
         messages?.forEach(message => {
-            if (message?.user_one == user_details?.userID && !userList?.includes(message?.user_two)) {
-                userList?.push(message?.user_two)
+            if (message?.userID == user_details?.userID && !userList?.includes(message?.replyID)) {
+                userList?.push(message?.replyID)
             }
-            else if (message?.user_two == user_details?.userID && !userList?.includes(message?.user_one)) {
-                userList?.push(message?.user_one)
+            else if (message?.replyID == user_details?.userID && !userList?.includes(message?.userID)) {
+                userList?.push(message?.userID)
             }
 
         })
@@ -52,7 +52,7 @@ const InboxBody = ({ setUserList, specificId }) => {
     const [showSpecificUserMessage, setShowSpecificUserMessage] = useState([])
 
     useEffect(() => {
-        const getMessages = messages?.filter(message => message?.user_one == specificId || message?.user_two == specificId);
+        const getMessages = messages?.filter(message => message?.userID == specificId || message?.replyID == specificId);
         setShowSpecificUserMessage(getMessages);
     }, [specificId, messages]);
 
@@ -65,6 +65,7 @@ const InboxBody = ({ setUserList, specificId }) => {
     const [selectEmoji, setSelectEmoji] = useState(null)
     const [showEmojiGifSection, setShowEmojiGifSection] = useState(null);
     const [showMenuEmoji, setShowMenuEmoji] = useState(null);
+
 
     const handleChatBoxHeight = () => {
         try {
@@ -83,10 +84,10 @@ const InboxBody = ({ setUserList, specificId }) => {
         const body = event.target.supportMessage.value;
         const messageBody = {
             emoji: selectEmoji,
-            user_one: user_details?.userID,
+            userID: user_details?.userID,
             adminReply: isAdmin?.admin,
             message: body,
-            user_two: specificId,
+            replyID: specificId,
             time: new Date()
         }
         setShowSpecificUserMessage([...showSpecificUserMessage, messageBody])
