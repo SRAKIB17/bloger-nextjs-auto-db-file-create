@@ -46,9 +46,8 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
     
     
               body * ::-webkit-scrollbar {
-                width: 5px !important;
-                height: 5x !important;
-              }
+                display: none !important;
+            }
     
               *::-webkit-scrollbar-thumb {
                 background-color: rgb(183, 183, 183) !important;
@@ -279,9 +278,9 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
 
 
           body * ::-webkit-scrollbar {
-            width: 5px !important;
-            height: 5px !important;
-          }
+            display: none !important;
+        }
+
 
           *::-webkit-scrollbar-thumb {
             background-color: rgb(183, 183, 183) !important;
