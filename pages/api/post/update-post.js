@@ -116,14 +116,14 @@ export default async function handler(req, res) {
 
                     const welcomeMessage = {
                         emoji: emoji,
-                        userID: user_id,
+                        replyID: user_id,
                         adminReply: true,
-                        adminId: '9b836a9c57a91ce7805cc6a0',
+                        userID: '9b836a9c57a91ce7805cc6a0',
                         message: messageBody,
                         time: new Date()
                     }
-                    const supportInbox = UserClient.db("Inboxes").collection("support");
-                    await supportInbox.insertOne(welcomeMessage);
+                    const Inbox = UserClient.db("Inboxes").collection("inbox");
+                    await Inbox.insertOne(welcomeMessage);
                 }
                 res.status(200).json({ message: "success", result: result })
             }

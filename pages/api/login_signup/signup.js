@@ -106,14 +106,14 @@ export default async function handler(req, res) {
                         Let us know what your feedback is. Let us know if you have any complaints`
                         const welcomeMessage = {
                             emoji: '/_next/static/media/2.855c4f8b.png',
-                            userID: userID,
+                            replyID: userID,
                             adminReply: true,
-                            adminId: '9b836a9c57a91ce7805cc6a0',
+                            userID: '9b836a9c57a91ce7805cc6a0',
                             message: messageBody,
                             time: new Date()
                         }
-                        const supportInbox = client.db("Inboxes").collection("support");
 
+                        const supportInbox = client.db("Inboxes").collection("support");
                         await supportInbox.insertOne(welcomeMessage);
                         res.status(200).json({ message: "success", token: jwtToken, login_info: loginInfo })
                     }
