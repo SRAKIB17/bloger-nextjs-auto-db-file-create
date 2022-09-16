@@ -11,21 +11,22 @@ const VideoDocs = () => {
         <div>
             <div className='flex gap-4 md:justify-around mt-16 flex-col md:flex-row justify-center items-center'>
 
-                <div className="card card-compact w-96 bg-base-100 shadow-xl ">
-                    <video autoPlay loop >
-                        <source src='/homeGif/emmet.mp4' />
-                    </video>
+                
+                {/* emoji */}
+                <div className="card card-compact w-96 bg-base-100 shadow-xl">
+                    <figure>
+                        <img src="/homeGif/emmet.webp" alt="" className='w-full' />
+                    </figure>
                     <div className="card-body" >
-                        <h2 className="card-title">Shortcut Emmet</h2>
+                        <h2 className="card-title">Support Emoji</h2>
                         <ul className='list-decimal ml-4 text-primary'>
-                            <li>Edit Fast</li>
-                            <li>Live View</li>
-                            <li>Upload Code</li>
+                            <li>Emoji Support</li>
+                            <li>Comment</li>
+                            <li>Like, Unlike , Love React</li>
                         </ul>
                     </div>
                 </div>
 
-                {/* emoji */}
                 <div className="card card-compact w-96 bg-base-100 shadow-xl">
                     <figure>
                         <img src="/homeGif/emoji.webp" alt="" className='w-full' />
