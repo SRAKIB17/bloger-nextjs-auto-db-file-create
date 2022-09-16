@@ -12,6 +12,7 @@ import MessageSentForm from './MessageSentForm.jsx';
 import LoadingSpin from '../../LoadingSpin';
 
 const InboxBody = ({ setUserList, specificId }) => {
+ 
     const { user, user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
 
 
@@ -25,6 +26,8 @@ const InboxBody = ({ setUserList, specificId }) => {
         }
     ))
     const messages = data?.data;
+
+    console.log(messages)
 
     // console.log(message)
     //**************************************************************************** */
