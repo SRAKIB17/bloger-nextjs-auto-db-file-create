@@ -12,7 +12,8 @@ const ProfilePicHeader = () => {
         router.replace(path)
     }
 
-    const { user, user_details, isLoading } = useContext(UserFullInfoProvider);
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+
 
     const logOut = () => {
         localStorage.removeItem('token')
@@ -72,6 +73,23 @@ const ProfilePicHeader = () => {
                         </button>
                     </li>
 
+                    {
+                        isAdmin?.admin &&
+                        <li>
+                            <button
+                                className='flex gap-2 '
+                                onClick={() => navigate('/admin')}
+                            >
+                                <span>
+                                    <img src="/svg/Administrator.svg" alt="" className='w-4' />
+                                </span>
+                                <span>
+                                    Dashboard
+                                </span>
+                            </button>
+                        </li>
+
+                    }
                     <li>
                         <button
                             className=' flex gap-2'
@@ -99,7 +117,7 @@ const ProfilePicHeader = () => {
                         </button>
                     </li>
 
-                   
+
                     <li>
                         <button
                             className='buttonSpin flex gap-2 '
