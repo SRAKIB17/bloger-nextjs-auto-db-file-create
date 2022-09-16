@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
+import { useQuery } from 'react-query';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import { Announcement, Setting, SupportInbox, Writing } from '../../ReactRSIcon';
 import Message_Filled from './SVG/Message_Filled';
@@ -20,6 +22,16 @@ const ProfilePicHeader = () => {
         document.cookie = `login=`
         location.reload()
     }
+
+    const { data, refetch, isLoading: inboxLoading } = useQuery(['Inbox', user_details], () => axios.get(`/api/inbox?user_id=${user_details?.userID}&email=${user_details?.email}`,
+        {
+            headers: {
+                access_token: sessionStorage.getItem('accessAutoG'),
+                token: localStorage.getItem('token')
+            }
+        }
+    ))
+    const messages = data?.data;
 
     return (
         <div>
@@ -99,7 +111,10 @@ const ProfilePicHeader = () => {
                                 <Message_Filled size='15' color='currentColor' />
                             </span>
                             <span>
-                                Inbox (1)
+                                Inbox
+                                <span className='text-secondary'>
+                                    &nbsp;  ({messages?.length || "0"})
+                                </span>
                             </span>
                         </button>
                     </li>

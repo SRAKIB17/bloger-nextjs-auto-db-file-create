@@ -70,7 +70,7 @@ export default async function handler(req, res) {
                 emoji: emoji,
                 userID: userID,
                 adminReply: true,
-                adminId: '9b836a9c57a91ce7805cc6a0',
+                adminId: findUserCheckAdmin?.userID,
                 message: messageBody,
                 time: new Date()
             }

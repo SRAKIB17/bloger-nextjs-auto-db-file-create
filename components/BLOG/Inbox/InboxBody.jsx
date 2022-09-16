@@ -27,7 +27,6 @@ const InboxBody = ({ setUserList, specificId }) => {
     ))
     const messages = data?.data;
 
-    console.log(messages)
 
     // console.log(message)
     //**************************************************************************** */
@@ -165,8 +164,8 @@ const InboxBody = ({ setUserList, specificId }) => {
                 >
                     <div
                         className='w-full bg-base-100 z-20 border-b-2 ' id='topInboxDiv'>
-                        <div className='flex justify-between items-center ml-[20px] mr-[20px] relative pb-1 '>
-                            <h1 className='font-bold text-primary'>
+                        <div className='flex justify-between items-center relative pb-1 '>
+                            <h1 className='font-bold text-primary pl-4'>
                                 Inbox
                             </h1>
 
@@ -175,7 +174,7 @@ const InboxBody = ({ setUserList, specificId }) => {
                              hight 0 to 224px
                             *************************************************************************** */}
 
-                            <div className='mr-20 flex items-center gap-2'>
+                            <div className='mr-2 flex items-center gap-2'>
                                 <span
                                     className="avatar"
                                     title='Upload Profile picture'
