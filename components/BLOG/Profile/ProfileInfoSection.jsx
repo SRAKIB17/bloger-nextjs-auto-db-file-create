@@ -10,6 +10,7 @@ import LoadingSpin from '../../LoadingSpin';
 import { Camera, FacebookSquare, GithubSquare, LinkedinSquare, Writing } from '../../ReactRSIcon';
 import Message_Filled from '../Header/SVG/Message_Filled';
 import PageDetailsSEO from '../hooks/PageDetailsSEO';
+import WarningUserProfile from '../hooks/WarningUserProfile';
 import AboutUser from './AboutUser';
 import PostSvg from './SvgComponent/PostSvg';
 import Twitter_shadow_social_tweet_media_square_blue from './SvgComponent/Twitter_shadow_social_tweet_media_square_blue';
@@ -84,9 +85,9 @@ const ProfileInfoSection = ({ user_id, setShowPage = () => { }, user = false }) 
                             <LoadingSpin />
                             :
                             <div className='ml-2'>
-                                <div>
+                                <div className='flex gap-[2px]'>
                                     <h1 className='text-xl mb-6 font-extralight ml-4 mt-4'>{user_info?.name}</h1>
-
+                                    <WarningUserProfile user_details={user_info} size='12' />
                                 </div>
                                 {
                                     user &&

@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import NotFound from '../../components/BLOG/NotFound';
+import LoadingSpin from '../../components/LoadingSpin';
+import { UserFullInfoProvider } from '../_app';
 
-const index = () => {
+const Index = () => {
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    if (isLoading) {
+        return <div className='min-h-screen'>
+            <LoadingSpin />
+        </div>
+    }
     return (
         <div>
             <NotFound />
@@ -9,4 +17,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default Index;

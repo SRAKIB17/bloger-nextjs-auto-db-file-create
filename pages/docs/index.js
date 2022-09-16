@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import DrawerMenu from '../../components/BLOG/HelpDocs/Drawer/DrawerMenuDocs';
 import DrawerSpecificContentShow from '../../components/BLOG/HelpDocs/Drawer/DrawerSpecificContentShow';
 import Right_arrow from '../../components/BLOG/Settings/SvgComponent/Right_arrow';
+import LoadingSpin from '../../components/LoadingSpin';
+import { UserFullInfoProvider } from '../_app';
 
 const Index = () => {
 
     const [content, setContent] = useState('HTML Tags shortcut emmet');
-
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    if (isLoading) {
+        return <div className='min-h-screen'>
+            <LoadingSpin />
+        </div>
+    }
     return (
         <div>
             <div className="drawer drawer-mobile">
@@ -21,13 +28,13 @@ const Index = () => {
                             <Right_arrow strokeWidth='16' />
                         </label>
                     </div>
-                <div>
-                    <DrawerSpecificContentShow content={content} />
+                    <div>
+                        <DrawerSpecificContentShow content={content} />
+                    </div>
                 </div>
+                {/* ************** DRAWER MENU****************** */}
+                <DrawerMenu setContent={setContent} />
             </div>
-            {/* ************** DRAWER MENU****************** */}
-            <DrawerMenu setContent={setContent} />
-        </div>
 
 
         </div >

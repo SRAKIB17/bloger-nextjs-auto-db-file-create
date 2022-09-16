@@ -20,7 +20,9 @@ const Index = () => {
 
     usePrivatePageCheckUser('/inbox')
     if (isLoading) {
-        return <LoadingSpin />
+        return <div className='min-h-screen'>
+            <LoadingSpin />
+        </div>
     }
     if (!user?.user) {
         return <NotFound />
@@ -33,7 +35,7 @@ const Index = () => {
                     {
                         title
                     }
-                    &nbsp; || Inbox 
+                    &nbsp; || Inbox
 
                 </title>
             </Head>

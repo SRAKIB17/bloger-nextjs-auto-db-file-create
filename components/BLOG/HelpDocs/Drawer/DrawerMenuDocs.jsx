@@ -9,7 +9,7 @@ const DrawerMenuDocs = ({ setContent }) => {
         <div className="drawer-side">
             <label htmlFor="docsMenuContent" className="drawer-overlay"></label>
             <ul
-                className="menu p-4 overflow-y-auto w-64 rounded-md shadow-md  bg-[#201B4E] gap-1"
+                className="menu p-4 overflow-y-auto w-64 rounded-none shadow-md  bg-[#201B4E] gap-1"
             >
                 <ShortcutEmmet setContent={setContent} />
 

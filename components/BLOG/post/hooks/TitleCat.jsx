@@ -2,8 +2,9 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { Line } from '../../../ReactRSIcon';
+import { Announcement, Line } from '../../../ReactRSIcon';
 import timeAgoSince from '../../hooks/function/timeAgoSince';
+import WarningUserProfile from '../../hooks/WarningUserProfile';
 import OptionList from './Option/OptionList';
 
 const TitleCat = ({ post, refetch }) => {
@@ -21,7 +22,7 @@ const TitleCat = ({ post, refetch }) => {
         {
             headers: { access_token: sessionStorage.getItem('accessAutoG') }
         }));
-    const comment_user_details = userInfo?.data?.data?.user_details;
+    const user_details = userInfo?.data?.data?.user_details;
     const commentUserLoading = userInfo?.isLoading;
     const path = router?.asPath?.split('/')
     const pathCheck = (path?.length == 4 && path[2] == 'post')
@@ -77,13 +78,19 @@ const TitleCat = ({ post, refetch }) => {
             </div>
             <div className='flex justify-between items-center w-full'>
                 <div className='p-2'>
-                    <button
-                        onClick={() => navigate(`/blog/post/${post_id}`)}
-                        target='_blank'
-                        className='sm:text-lg xl:text-xl text-left link-hover text-blue-600' rel="noreferrer"
-                    >
-                        {post_title}
-                    </button>
+                    <span className='flex gap-[2px]'>
+                        <button
+                            onClick={() => navigate(`/blog/post/${post_id}`)}
+                            target='_blank'
+                            className='sm:text-lg xl:text-xl text-left link-hover text-blue-600' rel="noreferrer"
+                        >
+                            {post_title}
+                        </button>
+                        {
+                            post?.postBy === 'admin' &&
+                            <Announcement size='8' className="badge h-[10px] p-0 ml-1 text-white badge-primary pl-[2px] pr-[2px] text-[10px] font-extralight" />
+                        }
+                    </span>
                     <div className='mt-1 opacity-80 text-2xs sm:text-sm flex items-center gap-2'>
                         <span>
                             {timeAgo}
@@ -91,10 +98,11 @@ const TitleCat = ({ post, refetch }) => {
                         <b className='font-extrabold'>.</b>
                         <span className='flex items-center'>
                             posted by
-                            <p className='ml-1 link-primary link-hover text-blue-800'>
-                                <button onClick={() => navigate('/profile/' + comment_user_details?.userID)}>
-                                    {comment_user_details?.name ? comment_user_details?.name : 'User'}
+                            <p className='ml-1 link-primary link-hover text-blue-800 btn btn-ghost btn-xs'>
+                                <button onClick={() => navigate('/profile/' + userID)} >
+                                    {user_details?.name ? user_details?.name : 'User'}
                                 </button>
+                                <WarningUserProfile user_details={user_details} size='12' />
                             </p>
                         </span>
                     </div>

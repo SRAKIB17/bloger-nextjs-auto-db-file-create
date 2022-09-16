@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const method = req.method;
 
     const { client } = login_user_without_post_body()
-    const supportInbox = client.db("Inboxes").collection("support");
+    const Inbox = client.db("Inboxes").collection("inbox");
     await client.connect();
     const userCollection = client.db("users").collection("user_details");
 
@@ -74,8 +74,8 @@ export default async function handler(req, res) {
                 message: messageBody,
                 time: new Date()
             }
-            const supportInbox = client.db("Inboxes").collection("support");
-            await supportInbox.insertOne(messageWarning);
+
+            await Inbox.insertOne(messageWarning);
             return res.status(200).json({ message: "success", result: result })
         }
         else {
@@ -94,7 +94,7 @@ export default async function handler(req, res) {
         const postCollection = client.db("postBlogs").collection("postBlog");
         if (result?.acknowledged && result?.deletedCount == 1) {
             const deletePost = await postCollection.deleteMany(filter);
-            const deleteSupportMessage = await supportInbox.deleteMany(filter);
+            const deleteSupportMessage = await Inbox.deleteMany(filter);
             if (deletePost.acknowledged) {
                 res.status(200).json({ message: "success", result: result })
             }

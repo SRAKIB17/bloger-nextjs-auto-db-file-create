@@ -5,19 +5,25 @@ import ProfileInfoSection from '../../components/BLOG/Profile/ProfileInfoSection
 import UserPost from '../../components/BLOG/Profile/UserPost';
 import Header from '../../components/Header/Header';
 import usePrivatePageCheckUser from '../../components/hooks/checkUser/privatePageCheckUser';
+import LoadingSpin from '../../components/LoadingSpin';
 import Profile from '../../components/profile/Profile';
 import { UserFullInfoProvider } from '../_app';
 
 const Index = () => {
     // usePrivatePageCheckUser('/profile')
-    const { user, user_details } = useContext(UserFullInfoProvider)
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+
     usePrivatePageCheckUser('/profile');
 
     // const [showPage, setShowPage] = useState('uploadPhoto')
     const [showPage, setShowPage] = useState('post')
-
+    if (isLoading) {
+        return <div className='min-h-screen'>
+            <LoadingSpin />
+        </div>
+    }
     return (
-        <div>
+        <div className='pt-1'>
             <div className='grid grid-cols-12 gap-4 md:gap-0 '>
                 <div className='col-span-12 lg:col-span-4  shadowEachPost '>
                     <ProfileInfoSection user_id={user_details?.userID} setShowPage={setShowPage} user={user?.user} />

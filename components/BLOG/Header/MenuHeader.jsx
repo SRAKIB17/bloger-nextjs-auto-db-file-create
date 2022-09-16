@@ -46,7 +46,13 @@ const MenuHeader = () => {
                                     Post
                                 </button>
                             </li>
-
+                            <li>
+                                <button
+                                    onClick={() => navigate('/announcement')}
+                                >
+                                    Announcement
+                                </button>
+                            </li>
 
                             <li tabIndex="0" className='z-[1000] '>
                                 <a className="justify-between ">
@@ -84,6 +90,13 @@ const MenuHeader = () => {
                         <li>
                             <button onClick={() => navigate('/blog/post')}>
                                 Post
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => navigate('/announcement')}
+                            >
+                                Announcement
                             </button>
                         </li>
 

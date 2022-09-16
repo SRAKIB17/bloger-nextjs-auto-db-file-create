@@ -1,11 +1,13 @@
 import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
 import Header from '../../../components/Header/Header';
 import PageTitle from '../../../components/hooks/PageTitle';
+import LoadingSpin from '../../../components/LoadingSpin';
 import CdnCodeList from '../../../components/Services/CDN_CODE/CdnCodeList';
+import { UserFullInfoProvider } from '../../_app';
 
 const Index = () => {
     const router = useRouter()
@@ -18,7 +20,12 @@ const Index = () => {
     ))
     const codeBody = data?.data?.result || {}
     const { title } = PageTitle()
-
+    const { user, user_details, isLoading: userLoading, isAdmin } = useContext(UserFullInfoProvider);
+    if (userLoading) {
+        return <div className='min-h-screen'>
+            <LoadingSpin />
+        </div>
+    }
     return (
         <div>
             <Head>
@@ -29,11 +36,15 @@ const Index = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className='h-full bg-base-100 pb-10'>
-                <div className='lg:pl-20'>
-                    {
-                        <CdnCodeList cdn={codeBody} index={0} refetch={refetch} />
-                    }
-                </div>
+                {
+                    isLoading ? <LoadingSpin />
+                        :
+                        <div className='lg:pl-20'>
+                            {
+                                <CdnCodeList cdn={codeBody} index={0} refetch={refetch} />
+                            }
+                        </div>
+                }
             </div>
         </div>
     );

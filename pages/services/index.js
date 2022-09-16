@@ -1,16 +1,25 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Header from '../../components/Header/Header';
 import PageTitle from '../../components/hooks/PageTitle';
+import LoadingSpin from '../../components/LoadingSpin';
 import { MenuBarRight } from '../../components/ReactRSIcon';
 import CdnCode from '../../components/Services/CDN_CODE/CdnCode';
+import { UserFullInfoProvider } from '../_app';
 
 
 const Index = () => {
     const { title } = PageTitle()
     const [selectServices, setSelectServices] = useState('CONTENT DELIVERY NETWORK (CDN) CODE')
+
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
+    if (isLoading) {
+        return <div className='min-h-screen'>
+            <LoadingSpin />
+        </div>
+    }
     return (
-        <div className='h-full bg-base-100 relative '>
+        <div className='h-full bg-base-100 '>
             <Head>
                 {/* */}
                 <title>
@@ -35,7 +44,7 @@ const Index = () => {
                             </label>
                         </div>
 
-                        <div className='h-full overflow-auto'>
+                        <div className='h-full overflow-auto hideScrollBar'>
                             {
 
                                 selectServices === 'CONTENT DELIVERY NETWORK (CDN) CODE' &&
@@ -48,7 +57,7 @@ const Index = () => {
                     <div className="drawer-side border-r-[1px] border-gray-500 ">
                         <label htmlFor="servicesDrawer" className="drawer-overlay"></label>
                         <ul
-                            className="menu p-4 overflow-y-auto w-64 bg-primary text-base-content gap-1 "
+                            className="menu p-4 overflow-y-auto w-64 bg-primary   text-base-content gap-1 "
                         >
                             {/* <!-- Sidebar content here --> */}
                             <li

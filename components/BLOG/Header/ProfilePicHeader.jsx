@@ -99,19 +99,7 @@ const ProfilePicHeader = () => {
                         </button>
                     </li>
 
-                    <li>
-                        <button
-                            className=' flex gap-2 '
-                            onClick={() => navigate('/announcement')}
-                        >
-                            <span>
-                                <Announcement size='16.5' />
-                            </span>
-                            <span>
-                                Announcement
-                            </span>
-                        </button>
-                    </li>
+                   
                     <li>
                         <button
                             className='buttonSpin flex gap-2 '

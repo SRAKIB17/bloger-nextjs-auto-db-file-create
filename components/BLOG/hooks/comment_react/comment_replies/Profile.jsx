@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query';
-import WarningProfile from '../../../../hooks/WarningProfile';
+import WarningUserProfile from '../../WarningUserProfile';
 
 
 const Profile = ({ user_id, timeAgo }) => {
@@ -44,11 +44,12 @@ const Profile = ({ user_id, timeAgo }) => {
                 </div>
                 <div className='text-sm font-bold'>
                     <div
-                        className='flex cursor-pointer link-primary link-hover'
+                        className='flex cursor-pointer link-primary link-hover gap-[2px]'
                         onClick={() => navigate('/profile/' + comment_user_details?.userID)}
                     >
                         <h6 className='m-0'>{comment_user_details?.name || "User"}</h6>
-                        <WarningProfile user_details={comment_user_details} size='13' />
+                        <WarningUserProfile user_details={comment_user_details} size='12' />
+
                     </div>
                     <p className='text-[10px] text-gray-500'>{timeAgo}</p>
                 </div>

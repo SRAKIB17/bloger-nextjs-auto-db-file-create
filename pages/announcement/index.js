@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import Pagination from '../../components/BLOG/hooks/Pagination';
 import PostBody from '../../components/BLOG/post/PostBody';
 import Sad from '../../components/BLOG/SvgComponent/Sad';
 import PageTitle from '../../components/hooks/PageTitle';
 import LoadingSpin from '../../components/LoadingSpin';
+import { UserFullInfoProvider } from '../_app';
 
 const Index = () => {
 
@@ -55,8 +56,14 @@ const Index = () => {
         router.push(router)
         router.prefetch(router);
     }
+    const { user, user_details, isLoading: userLoading, isAdmin } = useContext(UserFullInfoProvider);
+    if (userLoading) {
+        return <div className='min-h-screen'>
+            <LoadingSpin />
+        </div>
+    }
     return (
-        <div className='grid grid-cols-12'>
+        <div className='grid grid-cols-12 pt-4'>
             <div className='col-span-12  lg:col-span-8  2xl:col-span-8 mb-20'>
                 <div className='flex flex-col gap-4'>
 

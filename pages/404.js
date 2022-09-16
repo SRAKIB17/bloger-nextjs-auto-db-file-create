@@ -10,6 +10,7 @@ const Index = () => {
         router.push(path)
         router.prefetch(path)
     }
+    
     return (
         <div>
             <NotFound />
