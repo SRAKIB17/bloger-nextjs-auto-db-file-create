@@ -86,7 +86,14 @@ export default async function handler(req, res) {
 
     else if (method === "DELETE" && checkUser && roll) {
         const { userID } = req.query;
-        const filter = { userID: userID }
+        const filter =
+        {
+            "$or":
+                [
+                    { replyID: userID },
+                    { userID: userID },
+                ]
+        }
         const result = await userCollection.deleteOne(filter);
 
         const { client } = SocialPostBlog()
