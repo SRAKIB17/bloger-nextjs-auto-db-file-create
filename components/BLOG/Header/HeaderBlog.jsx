@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { UserFullInfoProvider } from '../../../pages/_app';
 import autoJwtTokenGenerateForUserOrGuest from '../../hooks/autoJwtTokenGenerateForUserOrGuest';
+import LoadingSpin from '../../LoadingSpin';
 import MenuHeader from './MenuHeader';
 import ProfilePicHeader from './ProfilePicHeader';
 import SearchBtn from './Search/SearchBtn';
@@ -39,6 +41,8 @@ const HeaderBlog = () => {
             }
         }, { passive: false });
     }, [])
+
+
     return (
         <div>
             <div className="navbar bg-primary h-10 xl:pl-10 xl:pr-2 ">
@@ -51,7 +55,7 @@ const HeaderBlog = () => {
                     <div className="dropdown dropdown-end">
                         <SearchBtn />
                     </div>
-               
+
                     <div className="dropdown dropdown-end">
 
                         {/* <label tabIndex="0" className="btn btn-ghost btn-circle">

@@ -118,6 +118,23 @@ const ProfilePicHeader = () => {
                             </span>
                         </button>
                     </li>
+
+                    <li>
+                        <button
+                            className=' flex gap-2'
+                            onClick={() => navigate('/notification')}
+                        >
+                            <span>
+                                <img src="/svg/notification.svg" alt="" className='w-4' />
+                            </span>
+                            <span>
+                                Notification
+                                <span className='text-secondary'>
+                                    &nbsp;  ({messages?.length || "0"})
+                                </span>
+                            </span>
+                        </button>
+                    </li>
                     <li>
                         <button
                             className=' flex gap-2 '

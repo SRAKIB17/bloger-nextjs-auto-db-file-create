@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useEffect, useId, useState } from 'react';
-import Category from '../Category/Category';
 import { AccessKey, Announcement, Bill, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Services, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 
 import { useRouter } from 'next/router'
@@ -352,7 +351,6 @@ const SideLeftBar = () => {
                 (showAdminAccess && isAdmin?.admin) &&
                 <AdminAccess setAdminAccess={setAdminAccess} />
             }
-            <Category />
 
             {
                 (user?.user && newPost) &&

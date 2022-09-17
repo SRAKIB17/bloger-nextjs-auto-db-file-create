@@ -11,10 +11,12 @@ import useUserCheck from '../components/hooks/checkUser/useUserCheck';
 import HeaderBlog from '../components/BLOG/Header/HeaderBlog';
 import Footer from '../components/BLOG/Footer/Footer';
 import Head from 'next/head';
+import LoadingSpin from '../components/LoadingSpin';
 
 export const UserFullInfoProvider = createContext()
 function MyApp({ Component, pageProps }) {
-  const { user, user_details, isAdmin, isLoading } = useUserCheck()
+  const { user, user_details, isAdmin, isLoading } = useUserCheck();
+
   return (
     <UserFullInfoProvider.Provider value={{ user, user_details, isAdmin, isLoading }}>
       <QueryClientProvider client={queryClient}>
@@ -27,8 +29,16 @@ function MyApp({ Component, pageProps }) {
             </Head>
             <HeaderBlog />
           </div>
+
           <div className=' sm:pr-4 sm:pl-4 md:pr-4 md:pl-4 xl:pr-28 xl:pl-28'>
-            <Component {...pageProps} />
+            {
+              isLoading ?
+                <div className='min-h-screen'>
+                  <LoadingSpin />
+                </div>
+                :
+                <Component {...pageProps} />
+            }
           </div>
           <div>
             {/* <Footer /> */}
