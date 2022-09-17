@@ -114,8 +114,9 @@ export default async function handler(req, res) {
                             time: new Date()
                         }
 
-                        const supportInbox = client.db("Inboxes").collection("support");
-                        await supportInbox.insertOne(welcomeMessage);
+                        const Inbox = client.db("Inboxes").collection("inbox");
+
+                        await Inbox.insertOne(welcomeMessage);
                         res.status(200).json({ message: "success", token: jwtToken, login_info: loginInfo })
                     }
                     else {
