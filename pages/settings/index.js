@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import SettingsBlog from '../../components/BLOG/Settings/SettingsBlog';
-import Header from '../../components/Header/Header';
 import LoadingSpin from '../../components/LoadingSpin';
-import Settings from '../../components/Setting/Setting';
+
 import { UserFullInfoProvider } from '../_app';
 
 const Index = () => {
