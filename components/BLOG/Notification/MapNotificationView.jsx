@@ -72,15 +72,27 @@ const MapNotificationView = ({ notification }) => {
                         }
                         {
                             notifyFor == "COMMENT" &&
-                            <Comment color='#FE3C71' size='20' />
+                            <>
+                                <Comment color='#FE3C71' size='20' />
+                                <span>
+                                    {userInfo?.name || 'Someone'}
+                                </span>
+                            </>
                         }
                         {
                             notifyFor == "REPLY" &&
-                            <Reply size='20' color='#2BD566' />
+                            <>
+                                <Reply size='20' color='#2BD566' />
+                                <span>
+                                    {userInfo?.name || 'Someone'}
+                                </span>
+                            </>
+
                         }
                         {
                             notifyFor == "WELCOME" &&
                             <Emoji color='#FE3C71' size='20' />
+                            
                         }
                         <span className='text-[16px] md:text-[18px] text-left block'>
                             {message}
