@@ -1,15 +1,18 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import axios from 'axios';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from 'react-query';
+import { UserFullInfoProvider } from '../../../pages/_app';
 import { Comment, Delete, Emoji, EmoticonLove, Like, NewsFeed, PreviewOn, WarningTriangleFilled, Writing } from '../../ReactRSIcon';
 import Reply from '../hooks/comment_react/comment_replies/svg/Reply';
 import timeAgoSince from '../hooks/function/timeAgoSince';
 import ChangeSome from './svg/ChangeSome';
 
 const MapNotificationView = ({ notification }) => {
-    const { userID, message, notifyFor, time, actionID, notifyURL } = notification;
+    const { userID, message, notifyFor, time, actionID, notifyURL, _id } = notification;
     const timeSinceAgo = timeAgoSince(time);
+
+    const { user, user_details, isLoading: userLoading, isAdmin } = useContext(UserFullInfoProvider);
 
     const { data } = useQuery(['public_profile', actionID], () => axios.get(`/api/public_user_details/${actionID}`,
         {
@@ -18,8 +21,18 @@ const MapNotificationView = ({ notification }) => {
 
     const userInfo = (data?.data?.user_details);
 
-    const DeleteNotificationHandle = () => {
-        console.log(34534534)
+    const [deleteLoading, setDeleteLoading] = useState(null)
+    const DeleteNotificationHandle = async (id) => {
+        setDeleteLoading(true)
+        const data = await axios.delete(`/api/notification/delete?id=${id}&user_id=${user_details?.userID}&email=${user_details?.email}`,
+            {
+                headers: {
+                    access_token: sessionStorage.getItem('accessAutoG'),
+                    token: localStorage.getItem('token')
+                }
+            }
+        )
+        setDeleteLoading(false)
     }
     // REMOVE_WARNING
     return (
@@ -76,7 +89,7 @@ const MapNotificationView = ({ notification }) => {
                             {
                                 !message &&
                                 <span className='flex items-center gap-1'>
-                                    <ChangeSome size='24' className="text-cyan-500"/>    Some changes have been made
+                                    <ChangeSome size='24' className="text-cyan-500" />    Some changes have been made
                                 </span>
                             }
                         </span>
@@ -86,12 +99,25 @@ const MapNotificationView = ({ notification }) => {
                     </span>
                 </a>
 
-                <button
-                    className=" absolute btn-ghost btn right-3 top-5 rounded-md"
-                    onClick={() => DeleteNotificationHandle()}
-                >
-                    <Delete color='red' size='20' />
-                </button>
+                {
+                    deleteLoading ?
+                        <button
+                            className=" absolute btn-ghost btn right-3 top-5 rounded-md"
+                        >
+                            <Delete color='red' size='20' />
+                            <p className='border-r-2 border-primary border-b-2 w-5 h-5 absolute rounded-full animate-spin'>
+
+                            </p>
+                        </button>
+                        :
+                        <button
+                            className=" absolute btn-ghost btn right-3 top-5 rounded-md"
+                            onClick={() => DeleteNotificationHandle(_id)}
+                        >
+                            <Delete color='red' size='20' />
+                        </button>
+                }
+
 
             </div>
         </div>
