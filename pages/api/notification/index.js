@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     if (checkUser) {
         const { user_id } = req.query
         const notificationCollection = client.db("Notifications").collection("Notification");
-        return res.status(200).json(await notificationCollection.find({ userID: user_id }).toArray())
+        return res.status(200).json(await notificationCollection.find({ userID: user_id }).sort({ _id: -1 }).toArray())
 
     }
     else {
