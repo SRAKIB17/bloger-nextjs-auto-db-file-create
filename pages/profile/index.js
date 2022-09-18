@@ -3,10 +3,8 @@ import EditProfile from '../../components/BLOG/Profile/EditProfile';
 import EditUploadPhoto from '../../components/BLOG/Profile/EditUploadPhoto';
 import ProfileInfoSection from '../../components/BLOG/Profile/ProfileInfoSection';
 import UserPost from '../../components/BLOG/Profile/UserPost';
-import Header from '../../components/Header/Header';
 import usePrivatePageCheckUser from '../../components/hooks/checkUser/privatePageCheckUser';
 import LoadingSpin from '../../components/LoadingSpin';
-import Profile from '../../components/profile/Profile';
 import { UserFullInfoProvider } from '../_app';
 
 const Index = () => {
