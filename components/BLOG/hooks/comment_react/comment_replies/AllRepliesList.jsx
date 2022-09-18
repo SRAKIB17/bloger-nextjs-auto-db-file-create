@@ -11,7 +11,6 @@ const AllRepliesList = ({ replyBody, comment_id, post_id, refetch }) => {
     const timeAgo = timeAgoSince(time);
     const { user, user_details, isAdmin } = useContext(UserFullInfoProvider);
 
-
     // for delete reply 
     const [deleteLoading, setDeleteLoading] = useState(false);
     const deleteCommentHandle = async (id, comment_id, post_id) => {

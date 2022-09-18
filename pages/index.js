@@ -18,7 +18,7 @@ export default function Index() {
   }
 
 
-  const { title } = PageDetailsSEO()
+  const { title } = PageDetailsSEO();
   return (
     <div data-scroll='[green, ,]'>
       <Head>

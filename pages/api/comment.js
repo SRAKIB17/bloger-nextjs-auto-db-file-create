@@ -1,3 +1,5 @@
+import create_notification_automatic from "../../components/hooks/api/notification/create_notification_automatic"
+
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const message = [
     {
@@ -46,13 +48,7 @@ const message = [
         `
     }
 ]
-export default function handler(req, res) {
-    const method = req.method;
-    if (method === "GET") {
-        res.status(200).json(message)
-    }
-    if(method === 'POST'){
-        message.push(req.body)
-    }
-
+export default async function handler(req, res) {
+    const aa = await create_notification_automatic('LIKE', '/', 5345435, 5345345)
+    res.send(aa)
 }

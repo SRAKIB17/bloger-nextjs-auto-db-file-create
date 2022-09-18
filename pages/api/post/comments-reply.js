@@ -1,3 +1,4 @@
+import create_notification_automatic from "../../../components/hooks/api/notification/create_notification_automatic";
 import SocialPostBlog from "../../../components/hooks/api/social/post_blog_videos_post";
 import verifyUserAndAccessFeatureServer from "../../../components/hooks/api/verifyUser/verifyUserAndAccessFeatureServer";
 const crypto = require('crypto')
@@ -59,6 +60,9 @@ export default async function handler(req, res) {
             await getComment?.replies?.push(replyBody);
 
 
+            const notifyURL = '/blog/post/' + post_id + '#comment' + comment_id;
+
+            await create_notification_automatic("REPLY", notifyURL, findPost?.userID, replyBody?.userID);
 
             const updateDoc = {
                 $set: findPost

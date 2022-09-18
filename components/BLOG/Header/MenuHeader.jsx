@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
+import { UserFullInfoProvider } from '../../../pages/_app';
+import Notification from '../Notification/Notification';
 import Category from './Category';
 
 const MenuHeader = () => {
@@ -11,6 +13,7 @@ const MenuHeader = () => {
 
     }
 
+    const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
 
     return (
         <div>
@@ -107,6 +110,7 @@ const MenuHeader = () => {
                             </a>
                             <Category />
                         </li>
+
                         <li>
                             <button onClick={() => navigate('/services')}>
                                 Services
@@ -117,6 +121,16 @@ const MenuHeader = () => {
                                 How?
                             </button>
                         </li>
+                        {
+                            // user?.user &&
+                            <div className="dropdown dropdown-end xl:block hidden">
+                                <label tabIndex={0} className="btn btn-ghost font-light text-[16px] capitalize">Notification</label>
+                                <span tabIndex={0} className="dropdown-content menu  shadow bg-base-100 rounded-sm top-16 w-[600px] h-[500px] overflow-scroll pb-4">
+                                    <Notification />
+                                </span>
+                            </div>
+
+                        }
                     </ul>
                 </div>
 

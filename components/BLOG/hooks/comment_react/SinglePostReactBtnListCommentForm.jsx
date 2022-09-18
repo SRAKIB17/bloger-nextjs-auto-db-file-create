@@ -53,7 +53,7 @@ const SinglePostReactBtnListCommentForm = ({ post, refetch }) => {
                 <ReactBtnList post={post} refetch={refetch} />
             </div>
 
-            <div id={'comment_replies' + post?.post_id} className='h-0 overflow-hidden hideScrollBar border-t'>
+            <div id={'comment_replies' + post?.post_id} className='h-full overflow-hidden hideScrollBar border-t'>
                 {/**
                  * For comment 
                  * for react 

@@ -12,7 +12,7 @@ import MessageSentForm from './MessageSentForm.jsx';
 import LoadingSpin from '../../LoadingSpin';
 
 const InboxBody = ({ setUserList, specificId }) => {
- 
+
     const { user, user_details, isLoading: userIsLoading, isAdmin } = useContext(UserFullInfoProvider);
 
 
@@ -93,6 +93,11 @@ const InboxBody = ({ setUserList, specificId }) => {
             time: new Date()
         }
         setShowSpecificUserMessage([...showSpecificUserMessage, messageBody])
+
+        setSelectEmoji(null)
+        setShowMenuEmoji(null)
+        setShowEmojiGifSection(null)
+
         const { data } = await axios.post(`/api/inbox/new?user_id${user_details?.userID}&email=${user_details?.email}`, messageBody,
             {
                 headers: {

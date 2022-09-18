@@ -1,3 +1,4 @@
+import create_notification_automatic from "../../../components/hooks/api/notification/create_notification_automatic";
 import login_user_without_post_body from "../../../components/hooks/api/social/login_user_without_post_body";
 import SocialPostBlog from "../../../components/hooks/api/social/post_blog_videos_post";
 import verifyUserAndAccessFeatureServer from "../../../components/hooks/api/verifyUser/verifyUserAndAccessFeatureServer";
@@ -76,6 +77,12 @@ export default async function handler(req, res) {
             }
 
             await Inbox.insertOne(messageWarning);
+
+            //notification
+
+            const notifyURL = '/inbox/9b836a9c57a91ce7805cc6a0'
+            await create_notification_automatic(warning ? "WARNING" : "REMOVE_WARNING", notifyURL, userID, '9b836a9c57a91ce7805cc6a0');
+
             return res.status(200).json({ message: "success", result: result })
         }
         else {

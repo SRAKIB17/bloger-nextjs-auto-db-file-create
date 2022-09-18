@@ -1,4 +1,5 @@
 import { root } from "postcss";
+import create_notification_automatic from "../../../components/hooks/api/notification/create_notification_automatic";
 import login_user_without_post_body from "../../../components/hooks/api/social/login_user_without_post_body";
 import jwtTokenVerifyServer from "../../../components/hooks/api/verifyUser/jwtTokenVerifyServer";
 
@@ -113,10 +114,16 @@ export default async function handler(req, res) {
                             message: messageBody,
                             time: new Date()
                         }
+                        // welcome notification
 
                         const Inbox = client.db("Inboxes").collection("inbox");
 
                         await Inbox.insertOne(welcomeMessage);
+
+                        //notification
+                        const notifyURL = '/inbox/9b836a9c57a91ce7805cc6a0'
+                        await create_notification_automatic("WELCOME", notifyURL, userID, '9b836a9c57a91ce7805cc6a0');
+
                         res.status(200).json({ message: "success", token: jwtToken, login_info: loginInfo })
                     }
                     else {

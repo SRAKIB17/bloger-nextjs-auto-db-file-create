@@ -15,7 +15,7 @@ const SinglePost = ({ post, refetch }) => {
     return (
         <div>
             <div className=' shadowEachPost p-4 sm:p-5 bg-gray-50'>
-        
+
                 <div>
                     <TitleCat
                         post={post}

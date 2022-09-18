@@ -1,3 +1,4 @@
+import create_notification_automatic from "../../../components/hooks/api/notification/create_notification_automatic";
 import SocialPostBlog from "../../../components/hooks/api/social/post_blog_videos_post";
 import verifyUserAndAccessFeatureServer from "../../../components/hooks/api/verifyUser/verifyUserAndAccessFeatureServer";
 const crypto = require('crypto')
@@ -52,7 +53,9 @@ export default async function handler(req, res) {
             // const findCommentAll = await findPost?.comments?.map(commentBody => commentBody);
             await findPost?.comments?.push(commentBody)
 
-
+            //notification
+            const notifyURL = '/blog/post/' + post_id + '#comment' + comment_id;
+            await create_notification_automatic("COMMENT", notifyURL, findPost?.userID, commentBody?.userID);
             //7. GET UPDATE DOC
 
             const updateDoc = {

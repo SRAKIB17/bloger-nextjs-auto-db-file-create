@@ -1,4 +1,5 @@
 import { pid } from "process";
+import create_notification_automatic from "../../../components/hooks/api/notification/create_notification_automatic";
 import SocialPostBlog from "../../../components/hooks/api/social/post_blog_videos_post";
 import verifyUserAndAccessFeatureServer from "../../../components/hooks/api/verifyUser/verifyUserAndAccessFeatureServer";
 const crypto = require('crypto')
@@ -20,7 +21,7 @@ export default async function handler(req, res) {
         const { post_id } = req?.body
         const { userID } = req.body;
         delete req?.body?.post_id
-    
+
         if (checkUser) {
             const filter = { post_id: post_id };
             const findPost = await postCollection.findOne(filter);
@@ -32,6 +33,8 @@ export default async function handler(req, res) {
                     react: [...findUserReact, reactUser]
                 }
             }
+            const notifyURL = '/blog/post/' + post_id;
+            await create_notification_automatic(req.body.rating, notifyURL, findPost?.userID, userID);
 
             const result = await postCollection.updateOne(filter, updateDoc);
             if (result?.acknowledged) {

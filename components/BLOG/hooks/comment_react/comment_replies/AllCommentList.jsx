@@ -91,7 +91,6 @@ const AllCommentList = ({ comment: commentBody, replySetHandle, post_id, refetch
     }
 
 
-
     return (
         <div>
             <div className='border-b' id={post_id}>
@@ -99,7 +98,9 @@ const AllCommentList = ({ comment: commentBody, replySetHandle, post_id, refetch
                 <Profile user_id={userID} timeAgo={timeAgo} />
 
                 {/* **************for comment body ********** */}
-                <CommentBodyReplies comment={comment} commentBody={commentBody} />
+                <div id={'comment' + comment_id}>
+                    <CommentBodyReplies comment={comment} commentBody={commentBody} />
+                </div>
 
                 {/*--------------- for reply count and handle show more  reply  -------------------*/}
                 <div className='flex items-center ml-11 p-1'>
