@@ -7,8 +7,7 @@ const Footer = () => {
     return (
         <footer className="footer p-10">
             <div>
-                <img src="/proglearn_logo.png" alt="" className='max-w-[150px] sm:max-w-[200px] w-full' />
-                <p>ProgLearn</p>
+                <img src="/proglearn_logo_footer.png" alt="" className='max-w-[150px] sm:max-w-[200px] w-full' />
             </div>
             <div>
                 <span className="footer-title">Social</span>

@@ -116,21 +116,21 @@ const MenuHeader = () => {
                                 Services
                             </button>
                         </li>
+                        {
+                            user?.user &&
+                            <button className="dropdown dropdown-end xl:block hidden">
+                                <label tabIndex={0} className="btn btn-ghost font-light text-[16px] capitalize">Notification</label>
+                                <span tabIndex={0} className="dropdown-content menu  shadow bg-base-100 rounded-sm top-16 w-[600px] h-[500px] overflow-scroll pb-4">
+                                    <Notification />
+                                </span>
+                            </button>
+                        }
                         <li>
                             <button onClick={() => navigate('/docs')}>
                                 How?
                             </button>
                         </li>
-                        {
-                            // user?.user &&
-                            <div className="dropdown dropdown-end xl:block hidden">
-                                <label tabIndex={0} className="btn btn-ghost font-light text-[16px] capitalize">Notification</label>
-                                <span tabIndex={0} className="dropdown-content menu  shadow bg-base-100 rounded-sm top-16 w-[600px] h-[500px] overflow-scroll pb-4">
-                                    <Notification />
-                                </span>
-                            </div>
 
-                        }
                     </ul>
                 </div>
 
