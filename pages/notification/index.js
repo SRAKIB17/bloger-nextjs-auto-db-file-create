@@ -1,5 +1,7 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
+import PageDetailsSEO from '../../components/BLOG/hooks/PageDetailsSEO';
 import Notification from '../../components/BLOG/Notification/Notification';
 import usePrivatePageCheckUser from '../../components/hooks/checkUser/privatePageCheckUser';
 import LoadingSpin from '../../components/LoadingSpin';
@@ -14,8 +16,15 @@ const Index = () => {
             <LoadingSpin />
         </div>
     }
+    const { title } = PageDetailsSEO()
     return (
         <div className='min-h-screen'>
+            <Head>
+
+                <title>
+                    {title+" "}/ Notification    
+                </title>
+            </Head>
             <Notification />
         </div>
     );
