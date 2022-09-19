@@ -2,7 +2,7 @@
 import fs from 'fs/promises'
 
 export default async function handler(req, res) {
-    const js = await fs.readFile('test/index.js', 'utf-8');
+    const js = await fs.readFile('index.js', 'utf-8');
     console.log(req.query)
 
     const svg = `
