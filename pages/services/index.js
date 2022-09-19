@@ -5,6 +5,7 @@ import PageTitle from '../../components/hooks/PageTitle';
 import LoadingSpin from '../../components/LoadingSpin';
 import { MenuBarRight } from '../../components/ReactRSIcon';
 import CdnCode from '../../components/Services/CDN_CODE/CdnCode';
+import TypeWriter from '../../components/Services/TypeWriter/TypeWriter';
 import { UserFullInfoProvider } from '../_app';
 
 
@@ -52,21 +53,32 @@ const Index = () => {
                                     <CdnCode />
                                 </div>
                             }
+                            {
+
+                                selectServices === 'Type Writer' &&
+                                <div className='pl-1 '>
+                                    <TypeWriter />
+                                </div>
+                            }
                         </div>
                     </div>
-                    <div className="drawer-side border-r-[1px] border-gray-500 ">
+                    <div className="drawer-side bg-base-100 border-r-[1px] border-gray-500 ">
                         <label htmlFor="servicesDrawer" className="drawer-overlay"></label>
                         <ul
-                            className="menu p-4 overflow-y-auto w-64 bg-primary   text-base-content gap-1 "
+                            className="menu p-4 overflow-y-auto w-64 bg-base-100  text-base-content gap-1 "
                         >
                             {/* <!-- Sidebar content here --> */}
                             <li
-                                className={(selectServices == 'CONTENT DELIVERY NETWORK (CDN) CODE' ? 'btn-primary rounded-md' : '') + ' cursor-pointer'}
+                                className={(selectServices == 'CONTENT DELIVERY NETWORK (CDN) CODE' ? ' text-white btn-primary rounded-md' : '') + ' cursor-pointer'}
                                 onClick={() => setSelectServices('CONTENT DELIVERY NETWORK (CDN) CODE')} >
                                 <a>CDN CODE</a>
                             </li>
                             <li
-                                className={(selectServices == 'CONTENT DELIVERY NETWORK (CDN) CODE' ? 'btn-primary rounded-md' : '') + ' cursor-pointer'}
+                                className={(selectServices == 'Type Writer' ? 'btn-primary rounded-md text-white' : '') + ' cursor-pointer'}
+                                onClick={() => setSelectServices('Type Writer')} >
+                                <a>Type Writer</a>
+                            </li>
+                            <li
                                 onClick={() => setSelectServices('CONTENT DELIVERY NETWORK (CDN) CODE')} >
                                 <a
                                     className=''
@@ -78,7 +90,6 @@ const Index = () => {
                                 </a>
                             </li>
                             <li
-                                className={(selectServices == 'CONTENT DELIVERY NETWORK (CDN) CODE' ? 'btn-primary rounded-md' : '') + ' cursor-pointer'}
                                 onClick={() => setSelectServices('CONTENT DELIVERY NETWORK (CDN) CODE')} >
                                 <a
                                     className=''
