@@ -80,8 +80,9 @@ export default async function create_notification_automatic(notifyFor, notifyURL
         default:
             break;
     }
-    if (!userID == actionID) {
+    if (!(userID == actionID)) {
         await notificationCollection.insertOne(notification)
     }
+
     return notification;
 }

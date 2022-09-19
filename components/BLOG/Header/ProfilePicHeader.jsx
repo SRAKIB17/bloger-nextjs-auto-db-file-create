@@ -33,6 +33,16 @@ const ProfilePicHeader = () => {
     ))
     const messages = data?.data;
 
+    const { data: notification } = useQuery(['NOTIFICATIONS', user_details], () => axios.get(`/api/notification?user_id=${user_details?.userID}&email=${user_details?.email}`,
+        {
+            headers: {
+                access_token: sessionStorage.getItem('accessAutoG'),
+                token: localStorage.getItem('token')
+            }
+        }
+    ))
+    const notificationsData = notification?.data;
+  
     return (
         <div>
             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
@@ -130,7 +140,7 @@ const ProfilePicHeader = () => {
                             <span>
                                 Notification
                                 <span className='text-secondary'>
-                                    &nbsp;  ({messages?.length || "0"})
+                                    &nbsp;  ({notificationsData?.length || "0"})
                                 </span>
                             </span>
                         </button>

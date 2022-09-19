@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import { UserFullInfoProvider } from '../../../pages/_app';
@@ -8,7 +9,7 @@ import Reply from '../hooks/comment_react/comment_replies/svg/Reply';
 import timeAgoSince from '../hooks/function/timeAgoSince';
 import ChangeSome from './svg/ChangeSome';
 
-const MapNotificationView = ({ notification }) => {
+const MapNotificationView = ({ notification, refetch }) => {
     const { userID, message, notifyFor, time, actionID, notifyURL, _id } = notification;
     const timeSinceAgo = timeAgoSince(time);
 
@@ -32,15 +33,28 @@ const MapNotificationView = ({ notification }) => {
                 }
             }
         )
+        refetch()
+        const result = data?.data
+        if (result?.acknowledged) {
+            refetch()
+            setDeleteLoading(false)
+        }
+        else {
+            alert('something is wrong')
+        }
         setDeleteLoading(false)
     }
     // REMOVE_WARNING
+    const router = useRouter()
+    const navigate = (path) => {
+        router.replace(path)
+    }
     return (
         <div>
-            <div className='relative '>
-                <a
-                    href={notifyURL}
-                    className="bg-base-100 shadowEachPost p-4 block rounded-sm btn-ghost w-full"
+            <div className='relative bg-base-100 shadowEachPost flex items-center'>
+                <button
+                    onClick={() => navigate(notifyURL)}
+                    className=" p-4 block rounded-sm btn-ghost w-full"
                 >
                     <span className='flex items-center justify-start gap-2 text-primary'>
                         {
@@ -97,12 +111,12 @@ const MapNotificationView = ({ notification }) => {
                     <span className='block text-left text-xs m-1'>
                         {timeSinceAgo}
                     </span>
-                </a>
+                </button>
 
                 {
                     deleteLoading ?
                         <button
-                            className=" absolute btn-ghost btn right-3 top-5 rounded-md"
+                            className=" btn-ghost btn rounded-sm"
                         >
                             <Delete color='red' size='20' />
                             <p className='border-r-2 border-primary border-b-2 w-5 h-5 absolute rounded-full animate-spin'>
@@ -111,7 +125,7 @@ const MapNotificationView = ({ notification }) => {
                         </button>
                         :
                         <button
-                            className=" absolute btn-ghost btn right-3 top-5 rounded-md"
+                            className="  btn-ghost btn  rounded-sm"
                             onClick={() => DeleteNotificationHandle(_id)}
                         >
                             <Delete color='red' size='20' />
