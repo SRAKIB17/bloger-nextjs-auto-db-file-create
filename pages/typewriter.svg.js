@@ -1,9 +1,25 @@
+import React from 'react';
 
-import fs from 'fs/promises'
+const Index = () => {
+    return (
+        <div>
 
-export default async function handler(req, res) {
-    const line = req.query?.line?.split(';');
-    const colors = req.query?.colors?.split(';');
+        </div>
+    );
+};
+
+export default Index;
+
+
+export async function getServerSideProps(context) {
+
+    const res = context?.res;
+    const req = context?.req;
+
+    const line = context.query?.line?.split(';');
+    const colors = context.query?.colors?.split(';');
+    const { font_size } = context.query
+
 
     const defaultColor = ['#004D33', '#211B50', '#DD4124', '#F5DF4D', '#FAE03C', '#79C753', '#DD3420', '#004d33', '#00477e', '#ffab00']
     if (line?.length != colors?.length) {
@@ -11,6 +27,19 @@ export default async function handler(req, res) {
             const choose = defaultColor[Math.floor(Math.random() * defaultColor?.length)]
             colors?.push(choose)
         }
+    }
+
+    let y = 0
+    const font = eval(font_size)
+    if (font < 80) {
+        y = font - font / 8;
+    }
+    else if (font <= 200) {
+        y = font - font / 6;
+    }
+
+    else if (font >= 200) {
+        y = font - font / 6;
     }
 
 
@@ -43,9 +72,9 @@ const svgGenerate = (line, fill = 'gold', font) => {
     var newText = document.createElementNS(svgNS, "text");
     newText.setAttributeNS(null, "x", 0);
 
-    newText.setAttributeNS(null, "y", 45);
+    newText.setAttributeNS(null, "y", ${y});
     newText.setAttributeNS(null, "fill", fill);
-    newText.setAttributeNS(null, "font-size", "45");
+    newText.setAttributeNS(null, "font-size", ${font_size});
     newText.setAttributeNS(null, "font-family", "Verdana");
 
     var textNode = document.createTextNode(line);
@@ -95,13 +124,11 @@ function deleteChar() {
 // Initializing generator
 
 typeChar(words[gen()]);
-
-    
     
     `
 
     const svg = `
-   <svg  height="100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <svg  height='${y + 15}' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g id="text">
     </g>
     <script>//<![CDATA[
@@ -114,5 +141,7 @@ typeChar(words[gen()]);
     res.write(svg);
     res.end();
 
-
+    return {
+        props: {},
+    }
 }
