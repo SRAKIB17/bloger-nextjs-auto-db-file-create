@@ -97,8 +97,10 @@ const MapNotificationView = ({ notification, refetch }) => {
                         }
                         <span className='text-[16px] md:text-[18px] text-left block'>
                             {
-                                (notifyFor == "LIKE" || notifyFor == "LOVE" || notifyFor == 'UNLIKE' || notifyFor == 'COMMENT' || notifyFor == 'REPLY') &&
-                                ((userInfo?.name || 'Someone') + " " + message)
+                                (notifyFor == "LIKE" || notifyFor == "LOVE" || notifyFor == 'UNLIKE' || notifyFor == 'COMMENT' || notifyFor == 'REPLY') ?
+                                    ((userInfo?.name || 'Someone') + " " + message)
+                                    :
+                                    (" " + message)
                             }
                             {
                                 !message &&
