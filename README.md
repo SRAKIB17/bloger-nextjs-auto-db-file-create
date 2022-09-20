@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+<embed src="http://localhost:3000/typewriter.svg?line=abdullah;RAKIB;ISLAM;DONE;ok;bro;jiiiiiiiiiiin&colors=blue;gold;green;silver&font_size=60" type="">
+
 ## Getting Started
 
 First, run the development server:
