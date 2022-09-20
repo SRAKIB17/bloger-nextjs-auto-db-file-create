@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
         y = font - font / 8;
     }
     else if (font <= 200) {
-        y = font - font / 6;
+        y = font - font / 8;
     }
 
     else if (font >= 200) {
