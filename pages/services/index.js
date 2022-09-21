@@ -55,7 +55,7 @@ const Index = () => {
                             }
                             {
 
-                                selectServices === 'Type Writer' &&
+                                selectServices === 'Type Writer SVG' &&
                                 <div className='pl-1 '>
                                     <TypeWriter />
                                 </div>
@@ -74,9 +74,9 @@ const Index = () => {
                                 <a>CDN CODE</a>
                             </li>
                             <li
-                                className={(selectServices == 'Type Writer' ? 'btn-primary rounded-md text-white' : '') + ' cursor-pointer'}
-                                onClick={() => setSelectServices('Type Writer')} >
-                                <a>Type Writer</a>
+                                className={(selectServices == 'Type Writer SVG' ? 'btn-primary rounded-md text-white' : '') + ' cursor-pointer'}
+                                onClick={() => setSelectServices('Type Writer SVG')} >
+                                <a>Type Writer SVG</a>
                             </li>
                             <li
                                 onClick={() => setSelectServices('CONTENT DELIVERY NETWORK (CDN) CODE')} >
