@@ -9,12 +9,13 @@ import WarningProfile from '../../hooks/WarningProfile';
 
 import { useRouter } from 'next/router';
 import { UserFullInfoProvider } from '../../../pages/_app';
+import timeAgoSince from '../../BLOG/hooks/function/timeAgoSince';
 
 const CdnCodeList = ({ cdn, index, refetch }) => {
     const { user, isAdmin, user_details } = useContext(UserFullInfoProvider);
 
     const { code, code_id, userID, time, content_type, code_title, code_des } = cdn;
-    const getTimeSince = timeSince(time)
+    const getTimeSince = timeAgoSince(time)
 
 
     const copyCdnLink = `${(typeof window !== 'undefined' && window.location.origin) ? window.location.origin : ''}/${userID}/cdn/${code_id}`.trim();
