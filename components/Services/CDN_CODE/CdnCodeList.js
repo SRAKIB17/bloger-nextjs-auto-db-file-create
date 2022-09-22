@@ -1,16 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useState } from 'react';
-import ShareOption from '../../Comment/LikeLoveFavorite/ShareOption';
-import timeSince from '../../Post-NewsFeed/TimeSince';
 import { CDN, Copy, Delete, Link, Share, Writing } from '../../ReactRSIcon';
 import DeleteCode from './DeleteCode';
 import EditCode from './EditCode';
-import styles from '../../Comment/LikeLoveFavorite/LikeTransition.module.css'
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import WarningProfile from '../../hooks/WarningProfile';
-import maleAvatar from '../../../public/maleAvatar.png'
-import femaleAvatar from '../../../public/femaleAvatar.png'
+
 import { useRouter } from 'next/router';
 import { UserFullInfoProvider } from '../../../pages/_app';
 
@@ -245,10 +241,10 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                             <Share />
                                         </button>
                                         {
-                                            showShareCode &&
-                                            <div className={styles.shareOption}>
-                                                <ShareOption sharePath={sharePath} id={code_id} />
-                                            </div>
+                                            // showShareCode &&
+                                            // <div className={styles.shareOption}>
+                                                {/* <ShareOption sharePath={sharePath} id={code_id} /> */}
+                                            // </div>
                                         }
                                     </div>
                                     <div>
@@ -289,10 +285,10 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                             <Share />
                                         </button>
                                         {
-                                            showShareCDN &&
-                                            <div className={styles.shareOption}>
-                                                <ShareOption sharePath={sharePath} id={code_id} />
-                                            </div>
+                                            // showShareCDN &&
+                                            // <div className={styles.shareOption}>
+                                                {/* <ShareOption sharePath={sharePath} id={code_id} /> */}
+                                            // </div>
                                         }
                                     </div>
                                     <a href={copyCdnLink} target='_blank' className='btn btn-sm btn-outline btn-info' rel="noreferrer">
