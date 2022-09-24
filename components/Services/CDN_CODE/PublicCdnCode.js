@@ -33,7 +33,6 @@ const PublicCdnCode = () => {
             setCODE(codeBody)
         }
     }, [codeBody]);
-
     return (
         <div>
             <div>

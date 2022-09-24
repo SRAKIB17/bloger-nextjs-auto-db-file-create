@@ -7,10 +7,9 @@ const TypeWriter = () => {
 
 
     const [lineArr, setLineArr] = useState([])
-    const [colorsArr, setColorsArr] = useState(['silver'])
+    const [colorsArr, setColorsArr] = useState([''])
     const [line, setLine] = useState('');
-    const [colors, setColors] = useState('silver');
-    console.log(colors)
+    const [colors, setColors] = useState('');
     useEffect(() => {
         setLine(lineArr.join(';'));
         setColors(colorsArr.join(';'));

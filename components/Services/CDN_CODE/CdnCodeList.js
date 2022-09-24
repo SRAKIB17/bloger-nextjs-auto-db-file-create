@@ -218,7 +218,7 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                 <div className="p-1" >
                                     <Link size='18' />
                                 </div>
-                                <div className='flex items-center flex-wrap gap-[2px]'>
+                                <div className='flex items-center flex-wrap gap-1'>
                                     <input
                                         readOnly='true'
                                         id={'codeLink' + code_id}
@@ -232,21 +232,16 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                     >
                                         <Copy />
                                     </button>
-                                    <div
-                                        onMouseEnter={() => setShareCode(!showShareCode)}
-                                        onMouseLeave={() => setShareCode(!showShareCode)} className='relative'
-                                    >
-                                        <button
-                                            className='btn btn-primary btn-sm btn-outline '
-                                        >
+                                    {/* ************* CODE SHARE************* */}
+
+                                    <div className="dropdown dropdown-end">
+                                        <label tabIndex={0} className="btn btn-primary btn-sm btn-outline">
                                             <Share />
-                                        </button>
-                                        {
-                                            // showShareCode &&
-                                            // <div className={styles.shareOption}>
-                                                {/* <ShareOption sharePath={sharePath} id={code_id} /> */}
-                                            // </div>
-                                        }
+                                        </label>
+                                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow rounded-sm bg-base-200 w-52">
+                                            <li><a>Item 1</a></li>
+                                            <li><a>Item 2</a></li>
+                                        </ul>
                                     </div>
                                     <div>
                                         <a href={copyCodeLink} target='_blank' className='btn btn-sm btn-outline btn-info' rel="noreferrer">
@@ -262,7 +257,7 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                 <div className="p-1" >
                                     <CDN size='22' />
                                 </div>
-                                <div className='flex items-center flex-wrap gap-[2px]'>
+                                <div className='flex items-center flex-wrap gap-1'>
                                     <input
                                         readOnly='true'
                                         id={'cdnLink' + code_id}
@@ -276,21 +271,17 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                     >
                                         <Copy />
                                     </button>
-                                    <div
-                                        onMouseEnter={() => setShareCDN(!showShareCDN)}
-                                        onMouseLeave={() => setShareCDN(!showShareCDN)} className='relative'
-                                    >
-                                        <button
-                                            className='btn btn-primary btn-sm btn-outline '
-                                        >
+
+                                    {/* **************CDN SHARE************* */}
+
+                                    <div className="dropdown dropdown-end">
+                                        <label tabIndex={0} className="btn btn-primary btn-sm btn-outline">
                                             <Share />
-                                        </button>
-                                        {
-                                            // showShareCDN &&
-                                            // <div className={styles.shareOption}>
-                                                {/* <ShareOption sharePath={sharePath} id={code_id} /> */}
-                                            // </div>
-                                        }
+                                        </label>
+                                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow rounded-sm bg-base-200 w-52">
+                                            <li><a>Item 1</a></li>
+                                            <li><a>Item 2</a></li>
+                                        </ul>
                                     </div>
                                     <a href={copyCdnLink} target='_blank' className='btn btn-sm btn-outline btn-info' rel="noreferrer">
                                         visit
