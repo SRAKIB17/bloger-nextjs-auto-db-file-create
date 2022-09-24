@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import Header from '../../components/Header/Header';
 import PageTitle from '../../components/hooks/PageTitle';
 import LoadingSpin from '../../components/LoadingSpin';
-import { MenuBarRight } from '../../components/ReactRSIcon';
+import { ArrowsRight, MenuBarRight } from '../../components/ReactRSIcon';
 import CdnCode from '../../components/Services/CDN_CODE/CdnCode';
 import TypeWriter from '../../components/Services/TypeWriter/TypeWriter';
 import { UserFullInfoProvider } from '../_app';
@@ -36,12 +36,12 @@ const Index = () => {
                 <div className="drawer drawer-mobile m-0">
                     <input id="servicesDrawer" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content p-1">
-                        <div className='text-end pr-2 pt-1'>
+                        <div className='text-left pr-2 pt-1'>
                             <label
                                 htmlFor="servicesDrawer"
                                 className="btn btn-primary btn-xs btn-outline drawer-button lg:hidden "
                             >
-                                <MenuBarRight />
+                                <ArrowsRight size='20'/>
                             </label>
                         </div>
 
