@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import NewPost from '../profile/NewPost/NewPost';
 import { UserFullInfoProvider } from '../../pages/_app';
 import maleAvatar from '../../public/maleAvatar.png'
-import AdminAccess from '../AdminAccess/AdminAccess';
 
 const SideLeftBar = () => {
     /** ------------------------------for dark mode state----------------------------- */
@@ -347,10 +346,7 @@ const SideLeftBar = () => {
                 }
 
             </div>
-            {
-                (showAdminAccess && isAdmin?.admin) &&
-                <AdminAccess setAdminAccess={setAdminAccess} />
-            }
+      
 
             {
                 (user?.user && newPost) &&
