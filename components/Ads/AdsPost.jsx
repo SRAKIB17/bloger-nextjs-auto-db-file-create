@@ -13,10 +13,11 @@ const AdsStory = () => {
         html: '',
         details: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, inventore repellendus. Eius corporis, similique aspernatur saepe, magni illo ipsa rerum provident ducimus suscipit, ut quo nisi consequuntur! Asperiores, repellendus voluptasm ipsum dolor sit amet consectetur adipisicing elit. Dolorem, inventore repellendus. Eius corporis, similique aspernatur saepe, magni illo ipsa rerum provident ducimus suscipit, ut quo nisi consequuntur! Asperiores, repellendus voluptas..'
     }
+    const [fullDetails, setFullDetails] = useState(null)
     return (
         <div>
             {
-                // (getShowState && !hideAds) &&
+                (getShowState && !hideAds) &&
                 <div
                     className='relative rounded-sm bg-base-200'
                 // style={{ backgroundImage: `url('${bg?.src}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}
@@ -31,12 +32,29 @@ const AdsStory = () => {
                                 X
                             </button>
                             <button
+                                onClick={() => setFullDetails(true)}
                                 className=' btn btn-ghost btn-xs text-info '
                             >
-                                <Info size='13'/>
+                                <Info size='13' />
                             </button>
                         </div>
-
+                        {
+                            fullDetails &&
+                            <div className='bg-base-200 absolute bottom-[80px]  p-4 w-full'>
+                                <button
+                                    onClick={() => setFullDetails(null)}
+                                    className="btn btn-sm btn-warning text-white absolute right-1 -top-[16px]"
+                                >
+                                    X
+                                </button>
+                                <div className='text-justify'>
+                                    {ads?.details}
+                                </div>
+                                <a href={ads?.url} target='_blank' rel="noreferrer" className='btn capitalize  btn-xs link link-hover '>
+                                    visit
+                                </a>
+                            </div>
+                        }
                         <a href={ads?.url} target='_blank' rel="noreferrer" >
                             <div className='flex items-center h-full w-full gap-2'>
                                 <div className='h-full overflow-hidden max-w-[130px] w-full'>
