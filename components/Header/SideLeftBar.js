@@ -3,9 +3,7 @@ import React, { useContext, useEffect, useId, useState } from 'react';
 import { AccessKey, Announcement, Bill, BookmarkStar, Category1, ChatForum, Info, LoginOutline, LogOutOutline, Moon, MoonEmpty, Services, Setting, Sun, SupportInbox, Writing } from '../ReactRSIcon/index'
 
 import { useRouter } from 'next/router'
-import NewPost from '../profile/NewPost/NewPost';
 import { UserFullInfoProvider } from '../../pages/_app';
-import maleAvatar from '../../public/maleAvatar.png'
 
 const SideLeftBar = () => {
     /** ------------------------------for dark mode state----------------------------- */
@@ -347,11 +345,6 @@ const SideLeftBar = () => {
 
             </div>
       
-
-            {
-                (user?.user && newPost) &&
-                <NewPost props={setNewPost} />
-            }
 
 
         </div>
