@@ -19,31 +19,33 @@ const AdsStory = () => {
             {
                 (getShowState && !hideAds) &&
                 <div
-                    className='relative rounded-sm bg-base-200'
-                // style={{ backgroundImage: `url('${bg?.src}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}
+                    className='relative rounded-none bg-base-200'
+                    style={{ backgroundImage: `url('${bg?.src}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}
 
                 >
-                    <div className='w-full h-20  mb-1 rounded-md relative text-primary '>
+                    <div className='w-full h-20  mb-1 rounded-md relative text-white'>
                         <div className='absolute right-2 z-40 -top-2 flex items-center'>
                             <span
                                 onClick={() => setHideAds(true)}
-                                className=" btn btn-ghost btn-xs"
+                                className=" btn btn-xs btn-info text-white rounded-none rounded-l-md"
                             >
                                 X
                             </span>
                             <span
-                                onClick={() => setFullDetails(true)}
-                                className=' btn btn-ghost btn-xs text-info '
+                                onClick={() => setFullDetails(!fullDetails)}
+                                className=' btn btn-xs text-white btn-info rounded-none rounded-r-md'
                             >
                                 <Info size='13' />
                             </span>
                         </div>
+                        
                         {
                             fullDetails &&
-                            <div className='bg-base-200 absolute bottom-[80px] rounded-sm  p-4 w-full'>
+                            <div className='bg-base-200 absolute bottom-[80px] rounded-none  p-4 w-full' style={{ backgroundImage: `url('${bg?.src}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}
+                            >
                                 <span
                                     onClick={() => setFullDetails(null)}
-                                    className="btn btn-sm btn-warning text-white absolute right-1 -top-[16px]"
+                                    className="btn btn-info btn-xs text-white absolute right-1 -top-[16px]"
                                 >
                                     X
                                 </span>
