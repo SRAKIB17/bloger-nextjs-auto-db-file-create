@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
-import NewPost from '../profile/NewPost/NewPost';
+
 import { useRouter, withRouter } from 'next/router';
 import { UserFullInfoProvider } from '../../pages/_app';
 
@@ -180,10 +180,7 @@ const ContextMenu = () => {
                 </ul>
             </div>
 
-            {
-                newPost &&
-                <NewPost props={setNewPost} />
-            }
+           
         </div>
     );
 };
