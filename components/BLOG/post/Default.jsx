@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import AdsStory from '../../Ads/AdsStory';
 import ReactBtnList from '../hooks/comment_react/react/ReactBtnList';
 import IframeImportDefault from './hooks/IframeImportDefault';
 import TitleCat from './hooks/TitleCat';
@@ -154,6 +155,9 @@ const Default = ({ post, refetch }) => {
                         <ReactBtnList post={post} refetch={refetch} />
                     </div>
                 </div>
+            </div>
+            <div>
+                <AdsStory />
             </div>
             <div className='w-full'>
                 <iframe
