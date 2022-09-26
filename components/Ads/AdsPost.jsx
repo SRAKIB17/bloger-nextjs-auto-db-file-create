@@ -40,7 +40,7 @@ const AdsStory = () => {
                         </div>
                         {
                             fullDetails &&
-                            <div className='bg-base-200 absolute bottom-[80px]  p-4 w-full'>
+                            <div className='bg-base-200 absolute bottom-[85px] rounded-sm  p-4 w-full'>
                                 <button
                                     onClick={() => setFullDetails(null)}
                                     className="btn btn-sm btn-warning text-white absolute right-1 -top-[16px]"
@@ -62,7 +62,7 @@ const AdsStory = () => {
                                 </div>
                                 <div>
 
-                                    <h1 className='font-sans text-lg'>
+                                    <h1 className='font-sans sm:text-lg'>
                                         {ads?.title}
                                     </h1>
                                     <p className=' text-xs  overflow-hidden whitespace-pre-wrap'>
