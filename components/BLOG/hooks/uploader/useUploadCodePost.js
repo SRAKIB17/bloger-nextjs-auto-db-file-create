@@ -7,11 +7,11 @@ const useUploadCodePost = () => {
         try {
             const file = e.target.files[0];
             const type = file?.type;
-
+            console.log(type)
 
             const oReader = new FileReader();
             oReader.onload = (e) => {
-                const rFilter = /^(text\/plain|text\/javascript|text\/html|text\/css|application\/xml|application\/json)$/i;
+                const rFilter = /^(text\/plain|text\/javascript|text\/html|text\/css|application\/xml|application\/json|application\/x-javascript)$/i;
 
                 if (!rFilter.test(type)) {
                     setMessage(<span className='label-text-alt text-red-700 mb-8'>You should select valid files / file only!</span>)
