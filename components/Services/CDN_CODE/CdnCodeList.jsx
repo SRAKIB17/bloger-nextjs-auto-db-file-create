@@ -5,11 +5,12 @@ import DeleteCode from './DeleteCode';
 import EditCode from './EditCode';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import WarningProfile from '../../hooks/WarningProfile';
+
 
 import { useRouter } from 'next/router';
 import { UserFullInfoProvider } from '../../../pages/_app';
 import timeAgoSince from '../../BLOG/hooks/function/timeAgoSince';
+import WarningUserProfile from '../../BLOG/hooks/WarningUserProfile';
 
 const CdnCodeList = ({ cdn, index, refetch }) => {
     const { user, isAdmin, user_details } = useContext(UserFullInfoProvider);
@@ -186,7 +187,7 @@ const CdnCodeList = ({ cdn, index, refetch }) => {
                                         onClick={() => navigate('/profile/' + code_Publish_User_details?.userID)}
                                         S>
                                         <h6 className='m-0'>{code_Publish_User_details?.name || "User"}</h6>
-                                        <WarningProfile user_details={code_Publish_User_details} size='13' />
+                                        <WarningUserProfile user_details={code_Publish_User_details} size='13' />
                                     </div>
                                 </td>
                             </tr>
