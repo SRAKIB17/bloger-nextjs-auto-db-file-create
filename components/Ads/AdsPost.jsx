@@ -24,29 +24,29 @@ const AdsStory = () => {
 
                 >
                     <div className='w-full h-20  mb-1 rounded-md relative text-primary '>
-                        <div className='absolute right-2 top-1 flex items-center'>
-                            <button
+                        <div className='absolute right-2 z-40 -top-2 flex items-center'>
+                            <span
                                 onClick={() => setHideAds(true)}
                                 className=" btn btn-ghost btn-xs"
                             >
                                 X
-                            </button>
-                            <button
+                            </span>
+                            <span
                                 onClick={() => setFullDetails(true)}
                                 className=' btn btn-ghost btn-xs text-info '
                             >
                                 <Info size='13' />
-                            </button>
+                            </span>
                         </div>
                         {
                             fullDetails &&
-                            <div className='bg-base-200 absolute bottom-[85px] rounded-sm  p-4 w-full'>
-                                <button
+                            <div className='bg-base-200 absolute bottom-[80px] rounded-sm  p-4 w-full'>
+                                <span
                                     onClick={() => setFullDetails(null)}
                                     className="btn btn-sm btn-warning text-white absolute right-1 -top-[16px]"
                                 >
                                     X
-                                </button>
+                                </span>
                                 <div className='text-justify'>
                                     {ads?.details}
                                 </div>
@@ -83,12 +83,12 @@ const AdsStory = () => {
             {
                 (hideAds && getShowState) &&
                 <div>
-                    <button
+                    <span
                         className='btn btn-ghost btn-xs capitalize'
                         onClick={() => setHideAds(false)}
                     >
                         Show Ads
-                    </button>
+                    </span>
                 </div>
             }
         </div >
