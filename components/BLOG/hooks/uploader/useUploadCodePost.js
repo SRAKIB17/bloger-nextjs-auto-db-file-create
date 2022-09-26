@@ -7,7 +7,6 @@ const useUploadCodePost = () => {
         try {
             const file = e.target.files[0];
             const type = file?.type;
-            console.log(type)
 
             const oReader = new FileReader();
             oReader.onload = (e) => {
