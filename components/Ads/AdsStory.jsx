@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import bg from '../../public/loginBg.jpg'
+import Info from '../ReactRSIcon/icon/Info/Info';
 const AdsStory = () => {
     const addShow = [true, false, true, false, true, false, true]
     const getShowState = addShow[Math.floor(Math.random() * addShow.length)]
@@ -16,21 +17,26 @@ const AdsStory = () => {
         <div>
             {
                 (getShowState && !hideAds) &&
-                (!hideAds) &&
                 <div
                     className='relative rounded-sm bg-base-200'
                 // style={{ backgroundImage: `url('${bg?.src}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}
 
                 >
-                    <div className='w-full h-20  mb-1 rounded-md relative text-black'>
-                        <div>
+                    <div className='w-full h-20  mb-1 rounded-md relative text-black '>
+                        <div className='absolute right-2 top-1 flex items-center'>
                             <button
-                                className='absolute right-2 top-1 btn btn-ghost btn-xs'
                                 onClick={() => setHideAds(true)}
+                                className=" btn btn-ghost btn-xs"
                             >
                                 X
                             </button>
+                            <button
+                                className=' btn btn-ghost btn-xs text-info '
+                            >
+                                <Info size='13'/>
+                            </button>
                         </div>
+
                         <a href={ads?.url} target='_blank' rel="noreferrer" >
                             <div className='flex items-center h-full w-full gap-2'>
                                 <div className='h-full overflow-hidden max-w-[130px] w-full'>
