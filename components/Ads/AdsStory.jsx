@@ -16,13 +16,13 @@ const AdsStory = () => {
     return (
         <div>
             {
-                (getShowState && !hideAds) &&
+                // (getShowState && !hideAds) &&
                 <div
                     className='relative rounded-sm bg-base-200'
                 // style={{ backgroundImage: `url('${bg?.src}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}
 
                 >
-                    <div className='w-full h-20  mb-1 rounded-md relative text-black '>
+                    <div className='w-full h-20  mb-1 rounded-md relative text-primary '>
                         <div className='absolute right-2 top-1 flex items-center'>
                             <button
                                 onClick={() => setHideAds(true)}
@@ -49,7 +49,7 @@ const AdsStory = () => {
                                     </h1>
                                     <p className=' text-xs  overflow-hidden whitespace-pre-wrap'>
                                         {
-                                            ads?.details?.slice(0, 280) + "..."
+                                            ads?.details?.slice(0, 100) + "..."
                                         }
                                     </p>
                                 </div>

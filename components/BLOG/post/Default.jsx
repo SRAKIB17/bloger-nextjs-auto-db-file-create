@@ -105,7 +105,7 @@ const Default = ({ post, refetch }) => {
 
     }
     return (
-        <div className=' shadowEachPost rounded-sm p-4 sm:p-5 bg-gray-50' >
+        <div className=' shadowEachPost rounded-sm sm:p-5 bg-gray-50' >
 
             <div className='flex flex-col md:flex-row gap-4 items-center'>
                 {/* thumbnail */}
@@ -122,7 +122,7 @@ const Default = ({ post, refetch }) => {
                         refetch={refetch}
                         post={post}
                     />
-                    <div className='text-justify  lg:ml-3'>
+                    <div className='text-justify p-4 lg:ml-3'>
                         <div>
                             {showDescription}
                             {(showDescription?.length > 120) &&
@@ -156,10 +156,10 @@ const Default = ({ post, refetch }) => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className='pr-2 pl-2'>
                 <AdsStory />
             </div>
-            <div className='w-full'>
+            <div className='w-full p-1'>
                 <iframe
                     srcDoc={iframePostFullBody}
                     src={'/api/preview/' + post_id}
