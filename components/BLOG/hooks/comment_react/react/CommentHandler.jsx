@@ -71,6 +71,7 @@ const CommentHandler = ({ post_id, replyNow, refetch, setReplyNow }) => {
                 replies: [],
                 emoji: selectEmoji
             }
+            setShowEmojiGifSection(null)
             // FETCH POST AXIOS METHOD
             const { data } = await axios.post(`/api/post/post-comments?email=${user_details?.email}`, comment,
                 {
@@ -80,7 +81,7 @@ const CommentHandler = ({ post_id, replyNow, refetch, setReplyNow }) => {
                     }
                 }
             );
-
+            setSelectEmoji(null)
             if (data?.message === 'success') {
                 refetch()
                 setSelectEmoji(null)
@@ -94,11 +95,12 @@ const CommentHandler = ({ post_id, replyNow, refetch, setReplyNow }) => {
                 }
             }
             else if (data?.message === 'error') {
+                setSelectEmoji(null)
                 refetch()
                 setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             }
         }
-
+        setSelectEmoji(null)
         // for loading 
         setSendCommentLoading(null)
     }
