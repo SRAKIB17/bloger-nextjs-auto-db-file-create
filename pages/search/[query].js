@@ -6,7 +6,6 @@ import Header from '../../components/Header/Header';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import LoadingFlowCircle from '../../components/LoadingFlowCircle';
-import timeSince from '../../components/Post-NewsFeed/TimeSince';
 import { Announcement, ArrowsRight, Camera, Line } from '../../components/ReactRSIcon';
 import Head from 'next/head';
 import PageTitle from '../../components/hooks/PageTitle';
