@@ -140,14 +140,14 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
                 box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
             }
         </style>
+        <script>
+          ${postBodyJs}
+        </script>
 
     </head>
     <body>
         ${postBody}
-        <script>
-            ${postBodyJs}
-        </script>
-
+     
 
 
     <script src="/code_viewer_jquery/dist/rainbow.js"></script>
@@ -310,12 +310,13 @@ const IframeImportDefault = ({ post, fullIframeShow = false }) => {
     <style>
          ${postBodyCss}
     </style>
+    <script>
+      ${postBodyJs}
+</script>
 </head>
 <body>
     ${postBody}
-    <script>
-        ${postBodyJs}
-    </script>
+
     <script type="text/javascript" src="/code_highlight_with_jquery/universal/jquery.js"></script>
     <script src="/code_highlight_with_jquery/jhighlight//jquery.highlight.js"></script>
     <script src="/code_highlight_with_jquery/index.js"></script>
