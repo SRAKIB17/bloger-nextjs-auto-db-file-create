@@ -30,6 +30,7 @@ const CommentHandler = ({ post_id, replyNow, refetch, setReplyNow }) => {
                 emoji: selectEmoji
             }
 
+            setShowEmojiGifSection(null)
             const { data } = await axios.put(`/api/post/comments-reply?email=${user_details?.email}`, replyBody,
                 {
                     headers: {
@@ -47,14 +48,16 @@ const CommentHandler = ({ post_id, replyNow, refetch, setReplyNow }) => {
                 if (data?.result?.acknowledged) {
                     refetch()
                     setShowEmojiGifSection(null)
-                    setSelectEmoji(null)
                     e.target.reset();
                     setReplyNow(null)
+                    setSelectEmoji(null)
                 }
             }
             else if (data?.message === 'error') {
+                setSelectEmoji(null)
                 setErrMsg(<p className='text-red-600'>{data?.error}</p>)
             }
+            setSelectEmoji(null)
         }
 
         // **************************************FOR COMMENT ******************************
