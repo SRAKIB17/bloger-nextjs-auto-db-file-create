@@ -223,7 +223,7 @@ const EditPost = ({ post }) => {
                             }
                         </p>
                         {
-                            // isAdmin?.admin &&
+                            isAdmin?.admin &&
                             <select name="postBy" ref={adminRef} id="selectPostBy" className="select border-primary w-full max-w-xs" defaultValue=''>
                                 <option value="admin">Admin</option>
                                 <option value="user" selected>User</option>

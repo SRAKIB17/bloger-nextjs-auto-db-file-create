@@ -259,12 +259,12 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
   <style>
        ${postBodyCss}
   </style>
-</head>
-<body>
-  ${postBody}
   <script>
       ${postBodyJs}
   </script>
+</head>
+<body>
+  ${postBody}
   <script type="text/javascript" src="/code_highlight_with_jquery/universal/jquery.js"></script>
   <script src="/code_highlight_with_jquery/jhighlight//jquery.highlight.js"></script>
   <script src="/code_highlight_with_jquery/index.js"></script>
