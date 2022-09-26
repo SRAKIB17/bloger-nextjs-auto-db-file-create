@@ -6,10 +6,10 @@ const ShortcutEmmetContentMenu = ({ setContent }) => {
         <div>
             <div className="collapse collapse-arrow bg-base-100  rounded-sm">
                 <input type="checkbox" className='peer' />
-                <div className="collapse-title bg-primary text-primary-content peer-checked:bg-base-100 peer-checked:text-base-content">
+                <div className="collapse-title  peer-checked:bg-base-100 peer-checked:text-base-content">
                     Shortcut Emmet
                 </div>
-                <div className="collapse-content bg-primary text-primary-content  peer-checked:bg-base-100 peer-checked:text-base-content">
+                <div className="collapse-content  peer-checked:bg-base-100 peer-checked:text-base-content">
                     <ul className="menu bg-base-100 w-full">
                         <li>
                             <button onClick={() => setContent('HTML Tags shortcut emmet')}>
