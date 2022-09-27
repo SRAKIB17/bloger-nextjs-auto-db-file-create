@@ -157,7 +157,7 @@ const Default = ({ post, refetch }) => {
                 </div>
             </div>
             <div className='pr-2 pl-2 sm:pl-0 sm:pr-0'>
-                <AdsPost />
+                <AdsPost/>
             </div>
             <div className='w-full p-1'>
                 <iframe

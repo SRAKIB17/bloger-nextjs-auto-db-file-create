@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import bg from '../../public/loginBg.jpg'
 import Info from '../ReactRSIcon/icon/Info/Info';
-const AdsStory = () => {
+const AdsPost = () => {
     const addShow = [true, false, true, false, true, false, true]
     const getShowState = addShow[Math.floor(Math.random() * addShow.length)]
     const [hideAds, setHideAds] = useState(false);
@@ -97,4 +97,4 @@ const AdsStory = () => {
     );
 };
 
-export default AdsStory;
+export default AdsPost;
