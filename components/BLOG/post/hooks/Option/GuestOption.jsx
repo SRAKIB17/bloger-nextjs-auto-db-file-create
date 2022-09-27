@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Copy } from '../../../../ReactRSIcon';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+
+
+
 const GuestOption = ({ post }) => {
     const { post_id } = post
     const CopyUrlHandle = (id, e) => {
@@ -42,7 +45,7 @@ const GuestOption = ({ post }) => {
     useEffect(() => {
         if (copyApiMsg?.copied) {
             setTimeout(() => {
-                setCopyUrlMsg({})
+                setCopyApiMsg({})
             }, 1000);
         }
     }, [copyApiMsg])
