@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Copy } from '../../../../ReactRSIcon';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const GuestOption = ({ post }) => {
     const { post_id } = post
@@ -27,44 +28,51 @@ const GuestOption = ({ post }) => {
         style="border:1px solid black;"
      >
      </iframe>`
+    const [copyUrlMsg, setCopyUrlMsg] = useState({})
+    const [copyApiMsg, setCopyApiMsg] = useState({});
+
+    useEffect(() => {
+        if (copyUrlMsg?.copied) {
+            setTimeout(() => {
+                setCopyUrlMsg({})
+            }, 1000);
+        }
+    }, [copyUrlMsg])
+
+    useEffect(() => {
+        if (copyApiMsg?.copied) {
+            setTimeout(() => {
+                setCopyUrlMsg({})
+            }, 1000);
+        }
+    }, [copyApiMsg])
+
     return (
         <>
             {/* Url copy */}
-            <li
-                onClick={(e) => CopyUrlHandle(post_id, e)}
-                className="tooltip"
-            >
-                <a>
-                    <Copy size='20' className="pr-1" />
-                    Copy Url
-                    <p className="tooltiptext hidden">
-                        Copied
-                    </p>
-                    <input
-                        type="text"
-                        value={copyLink}
-                        className="absolute top-[-100000px] left-0"
-                    />
-                </a>
+            <li>
+
+                <CopyToClipboard text={copyLink}
+                    onCopy={() => setCopyUrlMsg({ copied: true })}>
+                    <button>
+                        <Copy size='20' className="pr-1" /> {copyUrlMsg?.copied ?
+                            'Copied'
+                            : <span>Copy URL</span>}
+                    </button>
+                </CopyToClipboard>
             </li>
 
             {/* API CODE */}
-            <li
-                onClick={(e) => CopyUrlHandle(post_id, e)}
-                className='tooltip'
-            >
-                <a>
-                    <Copy size='20' className="pr-1" />
-                    Api Code
-                    <p className='tooltiptext hidden'>
-                        Copied
-                    </p>
-                    <input
-                        type="text"
-                        value={apiCodeCopy}
-                        className="absolute top-[-100000px] left-0"
-                    />
-                </a>
+            <li>
+
+                <CopyToClipboard text={apiCodeCopy}
+                    onCopy={() => setCopyApiMsg({ copied: true })}>
+                    <button>
+                        <Copy size='20' className="pr-1" /> {copyApiMsg?.copied ?
+                            'Copied'
+                            : <span>Copy URL</span>}
+                    </button>
+                </CopyToClipboard>
             </li>
 
 
