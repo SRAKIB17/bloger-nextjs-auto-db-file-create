@@ -24,7 +24,7 @@ const AdsPost = () => {
 
                 >
                     <div className='w-full h-20  mb-1 rounded-md relative text-white'>
-                        <div className='absolute right-2 z-40 -top-2 flex items-center'>
+                        <div className='absolute right-2 z-[5] -top-2 flex items-center'>
                             <span
                                 onClick={() => setHideAds(true)}
                                 className=" btn btn-xs btn-info text-white rounded-none rounded-l-md"

@@ -11,14 +11,14 @@ const AdsPostSideMd = ({ ads }) => {
     return (
         <div>
             {
-                (getShowState && !hideAds) &&
+                // (getShowState && !hideAds) &&
                 <div
                     className='relative rounded-none bg-base-200'
                 // style={{ backgroundImage: `url('${bg?.src}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}
 
                 >
                     <div className='w-full mb-1 rounded-md relative text-white'>
-                        <div className='absolute right-2 z-[60] -top-2 flex items-center'>
+                        <div className='absolute right-2 z-[5] -top-2 flex items-center'>
                             <span
                                 onClick={() => setHideAds(true)}
                                 className=" btn btn-xs btn-info text-white rounded-none rounded-l-md"
@@ -36,7 +36,7 @@ const AdsPostSideMd = ({ ads }) => {
                         {
                             fullDetails &&
                             <div
-                                className='max-w-[660px] max-h-[360px] h-full bg-base-200 absolute w-full z-50'
+                                className='max-w-[660px] max-h-[360px] h-full bg-base-200 absolute w-full z-[4]'
                             >
                                 <div className=' blur-2xl absolute -z-10 h-full w-full'
                                     style={{ backgroundImage: `url('${ads?.thumbnail}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}

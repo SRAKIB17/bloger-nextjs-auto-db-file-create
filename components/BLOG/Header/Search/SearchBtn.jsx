@@ -59,7 +59,7 @@ const SearchBtn = () => {
 
     return (
         <div className='relative z-10' id=''>
-            <ul className="menu menu-horizontal p-0 flex xl:hidden">
+            <ul className="menu menu-horizontal p-0 flex xl:hidden ">
                 <li>
                     <button onClick={() => setShowFormMobile(!showFormMobile)}><SearchIcon color='white' size='25' /></button>
                 </li>
@@ -67,7 +67,7 @@ const SearchBtn = () => {
 
             {/* ---------------------------------for mobile section -------------------------------*/}
             {showFormMobile &&
-                <div className='fixed flex top-[60px] w-full bg-base-100 left-0 h-full border-b-2' id='searchFormFullBg'>
+                <div className='fixed flex top-[60px] w-full bg-base-100 left-0 h-full border-b-2 ' id='searchFormFullBg'>
                     <div className='absolute top-[15px] left-[40px] flex xl:hidden'>
 
                         {/* ********FOR MOBILE SEARCH************ */}
