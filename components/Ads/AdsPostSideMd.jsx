@@ -44,7 +44,7 @@ const AdsPostSideMd = ({ ads }) => {
                                 </div>
 
                                 <div className='p-4 text-primary'>
-                                    <div className='text-justify overflow-scroll h-full max-h-[235px]'>
+                                    <div className='text-justify overflow-scroll hideScrollBar h-full max-h-[235px]'>
                                         {ads?.details}
                                     </div>
                                     <a href={ads?.url} target='_blank' rel="noreferrer" className='btn capitalize  btn-xs link link-hover '>
