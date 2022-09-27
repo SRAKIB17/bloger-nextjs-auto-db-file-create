@@ -66,7 +66,7 @@ const Index = () => {
         </div>
     }
     return (
-        <div className='grid grid-cols-12 pt-1'>
+        <div className='grid grid-cols-12 pt-2'>
             <div className='col-span-12  lg:col-span-8  2xl:col-span-8 mb-20'>
                 <div className='flex flex-col gap-4 min-h-screen'>
 
