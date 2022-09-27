@@ -73,7 +73,7 @@ const GuestOption = ({ post }) => {
                     <button>
                         <Copy size='20' className="pr-1" /> {copyApiMsg?.copied ?
                             'Copied'
-                            : <span>Copy URL</span>}
+                            : <span>Copy API Code</span>}
                     </button>
                 </CopyToClipboard>
             </li>
