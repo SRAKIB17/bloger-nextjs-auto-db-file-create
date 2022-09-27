@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import PageTitle from '../../hooks/PageTitle';
+import LoadingPost from '../../LoadingPost';
 import LoadingSpin from '../../LoadingSpin';
 import Pagination from '../hooks/Pagination';
 import PostBody from '../post/PostBody';
@@ -88,7 +89,7 @@ const UserPost = ({ user_id }) => {
                                 {
                                     isLoading ?
                                         <div className='mt-10'>
-                                            <LoadingSpin />
+                                            <LoadingPost />
                                         </div>
                                         :
                                         getPost?.length == 0 ||

@@ -7,6 +7,7 @@ import Pagination from '../../../components/BLOG/hooks/Pagination';
 import PostBody from '../../../components/BLOG/post/PostBody';
 import Sad from '../../../components/BLOG/SvgComponent/Sad';
 import PageTitle from '../../../components/hooks/PageTitle';
+import LoadingPost from '../../../components/LoadingPost';
 import LoadingSpin from '../../../components/LoadingSpin';
 import { UserFullInfoProvider } from '../../_app';
 
@@ -97,7 +98,7 @@ const Index = () => {
                                     {
                                         isLoading ?
                                             <div className='mt-10'>
-                                                <LoadingSpin />
+                                                <LoadingPost />
                                             </div>
                                             :
                                             getPost?.length == 0 ||

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useQuery } from 'react-query';
 import EditPost from '../../../../components/BLOG/post/EditPost/EditPost';
-import LoadingSpin from '../../../../components/LoadingSpin';
+import LoadingPost from '../../../../components/LoadingPost';
 
 const Index = () => {
     const router = useRouter()
@@ -20,7 +20,7 @@ const Index = () => {
                 {
                     isLoading &&
                     <div className='min-h-screen'>
-                        <LoadingSpin />
+                        <LoadingPost />
                     </div>
                 }
                 <div>
