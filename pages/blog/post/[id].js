@@ -74,17 +74,14 @@ export async function getServerSideProps(context) {
 
     console.log(url)
 
-    const { data } = await axios(url, {
-        headers: { access_token: cookies },
-        method: "GET"
-    })
+    const { data } = await axios(url)
     // // const data = await fetchData.json()
 
-    // if (Object.keys(data).length == 2) {
-    //     return {
-    //         notFound: true,
-    //     }
-    // }
+    if (Object.keys(data).length == 2) {
+        return {
+            notFound: true,
+        }
+    }
     // Pass data to the page via props
     return { props: { data: data, url } }
 }
