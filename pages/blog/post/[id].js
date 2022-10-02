@@ -68,10 +68,10 @@ export default Index;
 export async function getServerSideProps(context) {
     const { id } = context.query
     // const cookies = context.req.headers?.cookie?.split('=')?.[1]
+    console.log(process.env.host)
     // const url = `https://prog-learn.vercel.app/api/post/find-specific-story?post_id=${id}`
-    const url = `https://${context.req.headers.host}/api/post/find-specific-story?post_id=${id}`
+    const url = `${process.env.host}/api/post/find-specific-story?post_id=${id}`
 
-    console.log(url)
 
     const { data } = await axios(url)
     // // const data = await fetchData.json()
