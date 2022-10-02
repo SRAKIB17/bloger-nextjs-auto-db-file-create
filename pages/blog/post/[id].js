@@ -11,7 +11,9 @@ import LoadingSpin from '../../../components/LoadingSpin';
 import { UserFullInfoProvider } from '../../_app';
 
 
-const Index = () => {
+const Index = ({props}) => {
+    console.log(props)
+    
     const router = useRouter();
     const { id } = router.query;
     // find-specific-story
@@ -53,10 +55,48 @@ const Index = () => {
                 </div>
             </div>
             <div className='hidden ml-2 pl-4 shadow-md lg:block col-span-12 lg:col-span-5  2xl:col-span-3 text-justify mb-20 rounded-md'>
-               <AdsRightSide/>
+                <AdsRightSide />
             </div>
         </div>
     );
 };
 
 export default Index;
+
+
+
+// export async function getStaticProps(context) {
+
+//     console.log(5345)
+//     if (true) {
+//         return {
+//             notFound: true,
+//         }
+//     }
+
+//     return {
+//         props: { data: 534543 }, // will be passed to the page component as props
+//     }
+// }
+
+export async function getServerSideProps(context) {
+    const { id } = context.query
+    const cookies = context.req.headers.cookie;
+
+
+    const fetchData = await fetch(`http://prog-learn.vercel.app/api/post/find-specific-story?post_id=${id}`, {
+        headers: { access_token: cookies },
+        method: "GET"
+    })
+
+    const data = await fetchData.json()
+
+
+    if (!true) {
+        return {
+            notFound: true,
+        }
+    }
+    // Pass data to the page via props
+    return { props: { data: data } }
+}

@@ -6,6 +6,8 @@ export default async function handler(req, res) {
     await client.connect();
     const postCollection = client.db("postBlogs").collection("postBlog");
     const token = req.headers?.access_token;
+
+
     const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
     const accessToken = tokenDetails?.token;
     const roll = tokenDetails?.roll;

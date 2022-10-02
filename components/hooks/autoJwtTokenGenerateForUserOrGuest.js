@@ -28,6 +28,7 @@ const autoJwtTokenGenerateForUserOrGuest = () => {
             location.reload()
         }
         sessionStorage.setItem('accessAutoG', access);
+        document.cookie = (`accessAutoG=${access}`)
     });
 };
 
