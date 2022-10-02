@@ -13,7 +13,6 @@ import { UserFullInfoProvider } from '../../_app';
 
 const Index = ({ data: fetchPost }) => {
 
-
     const router = useRouter();
     const { id } = router.query;
     // find-specific-story
@@ -65,25 +64,13 @@ export default Index;
 
 
 
-// export async function getStaticProps(context) {
 
-//     console.log(5345)
-//     if (true) {
-//         return {
-//             notFound: true,
-//         }
-//     }
-
-//     return {
-//         props: { data: 534543 }, // will be passed to the page component as props
-//     }
-// }
 
 export async function getServerSideProps(context) {
     const { id } = context.query
     const cookies = context.req.headers?.cookie?.split('=')?.[1]
-    const url = `http://${context.req.headers.host}/api/post/find-specific-story?post_id=${id}`
-    
+    const url = `https://${context.req.headers.host}/api/post/find-specific-story?post_id=${id}`
+
     const { data } = await axios(url, {
         headers: { access_token: cookies },
         method: "GET"
