@@ -11,8 +11,7 @@ import LoadingSpin from '../../../components/LoadingSpin';
 import { UserFullInfoProvider } from '../../_app';
 
 
-const Index = ({ data: fetchPost, url }) => {
-    console.log(fetchPost, url)
+const Index = ({ data: fetchPost }) => {
     const router = useRouter();
     const { id } = router.query;
     // find-specific-story
@@ -68,7 +67,7 @@ export default Index;
 
 export async function getServerSideProps(context) {
     const { id } = context.query
-    const cookies = context.req.headers?.cookie?.split('=')?.[1]
+    // const cookies = context.req.headers?.cookie?.split('=')?.[1]
     // const url = `https://prog-learn.vercel.app/api/post/find-specific-story?post_id=${id}`
     const url = `https://${context.req.headers.host}/api/post/find-specific-story?post_id=${id}`
 
@@ -83,5 +82,5 @@ export async function getServerSideProps(context) {
         }
     }
     // Pass data to the page via props
-    return { props: { data: data, url } }
+    return { props: { data: data } }
 }
