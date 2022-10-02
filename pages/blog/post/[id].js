@@ -78,7 +78,6 @@ export async function getServerSideProps(context) {
         headers: { access_token: cookies },
         method: "GET"
     })
-
     // // const data = await fetchData.json()
 
     // if (Object.keys(data).length == 2) {

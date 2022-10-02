@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const tokenDetails = jwtTokenVerifyServer(token, process.env.AUTO_JWT_TOKEN_GENERATE_FOR_USER_OR_GUEST)?.access;
     const accessToken = tokenDetails?.token;
     const roll = tokenDetails?.roll;
-    if (accessToken === process.env.GUEST_CHECK_ACCESS_TOKEN || accessToken === process.env.USER_CHECK_ACCESS_FEATURE) {
+    if (req.method == 'GET') {
         const { post_id } = req.query;
         const findSpecific = await postCollection.findOne({ post_id: post_id });
         if (findSpecific) {
