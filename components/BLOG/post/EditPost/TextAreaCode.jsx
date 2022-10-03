@@ -9,6 +9,11 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
     const shortcutKeyboard = (e) => {
         // setLiveView(e.target.value)
         // liveSettingAddScriptHandler()
+        if (e.ctrlKey && e.key == 's') {
+            e.preventDefault();
+            liveSettingAddScriptHandler()
+            // isCtrl = false;
+        }
     }
     const onchangeInput = (e) => {
         // setLiveView(e.target.value);
@@ -296,21 +301,7 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
     <!-- write here plain text  -->
 </div>
         `
-        document.onkeyup = function (e) {
-            if (e.ctrlKey && e.key == 's') {
-                e.preventDefault();
-                liveSettingAddScriptHandler()
-                // isCtrl = false;
-            }
-        }
 
-        document.onkeydown = async function (e) {
-            if (e.ctrlKey && e.key == 's') {
-                e.preventDefault();
-                liveSettingAddScriptHandler()
-                // isCtrl = false;
-            }
-        }
     }, [])
 
 
@@ -407,7 +398,10 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
                                 onCut={heightAutoHandle}
                                 onPaste={heightAutoHandle}
                                 onDrop={heightAutoHandle}
-                                onKeyDown={heightAutoHandle}
+                                onKeyDown={(e) => {
+                                    heightAutoHandle(e)
+                                    shortcutKeyboard(e)
+                                }}
                             // defaultValue={saveData}
                             >
 
@@ -425,7 +419,10 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
                                 onCut={heightAutoHandle}
                                 onPaste={heightAutoHandle}
                                 onDrop={heightAutoHandle}
-                                onKeyDown={heightAutoHandle}
+                                onKeyDown={(e) => {
+                                    heightAutoHandle(e)
+                                    shortcutKeyboard(e)
+                                }}
                             // defaultValue={saveData}
                             >
 
@@ -443,7 +440,10 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
                                 onCut={heightAutoHandle}
                                 onPaste={heightAutoHandle}
                                 onDrop={heightAutoHandle}
-                                onKeyDown={heightAutoHandle}
+                                onKeyDown={(e) => {
+                                    heightAutoHandle(e)
+                                    shortcutKeyboard(e)
+                                }}
                                 defaultValue={saveData}
                             >
                             </textarea>

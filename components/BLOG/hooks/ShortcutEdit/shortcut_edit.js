@@ -8,10 +8,10 @@ const shortcut_edit = (e, textareaRef) => {
     //     }
     // }
 
-    if (e.ctrlKey == true) {
-        e.preventDefault();
-        console.log(e)
-    }
+    // if (e.ctrlKey == true) {
+    //     e.preventDefault();
+    //     // console.log(e)
+    // }
 
 };
 
