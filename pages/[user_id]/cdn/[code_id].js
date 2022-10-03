@@ -30,7 +30,13 @@ export async function getServerSideProps(context) {
                     ]
             }
         )
-        console.log(codeBody?.content_type)
+
+        if (!codeBody) {
+            return {
+                notFound: true,
+            }
+        }
+        
         if (codeBody) {
             res.writeHead(200, { 'Content-Type': codeBody?.content_type });
             res.write(codeBody?.code);
