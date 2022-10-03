@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { UserFullInfoProvider } from '../../../../../pages/_app';
 import EmojiGifIndex from '../../../../Comment/EmojiGif/EmojiGifIndex';
-import classTagShortcutInput from '../../../../hooks/hooks/useFindClassAttr';
+import classTagShortcutInput from '../../Emmet/shortcutEmmetHtmlTagsAttr';
 
 const CommentForm = ({ post_id, postCommentHandler, selectEmoji, setReplyNow, setSelectEmoji, showEmojiGifSection, setShowEmojiGifSection, replyNow, errMsg, CommentTextareaRef, sendCommentLoading }) => {
     const { user, user_details } = useContext(UserFullInfoProvider)
