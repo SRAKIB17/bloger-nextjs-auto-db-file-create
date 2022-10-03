@@ -53,23 +53,23 @@ const Index = () => {
 
 export default Index;
 
-export async function getServerSideProps(context) {
-    const { cdn_id, user_id } = context.query;
-    const $code_id = cdn_id + '-' + user_id;
-    const cookies = context.req.headers?.cookie?.split('=')?.[1] || ''
-    // const url = `https://prog-learn.vercel.app/api/post/find-specific-story?post_id=${id}`
-    const url = `${process.env.host}/api/services/cdn/cdn-one?code_id=${$code_id}`
+// export async function getServerSideProps(context) {
+//     const { cdn_id, user_id } = context.query;
+//     const $code_id = cdn_id + '-' + user_id;
+//     const cookies = context.req.headers?.cookie?.split('=')?.[1] || ''
+//     // const url = `https://prog-learn.vercel.app/api/post/find-specific-story?post_id=${id}`
+//     const url = `${process.env.host}/api/services/cdn/cdn-one?code_id=${$code_id}`
 
-    const { data } = await axios(url, {
-        headers: { access_token: cookies }
-    })
-    // // const data = await fetchData.json()
+//     const { data } = await axios(url, {
+//         headers: { access_token: cookies }
+//     })
+//     // // const data = await fetchData.json()
 
-    if (Object.keys(data).length == 2) {
-        return {
-            notFound: true,
-        }
-    }
-    // Pass data to the page via props
-    return { props: { data: "data" } }
-}
+//     if (Object.keys(data).length == 2) {
+//         return {
+//             notFound: true,
+//         }
+//     }
+//     // Pass data to the page via props
+//     return { props: { data: "data" } }
+// }
