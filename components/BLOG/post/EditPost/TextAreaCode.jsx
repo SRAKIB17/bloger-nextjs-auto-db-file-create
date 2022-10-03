@@ -14,6 +14,7 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
         // setLiveView(e.target.value);
         // liveSettingAddScriptHandler()
         heightAutoHandle(e)
+        widthHandle()
         shortcutEmmetHtmlTagsAttr(e, textareaRef)
     }
 
@@ -25,11 +26,24 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
     const [rotate, setRotate] = useState(false);
     const [liveView, setLiveView] = useState('');
     let saveData = ''
+
+    const widthHandle = () => {
+        if (window.innerWidth > 650) {
+            setLayoutForm(window.innerWidth / 2);
+        } else {
+            setLayoutForm(window.innerWidth);
+        }
+
+    }
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         saveData = JSON.parse(window.localStorage.getItem('saveBody'));
         setWindowHeight(window.innerHeight);
         setLayoutForm(window.innerWidth / 2);
+        widthHandle()
+        window.onresize = (e) => {
+            widthHandle()
+        }
         setWindowWidth(window.innerWidth);
     }, [saveData])
 
@@ -193,9 +207,9 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
             postBodyCss = cssTextareaRef.current.value,
             postBodyJs = jsTextareaRef.current.value
 
-      
-  const defaultTemplate =
-  `
+
+        const defaultTemplate =
+            `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -283,17 +297,18 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
 </div>
         `
         document.onkeyup = function (e) {
-            if (e.key == 'Control') {
-                e.preventDefault()
+            if (e.ctrlKey && e.key == 's') {
+                e.preventDefault();
+                liveSettingAddScriptHandler()
                 // isCtrl = false;
             }
         }
 
         document.onkeydown = async function (e) {
-            if (e.ctrlKey && e.key === 's') {
-                e.preventDefault()
-                liveSettingAddScriptHandler();
-                return false;
+            if (e.ctrlKey && e.key == 's') {
+                e.preventDefault();
+                liveSettingAddScriptHandler()
+                // isCtrl = false;
             }
         }
     }, [])

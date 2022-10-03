@@ -3,6 +3,7 @@ import { PreviewOff, PreviewOn } from '../../../ReactRSIcon';
 import shortcutEmmetHtmlTagsAttr from '../../hooks/Emmet/shortcutEmmetHtmlTagsAttr';
 import styles from './TextArea.module.css';
 import useUploadCodePost from '../../hooks/uploader/useUploadCodePost'
+import shortcut_edit from '../../hooks/ShortcutEdit/shortcut_edit';
 
 const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } }) => {
 
@@ -11,9 +12,11 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
         // liveSettingAddScriptHandler()
     }
     const onchangeInput = (e) => {
+        widthHandle()
         // setLiveView(e.target.value);
         // liveSettingAddScriptHandler()
         heightAutoHandle(e)
+        shortcut_edit(e, textareaRef)
         shortcutEmmetHtmlTagsAttr(e, textareaRef)
     }
 
@@ -25,11 +28,23 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
     const [rotate, setRotate] = useState(false);
     const [liveView, setLiveView] = useState('');
     let saveData = ''
+
+    const widthHandle = () => {
+        if (window.innerWidth > 650) {
+            setLayoutForm(window.innerWidth / 2);
+        } else {
+            setLayoutForm(window.innerWidth);
+        }
+
+    }
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         saveData = JSON.parse(window.localStorage.getItem('saveBody'));
         setWindowHeight(window.innerHeight);
-        setLayoutForm(window.innerWidth / 2);
+        widthHandle()
+        window.onresize = (e) => {
+            widthHandle()
+        }
         setWindowWidth(window.innerWidth);
     }, [saveData])
 
@@ -282,22 +297,23 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
     <!-- write here plain text  -->
 </div>
         `
+
         document.onkeyup = function (e) {
-            if (e.key == 'Control') {
-                e.preventDefault()
+            if (e.ctrlKey && e.key == 's') {
+                e.preventDefault();
+                liveSettingAddScriptHandler()
                 // isCtrl = false;
             }
         }
 
         document.onkeydown = async function (e) {
-            if (e.ctrlKey && e.key === 's') {
-                e.preventDefault()
-                liveSettingAddScriptHandler();
-                return false;
+            if (e.ctrlKey && e.key == 's') {
+                e.preventDefault();
+                liveSettingAddScriptHandler()
+                // isCtrl = false;
             }
         }
     }, [])
-
 
 
     return (
