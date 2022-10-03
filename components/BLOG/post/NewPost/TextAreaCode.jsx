@@ -14,7 +14,7 @@ const TextAreaCode = ({ props: { cssTextareaRef, jsTextareaRef, textareaRef } })
             liveSettingAddScriptHandler()
             // isCtrl = false;
         }
-        // shortcut_edit(e, textareaRef)
+        shortcut_edit(e, textareaRef)
         // liveSettingAddScriptHandler()
     }
     const onchangeInput = (e) => {

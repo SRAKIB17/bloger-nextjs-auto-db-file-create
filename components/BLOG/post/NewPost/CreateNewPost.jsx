@@ -21,7 +21,7 @@ const CreateNewPost = () => {
     const router = useRouter()
     const { user, user_details, isLoading, isAdmin } = useContext(UserFullInfoProvider);
     const asPath = useRouter()?.asPath
-    // usePrivatePageCheckUser(asPath)
+    usePrivatePageCheckUser(asPath)
 
     const textareaRef = useRef();
     const jsTextareaRef = useRef()
@@ -145,11 +145,12 @@ const CreateNewPost = () => {
         }
     ))
     const categoryPattern = data?.data?.map(i => i?.category).join('|')
-    // if (!user?.user) {
-    //     return <div className='min-h-screen'>
-    //         <LoadingSpin />
-    //     </div>
-    // }
+
+    if (!user?.user) {
+        return <div className='min-h-screen'>
+            <LoadingSpin />
+        </div>
+    }
 
     return (
         <div className='m-6'>
