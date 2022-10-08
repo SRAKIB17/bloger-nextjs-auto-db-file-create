@@ -70,7 +70,9 @@ const htmlTagsEmmet = [
     {
         tagEmmet: '.<cod',
         tagCode: `
-<code> </code> `,
+<pre class="code" data-language="css|html|javascript"> 
+</pre>
+`,
         des: '<code>	Defines a piece of computer code'
     },
     {
