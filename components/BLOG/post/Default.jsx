@@ -128,7 +128,14 @@ const Default = ({ post, refetch }) => {
                             {(showDescription?.length > 120) &&
 
                                 <div>
-                                    <button
+                                    <a
+                                        href={`/blog/post/${post_id}`}
+                                        target="_blank"
+                                        className='btn-xs btn btn-accent mt-2 mb-2 text-white' rel="noreferrer"
+                                    >
+                                        Continue Reading
+                                    </a>
+                                    {/* <button
                                         className='btn-xs btn btn-accent mt-2 mb-2 text-white'
                                         onClick={() => autoHeightHandle(post_id)}
                                     >
@@ -136,7 +143,7 @@ const Default = ({ post, refetch }) => {
                                             !showFullFrame ? ' Continue Reading ' : "Finish"
                                         }
 
-                                    </button>
+                                    </button> */}
                                 </div>
                             }
                             <button onClick={() => {
@@ -157,9 +164,9 @@ const Default = ({ post, refetch }) => {
                 </div>
             </div>
             <div className='pr-2 pl-2 sm:pl-0 sm:pr-0'>
-                <AdsPost/>
+                <AdsPost />
             </div>
-            <div className='w-full p-1'>
+            {/* <div className='w-full p-1'>
                 <iframe
                     srcDoc={iframePostFullBody}
                     src={'/api/preview/' + post_id}
@@ -171,7 +178,7 @@ const Default = ({ post, refetch }) => {
                 >
                 </iframe>
 
-            </div>
+            </div> */}
         </div >
     );
 };

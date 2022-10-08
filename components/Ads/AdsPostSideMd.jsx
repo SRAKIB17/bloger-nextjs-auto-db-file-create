@@ -11,6 +11,8 @@ const AdsPostSideMd = ({ ads }) => {
     return (
         <div>
             {
+
+                false &&
                 // (getShowState && !hideAds) &&
                 <div
                     className='relative rounded-none bg-base-200'

@@ -79,13 +79,22 @@ const TitleCat = ({ post, refetch }) => {
             <div className='flex justify-between items-center w-full'>
                 <div className='p-2'>
                     <span className='flex gap-[2px]'>
-                        <button
-                            onClick={() => navigate(`/blog/post/${post_id}`)}
-                            target='_blank'
-                            className='sm:text-lg xl:text-xl text-left link-hover text-blue-600' rel="noreferrer"
-                        >
-                            {post_title}
-                        </button>
+                        {
+                            !pathCheck ?
+                                <a
+                                    // onClick={() => navigate(`/blog/post/${post_id}`)}
+                                    href={`/blog/post/${post_id}`}
+                                    target='_blank'
+                                    className='sm:text-lg xl:text-xl text-left link-hover text-blue-600' rel="noreferrer"
+                                >
+                                    {post_title}
+                                </a>
+                                :
+                                <span className='sm:text-lg xl:text-xl text-left  link-primary' rel="noreferrer"
+                                >
+                                    {post_title}
+                                </span>
+                        }
                         {
                             post?.postBy === 'admin' &&
                             <Announcement size='8' className="badge h-[10px] p-0 ml-1 text-white badge-primary pl-[2px] pr-[2px] text-[10px] font-extralight" />

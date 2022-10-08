@@ -17,7 +17,8 @@ const AdsPost = () => {
     return (
         <div>
             {
-                (getShowState && !hideAds) &&
+                // (getShowState && !hideAds) &&
+                (false) &&
                 <div
                     className='relative rounded-none bg-base-200'
                     style={{ backgroundImage: `url('${bg?.src}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}
@@ -38,7 +39,7 @@ const AdsPost = () => {
                                 <Info size='13' />
                             </span>
                         </div>
-                        
+
                         {
                             fullDetails &&
                             <div className='bg-base-200 absolute bottom-[80px] rounded-none  p-4 w-full' style={{ backgroundImage: `url('${bg?.src}')`, backgroundSize: 'cover', backgroundPosition: '100% 100% ' }}
