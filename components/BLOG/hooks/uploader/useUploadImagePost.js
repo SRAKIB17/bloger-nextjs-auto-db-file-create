@@ -39,7 +39,6 @@ const useUploadImagePost = () => {
 
 
                     const result = e.target.result;
-                    setMessage(<span className='label-text-alt text-success mb-8'>Successfully uploaded</span>);
                     setFileData(result);
 
                     fetch(`https://api.imgbb.com/1/upload?key=15847c16066308ed3e47892c5212cefd`, {
@@ -48,6 +47,7 @@ const useUploadImagePost = () => {
                     })
                         .then(response => response.json())
                         .then(resultImage => {
+                            setMessage(<span className='label-text-alt text-success mb-8'>Successfully uploaded</span>);
                             setResult(resultImage)
                         })
                         .catch(error => {
