@@ -148,8 +148,8 @@ const Default = ({ post, refetch }) => {
                             }
                             <button onClick={() => {
                                 showFullDescriptionHandle();
-                                const iframe = document.getElementById('iframePostPreview' + post_id);
-                                iframe.style.display = 'none'
+                                // const iframe = document.getElementById('iframePostPreview' + post_id);
+                                // iframe.style.display = 'none'
 
                             }} className='text-blue-500 link-hover text-sm'>
                                 &nbsp;  show {' ' + ((showDescription?.length <= 120) ? ' more' : 'less')}
