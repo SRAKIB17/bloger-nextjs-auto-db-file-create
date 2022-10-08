@@ -84,7 +84,7 @@ const EditPost = ({ post }) => {
         }).join(',')
         const post = {
             userID: userID,
-            post_id: '',
+            post_id: post_id,
             post_title: event.target.title.value,
             thumbnail: thumbnail,
             time: new Date(),
